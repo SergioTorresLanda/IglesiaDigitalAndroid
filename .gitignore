@@ -5,7 +5,8 @@
 .DS_Store
 local.properties
 /captures
-build
+build/*
+!EAMXCommonUtils/src/main/java/mx/arquidiocesis/eamxcommonutils/retrofit/build/RetrofitApp.kt
 gradlew.bat
 release
 Gemfile.lock

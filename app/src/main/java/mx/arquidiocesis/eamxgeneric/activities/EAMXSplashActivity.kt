@@ -74,7 +74,7 @@ open class EAMXSplashActivity : AppCompatActivity(), InstallStateUpdatedListener
 
     private fun checkUpdateApp() {
         lifecycleScope.launch(Dispatchers.Main) {
-            //try {
+            try {
                 appUpdateManager.registerListener(this@EAMXSplashActivity)
                 //val forceVersion = true
                 val forceVersion = withContext(Dispatchers.IO) {
@@ -90,9 +90,9 @@ open class EAMXSplashActivity : AppCompatActivity(), InstallStateUpdatedListener
                         if (forceVersion && updateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) codeResultUpdateForce else codeResultUpdate
                     )
                 } else openSession()
-            /*} catch (_: Exception){
+            } catch (_: Exception){
                 openSession()
-            }*/
+            }
         }
     }
 
