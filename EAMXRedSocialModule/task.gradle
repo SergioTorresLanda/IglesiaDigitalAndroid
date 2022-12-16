@@ -1,0 +1,14 @@
+task assembleDebugAndCopy(dependsOn: 'assembleDebug') {
+    doLast{
+        println("copy into:")
+        [
+                "$buildDir/../../../baz-android-encuentro-generic/EAMXRedSocialModule",
+        ].each { destiny ->
+            println(destiny)
+            copy {
+                from "$buildDir/outputs/aar/EAMXRedSocialModule-debug.aar"
+                into destiny
+            }
+        }
+    }
+}

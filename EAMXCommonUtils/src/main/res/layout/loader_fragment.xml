@@ -1,0 +1,39 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:cardCornerRadius="@dimen/corner_radious_20"
+        app:cardElevation="0dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_margin="20dp">
+
+            <ImageView
+                android:id="@+id/imgCharging"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/margin_top_20"
+                android:src="@drawable/ic_encuentro" />
+
+            <TextView
+                android:id="@+id/txtLoading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_below="@id/imgCharging"
+                android:textColor="@color/black"
+                android:text="@string/cargando" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

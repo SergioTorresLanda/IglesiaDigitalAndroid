@@ -1,0 +1,13 @@
+*.iml
+.externalNativeBuild
+.gradle
+.idea
+.DS_Store
+local.properties
+/captures
+build
+gradlew.bat
+release
+Gemfile.lock
+fastlane/report.xml
+/app/google-services.json

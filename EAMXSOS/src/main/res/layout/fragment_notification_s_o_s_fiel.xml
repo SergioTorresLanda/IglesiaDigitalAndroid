@@ -1,0 +1,457 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvTitulo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:lineSpacingExtra="2sp"
+            android:textColor="#313131"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Unción de los enfermos" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitulo">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cvSOSTimer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvTitleSolicita"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:lineSpacingExtra="-1sp"
+                    android:text="Contacto de ayuda"
+                    android:textColor="#192a73"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvParroco"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="-2sp"
+                    android:textColor="#363636"
+                    android:textSize="18sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toStartOf="@+id/tvDistancia"
+                    app:layout_constraintStart_toStartOf="@+id/tvTitleSolicita"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTitleSolicita"
+                    tools:text="Jesús Silva" />
+
+                <TextView
+                    android:id="@+id/tvDistancia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="7sp"
+                    android:textColor="#99000000"
+                    android:textSize="18sp"
+                    android:textStyle="normal"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@+id/tvTitleSolicita"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTitleSolicita" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clDirrecion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@+id/clSolicitada"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/clSolicitada">
+
+                    <TextView
+                        android:id="@+id/tvTituloDirrecion"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="-1sp"
+                        android:text="Dirección"
+                        android:textColor="#192a73"
+                        android:textSize="16sp"
+                        android:textStyle="normal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvDirrecion"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="-2sp"
+                        android:textColor="#363636"
+                        android:textSize="18sp"
+                        android:textStyle="normal"
+                        app:layout_constraintEnd_toEndOf="@+id/tvTituloDirrecion"
+                        app:layout_constraintStart_toStartOf="@+id/tvTituloDirrecion"
+                        app:layout_constraintTop_toBottomOf="@+id/tvTituloDirrecion" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clTelefono"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@+id/tvTitleSolicita"
+                    app:layout_constraintStart_toStartOf="@+id/tvParroco"
+                    app:layout_constraintTop_toBottomOf="@+id/clDirrecion">
+
+                    <TextView
+                        android:id="@+id/tvTituloTelefono"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:lineSpacingExtra="-1sp"
+                        android:text="Teléfono"
+                        android:textColor="#192a73"
+                        android:textSize="16sp"
+                        android:textStyle="normal"
+                        app:layout_constraintEnd_toStartOf="@+id/ivTelefono"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvTelefono"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="-2sp"
+                        android:text="55 2345 6789"
+                        android:textColor="#363636"
+                        android:textSize="18sp"
+                        android:textStyle="normal"
+                        app:layout_constraintEnd_toEndOf="@+id/tvTituloTelefono"
+                        app:layout_constraintStart_toStartOf="@+id/tvTituloTelefono"
+                        app:layout_constraintTop_toBottomOf="@+id/tvTituloTelefono" />
+
+                    <ImageView
+                        android:id="@+id/ivTelefono"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/ic_llamada_telefonica"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clSolicitada"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="@+id/tvParroco"
+                    app:layout_constraintStart_toStartOf="@+id/tvParroco"
+                    app:layout_constraintTop_toBottomOf="@+id/tvParroco">
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="-1sp"
+                        android:text="Solicitada"
+                        android:textColor="#192a73"
+                        android:textSize="16sp"
+                        android:textStyle="normal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvFecha"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="-2sp"
+                        android:textColor="#363636"
+                        android:textSize="18sp"
+                        android:textStyle="normal"
+                        app:layout_constraintEnd_toEndOf="@+id/textView6"
+                        app:layout_constraintStart_toStartOf="@+id/textView6"
+                        app:layout_constraintTop_toBottomOf="@+id/textView6"
+                        tools:text="10/06/21 10:00 hrs." />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="#e4e4e4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/clTelefono" />
+
+                <ImageView
+                    android:id="@+id/ivConfirmada"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/ic_none"
+                    app:layout_constraintStart_toStartOf="@+id/tvTitleSolicita"
+                    app:layout_constraintTop_toBottomOf="@+id/view" />
+
+                <ImageView
+                    android:id="@+id/ivProgreso"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/ic_none"
+                    app:layout_constraintStart_toStartOf="@+id/ivConfirmada"
+                    app:layout_constraintTop_toBottomOf="@+id/ivLine1" />
+
+                <ImageView
+                    android:id="@+id/ivCompletada"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/ic_none"
+                    app:layout_constraintStart_toStartOf="@+id/ivProgreso"
+                    app:layout_constraintTop_toBottomOf="@+id/ivLine2" />
+
+                <ImageView
+                    android:id="@+id/ivLine1"
+                    android:layout_width="5dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@color/blue"
+                    app:layout_constraintEnd_toEndOf="@+id/ivConfirmada"
+                    app:layout_constraintStart_toStartOf="@+id/ivConfirmada"
+                    app:layout_constraintTop_toBottomOf="@+id/ivConfirmada" />
+
+                <ImageView
+                    android:id="@+id/ivLine2"
+                    android:layout_width="5dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@color/blue"
+                    app:layout_constraintEnd_toEndOf="@+id/ivProgreso"
+                    app:layout_constraintStart_toStartOf="@+id/ivProgreso"
+                    app:layout_constraintTop_toBottomOf="@+id/ivProgreso" />
+
+                <TextView
+                    android:id="@+id/tvConfirma"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="10sp"
+                    android:text="Enviado"
+                    android:textColor="@color/dorado"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/tvConfirmaHora"
+                    app:layout_constraintStart_toEndOf="@+id/ivConfirmada"
+                    app:layout_constraintTop_toTopOf="@+id/ivConfirmada" />
+
+                <TextView
+                    android:id="@+id/tvConfirmaStatus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="2sp"
+                    android:text="En espera"
+                    android:textColor="#99000000"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="@+id/tvConfirmaHora"
+                    app:layout_constraintStart_toStartOf="@+id/tvConfirma"
+                    app:layout_constraintTop_toBottomOf="@+id/tvConfirma" />
+
+                <TextView
+                    android:id="@+id/tvConfirmaHora"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:lineSpacingExtra="2sp"
+                    android:text=""
+                    android:textColor="#99000000"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvConfirma" />
+
+                <TextView
+                    android:id="@+id/tvProgreso"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="10sp"
+                    android:text="En progreso"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/tvProgresoHora"
+                    app:layout_constraintStart_toEndOf="@+id/ivProgreso"
+                    app:layout_constraintTop_toTopOf="@+id/ivProgreso" />
+
+                <TextView
+                    android:id="@+id/tvProgresoStatus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="2sp"
+                    android:text="Ayuda en camino"
+                    android:textColor="#99000000"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="@+id/tvProgresoHora"
+                    app:layout_constraintStart_toStartOf="@+id/tvProgreso"
+                    app:layout_constraintTop_toBottomOf="@+id/tvProgreso" />
+
+                <TextView
+                    android:id="@+id/tvProgresoHora"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="2sp"
+                    android:text=""
+                    android:textColor="#99000000"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="@+id/tvConfirmaHora"
+                    app:layout_constraintTop_toTopOf="@+id/tvProgreso" />
+
+                <TextView
+                    android:id="@+id/tvCompleta"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="10sp"
+                    android:text="Finalizado"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/tvCompletaHora"
+                    app:layout_constraintStart_toEndOf="@+id/ivCompletada"
+                    app:layout_constraintTop_toTopOf="@+id/ivCompletada" />
+
+                <TextView
+                    android:id="@+id/tvCompletaStatus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="2sp"
+                    android:textColor="#99000000"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="@+id/tvCompletaHora"
+                    app:layout_constraintStart_toStartOf="@+id/tvCompleta"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCompleta"
+                    tools:text="En espera" />
+
+                <TextView
+                    android:id="@+id/tvCompletaHora"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="2sp"
+                    android:text=""
+                    android:textColor="#99000000"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="@+id/tvProgresoHora"
+                    app:layout_constraintTop_toTopOf="@+id/tvCompleta" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnCancelarServicio"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="16dp"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:lineSpacingExtra="8sp"
+                    android:padding="8dp"
+                    android:text="@string/text_btn_calcel_servicio"
+                    android:textSize="14sp"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCompletaStatus"
+                    app:strokeColor="@color/btn_background_accept"
+                    app:strokeWidth="2dp" />
+
+                <LinearLayout
+                    android:id="@+id/clButon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:gravity="right"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCompletaStatus">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnCancelDetalle"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/background_button_cancel"
+                        android:text="Rechazar"
+                        android:textAllCaps="false"
+                        android:textColor="@color/bluetitle"
+                        android:visibility="visible"
+                        app:cornerRadius="@dimen/size_corner_general_button"
+                        app:strokeColor="@color/btn_background_accept"
+                        app:strokeWidth="2dp" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnAcceptDetalle"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/background_button_accept"
+                        android:text="Aceptar"
+                        android:textAllCaps="false"
+                        android:textColor="@color/btn_background_cancel" />
+
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

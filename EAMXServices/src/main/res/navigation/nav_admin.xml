@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_admin"
+    app:startDestination="@id/serviceAdminMain">
+
+    <fragment
+        android:id="@+id/serviceAdminMain"
+        android:name="mx.arquidiocesis.servicios.ui.admin.ServiceAdminMainFragment"
+        android:label="fragment_services_admin_main"
+        tools:layout="@layout/fragment_services_admin_main" >
+        <action
+            android:id="@+id/action_to_serviceAdminTabFragment"
+            app:destination="@id/serviceAdminTabFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/serviceAdminTabFragment"
+        android:name="mx.arquidiocesis.servicios.ui.admin.ServiceAdminTabFragment"
+        android:label="fragment_service_admin_main"
+        tools:layout="@layout/fragment_services_admin_tab" />
+</navigation>

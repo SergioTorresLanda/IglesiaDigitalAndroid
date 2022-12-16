@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        app:cardCornerRadius="@dimen/corner_radious_20">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgUserSendPray"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/img_cura" />
+
+            <TextView
+                android:id="@+id/txtName"
+                style="@style/StyleTxtSubtitleItem"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/imgUserSendPray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imgUserSendPray"
+                app:layout_constraintTop_toTopOf="@+id/imgUserSendPray"
+                tools:text="Juan Carlos Romero Bautista" />
+
+            <EditText
+                android:id="@+id/edtOracion"
+                style="@style/StyleTxtAddressParroquia"
+                android:layout_width="0dp"
+                android:layout_height="180dp"
+                android:layout_marginTop="24dp"
+                android:background="@android:color/transparent"
+                android:hint="@string/write_here"
+                android:textSize="@dimen/size_16"
+                android:padding="4dp"
+                app:layout_constraintEnd_toEndOf="@+id/txtName"
+                app:layout_constraintStart_toStartOf="@+id/imgUserSendPray"
+                app:layout_constraintTop_toBottomOf="@+id/imgUserSendPray" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="#dfdfdf"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtOracion" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnPost"
+                android:layout_width="112dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/background_button_cancel"
+                android:backgroundTint="@color/btn_background_accept"
+                android:gravity="center"
+                android:text="Publicar"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:visibility="visible"
+                app:cornerRadius="@dimen/size_corner_general_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view"
+                app:strokeColor="@color/btn_background_accept"
+                app:strokeWidth="2dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnCancel"
+                android:layout_width="112dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/background_button_cancel"
+                android:gravity="center"
+                android:text="Salir"
+                android:textAllCaps="false"
+                android:textColor="@color/btn_background_accept"
+                android:visibility="visible"
+                app:cornerRadius="@dimen/size_corner_general_button"
+                app:layout_constraintBottom_toBottomOf="@+id/btnPost"
+                app:layout_constraintEnd_toStartOf="@+id/btnPost"
+                app:layout_constraintTop_toTopOf="@+id/btnPost"
+                app:strokeColor="@color/btn_background_accept"
+                app:strokeWidth="2dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/framePrincipalLocal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clViewGenmeral"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@color/white"
+            tools:context=".fragments.home.EAMXHomeFragment">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardLiveEvent"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="10dp"
+                android:clickable="true"
+                android:elevation="10dp"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:visibility="visible"
+                app:cardBackgroundColor="@color/color_card_eventos"
+                app:cardCornerRadius="@dimen/corner_radious_20"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.3"
+                        android:padding="@dimen/padding_20"
+                        android:src="@drawable/ic_en_vivo" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.7"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtEventosVivo"
+                            style="@style/StyleTxtTitleRegister"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/eventos_en_vivo"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtDescripcion"
+                            style="@style/StyleTxtTitleRegister"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:autoSizeTextType="uniform"
+                            android:maxLines="1"
+                            android:paddingEnd="@dimen/padding_10"
+                            android:text="Misas. Cátedras y eventos especiales"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/size_14" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <ScrollView
+                android:id="@+id/scrollView2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                android:fillViewport="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardLiveEvent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="24dp"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal"
+                        android:weightSum="1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="@dimen/margin_10"
+                            android:layout_weight="0.5"
+                            android:orientation="vertical"
+                            tools:background="@color/colorGreenDone">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/cardRedSocial"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/height_card_120"
+                                android:layout_margin="@dimen/margin_12"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:foreground="?attr/selectableItemBackgroundBorderless"
+                                android:visibility="visible"
+                                app:cardCornerRadius="@dimen/corner_radious_19">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center_vertical"
+                                    android:orientation="vertical"
+                                    android:paddingStart="@dimen/padding_start_12">
+
+                                    <FrameLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/shape_red_social">
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="@dimen/with_img_30"
+                                            android:layout_margin="@dimen/margin_top_20"
+                                            android:contentDescription="@string/icono_red_social"
+                                            android:src="@drawable/ic_red_social" />
+                                    </FrameLayout>
+
+                                    <TextView
+                                        style="@style/StyleTxtTitleRegister"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/margin_5"
+                                        android:text="@string/red_social"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/size_14"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/cardMiIglesia"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/height_card_120"
+                                android:layout_margin="@dimen/margin_12"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:foreground="?attr/selectableItemBackgroundBorderless"
+                                android:visibility="visible"
+                                app:cardCornerRadius="@dimen/corner_radious_19">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center_vertical"
+                                    android:orientation="vertical"
+                                    android:paddingStart="@dimen/padding_start_12">
+
+                                    <FrameLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/shape_mi_iglesia">
+
+                                        <ImageView
+                                            android:layout_width="@dimen/with_img_30"
+                                            android:layout_height="@dimen/with_img_30"
+                                            android:layout_margin="@dimen/margin_top_20"
+                                            android:contentDescription="@string/icono_mi_iglesia"
+                                            android:src="@drawable/ic_mi_iglesia" />
+                                    </FrameLayout>
+
+                                    <TextView
+                                        style="@style/StyleTxtTitleRegister"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/margin_5"
+                                        android:text="@string/mi_iglesia"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/size_14"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/cardCadenas"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/height_card_120"
+                                android:layout_margin="@dimen/margin_12"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:foreground="?attr/selectableItemBackgroundBorderless"
+                                android:visibility="visible"
+                                app:cardCornerRadius="@dimen/corner_radious_19">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center_vertical"
+                                    android:orientation="vertical"
+                                    android:paddingStart="@dimen/padding_start_12">
+
+                                    <FrameLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/shape_cadena_oracion">
+
+                                        <ImageView
+                                            android:layout_width="@dimen/with_img_30"
+                                            android:layout_height="@dimen/with_img_30"
+                                            android:layout_margin="@dimen/margin_top_20"
+                                            android:contentDescription="@string/cadena_de_oraci_n"
+                                            android:src="@drawable/ic_cadena_oraciones" />
+                                    </FrameLayout>
+
+                                    <TextView
+                                        style="@style/StyleTxtTitleRegister"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/margin_5"
+                                        android:text="@string/cadena_de_oraci_n"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/size_14"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/cardComunidades"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/height_card_120"
+                                android:layout_margin="@dimen/margin_12"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:foreground="?attr/selectableItemBackgroundBorderless"
+                                android:visibility="visible"
+                                app:cardCornerRadius="@dimen/corner_radious_19">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center_vertical"
+                                    android:orientation="vertical"
+                                    android:paddingStart="@dimen/padding_start_12">
+
+                                    <FrameLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/shape_comunidades">
+
+                                        <ImageView
+                                            android:layout_width="@dimen/with_img_30"
+                                            android:layout_height="@dimen/with_img_30"
+                                            android:layout_margin="@dimen/margin_top_20"
+                                            android:contentDescription="@string/cadena_de_oraci_n"
+                                            android:src="@drawable/icon_comunidades" />
+                                    </FrameLayout>
+
+                                    <TextView
+                                        style="@style/StyleTxtTitleRegister"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/margin_5"
+                                        android:text="Comunidades"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/size_14"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                            </androidx.cardview.widget.CardView>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="@dimen/margin_10"
+                            android:layout_weight="0.5"
+                            android:orientation="vertical">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/cardFormacion"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/height_card_120"
+                                android:layout_margin="@dimen/margin_12"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:foreground="?attr/selectableItemBackgroundBorderless"
+                                android:visibility="visible"
+                                app:cardCornerRadius="@dimen/corner_radious_19">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center_vertical"
+                                    android:orientation="vertical"
+                                    android:paddingStart="@dimen/padding_start_12">
+
+                                    <FrameLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/shape_formacion">
+
+                                        <ImageView
+                                            android:layout_width="@dimen/with_img_30"
+                                            android:layout_height="@dimen/with_img_30"
+                                            android:layout_margin="@dimen/margin_top_20"
+                                            android:contentDescription="@string/icono_formacion"
+                                            android:src="@drawable/ic_formacion" />
+                                    </FrameLayout>
+
+                                    <TextView
+                                        style="@style/StyleTxtTitleRegister"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/margin_5"
+                                        android:text="@string/biblioteca"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/size_14"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/cardOraciones"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/height_card_120"
+                                android:layout_margin="@dimen/margin_12"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:foreground="?attr/selectableItemBackgroundBorderless"
+                                android:visibility="visible"
+                                app:cardCornerRadius="@dimen/corner_radious_19">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center_vertical"
+                                    android:orientation="vertical"
+                                    android:paddingStart="@dimen/padding_start_12">
+
+                                    <FrameLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/shape_oraciones">
+
+                                        <ImageView
+                                            android:layout_width="@dimen/with_img_30"
+                                            android:layout_height="@dimen/with_img_30"
+                                            android:layout_margin="@dimen/margin_top_20"
+                                            android:contentDescription="@string/icono_oraciones"
+                                            android:src="@drawable/ic_oraciones" />
+                                    </FrameLayout>
+
+                                    <TextView
+                                        style="@style/StyleTxtTitleRegister"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/margin_5"
+                                        android:text="@string/oraciones"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/size_14"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/cardServicios"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/height_card_120"
+                                android:layout_margin="@dimen/margin_12"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:foreground="?attr/selectableItemBackgroundBorderless"
+                                android:visibility="visible"
+                                app:cardCornerRadius="@dimen/corner_radious_19">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center_vertical"
+                                    android:orientation="vertical"
+                                    android:paddingStart="@dimen/padding_start_12">
+
+                                    <FrameLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/shape_servicios">
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="@dimen/with_img_30"
+                                            android:layout_margin="@dimen/margin_top_20"
+                                            android:contentDescription="@string/icono_oraciones"
+                                            android:src="@drawable/ic_servicios" />
+                                    </FrameLayout>
+
+                                    <TextView
+                                        style="@style/StyleTxtTitleRegister"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/margin_5"
+                                        android:text="@string/servicios"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/size_14"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                            </androidx.cardview.widget.CardView>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageButton
+            android:id="@+id/btnApoyar"
+            style="@style/StyleBtnApoyar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="32dp"
+            android:contentDescription="@string/name"
+            android:src="@drawable/button_miofrneda"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </RelativeLayout>
+</layout>

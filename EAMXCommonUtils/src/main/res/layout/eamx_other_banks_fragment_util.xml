@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:tag="layout/eamx_other_banks_fragment_0">
+
+        <View
+            android:id="@+id/line_divider_1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="24dp"
+            android:background="@color/colorGray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/padding_16"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/spro_text_regular"
+            android:text="@string/eamx_other_banks_fragment_donations_with_card"
+            android:textColor="@color/primaryColor"
+            android:textSize="@dimen/size_24"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line_divider_1" />
+
+        <TextView
+            android:id="@+id/instructions"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/instructions_to_donate"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_16"
+            app:layout_constraintEnd_toEndOf="@+id/header"
+            app:layout_constraintStart_toStartOf="@+id/header"
+            app:layout_constraintTop_toBottomOf="@+id/header" />
+
+        <TextView
+            android:id="@+id/tvCardOwner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_25"
+            android:background="@color/ccolorBackgroundHome"
+            android:fontFamily="@font/spro_text_regular"
+            android:text="@string/eamx_other_banks_fragment_card_owner"
+            android:textColor="@color/primaryColor"
+            android:textSize="@dimen/size_14"
+            app:layout_constraintStart_toStartOf="@+id/instructions"
+            app:layout_constraintTop_toBottomOf="@+id/instructions" />
+
+        <EditText
+            android:id="@+id/edtCardholder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_end_7"
+            android:autofillHints=""
+            android:background="@color/ccolorBackgroundHome"
+            android:fontFamily="@font/spro_text_regular"
+            android:hint="@string/titular"
+            android:inputType="textCapWords|textAutoCorrect"
+            android:digits="@string/digits_only_letters"
+            android:maxLength="40"
+            android:maxLines="1"
+            android:textColor="@color/colorGray"
+            android:textSize="@dimen/size_16"
+            app:layout_constraintEnd_toEndOf="@+id/instructions"
+            app:layout_constraintStart_toStartOf="@+id/tvCardOwner"
+            app:layout_constraintTop_toBottomOf="@+id/tvCardOwner" />
+
+        <View
+            android:id="@+id/viewUnderCardOwner"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/margin_5"
+            android:background="@color/colorGray"
+            app:layout_constraintEnd_toEndOf="@+id/edtCardholder"
+            app:layout_constraintStart_toStartOf="@+id/edtCardholder"
+            app:layout_constraintTop_toBottomOf="@+id/edtCardholder" />
+
+        <TextView
+            android:id="@+id/tvCardNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:background="@color/ccolorBackgroundHome"
+            android:fontFamily="@font/spro_text_regular"
+            android:text="@string/eamx_other_banks_fragment_card_number"
+            android:textColor="@color/primaryColor"
+            android:textSize="@dimen/size_14"
+            app:layout_constraintStart_toStartOf="@+id/instructions"
+            app:layout_constraintTop_toBottomOf="@+id/viewUnderCardOwner" />
+
+        <EditText
+            android:id="@+id/edtCardNumber"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_end_7"
+            android:background="@color/ccolorBackgroundHome"
+            android:fontFamily="@font/spro_text_regular"
+            android:hint="@string/hint_card_number"
+            android:inputType="number"
+            android:digits="@string/digits_only_number_card"
+            android:maxLength="19"
+            android:maxLines="1"
+            android:textColor="@color/colorGray"
+            android:textSize="@dimen/size_16"
+            app:layout_constraintEnd_toStartOf="@+id/tvDebit"
+            app:layout_constraintStart_toStartOf="@+id/tvCardNumber"
+            app:layout_constraintTop_toBottomOf="@+id/tvCardNumber" />
+
+        <View
+            android:id="@+id/line_divider_2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/margin_5"
+            android:background="@color/colorGray"
+            app:layout_constraintEnd_toEndOf="@+id/edtCardNumber"
+            app:layout_constraintStart_toStartOf="@+id/edtCardholder"
+            app:layout_constraintTop_toBottomOf="@+id/edtCardNumber" />
+
+        <TextView
+            android:id="@+id/tvCredit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/spro_text_regular"
+            android:text="@string/credit"
+            android:textColor="@color/colorGray"
+            android:textSize="@dimen/size_14"
+            app:layout_constraintBottom_toBottomOf="@+id/tvDebit"
+            app:layout_constraintEnd_toEndOf="@+id/edtCardholder"
+            app:layout_constraintTop_toTopOf="@+id/tvDebit" />
+
+        <TextView
+            android:id="@+id/tvSalsh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/ccolorBackgroundHome"
+            android:fontFamily="@font/spro_text_regular"
+            android:text="@string/slash"
+            android:textColor="@color/primaryColor"
+            android:textSize="@dimen/size_14"
+            app:layout_constraintBottom_toBottomOf="@+id/tvDebit"
+            app:layout_constraintEnd_toStartOf="@+id/tvCredit"
+            app:layout_constraintTop_toTopOf="@+id/tvDebit" />
+
+        <TextView
+            android:id="@+id/tvDebit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@color/ccolorBackgroundHome"
+            android:fontFamily="@font/spro_text_regular"
+            android:text="@string/debit"
+            android:textColor="@color/primaryColor"
+            android:textSize="@dimen/size_14"
+            app:layout_constraintEnd_toStartOf="@+id/tvSalsh"
+            app:layout_constraintTop_toTopOf="@+id/tvCardNumber" />
+
+        <ImageView
+            android:id="@+id/ivCameraIcon"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_camera_donations"
+            app:layout_constraintBottom_toBottomOf="@+id/svCreditOrDevit"
+            app:layout_constraintEnd_toEndOf="@+id/tvCredit"
+            app:layout_constraintStart_toEndOf="@+id/svCreditOrDevit"
+            app:layout_constraintTop_toTopOf="@+id/svCreditOrDevit" />
+
+        <vn.luongvo.widget.iosswitchview.SwitchView
+            android:id="@+id/svCreditOrDevit"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            app:layout_constraintBottom_toBottomOf="@+id/edtCardNumber"
+            app:layout_constraintEnd_toStartOf="@+id/ivCameraIcon"
+            app:layout_constraintStart_toStartOf="@+id/tvDebit"
+            app:layout_constraintTop_toTopOf="@+id/edtCardNumber" />
+
+        <TextView
+            android:id="@+id/tvExpireDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_10"
+            android:background="@color/ccolorBackgroundHome"
+            android:fontFamily="@font/spro_text_regular"
+            android:text="@string/eaxm_other_banks_fragment_expired_date"
+            android:textColor="@color/primaryColor"
+            android:textSize="@dimen/size_14"
+            app:layout_constraintStart_toStartOf="@+id/edtCardNumber"
+            app:layout_constraintTop_toBottomOf="@+id/line_divider_2" />
+
+        <EditText
+            android:id="@+id/etExpireDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_end_7"
+            android:background="@color/ccolorBackgroundHome"
+            android:maxLength="5"
+            android:maxLines="1"
+            android:fontFamily="@font/spro_text_regular"
+            android:gravity="center"
+            android:hint="@string/mounth_year"
+            android:digits="@string/digits_only_number_date"
+            android:textColor="@color/colorGray"
+            android:textSize="@dimen/size_16"
+            android:inputType="date"
+            app:layout_constraintEnd_toEndOf="@+id/tvExpireDate"
+            app:layout_constraintStart_toStartOf="@+id/tvCardNumber"
+            app:layout_constraintTop_toBottomOf="@+id/tvExpireDate" />
+
+        <View
+            android:id="@+id/line_divider_3"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/margin_5"
+            android:background="@color/colorGray"
+            app:layout_constraintEnd_toEndOf="@+id/etExpireDate"
+            app:layout_constraintStart_toStartOf="@+id/edtCardholder"
+            app:layout_constraintTop_toBottomOf="@+id/etExpireDate" />
+
+        <ImageView
+            android:id="@+id/ivCalendarIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="@dimen/margin_5"
+            android:layout_marginLeft="@dimen/margin_5"
+            android:layout_marginRight="@dimen/margin_5"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_icono_calendario"
+            app:layout_constraintBottom_toBottomOf="@+id/line_divider_3"
+            app:layout_constraintEnd_toStartOf="@+id/etCVV"
+            app:layout_constraintStart_toEndOf="@+id/etExpireDate"
+            app:layout_constraintTop_toTopOf="@+id/etExpireDate"
+            app:tint="@color/golden" />
+
+        <TextView
+            android:id="@+id/tvCVV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/ccolorBackgroundHome"
+            android:fontFamily="@font/spro_text_regular"
+            android:text="@string/eaxm_other_banks_fragment_cvv_card"
+            android:textColor="@color/primaryColor"
+            android:textSize="@dimen/size_14"
+            app:layout_constraintStart_toStartOf="@+id/etCVV"
+            app:layout_constraintTop_toTopOf="@+id/tvExpireDate" />
+
+        <EditText
+            android:id="@+id/etCVV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/ccolorBackgroundHome"
+            android:fontFamily="@font/spro_text_regular"
+            android:foregroundGravity="left"
+            android:gravity="start"
+            android:hint="@string/cvv"
+            android:inputType="number"
+            android:maxLength="3"
+            android:digits="@string/digits_only_number"
+            android:maxLines="1"
+            android:textColor="@color/colorGray"
+            android:textSize="@dimen/size_16"
+            app:layout_constraintBottom_toBottomOf="@+id/etExpireDate"
+            app:layout_constraintEnd_toEndOf="@+id/tvCredit"
+            app:layout_constraintStart_toEndOf="@+id/ivCalendarIcon"
+            app:layout_constraintTop_toTopOf="@+id/etExpireDate" />
+
+        <View
+            android:id="@+id/line_divider_5"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/colorGray"
+            app:layout_constraintEnd_toEndOf="@+id/etCVV"
+            app:layout_constraintStart_toStartOf="@+id/etCVV"
+            app:layout_constraintTop_toBottomOf="@+id/line_divider_3" />
+
+        <TextView
+            android:id="@+id/tvDonationSpend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_10"
+            android:background="@color/ccolorBackgroundHome"
+            android:fontFamily="@font/spro_text_regular"
+            android:text="@string/spend_to_donate"
+            android:textColor="@color/primaryColor"
+            android:textSize="@dimen/size_14"
+            app:layout_constraintStart_toStartOf="@+id/instructions"
+            app:layout_constraintTop_toBottomOf="@+id/line_divider_3" />
+
+        <LinearLayout
+            android:id="@+id/llPayUtil"
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_end_7"
+            app:layout_constraintEnd_toEndOf="@+id/instructions"
+            app:layout_constraintStart_toStartOf="@+id/tvCardOwner"
+            app:layout_constraintTop_toBottomOf="@+id/tvDonationSpend">
+
+            <TextView
+                style="@style/StyleTxtTitleRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$"
+                android:textSize="@dimen/size_18" />
+
+            <com.cottacush.android.currencyedittext.CurrencyEditText
+                android:id="@+id/etDonationSpend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/ccolorBackgroundHome"
+                android:fontFamily="@font/spro_text_regular"
+                android:layout_marginLeft="4dp"
+                android:hint="@string/_0_0_util"
+                android:inputType="numberDecimal"
+                android:maxLength="40"
+                android:maxLines="1"
+                android:textColor="@color/colorGray"
+                android:textSize="@dimen/size_16"/>
+
+        </LinearLayout>
+
+
+
+        <View
+            android:id="@+id/viewUnderSpendDonation"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/margin_5"
+            android:background="@color/colorGray"
+            app:layout_constraintEnd_toEndOf="@+id/edtCardholder"
+            app:layout_constraintStart_toStartOf="@+id/edtCardholder"
+            app:layout_constraintTop_toBottomOf="@+id/llPayUtil" />
+
+        <Button
+            android:id="@+id/btnConfirmDonate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#13277C"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:text="@string/confirmar"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/llPayUtil"
+            app:layout_constraintStart_toStartOf="@+id/llPayUtil"
+            app:layout_constraintTop_toBottomOf="@+id/viewUnderSpendDonation" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

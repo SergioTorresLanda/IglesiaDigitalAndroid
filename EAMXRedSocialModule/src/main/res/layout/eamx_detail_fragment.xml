@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:clickable="true"
+            android:fillViewport="true"
+            android:focusable="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@drawable/shape_toolbar_register_white"
+                android:elevation="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/btnBackWhiteRed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:contentDescription="@string/description_image"
+                    android:padding="@dimen/padding_10"
+                    android:src="@drawable/ic_btn_back_two_red"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtTitleFragmentWhiteRed"
+                    style="@style/StyleTxtTitleRegister"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="16dp"
+                    android:autoSizeTextType="uniform"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="@dimen/size_20"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:text="Titulo del fragment" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/constraintLayout">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fillViewport="true">
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:importantForAutofill="auto"
+                        android:orientation="vertical"
+                        android:weightSum="1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/constrainView"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.7">
+
+                            <androidx.viewpager2.widget.ViewPager2
+                                android:id="@+id/viewPagerCarousel"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
+                                android:id="@+id/dots_indicator"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_margin="@dimen/margin_12"
+                                app:dotsColor="@color/white"
+                                app:dotsCornerRadius="8dp"
+                                app:dotsSize="8dp"
+                                app:dotsSpacing="4dp"
+                                app:dotsWidthFactor="2.5"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:selectedDotColor="@color/primaryColor" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.3"
+                            android:orientation="vertical"
+                            android:paddingHorizontal="25dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/margin_top_20"
+                                android:orientation="horizontal"
+                                android:padding="@dimen/padding_5">
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:id="@+id/imgUser"
+                                    android:layout_width="@dimen/width_40"
+                                    android:layout_height="@dimen/width_40"
+                                    tools:src="@drawable/img_cura" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/margin_15"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:id="@+id/txtName"
+                                            style="@style/StyleTxtSubtitleItem"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="@string/arquidiocesis"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/size_14"
+                                            android:textStyle="bold" />
+
+                                        <!--                                <TextView-->
+                                        <!--                                    style="@style/StyleTxtSubtitleItem"-->
+                                        <!--                                    android:layout_width="wrap_content"-->
+                                        <!--                                    android:layout_height="wrap_content"-->
+                                        <!--                                    android:layout_marginStart="@dimen/margin_15"-->
+                                        <!--                                    tools:text="Padre Jorge Luis"-->
+                                        <!--                                    android:textColor="@color/black"-->
+                                        <!--                                    android:textSize="@dimen/size_14" />-->
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:id="@+id/txtDate"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/avenir_nextlt_pro_regular"
+                                        android:gravity="end"
+                                        android:textSize="@dimen/size_10"
+                                        tools:text="26 Marzo" />
+
+                                    <TextView
+                                        android:id="@+id/txtNameChurch"
+                                        style="@style/StyleTxtAddressParroquia"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/margin_5"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/size_14"
+                                        tools:text="Hi" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/layoutPlayer"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/margin_10"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:orientation="horizontal"
+                                android:padding="@dimen/padding_5"
+                                android:weightSum="1">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/ic_icon_hands" />
+
+                                <TextView
+                                    android:id="@+id/txtCount"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.7"
+                                    android:fontFamily="@font/avenir_nextlt_pro_regular"
+                                    android:paddingStart="@dimen/padding_5"
+                                    android:textStyle="bold"
+                                    tools:text="1" />
+
+                                <ImageView
+                                    android:id="@+id/icHands"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/ic_icon_hands"
+                                    android:visibility="invisible" />
+
+                                <TextView
+                                    android:id="@+id/txtOracion"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.3"
+                                    android:fontFamily="@font/avenir_black"
+                                    android:padding="@dimen/padding_5"
+                                    android:text="@string/player"
+                                    android:textColor="@color/blue_txt_oraciones"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="wrap_content"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="@dimen/margin_10"
+                                android:background="@color/grayLight" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </ScrollView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

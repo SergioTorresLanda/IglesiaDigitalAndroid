@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="size_icon_closed">22dp</dimen>
+    <dimen name="margin_8">8dp</dimen>
+    <dimen name="height_edt_55">70dp</dimen>
+</resources>

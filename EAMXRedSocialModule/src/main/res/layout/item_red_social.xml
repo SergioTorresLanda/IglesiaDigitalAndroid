@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height=".25dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/view"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivAdd" />
+
+        <View
+            android:id="@+id/viewTop"
+            android:layout_width="0dp"
+            android:layout_height=".25dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvPriest"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/avenir_nextlt_pro_regular"
+            app:cardCornerRadius="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/viewTop">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgPriest"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:scaleType="fitXY"
+                android:src="@drawable/user"
+                android:textColor="@color/white"
+                android:textSize="@dimen/size_24" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_toStartOf="@id/txtDate"
+            android:layout_toEndOf="@+id/cvPriest"
+            android:fontFamily="@font/spro_text_regular"
+            android:textColor="@color/primaryColorDark"
+            android:textSize="@dimen/size_18"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/ivOption"
+            app:layout_constraintStart_toEndOf="@+id/cvPriest"
+            app:layout_constraintTop_toTopOf="@+id/viewTop"
+            tools:text="Padre Jorge Luis" />
+
+        <TextView
+            android:id="@+id/txtDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/avenir_nextlt_pro_regular"
+            android:gravity="end"
+            android:textSize="@dimen/size_12"
+            app:layout_constraintStart_toStartOf="@+id/txtName"
+            app:layout_constraintTop_toBottomOf="@+id/txtName"
+            tools:text="26 Marzo" />
+
+        <ImageView
+            android:id="@+id/ivOption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_tres_puntos"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txtName" />
+
+        <TextView
+            android:id="@+id/txtMessage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/avenir_nextlt_pro_regular"
+            android:textSize="@dimen/size_12"
+            app:layout_constraintEnd_toEndOf="@+id/ivOption"
+            app:layout_constraintStart_toStartOf="@+id/cvPriest"
+            app:layout_constraintTop_toBottomOf="@+id/txtDate"
+            tools:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna." />
+
+        <include
+            android:id="@+id/i_media_gallery"
+            layout="@layout/item_media_preview_social"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/txtMessage"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/txtMessage"
+            app:layout_constraintTop_toBottomOf="@+id/txtMessage" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clLike"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/cvPriest"
+            app:layout_constraintTop_toBottomOf="@+id/i_media_gallery">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLike"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:drawableLeft="@drawable/ic_hands"
+                android:drawablePadding="@dimen/size_10"
+                android:fontFamily="@font/avenir_nextlt_pro_regular"
+                android:text="0"
+                tools:ignore="MissingConstraints" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLikeDado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:drawableTint="@color/blue_terminos"
+                android:drawableLeft="@drawable/ic_hands"
+                android:drawablePadding="@dimen/size_10"
+                android:fontFamily="@font/avenir_nextlt_pro_regular"
+                android:text="0"
+                android:visibility="gone"
+                tools:ignore="MissingConstraints" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:id="@+id/tvComent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:drawableLeft="@drawable/ic_comment"
+            android:drawablePadding="@dimen/size_10"
+            android:fontFamily="@font/avenir_nextlt_pro_regular"
+            android:text="0"
+            app:layout_constraintStart_toEndOf="@+id/clLike"
+            app:layout_constraintTop_toTopOf="@+id/clLike" />
+
+        <TextView
+            android:id="@+id/tvShare"
+            android:layout_width="28dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:drawableLeft="@drawable/ic_share_red"
+            android:drawablePadding="@dimen/size_10"
+            android:fontFamily="@font/avenir_nextlt_pro_regular"
+            android:text="0"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@+id/tvComent"
+            app:layout_constraintTop_toTopOf="@+id/clLike" />
+
+        <ImageView
+            android:id="@+id/ivAdd"
+            android:layout_width="25dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_seguir"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@+id/tvShare"
+            app:layout_constraintTop_toTopOf="@+id/clLike" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

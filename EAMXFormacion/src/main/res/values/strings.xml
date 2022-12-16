@@ -1,0 +1,24 @@
+<resources>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_dialog_warning">Aviso</string>
+    <string name="hint_search_biblio">Buscar</string>
+    <string name="menu_news">Lo Destacado</string>
+    <string name="menu_children">Niños</string>
+    <string name="menu_young">Jóvenes</string>
+    <string name="menu_adults">Adultos</string>
+    <string name="card_label_views">%1$s vistas</string>
+    <string name="text_empty_state">No encontramos resultados para</string>
+    <string name="digits_only_search">0123456789 qwertyuiopasdfghjklñzxcvbnm QWERTYUIOPASDFGHJKLÑZXCVBNMáóíéúÁÉÍÓÚ </string>
+    <string name="title_dialog_error_load_file">Ocurrio un error al intentar cargar el recurso</string>
+    <string name="menu_sicks">Enfermos</string>
+    <string name="menu_tab_thenew">Lo nuevo</string>
+    <string name="menu_tab_featured">Lo más visto</string>
+    <string name="menu_tab_pdf">PDF</string>
+    <string name="menu_tab_video">Videos</string>
+    <string name="menu_tab_audio">Audio</string>
+    <string name="menu_tab_texto">Texto</string>
+    <string name="menu_tab_enlaces">Enlaces</string>
+    <string name="message_default_empty">No encontramos resultados para\n %1$s</string>
+    <string name="message_default_empty_without_category">No se encuentran resultados</string>
+</resources>

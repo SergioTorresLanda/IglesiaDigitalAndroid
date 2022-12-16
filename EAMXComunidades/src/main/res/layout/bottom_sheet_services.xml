@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bottomSheet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:orientation="vertical"
+            app:behavior_hideable="true"
+            app:behavior_peekHeight="64dp"
+            app:layout_behavior="@string/bottom_sheet_behavior">
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginRight="24dp"
+                    app:boxBackgroundColor="@android:color/transparent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/teNameServiceActivity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text|textAutoComplete|textAutoCorrect"
+                        android:maxLines="1"
+                        android:imeOptions="actionNext"
+                        android:maxLength="@integer/max_length_input_100"
+                        android:hint="@string/hint_name_service_activity" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="24dp"
+                    android:background="@android:color/transparent"
+                    app:boxBackgroundColor="@android:color/transparent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/teAddressedTo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:inputType="text|textAutoComplete|textAutoCorrect"
+                        android:imeOptions="actionNext"
+                        android:maxLength="@integer/max_length_input"
+                        android:hint="@string/hint_addressed_to" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="24dp"
+                    android:background="@android:color/transparent"
+                    app:boxBackgroundColor="@android:color/transparent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/teDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/hint_description"
+                        android:maxLines="3"
+                        android:inputType="text|textAutoComplete|textAutoCorrect"
+                        android:maxLength="@integer/max_length_input_100"
+                        android:imeOptions="actionDone" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="24dp">
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:lineSpacingExtra="-1sp"
+                        android:text="@string/label_schedule"
+                        android:layout_marginBottom="8dp"
+                        android:textColor="#192a73"
+                        android:textSize="13sp"
+                        android:textStyle="normal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvScheduleDays"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/style_spinner_selector"
+                        android:gravity="center"
+                        android:paddingLeft="12dp"
+                        android:text="@string/hint_scheduler_days"
+                        android:textAllCaps="false"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/ivScheduleDays"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+                    <TextView
+                        android:id="@+id/tvScheduleHour"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/style_spinner_selector"
+                        android:gravity="center"
+                        android:paddingLeft="12dp"
+                        android:text="@string/hint_scheduler_hour"
+                        android:textAllCaps="false"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvScheduleDays"
+                        app:layout_constraintEnd_toStartOf="@+id/ivScheduleHour"
+                        app:layout_constraintStart_toEndOf="@+id/ivScheduleDays"
+                        app:layout_constraintTop_toTopOf="@+id/tvScheduleDays" />
+
+                    <ImageView
+                        android:contentDescription="@string/app_name"
+                        android:id="@+id/ivScheduleDays"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvScheduleDays"
+                        app:layout_constraintEnd_toStartOf="@+id/tvScheduleHour"
+                        app:layout_constraintStart_toEndOf="@+id/tvScheduleDays"
+                        app:layout_constraintTop_toTopOf="@+id/tvScheduleDays"
+                        app:srcCompat="@drawable/calendar" />
+
+                    <ImageView
+                        android:contentDescription="@string/app_name"
+                        android:id="@+id/ivScheduleHour"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvScheduleDays"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tvScheduleHour"
+                        app:layout_constraintTop_toTopOf="@+id/tvScheduleDays"
+                        app:srcCompat="@drawable/clock" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvAddService"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:gravity="end"
+                android:lineSpacingExtra="2sp"
+                android:text="@string/label_add_other"
+                android:textColor="#1c75bc"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="@+id/ivAddService"
+                app:layout_constraintEnd_toStartOf="@+id/ivAddService"
+                app:layout_constraintTop_toTopOf="@+id/ivAddService" />
+
+            <ImageView
+                android:id="@+id/ivAddService"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                app:srcCompat="@drawable/mas" />
+
+            <Button
+                android:id="@+id/btnReady"
+                android:layout_width="108dp"
+                android:layout_height="38dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/btn_rounded"
+                android:text="@string/txt_ready"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/ivAddService"
+                app:layout_constraintTop_toBottomOf="@+id/tvAddService"
+                app:layout_constraintVertical_bias="0.513" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

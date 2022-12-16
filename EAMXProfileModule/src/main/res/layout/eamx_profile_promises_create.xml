@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.fragments.promises.createpromise.fragment.EAMXProfilePromisesCreate">
+
+    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--        android:id="@+id/toolBarTop"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="90dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent">-->
+
+    <!--        <ImageView-->
+    <!--            android:id="@+id/imgPortada"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:elevation="@dimen/margin_15"-->
+    <!--            android:scaleType="centerCrop"-->
+    <!--            android:src="@drawable/shape_blue_profile"-->
+    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--        <ImageView-->
+    <!--            android:id="@+id/ivBackArrow"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginStart="@dimen/margin_15"-->
+    <!--            android:elevation="@dimen/size_16"-->
+    <!--            android:src="@drawable/ic_back_arrow"-->
+    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toTopOf="@+id/imgPortada" />-->
+
+    <!--        <TextView-->
+    <!--            android:id="@+id/tvHeader"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:elevation="@dimen/size_16"-->
+    <!--            android:fontFamily="@font/spro_text_regular"-->
+    <!--            android:gravity="center"-->
+    <!--            android:text="@string/create_promise_header"-->
+    <!--            android:textColor="@color/white"-->
+    <!--            android:textSize="@dimen/size_22"-->
+    <!--            app:layout_constraintBottom_toBottomOf="@+id/imgPortada"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toTopOf="@+id/imgPortada" />-->
+    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    <!--   <androidx.recyclerview.widget.RecyclerView
+         android:id="@+id/rvSaintsImages"
+         android:layout_width="match_parent"
+         android:layout_height="0dp"
+         android:background="@color/white"
+         android:orientation="horizontal"
+         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintHeight_percent="0.4"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent"
+         tools:listitem="@layout/eamx_profile_promise_item_saint" />
+         -->
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="310dp"
+        android:paddingStart="70dp"
+        android:layout_marginTop="@dimen/margin_top_10"
+        android:paddingEnd="70dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+     <TextView
+         android:id="@+id/tvPromise"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginHorizontal="@dimen/margin_15"
+         android:layout_marginTop="@dimen/margin_top_20"
+         android:background="@color/white"
+         android:fontFamily="@font/spro_text_regular"
+         android:text="@string/promise"
+         android:textColor="@color/primaryColor"
+         android:textSize="@dimen/size_14"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/viewpager" />
+
+     <EditText
+         android:id="@+id/etPromise"
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="@dimen/margin_end_7"
+         android:fontFamily="@font/spro_text_regular"
+         android:hint="@string/write_promise"
+         android:inputType="textCapWords|textAutoCorrect"
+         android:maxLength="40"
+         android:maxLines="1"
+         android:textColor="@color/colorGray"
+         android:textSize="@dimen/size_16"
+         app:layout_constraintEnd_toEndOf="@+id/tvPromise"
+         app:layout_constraintStart_toStartOf="@+id/tvPromise"
+         app:layout_constraintTop_toBottomOf="@+id/tvPromise" />
+
+     <TextView
+         android:id="@+id/tvSaintToPromise"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginHorizontal="@dimen/margin_15"
+         android:layout_marginTop="@dimen/margin_10"
+         android:background="@color/white"
+         android:fontFamily="@font/spro_text_regular"
+         android:text="@string/who_to_promise"
+         android:textColor="@color/primaryColor"
+         android:textSize="@dimen/size_14"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintHorizontal_bias="0.551"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/etPromise" />
+
+     <Spinner
+         android:id="@+id/userProfileMarriedSpinner"
+         style="@style/StyleTxtInfoGralRegistro"
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="@dimen/margin_end_7"
+         android:backgroundTint="@color/primaryColor"
+         android:elevation="@dimen/margin_10"
+         android:textColor="@color/black"
+         app:layout_constraintEnd_toEndOf="@+id/tvSaintToPromise"
+         app:layout_constraintStart_toStartOf="@+id/tvSaintToPromise"
+         app:layout_constraintTop_toBottomOf="@+id/tvSaintToPromise" />
+
+     <View
+         android:id="@+id/divider"
+         android:layout_width="0dp"
+         android:layout_height="1dp"
+         android:background="@color/colorGray"
+         app:layout_constraintEnd_toEndOf="@id/userProfileMarriedSpinner"
+         app:layout_constraintStart_toStartOf="@+id/userProfileMarriedSpinner"
+         app:layout_constraintTop_toBottomOf="@+id/userProfileMarriedSpinner" />
+
+     <TextView
+         android:id="@+id/tvTime"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginHorizontal="@dimen/margin_15"
+         android:layout_marginTop="@dimen/margin_top_10"
+         android:background="@color/white"
+         android:fontFamily="@font/spro_text_regular"
+         android:text="@string/time_lifep_romise"
+         android:textColor="@color/primaryColor"
+         android:textSize="@dimen/size_14"
+         app:layout_constraintEnd_toEndOf="@+id/userProfileMarriedSpinner"
+         app:layout_constraintStart_toStartOf="@+id/userProfileMarriedSpinner"
+         app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+     <Spinner
+         android:id="@+id/spinnerTimeList"
+         style="@style/StyleTxtInfoGralRegistro"
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="@dimen/margin_end_7"
+         android:backgroundTint="@color/primaryColor"
+         android:elevation="@dimen/margin_10"
+         android:textColor="@color/black"
+         app:layout_constraintEnd_toEndOf="@+id/tvTime"
+         app:layout_constraintStart_toStartOf="@+id/tvTime"
+         app:layout_constraintTop_toBottomOf="@+id/tvTime" />
+
+     <View
+         android:id="@+id/divider2"
+         android:layout_width="0dp"
+         android:layout_height="1dp"
+         android:background="@color/colorGray"
+         app:layout_constraintEnd_toEndOf="@+id/spinnerTimeList"
+         app:layout_constraintStart_toStartOf="@+id/spinnerTimeList"
+         app:layout_constraintTop_toBottomOf="@+id/spinnerTimeList" />
+
+     <androidx.appcompat.widget.AppCompatButton
+         android:id="@+id/btnCreatePromise"
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="@dimen/margin_top_25"
+         android:background="@drawable/shape_blue_profile_button"
+         android:clickable="true"
+         android:elevation="@dimen/margin_10"
+         android:focusable="true"
+         android:foreground="?attr/selectableItemBackgroundBorderless"
+         android:gravity="center"
+         android:paddingVertical="@dimen/margin_10"
+         android:text="@string/promise_button"
+         android:textColor="@color/white"
+         app:layout_constraintEnd_toEndOf="@+id/divider2"
+         app:layout_constraintStart_toStartOf="@+id/divider2"
+         app:layout_constraintTop_toBottomOf="@+id/divider2" />
+ </androidx.constraintlayout.widget.ConstraintLayout>

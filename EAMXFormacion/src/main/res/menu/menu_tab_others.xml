@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/FILE"
+        android:textSize="15sp"
+        android:title="@string/menu_tab_pdf"/>
+    <item android:id="@+id/VIDEO"
+        android:textSize="15sp"
+        android:title="@string/menu_tab_video"/>
+    <item android:id="@+id/AUDIO"
+        android:textSize="15sp"
+        android:title="@string/menu_tab_audio"/>
+    <item android:id="@+id/TEXTO"
+        android:textSize="15sp"
+        android:title="@string/menu_tab_texto"/>
+    <item android:id="@+id/LINK"
+        android:textSize="15sp"
+        android:title="@string/menu_tab_enlaces"/>
+</menu>

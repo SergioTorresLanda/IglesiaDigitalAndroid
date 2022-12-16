@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="mx.arquidiocesis.eamxredsocialmodule">
+
+    <application>
+        <activity android:name=".news.detail.EAMXVideoPlayer" />
+        <activity android:name=".news.create.EAMXCreateFragment" />
+        <activity android:name=".news.create.update_media.EAMXUpdateMediaFragment" />
+    </application>
+
+</manifest>

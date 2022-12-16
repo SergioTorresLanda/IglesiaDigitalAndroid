@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+   <com.google.android.material.card.MaterialCardView
+       android:id="@+id/bottomSheetDialog"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       style="@style/EAMXRedSocial.MaterialCardView.BottomSheet"
+       app:cardPreventCornerOverlap="false"
+       app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:background="@drawable/shape_bottom_ship"
+           android:orientation="vertical"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent">
+
+           <com.google.android.material.card.MaterialCardView
+               android:layout_width="50dp"
+               android:layout_height="5dp"
+               android:layout_gravity="center|top"
+               android:layout_marginTop="@dimen/margin_10"
+               app:cardBackgroundColor="@color/grayLevelTwo" />
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:layout_marginTop="20dp"
+               android:gravity="center_vertical"
+               android:paddingHorizontal="@dimen/padding_20">
+               <ImageView
+                   android:id="@+id/imgAll"
+                   android:layout_width="15dp"
+                   android:layout_height="15dp"
+                   android:src="@drawable/ic_like"/>
+
+               <TextView
+                   android:id="@+id/txtAllLike"
+                   style="@style/StyleTxtAddressParroquia"
+                   android:textColor="@color/black"
+                   android:textStyle="bold"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginHorizontal="@dimen/margin_5"
+                   android:text="0"/>
+
+               <TextView
+                   style="@style/StyleTxtAddressParroquia"
+                   android:textColor="@color/black"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textStyle="bold"
+                   android:text="@string/total_reactions"/>
+           </LinearLayout>
+           <View
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:background="@color/colorGrayBackgroun"
+               android:layout_marginTop="@dimen/margin_5"
+               android:layout_marginHorizontal="20dp"/>
+
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/rvAllReaction"
+               android:layout_width="match_parent"
+               android:layout_height="300dp"
+               tools:listitem="@layout/item_ractions_all"
+               app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+       </LinearLayout>
+       <ProgressBar
+           android:id="@+id/progressBar"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_gravity="center"
+           android:visibility="visible"/>
+   </com.google.android.material.card.MaterialCardView>
+</layout>

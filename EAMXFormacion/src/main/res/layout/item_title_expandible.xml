@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:backgroundTint="#00FFFFFF">
+
+            <TextView
+                android:id="@+id/tvTitleExpandible"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif-medium"
+                android:lineSpacingExtra="10sp"
+                android:textColor="@color/card_title_expandible"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Texto" />
+
+            <ImageView
+                android:id="@+id/ivDonwFlecha"
+                android:layout_width="13dp"
+                android:layout_height="8dp"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/ic_icono_atr_u"
+                app:layout_constraintBottom_toBottomOf="@+id/tvTitleExpandible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvTitleExpandible"
+                app:tint="@color/color_texto" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

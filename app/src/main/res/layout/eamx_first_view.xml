@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_marginHorizontal="20dp"
+            tools:context="mx.arquidiocesis.eamxgeneric.fragments.onboarding.EAMXFirstView">
+
+            <ImageView
+                android:id="@+id/imgOnboarding"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/ic_e_library_first_view"
+                android:contentDescription="@string/img_material"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtMaterial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/material"
+                android:textAlignment="center"
+                android:textColor="@color/primaryColor"
+                android:layout_marginTop="@dimen/margin_top_30"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgOnboarding" />
+
+            <TextView
+                android:id="@+id/txtMultimedia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/findMaterials"
+                android:textAlignment="center"
+                android:layout_marginTop="@dimen/margin_top_15"
+                android:textColor="@color/black"
+                android:textSize="@dimen/size_18"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtMaterial" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

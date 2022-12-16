@@ -1,0 +1,84 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.EAMXGeneric" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="android:forceDarkAllowed" tools:targetApi = "Q">false</item>
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryVariant">@color/primaryColor</item>
+        <item name="colorOnPrimary">@color/primaryColor</item>
+        <!-- Secondary brand color. -->
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <!--Btn en Share-->
+    <style name="StyleBtnShareGeneric">
+        <item name="android:textColor">@color/cantOraciones</item>
+        <item name="backgroundTint">@color/white</item>
+        <item name="android:textSize">@dimen/size_14</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="fontFamily">@font/avenir_nextlt_pro_regular</item>
+        <item name="textAllCaps">false</item>
+        <item name="strokeWidth">0dp</item>
+        <item name="android:gravity">start</item>
+    </style>
+
+    <style name="ThemeEAMXSplash" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:forceDarkAllowed" tools:targetApi = "Q">false</item>
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryVariant">@color/color_card_eventos</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="ThemeEAMXWhite" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:forceDarkAllowed" tools:targetApi = "Q">false</item>
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/white</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <!--txt title Register-->
+    <style name="StyleTxtTitleRegister" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/blueTxtCodeConfirmacion</item>
+        <item name="android:textSize">@dimen/size_24</item>
+        <item name="fontFamily">@font/avenir_black</item>
+    </style>
+
+    <style name="StyleBtnApoyar" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">#18ab66</item>
+        <item name="cornerRadius">18dp</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+        <item name="android:textSize">@dimen/size_14</item>
+        <item name="android:textColor">@color/white</item>.
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="StyleBtnSiguiente" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">@color/primaryColor</item>
+        <item name="cornerRadius">10dp</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+    </style>
+
+
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+</resources>

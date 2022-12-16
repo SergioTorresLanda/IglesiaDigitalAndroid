@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="itemDetail"
+            type="com.wallia.eamxcomunidades.model.CommunityDetailResponse" />
+    </data>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bottomSheet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:orientation="vertical"
+            app:behavior_hideable="true"
+            app:behavior_peekHeight="64dp"
+            app:layout_behavior="@string/bottom_sheet_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginRight="12dp"
+                    android:background="@android:color/transparent"
+                    app:boxBackgroundColor="@android:color/transparent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etNameCommunity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="@string/hint_name_community"
+                        android:text="@{itemDetail.name}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="12dp"
+                    android:background="@android:color/transparent"
+                    app:boxBackgroundColor="@android:color/transparent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etAssociationName"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="false"
+                        android:hint="@string/hint_association_name"
+                        android:text="@{itemDetail.instituteOrAssociation}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="12dp"
+                    android:background="@android:color/transparent"
+                    app:boxBackgroundColor="@android:color/transparent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etCharisma"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/hint_charisma"
+                        android:imeOptions="actionNext"
+                        android:inputType="text|textAutoComplete|textAutoCorrect"
+                        android:maxLength="@integer/max_length_input"
+                        android:maxLines="1"
+                        android:text="@{itemDetail.charisma}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="12dp"
+                    android:background="@android:color/transparent"
+                    app:boxBackgroundColor="@android:color/transparent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etNameAssigned"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/hint_name_assigned"
+                        android:inputType="text"
+                        android:maxLength="@integer/max_length_input"
+                        android:maxLines="1"
+                        android:text="@{itemDetail.leader}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="12dp"
+                    android:background="@android:color/transparent"
+                    app:boxBackgroundColor="@android:color/transparent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="@string/hint_description"
+                        android:imeOptions="actionNext"
+                        android:inputType="text|textAutoComplete|textAutoCorrect"
+                        android:maxLength="@integer/max_length_input"
+                        android:maxLines="3"
+                        android:text="@{itemDetail.description}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <SearchView
+                    android:id="@+id/etAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="12dp"
+                    android:background="@android:color/transparent"
+                    android:closeIcon="@null"
+                    android:iconifiedByDefault="false"
+                    android:isScrollContainer="false"
+                    android:maxLength="@integer/max_length_input"
+                    android:queryHint="@string/hint_address"
+                    android:searchIcon="@null"
+                    android:textColor="@color/edittext_text_hint_color" />
+
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/mapDetail"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="12dp" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="12dp"
+                    app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintTop_toBottomOf="@+id/mapDetail">
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:lineSpacingExtra="-1sp"
+                        android:text="@string/label_schedule"
+                        android:textColor="#192a73"
+                        android:textSize="13sp"
+                        android:textStyle="normal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvScheduleDays"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/style_spinner_selector"
+                        android:gravity="center"
+                        android:paddingLeft="12dp"
+                        android:text="@{itemDetail.days}"
+                        android:textAllCaps="false"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/ivDays"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView11"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <TextView
+                        android:id="@+id/tvScheduleHour"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/style_spinner_selector"
+                        android:gravity="center"
+                        android:paddingLeft="12dp"
+                        android:text="@{itemDetail.hours}"
+                        android:textAllCaps="false"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvScheduleDays"
+                        app:layout_constraintEnd_toStartOf="@+id/ivHours"
+                        app:layout_constraintStart_toEndOf="@+id/ivDays"
+                        app:layout_constraintTop_toTopOf="@+id/tvScheduleDays" />
+
+                    <ImageView
+                        android:id="@+id/ivDays"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:contentDescription="@string/app_name"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvScheduleDays"
+                        app:layout_constraintEnd_toStartOf="@+id/tvScheduleHour"
+                        app:layout_constraintStart_toEndOf="@+id/tvScheduleDays"
+                        app:layout_constraintTop_toTopOf="@+id/tvScheduleDays"
+                        app:srcCompat="@drawable/calendar" />
+
+                    <ImageView
+                        android:id="@+id/ivHours"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:contentDescription="@string/app_name"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvScheduleDays"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tvScheduleHour"
+                        app:layout_constraintTop_toTopOf="@+id/tvScheduleDays"
+                        app:srcCompat="@drawable/clock" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="12dp">
+
+                    <TextView
+                        android:id="@+id/textView20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:lineSpacingExtra="-1sp"
+                        android:text="@string/label_schedule_other"
+                        android:textColor="#192a73"
+                        android:textSize="13sp"
+                        android:textStyle="normal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvScheduleDaysOther"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/style_spinner_selector"
+                        android:gravity="center"
+                        android:paddingLeft="12dp"
+                        android:text="@{itemDetail.daysTwo}"
+                        android:textAllCaps="false"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/ivDaysOther"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView20"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <TextView
+                        android:id="@+id/tvScheduleHourOther"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/style_spinner_selector"
+                        android:gravity="center"
+                        android:paddingLeft="12dp"
+                        android:text="@{itemDetail.hoursTwo}"
+                        android:textAllCaps="false"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvScheduleDaysOther"
+                        app:layout_constraintEnd_toStartOf="@+id/ivHoursOther"
+                        app:layout_constraintStart_toEndOf="@+id/ivDaysOther"
+                        app:layout_constraintTop_toTopOf="@+id/tvScheduleDaysOther" />
+
+                    <ImageView
+                        android:id="@+id/ivDaysOther"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:contentDescription="@string/app_name"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvScheduleDaysOther"
+                        app:layout_constraintEnd_toStartOf="@+id/tvScheduleHourOther"
+                        app:layout_constraintStart_toEndOf="@+id/tvScheduleDaysOther"
+                        app:layout_constraintTop_toTopOf="@+id/tvScheduleDaysOther"
+                        app:srcCompat="@drawable/calendar" />
+
+                    <ImageView
+                        android:id="@+id/ivHoursOther"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:contentDescription="@string/app_name"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvScheduleDaysOther"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tvScheduleHourOther"
+                        app:layout_constraintTop_toTopOf="@+id/tvScheduleDaysOther"
+                        app:srcCompat="@drawable/clock" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="12dp"
+                    android:background="@android:color/transparent"
+                    app:boxBackgroundColor="@android:color/transparent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/hint_email"
+                        android:imeOptions="actionNext"
+                        android:inputType="textEmailAddress|textAutoComplete|textAutoCorrect"
+                        android:maxLength="@integer/max_length_input"
+                        android:maxLines="1"
+                        android:text="@{itemDetail.email}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="12dp"
+                    android:background="@android:color/transparent"
+                    app:boxBackgroundColor="@android:color/transparent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/hint_phone"
+                        android:imeOptions="actionDone"
+                        android:inputType="phone|textAutoComplete|textAutoCorrect"
+                        android:maxLength="@integer/max_length_phone"
+                        android:maxLines="1"
+                        android:text="@{itemDetail.phone}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/btnReady"
+                    android:layout_width="108dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/btn_rounded"
+                    android:text="@string/txt_ready"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView16"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView16" />
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

@@ -1,0 +1,76 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
+    id 'com.google.firebase.appdistribution'
+}
+
+apply from: "$rootProject.projectDir/buildsystem/genericbuild.gradle"
+apply from: "$rootProject.projectDir/buildsystem/configuration.gradle"
+
+def configuration = ext.configuration
+
+android {
+    compileSdkVersion configuration.compileSdkVersion
+    buildToolsVersion configuration.buildToolsVersion
+
+    defaultConfig {
+        applicationId configuration.applicationId
+        minSdkVersion configuration.minSdkVersion
+        targetSdkVersion configuration.targetSdkVersion
+        versionCode configuration.versionCode
+        versionName configuration.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.debug
+    }
+    productFlavors {
+        dev {
+            versionNameSuffix "-dev"
+            firebaseAppDistribution {
+                releaseNotes = "Version en Dev"
+                groups = "Desarrollo"
+            }
+        }
+        qa {
+            versionNameSuffix "-qa"
+            firebaseAppDistribution {
+                releaseNotes = "Version en QA"
+                groups = "Desarrollo"
+            }
+        }
+        prod{
+            versionNameSuffix "-prod"
+            firebaseAppDistribution {
+                releaseNotes = "Version prod"
+                groups = "Desarrollo"
+            }
+        }
+    }
+}
+
+dependencies {
+
+    //Implementations
+    implementation project(path: ':EAMXRegistroModule')
+    implementation project(path: ':EAMXLoginModule')
+    implementation project(path: ':EAMXMyChurch')
+    implementation project(path: ':EAMXProfileModule')
+    implementation project(path: ':EAMXOraciones')
+    implementation project(path: ':EAMXRedSocialModule')
+    implementation project(path: ':EAMXPriestRegister')
+    implementation project(path: ':EAMXCadenaOracionesModule')
+    implementation project(path: ':EAMXLivestreammodule')
+    implementation project(path: ':EAMXCommonUtils')
+    implementation project(path: ':EAMXSOS')
+    implementation project(path: ':EAMXMaps')
+    implementation project(path: ':EAMXBiblioteca')
+    implementation project(path: ':EAMXFormacion')
+    implementation project(path: ':EAMXServices')
+    implementation project(path: ':EAMXComunidades')
+    implementation project(path: ':EAMXDonaciones')
+}
+

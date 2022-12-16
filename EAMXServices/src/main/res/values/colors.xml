@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="edittext_background_color">#f5f5f5</color>
+    <color name="text_color_item">#202980</color>
+    <color name="toolbar_background">#BEF3F3</color>
+    <color name="text_toolbar">#000000</color>
+    <color name="text_toolbar_action_done">#202980</color>
+    <color name="btn_background_accept">#192a73</color>
+    <color name="btn_background_cancel">#FFFFFF</color>
+    <color name="blackground_color_expandible">#13277c</color>
+    <color name="white_text">#FFFFFFFF</color>
+    <color name="azul_fondo">#0088ff</color>
+    <color name="botton_background_color">#192a73</color>
+    <color name="edittext_text_hint_color">#75787b</color>
+</resources>

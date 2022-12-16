@@ -1,0 +1,124 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <!-- Your main layout here -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/flMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clSwipe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/border_card">
+
+            <TextView
+                android:id="@+id/tvSolisitante"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="8dp"
+                android:lineSpacingExtra="-1sp"
+                android:text="Solicitante"
+                android:textColor="#192a73"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="@+id/tvServiceFaithfulSOS"
+                app:layout_constraintTop_toBottomOf="@+id/tvServiceFaithfulSOS" />
+
+            <TextView
+                android:id="@+id/tvServiceFaithfulSOS"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:lineSpacingExtra="2sp"
+                android:textColor="#13277c"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Unción de los enfermos" />
+
+            <TextView
+                android:id="@+id/tvNamePriestFaithfulSOS"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:lineSpacingExtra="4sp"
+                android:textColor="#363636"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tvStatusFaithfulSOS"
+                app:layout_constraintStart_toStartOf="@+id/tvServiceFaithfulSOS"
+                app:layout_constraintTop_toBottomOf="@+id/tvSolisitante"
+                tools:text="Párroco Gilberto Buenrostro" />
+
+            <TextView
+                android:id="@+id/tvEstado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:lineSpacingExtra="-1sp"
+                android:text="Estado"
+                android:textColor="#192a73"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="@+id/tvSolisitante"
+                app:layout_constraintEnd_toStartOf="@+id/ivFlecha"
+                app:layout_constraintTop_toBottomOf="@+id/tvServiceFaithfulSOS" />
+
+            <TextView
+                android:id="@+id/tvStatusFaithfulSOS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="end"
+                android:lineSpacingExtra="6sp"
+                android:textColor="#808080"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="@+id/tvNamePriestFaithfulSOS"
+                app:layout_constraintEnd_toEndOf="@+id/tvEstado"
+                app:layout_constraintTop_toBottomOf="@+id/tvEstado"
+                tools:text="@string/txt_sos_notification_status_completed" />
+
+            <ImageView
+                android:id="@+id/ivFlecha"
+                android:layout_width="12dp"
+                android:layout_height="27sp"
+                android:src="@drawable/ic_flecha_selecion"
+                app:layout_constraintBottom_toBottomOf="@+id/tvEstado"
+                app:layout_constraintEnd_toEndOf="@+id/tvServiceFaithfulSOS"
+                app:layout_constraintTop_toTopOf="@+id/tvEstado" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</layout>

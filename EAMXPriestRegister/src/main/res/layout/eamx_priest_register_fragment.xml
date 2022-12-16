@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:paddingTop="@dimen/padding_margin_15"
+            android:paddingEnd="28dp"
+            android:paddingBottom="@dimen/normal_margin_padding"
+            app:layout_constraintEnd_toEndOf="@+id/etNamePriest"
+            app:layout_constraintStart_toEndOf="@+id/etNamePriest"
+            tools:context=".view.PriesRegisterFragment">
+
+            <TextView
+                android:id="@+id/tvTitlePriest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:letterSpacing="@dimen/letter_spacing_dimen"
+                android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_6"
+                android:text="@string/txt_registry_priest_title"
+                android:textColor="@color/textview_title_color"
+                android:textSize="@dimen/font_size_16"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="@dimen/padding_margin_15"
+                android:fontFamily="sans-serif"
+                android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
+                android:text="@string/txt_registry_priest_description"
+                android:textColor="@color/textview_description_color"
+                android:textSize="@dimen/font_size_12"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitlePriest" />
+
+            <TextView
+                android:id="@+id/tvGeneralInformation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="@dimen/padding_margin_15"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="@dimen/letter_spacing_dimen"
+                android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_4"
+                android:text="@string/txt_registry_priest_general_information"
+                android:textColor="@color/textview_title_color"
+                android:textSize="@dimen/font_size_16"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDescription" />
+
+            <EditText
+                android:id="@+id/etNamePriest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/style_edittext"
+                android:fontFamily="sans-serif-light"
+                android:hint="@string/txt_registry_priest_hint_name"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
+                android:maxLength="@integer/name_field_size"
+                android:padding="@dimen/small_margin_padding"
+                android:digits="@string/digits_only_letters"
+                android:textColor="@color/edittext_text_hint_color"
+                android:textSize="@dimen/font_size_14"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvGeneralInformation" />
+
+            <EditText
+                android:id="@+id/etFatherSurname"
+                android:layout_width="@dimen/no_margin_padding"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/style_edittext"
+                android:fontFamily="sans-serif-light"
+                android:hint="@string/txt_registry_priest_father_surname"
+                android:importantForAutofill="no"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:inputType="textPersonName"
+                android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
+                android:maxLength="@integer/surname_field_size"
+                android:padding="@dimen/small_margin_padding"
+                android:digits="@string/digits_only_letters"
+                android:textColor="@color/edittext_text_hint_color"
+                android:textSize="@dimen/font_size_14"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toStartOf="@+id/etMotherSurname"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etNamePriest" />
+
+            <EditText
+                android:id="@+id/etMotherSurname"
+                android:layout_width="@dimen/no_margin_padding"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/very_small_margin_padding"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/style_edittext"
+                android:fontFamily="sans-serif-light"
+                android:hint="@string/txt_registry_priest_mother_surname"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:maxLength="@integer/surname_field_size"
+                android:padding="@dimen/small_margin_padding"
+                android:digits="@string/digits_only_letters"
+                android:textColor="@color/edittext_text_hint_color"
+                android:textSize="@dimen/font_size_14"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/etFatherSurname"
+                app:layout_constraintTop_toBottomOf="@+id/etNamePriest" />
+
+            <TextView
+                android:id="@+id/tvDescriptionInformation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="@dimen/small_margin_padding"
+                android:fontFamily="sans-serif"
+                android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
+                android:text="@string/txt_registry_priest_information_description"
+                android:textColor="@color/textview_description_color"
+                android:textSize="@dimen/font_size_10"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etMotherSurname" />
+
+            <EditText
+                android:id="@+id/etDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="@dimen/padding_margin_7"
+                android:background="@drawable/style_edittext"
+                android:fontFamily="sans-serif-light"
+                android:gravity="top"
+                android:hint="@string/txt_registry_priest_hint_description"
+                android:importantForAutofill="no"
+                android:inputType="text|textMultiLine"
+                android:maxLength="@integer/description_field_size"
+                android:padding="@dimen/small_margin_padding"
+                android:digits="@string/digits_only_letters"
+                android:textColor="@color/textedit_description_color"
+                android:textSize="@dimen/font_size_13"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDescriptionInformation" />
+
+            <TextView
+                android:id="@+id/tvDateOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="27dp"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="@dimen/letter_spacing_dimen"
+                android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_4"
+                android:layout_marginEnd="5dp"
+                android:lines="1"
+                android:text="@string/txt_registry_priest_date_title"
+                android:textColor="@color/textview_title_color"
+                android:textSize="@dimen/font_size_16"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etDescription" />
+
+            <TextView
+                android:id="@+id/tvDateTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:ellipsize="end"
+                android:layout_marginTop="27dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="@dimen/letter_spacing_dimen"
+                android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_4"
+                android:lines="1"
+                android:text="@string/txt_registry_priest_date_title_ordination"
+                android:textColor="@color/textview_title_color"
+                android:textSize="@dimen/font_size_16"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvDateOne"
+                app:layout_constraintTop_toBottomOf="@+id/etDescription" />
+
+            <LinearLayout
+                android:id="@+id/llDateLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="@+id/tvDateOne"
+                app:layout_constraintTop_toBottomOf="@+id/tvDateOne">
+
+                <TextView
+                    android:id="@+id/tvBirthDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_margin_2"
+                    android:layout_weight="1"
+                    android:background="@drawable/style_edittext"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="sans-serif-light"
+                    android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
+                    android:padding="@dimen/small_margin_padding"
+                    android:text="@string/txt_registry_priest_mask_date"
+                    android:textColor="@color/edittext_text_hint_color"
+                    android:textSize="@dimen/font_size_14"
+                    android:textStyle="normal" />
+
+                <ImageView
+                    android:id="@+id/ivBirthDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/very_small_margin_padding"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:contentDescription="@string/txt_registry_priest_icon_calendar"
+                    android:focusable="true"
+                    android:src="@drawable/ic_schedule" />
+
+                <TextView
+                    android:id="@+id/tvOrdinationDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_margin_2"
+                    android:layout_weight="1"
+                    android:layout_marginStart="5dp"
+                    android:background="@drawable/style_edittext"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="sans-serif-light"
+                    android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
+                    android:padding="@dimen/small_margin_padding"
+                    android:text="@string/txt_registry_priest_mask_date"
+                    android:textColor="@color/edittext_text_hint_color"
+                    android:textSize="@dimen/font_size_14"
+                    android:textStyle="normal" />
+
+                <ImageView
+                    android:id="@+id/ivOrdinationDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:contentDescription="@string/txt_registry_priest_icon_calendar"
+                    android:focusable="true"
+                    android:src="@drawable/ic_schedule" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="27dp"
+                android:ellipsize="end"
+                android:ems="3"
+                android:fontFamily="sans-serif-medium"
+                android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_4"
+                android:lines="1"
+                android:text="@string/txt_registry_priest_title_email"
+                android:textColor="@color/textview_title_color"
+                android:textSize="@dimen/font_size_16"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llDateLayout" />
+
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="@dimen/padding_margin_3"
+                android:background="@drawable/style_edittext"
+                android:fontFamily="sans-serif-light"
+                android:hint="@string/txt_registry_priest_hint_email"
+                android:importantForAutofill="no"
+                android:inputType="textEmailAddress|textWebEmailAddress"
+                android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
+                android:maxLength="@integer/email_field_size"
+                android:padding="@dimen/small_margin_padding"
+                android:textColor="@color/edittext_text_hint_color"
+                android:textSize="@dimen/font_size_14"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
+
+            <TextView
+                android:id="@+id/tvOptionDianOrRegi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="22dp"
+                android:fontFamily="sans-serif"
+                android:lineSpacingExtra="2sp"
+                android:text="@string/txt_registry_priest_title_radio_group"
+                android:textColor="#a0a0a0"
+                android:textSize="13sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+
+
+            <RadioGroup
+                android:id="@+id/rgDiocesanOrReligious"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="17dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvOptionDianOrRegi">
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/rbDiocesan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:checked="true"
+                    android:lineSpacingExtra="-4sp"
+                    android:text="@string/txt_registry_priest_radio_button_Diocesan"
+                    android:textColor="@drawable/style_radio_button"
+                    android:textSize="15sp"
+                    android:textStyle="normal"
+                    android:theme="@style/MyRadioButton" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/rbReligius"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:lineSpacingExtra="-4sp"
+                    android:text="@string/txt_registry_priest_radio_button_Religious"
+                    android:textColor="@drawable/style_radio_button"
+                    android:textSize="15sp"
+                    android:textStyle="normal"
+                    android:theme="@style/MyRadioButton" />
+
+            </RadioGroup>
+
+
+            <LinearLayout
+                android:id="@+id/spOrderOrCongregation"
+                android:layout_width="@dimen/no_margin_padding"
+                android:layout_height="@dimen/size_spinner"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:background="@drawable/style_spinner_selector"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rgDiocesanOrReligious">
+
+                <TextView
+                    android:id="@+id/tvOrderOrCongregation"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
+                    android:text="@string/txt_registry_priest_default_order_congregation" />
+            </LinearLayout>
+
+            <Spinner
+                android:id="@+id/spActivities"
+                android:layout_width="@dimen/no_margin_padding"
+                android:layout_height="@dimen/size_spinner"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/style_spinner_selector"
+                android:fontFamily="sans-serif-light"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
+                android:textColor="@color/edittext_text_hint_color"
+                android:textSize="@dimen/font_size_14"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spOrderOrCongregation" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="15dp"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spActivities"
+                tools:ignore="TextFields" />
+
+            <EditText
+                android:id="@+id/etOtherActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="15dp"
+                android:background="@drawable/style_edittext"
+                android:fontFamily="sans-serif-light"
+                android:visibility="gone"
+                android:hint="@string/txt_registry_priest_input_other_activity"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:digits="@string/digits_only_letters"
+                android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
+                android:maxLength="@integer/other_activity_field_size"
+                android:padding="@dimen/small_margin_padding"
+                android:textColor="@color/edittext_text_hint_color"
+                android:textSize="@dimen/font_size_14"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rvActivity"
+                tools:ignore="TextFields" />
+
+            <EditText
+                android:id="@+id/etUrl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/style_edittext"
+                android:fontFamily="sans-serif-light"
+                android:hint="@string/txt_registry_priest_hint_streaming"
+                android:importantForAutofill="no"
+                android:inputType="textWebEmailAddress"
+                android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
+                android:maxLength="@integer/url_stream_field_size"
+                android:padding="@dimen/small_margin_padding"
+                android:textColor="@color/edittext_text_hint_color"
+                android:textSize="@dimen/font_size_14"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etOtherActivity"
+                tools:ignore="TextFields" />
+
+            <TextView
+                android:id="@+id/tvMessageStreaming"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="@dimen/padding_margin_15"
+                android:fontFamily="sans-serif"
+                android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
+                android:text="@string/txt_registry_priest_message_streaming"
+                android:textColor="@color/textview_description_color"
+                android:textSize="@dimen/font_size_10"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etUrl" />
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_height_button_save"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="@color/btn_background_color"
+                android:text="@string/txt_registry_priest_save"
+                app:cornerRadius="@dimen/corner_radius_button"
+                android:textColor="@color/text_button_color"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvMessageStreaming" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

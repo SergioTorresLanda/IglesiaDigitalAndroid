@@ -1,0 +1,20 @@
+<resources>
+    <string name="search_event_by_city">Buscar evento por nombre o ciudad</string>
+    <string name="featured_event">Evento destacado</string>
+    <string name="events_im_your_city">Eventos de tu ciudad</string>
+    <string name="en">En vivo</string>
+    <string name="hint_search">Busca una iglesia</string>
+    <string name="digits_only_search">0123456789 qwertyuiopasdfghjklñzxcvbnm QWERTYUIOPASDFGHJKLÑZXCVBNMáóíéúÁÉÍÓÚ </string>
+
+    <string name="text_message_available_gps">Es necesario obtener tu localización, ayúdanos habilitando tu gps.</string>
+    <string name="button_message_available_gps">Habilitar gps</string>
+
+    <string name="text_message_permissions_not_available">Es necesario otorgar el permiso para obtener tu localización.</string>
+    <string name="button_message_permissions_not_available">Otorgar permiso</string>
+
+    <string name="text_message_go_to_settings">Es necesario que nos otorgues los permisos que nos
+        ayudes otorgando los permisos te vamos a llevar a las configuraciones de la app.</string>
+    <string name="button_message_go_to_settings">Ir a configuraciones</string>
+    <string name="title_dialog_warning">Aviso</string>
+    <string name="text_button_cancel">Cancelar</string>
+</resources>

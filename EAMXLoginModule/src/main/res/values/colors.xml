@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="primaryColorDark">#192A73</color>
+    <color name="primaryColor">#192A73</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="red">#DF0000</color>
+
+    <!--terminos y condiciones-->
+    <color name="blue_terminos">#1c75bc</color>
+    <!--terminos y condiciones-->
+    <color name="gris_terminos">#313131</color>
+    <!--background lottie-->
+    <color name="backgroundLottie">#97252525</color>
+    <!--borde-->
+    <color name="colorGray">#969696</color>
+    <!--txt Ingresa como invitado-->
+    <color name="blueColorBtn">#4930f5</color>
+    <!--background para los campos edts-->
+    <color name="colorGrayBackgroun">#f5f5f5</color>
+    <!--color para el texto en los campos-->
+    <color name="grayTextColorCampos">#99000000</color>
+    <!--color txt codigo confirmacion-->
+    <color name="blueTxtCodeConfirmacion">#002166</color>
+</resources>

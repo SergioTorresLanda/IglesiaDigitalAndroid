@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:paddingEnd="28dp"
+            android:paddingBottom="@dimen/normal_margin_padding"
+            tools:context=".view.PriesRegisterFragment">
+
+            <TextView
+                android:id="@+id/tvTitleBlessings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="sans-serif"
+                android:letterSpacing="@dimen/letter_spacing_dimen"
+                android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_6"
+                android:text="@string/txt_title_house_blessing"
+                android:textColor="#313131"
+                android:textSize="24sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvTitleApplicant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="35dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="@dimen/letter_spacing_dimen"
+                android:lineSpacingExtra="0sp"
+                android:text="@string/txt_applicant"
+                android:textColor="#13277c"
+                android:textSize="@dimen/font_size_16"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitleBlessings" />
+
+            <TextView
+                android:id="@+id/tvNameApplicant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="10sp"
+                android:textColor="#75787b"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitleApplicant"
+                tools:text="Gustavo Medina Juárez" />
+
+            <TextView
+                android:id="@+id/tvTitleFamily"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="@dimen/letter_spacing_dimen"
+                android:lineSpacingExtra="0sp"
+                tools:text="@string/txt_family"
+                android:textColor="#13277c"
+                android:textSize="@dimen/font_size_16"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNameApplicant" />
+
+            <EditText
+                android:id="@+id/etSurnamesBlessings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/style_edittext"
+                android:fontFamily="sans-serif-light"
+                android:hint="@string/txt_surnames_blessings"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:digits="@string/digits_only_letters"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="10sp"
+                android:maxLength="50"
+                android:padding="@dimen/small_margin_padding"
+                android:textColor="#75787b"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitleFamily" />
+
+            <TextView
+                android:id="@+id/tvDirectionBlessings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="@dimen/letter_spacing_dimen"
+                android:lineSpacingExtra="0sp"
+                android:text="@string/txt_direction_blessings"
+                android:textColor="#13277c"
+                android:textSize="@dimen/font_size_16"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etSurnamesBlessings" />
+
+            <EditText
+                android:id="@+id/etDirectionBlessings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/style_edittext"
+                android:fontFamily="sans-serif-light"
+                android:hint="@string/txtStreetNumberBlessings"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:digits="@string/digits_only_address"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="10sp"
+                android:maxLength="50"
+                android:padding="@dimen/small_margin_padding"
+                android:textColor="#75787b"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDirectionBlessings" />
+
+            <TextView
+                android:id="@+id/tvTitleSuburb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="@dimen/letter_spacing_dimen"
+                android:lineSpacingExtra="0sp"
+                android:text="@string/txt_suburb"
+                android:textColor="#13277c"
+                android:textSize="@dimen/font_size_16"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvTitlePostalCode"
+                app:layout_constraintTop_toBottomOf="@+id/etDirectionBlessings" />
+
+            <TextView
+                android:id="@+id/tvTitlePostalCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="@dimen/letter_spacing_dimen"
+                android:lineSpacingExtra="0sp"
+                android:text="@string/txt_postal_code"
+                android:textColor="#13277c"
+                android:textSize="@dimen/font_size_16"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="@+id/tvDirectionBlessings"
+                app:layout_constraintTop_toBottomOf="@+id/etDirectionBlessings" />
+
+            <Spinner
+                android:id="@+id/etSuburb"
+                android:layout_width="@dimen/no_margin_padding"
+                android:layout_height="wrap_content"
+                android:background="@drawable/style_edittext"
+                android:digits="@string/digits_only_address"
+                android:fontFamily="sans-serif-light"
+                android:hint="@string/txt_hint_suburb"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:lineSpacingExtra="10sp"
+                android:maxLength="50"
+                android:padding="@dimen/small_margin_padding"
+                android:textColor="#75787b"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="@+id/etPostalCode"
+                app:layout_constraintEnd_toEndOf="@+id/etDirectionBlessings"
+                app:layout_constraintStart_toStartOf="@+id/tvTitleSuburb" />
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/etPostalCode"
+                android:layout_width="@dimen/no_margin_padding"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/style_edittext"
+                android:digits="@string/digits_only_number"
+                android:fontFamily="sans-serif-light"
+                android:imeOptions="actionSearch"
+                android:inputType="numberDecimal"
+                android:lineSpacingExtra="10sp"
+                android:gravity="center_vertical"
+                android:textColor="#75787b"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:iconifiedByDefault="false"
+                app:closeIcon="@null"
+                app:layout_constraintEnd_toStartOf="@+id/tvTitleSuburb"
+                app:layout_constraintStart_toStartOf="@+id/tvTitlePostalCode"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitleSuburb"
+                app:queryHint="@string/txt_hint_postal_code"
+                app:searchIcon="@null" />
+
+            <TextView
+                android:id="@+id/tvTitleJustification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="@dimen/letter_spacing_dimen"
+                android:lineSpacingExtra="0sp"
+                android:text="@string/txt_title_justification"
+                android:textColor="#13277c"
+                android:textSize="@dimen/font_size_16"
+                android:textStyle="normal"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etSuburb" />
+
+            <EditText
+                android:id="@+id/etJustification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/style_edittext"
+                android:digits="@string/digits_only_letters"
+                android:fontFamily="sans-serif-light"
+                android:hint="@string/txt_elderly_sick"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="10sp"
+                android:maxLength="50"
+                android:padding="@dimen/small_margin_padding"
+                android:textColor="#75787b"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitleJustification" />
+
+
+            <TextView
+                android:id="@+id/tvTitleEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="@dimen/letter_spacing_dimen"
+                android:lineSpacingExtra="0sp"
+                android:text="@string/txt_email"
+                android:textColor="#13277c"
+                android:textSize="@dimen/font_size_16"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etJustification" />
+
+            <TextView
+                android:id="@+id/tvShowEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="10sp"
+                android:textColor="#75787b"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitleEmail"
+                tools:text="gus.medi@gmail.com" />
+
+            <TextView
+                android:id="@+id/tvTitleTelephone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="35dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="@dimen/letter_spacing_dimen"
+                android:lineSpacingExtra="0sp"
+                android:text="@string/txt_telephone"
+                android:textColor="#13277c"
+                android:textSize="@dimen/font_size_16"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvShowEmail" />
+
+            <TextView
+                android:id="@+id/tvShowTelephone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="10sp"
+                android:textColor="#75787b"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitleTelephone"
+                tools:text="55 55 33 22 22" />
+
+            <Button
+                android:id="@+id/btnSearchChurch"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="35dp"
+                android:backgroundTint="#13277c"
+                android:text="@string/txt_search_church"
+                android:textAllCaps="false"
+                android:textColor="#ffffff"
+                app:cornerRadius="@dimen/corner_radius_button"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvShowTelephone" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

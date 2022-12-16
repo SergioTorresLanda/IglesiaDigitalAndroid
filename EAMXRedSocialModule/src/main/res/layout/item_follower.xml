@@ -1,0 +1,78 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/iv_user_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="@dimen/margin_16"
+            app:cardBackgroundColor="@color/colorTxtServicios"
+            app:cardCornerRadius="50dp"
+            app:contentPadding="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="50dp">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/user"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/size_24" />
+            </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/tv_user_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_16"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/spro_text_regular"
+            android:gravity="center_vertical"
+            android:textColor="#192a73"
+            android:textSize="@dimen/size_18"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@id/iv_user_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_user_image"
+            app:layout_constraintTop_toTopOf="@id/iv_user_image"
+            tools:text="PADRE JOSE LUIS" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tlFollower"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_user_image"
+            app:tabMode="fixed">
+
+        </com.google.android.material.tabs.TabLayout>
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vpFollower"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tlFollower" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

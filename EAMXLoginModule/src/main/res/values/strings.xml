@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LoginBAZ</string>
+    <string name="description_image">icono encuentro</string>
+    <string name="label_email_phone">Correo electrónico / Número celular</string>
+    <string name="enter_your_email">Ingresa tu correo electrónico/ Número celular</string>
+    <string name="enter_a_valid_email">Ingresa un correo electrónico válido o un número celular válido</string>
+    <string name="enter_your_password">Ingresa tu contraseña</string>
+    <string name="i_forgot_my_password"><u>Olvidé mi contraseña</u></string>
+    <string name="ini_bio"><u>Inicio de sesión biométrico</u></string>
+
+    <string name="login">Ingresar</string>
+    <string name="nice_to_see_you_again">Que gusto verte de nuevo, por favor inicia sesión para continuar.</string>
+    <string name="password">Contraseña</string>
+    <string name="register">Registrarme</string>
+    <string name="sign_in_login">Iniciar sesión</string>
+    <string name="your_user_already_exists_confirm_to_login">Te invitamos a terminar el registro, por favor solicita un código de acceso</string>
+    <string name="terms_and_conditions"><u>Términos y condiciones</u></string>
+    <string name="you_do_not_have_an_account_yet">¿Aún no tienes una cuenta?</string>
+    <string name="when_using_our_app">Al usar nuestra aplicación aceptas nuestros</string>
+    <string name="and_ours">y nuestra</string>
+    <string name="privacy_policy"><u>Política de Privacidad.</u></string>
+    <string name="meet_here">Conoce aquí nuestro</string>
+    <string name="code_of_ethics"><u>Código de ética</u></string>
+    <string name="email_example">analaura@gmail.com</string>
+    <string name="enter_a_number_phone_valid">Debes ingresar un número celular válido</string>
+
+    <string name="digits_only_letters">qwertyuiopasdfghjklñzxcvbnm QWERTYUIOPASDFGHJKLÑZXCVBNMáóíéúÁÉÍÓÚ </string>
+    <string name="digits_only_letters_password">qwertyuiopasdfghjklñzxcvbnm QWERTYUIOPASDFGHJKLÑZXCVBNMáóíéúÁÉÍÓÚ 0123456789 ._-@</string>
+    <string name="digits_email">qwertyuiopasdfghjklñzxcvbnmQWERTYUIOPASDFGHJKLÑZXCVBNM1234567890._-@</string>
+    <string name="digits_only_number_phone">0123456789</string>
+
+</resources>

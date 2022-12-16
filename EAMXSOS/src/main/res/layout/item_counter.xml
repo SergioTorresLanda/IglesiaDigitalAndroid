@@ -1,0 +1,194 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvCounter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp"
+        android:elevation="8dp"
+        android:translationZ="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            >
+            <TextView
+                android:id="@+id/tvService"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                tools:text="Unción de los enfermos"
+                android:textColor="#13277c"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:lineSpacingExtra="2sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:lineSpacingExtra="-1sp"
+                android:textColor="#363636"
+                android:textSize="15sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toStartOf="@+id/ivIcon"
+                app:layout_constraintStart_toStartOf="@+id/tvService"
+                app:layout_constraintTop_toBottomOf="@+id/tvService"
+                tools:text="Baldemar Jeremías Íñiguez" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvName">
+
+                <TextView
+                    android:id="@+id/tvHour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/shape_timer_left"
+                    android:elevation="4dp"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:textColor="#b7b2b2"
+                    android:lineSpacingExtra="-5sp"
+                    android:textSize="34sp"
+                    android:textStyle="bold"
+                    android:translationZ="4dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.24"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="00" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/tvView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:elevation="4dp"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    app:srcCompat="@drawable/ic_separation_counter"
+                    android:translationZ="4dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvHour"
+                    app:layout_constraintStart_toEndOf="@+id/tvHour"
+                    app:layout_constraintTop_toTopOf="@+id/tvHour" />
+
+                <TextView
+                    android:id="@+id/tvMinute"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:elevation="4dp"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:textColor="#b7b2b2"
+                    android:lineSpacingExtra="-5sp"
+                    android:textSize="34sp"
+                    android:textStyle="bold"
+                    android:translationZ="4dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvHour"
+                    app:layout_constraintStart_toEndOf="@+id/tvView1"
+                    app:layout_constraintTop_toTopOf="@+id/tvHour"
+                    android:text="00" />
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/tvView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:elevation="4dp"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    app:srcCompat="@drawable/ic_separation_counter"
+                    android:translationZ="4dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvMinute"
+                    app:layout_constraintStart_toEndOf="@+id/tvMinute"
+                    app:layout_constraintTop_toTopOf="@+id/tvMinute" />
+
+                <TextView
+                    android:id="@+id/tvSecond"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_timer_right"
+                    android:elevation="4dp"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:textColor="#b7b2b2"
+                    android:lineSpacingExtra="-5sp"
+                    android:textSize="34sp"
+                    android:textStyle="bold"
+                    android:translationZ="4dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvMinute"
+                    app:layout_constraintStart_toEndOf="@+id/tvView2"
+                    app:layout_constraintTop_toTopOf="@+id/tvMinute"
+                    android:text="00" />
+
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tvDistance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:textSize="15sp"
+                android:textColor="#363636"
+                android:lineSpacingExtra="-1sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintStart_toStartOf="@+id/constraintLayout"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+                tools:text="2.3 km" />
+
+            <TextView
+                android:id="@+id/tvNameStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:gravity="end"
+                android:lineSpacingExtra="6sp"
+                android:textColor="#808080"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:maxLines="2"
+                app:layout_constraintBottom_toBottomOf="@+id/tvDistance"
+                app:layout_constraintEnd_toStartOf="@+id/viewStatus"
+                app:layout_constraintTop_toTopOf="@+id/tvDistance"
+                android:text="@string/txt_sos_notification_status_pending" />
+
+            <View
+                android:id="@+id/viewStatus"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/circle_progress"
+                app:layout_constraintBottom_toBottomOf="@+id/tvNameStatus"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvNameStatus" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

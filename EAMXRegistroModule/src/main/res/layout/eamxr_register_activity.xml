@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:id="@+id/eamx_register_activity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fillViewport="true"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <include
+                    android:id="@+id/toolbarModel"
+                    layout="@layout/eamxr_register_toolbar_model"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="@dimen/margin_15"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/toolbarModel">
+
+                    <TextView
+                        style="@style/StyleTxtTitleRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:letterSpacing="0.01"
+                        android:lineSpacingExtra="-1sp"
+                        android:text="@string/create_account"
+                        android:textColor="#192a73"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        style="@style/StyleTxtGeneric"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_top_20"
+                        android:gravity="center"
+                        android:letterSpacing="0.03"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@string/sign_up_to_have"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/size_14" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="0.03"
+                            android:lineSpacingExtra="0sp"
+                            android:text="@string/name"
+                            android:textColor="#13277c"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:expandedHintEnabled="false"
+                            app:endIconMode="custom"
+                            app:errorIconDrawable="@drawable/ic_check_error"
+                            style="@style/StyleEdtGeneric">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:digits="@string/digits_only_letters"
+                                android:imeOptions="actionNext"
+                                android:inputType="textCapWords|textAutoCorrect|textPersonName"
+                                android:letterSpacing="0.01"
+                                android:lineSpacingExtra="10sp"
+                                android:maxLength="50"
+                                android:nextFocusForward="@id/etLastNameFather"
+                                android:singleLine="true"
+                                android:textColor="#99000000"
+                                android:textSize="18sp"
+                                android:textStyle="normal" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="0.03"
+                            android:lineSpacingExtra="0sp"
+                            android:text="@string/last_name"
+                            android:textColor="#13277c"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilLastName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:expandedHintEnabled="false"
+                            app:endIconMode="custom"
+                            app:errorIconDrawable="@drawable/ic_check_error"
+                            style="@style/StyleEdtGeneric">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etLastNameFather"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:digits="@string/digits_only_letters"
+                                android:imeOptions="actionNext"
+                                android:inputType="textCapWords|textAutoCorrect|textPersonName"
+                                android:letterSpacing="0.01"
+                                android:lineSpacingExtra="10sp"
+                                android:maxLength="50"
+                                android:nextFocusDown="@id/etLastNameMother"
+                                android:nextFocusForward="@id/etLastNameMother"
+                                android:singleLine="true"
+                                android:textColor="#99000000"
+                                android:textSize="18sp"
+                                android:textStyle="normal" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="0.03"
+                            android:lineSpacingExtra="0sp"
+                            android:text="@string/mothers_last_name"
+                            android:textColor="#13277c"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilLastNameMother"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:expandedHintEnabled="false"
+                            app:endIconMode="custom"
+                            app:errorIconDrawable="@drawable/ic_check_error"
+                            style="@style/StyleEdtGeneric">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etLastNameMother"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:digits="@string/digits_only_letters"
+                                android:imeOptions="actionNext"
+                                android:inputType="textCapWords|textAutoCorrect|textPersonName"
+                                android:letterSpacing="0.01"
+                                android:lineSpacingExtra="10sp"
+                                android:maxLength="50"
+                                android:nextFocusForward="@id/etNumberPhone"
+                                android:singleLine="true"
+                                android:textColor="#99000000"
+                                android:textSize="18sp"
+                                android:textStyle="normal" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="0.03"
+                            android:lineSpacingExtra="0sp"
+                            android:text="@string/phone_number"
+                            android:textColor="#13277c"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilNumberPhone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:expandedHintEnabled="false"
+                            app:endIconMode="custom"
+                            app:errorIconDrawable="@drawable/ic_check_error"
+                            style="@style/StyleEdtGeneric">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etNumberPhone"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:digits="@string/digits_only_number_phone"
+                                android:imeOptions="actionDone"
+                                android:inputType="phone"
+                                android:letterSpacing="0.01"
+                                android:lineSpacingExtra="10sp"
+                                android:maxLength="10"
+                                android:singleLine="true"
+                                android:textColor="#99000000"
+                                android:textSize="18sp"
+                                android:textStyle="normal" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="0.03"
+                            android:lineSpacingExtra="0sp"
+                            android:text="@string/text_date_born"
+                            android:textColor="#13277c"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilDate"
+                            style="@style/StyleEdtGeneric"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            app:expandedHintEnabled="false">
+
+                            <EditText
+
+                                android:id="@+id/etDate"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:digits="@string/digits_only_number_phone"
+                                android:focusable="false"
+                                android:imeOptions="actionNext"
+                                android:letterSpacing="0.01"
+                                android:lineSpacingExtra="10sp"
+                                android:nextFocusForward="@id/etEmail"
+                                android:singleLine="true"
+                                android:textColor="#99000000"
+                                android:textSize="18sp"
+                                android:textStyle="normal" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="0.03"
+                            android:lineSpacingExtra="0sp"
+                            android:text="@string/text_email"
+                            android:textColor="#13277c"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:expandedHintEnabled="false"
+                            app:errorIconDrawable="@drawable/ic_check_error"
+                            app:endIconMode="custom"
+                            style="@style/StyleEdtGeneric">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etEmail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:digits="@string/digits_email"
+                                android:imeOptions="actionNext"
+                                android:inputType="textEmailAddress"
+                                android:letterSpacing="0.01"
+                                android:lineSpacingExtra="10sp"
+                                android:maxLength="60"
+                                android:nextFocusForward="@id/etPassword"
+                                android:singleLine="true"
+                                android:textColor="#99000000"
+                                android:textSize="18sp"
+                                android:textStyle="normal" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="0.03"
+                            android:lineSpacingExtra="0sp"
+                            android:text="@string/password"
+                            android:textColor="#13277c"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="0sp"
+                            android:text="@string/text_password_info"
+                            android:textColor="#000000"
+                            android:textSize="10sp"
+                            android:textStyle="normal" />
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilPassword"
+                            style="@style/StyleEdtGeneric"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:errorIconDrawable="@null"
+                            app:expandedHintEnabled="false"
+                            app:passwordToggleEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etPassword"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:imeOptions="actionNext"
+                                android:inputType="textPassword"
+                                android:letterSpacing="0.01"
+                                android:lineSpacingExtra="10sp"
+                                android:maxLength="16"
+                                android:nextFocusForward="@id/etConfirmPassword"
+                                android:singleLine="true"
+                                android:textColor="#99000000"
+                                android:textSize="18sp"
+                                android:textStyle="normal" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="0.03"
+                            android:lineSpacingExtra="0sp"
+                            android:text="@string/confirm_password"
+                            android:textColor="#13277c"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="0sp"
+                            android:text="@string/text_password_confirm_info"
+                            android:textColor="#000000"
+                            android:textSize="10sp"
+                            android:textStyle="normal" />
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilCodeConfirmPassword"
+                            style="@style/StyleEdtGeneric"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:expandedHintEnabled="false"
+                            app:errorIconDrawable="@null"
+                            app:passwordToggleEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etConfirmPassword"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:imeOptions="actionDone"
+                                android:inputType="textPassword"
+                                android:letterSpacing="0.01"
+                                android:lineSpacingExtra="10sp"
+                                android:maxLength="16"
+                                android:singleLine="true"
+                                android:textColor="#99000000"
+                                android:textSize="18sp"
+                                android:textStyle="normal" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btnRegistrar"
+                        style="@style/StyleBtnLogIn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_top_20"
+                        android:text="@string/sign_in_register" />
+
+                    <TextView
+                        style="@style/StyleTxtAlContinuartxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_top_20"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:text="@string/when_using_our_app" />
+
+                    <LinearLayout
+                        android:id="@+id/layoutTerminos"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/TestStyleTerminosCondiciones"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/terms_and_conditions" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="3dp"
+                            android:fontFamily="@font/spro_text_regular"
+                            android:text="@string/and_ours"
+                            android:textColor="@color/gris_terminos"
+                            android:textSize="@dimen/size_10" />
+
+                        <TextView
+                            style="@style/TestStyleTerminosCondiciones"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/privacy_policy" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutPolitica"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="3dp"
+                            android:fontFamily="@font/spro_text_regular"
+                            android:text="@string/meet_here"
+                            android:textColor="@color/gris_terminos"
+                            android:textSize="@dimen/size_10" />
+
+                        <TextView
+                            style="@style/TestStyleTerminosCondiciones"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/code_of_ethics" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </FrameLayout>
+    </ScrollView>
+
+</layout>

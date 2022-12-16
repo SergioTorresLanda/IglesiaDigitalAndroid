@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_margin="@dimen/margin_top_20"
+        android:elevation="10dp"
+        app:cardCornerRadius="@dimen/corner_radious_20">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_15"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgUserSendPray"
+                    android:layout_width="@dimen/width_40"
+                    android:layout_height="@dimen/width_40"
+                    tools:src="@drawable/img_cura" />
+
+                <TextView
+                    android:id="@+id/txtName"
+                    style="@style/StyleTxtSubtitleItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/padding_10"
+                    android:textStyle="bold"
+                    tools:text="Juan Carlos Romero Bautista" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="@dimen/margin_10"
+                android:background="@drawable/shape_edt_dialog"
+                android:padding="@dimen/padding_10">
+
+                <EditText
+                    android:id="@+id/edtOracion"
+                    style="@style/StyleTxtAddressParroquia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/write_here"
+                    android:textSize="@dimen/size_16"
+                    android:textStyle="bold"
+                    tools:text="Pido se unan en oración conmigo por la salud de mi esposa Pauilina Santiago y de mi hijo Alberto Romero por su pronta recuperación del Covid" />
+            </FrameLayout>
+
+            <Button
+                android:id="@+id/btnToPost"
+                style="@style/StyleBtnPublicar"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/margin_10"
+                android:paddingVertical="@dimen/padding_5"
+                android:text="@string/to_post" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

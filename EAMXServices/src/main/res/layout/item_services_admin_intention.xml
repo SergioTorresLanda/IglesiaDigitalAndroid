@@ -1,0 +1,97 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="mx.arquidiocesis.servicios.model.admin.view.AdminIntentionGeneralModel" />
+    </data>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="4dp"
+        android:elevation="8dp"
+        android:translationZ="8dp"
+        app:cardCornerRadius="15dp"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/tvHour"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="5dp"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="0sp"
+                android:text="@{item.hour}"
+                android:textColor="#192a73"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toTopOf="@+id/tvPriest"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="08:00" />
+
+            <TextView
+                android:id="@+id/tvPriest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginBottom="5dp"
+                android:lineSpacingExtra="-1sp"
+                android:text="@{item.nameIntention}"
+                android:textColor="#192a73"
+                android:textSize="13sp"
+                android:textStyle="normal"
+                android:visibility="@{item.visibleNameInteraction}"
+                app:layout_constraintBottom_toTopOf="@+id/tvName"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvHour"
+                tools:text="Celebra sacerdote" />
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="18dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginBottom="12dp"
+                android:lineSpacingExtra="-2sp"
+                android:text="@{item.speaker}"
+                android:textColor="#363636"
+                android:textSize="13sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPriest"
+                tools:text="Juan Pérez" />
+
+            <ImageView
+                android:id="@+id/ivFlecha"
+                android:layout_width="@dimen/size_18"
+                android:layout_height="@dimen/size_18"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="32dp"
+                android:contentDescription="@string/aceptar"
+                android:src="@drawable/ic_icon_atr_ss"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</layout>

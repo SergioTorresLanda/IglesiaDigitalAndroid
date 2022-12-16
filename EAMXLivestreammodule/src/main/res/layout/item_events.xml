@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvLive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_10"
+            android:layout_marginEnd="@dimen/margin_top_10"
+            android:layout_marginStart="@dimen/margin_top_10"
+            android:clickable="true"
+            android:elevation="0dp"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/guadalupe_misa"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:id="@+id/llLive"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgMisa"
+                android:layout_width="match_parent"
+                android:layout_height="154dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/guadalupe_misa" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtNameChurch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgMisa"
+                    android:layout_marginStart="10dp"
+                    android:text="Basílica de Guadalupe"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="4dp"
+                    android:textStyle="bold"
+                    android:textSize="13sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtNameMisa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:text="Misa dominical vespertina"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="51dp"
+                android:layout_height="51dp"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/margin_13">
+
+                <ImageView
+                    android:id="@+id/ivEnvivo"
+                    android:layout_width="51dp"
+                    android:layout_height="51dp"
+                    android:src="@drawable/ic_player_new" />
+
+            </FrameLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+</layout>

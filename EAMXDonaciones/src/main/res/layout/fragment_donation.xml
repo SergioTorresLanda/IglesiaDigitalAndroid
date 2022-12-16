@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clViewComplete"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:visibility="visible">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/clPrincipal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="#fcfcfc"
+                    android:elevation="8dp"
+                    app:cardCornerRadius="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cvMisas"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:id="@+id/ivChurch"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/emptychurch" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvTitulo"
+                            style="@style/TextStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="16dp"
+                            android:fontFamily="sans-serif"
+                            android:letterSpacing="0.01"
+                            android:lineSpacingExtra="2sp"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/cvMisas"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/cvMisas"
+                            app:layout_constraintTop_toTopOf="@+id/cvMisas"
+                            tools:text="Iglesia San José de las Palmas" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+
+                <TextView
+                    android:id="@+id/tvRz"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="7sp"
+                    android:padding="4dp"
+                    android:text="Concepto"
+                    android:textColor="#192a73"
+                    android:textSize="@dimen/font_size_16"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/clPrincipal" />
+
+                <Spinner
+                    android:id="@+id/spCop"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="24dp"
+                    android:minHeight="48dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvRz" />
+
+                <EditText
+                    android:id="@+id/etCop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:hint="@string/especifique_concepto"
+                    android:inputType="text"
+                    android:maxLength="40"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spCop" />
+
+                <mx.arquidiocesis.eamxcommonutils.util.custom.CustomMontoSpinner
+                    android:id="@+id/customSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etCop" />
+
+                <TextView
+                    android:id="@+id/tvBilling"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="7sp"
+                    android:text="¿Deseas facturar?"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/font_size_18"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/customSpinner" />
+
+                <RadioGroup
+                    android:id="@+id/rgBilling"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="@+id/customSpinner"
+                    app:layout_constraintStart_toStartOf="@+id/tvBilling"
+                    app:layout_constraintTop_toBottomOf="@+id/tvBilling">
+
+                    <RadioButton
+                        android:id="@+id/rbSi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="Si"
+                        android:textColor="@color/text_color"
+                        android:textSize="18sp" />
+
+                    <RadioButton
+                        android:id="@+id/rbNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:padding="8dp"
+                        android:text="No"
+                        android:textColor="@color/text_color"
+                        android:textSize="18sp" />
+                </RadioGroup>
+
+                <TableLayout
+                    android:id="@+id/tlBilling"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@+id/btnPublicar"
+                    app:layout_constraintEnd_toEndOf="@+id/rgBilling"
+                    app:layout_constraintStart_toStartOf="@+id/rgBilling"
+                    app:layout_constraintTop_toBottomOf="@+id/rgBilling">
+
+                    <TextView
+                        android:id="@+id/tvIndication"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="2sp"
+                        android:text="@string/mensaje"
+                        android:textColor="#192a73"
+                        android:textSize="@dimen/font_size_10"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        android:id="@+id/tvDatos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="0.01"
+                        android:lineSpacingExtra="7sp"
+                        android:paddingTop="10sp"
+                        android:paddingBottom="10sp"
+                        android:text="@string/datos_fiscales"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/font_size_18"
+                        android:textStyle="bold" />
+
+                    <FrameLayout
+                        android:id="@+id/flBilling"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </TableLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPublicar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:backgroundTint="@color/btn_background_accept"
+                    android:gravity="center"
+                    android:text="Continuar"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorGrayBackgroun"
+                    android:textSize="18sp"
+                    app:cornerRadius="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCancel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:backgroundTint="@color/btn_background_cancel"
+                    android:gravity="center"
+                    android:text="Cancelar"
+                    android:textAllCaps="false"
+                    android:textColor="@color/btn_background_accept"
+                    android:textSize="18sp"
+                    app:cornerRadius="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/btnPublicar"
+                    app:layout_constraintEnd_toStartOf="@+id/btnPublicar"
+                    app:layout_constraintTop_toTopOf="@+id/btnPublicar" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

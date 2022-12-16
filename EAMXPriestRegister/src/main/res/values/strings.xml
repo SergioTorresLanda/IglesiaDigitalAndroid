@@ -1,0 +1,59 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="txt_registry_priest_title">Registro de Sacerdotes</string>
+    <string name="txt_registry_priest_description">Vamos a confirmar algunos datos para darte de alta como sacerdote dentro de la App Encuentro.</string>
+    <string name="txt_registry_priest_general_information">Datos personales</string>
+    <string name="txt_registry_priest_hint_name">Nombre (s)</string>
+    <string name="txt_registry_priest_hint_description">Descripción / presentación</string>
+    <string name="txt_registry_priest_date_title">Fecha de nacimiento</string>
+    <string name="txt_registry_priest_mask_date">dd/mm/aaaa</string>
+    <string name="txt_registry_priest_date_title_ordination">Fecha de ordenación</string>
+    <string name="txt_registry_priest_title_email">E-mail institucional / personal</string>
+    <string name="txt_registry_priest_hint_email">E-mail institucional / personal</string>
+    <string name="txt_registry_priest_save">Guardar</string>
+    <string name="txt_registry_priest_classification_spinner">Oficio eclesiástico</string>
+    <string name="txt_registry_priest_activities_spinner">Actividades pastorales virtuales</string>
+    <string name="txt_registry_priest_information_description">Descríbete en pocas palabras. ¿Qué te gustaría que las personas conozcan de tí? Años de sacerdocio, una frase que te inspire, etc.</string>
+    <string name="txt_registry_priest_information_activies">Puedes agregar más de una actividad</string>
+    <string name="txt_registry_priest_message_streaming">Canal de streaming por el que transmites contenido a nombre propio <b>Ej. www.youtubestreamingchannel.com</b></string>
+    <string name="txt_registry_priest_hint_streaming">Canal de streaming</string>
+    <string name="txt_registry_priest_icon_calendar">calendar</string>
+    <string name="txt_registry_priest_error_services">Ocurrio un error</string>
+    <string name="txt_registry_priest_error_field_empty">Campo obligatorio</string>
+    <string name="txt_registry_priest_error_field_empty_clergy">Selecciona un oficio eclesiastico</string>
+    <string name="txt_registry_priest_successful_registration">Registro exitoso</string>
+    <string name="txt_registry_priest_invalidate_email">Formato de correo electronico incorrecto</string>
+    <string name="txt_registry_priest_father_surname">Apellido paterno</string>
+    <string name="txt_registry_priest_mother_surname">Apellido materno</string>
+    <string name="txt_registry_priest_other_activity">Otros</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="description_image_parroquia">Imagen de la parroquia</string>
+
+    <string name="iam_fhater">Soy sacerdote</string>
+    <string name="fecha_nacimiento">Fecha de nacimiento</string>
+    <string name="txt_save">Guardar</string>
+    <string name="perfil">Perfil</string>
+    <string name="n_mero_de_celular">Número de celular</string>
+
+    <string-array name="sp_estado_civil">
+        <item>Casado</item>
+        <item>Soltero</item>
+    </string-array>
+    <string name="txt_registry_priest_add_button">Agregar</string>
+
+    <string name="txt_registry_priest_radio_button_Diocesan">Diocesano</string>
+    <string name="txt_registry_priest_radio_button_Religious">Religioso</string>
+    <string name="txt_registry_priest_title_radio_group">Selecciona una opción</string>
+    <string name="txt_registry_priest_input_other_activity">(Otros) Describe la actividad</string>
+    <string name="txt_registry_priest_default_order_congregation">Orden o congregación a la que perteneces</string>
+
+
+    <string name="digits_only_letters">qwertyuiopasdfghjklñzxcvbnm QWERTYUIOPASDFGHJKLÑZXCVBNMáóíéúÁÉÍÓÚ </string>
+    <string name="digits_email">qwertyuiopasdfghjklñzxcvbnmQWERTYUIOPASDFGHJKLÑZXCVBNM1234567890._-@</string>
+    <string name="digits_only_number_phone">0123456789</string>
+    <string name="title_dialog_warning">Atención</string>
+    <string name="email_to_error">cancilleria@arquidiocesismexico.org</string>
+    <string name="selected_congragation">Seleccione una orden o congregación</string>
+    <string name="selected_activity">Seleccione al menos una actividad</string>
+    <string name="format_date">{0}/{1}/{2}</string>
+
+</resources>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--btnDonacion-->
+    <style name="StyleBtnMakeDonation" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/font_size_16</item>
+        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="backgroundTint">@color/colorBtnDonation</item>
+        <item name="textAllCaps">false</item>
+        <item name="cornerRadius">17dp</item>
+    </style>
+
+    <style name="StyleEdtRegister" parent="Widget.AppCompat.EditText" >
+        <item name="android:background">@drawable/shape_background_edt</item>
+        <item name="android:textColor">@color/colorDialogGray</item>
+        <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="fontFamily">@font/roboto_light</item>
+        <item name="android:paddingBottom">@dimen/small_margin_padding</item>
+        <item name="android:paddingStart">@dimen/small_margin_padding</item>
+        <item name="android:paddingTop">@dimen/small_margin_padding</item>
+        <item name="android:paddingEnd">@dimen/small_margin_padding</item>
+    </style>
+
+    <!--txt Subtitles item-->
+    <style name="StyleTxtSubtitleItem" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/blueTxtCodeConfirmacion</item>
+        <item name="android:textSize">@dimen/font_size_16</item>
+        <item name="fontFamily">@font/roboto_medium</item>
+    </style>
+
+    <!--txt title Register-->
+    <style name="StyleTxtTitleRegister" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/blueTxtCodeConfirmacion</item>
+        <item name="android:textSize">@dimen/font_size_24</item>
+        <item name="fontFamily">@font/roboto_medium</item>
+    </style>
+
+    <!--txt Subtitles info general registro-->
+    <style name="StyleTxtInfoGralRegistro" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/blueTxtCodeConfirmacion</item>
+        <item name="android:textSize">@dimen/font_size_16</item>
+        <item name="fontFamily">@font/roboto_bold</item>
+    </style>
+
+    <style name="MyRadioButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">#a0a0a0</item>
+        <item name="colorControlActivated">#192a73</item>
+    </style>
+</resources>

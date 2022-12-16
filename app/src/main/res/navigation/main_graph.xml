@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/main_graph"
+    app:startDestination="@id/EAMXFirstView">
+    <fragment
+        android:id="@+id/EAMXFirstView"
+        android:name="mx.arquidiocesis.eamxgeneric.fragments.onboarding.EAMXFirstView"
+        android:label="EAMXFirstView" >
+        <action
+            android:id="@+id/action_EAMXFirstView_to_EAMXSecondView"
+            app:destination="@id/EAMXSecondView" />
+    </fragment>
+    <fragment
+        android:id="@+id/EAMXSecondView"
+        android:name="mx.arquidiocesis.eamxgeneric.fragments.onboarding.EAMXSecondView"
+        android:label="EAMXSecondView" />
+</navigation>

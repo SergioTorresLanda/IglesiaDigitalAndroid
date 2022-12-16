@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="corner_radious_20">20dp</dimen>
+
+    <dimen name="margi_top_3">3dp</dimen>
+    <dimen name="margin_5">5dp</dimen>
+    <dimen name="margin_end_7">7dp</dimen>
+    <dimen name="margin_10">10dp</dimen>
+    <dimen name="margin_top_10">10dp</dimen>
+    <dimen name="margin_15">15dp</dimen>
+    <dimen name="margin_top_15">15dp</dimen>
+    <dimen name="margin_top_20">20dp</dimen>
+    <dimen name="margin_horizontal_20">20dp</dimen>
+    <dimen name="margin_top_25">25dp</dimen>
+    <dimen name="margin_bottom_25">25dp</dimen>
+    <dimen name="margin_top_30">30dp</dimen>
+    <dimen name="margin_top_40">40dp</dimen>
+    <dimen name="margin_horizontal_42">42dp</dimen>
+
+    <dimen name="height_edt_48">48dp</dimen>
+    <dimen name="height_toolbar_130">130dp</dimen>
+
+    <dimen name="line_spacing_extra">8dp</dimen>
+
+    <dimen name="padding_5">5dp</dimen>
+    <dimen name="padding_10">10dp</dimen>
+
+    <dimen name="size_10">10sp</dimen>
+    <dimen name="size_12">12sp</dimen>
+    <dimen name="size_14">14sp</dimen>
+    <dimen name="size_15">15sp</dimen>
+    <dimen name="size_16">16sp</dimen>
+    <dimen name="size_17">17sp</dimen>
+    <dimen name="size_18">18sp</dimen>
+    <dimen name="size_20">20sp</dimen>
+    <dimen name="size_22">22sp</dimen>
+    <dimen name="size_24">24sp</dimen>
+    <dimen name="size_54">54sp</dimen>
+
+    <dimen name="width_fields_code_50">50dp</dimen>
+    <dimen name="width_fields_code_30">45dp</dimen>
+    <dimen name="width_img_back_20">20dp</dimen>
+    <dimen name="elevation_4">4dp</dimen>
+
+</resources>

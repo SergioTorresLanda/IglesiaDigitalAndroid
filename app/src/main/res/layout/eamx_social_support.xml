@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/bottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_modal"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_bottom_fragment_blue">
+
+            <TextView
+                android:id="@+id/txtTitleBottomFragment"
+                style="@style/StyleTxtTitleRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/padding_10"
+                android:text="@string/support_my_church"
+                android:textColor="@color/white"
+                android:textSize="@dimen/size_18" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/layoutBancoAzteca"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:paddingStart="@dimen/padding_20"
+                android:paddingTop="@dimen/margin_top_30"
+                android:weightSum="1"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="0.2"
+                    android:padding="@dimen/padding_5"
+                    android:src="@drawable/ic_bienestar"
+                    android:contentDescription="@string/icon_banco_azteca" />
+
+                <TextView
+                    android:id="@+id/txtNameBank"
+                    style="@style/StyleTxtTitleRegister"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.6"
+                    android:paddingHorizontal="@dimen/padding_10"
+                    android:text="@string/banco_azteca"
+                    android:textSize="@dimen/size_22"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/imgShow"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/height_12"
+                    android:layout_gravity="center_vertical"
+                    android:clickable="true"
+                    android:layout_weight="0.2"
+                    android:src="@drawable/ic_show"
+                    android:focusable="true"
+                    android:contentDescription="@string/icon_others" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/contentShowBancoAzteca"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                tools:background="@color/grayLight">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/padding_20"
+                    android:weightSum="1">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="0.2"
+                        android:contentDescription="@string/without_icon" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.6"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/StyleTxtTitleRegister"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingHorizontal="@dimen/padding_10"
+                            android:text="@string/select_the_amount"
+                            android:textSize="@dimen/size_12" />
+
+                        <EditText
+                            android:id="@+id/edtAmount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/margin_10"
+                            android:hint="@string/_0_0"
+                            android:inputType="numberDecimal"
+                            android:paddingHorizontal="0dp"
+                            android:autofillHints="no" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/height_12"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="0.2"
+                        android:contentDescription="@string/without_icon" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/btnContinueBottomFragment"
+                    style="@style/StyleTxtAlContinuartxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_margin="@dimen/margin_5"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:paddingHorizontal="@dimen/padding_10"
+                    android:paddingEnd="60dp"
+                    android:text="@string/txt_continue_fragment_bank"
+                    android:textColor="@color/color_card_eventos"
+                    android:textSize="@dimen/size_16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutQR"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:paddingStart="@dimen/padding_20"
+                android:paddingTop="@dimen/margin_top_30"
+                android:layout_marginTop="@dimen/margin_top_20"
+                android:weightSum="1"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="0.2"
+                    android:src="@drawable/ic_codigo_qr"
+                    android:contentDescription="@string/icon_qr" />
+
+                <TextView
+                    android:id="@+id/txtQR"
+                    style="@style/StyleTxtTitleRegister"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.6"
+                    android:paddingHorizontal="@dimen/padding_10"
+                    android:text="@string/qr_code"
+                    android:textSize="@dimen/size_16"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/imgShowQR"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/height_12"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.2"
+                    android:clickable="true"
+                    android:src="@drawable/ic_show"
+                    android:focusable="true"
+                    android:contentDescription="@string/icon_show" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutOthers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:paddingStart="@dimen/padding_20"
+                android:paddingTop="@dimen/margin_top_30"
+                android:paddingBottom="40dp"
+                android:layout_marginTop="@dimen/margin_top_20"
+                android:weightSum="1"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="0.2"
+                    android:src="@drawable/ic_icon_church"
+                    android:contentDescription="@string/icon_others" />
+
+                <TextView
+                    android:id="@+id/txtOtherBank"
+                    style="@style/StyleTxtTitleRegister"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.6"
+                    android:paddingHorizontal="@dimen/padding_10"
+                    android:text="@string/others_banks"
+                    android:textSize="@dimen/size_16"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/imgShowOther"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/height_12"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.2"
+                    android:clickable="true"
+                    android:src="@drawable/ic_show"
+                    android:focusable="true"
+                    android:contentDescription="@string/icon_show" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

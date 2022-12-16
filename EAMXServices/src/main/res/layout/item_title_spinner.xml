@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clOracion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:backgroundTint="#00FFFFFF">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivOracion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/color_icon"
+            />
+
+            <TextView
+                android:id="@+id/tvOracion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="sans-serif-medium"
+                android:lineSpacingExtra="8sp"
+                android:textColor="#002166"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="@+id/ivOracion"
+                app:layout_constraintEnd_toStartOf="@+id/ivDonwFlecha"
+                app:layout_constraintStart_toEndOf="@+id/ivOracion"
+                app:layout_constraintTop_toTopOf="@+id/ivOracion"
+                tools:text="Confirmación" />
+
+            <ImageView
+                android:id="@+id/ivDonwFlecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/ic_icono_atr_u"
+                app:layout_constraintBottom_toBottomOf="@+id/tvOracion"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvOracion"
+                app:tint="@color/color_texto" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

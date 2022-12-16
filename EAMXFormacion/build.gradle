@@ -1,0 +1,30 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
+}
+
+apply from: "$rootProject.projectDir/buildsystem/genericbuild.gradle"
+apply from: "$rootProject.projectDir/buildsystem/configuration.gradle"
+
+def configuration = ext.configuration
+
+
+android {
+    compileSdkVersion configuration.compileSdkVersion
+    buildToolsVersion configuration.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion configuration.minSdkVersion
+        targetSdkVersion configuration.targetSdkVersion
+        versionCode configuration.versionCode
+        versionName configuration.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+}
+
+dependencies {
+    implementation project(path: ':EAMXCommonUtils')
+}

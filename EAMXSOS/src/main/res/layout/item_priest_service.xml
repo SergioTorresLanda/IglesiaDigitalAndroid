@@ -1,0 +1,270 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        app:cardCornerRadius="4dp"
+        android:elevation="4dp">
+
+        <com.chauthai.swipereveallayout.SwipeRevealLayout
+            android:id="@+id/SwipeRevealLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:dragEdge="right"
+            app:mode="same_level">
+
+            <!-- Your secondary layout here -->
+            <FrameLayout
+                android:id="@+id/flSecondLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="112dp"
+                android:layout_marginStart="-10dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clTrash"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/background_red"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="14dp"
+                        android:src="@drawable/icon_trash"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clInprogress"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/background_red">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clTerminate"
+                        android:layout_width="32dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/blue"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="14dp"
+                            android:src="@drawable/check"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clDelete"
+                        android:layout_width="36dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/red"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/clTerminate"
+                        app:layout_constraintTop_toTopOf="@+id/clTerminate">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:src="@drawable/icon_trash"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </FrameLayout>
+
+            <!-- Your main layout here -->
+            <FrameLayout
+                android:id="@+id/flMain"
+                android:layout_width="match_parent"
+                android:layout_height="112dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:elevation="16dp">
+
+                    <TextView
+                        android:id="@+id/tvService"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:lineSpacingExtra="2sp"
+                        android:textColor="#13277c"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toStartOf="@+id/clCall"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Unción de los enfermos" />
+
+                    <TextView
+                        android:id="@+id/tvName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="4sp"
+                        android:textColor="#363636"
+                        android:textSize="16sp"
+                        android:textStyle="normal"
+                        app:layout_constraintEnd_toEndOf="@+id/tvService"
+                        app:layout_constraintStart_toStartOf="@+id/tvService"
+                        app:layout_constraintTop_toBottomOf="@+id/tvService"
+                        tools:text="Baldemar Jeremías Íñiguez" />
+
+                    <TextView
+                        android:id="@+id/tvDistance"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:lineSpacingExtra="4sp"
+                        android:textColor="#363636"
+                        android:textSize="16sp"
+                        android:textStyle="normal"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/tvName"
+                        app:layout_constraintTop_toBottomOf="@+id/tvName"
+                        tools:text="2.3 km"
+                        tools:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/ivIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:src="@drawable/church_icon"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvDistance"
+                        app:layout_constraintStart_toEndOf="@+id/tvDistance"
+                        app:layout_constraintTop_toTopOf="@+id/tvDistance"
+                        tools:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/tvStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="42dp"
+                        android:gravity="end"
+                        android:lineSpacingExtra="6sp"
+                        android:textColor="#363636"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="@+id/viewCircle"
+                        app:layout_constraintEnd_toStartOf="@+id/clCall"
+                        app:layout_constraintTop_toTopOf="@+id/viewCircle"
+                        tools:text="En progreso"
+                        tools:visibility="visible" />
+
+                    <View
+                        android:id="@+id/viewCircle"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/circle_progress"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvDistance"
+                        app:layout_constraintEnd_toStartOf="@+id/clCall"
+                        app:layout_constraintTop_toTopOf="@+id/tvDistance"
+                        tools:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/ivFinished"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/check_blue"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvStatus"
+                        app:layout_constraintEnd_toStartOf="@+id/clCall"
+                        app:layout_constraintTop_toTopOf="@+id/tvStatus"
+                        tools:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/ivBorder"
+                        android:layout_width="12dp"
+                        android:layout_height="0dp"
+                        android:adjustViewBounds="true"
+                        android:background="@color/red"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="visible" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clCall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:background="#f5f5f5"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/ivBorder"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="visible">
+
+                        <ImageView
+                            android:id="@+id/imageView2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginBottom="16dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/phone" />
+
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="8dp"
+                            android:lineSpacingExtra="7sp"
+                            android:text="@string/aceptar"
+                            android:textColor="#52b3f7"
+                            android:textSize="11sp"
+                            android:textStyle="normal"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </FrameLayout>
+        </com.chauthai.swipereveallayout.SwipeRevealLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

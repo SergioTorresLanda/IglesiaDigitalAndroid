@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:id="@+id/constraintToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_white_toolbar"
+        android:elevation="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/toolbarHomeSaludo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/ivConfig"
+                android:layout_width="24dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_config"
+                app:layout_constraintBottom_toBottomOf="@+id/imgNotification"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imgNotification" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgUser"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="@dimen/margin_top_15"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/shape_image"
+                android:contentDescription="@string/description_image"
+                android:elevation="@dimen/margin_end_7"
+                android:src="@drawable/ic_user"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtSaludo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_12"
+                android:fontFamily="@font/avenir_nextlt_pro_regular"
+                android:textColor="@color/textColorGreatingsHome"
+                android:textSize="@dimen/size_14"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/txtNameUser"
+                app:layout_constraintStart_toEndOf="@+id/imgUser"
+                app:layout_constraintTop_toTopOf="@+id/imgUser"
+                tools:text="@string/good_afternon" />
+
+            <TextView
+                android:id="@+id/txtNameUser"
+                style="@style/StyleTxtTitleRegister"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginEnd="8dp"
+                android:autoSizeTextType="uniform"
+                android:maxLines="1"
+                android:textColor="@color/primaryColorDark"
+                android:textSize="@dimen/size_20"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/imgUser"
+                app:layout_constraintEnd_toStartOf="@+id/imgNotification"
+                app:layout_constraintStart_toEndOf="@+id/imgUser"
+                app:layout_constraintTop_toBottomOf="@+id/txtSaludo"
+                tools:text="Carlos Morales" />
+
+            <ImageView
+                android:id="@+id/imgNotification"
+                android:layout_width="20dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_notificacion"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toStartOf="@+id/ivConfig"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvAdmin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="Admin"
+                android:textStyle="bold"
+                android:textColor="#bda978"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/imgUser"
+                app:layout_constraintStart_toStartOf="@+id/imgUser"
+                app:layout_constraintTop_toBottomOf="@+id/imgUser" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/toolbarBlue"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/btnBackBlue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="@string/description_image"
+                android:padding="@dimen/padding_10"
+                android:src="@drawable/ic_back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/txtTitleFragmentBlue"
+                style="@style/StyleTxtTitleRegister"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:autoSizeTextType="uniform"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/size_20"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/btnBackBlue"
+                tools:text="Titulo del fragment" />
+
+            <ImageView
+                android:id="@+id/ivIconToobar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_toobar_edit"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/txtTitleFragmentBlue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/txtTitleFragmentBlue" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/toolbarGeneral"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/btnBackGeneral"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="@string/description_image"
+                android:padding="@dimen/padding_10"
+                android:src="@drawable/ic_back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/txtTitleFragmentGeneral"
+                style="@style/StyleTxtTitleRegister"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:autoSizeTextType="uniform"
+                android:gravity="center"
+                android:maxLines="2"
+                android:textColor="@color/white"
+                android:textSize="@dimen/size_20"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Titulo del fragment" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/toolbarWhiteSmall"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:elevation="10dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/btnBackSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="@string/description_image"
+                android:padding="@dimen/padding_10"
+                android:src="@drawable/ic_btn_back_two"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/txtTitleFragmentWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:autoSizeTextType="uniform"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/blueTxtCodeConfirmacion"
+                android:textSize="@dimen/size_20"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Titulo del fragment" />
+
+            <TextView
+                android:id="@+id/btnToPost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="0dp"
+                android:fontFamily="@font/avenir_black"
+                android:textColor="@color/grayLight"
+                android:textSize="@dimen/size_20"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/txtTitleFragmentWhite"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.7"
+                app:layout_constraintStart_toEndOf="@id/txtTitleFragmentWhite"
+                app:layout_constraintTop_toTopOf="@id/txtTitleFragmentWhite"
+                tools:text="Publicar" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+</layout>

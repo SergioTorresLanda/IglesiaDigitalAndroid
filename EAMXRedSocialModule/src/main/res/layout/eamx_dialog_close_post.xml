@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/EAMXRedSocial.MaterialCardView.RoundedTopLeftBottomRight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_20">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:gravity="center"
+                    android:text="@string/descartar"
+                    android:fontFamily="@font/avenir_nextlt_pro_regular"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/size_16" />
+
+                <TextView
+                    android:id="@+id/tv_continue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/margin_top_40"
+                    android:gravity="center"
+                    android:text="Seguir editando"
+                    android:fontFamily="@font/avenir_nextlt_pro_regular"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/size_16" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_margin="@dimen/margin_16"
+                    android:background="@color/grayLight" />
+
+                <TextView
+                    android:id="@+id/tv_close"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:alpha="0.7"
+                    android:gravity="center"
+                    android:fontFamily="@font/avenir_nextlt_pro_regular"
+                    android:text="Descartar publicación"
+                    android:layout_marginBottom="@dimen/marging_top_50"
+                    android:textColor="@color/orange_comprar"
+                    android:textSize="@dimen/size_18" />
+
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+<!--        <FrameLayout-->
+<!--            android:id="@+id/toolbarCreatePost"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@drawable/shape_toolbar_register_white"-->
+<!--            android:elevation="10dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent">-->
+
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:id="@+id/toolbarWhiteSmallEditPost"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="80dp"-->
+<!--                android:elevation="10dp">-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/btnBackWhiteCancel"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="8dp"-->
+<!--                    android:layout_marginBottom="8dp"-->
+<!--                    android:contentDescription="@string/description_image"-->
+<!--                    android:padding="@dimen/padding_10"-->
+<!--                    android:src="@drawable/ic_cancel"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/txtTitleFragmentWhiteEdit"-->
+<!--                    style="@style/StyleTxtTitleRegister"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="16dp"-->
+<!--                    android:layout_marginEnd="32dp"-->
+<!--                    android:layout_marginBottom="16dp"-->
+<!--                    android:autoSizeTextType="uniform"-->
+<!--                    android:gravity="center"-->
+<!--                    android:maxLines="1"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="@dimen/size_20"-->
+<!--                    android:textStyle="bold"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    android:text="@string/edit" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/btnToPostReady"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginEnd="8dp"-->
+<!--                    android:fontFamily="@font/avenir_black"-->
+<!--                    android:textColor="@color/grayLight"-->
+<!--                    android:textSize="@dimen/size_20"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:enabled="false"-->
+<!--                    app:layout_constraintBottom_toBottomOf="@id/txtTitleFragmentWhiteEdit"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintHorizontal_bias="0.7"-->
+<!--                    app:layout_constraintStart_toEndOf="@id/txtTitleFragmentWhiteEdit"-->
+<!--                    app:layout_constraintTop_toTopOf="@id/txtTitleFragmentWhiteEdit"-->
+<!--                    android:text="@string/ready" />-->
+
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--        </FrameLayout>-->
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_media"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="spread" />
+
+                <TextView
+                    android:id="@+id/tv_add_media"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:drawablePadding="8dp"
+                    android:padding="@dimen/padding_5"
+                    android:text="@string/add_more_media"
+                    android:textColor="@color/orange"
+                    android:textSize="@dimen/size_20"
+                    app:drawableStartCompat="@drawable/ic_add_photo"
+                    app:drawableTint="@color/orange"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rv_media" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

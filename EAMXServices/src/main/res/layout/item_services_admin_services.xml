@@ -1,0 +1,121 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="mx.arquidiocesis.servicios.model.admin.view.AdminServiceModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:elevation="8dp"
+        app:cardCornerRadius="15dp">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/tvService"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
+                android:lineSpacingExtra="5sp"
+                android:text="@{item.service}"
+                android:textColor="#192a73"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Bendición de casa" />
+
+            <TextView
+                android:id="@+id/tvApplicant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:lineSpacingExtra="5sp"
+                android:text="Solicitante"
+                android:textColor="#192a73"
+                android:textSize="13sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="@+id/tvService"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/tvService"
+                app:layout_constraintTop_toBottomOf="@+id/tvService" />
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="7dp"
+                android:lineSpacingExtra="5sp"
+                android:text="@{item.applicant}"
+                android:textColor="#363636"
+                android:textSize="13sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvApplicant"
+                app:layout_constraintTop_toBottomOf="@+id/tvApplicant"
+                tools:text="Juan Pérez" />
+
+
+            <TextView
+                android:id="@+id/tvStateTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="7dp"
+                android:lineSpacingExtra="5sp"
+                android:text="Estado"
+                android:textColor="#192a73"
+                android:textSize="13sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="@+id/ivFlecha"
+                app:layout_constraintEnd_toStartOf="@+id/ivFlecha"
+                app:layout_constraintTop_toTopOf="@+id/ivFlecha" />
+
+
+            <TextView
+                android:id="@+id/tvState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:lineSpacingExtra="-2sp"
+                android:text="@{item.state}"
+                android:textColor="#363636"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvStateTitle"
+                tools:text="Por confirmar" />
+
+            <ImageView
+                android:id="@+id/ivFlecha"
+                android:layout_width="@dimen/size_18"
+                android:layout_height="@dimen/size_18"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="32dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_icon_atr_ss"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</layout>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="green_dark">#062925</color>
+    <color name="green_normal">#044a42</color>
+    <color name="colorGreenDone">#00B591</color>
+    <color name="green_light_2">#b8e1dd</color>
+
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="primaryColorDark">#192A73</color>
+    <color name="primaryColor">#192A73</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="red">#DF0000</color>
+    <color name="gray_title">#4C4A4A</color>
+
+
+    <!--NewCOLORS-->
+    <color name="color_red_socal">#266acf</color>
+    <color name="color_red_socalstroke">#d2e0f5</color>
+    <color name="color_formcion">#f76b52</color>
+    <color name="color_formacion_socalstroke">#fcb4ac</color>
+    <color name="color_codigo_etica">#6EC3FF</color>
+    <color name="color_codigo_etica_socalstroke">#A4D3F4</color>
+    <color name="color_oraciones">#e3da00</color>
+    <color name="color_oraciones_socalstroke">#f8f6bf</color>
+    <color name="color_biblioteca">#0260A2</color>
+    <color name="color_biblioteca_socalstroke">#7C9BB1</color>
+    <color name="color_mi_iglesia">#2769d2</color>
+    <color name="color_mi_iglesia_socalstroke">#bda978</color>
+    <color name="color_servicios">#951795</color>
+    <color name="color_servicios_socalstroke">#e9cfe9</color>
+    <color name="color_cadena_oracion">#207c80</color>
+    <color name="color_cadena_oracion_socalstroke">#cedee4</color>
+    <color name="color_card_eventos_empty">#1C75BC</color>
+    <color name="color_card_eventos_exist">#b20b0b</color>
+
+    <!--background toolbar blue-->
+    <color name="blueToolbar">#162977</color>
+    <color name="colorGrayTextBtnGoogle">#363636</color>
+    <!--color btn hacer donativos-->
+    <color name="colorBtnDonation">#5220ff</color>
+
+    <!--color btn comenzar-->
+    <color name="colorBtnComenzar">#5224ff</color>
+
+    <!--view backgorund-->
+    <color name="colorViewColorGray">#76787B</color>
+
+    <!--borde-->
+    <color name="colorGray">#969696</color>
+    <!--color texto login-->
+    <color name="grayLight">#b9b9b9</color>
+    <!--color texto dialog-->
+    <color name="colorDialogGray">#75787b</color>
+
+    <!--txt Ingresa como invitado-->
+    <color name="blueColorBtn">#4930f5</color>
+    <!--orange terminos y condiciones-->
+    <color name="orangeTerminosCondiciones">#f19b38</color>
+    <!--cantidad de oraciones-->
+    <color name="cantOraciones">#ff9700</color>
+    <!--background para los campos edts-->
+    <color name="colorGrayBackgroun">#f5f5f5</color>
+    <!--color para el texto en los campos-->
+    <color name="grayTextColorCampos">#99000000</color>
+    <!--color txt codigo confirmacion-->
+    <color name="blueTxtCodeConfirmacion">#002166</color>
+    <!--color title permisos dialog-->
+    <color name="colorTitlePermission">#00b591</color>
+    <!--color txtName parroquia-->
+    <color name="colorTitleNameParroquia">#6b1f9f</color>
+
+    <!--color txt Servicios-->
+    <color name="colorTxtServicios">#052166</color>
+
+    <!--color backgroun home -->
+    <color name="ccolorBackgroundHome">#FAFAFA</color>
+    <color name="textColorGreatingsHome">#4B4B4B</color>
+
+    <color name="colorDividirView">#ECECEC</color>
+
+    <color name="background_modal">#636364</color>
+
+    <color name="golden">#bea978</color>
+
+</resources>

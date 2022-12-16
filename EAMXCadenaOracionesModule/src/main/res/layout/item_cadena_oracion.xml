@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardPlayers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_16"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgUser"
+                    android:layout_width="@dimen/width_40"
+                    android:layout_height="@dimen/width_40"
+                    android:src="@drawable/user"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtName"
+                    style="@style/StyleTxtSubtitleItem"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="#192a73"
+                    android:textSize="15.5sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imgUser"
+                    app:layout_constraintTop_toTopOf="@+id/imgUser"
+                    tools:text="Ana María Sánchez Pineda" />
+
+                <TextView
+                    android:id="@+id/txtTimeDate"
+                    style="@style/StyleTxtAddressParroquia"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/txtCount"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/txtCount"
+                    tools:text="Hace 30 min" />
+
+                <TextView
+                    android:id="@+id/txtDescripcion"
+                    style="@style/StyleTxtConfirmCode"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:textColor="#75787b"
+                    android:textSize="13.5sp"
+                    app:layout_constraintEnd_toEndOf="@+id/txtTimeDate"
+                    app:layout_constraintStart_toStartOf="@+id/txtName"
+                    app:layout_constraintTop_toBottomOf="@+id/txtName"
+                    tools:text="Les pido de se unan en oración por la pronta recuperación de mi primo Jorge Pineda que sufrió un accidente y se encuentra hospitalizado." />
+
+                <ImageView
+                    android:id="@+id/ivPray"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="18dp"
+                    android:src="@drawable/icono_manos"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/txtDescripcion"
+                    app:layout_constraintTop_toBottomOf="@+id/txtDescripcion" />
+
+                <TextView
+                    android:id="@+id/txtCount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/spro_text_regular"
+                    android:textStyle="bold"
+                    android:textColor="#75787b"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivPray"
+                    app:layout_constraintEnd_toStartOf="@+id/txtTimeDate"
+                    app:layout_constraintStart_toEndOf="@+id/ivPray"
+                    app:layout_constraintTop_toTopOf="@+id/ivPray" />
+
+                <ImageView
+                    android:id="@+id/imPray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_icon_hands"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/txtPlaying"
+                    app:layout_constraintEnd_toStartOf="@+id/txtPlaying"
+                    app:layout_constraintTop_toTopOf="@+id/txtPlaying" />
+
+                <TextView
+                    android:id="@+id/txtPlaying"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_5"
+                    android:layout_marginTop="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/spro_text_regular"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:gravity="end"
+                    android:text="Orar"
+                    android:src="@drawable/ic_icon_hands"
+                    android:visibility="gone"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/txtDescripcion"
+                    app:layout_constraintTop_toBottomOf="@+id/txtDescripcion" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#707070"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

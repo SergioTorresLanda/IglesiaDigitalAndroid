@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_admin">
+
+    <fragment
+        android:id="@+id/fragment_services_admin_history"
+        android:name="mx.arquidiocesis.servicios.ui.admin.FragmentServicesAdminHistory"
+        android:label="fragment_services_admin_history"
+        tools:layout="@layout/fragment_services_admin_history" >
+        <action
+            android:id="@+id/action_fragment_services_admin_history_to_serviceAdminDetailRequestFragment"
+            app:destination="@id/serviceAdminDetailRequestFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_services_admin_services"
+        android:name="mx.arquidiocesis.servicios.ui.admin.ServiceAdminServicesFragment"
+        android:label="fragment_services_admin_services"
+        tools:layout="@layout/fragment_services_admin_services" >
+        <action
+            android:id="@+id/action_to_serviceAdminDetailRequestFragment"
+            app:destination="@id/serviceAdminDetailRequestFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/serviceAdminDetailRequestFragment"
+        android:name="mx.arquidiocesis.servicios.ui.admin.ServiceAdminDetailRequestFragment"
+        android:label="ServiceAdminDetailRequestFragment"
+        tools:layout="@layout/fragment_services_admin_detail_request"/>
+</navigation>

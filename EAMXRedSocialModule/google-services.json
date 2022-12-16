@@ -1,0 +1,186 @@
+{
+  "project_info": {
+    "project_number": "13723654053",
+    "project_id": "arquidiocesis-dev",
+    "storage_bucket": "arquidiocesis-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:13723654053:android:1c0ef13c5dff95696f3a4c",
+        "android_client_info": {
+          "package_name": "com.baz.genericlogin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "13723654053-c91lo03jn1o6qr43nu7scmkiovmlau9t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDco0lrvfh9us-vkiUVnRqm1u8kPBoATTg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "13723654053-c91lo03jn1o6qr43nu7scmkiovmlau9t.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "13723654053-9ltqfs6d9hk1fgr9h9mgh0vee3gorb2q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.arquidiocesis.auth"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:13723654053:android:f135a4d3f308f9826f3a4c",
+        "android_client_info": {
+          "package_name": "mx.arquidiocesis.eamxloginapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "13723654053-fs3u8jt01o9dbgna55hr3vakqdf7u3fv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mx.arquidiocesis.eamxloginapp",
+            "certificate_hash": "5d1b9a71d48790dca5f2f334b8cbeda667bf27ba"
+          }
+        },
+        {
+          "client_id": "13723654053-h67fd3vdu9lfmo7k8rcld4vdqcn947u7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mx.arquidiocesis.eamxloginapp",
+            "certificate_hash": "8f476ca628f1bfd7b91998074c38d4d6a3c47c7e"
+          }
+        },
+        {
+          "client_id": "13723654053-c91lo03jn1o6qr43nu7scmkiovmlau9t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDco0lrvfh9us-vkiUVnRqm1u8kPBoATTg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "13723654053-c91lo03jn1o6qr43nu7scmkiovmlau9t.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "13723654053-9ltqfs6d9hk1fgr9h9mgh0vee3gorb2q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.arquidiocesis.auth"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:13723654053:android:f5410267f17ef5ff6f3a4c",
+        "android_client_info": {
+          "package_name": "mx.arquidiocesis.eamxloginmodule"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "13723654053-kp2d36i2d352hc7dgriumsncod5m5h9j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mx.arquidiocesis.eamxloginmodule",
+            "certificate_hash": "5d1b9a71d48790dca5f2f334b8cbeda667bf27ba"
+          }
+        },
+        {
+          "client_id": "13723654053-pnb0je1766vtf6qfqhn27ppslo2crhvd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mx.arquidiocesis.eamxloginmodule",
+            "certificate_hash": "8f476ca628f1bfd7b91998074c38d4d6a3c47c7e"
+          }
+        },
+        {
+          "client_id": "13723654053-c91lo03jn1o6qr43nu7scmkiovmlau9t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDco0lrvfh9us-vkiUVnRqm1u8kPBoATTg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "13723654053-c91lo03jn1o6qr43nu7scmkiovmlau9t.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "13723654053-9ltqfs6d9hk1fgr9h9mgh0vee3gorb2q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.arquidiocesis.auth"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:13723654053:android:64bf308cd0ff2a946f3a4c",
+        "android_client_info": {
+          "package_name": "mx.arquidiocesis.eamxredsocialmodule"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "13723654053-c91lo03jn1o6qr43nu7scmkiovmlau9t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDco0lrvfh9us-vkiUVnRqm1u8kPBoATTg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "13723654053-c91lo03jn1o6qr43nu7scmkiovmlau9t.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "13723654053-9ltqfs6d9hk1fgr9h9mgh0vee3gorb2q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.arquidiocesis.auth"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

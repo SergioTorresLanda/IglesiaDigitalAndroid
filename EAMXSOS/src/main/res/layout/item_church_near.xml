@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvPriest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="14dp"
+        android:elevation="15dp"
+        app:cardCornerRadius="15dp"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cvOracion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp">
+
+            <ImageView
+                android:id="@+id/ivChurch"
+                android:layout_width="104dp"
+                android:layout_height="81dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/shape_image_card"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view" />
+
+            <TextView
+                android:id="@+id/tvAssociation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:ellipsize="end"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="2sp"
+                android:maxLines="2"
+                android:textColor="#192a73"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/ivLlamada"
+                app:layout_constraintStart_toEndOf="@+id/ivChurch"
+                app:layout_constraintTop_toTopOf="@+id/ivChurch"
+                tools:text="Parroquia del señor de la resurreciónarroquia del señor de la resurreción" />
+
+            <TextView
+                android:id="@+id/tvDistance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="6sp"
+                android:maxLines="2"
+                android:textColor="#99000000"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/ivChurch"
+                app:layout_constraintEnd_toEndOf="@+id/tvAssociation"
+                app:layout_constraintStart_toStartOf="@+id/tvAssociation"
+                app:layout_constraintTop_toBottomOf="@+id/tvAssociation"
+                tools:text="2.5 km" />
+
+            <ImageView
+                android:id="@+id/ivLlamada"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_llamada_telefonica"
+                app:layout_constraintBottom_toBottomOf="@+id/tvDistance"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ivChurch" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvPriests"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:itemCount="3"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/item_contacto_apoyo" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:background="#e4e4e4"
+                android:visibility="gone"
+                tools:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rvPriests" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</layout>

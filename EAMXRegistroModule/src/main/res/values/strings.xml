@@ -1,0 +1,85 @@
+<resources>
+    <string name="terms_and_conditions"><u>Términos y condiciones</u></string>
+    <string name="when_using_our_app">Al usar nuestra aplicación aceptas nuestros</string>
+    <string name="and_ours">y nuestra</string>
+    <string name="privacy_policy"><u>Política de Privacidad.</u></string>
+    <string name="meet_here">Conoce aquí nuestro</string>
+    <string name="code_of_ethics"><u>Código de ética</u></string>
+    <string name="description_image">Imagen de encuentro</string>
+    <string name="confirm">Confirmar</string>
+    <string name="name">Nombre (s)</string>
+    <string name="phone">Teléfono</string>
+    <string name="create_account">Crear cuenta</string>
+    <string name="welcome">Bienvenido %s %s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="text_email">Correo electrónico</string>
+    <string name="password">Contraseña</string>
+
+    <string name="last_name">Apellido paterno</string>
+    <string name="phone_number">Número celular</string>
+    <string name="confirm_password">Confirmar tu contraseña</string>
+    <string name="label_title_confirmation_code">Código de confirmación</string>
+    <string name="modify_number"><u>Modificar número</u></string>
+    <string name="label_re_send_code"><u>Reenviar código</u></string>
+    <string name="label_re_send_code_lb"><u>Reenviar nuevo código</u></string>
+    <string name="modify_number_phone"><u>Corregir número celular</u></string>
+    <string name="verify_number">Verificar número</string>
+
+    <string name="mothers_last_name">Apellido materno</string>
+
+    <string name="sign_up_to_have">Regístrate para tener siempre el acceso al contenido exclusivo que tenemos para ti.</string>
+    <string name="label_text_number_confirmation">Ingresa el código que enviamos a tu celular</string>
+    <string name="didnt_you_get_the_code">¿No te llegó el código?</string>
+    <string name="resend_code">Reenviar código</string>
+
+    <string name="forwarded_code_message">Se ha reenviado el código</string>
+    <string name="julio_cesar">Julio Cesar</string>
+    <string name="information_register_last_name">Camacho</string>
+    <string name="information_register_second_last_name">Silva</string>
+    <string name="information_register_email">silva.jccsisc@gmail.com</string>
+    <string name="information_register_phone">4531260729</string>
+    <string name="information_register_password">Baz12345..</string>
+    <string name="information_register_password_confirm">Baz12345..</string>
+    <string name="enter_your_name">Ingresa tu nombre</string>
+    <string name="enter_your_paternal_last_name">Ingresa tu apellido paterno</string>
+    <string name="enter_your_maternal_last_name">Ingresa tu apellido materno</string>
+    <string name="enter_your_telephone_number">Ingresa tu número celular</string>
+    <string name="wrong_phone_number">Número de celular incorrecto</string>
+    <string name="insert_hbd">Ingresa tu fecha de nacimiento</string>
+    <string name="insert_ur_email">Ingresa tu correo electrónico</string>
+    <string name="min_phone">El número de celular debe de contener 10 dígitos</string>
+    <string name="enter_your_email">Ingresa tu correo electrónico</string>
+    <string name="enter_a_valid_email">Ingresa un correo electrónico válido</string>
+    <string name="enter_your_password">Ingresa tu contraseña</string>
+    <string name="confirm_your_password">Confirma tu contraseña</string>
+    <string name="password_do_not_match">Las contraseñas no coinciden</string>
+    <string name="faithful">Fiel</string>
+    <string name="you_have_already_an_account">Ya tienes una cuenta</string>
+    <string name="enter_the_complete_code">Ingrese el código completo</string>
+    <string name="your_user_already_exists_confirm_to_login">Tu usuario ya existe, confirme para iniciar sesión</string>
+    <string name="text_date_born">Fecha de nacimiento</string>
+    <string name="sign_in_register">Registrarme</string>
+
+    <string name="digits_only_letters">qwertyuiopasdfghjklñzxcvbnm QWERTYUIOPASDFGHJKLÑZXCVBNMáóíéúÁÉÍÓÚ </string>
+    <string name="digits_only_letters_password">qwertyuiopasdfghjklñzxcvbnm QWERTYUIOPASDFGHJKLÑZXCVBNMáóíéúÁÉÍÓÚ 0123456789 ._-@</string>
+    <string name="digits_email">qwertyuiopasdfghjklñzxcvbnmQWERTYUIOPASDFGHJKLÑZXCVBNM1234567890._-@</string>
+    <string name="digits_only_number_phone">0123456789</string>
+    <string name="textview_title_send_password">Olvidé mi contraseña</string>
+    <string name="textview_info_send_password">Ingresa el correo electrónico con el que te registraste, te llegará un SMS con el código de confirmación.</string>
+    <string name="editext_label_email">Correo electrónico / Número celular</string>
+    <string name="button_label_send_code">Aceptar</string>
+    <string name="hint_email">correoelectornico@dominio.com</string>
+    <string name="privacity_notification">https://arquidiocesismexico.org.mx/aviso-de-privacidad/</string>
+    <string name="meessage_success_sent_code">El código se envío correctamente</string>
+    <string name="title_alert">Aviso</string>
+    <string name="label_change_user"><u>Corregir usuario</u></string>
+    <string name="meessage_success_confirm_password">La contraseña se actualizo correctamente.</string>
+    <string name="message_info_load_fail_code">La información necesaria no fue proporcionada para realizar esta acción.</string>
+    <string name="text_password_info">Debe tener mínimo 8 caracteres, 1 mayúscula, 1 número y 1 carácter especial.</string>
+    <string name="text_password_confirm_info">Ambas contraseñas deben coincidir.</string>
+    <string name="text_label_counter_inet">No podrás solicitar otro código hasta pasado un minuto.</string>
+    <string name="message_retry_max">Se alcanzó el número máximo de intentos de ingreso del código, se solicitara uno nuevo.</string>
+    <string name="etEmailSendCodeHint">Escribe tu correo aquí...</string>
+    <string name="eamx_resend_warning">No podrás solicitar otro código hasta pasados \n tres minutos</string>
+    <string name="eamx_resend_error">Tu código no es correcto, por favor intenta de nuevo o solicita uno nuevo</string>
+</resources>

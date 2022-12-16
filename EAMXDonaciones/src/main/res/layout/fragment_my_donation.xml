@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/ivGeo"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvGeo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvGeo"
+                app:srcCompat="@drawable/buscar_lupa" />
+
+            <TextView
+                android:id="@+id/tvGeo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="3dp"
+                android:lineSpacingExtra="2sp"
+                android:text="Buscar por geolocalización"
+                android:textColor="#1c75bc"
+                android:textSize="@dimen/font_size_13"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/ivGeo"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvIndication"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/seleciona"
+                android:textColor="#192a73"
+                android:textSize="@dimen/font_size_10"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvGeo"
+                app:layout_constraintWidth_percent="0.9" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clViewComplete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@id/tvIndication"
+                android:background="@color/white"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/tvPrincipal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="7sp"
+                    android:text="@string/name_church_donation"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/font_size_18"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clPrincipal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPrincipal">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cvPrincipalOrAssigned"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="#fcfcfc"
+                        android:elevation="8dp"
+                        app:cardCornerRadius="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <include
+                            android:id="@+id/iPrincipal"
+                            layout="@layout/item_donation"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/tvFavorites"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="7sp"
+                    android:text="@string/my_favorites_donation"
+                    android:textColor="#192a73"
+                    android:textSize="@dimen/font_size_18"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/clPrincipal" />
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvUserChurches"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:visibility="visible"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="16dp"
+                    app:layout_constraintEnd_toEndOf="@+id/tvFavorites"
+                    app:layout_constraintStart_toStartOf="@+id/tvFavorites"
+                    app:layout_constraintTop_toBottomOf="@+id/tvFavorites">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvUserChurches"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+
+                </androidx.cardview.widget.CardView>
+
+
+                <TextView
+                    android:id="@+id/tvCampana"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="7sp"
+                    android:text="@string/my_campana"
+                    android:textColor="#192a73"
+                    android:textSize="@dimen/font_size_18"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cvUserChurches" />
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvUserCampana"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:visibility="visible"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="16dp"
+                    app:layout_constraintEnd_toEndOf="@+id/tvCampana"
+                    app:layout_constraintStart_toStartOf="@+id/tvCampana"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCampana">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvUserCampana"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </androidx.cardview.widget.CardView>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <include
+            android:id="@+id/llSkeleton"
+            layout="@layout/skeleton_my_donation"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvIndication" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</layout>

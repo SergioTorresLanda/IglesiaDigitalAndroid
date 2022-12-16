@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fillViewport="true"
+        android:orientation="vertical"
+        tools:context=".ui.confirm.EAMXConfirmCodeActivity">
+
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="5dp">
+
+                <include
+                    android:id="@+id/toolbarModel"
+                    layout="@layout/eamxr_register_toolbar_model"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/lbl_title"
+                    style="@style/StyleTxtTitleRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:gravity="center"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="-1sp"
+                    android:text="@string/label_title_confirmation_code"
+                    android:textColor="#192a73"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/toolbarModel" />
+
+                <TextView
+                    android:id="@+id/lbl_instructions"
+                    style="@style/StyleTxtGeneric"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_16"
+                    android:gravity="center_horizontal"
+                    android:letterSpacing="0.03"
+                    android:lineSpacingExtra="3sp"
+                    android:text="@string/label_text_number_confirmation"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/size_14"
+                    android:textStyle="normal"
+                    app:layout_constraintTop_toBottomOf="@id/lbl_title" />
+
+                <LinearLayout
+                    android:id="@+id/ll_digits"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_10"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:importantForAutofill="auto"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/lbl_instructions">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="@dimen/width_fields_code_30"
+                        android:layout_height="@dimen/width_fields_code_30"
+                        android:layout_marginEnd="@dimen/margin_end_7"
+                        android:backgroundTint="@color/colorGrayBackgroun"
+                        android:elevation="@dimen/elevation_4"
+                        app:cardCornerRadius="8dp">
+
+                        <EditText
+                            android:id="@+id/edtNumberOne"
+                            style="@style/StyleEdtInsertCode"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:focusable="true"
+                            android:gravity="center"
+                            android:imeOptions="actionNext"
+                            android:maxLength="2" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="@dimen/width_fields_code_30"
+                        android:layout_height="@dimen/width_fields_code_30"
+                        android:layout_marginEnd="@dimen/margin_end_7"
+                        android:backgroundTint="@color/colorGrayBackgroun"
+                        android:elevation="@dimen/elevation_4"
+                        app:cardCornerRadius="8dp">
+
+                        <EditText
+                            android:id="@+id/edtNumberTwo"
+                            style="@style/StyleEdtInsertCode"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:imeOptions="actionNext"
+                            android:maxLength="2" />
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="@dimen/width_fields_code_30"
+                        android:layout_height="@dimen/width_fields_code_30"
+                        android:layout_marginEnd="@dimen/margin_end_7"
+                        android:backgroundTint="@color/colorGrayBackgroun"
+                        android:elevation="@dimen/elevation_4"
+                        app:cardCornerRadius="8dp">
+
+                        <EditText
+                            android:id="@+id/edtNumberThree"
+                            style="@style/StyleEdtInsertCode"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:imeOptions="actionNext"
+                            android:maxLength="2" />
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="@dimen/width_fields_code_30"
+                        android:layout_height="@dimen/width_fields_code_30"
+                        android:layout_marginEnd="@dimen/margin_end_7"
+                        android:backgroundTint="@color/colorGrayBackgroun"
+                        android:elevation="@dimen/elevation_4"
+                        app:cardCornerRadius="8dp">
+
+                        <EditText
+                            android:id="@+id/edtNumberFour"
+                            style="@style/StyleEdtInsertCode"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:imeOptions="actionNext"
+                            android:maxLength="2" />
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="@dimen/width_fields_code_30"
+                        android:layout_height="@dimen/width_fields_code_30"
+                        android:layout_marginEnd="@dimen/margin_end_7"
+                        android:backgroundTint="@color/colorGrayBackgroun"
+                        android:elevation="@dimen/elevation_4"
+                        app:cardCornerRadius="8dp">
+
+                        <EditText
+                            android:id="@+id/edtNumberFive"
+                            style="@style/StyleEdtInsertCode"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:imeOptions="actionNext"
+                            android:maxLength="2" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="@dimen/width_fields_code_30"
+                        android:layout_height="@dimen/width_fields_code_30"
+                        android:backgroundTint="@color/colorGrayBackgroun"
+                        android:elevation="@dimen/elevation_4"
+                        app:cardCornerRadius="8dp">
+
+                        <EditText
+                            android:id="@+id/edtNumberSix"
+                            style="@style/StyleEdtInsertCode"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:imeOptions="actionGo"
+                            android:maxLength="1" />
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/lb_warning"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="@string/eamx_resend_warning"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/ll_digits" />
+
+                <TextView
+                    android:id="@+id/lb_timer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="8dp"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/lb_warning"
+                    tools:text="1:00" />
+
+                <TextView
+                    android:id="@+id/btnLbResendCode"
+                    style="@style/StyleBtnModificarNumero"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/label_re_send_code_lb"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/blue_terminos"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/lb_timer" />
+
+                <Button
+                    android:id="@+id/btnVerifyCodeNumber"
+                    style="@style/StyleBtnLogIn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/verify_number"
+                    app:layout_constraintBottom_toTopOf="@id/ll_resend"
+                    app:layout_constraintTop_toBottomOf="@id/btnLbResendCode"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+
+                <LinearLayout
+                    android:id="@+id/ll_resend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="20dp"
+                    android:gravity="center"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toTopOf="@id/btnResendCode"
+                    app:layout_constraintTop_toBottomOf="@id/btnVerifyCodeNumber">
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="1dp"
+                        android:background="@color/gray_terminos" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="40dp"
+                        android:gravity="center_horizontal"
+                        android:letterSpacing="0.03"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@string/didnt_you_get_the_code"
+                        android:textColor="@color/black"
+                        android:textStyle="normal" />
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="1dp"
+                        android:background="@color/gray_terminos" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnResendCode"
+                    style="@style/StyleBtnResendCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:paddingVertical="@dimen/padding_10"
+                    android:text="@string/resend_code"
+                    android:textColor="@color/primaryColor"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toTopOf="@id/lbl_aviso"
+                    app:layout_constraintTop_toBottomOf="@id/ll_resend" />
+
+                <TextView
+                    android:id="@+id/lbl_aviso"
+                    style="@style/StyleTxtAlContinuartxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:text="@string/when_using_our_app"
+                    app:layout_constraintBottom_toTopOf="@id/layoutTerminos" />
+
+                <LinearLayout
+                    android:id="@+id/layoutTerminos"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toTopOf="@id/layoutPolitica">
+
+                    <TextView
+                        style="@style/TestStyleTerminosCondiciones"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/terms_and_conditions" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="3dp"
+                        android:fontFamily="@font/spro_text_regular"
+                        android:text="@string/and_ours"
+                        android:textColor="@color/gris_terminos"
+                        android:textSize="@dimen/size_10" />
+
+                    <TextView
+                        style="@style/TestStyleTerminosCondiciones"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/privacy_policy" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutPolitica"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="3dp"
+                        android:fontFamily="@font/spro_text_regular"
+                        android:text="@string/meet_here"
+                        android:textColor="@color/gris_terminos"
+                        android:textSize="@dimen/size_10" />
+
+                    <TextView
+                        style="@style/TestStyleTerminosCondiciones"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/code_of_ethics" />
+
+                </LinearLayout>
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/animationCharging"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@color/backgroundLottie"
+                    android:visibility="gone"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/spinner" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </FrameLayout>
+    </ScrollView>
+
+</layout>

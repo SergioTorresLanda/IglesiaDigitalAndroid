@@ -1,0 +1,146 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/spro_text_regular"
+                android:paddingTop="8dp"
+                android:paddingBottom="16dp"
+                android:text="Comentar"
+                android:textColor="#052166"
+                android:textSize="@dimen/size_20"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/iv_user_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/iv_user_image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="@dimen/margin_16"
+                android:fontFamily="@font/avenir_nextlt_pro_regular"
+                app:cardCornerRadius="50dp"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/user"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/size_24" />
+
+            </androidx.cardview.widget.CardView>
+
+
+            <TextView
+                android:id="@+id/tv_user_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginEnd="@dimen/size_16"
+                android:fontFamily="@font/spro_text_regular"
+                android:textStyle="normal"
+                android:textSize="@dimen/size_18"
+                android:textColor="#192a73"
+                app:layout_constraintBottom_toBottomOf="@id/iv_user_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_user_image"
+                app:layout_constraintTop_toTopOf="@id/iv_user_image"
+                tools:text="PADRE JOSE LUIS" />
+            <Spinner
+                android:id="@+id/spNameUser"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginEnd="@dimen/size_16"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/iv_user_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_user_image"
+                app:layout_constraintTop_toTopOf="@id/iv_user_image" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <EditText
+                    android:id="@+id/et_comment"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_16"
+                    android:layout_marginHorizontal="@dimen/margin_40"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@null"
+                    android:fontFamily="@font/avenir_nextlt_pro_regular"
+                    android:gravity="top|left"
+                    android:hint="Responder"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:lines="3"
+                    android:maxLines="5"
+                    android:paddingHorizontal="@dimen/padding_20"
+                    android:paddingTop="@dimen/padding_20"
+                    android:scrollbars="vertical"
+                    android:textColorHint="#192a73"
+                    app:layout_constraintBottom_toTopOf="@+id/btnPublicar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPublicar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:backgroundTint="@color/btn_background_accept"
+                    android:gravity="center"
+                    android:text="Publicar"
+                    android:textColor="@color/colorGrayBackgroun"
+                    android:textSize="9sp"
+                    app:cornerRadius="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/et_comment" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCancel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:backgroundTint="@color/btn_background_cancel"
+                    android:gravity="center"
+                    android:text="Cancelar"
+                    android:textColor="@color/btn_background_accept"
+                    android:textSize="9sp"
+                    app:cornerRadius="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/btnPublicar"
+                    app:layout_constraintEnd_toStartOf="@+id/btnPublicar"
+                    app:layout_constraintTop_toTopOf="@+id/btnPublicar" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

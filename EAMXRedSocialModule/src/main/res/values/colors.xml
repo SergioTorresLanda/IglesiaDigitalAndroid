@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="primaryColorDark">#192A73</color>
+    <color name="primaryColor">#192A73</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="red">#DF0000</color>
+    <color name="gris">#75787b</color>
+
+
+
+    <color name="green_ok">#00B21B</color>
+    <color name="blue_terminos">#1C75BC</color>
+    <color name="blue_txt_oraciones">#4E9EBC</color>
+    <color name="gris_super_bajo">#F6F4F5</color>
+    <!--terminos y condiciones-->
+    <color name="gris_terminos">#313131</color>
+    <!--text buscar evento-->
+    <color name="color_gray_search_event">#3C3C4399</color>
+
+    <!--background lottie-->
+    <color name="backgroundLottie">#97252525</color>
+    <!--background toolbar blue-->
+    <color name="blueToolbar">#162977</color>
+    <!--btn Tuitter-->
+    <color name="blueTwitter">#1ca9f4</color>FV
+    <!--btnFacebook-->
+    <color name="blueFacebook">#1a77f2</color>
+    <!--btnNumberPhone-->
+    <color name="blueNumberPhone">#13277c</color>
+    <!--btnLogIn-->
+    <color name="blueLogIn">#493ade</color>
+    <!--color text btn google-->
+    <color name="colorGrayTextBtnGoogle">#363636</color>
+    <!--color btnLlevame-->
+    <color name="colorTxtLlevame">#6b1f9f</color>
+    <!--color btn hacer donativos-->
+    <color name="colorBtnDonation">#5220ff</color>
+
+    <!--color btn comenzar-->
+    <color name="colorBtnComenzar">#5224ff</color>
+
+    <!--view backgorund-->
+    <color name="colorViewColorGray">#76787B</color>
+
+    <!--borde-->
+    <color name="colorGray">#969696</color>
+    <!--color texto login-->
+    <color name="grayLight">#b9b9b9</color>
+    <!--color texto dialog-->
+    <color name="colorDialogGray">#75787b</color>
+
+    <!--txt Ingresa como invitado-->
+    <color name="blueColorBtn">#4930f5</color>
+    <!--orange terminos y condiciones-->
+    <color name="orangeTerminosCondiciones">#f19b38</color>
+    <!--cantidad de oraciones-->
+    <color name="cantOraciones">#ff9700</color>
+    <!--background para los campos edts-->
+    <color name="colorGrayBackground">#f5f5f5</color>
+    <!--color para el texto en los campos-->
+    <color name="grayTextColorCampos">#99000000</color>
+    <!--color txt codigo confirmacion-->
+    <color name="blueTxtCodeConfirmacion">#002166</color>
+    <!--color title permisos dialog-->
+    <color name="colorTitlePermission">#00b591</color>
+    <!--color txtName parroquia-->
+    <color name="colorTitleNameParroquia">#6b1f9f</color>
+
+    <!--color txt Servicios-->
+    <color name="colorTxtServicios">#052166</color>
+
+    <!--    Color black transparent-->
+    <color name="blackTransparent">#88000000</color>
+
+    <color name="blackTrans">#9F000000</color>
+
+    <color name="background_modal">#636364</color>
+    <color name="view">#707070</color>
+
+
+</resources>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+        <androidx.cardview.widget.CardView
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="8dp"
+            tools:context=".ui.CustomDialogSaveCommunityFragment">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="290dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:contentDescription="@string/app_name"
+                    android:id="@+id/imageView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginTop="13dp"
+                    android:src="@drawable/icono_encuentro" />
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:lineSpacingExtra="3sp"
+                    android:gravity="center"
+                    android:textColor="#192a73"
+                    android:textSize="16sp"
+                    android:textStyle="normal"/>
+
+                <TextView
+                    android:id="@+id/tvDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:lineSpacingExtra="3sp"
+                    android:gravity="center"
+                    android:text="@string/label_instruction_community"
+                    android:textColor="#313131"
+                    android:textSize="16sp"
+                    android:textStyle="normal"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnLater"
+                        android:layout_width="108dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/white_button"
+
+                        android:gravity="center"
+                        android:text="@string/txt_more_late"
+                        android:textAllCaps="false"
+                        android:textColor="@color/btn_background_accept"
+                        android:visibility="visible"
+                        app:cornerRadius="@dimen/size_corner_general_button"
+                        app:strokeWidth="2dp" />
+
+                    <View
+                        android:layout_width="30dp"
+                        android:layout_height="10dp"/>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnContinue"
+                        android:layout_width="108dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginBottom="32dp"
+                        android:background="@drawable/btn_rounded"
+                        android:text="@string/txt_next"
+                        android:gravity="center"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+</layout>

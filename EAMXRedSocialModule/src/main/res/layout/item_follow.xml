@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvPriest"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="@dimen/margin_16"
+            app:cardBackgroundColor="@color/colorTxtServicios"
+            app:cardCornerRadius="50dp"
+            app:contentPadding="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="50dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgPriest"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/user"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/size_24" />
+            </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_toEndOf="@+id/cvPriest"
+            android:fontFamily="@font/spro_text_regular"
+            android:textColor="@color/primaryColorDark"
+            android:textSize="@dimen/size_18"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/cvPriest"
+            app:layout_constraintEnd_toStartOf="@+id/clSegir"
+            app:layout_constraintStart_toEndOf="@+id/cvPriest"
+            app:layout_constraintTop_toTopOf="@+id/cvPriest"
+            tools:text="Padre Jorge Luis" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clSegir"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/ic_btn_follow"
+            app:cornerRadius="8dp"
+            android:elevation="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txtName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txtName">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ivSegir"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                android:drawableStart="@drawable/ic_icono_seguir"
+                android:drawablePadding="8dp"
+                android:padding="16dp"
+                android:gravity="center"
+                android:scaleType="fitXY"
+                android:visibility="gone"
+                android:text="@string/seguir"
+                android:textColor="@color/gris"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ivSeguiendo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/ic_btn_follow"
+                android:drawableStart="@drawable/ic_icono_seguir"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/blue_terminos"
+                android:gravity="center"
+                android:padding="16dp"
+                android:visibility="visible"
+                android:text="@string/siguiendo"
+                android:textColor="@color/blue_terminos"
+                android:textStyle="bold"
+               />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/viewTop"
+            android:layout_width="0dp"
+            android:layout_height="1sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/view"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/clSegir"
+            app:layout_constraintStart_toStartOf="@+id/cvPriest"
+            app:layout_constraintTop_toBottomOf="@+id/cvPriest" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

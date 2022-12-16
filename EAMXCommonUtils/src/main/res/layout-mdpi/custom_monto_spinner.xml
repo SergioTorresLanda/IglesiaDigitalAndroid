@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout
+        android:id="@+id/tlMonto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvMonto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:padding="4dp"
+            android:text="Monto"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="7sp"
+            android:textColor="#192a73"
+            android:textSize="@dimen/size_16"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spMonto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp" />
+
+        <LinearLayout
+            android:id="@+id/llMonto"
+            android:layout_width="0dp"
+            android:orientation="horizontal"
+            android:visibility="invisible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/spro_text_regular"
+                android:text="$"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <EditText
+                android:id="@+id/etMonto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:digits="@string/digits_only_number"
+                android:hint="@string/especifique_monto"
+                android:inputType="numberDecimal"
+                android:maxLength="5" />
+        </LinearLayout>
+
+    </TableLayout>
+</LinearLayout>

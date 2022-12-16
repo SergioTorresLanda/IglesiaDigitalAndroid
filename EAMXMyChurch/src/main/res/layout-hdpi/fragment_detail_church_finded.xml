@@ -1,0 +1,493 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivChurch"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="fitXY"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@drawable/defaultimage" />
+
+                <TextView
+                    android:id="@+id/tvNombreIglesia"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#192a73"
+                    android:textSize="@dimen/font_size_18"
+                    android:textStyle="bold"
+                    app:fontFamily="@font/spro_text_regular"
+                    app:layout_constraintEnd_toStartOf="@+id/llButtons"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivChurch"
+                    tools:text="Parroquia del Señorde la Resurrección" />
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/llButtons"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvNombreIglesia"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvNombreIglesia">
+
+                    <ImageView
+                        android:id="@+id/btnHeart"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_centerInParent="true"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/ic_icon_heart_vacio"
+                        tools:ignore="MissingConstraints" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <TextView
+                    android:id="@+id/tvDescripcionIglesia"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="4sp"
+                    android:text="Construida en 1972 por el Arq. Juan Cortina Del Valle.
+Cuenta con un impresionante vitral de Victor Vasarely."
+                    android:textColor="#75787b"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    app:fontFamily="@font/spro_text_regular"
+                    app:layout_constraintEnd_toEndOf="@+id/tvNombreIglesia"
+                    app:layout_constraintStart_toStartOf="@+id/tvNombreIglesia"
+                    app:layout_constraintTop_toBottomOf="@+id/tvNombreIglesia" />
+
+                <TextView
+                    android:id="@+id/btnActivarIglesia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="end"
+                    android:lineSpacingExtra="2sp"
+                    android:text="Hacer principal"
+                    android:textColor="#1c75bc"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    android:visibility="gone"
+                    app:fontFamily="@font/spro_text_regular"
+                    app:layout_constraintStart_toStartOf="@+id/tvNombreIglesia"
+                    app:layout_constraintTop_toBottomOf="@+id/tvNombreIglesia" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvIglesiaDetalle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:visibility="visible"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvNombreIglesia"
+                    app:layout_constraintTop_toBottomOf="@+id/btnActivarIglesia">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/tvResponsable"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:drawableStart="@drawable/icon_responsable"
+                            android:drawablePadding="16dp"
+                            android:lineSpacingExtra="3sp"
+                            android:padding="8dp"
+                            android:text="Responsable: Pbro Juan José López Rodríguez"
+                            android:textColor="#363636"
+                            android:textSize="12sp"
+                            android:textStyle="normal"
+                            android:visibility="gone"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tvDireccionIglesia"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:drawableLeft="@drawable/icono_igle"
+                            android:drawablePadding="16dp"
+                            android:lineSpacingExtra="3sp"
+                            android:padding="8dp"
+                            android:text="Bosques de la Reforma 486, Bosques de  las Lomas, Miguel Hidalgo, 11700,  Ciudad de México, CDMX"
+                            android:textColor="#363636"
+                            android:textSize="12sp"
+                            android:textStyle="normal"
+                            android:visibility="gone"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvResponsable" />
+
+                        <TextView
+                            android:id="@+id/tvHorario"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:drawableLeft="@drawable/ic_calendario"
+                            android:drawablePadding="16dp"
+                            android:lineSpacingExtra="3sp"
+                            android:padding="8dp"
+                            android:textColor="#363636"
+                            android:textSize="12sp"
+                            android:textStyle="normal"
+                            android:visibility="gone"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvDireccionIglesia"
+                            tools:text="Bosques de la Reforma 486, Bosques de  las Lomas, Miguel Hidalgo, 11700,  Ciudad de México, CDMX" />
+
+                        <TextView
+                            android:id="@+id/tvInformacion"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:drawableLeft="@drawable/ic_icono_info"
+                            android:drawablePadding="16dp"
+                            android:lineSpacingExtra="3sp"
+                            android:padding="8dp"
+                            android:textColor="#363636"
+                            android:textSize="12sp"
+                            android:textStyle="normal"
+                            android:visibility="gone"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvHorario"
+                            tools:text="Bosques de la Reforma 486, Bosques de  las Lomas, Miguel Hidalgo, 11700,  Ciudad de México, CDMX" />
+
+                        <ImageView
+                            android:id="@+id/ivCall"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="32dp"
+                            android:layout_marginBottom="32dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvInformacion"
+                            app:srcCompat="@drawable/llamar" />
+
+                        <ImageView
+                            android:id="@+id/ivCorreo"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginBottom="32dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/ivCall"
+                            app:layout_constraintTop_toTopOf="@+id/ivCall"
+                            app:srcCompat="@drawable/contacto" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnLlevame"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="32dp"
+                            android:background="@drawable/ic_btn_fondo"
+                            android:textSize="@dimen/size_10"
+                            android:text="¡Llévame!"
+                            android:textColor="@color/edittext_background_color"
+                            app:cornerRadius="16dp"
+                            app:elevation="16dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvRedes"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:visibility="gone"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cvIglesiaDetalle">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/tvWeb"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:drawableStart="@drawable/ic_www"
+                            android:drawablePadding="16dp"
+                            android:lineSpacingExtra="3sp"
+                            android:padding="8dp"
+                            android:textColor="#363636"
+                            android:textSize="12sp"
+                            android:textStyle="normal"
+                            android:visibility="gone"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="www.miiglesia.com" />
+
+                        <TextView
+                            android:id="@+id/tvTwiter"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:drawableLeft="@drawable/ic_twitter"
+                            android:drawablePadding="16dp"
+                            android:lineSpacingExtra="3sp"
+                            android:padding="8dp"
+                            android:textColor="#363636"
+                            android:textSize="12sp"
+                            android:textStyle="normal"
+                            android:visibility="gone"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvWeb"
+                            tools:text="\ufeff@miiglesia" />
+
+                        <TextView
+                            android:id="@+id/tvFacebook"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:drawableLeft="@drawable/ic_facebook"
+                            android:drawablePadding="16dp"
+                            android:lineSpacingExtra="3sp"
+                            android:padding="8dp"
+                            android:textColor="#363636"
+                            android:textSize="12sp"
+                            android:textStyle="normal"
+                            android:visibility="gone"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvTwiter"
+                            tools:text="\ufeff@miiglesia" />
+                        <TextView
+                            android:id="@+id/tvInstagram"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:drawableLeft="@drawable/ic_instragram"
+                            android:drawablePadding="16dp"
+                            android:lineSpacingExtra="3sp"
+                            android:padding="8dp"
+                            android:textColor="#363636"
+                            android:textSize="12sp"
+                            android:textStyle="normal"
+                            android:visibility="gone"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvFacebook"
+                            tools:text="\ufeff@miiglesia" />
+                        <TextView
+                            android:id="@+id/tvStreaming"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:drawableLeft="@drawable/icon_youtube"
+                            android:drawablePadding="16dp"
+                            android:lineSpacingExtra="3sp"
+                            android:padding="8dp"
+                            android:textColor="#363636"
+                            android:textSize="12sp"
+                            android:textStyle="normal"
+                            android:visibility="gone"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvInstagram"
+                            tools:text="\ufeff@miiglesia" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+
+                <TextView
+                    android:id="@+id/tvTitleHorario"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="4sp"
+                    android:text="@string/misas"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_size_18"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    app:fontFamily="@font/spro_text_regular"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvNombreIglesia"
+                    app:layout_constraintTop_toBottomOf="@+id/cvRedes" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvHorarios"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@+id/tvTitleHorario"
+                    app:layout_constraintStart_toStartOf="@+id/tvTitleHorario"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTitleHorario" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="4sp"
+                    android:text="Servicios"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_size_18"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    app:fontFamily="@font/spro_text_regular"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvNombreIglesia"
+                    app:layout_constraintTop_toBottomOf="@+id/rvHorarios" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvHorariosServicios"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@+id/textView4"
+                    app:layout_constraintStart_toStartOf="@+id/textView4"
+                    app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+                <TextView
+                    android:id="@+id/tvComentarios"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="4sp"
+                    android:text="Comentarios"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/size_16"
+                    android:textStyle="bold"
+                    android:visibility="visible"
+                    app:fontFamily="@font/spro_text_regular"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvNombreIglesia"
+                    app:layout_constraintTop_toBottomOf="@+id/rvHorariosServicios" />
+
+                <RatingBar
+                    android:id="@+id/rbIglesia"
+                    style="@android:style/Widget.DeviceDefault.Light.RatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:scaleX=".8"
+                    android:scaleY=".8"
+                    android:theme="@style/RatingBar"
+                    android:isIndicator="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvComentarios" />
+
+                <TextView
+                    android:id="@+id/tvNumComnetarios"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/avenir_nextlt_pro_regular"
+                    android:lineSpacingExtra="3sp"
+                    android:textColor="#99000000"
+                    android:textSize="@dimen/font_size_16"
+                    android:textStyle="italic"
+                    app:layout_constraintEnd_toEndOf="@+id/tvComentarios"
+                    app:layout_constraintStart_toStartOf="@+id/tvComentarios"
+                    app:layout_constraintTop_toBottomOf="@+id/rbIglesia"
+                    tools:text="25 comentarios" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvComentarios"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:isIndicator="true"
+                    android:padding="8dp"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvNumComnetarios" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnComentarios"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/ic_btn_fondo"
+                    android:text="Escribir una opinión"
+                    android:textSize="@dimen/size_10"
+                    android:textColor="@color/edittext_background_color"
+                    app:cornerRadius="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvComentarios"
+                    app:layout_constraintTop_toBottomOf="@+id/rvComentarios" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

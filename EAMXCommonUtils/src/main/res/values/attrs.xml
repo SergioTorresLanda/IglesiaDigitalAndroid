@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Custom TextInputEditText-->
+    <declare-styleable name="attrTextInputEditTextCustom">
+        <attr name = "messageError" format = "string|reference" />
+        <attr name = "required" format = "string|reference" />
+        <attr name = "mBoxStyle" format = "string|reference" />
+        <attr name = "primaryColor" format = "color|reference" />
+        <attr name = "secondaryColor" format = "color|reference" />
+        <attr name = "mTextColor" format = "color|reference" />
+        <attr name = "maskInput" format = "boolean|reference" />
+        <attr name = "maskCharacter" format = "string|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="BACUSelectableWordTextView">
+        <attr name="setUnderline" format="reference|boolean" />
+        <attr name="highlightBackgroundColor" format="reference|color" />
+        <attr name="highlightTextColor" format="reference|color" />
+    </declare-styleable>
+
+    <declare-styleable name="ShadowLayout">
+        <attr name="sl_shadowed" format="boolean"/>
+        <attr name="sl_shadow_distance" format="dimension"/>
+        <attr name="sl_shadow_angle" format="integer"/>
+        <attr name="sl_shadow_radius" format="dimension"/>
+        <attr name="sl_shadow_color" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="RoundableLayout">
+        <attr name="cornerLeftTop" format="dimension"/>
+        <attr name="cornerRightTop" format="dimension"/>
+        <attr name="cornerLeftBottom" format="dimension"/>
+        <attr name="cornerRightBottom" format="dimension"/>
+        <attr name="backgroundColor" format="color"/>
+        <attr name="strokeLineWidth" format="dimension"/>
+        <attr name="strokeLineColor" format="color"/>
+        <attr name="dashLineWidth" format="dimension"/>
+        <attr name="dashLineGap" format="dimension"/>
+
+        <attr name="cornerLeftSide" format="dimension"/>
+        <attr name="cornerRightSide" format="dimension"/>
+
+        <attr name="cornerAll" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="OtpEditText">
+        <attr name="oev_length" format="integer|reference"/>
+        <attr name="oev_primary_color" format="color|reference" />
+        <attr name="oev_secondary_color" format="color|reference" />
+        <attr name="oev_text_color" format="color|reference" />
+
+        <attr name="oev_box_style" format="string|reference" />
+
+        <attr name="oev_mask_input" format="boolean" />
+        <attr name="oev_mask_character" format="string|reference" />
+
+    </declare-styleable>
+    <declare-styleable name="custom_component_attributes">
+        <attr name="custom_monto_spinner" format="reference" />
+    </declare-styleable>
+
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="maximum_nombre">100</integer>
+    <integer name="maximum_email">60</integer>
+    <integer name="maximum_stream">100</integer>
+    <integer name="maximum_phone">10</integer>
+    <integer name="maximum_bank">16</integer>
+    <integer name="maximum_descripcion">150</integer>
+    <integer name="maximum_servicio">10</integer>
+
+</resources>

@@ -1,0 +1,109 @@
+<resources>
+    <string name="btn_save">Guardar</string>
+    <string name="btn_cancel">Cancelar</string>
+    <string name="camera">Camara</string>
+    <string name="camera_permission">Permiso camara</string>
+    <string name="cell_phone_number">Número de celular</string>
+    <string name="changes_saved">Cambios guardados</string>
+    <string name="date_of_birth">Fecha de nacimiento</string>
+    <string name="promises">Promesas</string>
+    <string name="e_mail">Email</string>
+    <string name="correo">Correo electrónico</string>
+    <string name="information">Información</string>
+    <string name="im_father">Soy sacerdote</string>
+    <string name="its_necessary_to_grant">Es necesario otorgar permiso para tomar foto de perfil</string>
+    <string name="log_out">Cerra sésion</string>
+    <string name="name_user">%s %s %s</string>
+    <string name="phone_number">Número de celular</string>
+    <string name="phone">Teléfono</string>
+    <string name="settings">Ajustes</string>
+    <string name="txt_save">Guardar</string>
+    <string name="no_promises">Aún no tienes promesas</string>
+    <string name="create_promise">Crear tu primer promesa</string>
+
+    <string-array name="civil_status">
+        <item>Casado</item>
+        <item>Soltero</item>
+        <item>Viudo</item>
+        <item>Divorciado</item>
+        <item>Relación abierta</item>
+    </string-array>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="create_promise_header">Crear promesa</string>
+    <string name="promise">Promesa a cumplir</string>
+    <string name="write_promise">Escribe tu promesa</string>
+    <string name="who_to_promise">¿A quién se lo prometes?</string>
+    <string name="time_lifep_romise">¿Por cuánto tiempo lo prometes?</string>
+    <string name="promise_button">Prometer</string>
+
+
+    <string name="txt_guadalupe">A la virgen de guadalupe</string>
+    <string name="txt_god">A dios</string>
+    <string name="txt_all_saint">A todos los santos</string>
+
+
+    <string-array name="userprofilemarriedspinner">
+        <item>A la virgen de guadalupe</item>
+        <item>A dios</item>
+        <item>A todos los santos</item>
+    </string-array>
+
+
+    <string name="txt_day_one">1 día</string>
+    <string name="txt_day_three">3 días</string>
+    <string name="txt_day_five">5 días</string>
+    <string name="txt_day_fifteen">15 días</string>
+    <string name="txt_month_one">1 mes</string>
+
+    <string-array name="spinnerTimeList">
+        <item>1 día</item>
+        <item>3 días</item>
+        <item>5 días</item>
+        <item>15 días</item>
+        <item>1 mes</item>
+    </string-array>
+
+    <string name="txt_profile_telephone_number">Número de celular</string>
+    <string name="txt_profile_information_title">Información de perfil</string>
+
+    <string name="txt_profile_civil_status_default">Selecciona</string>
+    <string name="txt_profile_civil_status_alone">Soltero</string>
+    <string name="txt_profile_civil_status_married">Casado</string>
+    <string name="txt_profile_civil_status_widower">Viudo</string>
+    <string name="txt_profile_civil_status_consecrated_layman">Laico consagrado</string>
+    <string name="txt_profile_civil_status_religious">Religious</string>
+    <string name="txt_profile_civil_status_deacon">Diácono(Transitorio o permanente)</string>
+    <string name="txt_profile_civil_status_priest">Sacerdote</string>
+
+    <string name="txt_profile_civil_hint_telephone_number">55 5555-5555</string>
+    <string name="txt_profile_title_civil_status">Estado de vida</string>
+    <string name="txt_profile_themes_interest">Temas de interés</string>
+    <string name="txt_profile_message_radio_buttons">¿Prestas algún servicio en iglesia / comunidad?</string>
+    <string name="txt_profile_hint_church_search">¿En qué iglesia prestas el servicio?</string>
+    <string name="profile">Perfil</string>
+    <string name="txt_profile_hint_congregation_search">Congregación a la que perteneces</string>
+    <string name="title_dialog_warning">Atención</string>
+    <string name="only_numbers">1234567890</string>
+    <string name="text_topics">Puedes agregar más de un interés</string>
+
+
+    <string name="digits_only_letters">qwertyuiopasdfghjklñzxcvbnm QWERTYUIOPASDFGHJKLÑZXCVBNMáóíéúÁÉÍÓÚ </string>
+    <string name="digits_email">qwertyuiopasdfghjklñzxcvbnmQWERTYUIOPASDFGHJKLÑZXCVBNM1234567890._-@</string>
+    <string name="digits_only_number_phone">0123456789</string>
+    <string name="message_select_option">Selecciona</string>
+    <string name="sos">SOS</string>
+    <string name="nombrar_administrador">Nombrar administrador</string>
+    <string name="adminChurchNameUser">Iglesia</string>
+    <string name="adminstyleNameUser">Estilo de vida</string>
+    <string name="adminEmailUser">E-mail</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="church_empty">No cuentas con una iglesia asignada para administrar.</string>
+    <string name="church_communiti_empty">No cuentas con una iglesia o comunidad asignada para administrar.</string>
+
+    <string name="txt_profile_resposible_community">¿Eres responsable de la comunidad?</string>
+    <string name="enabled_all">Activar todo</string>
+    <string name="disabled_all">Desactivar todo</string>
+    <string name="collaborator_is_empty">Al momento no hay personas colaboradoras en tu iglesia o comunidad depende el usuario.</string>
+    <string name="editar_iglesia_comunidad">Editar información de Iglesia/Comunidad</string>
+    <string name="remove_account">Eliminar cuenta</string>
+</resources>

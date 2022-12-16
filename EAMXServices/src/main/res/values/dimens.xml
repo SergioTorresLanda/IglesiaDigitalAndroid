@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--common margin & padding-->
+    <dimen name="no_margin_padding">0dp</dimen>
+    <dimen name="very_small_margin_padding">5dp</dimen>
+    <dimen name="small_margin_padding">10dp</dimen>
+    <dimen name="medium_margin_padding">20dp</dimen>
+    <dimen name="normal_margin_padding">30dp</dimen>
+    <dimen name="large_margin_padding">40dp</dimen>
+    <dimen name="huge_margin_padding">50dp</dimen>
+
+    <!--generic padding & margin-->
+    <dimen name="padding_margin_15">15dp</dimen>
+
+    <!--generic font size-->
+    <dimen name="font_size_16">16sp</dimen>
+    <dimen name="font_size_17">17sp</dimen>
+
+    <!--generic dimens-->
+    <dimen name="line_spacing_extra_dimen_6">6sp</dimen>
+    <dimen name="letter_spacing_dimen">0.01</dimen>
+    <dimen name="size_edittext_textarea">82dp</dimen>
+    <dimen name="size_spinner">40dp</dimen>
+    <dimen name="size_width_button">240dp</dimen>
+    <dimen name="size_height_button">38dp</dimen>
+    <dimen name="card_corner_radius">16dp</dimen>
+    <dimen name="size_width_card_view">120dp</dimen>
+    <dimen name="size_height_card_view">60dp</dimen>
+    <dimen name="corner_radious_20">20dp</dimen>
+    <dimen name="size_height_card_sacrament">50dp</dimen>
+    <dimen name="config_card_elevation">8dp</dimen>
+    <dimen name="config_card_translationz">8dp</dimen>
+    <dimen name="config_card_radiud">12dp</dimen>
+    <dimen name="size_text_toolbar">22sp</dimen>
+
+</resources>

@@ -1,0 +1,87 @@
+<resources>
+    <!-- Constantes para componente de TextInputEditText  -->
+    <string name="mMask_character">\u2022</string>
+    <string name="mStyle_rounded">rounded_box</string>
+    <string name="mStyle_rounded_underline">rounded_underline</string>
+    <string name="mStyle_square">square_box</string>
+    <string name="mStyle_underline">underline</string>
+
+    <string name="para_continuar_ingresa_tu_n_contrase_a">Para continuar ingresa tu\n contraseña</string>
+    <string name="cargando">Cargando…</string>
+    <string name="months">meses</string>
+    <string name="month">mes</string>
+    <string name="weeks">semanas</string>
+    <string name="week">semana</string>
+    <string name="days">dias</string>
+    <string name="day">dia</string>
+    <string name="yesterday">Ayer, %s</string>
+    <string name="today">Hoy, %s</string>
+    <string name="days_parameters">%s</string>
+    <string name="hours">horas</string>
+    <string name="hour">hora</string>
+    <string name="minutes">minutos</string>
+    <string name="seconds">segundos</string>
+    <string name="second">segundo</string>
+    <string name="minute">minuto</string>
+    <string name="monday">Lunes</string>
+    <string name="tuesday">Martes</string>
+    <string name="wednesday">Miercoles</string>
+    <string name="thurshday">Jueves</string>
+    <string name="friday">Viernes</string>
+    <string name="suturday">Sabado</string>
+    <string name="sunday">Domingo</string>
+
+    <string name="support_my_church">Mi ofrenda</string>
+    <string name="icon_banco_azteca">Icono banco azteca</string>
+    <string name="banco_azteca">Banco Azteca</string>
+    <string name="icon_others">Icono otros bancos</string>
+    <string name="without_icon">sin imagen</string>
+    <string name="select_the_amount">Selecciona la cantidad del donativo</string>
+    <string name="_0_0_util">0.00</string>
+    <string name="txt_continue_fragment_bank_util"><u>Continuar</u></string>
+    <string name="qr_code">QR code</string>
+    <string name="icon_show">Icon show</string>
+    <string name="others_banks">Otros bancos</string>
+    <string name="icon_qr">icono qr</string>
+    <string name="message">%s@%s@%s@%s@%s</string>
+    <string name="debit">Debit</string>
+    <string name="slash">/</string>
+    <string name="credit">Credit</string>
+    <string name="agregar">Agregar</string>
+
+    <string name="eamx_other_banks_fragment_donations_with_card">Mi ofrenda con tarjeta</string>
+    <string name="instructions_to_donate">Para realizar una ofrenda, ingresa los\n<br>siguientes datos</br></string>
+    <string name="eamx_other_banks_fragment_card_owner">Titular de la trajeta</string>
+    <string name="hint_card_number">0000–0000–0000–0000</string>
+    <string name="titular">Titular</string>
+    <string name="mounth_year">MM/AA</string>
+    <string name="cvv">CVV</string>
+    <string name="hint_donate">$0.00</string>
+    <string name="confirmar">Confirmar</string>
+    <string name="eamx_other_banks_fragment_card_number">Numero de tarjeta</string>
+    <string name="eaxm_other_banks_fragment_expired_date">Fecha de vencimiento</string>
+    <string name="eaxm_other_banks_fragment_cvv_card">CVV</string>
+    <string name="spend_to_donate">Cantidad</string>
+    <string name="digits_only_number_amount">0123456789.</string>
+    <string name="digits_only_letters">qwertyuiopasdfghjklñzxcvbnm QWERTYUIOPASDFGHJKLÑZXCVBNMáóíéúÁÉÍÓÚ </string>
+    <string name="digits_only_number_card">0123456789-</string>
+    <string name="digits_only_number_date">1234567890/</string>
+    <string name="digits_only_number">1234567890</string>
+    <string name="message_error_upload_image">No fue posible subir la imagen</string>
+    <string name="message_select_option">Selecciona</string>
+
+    <string name="text_message_go_to_settings">Es necesario que nos otorgues los permisos que nos
+        ayudes otorgando los permisos te vamos a llevar a las configuraciones de la app.</string>
+    <string name="button_message_go_to_settings">Ir a configuraciones</string>
+    <string name="title_dialog_warning">Aviso</string>
+    <string name="text_button_cancel">Cancelar</string>
+    <string name="button_message_available_gps">Habilitar gps</string>
+    <string name="text_message_available_gps">Es necesario obtener tu localización, ayúdanos habilitando tu gps.</string>
+    <string name="text_message_permissions_not_available">Es necesario otorgar el permiso para obtener tu localización.</string>
+    <string name="button_message_permissions_not_available">Otorgar permiso</string>
+    <string name="editar">Editar</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="seguir">Seguir</string>
+    <string name="especifique_monto"><font size="15">Especifique el monto en pesos</font></string>
+
+</resources>

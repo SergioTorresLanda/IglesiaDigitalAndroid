@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clTimer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tvTT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/spro_text_regular"
+                    android:lineSpacingExtra="-1sp"
+                    android:text="Tiempo restante para completar el pago"
+                    android:textColor="@color/ling_color"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTT">
+
+                    <TextView
+                        android:id="@+id/tvTM"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_rec_timer"
+                        android:gravity="center"
+                        android:lineSpacingExtra="-5sp"
+                        android:text="00"
+                        android:textColor="#b7b2b2"
+                        android:textSize="42sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/ivSep2"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_dos"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvTM"
+                        app:layout_constraintStart_toEndOf="@+id/tvTM"
+                        app:layout_constraintTop_toTopOf="@+id/tvTM" />
+
+                    <TextView
+                        android:id="@+id/tvTS"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_rec_timer"
+                        android:gravity="center"
+                        android:lineSpacingExtra="-5sp"
+                        android:text="00"
+                        android:textColor="#b7b2b2"
+                        android:textSize="42sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/ivSep2"
+                        app:layout_constraintTop_toTopOf="@+id/tvTM" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/lnConcepto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/clTimer">
+
+                <TextView
+                    android:id="@+id/lblDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/font_size_12"
+                    android:fontFamily="@font/spro_text_regular"
+                    android:gravity="left"
+                    android:text="Concepto:"
+                    android:textColor="@color/ling_color" />
+
+                <TextView
+                    android:id="@+id/txDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lnMonto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lnConcepto">
+
+                <TextView
+                    android:id="@+id/lblMonto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/font_size_12"
+                    android:fontFamily="@font/spro_text_regular"
+                    android:gravity="left"
+                    android:text="Monto:"
+                    android:textColor="@color/ling_color" />
+
+                <TextView
+                    android:id="@+id/txMonto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <WebView
+                android:id="@+id/wvDonation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/font_size_12"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lnMonto"></WebView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="@dimen/size_24"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="@id/wvDonation"><!--parent-->
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnTest"
+                    android:layout_width="98dp"
+                    android:layout_height="38dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/background_button_cancel"
+                    android:gravity="center"
+                    android:text="Cancelar"
+                    android:textAllCaps="false"
+                    android:textColor="@color/btn_background_accept"
+                    android:textStyle="bold"
+                    android:visibility="visible"
+                    app:cornerRadius="@dimen/size_corner_general_button" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

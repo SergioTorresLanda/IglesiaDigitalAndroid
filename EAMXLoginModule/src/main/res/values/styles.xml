@@ -1,0 +1,118 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.ArqLoginModule" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryVariant">@color/white</item>
+        <item name="colorOnPrimary">@color/primaryColor</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+
+   <!--______________________________BTNS___________________________________-->
+
+    <!--Btn Login-->
+    <style name="StyleBtnLogIn" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">@color/primaryColor</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+        <item name="android:textSize">@dimen/size_14</item>
+        <item name="android:textColor">@color/white</item>.
+        <item name="android:paddingBottom">13dp</item>
+        <item name="android:paddingTop">13dp</item>
+        <item name="textAllCaps">false</item>
+        <item name="cornerRadius">8dp</item>
+    </style>
+
+    <!--Btn Register-->
+    <style name="StyleBtnRegister" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="strokeColor">@color/primaryColor</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="backgroundTint">@color/white</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:textSize">@dimen/size_14</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <!--Btn Modificar numero-->
+    <style name="StyleBtnModificarNumero" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/blueColorBtn</item>
+        <item name="android:textSize">@dimen/size_15</item>
+        <item name="cornerRadius">@dimen/corner_radious_20</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+        <item name="android:gravity">center</item>
+        <item name="android:foreground">?android:selectableItemBackgroundBorderless</item>
+    </style>
+
+
+    <!--______________________________EDTS___________________________________-->
+
+    <!--Edts en comun-->
+    <style name="StyleEdtGeneric" parent="Widget.AppCompat.EditText" >
+        <item name="boxBackgroundColor">@color/white</item>
+        <item name="android:textColorHint">@color/primaryColor</item>
+        <item name="boxStrokeColor">@color/primaryColor</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="hintTextColor">@color/primaryColor</item>
+        <item name="android:textSize">@dimen/size_18</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+    </style>
+
+    <!--Edts ingresar codigo confirmacion-->
+    <style name="StyleEdtInsertCode" parent="Widget.AppCompat.EditText" >
+        <item name="android:textColor">@color/grayTextColorCampos</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:inputType">number</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+    </style>
+
+
+    <!--______________________________TXTS___________________________________-->
+
+    <!--txt en comun-->
+    <style name="StyleTxtGeneric" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/size_16</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:gravity">left</item>
+    </style>
+
+    <!--txt de confirmacion code-->
+    <style name="StyleTxtConfirmCode" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/blueTxtCodeConfirmacion</item>
+        <item name="android:textSize">@dimen/size_14</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+    </style>
+
+    <!--txt title Register-->
+    <style name="StyleTxtTitleRegister" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textSize">26sp</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+    </style>
+
+    <!--Txt texminos y condiciones-->
+    <style name="StyleTxtAlContinuartxt" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/gris_terminos</item>
+        <item name="android:textSize">@dimen/size_10</item>
+        <item name="android:fontFamily">@font/spro_text_regular</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="TestStyleTerminosCondiciones" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/blue_terminos</item>
+        <item name="android:textSize">@dimen/size_10</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+</resources>

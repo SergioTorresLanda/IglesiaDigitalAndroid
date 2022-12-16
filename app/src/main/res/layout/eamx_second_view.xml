@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            tools:context="mx.arquidiocesis.eamxgeneric.fragments.onboarding.EAMXSecondView">
+
+            <ImageView
+                android:id="@+id/imgOnboarding"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/margin_top_30"
+                android:contentDescription="@string/img_material"
+                android:src="@drawable/ic_e_library_second_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/txtEvent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/liveEvents"
+                android:textAlignment="center"
+                android:textColor="@color/primaryColor"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:autoSizeMinTextSize="@dimen/size_22"
+                android:autoSizeStepGranularity="2dp"
+                android:layout_marginTop="@dimen/margin_top_30"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgOnboarding"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/txtEnjoyEvents"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/enjoyEvents"
+                android:textAlignment="center"
+                android:layout_marginTop="@dimen/margin_top_15"
+                android:textColor="@color/black"
+                android:autoSizeMinTextSize="@dimen/size_12"
+                android:autoSizeStepGranularity="2dp"
+                android:textSize="@dimen/size_18"
+                app:layout_constraintTop_toBottomOf="@+id/txtEvent"
+                tools:ignore="MissingConstraints" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

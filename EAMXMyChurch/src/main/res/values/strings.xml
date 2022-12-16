@@ -1,0 +1,30 @@
+<resources>
+    <string name="label_church_favorite_faithful">Mis iglesias favoritas</string>
+    <string name="label_church_principal_faithful">Mi iglesia principal</string>
+    <string name="label_text_empty_faithful">Por ahora no tienes iglesias, busca y elige tus iglesias para solicitar tu intención para la misa.</string>
+
+    <string name="label_church_favorite_priest">Iglesias donde presto servicios</string>
+    <string name="label_church_principal_priest">Adscrito a</string>
+    <string name="label_text_empty_priest"></string>
+
+    <string name="plus_church">Agregar</string>
+    <string name="change_church_principal">Cambiar</string>
+    <string name="hint_search_church">Encuentra una iglesia</string>
+    <string name="seleciona">Selecciona la iglesia en las que participas como principal y/o favorita y recibirás noticias, avisos, posteos y actualizaciones de tu iglesia</string>
+
+    <string name="digits_only_search">0123456789 qwertyuiopasdfghjklñzxcvbnm QWERTYUIOPASDFGHJKLÑZXCVBNMáóíéúÁÉÍÓÚ </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tab_services">Servicios</string>
+    <string name="tab_services_history">Historial de Servicios</string>
+    <string name="twitter">Twitter</string>
+    <string name="facebook">Facebook</string>
+    <string name="instagram">Instragram</string>
+    <string name="web">Página web</string>
+    <string name="transmision">Transmisiones en vivo</string>
+    <string name="name_church_principal">Mi iglesia principal</string>
+    <string name="my_favorites_church">Mis iglesias favoritas</string>
+    <string name="misas">Misas</string>
+
+
+</resources>

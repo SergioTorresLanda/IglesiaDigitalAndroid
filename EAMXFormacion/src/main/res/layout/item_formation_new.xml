@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="mx.upax.formacion.model.BaseModel" />
+    </data>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        app:cardCornerRadius="12dp"
+        android:elevation="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivResource"
+                android:layout_width="130dp"
+                android:layout_height="90dp"
+                android:elevation="6dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/shape_image_card" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="sans-serif"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="2sp"
+                android:textColor="@color/card_title"
+                android:textSize="@dimen/size_12"
+                android:textStyle="bold"
+                android:text="@{item.title}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivResource"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Iglesia San José de las Palmas" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTag"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="12dp"
+                android:fontFamily="sans-serif"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="11sp"
+                android:textColor="@color/card_tags_and_views"
+                android:textSize="@dimen/size_7"
+                android:textStyle="bold"
+                android:text="@{item.tags}"
+                app:layout_constraintEnd_toStartOf="@id/tvView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvSubtitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvSubtitle"
+                tools:text="Basílica d Guadalupe" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="sans-serif"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="11sp"
+                android:textAlignment="gravity"
+                android:textColor="@color/card_tags_and_views"
+                android:textSize="@dimen/size_7"
+                android:textStyle="normal"
+                android:text="@{item.viewsFormat}"
+                app:layout_constraintBottom_toBottomOf="@+id/tvTag"
+                app:layout_constraintEnd_toEndOf="@+id/tvSubtitle"
+                app:layout_constraintTop_toTopOf="@+id/tvTag"
+                tools:text="10000" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSubtitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="sans-serif"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="0sp"
+                android:textColor="@color/card_info"
+                android:textSize="@dimen/size_9"
+                android:textStyle="normal"
+                android:text="@{item.subtitle}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+                tools:text="¿Sabías qué? Con Fray Gabriel Chávez de la Mora" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

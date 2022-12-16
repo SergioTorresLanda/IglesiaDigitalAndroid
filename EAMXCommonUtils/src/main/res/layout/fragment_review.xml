@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvNombreIglesia"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#192a73"
+                    android:textSize="@dimen/size_18"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <RatingBar
+                    android:id="@+id/rbIglesia"
+                    style="@style/Widget.AppCompat.RatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:isIndicator="true"
+                    android:scaleX=".8"
+                    android:scaleY=".8"
+                    android:theme="@style/Rating"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvNombreIglesia" />
+
+                <TextView
+                    android:id="@+id/tvNumReview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/avenir_nextlt_pro_regular"
+                    android:lineSpacingExtra="3sp"
+                    android:textColor="#99000000"
+                    android:textSize="@dimen/size_18"
+                    android:textStyle="italic"
+                    app:layout_constraintEnd_toEndOf="@+id/tvNombreIglesia"
+                    app:layout_constraintStart_toStartOf="@+id/tvNombreIglesia"
+                    app:layout_constraintTop_toBottomOf="@+id/rbIglesia"
+                    tools:text="25 comentarios" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvComentario"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:visibility="visible"
+                    app:cardCornerRadius="14dp"
+                    app:layout_constraintEnd_toEndOf="@+id/tvNombreIglesia"
+                    app:layout_constraintStart_toStartOf="@+id/tvNombreIglesia"
+                    app:layout_constraintTop_toBottomOf="@+id/tvNumReview">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <!-- android:drawableEnd="@drawable/ic_interrogacion"
+                        -->
+                        <TextView
+                            android:id="@+id/tvTitleComentario"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:drawablePadding="16dp"
+                            android:lineSpacingExtra="-1sp"
+                            android:padding="2dp"
+                            android:text="Escribe tu opinión"
+                            android:textColor="#192a73"
+                            android:textSize="@dimen/size_16"
+                            android:textStyle="normal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <EditText
+                            android:id="@+id/etComentarios"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:drawablePadding="16dp"
+                            android:lineSpacingExtra="3sp"
+                            android:maxLength="150"
+                            android:padding="8dp"
+                            android:textColor="#363636"
+                            android:textSize="12sp"
+                            android:textStyle="normal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHeight_percent=".4"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvTitleComentario" />
+
+                        <TextView
+                            android:id="@+id/tvCalifica"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:lineSpacingExtra="-1sp"
+                            android:text="Califica"
+                            android:textColor="#192a73"
+                            android:textSize="13sp"
+                            android:textStyle="normal"
+                            app:layout_constraintStart_toStartOf="@+id/etComentarios"
+                            app:layout_constraintTop_toBottomOf="@+id/etComentarios" />
+
+                        <RatingBar
+                            android:id="@+id/rbComentarios"
+                            style="?android:attr/ratingBarStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:isIndicator="false"
+                            android:scaleX="1.2"
+                            android:scaleY="1.2"
+                            android:stepSize=".5"
+                            android:theme="@style/Rating"
+                            app:layout_constraintStart_toStartOf="@+id/tvCalifica"
+                            app:layout_constraintTop_toBottomOf="@+id/tvCalifica" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnPublicar"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:backgroundTint="@color/btn_background_accept"
+                            android:gravity="center"
+                            android:text="Publicar"
+                            android:textColor="@color/colorGrayBackgroun"
+                            android:textSize="9sp"
+                            app:cornerRadius="8dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/etComentarios"
+                            app:layout_constraintTop_toTopOf="@+id/tvCalifica" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnCancel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:backgroundTint="@color/btn_background_cancel"
+                            android:gravity="center"
+                            android:text="Cancelar"
+                            android:textColor="@color/btn_background_accept"
+                            android:textSize="9sp"
+                            app:cornerRadius="8dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/btnPublicar"
+                            app:layout_constraintEnd_toStartOf="@+id/btnPublicar"
+                            app:layout_constraintTop_toTopOf="@+id/btnPublicar" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/tvAddReview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:drawableRight="@drawable/ic_plus"
+                    android:drawablePadding="@dimen/size_10"
+                    android:fontFamily="@font/avenir_nextlt_pro_regular"
+                    android:gravity="end"
+                    android:lineSpacingExtra="2sp"
+                    android:text="Agregar comentario"
+                    android:textColor="#1c75bc"
+                    android:textSize="@dimen/size_14"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cvComentario" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvComentarios"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:nestedScrollingEnabled="true"
+                    android:padding="4dp"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAddReview"
+                    tools:listitem="@layout/item_review" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

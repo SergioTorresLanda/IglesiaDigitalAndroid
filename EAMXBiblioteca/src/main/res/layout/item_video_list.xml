@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivVideos"
+            android:layout_width="73dp"
+            android:layout_height="73dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/car_video"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/controlesrList"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintWidth_percent=".75"
+            android:src="@drawable/ic_rect_ngulo_5051"
+            app:layout_constraintBottom_toBottomOf="@+id/ivVideos"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ivVideos" />
+        <ImageView
+            android:id="@+id/ivPlay"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_pol_gono_4"
+            app:layout_constraintBottom_toBottomOf="@+id/controlesrList"
+            app:layout_constraintEnd_toStartOf="@+id/tvReproductor"
+            app:layout_constraintTop_toTopOf="@+id/controlesrList" />
+
+        <TextView
+            android:id="@+id/tvReproductor"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            android:lineSpacingExtra="2sp"
+            android:textColor="@color/white"
+            android:textSize="8sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/controlesrList"
+            app:layout_constraintEnd_toEndOf="@+id/controlesrList"
+            app:layout_constraintTop_toTopOf="@+id/controlesrList"
+            android:text="00 min 00 s" />
+
+        <SeekBar
+            android:id="@+id/pbReproductor"
+            android:layout_width="0dp"
+            android:layout_height="7dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/controlesrList"
+            app:layout_constraintEnd_toStartOf="@+id/ivPlay"
+            app:layout_constraintStart_toStartOf="@+id/controlesrList"
+            app:layout_constraintTop_toTopOf="@+id/controlesrList" />
+
+        <TextView
+            android:id="@+id/tvTitulo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="3sp"
+            android:text="Primera parte"
+            android:textColor="#363636"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/controlesrList"
+            app:layout_constraintTop_toTopOf="@+id/ivVideos" />
+
+        <TextView
+            android:id="@+id/tvContenido"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:lineSpacingExtra="2sp"
+            android:text="Subtítulo"
+            android:textColor="#363636"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@+id/controlesrList"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/controlesrList"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitulo" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

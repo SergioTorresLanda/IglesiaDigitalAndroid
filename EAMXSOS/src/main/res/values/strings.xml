@@ -1,0 +1,57 @@
+<resources>
+    <string name="txt_sos_name_priest">Solicito que el <br /><big><b>%1$s</b></big><br /> me llame al número:</string>
+    <string name="text_message_sos_name_priest">En breve el &lt;br/> &lt;b> Párroco %1$s &lt;/b> &lt;br/> Se comunicará contigo</string>
+
+    <string name="text_message_sos_name_priest_begin">En breve</string>
+    <string name="text_message_sos_name_priest_middle">%1$s</string>
+    <string name="text_message_sos_name_priest_final">Se comunicará contigo</string>
+    <string name="text_km_card">%1$s km</string>
+    <string name="txt_sos_telephone_number"><b>%1$s</b></string>
+    <string name="txt_sos_call_other_number_title">Llamar a otro número</string>
+    <string name="txt_sos_title_input_name">Nombre (s)</string>
+    <string name="txt_sos_title_input_telephone_number">Número de celular</string>
+    <string name="txt_sos_btn_acept">Aceptar</string>
+    <string name="txt_sos_title_notification">Información de Iglesia cercana</string>
+    <string name="txt_sos_notification_status_progress">En progreso</string>
+    <string name="txt_sos_notification_status_accepted">Aceptado</string>
+    <string name="txt_sos_notification_status_rejected">Rechazado</string>
+    <string name="txt_sos_notification_status_canceled">Cancelado</string>
+    <string name="txt_sos_notification_status_completed">Completado</string>
+    <string name="txt_sos_notification_status_pending">Servicio en espera de confirmar</string>
+    <string name="text_sub_title_church_near">Información de iglesias cercanas</string>
+    <string name="text_title_sos">¡Queremos ayudarte!</string>
+    <string name="text_button_event_sos">Buscar iglesias</string>
+    <string name="text_sub_title_sos">¿Cuál es tu emergencia?</string>
+    <string name="text_button_sos">Confirmar</string>
+    <string name="text_message_priesfult_empty">Debes seleccionar un servicio para continuar</string>
+    <string name="title_dialog_warning">Atención</string>
+    <string name="text_message_location_not_available">No fue posible obtener su localización.\nLo intentaremos nuevamente</string>
+    <string name="text_title_request_sos_success">RECIBIMOS TU SOLICITUD</string>
+    <string name="text_title_service_in_progress">SERVICIO EN PROCESO</string>
+    <string name="text_message_service_in_progress">Se está atendiendo la solicitud, favor de esperar la llamada</string>
+    <string name="text_button_seleciona">Ir a selección</string>
+    <string name="text_button_si">Si</string>
+    <string name="text_button_no">No</string>
+    <string name="text_button_cancel_request">Cancelar solicitud</string>
+    <string name="text_title_cancel_request">Porfavor selecciona otro párroco</string>
+    <string name="aceptar"><u>Aceptar</u></string>
+    <string name="text_button_cancel">Cancelar</string>
+    <string name="text_btn_inicia">S.O.S</string>
+    <string name="text_btn_calcel_servicio">Cancelar servicio</string>
+
+    <string name="text_message_available_gps">Es necesario obtener tu localización, ayúdanos habilitando tu gps.</string>
+    <string name="button_message_available_gps">Habilitar gps</string>
+
+    <string name="text_message_permissions_not_available">Es necesario otorgar el permiso para obtener tu localización.</string>
+    <string name="button_message_permissions_not_available">Otorgar permiso</string>
+
+    <string name="text_message_go_to_settings">Es necesario que nos otorgues los permisos que nos
+        ayudes otorgando los permisos te vamos a llevar a las configuraciones de la app.</string>
+    <string name="button_message_go_to_settings">Ir a configuraciones</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="comentario">Comentario</string>
+    <string name="direcci_n">Dirección</string>
+    <string name="tel_fono">Teléfono</string>
+    <string name="estado_de_solicitud">Estado de solicitud</string>
+</resources>

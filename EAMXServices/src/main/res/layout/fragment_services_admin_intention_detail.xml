@@ -1,0 +1,273 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="mx.arquidiocesis.servicios.model.admin.view.AdminIntentionDetailModel" />
+    </data>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvCardData"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="18dp"
+        android:elevation="8dp"
+        android:translationZ="8dp"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/tvAssociation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="280dp"
+                android:layout_marginBottom="519dp"
+                android:lineSpacingExtra="5sp"
+                android:textColor="#192a73"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                android:text="@string/label_church" />
+
+
+            <TextView
+                android:id="@+id/tvChurchName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="132dp"
+                android:layout_marginBottom="499dp"
+                android:lineSpacingExtra="-1sp"
+                android:textColor="#000000"
+                android:textSize="13sp"
+                android:textStyle="normal"
+                android:text="@{item.churchName}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvAssociation"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="Parroquia del Señor de la Resurrección" />
+
+            <TextView
+                android:id="@+id/tvDateTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="280dp"
+                android:layout_marginBottom="477dp"
+                android:lineSpacingExtra="5sp"
+                android:textColor="#192a73"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvChurchName"
+                app:layout_constraintVertical_bias="0.03"
+                android:text="El día" />
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="132dp"
+                android:layout_marginBottom="457dp"
+                android:lineSpacingExtra="-1sp"
+                android:textColor="#000000"
+                android:textSize="13sp"
+                android:textStyle="normal"
+                android:text="@{item.date}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDateTitle"
+                app:layout_constraintVertical_bias="0.032"
+                tools:text="13 julio 2021" />
+
+            <TextView
+                android:id="@+id/tvTimeTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="280dp"
+                android:layout_marginBottom="434dp"
+                android:lineSpacingExtra="5sp"
+                android:textColor="#192a73"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDate"
+                app:layout_constraintVertical_bias="0.0"
+                android:text="A la hora" />
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="132dp"
+                android:layout_marginBottom="414dp"
+                android:lineSpacingExtra="-1sp"
+                android:textColor="#000000"
+                android:textSize="13sp"
+                android:textStyle="normal"
+                android:text="@{item.hour}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTimeTitle"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="8:00" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvIntention"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginBottom="60dp"
+                android:nestedScrollingEnabled="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTime"
+                tools:listitem="@layout/card_services_admin_interaction_detail" />
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvCardmass"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                android:elevation="8dp"
+                android:translationZ="8dp"
+                app:cardCornerRadius="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rvIntention"
+                >
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white">
+
+                    <TextView
+                        android:id="@+id/tvSend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12.5dp"
+                        android:layout_marginTop="27.2dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginBottom="11.8dp"
+                        android:lineSpacingExtra="5sp"
+                        android:textColor="#1c75bc"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/ivArrow"
+                        app:layout_constraintHorizontal_bias="0.06"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="1.0"
+                        android:text="Enviar" />
+
+                    <ImageView
+                        android:id="@+id/ivArrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="23dp"
+                        android:layout_marginEnd="144dp"
+                        android:layout_marginBottom="8dp"
+                        android:src="@drawable/icono_send"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/tvDownload"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toEndOf="@+id/tvSend"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="1.0" />
+
+
+                    <TextView
+                        android:id="@+id/tvDownload"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="27.2dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginBottom="11.8dp"
+                        android:lineSpacingExtra="5sp"
+                        android:textColor="#1c75bc"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/ivDownload"
+                        app:layout_constraintHorizontal_bias="0.06"
+                        app:layout_constraintStart_toEndOf="@id/ivArrow"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="1.0"
+                        android:text="Descargar" />
+
+                    <ImageView
+                        android:id="@+id/ivDownload"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="23dp"
+                        android:layout_marginEnd="14dp"
+                        android:layout_marginBottom="15dp"
+                        android:src="@drawable/ic_share"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toEndOf="@+id/tvDownload"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="1.0" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

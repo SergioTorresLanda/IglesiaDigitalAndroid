@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--common margin & padding-->
+    <dimen name="no_margin_padding">0dp</dimen>
+    <dimen name="very_small_margin_padding">5dp</dimen>
+    <dimen name="small_margin_padding">10dp</dimen>
+    <dimen name="normal_margin_padding">30dp</dimen>
+    <dimen name="huge_margin_padding">50dp</dimen>
+
+    <!--generic padding & margin-->
+    <dimen name="padding_margin_2">2dp</dimen>
+    <dimen name="padding_margin_3">3dp</dimen>
+    <dimen name="padding_margin_7">7dp</dimen>
+    <dimen name="padding_margin_15">15dp</dimen>
+    <dimen name="padding_margin_29">29dp</dimen>
+    <dimen name="padding_margin_40">40dp</dimen>
+    <dimen name="padding_margin_90">90dp</dimen>
+
+
+    <!--generic font size-->
+    <dimen name="font_size_9">9sp</dimen>
+    <dimen name="font_size_10">10sp</dimen>
+    <dimen name="font_size_12">12sp</dimen>
+    <dimen name="font_size_13">13sp</dimen>
+    <dimen name="font_size_14">14sp</dimen>
+    <dimen name="font_size_16">16sp</dimen>
+    <dimen name="font_size_18">18sp</dimen>
+    <dimen name="font_size_20">20sp</dimen>
+    <dimen name="font_size_24">24sp</dimen>
+
+    <!--generic dimens-->
+    <dimen name="line_spacing_extra_dimen_2">2sp</dimen>
+    <dimen name="line_spacing_extra_dimen_4">4sp</dimen>
+    <dimen name="line_spacing_extra_dimen_6">6sp</dimen>
+    <dimen name="letter_spacing_dimen">0.01</dimen>
+    <dimen name="size_spinner">40dp</dimen>
+    <dimen name="size_width_button">240dp</dimen>
+    <dimen name="size_height_button">38dp</dimen>
+    <dimen name="card_corner_radius">15dp</dimen>
+    <dimen name="size_width_card_view">120dp</dimen>
+    <dimen name="size_height_card_view">60dp</dimen>
+    <dimen name="size_height_button_save">48dp</dimen>
+    <dimen name="corner_radius_button">8dp</dimen>
+
+</resources>

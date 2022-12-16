@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/iconorder" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="sans-serif-medium"
+            android:lineSpacingExtra="2sp"
+            android:text="Ordenar"
+            android:textColor="#13277c"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toStartOf="@+id/tvLimpiarFiltro"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+        <TextView
+            android:id="@+id/tvLimpiarFiltro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="sans-serif-medium"
+            android:lineSpacingExtra="2sp"
+            android:text="@string/limpiar_filtro"
+            android:textColor="#13277c"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioGroup
+            android:id="@+id/rgOrder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="@+id/tvLimpiarFiltro"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+            <RadioButton
+                android:id="@+id/rbRecienteAntiguio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:checked="false"
+                android:text="Fecha mas reciente a mas antiguo" />
+
+            <RadioButton
+                android:id="@+id/rbAntiguoReciente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="12dp"
+                android:checked="false"
+                android:text="Fecha mas antiguo a mas reciente" />
+
+            <RadioButton
+                android:id="@+id/rbMayorMenor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="12dp"
+                android:checked="false"
+                android:text="Monto mayor a menor" />
+
+            <RadioButton
+                android:id="@+id/rbMenorMayor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="12dp"
+                android:checked="false"
+                android:text="Monto menor a mayor" />
+
+        </RadioGroup>
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintStart_toStartOf="@+id/rgOrder"
+            app:layout_constraintTop_toBottomOf="@+id/rgOrder"
+            app:srcCompat="@drawable/filter" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="sans-serif-medium"
+            android:lineSpacingExtra="2sp"
+            android:textColor="#13277c"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+            app:layout_constraintEnd_toEndOf="@+id/rgOrder"
+            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintTop_toTopOf="@+id/imageView3"
+            tools:text="Filtrar" />
+
+        <RadioButton
+            android:id="@+id/rbFilterAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Por rango de edad"
+            app:layout_constraintStart_toStartOf="@+id/imageView3"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+        <RadioGroup
+            android:id="@+id/rgOrderFilter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@+id/tvLimpiarFiltro"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/rbFilterAge">
+
+            <RadioButton
+                android:id="@+id/rbRangoUno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:checked="false"
+                android:padding="8dp"
+                android:text="Rango Uno" />
+
+            <RadioButton
+                android:id="@+id/rbRangoDos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:checked="false"
+                android:padding="8dp"
+                android:text="Rango Dos" />
+
+            <RadioButton
+                android:id="@+id/rbRangoTres"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:checked="false"
+                android:padding="8dp"
+                android:text="Rango Tres" />
+
+
+        </RadioGroup>
+
+        <RadioButton
+            android:id="@+id/rbTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="16dp"
+            android:text="Por tema"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/rgOrderFilter"
+            app:layout_constraintTop_toBottomOf="@+id/rgOrderFilter" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

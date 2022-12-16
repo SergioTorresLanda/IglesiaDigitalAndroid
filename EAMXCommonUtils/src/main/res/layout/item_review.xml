@@ -1,0 +1,112 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="16dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="8dp"
+            android:paddingBottom="16dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvFoto"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="100dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/ivDevotee"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNombreComentario"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="2sp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/size_12"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/tvComentario"
+                app:layout_constraintStart_toStartOf="@+id/tvComentario"
+                app:layout_constraintTop_toBottomOf="@+id/tvComentario"
+                tools:text="María Fernandez" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvComentario"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="sans-serif"
+                android:lineSpacingExtra="3sp"
+                android:textColor="#666666"
+                android:textSize="@dimen/size_10"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toStartOf="@+id/ivAdminReview"
+                app:layout_constraintStart_toEndOf="@+id/cvFoto"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="sum dolor sit amet, consetetur sadipscing elitr, sed diam " />
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:fontFamily="@font/avenir_nextlt_pro_regular"
+                android:lineSpacingExtra="2sp"
+                android:textColor="#99000000"
+                android:textSize="@dimen/size_12"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="@+id/rbReview"
+                app:layout_constraintStart_toEndOf="@+id/rbReview"
+                app:layout_constraintTop_toTopOf="@+id/rbReview"
+                tools:text="Hace 3 días " />
+
+            <RatingBar
+                android:id="@+id/rbReview"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                android:theme="@style/Rating"
+                android:isIndicator="true"
+                app:layout_constraintStart_toStartOf="@+id/tvNombreComentario"
+                app:layout_constraintTop_toBottomOf="@+id/tvNombreComentario" />
+
+            <ImageView
+                android:id="@+id/ivAdminReview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:padding="8dp"
+                android:src="@drawable/ic_tres_puntos"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

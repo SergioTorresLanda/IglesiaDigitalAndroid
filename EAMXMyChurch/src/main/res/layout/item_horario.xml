@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:ignore="UseCompoundDrawables">
+
+        <TextView
+            android:id="@+id/tvItemTitulo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:text="Horario"
+            android:textColor="@color/botton_background_color"
+            android:textSize="@dimen/font_size_13"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/etDias"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
+            android:hint="Lunes -Jueves"
+            android:textSize="@dimen/font_size_12"
+            app:layout_constraintEnd_toStartOf="@+id/ivCalendario"
+            app:layout_constraintStart_toStartOf="@+id/tvItemTitulo"
+            app:layout_constraintTop_toBottomOf="@+id/tvItemTitulo" />
+
+        <ImageView
+            android:id="@+id/ivCalendario"
+            android:layout_width="30dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_calendario"
+            app:layout_constraintBottom_toBottomOf="@+id/etDias"
+            app:layout_constraintEnd_toStartOf="@+id/etHoras"
+            app:layout_constraintStart_toEndOf="@+id/etDias"
+            app:layout_constraintTop_toTopOf="@+id/etDias" />
+
+        <EditText
+            android:id="@+id/etHoras"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="1dp"
+            android:hint="6:00 a 19:00 hrs."
+            android:textSize="@dimen/font_size_12"
+            app:layout_constraintBottom_toBottomOf="@+id/etDias"
+            app:layout_constraintEnd_toStartOf="@+id/ivRelog"
+            app:layout_constraintStart_toEndOf="@+id/ivCalendario"
+            app:layout_constraintTop_toTopOf="@+id/etDias" />
+
+        <ImageView
+            android:id="@+id/ivRelog"
+            android:layout_width="30dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_reloj"
+            app:layout_constraintBottom_toBottomOf="@+id/etHoras"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/etHoras"
+            app:layout_constraintTop_toTopOf="@+id/etHoras" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

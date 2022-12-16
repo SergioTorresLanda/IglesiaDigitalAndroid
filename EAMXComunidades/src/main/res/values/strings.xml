@@ -1,0 +1,88 @@
+<resources>
+    <string name="app_name">A</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="buscar_comunidad">Buscar una comunidad</string>
+    <string name="txt_empty_community">Debes completar el registro de tu Comunidad.</string>
+    <string name="agregar">Agregar</string>
+    <string name="label_social_media">Red Social</string>
+
+    <string-array name="spinnerRedSocial">
+        <item>Selecciona una red social</item>
+        <item>Sitio Web</item>
+        <item>Instagram</item>
+        <item>Twitter</item>
+        <item>Facebook</item>
+        <item>Streaming</item>
+    </string-array>
+
+    <string name="txt_website">Sitio Web</string>
+    <string name="txt_instagram">Instagram</string>
+    <string name="txt_twtter">Twitter</string>
+    <string name="txt_facebook">Facebook</string>
+    <string name="txt_youtube">Streaming</string>
+    <string name="label_add_other">Agregar otra</string>
+    <string name="txt_ready">Listo</string>
+    <string name="message_add_success">Se agrego con éxito</string>
+    <string name="message_input_requiered">Dato requerido</string>
+    <string name="message_social_media_repeat">El usuario y la red social ya fueron agregados anteriormente</string>
+    <string name="message_service_activity_repeat">El servicio/actividad ya fue agregado anteriormente</string>
+    <string name="label_section_social_media">Página web/Redes sociales</string>
+    <string name="label_section_activities">Servicios/Actividades fijas</string>
+    <string name="txt_advice__empty_community">Lo sentimos, no tenemos registrada tu comunidad en nuestra base de datos. Te pedimos llenar el siguiente formulario para su autorización en la Vicaría correspondiente.</string>
+    <string name="hint_name_service_activity">Nombre del Servicio/Actividad*</string>
+    <string name="hint_addressed_to">Dirigido a*</string>
+    <string name="hint_description">Descripción</string>
+    <string name="hint_scheduler_hour">-</string>
+    <string name="hint_scheduler_days">-</string>
+    <string name="label_schedule">Horario</string>
+    <string name="message_schedule_missed">Falta definir el horario del servicio/actividad fija</string>
+    <string name="message_schedule_other_missed">Al capturar otros días es necesario asignar su horario</string>
+    <string name="message_days_missed">Falta seleccionar el día del servicio/actividad fija</string>
+    <string name="message_location_missed">Falta agregar localización</string>
+    <string name="hint_name_community">Nombre de la comunidad*</string>
+    <string name="hint_manager_name_of_community">Nombre del responsable*</string>
+    <string name="hint_phone">Teléfono</string>
+    <string name="hint_email">Correo electronico*</string>
+    <string name="label_add">Agregar</string>
+    <string name="label_section_social_community_linkeded">¿Deseas agregar otra comunidad vinculada a tu sede central?</string>
+    <string name="label_save_data">Guardar</string>
+    <string name="label_cancel">Cancelar</string>
+    <string name="label_name_community">Nombre de la comunidad</string>
+    <string name="label_description">Descripción</string>
+    <string name="txt_followme">¡Llévame!</string>
+    <string name="title_dialog_warning">Aviso</string>
+    <string name="hint_association_name">Asociación, instituto o sociedad a la que perteneces</string>
+    <string name="hint_charisma">Carisma</string>
+    <string name="hint_name_assigned">Responsable</string>
+    <string name="hint_address">Dirección</string>
+    <string name="message_upload_image_success">La imagen se subío correctamente</string>
+    <string name="message_upload_image_fail">No fue posible subir la imagen del perfil, intentelo nuevamente.</string>
+    <string name="plus_church">Agregar  </string>
+    <string name="change_church_principal">Cambiar</string>
+    <string name="hacer_principal">Hacer comunidad principal</string>
+    <string name="message_community_save_success">La modificación de tu Comunidad \"%s\" se guardó con éxito</string>
+    <string name="message_community_cancel_edit">¿Seguro que deseas salir del registro?</string>
+    <string name="label_warning_save_community">El registro de la Comunidad %s se guardó con éxito</string>
+    <string name="label_instruction_community">Para concluir el proceso de configuración. Te invitamos a la sección de administrar módulos</string>
+    <string name="txt_next">Continuar</string>
+    <string name="txt_more_late">Más tarde</string>
+    <string name="btn_yes">Si</string>
+    <string name="btn_no">No</string>
+    <string name="message_add_success_activity">Tu Servicio/Actividad quedó actualizado</string>
+    <string name="message_error_services_Activity">Falta el nombre del servicio/actividad fija</string>
+    <string name="message_error_addressedTo">Falta mencionar a quién va dirigido</string>
+    <string name="message_error_description">Falta completar la descripción</string>
+    <string name="message_error_charisma">Falta completar tu carisma</string>
+    <string name="message_error_email">Falta el correo electrónico</string>
+    <string name="message_error_phone">Falta el número telefónico</string>
+    <string name="message_activity_missed">Falta agregar al menos una actividad</string>
+    <string name="message_error_email_invalid">Ingresa un correo electrónico válido</string>
+    <string name="message_error_url_invalid">Ingresa la url como se muestra en el ejemplo</string>
+    <string name="message_error_phone_invalid">El número celular debe de contener 10 dígitos</string>
+    <string name="message_schedule_invalid">La hora de inicio debe ser menor  a la hora de finalización</string>
+    <string name="descripcion">Descripción</string>
+    <string name="label_community_updated">Tu comunidad se actualizó correctamente.</string>
+    <string name="hint_scheduler_hour_space">" - "</string>
+    <string name="label_schedule_other">Otros horarios</string>
+    <string name="mi_comunidad_red">https://www.comunidad.com/micomunidad</string>
+</resources>

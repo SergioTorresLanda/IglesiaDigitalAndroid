@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/toolbarModel"
+            layout="@layout/eamxr_register_toolbar_model"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/StyleTxtTitleRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="-1sp"
+            android:text="@string/textview_title_send_password"
+            android:textColor="#192a73"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarModel" />
+
+
+        <TextView
+            android:id="@+id/textView3"
+            style="@style/StyleTxtGeneric"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="15dp"
+            android:gravity="center"
+            android:lineSpacingExtra="3sp"
+            android:text="@string/textview_info_send_password"
+            android:textColor="#000000"
+            android:textSize="@dimen/size_14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:letterSpacing="0.03"
+                android:lineSpacingExtra="0sp"
+                android:text="@string/editext_label_email"
+                android:textColor="#13277c"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp" />
+
+            <EditText
+                android:id="@+id/etEmailSendCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:digits="@string/digits_email"
+                android:hint="@string/etEmailSendCodeHint"
+                android:imeOptions="actionDone"
+                android:inputType="textCapWords|textAutoCorrect|textPersonName"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="10sp"
+                android:nextFocusForward="@id/etLastNameFather"
+                android:singleLine="true"
+                android:textColor="#99000000"
+                android:textSize="18sp"
+                android:textStyle="normal" />
+        </LinearLayout>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSendCode"
+            style="@style/StyleButtonNormal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="86dp"
+            android:text="@string/button_label_send_code"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="@+id/layoutTerminosCode"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewCode"
+            style="@style/StyleTxtAlContinuartxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/when_using_our_app"
+            app:layout_constraintBottom_toTopOf="@+id/layoutTerminosCode"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/layoutTerminosCode"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/layoutPoliticaCode"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                style="@style/TestStyleTerminosCondiciones"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_and_conditions" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="3dp"
+                android:fontFamily="@font/spro_text_regular"
+                android:text="@string/and_ours"
+                android:textColor="@color/gris_terminos"
+                android:textSize="@dimen/size_10" />
+
+            <TextView
+                style="@style/TestStyleTerminosCondiciones"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/privacy_policy" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutPoliticaCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="3dp"
+                android:fontFamily="@font/spro_text_regular"
+                android:text="@string/meet_here"
+                android:textColor="@color/gris_terminos"
+                android:textSize="@dimen/size_10" />
+
+            <TextView
+                style="@style/TestStyleTerminosCondiciones"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/code_of_ethics" />
+
+        </LinearLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

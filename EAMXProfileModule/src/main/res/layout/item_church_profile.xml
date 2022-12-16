@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvSearchChurch"
+        android:layout_margin="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="12dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ivChurch"
+                android:layout_width="104dp"
+                android:layout_height="100dp"
+                tools:background="@drawable/ic_parish"
+                android:src="@drawable/shape_image_card"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".3" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTitleChurch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="8dp"
+                android:fontFamily="sans-serif"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="2sp"
+                android:text="Iglesia San José de las Palmas"
+                android:textColor="#192a73"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/ivCleanChurch"
+                app:layout_constraintStart_toEndOf="@+id/ivChurch"
+                app:layout_constraintTop_toBottomOf="@+id/ivCleanChurch"
+                tools:text="Iglesia San José de las Palmas" />
+
+            <ImageView
+                android:id="@+id/ivCleanChurch"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="6dp"
+                android:backgroundTint="#00FFFFFF"
+                android:src="@drawable/ic_close"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tvTitleServicesProvided"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="@dimen/letter_spacing_dimen"
+                android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_4"
+                android:text="¿Qué servicio prestas a la iglesia?"
+                android:textColor="@color/textview_title_color"
+                android:textSize="@dimen/font_size_16"
+                android:textStyle="normal"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="@+id/spServicesProvided"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/spServicesProvided"
+                app:layout_constraintTop_toBottomOf="@+id/ivChurch" />
+
+            <Spinner
+                android:id="@+id/spServicesProvided"
+                android:layout_width="@dimen/no_margin_padding"
+                android:layout_height="@dimen/size_spinner"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="@dimen/padding_margin_15"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/style_spinner_selector"
+                android:fontFamily="sans-serif-light"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
+                android:textColor="@color/edittext_text_hint_color"
+                android:textSize="@dimen/font_size_14"
+                android:textStyle="normal"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/etDescribeService"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitleServicesProvided" />
+
+            <EditText
+                android:id="@+id/etDescribeService"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/style_et"
+                android:fontFamily="sans-serif-light"
+                android:hint="Describe el servicio"
+                android:importantForAutofill="no"
+                android:inputType="textEmailAddress|textWebEmailAddress"
+                android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
+                android:maxLength="@integer/email_field_size"
+                android:padding="@dimen/small_margin_padding"
+                android:textColor="@color/color_input_text"
+                android:textColorHint="@color/color_hint_input_text"
+                android:textSize="@dimen/font_size_14"
+                android:textStyle="normal"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

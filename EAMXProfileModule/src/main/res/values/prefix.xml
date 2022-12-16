@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="prefix_laic_religious">
+        <item>Hno.</item>
+        <item>Fray</item>
+        <item>N/A</item>
+    </string-array>
+    <string-array name="prefix_diaco">
+        <item>D.P.</item>
+        <item>D.T.</item>
+        <item>N/A</item>
+    </string-array>
+    <string-array name="prefix_priest">
+        <item>P.</item>
+        <item>Pbro.</item>
+        <item>Mons.</item>
+        <item>Su excelencia</item>
+        <item>Su eminencia</item>
+        <item>Señor obispo</item>
+        <item>Señor cardenal</item>
+        <item>N/A</item>
+    </string-array>
+</resources>

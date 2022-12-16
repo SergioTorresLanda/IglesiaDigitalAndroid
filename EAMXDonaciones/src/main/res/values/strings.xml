@@ -1,0 +1,39 @@
+<resources>
+    <string name="label_church_favorite_faithful">Mis iglesias favoritas</string>
+    <string name="label_church_principal_faithful">Mi iglesia principal</string>
+    <string name="label_text_empty_faithful">Por ahora no tienes iglesias, busca y elige tus iglesias para solicitar tu intención para la misa.</string>
+
+    <string name="label_church_favorite_priest">Iglesias donde presto servicios</string>
+    <string name="label_church_principal_priest">Adscrito a</string>
+    <string name="label_text_empty_priest"></string>
+
+    <string name="plus_church">Agregar</string>
+    <string name="change_church_principal">Cambiar</string>
+    <string name="hint_search_church">Encuentra una iglesia</string>
+    <string name="digits_only_directions">0123456789 qwertyuiopasdfghjklñzxcvbnm QWERTYUIOPASDFGHJKLÑZXCVBNMáóíéúÁÉÍÓÚ /#.-,+()</string>
+    <string name="digits_only_search">0123456789 qwertyuiopasdfghjklñzxcvbnm QWERTYUIOPASDFGHJKLÑZXCVBNMáóíéúÁÉÍÓÚ </string>
+    <string name="digits_only_hexa">0123456789qwertyuiopasdfghjklñzxcvbnmQWERTYUIOPASDFGHJKLÑZXCVBNM</string>
+    <string name="digits_rfc">0123456789QWERTYUIOPASDFGHJKLÑZXCVBNM</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tab_services">Servicios</string>
+    <string name="tab_services_history">Historial de Servicios</string>
+    <string name="twitter">Twitter</string>
+    <string name="facebook">Facebook</string>
+    <string name="instagram">Instragram</string>
+    <string name="web">Página web</string>
+    <string name="transmision">Transmisiones en vivo</string>
+    <string name="name_church_donation">Iglesia / Comunidad principal</string>
+    <string name="my_favorites_donation">Iglesias / Comunidades favoritas</string>
+    <string name="my_campana">Sugerencias / Campañas</string>
+    <string name="misas">Misas</string>
+    <string name="seleciona">Selecciona una iglesia, comunidad o causa que quieras apoyar para realizar un ofrenda</string>
+    <string name="mensaje">Tus datos serán guardados para facturas posteriores, si deseas cambiarlos ir a facturar</string>
+
+    <string name="datos_fiscales">Datos fiscales</string>
+    <string name="especifique_monto">Especifique el monto en pesos</string>
+    <string name="especifique_concepto"><font size="15">Especifique</font></string>
+
+
+</resources>

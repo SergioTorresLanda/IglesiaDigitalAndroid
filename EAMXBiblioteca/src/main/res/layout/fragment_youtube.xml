@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <FrameLayout
+        android:id="@+id/youtube_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:id="@+id/controler"
+        android:layout_width="0dp"
+        android:layout_height="19dp"
+        android:layout_marginBottom="16dp"
+        android:scaleType="fitXY"
+        android:visibility="gone"
+        android:src="@drawable/ic_rect_ngulo_5051"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/ic_pol_gono_4"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/controler"
+        app:layout_constraintEnd_toStartOf="@+id/tvReproductor"
+        app:layout_constraintTop_toTopOf="@+id/controler" />
+
+    <TextView
+        android:id="@+id/tvReproductor"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:lineSpacingExtra="2sp"
+        android:text="00 min 00 s"
+        android:textColor="@color/white"
+        android:textSize="8sp"
+        android:textStyle="normal"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/controler"
+        app:layout_constraintEnd_toEndOf="@+id/controler"
+        app:layout_constraintTop_toTopOf="@+id/controler" />
+
+    <SeekBar
+        android:id="@+id/pbReproductor"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="7dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="4dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/controler"
+        app:layout_constraintEnd_toStartOf="@+id/ivPlay"
+        app:layout_constraintStart_toStartOf="@+id/controler"
+        app:layout_constraintTop_toTopOf="@+id/controler" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+

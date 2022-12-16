@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvDiaco"
+        android:layout_margin="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:cardCornerRadius="12dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+            <ImageView
+                android:id="@+id/ivCleanChurchDiaco"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_gravity="center"
+                android:backgroundTint="#00FFFFFF"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/ic_close"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/ivChurchDiacon"
+                android:layout_width="104dp"
+                android:layout_height="match_parent"
+                tools:background="@drawable/ic_parish"
+                android:src="@drawable/shape_image_card"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".3" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTitleChurchDiacon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="sans-serif"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="2sp"
+                android:textColor="#192a73"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivChurchDiacon"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Iglesia San José de las Palmas" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

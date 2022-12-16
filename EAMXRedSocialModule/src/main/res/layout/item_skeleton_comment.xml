@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:background="#CDC2C2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewTop" />
+
+
+        <View
+            android:id="@+id/vlabelDummy1"
+            android:layout_width="0dp"
+            android:layout_height="12dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:background="#CDC2C2"
+            app:layout_constraintStart_toEndOf="@+id/view2"
+            app:layout_constraintTop_toBottomOf="@+id/vlabelDummy2"
+            app:layout_constraintWidth_percent="0.15" />
+
+        <View
+            android:id="@+id/vlabelDummy2"
+            android:layout_width="0dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="16dp"
+            android:background="#CDC2C2"
+            app:layout_constraintStart_toEndOf="@+id/view2"
+            app:layout_constraintTop_toTopOf="@+id/view2"
+            app:layout_constraintWidth_percent="0.70" />
+
+        <View
+            android:id="@+id/vlabelDummy3"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:background="#CDC2C2"
+            app:layout_constraintStart_toStartOf="@+id/view2"
+            app:layout_constraintTop_toBottomOf="@+id/view2"
+            app:layout_constraintWidth_percent="0.90" />
+
+        <View
+            android:id="@+id/iv1"
+            android:layout_width="0dp"
+            android:layout_height="12dp"
+            android:layout_marginTop="16dp"
+            android:background="#CDC2C2"
+            app:layout_constraintStart_toStartOf="@+id/vlabelDummy3"
+            app:layout_constraintTop_toBottomOf="@+id/vlabelDummy3"
+            app:layout_constraintWidth_percent="0.25" />
+
+        <ImageView
+            android:id="@+id/iv2"
+            android:layout_width="25dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/ic_hands"
+            app:layout_constraintStart_toEndOf="@+id/iv1"
+            app:layout_constraintTop_toTopOf="@+id/iv1" />
+
+        <View
+            android:id="@+id/iv3"
+            android:layout_width="0dp"
+            android:layout_height="12dp"
+            android:layout_marginStart="24dp"
+            android:background="#CDC2C2"
+            app:layout_constraintStart_toEndOf="@+id/iv2"
+            app:layout_constraintTop_toTopOf="@+id/iv2"
+            app:layout_constraintWidth_percent="0.2" />
+
+        <View
+            android:id="@+id/viewTop"
+            android:layout_width="0dp"
+            android:layout_height=".25dp"
+            android:background="@color/view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

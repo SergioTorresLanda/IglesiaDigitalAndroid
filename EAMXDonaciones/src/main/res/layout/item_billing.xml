@@ -1,0 +1,254 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="mx.arquidiocesis.eamxdonaciones.model.BillingModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvRz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/spro_text_regular"
+                android:lineSpacingExtra="-1sp"
+                android:padding="4dp"
+                android:text="Razón social"
+                android:textColor="#192a73"
+                android:textSize="13sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/tvRzif"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10sp"
+                android:text="@{item.business_Name}"
+                android:textColor="@color/background_modal"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/etRz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ej: Alejandra Lemus Acevedo / EAU S.A de C.V."
+                android:inputType="textCapWords"
+                android:text="@{item.business_Name}" />
+
+            <TextView
+                android:id="@+id/tvRfc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/spro_text_regular"
+                android:lineSpacingExtra="-1sp"
+                android:padding="4dp"
+                android:text="RFC"
+                android:textColor="#192a73"
+                android:textSize="13sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/tvRfcif"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10sp"
+                android:text="@{item.rfc}"
+                android:textColor="@color/background_modal"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/etRfc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:digits="@string/digits_rfc"
+                android:hint="Ej: TALD810516EU2 / EJM951105H32"
+                android:inputType="textCapCharacters"
+                android:maxLength="13"
+                android:maxLines="1"
+                android:text="@{item.rfc}" />
+
+            <TextView
+                android:id="@+id/tvDr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/spro_text_regular"
+                android:lineSpacingExtra="-1sp"
+                android:padding="4dp"
+                android:text="Dirección"
+                android:textColor="#192a73"
+                android:textSize="13sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/tvDrif"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10sp"
+                android:text="@{item.address}"
+                android:textColor="@color/background_modal"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/etDr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:digits="@string/digits_only_directions"
+                android:hint="Ej:  Lago Erie #34"
+                android:text="@{item.address}" />
+
+
+            <TextView
+                android:id="@+id/tvCP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/spro_text_regular"
+                android:lineSpacingExtra="-1sp"
+                android:padding="4dp"
+                android:text="C.P."
+                android:textColor="#192a73"
+                android:textSize="13sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/tvCPif"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10sp"
+                android:text="@{item.zipcode}"
+                android:textColor="@color/background_modal"
+                android:visibility="gone" />
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/etCp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/style_edittext"
+                android:digits="1234567890"
+                android:gravity="center_vertical"
+                android:imeOptions="actionSearch"
+                android:inputType="number"
+                android:textColor="#75787b"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                app:closeIcon="@null"
+                android:maxLength="5"
+                app:iconifiedByDefault="false"
+                app:queryHint="Ej: 11410"
+                app:searchIcon="@null" />
+
+            <TextView
+                android:id="@+id/tvCl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/spro_text_regular"
+                android:lineSpacingExtra="-1sp"
+                android:padding="4dp"
+                android:text="Colonia"
+                android:textColor="#192a73"
+                android:textSize="13sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/tvClif"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="@{item.neighborhood}"
+                android:textColor="@color/background_modal"
+                android:visibility="gone" />
+
+            <Spinner
+                android:id="@+id/etCL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ej: Tacuba"
+                android:inputType="text"
+                android:padding="12sp" />
+
+            <TextView
+                android:id="@+id/tvAc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/spro_text_regular"
+                android:lineSpacingExtra="-1sp"
+                android:padding="4dp"
+                android:text="Alcaldía"
+                android:textColor="#192a73"
+                android:textSize="13sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/tvAcif"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10sp"
+                android:text="@{item.municipality}"
+                android:textColor="@color/background_modal"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/etAc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ej: Miguel Hidalgo"
+                android:text="@{item.municipality}" />
+
+            <TextView
+                android:id="@+id/tvCE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/spro_text_regular"
+                android:lineSpacingExtra="-1sp"
+                android:padding="4dp"
+                android:text="Correo electrónico"
+                android:textColor="#192a73"
+                android:textSize="13sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/tvCEif"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10sp"
+                android:text="@{item.email}"
+                android:textColor="@color/background_modal"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/etCE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ej: correo@correo.com.mx"
+                android:inputType="textEmailAddress"
+                android:text="@{item.email}" />
+
+            <CheckBox
+                android:id="@+id/rbFA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10sp"
+                android:text="Facturación automática"
+                android:textColor="#192a73" />
+        </TableLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

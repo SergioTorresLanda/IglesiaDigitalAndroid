@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="name_field_size">50</integer>
+    <integer name="other_activity_field_size">40</integer>
+    <integer name="surname_field_size">50</integer>
+    <integer name="description_field_size">250</integer>
+    <integer name="email_field_size">60</integer>
+    <integer name="url_stream_field_size">100</integer>
+</resources>

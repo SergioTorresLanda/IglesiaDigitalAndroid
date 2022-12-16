@@ -1,0 +1,342 @@
+<resources xmlns:tools="http://schemas.android.com/tools" xmlns:ns2="http://schemas.android.com/apk/res-auto">
+    <!-- Base application theme. -->
+    <style name="Theme.ArqLoginModule" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryVariant">@color/primaryColor</item>
+        <item name="colorOnPrimary">@color/primaryColor</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="AlertDialogTheme" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="colorSurface">@android:color/transparent</item>
+    </style>
+
+
+    <!--ESTILOS PARA BOTONES-->
+
+    <style name="StyleBtnLogIn" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">@color/primaryColor</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+        <item name="android:textSize">@dimen/size_14</item>
+        <item name="android:textColor">@color/white</item>.
+        <item name="android:paddingBottom">13dp</item>
+        <item name="android:paddingTop">13dp</item>
+        <item name="textAllCaps">false</item>
+        <item name="cornerRadius">8dp</item>
+    </style>
+
+    <style name="StyleBtnContinuar" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">@color/blueColorBtn</item>
+        <item name="cornerRadius">@dimen/corner_radious_20</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+        <item name="android:textSize">@dimen/size_18</item>
+        <item name="android:textColor">@color/white</item>.
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="StyleBtnLoginComoInvitado" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/blueColorBtn</item>
+        <item name="android:textSize">@dimen/size_14</item>
+        <item name="cornerRadius">@dimen/corner_radious_20</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+        <item name="android:gravity">center</item>
+        <item name="android:foreground">?android:selectableItemBackgroundBorderless</item>
+    </style>
+
+    <style name="TestStyleTerminosCondiciones" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/blue_terminos</item>
+        <item name="android:layout_marginBottom">@dimen/margin_bottom_25</item>
+        <item name="android:textSize">@dimen/size_10</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+        <item name="android:gravity">center</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="StyleBtnAceptar" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/blueTxtCodeConfirmacion</item>
+        <item name="android:textSize">@dimen/size_15</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+        <item name="textAllCaps">false</item>
+        <item name="cornerRadius">17dp</item>
+    </style>
+
+    <!--btnCancelar dialog-->
+    <style name="StyleBtnCancelar" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/blueTxtCodeConfirmacion</item>
+        <item name="android:textSize">@dimen/size_16</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+        <item name="backgroundTint">@color/white</item>
+        <item name="textAllCaps">false</item>
+        <item name="cornerRadius">17dp</item>
+    </style>
+
+    <!--btnSoySacerdote-->
+    <style name="StyleBtnSacerdote" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="strokeColor">@color/primaryColor</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="backgroundTint">@color/white</item>
+        <item name="cornerRadius">15dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:textSize">@dimen/size_12</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <!--btnDonacion-->
+    <style name="StyleBtnMakeDonation" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/size_16</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+        <item name="backgroundTint">@color/colorBtnDonation</item>
+        <item name="textAllCaps">false</item>
+        <item name="cornerRadius">17dp</item>
+    </style>
+
+    <!--btnComenzar-->
+    <style name="StyleBtnComenzar" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/size_16</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+        <item name="backgroundTint">@color/colorBtnComenzar</item>
+        <item name="textAllCaps">false</item>
+        <item name="cornerRadius">17dp</item>
+    </style>
+
+    <!--btnSoySacerdote-->
+    <style name="StyleBtnSoySacerdote" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/size_16</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+        <item name="backgroundTint">@color/colorBtnDonation</item>
+        <item name="textAllCaps">false</item>
+        <item name="cornerRadius">22dp</item>
+    </style>
+
+    <!--txt agendar action item-->
+    <style name="StyleTxtAgendarItemClick" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/colorTitlePermission</item>
+        <item name="android:textSize">@dimen/size_14</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+    </style>
+
+    <!--FIN ESTILOS PARA BOTONES-->
+
+
+
+
+    <style name="TestStyleAlContinuartxt" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/gris_terminos</item>
+        <item name="android:textSize">@dimen/size_10</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+
+<!--    app:boxBackgroundColor="@color/white"-->
+<!--    app:boxStrokeColor="@color/primaryColor"-->
+<!--    android:textColorHint="@color/gris_terminos"-->
+
+    <!--Labels en comun-->
+    <style name="StyleTxtGeneric" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/size_16</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:gravity">left</item>
+    </style>
+
+    <!--Edts en comun-->
+    <style name="StyleEdtGeneric" parent="Widget.AppCompat.EditText" >
+        <item name="boxBackgroundColor">@color/white</item>
+        <item name="android:textColorHint">@color/primaryColor</item>
+        <item name="boxStrokeColor">@color/primaryColor</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="hintTextColor">@color/primaryColor</item>
+        <item name="android:textSize">@dimen/size_18</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+    </style>
+
+    <!--edts ingresar codigo confirmacion-->
+    <style name="StyleEdtInsertCode" parent="Widget.AppCompat.EditText" >
+        <item name="android:textColor">@color/grayTextColorCampos</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:inputType">number</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+    </style>
+
+
+    <!--Edts en email register-->
+    <style name="StyleEdtRegister" parent="Widget.AppCompat.EditText" >
+        <item name="android:background">@drawable/shape_background_edt</item>
+        <item name="android:textColor">@color/colorDialogGray</item>
+        <item name="android:textSize">@dimen/size_14</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+        <item name="android:paddingBottom">@dimen/padding_10</item>
+        <item name="android:paddingStart">@dimen/padding_10</item>
+        <item name="android:paddingTop">@dimen/padding_10</item>
+        <item name="android:paddingEnd">@dimen/padding_10</item>
+    </style>
+
+    <!--Edts en buscar-->
+    <style name="StyleEdtBuscar" parent="Widget.AppCompat.EditText" >
+        <item name="android:background">@color/white</item>
+        <item name="android:textColor">@color/colorDialogGray</item>
+        <item name="android:textSize">@dimen/size_16</item>
+        <item name="android:paddingBottom">@dimen/padding_10</item>
+        <item name="android:paddingStart">@dimen/padding_10</item>
+        <item name="android:paddingTop">@dimen/padding_10</item>
+        <item name="android:paddingEnd">@dimen/padding_10</item>
+    </style>
+
+    <!--TXTS-->
+
+    <!--texto de confirmacion code-->
+    <style name="StyleTxtConfirmCode" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/blueTxtCodeConfirmacion</item>
+        <item name="android:textSize">@dimen/size_14</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+    </style>
+
+    <!--txt title Permiso localizacion-->
+    <style name="StyleTitlePermision" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/colorTitlePermission</item>
+        <item name="android:textSize">@dimen/size_20</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!--txt del dialog permisos-->
+    <style name="StyleTxtDialogPermisos" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/size_14</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+        <item name="android:textColor">@color/colorDialogGray</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!--txt address parroquia-->
+    <style name="StyleTxtAddressParroquia" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/colorDialogGray</item>
+        <item name="android:textSize">@dimen/size_12</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+        <item name="android:lineSpacingExtra">3dp</item>
+        <item name="android:gravity">start</item>
+    </style>
+
+    <!--txt title name parroquia-->
+    <style name="StyleTitleNameParroquia" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/colorTitleNameParroquia</item>
+        <item name="android:textSize">@dimen/size_20</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+    </style>
+
+    <!--txt Servicios-->
+    <style name="StyleTxtServicios" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/colorTxtServicios</item>
+        <item name="android:textSize">@dimen/size_20</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+    </style>
+
+    <!--txt Portadapost-->
+    <style name="StyleTxtTituloPost" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textSize">@dimen/size_22</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+    </style>
+
+    <!--txt Localiza iglesia-->
+    <style name="StyleTxtLocalizaIglesia" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/blueTxtCodeConfirmacion</item>
+        <item name="android:textSize">@dimen/size_17</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+    </style>
+
+    <!--txt del historia-->
+    <style name="StyleTxtHistoria" parent="Widget.AppCompat.TextView">
+        <item name="android:lineSpacingExtra">@dimen/line_spacing_extra</item>
+        <item name="android:textColor">@color/colorDialogGray</item>
+        <item name="android:textSize">@dimen/size_14</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+        <item name="android:gravity">start</item>
+    </style>
+
+    <!--txt Subtitles item-->
+    <style name="StyleTxtSubtitleItem" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/blueTxtCodeConfirmacion</item>
+        <item name="android:textSize">@dimen/size_16</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+    </style>
+
+    <!--txt title Register-->
+    <style name="StyleTxtTitleRegister" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textSize">26sp</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+    </style>
+
+    <!--txt Subtitles info general registro-->
+    <style name="StyleTxtInfoGralRegistro" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/blueTxtCodeConfirmacion</item>
+        <item name="android:textSize">@dimen/size_16</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+    </style>
+
+    <!--txt Horario item-->
+    <style name="StyleTxtHorarioItem" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/grayTextColorCampos</item>
+        <item name="android:textSize">@dimen/size_14</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+    </style>
+
+    <!--txt principal-->
+    <style name="StyleTxtPrincipal" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/grayTextColorCampos</item>
+        <item name="android:textSize">@dimen/size_14</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+    </style>
+
+    <!--txt name padre item-->
+    <style name="StyleTxtNamePadreItem" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/colorTxtLlevame</item>
+        <item name="android:textSize">@dimen/size_14</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+    </style>
+
+    <!--txt descripcion noticia item-->
+    <style name="StyleTxtDescrpcionNoticiaItem" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/size_14</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+        <item name="android:lineSpacingExtra">3dp</item>
+    </style>
+
+    <!--txt cantidad oraciones noticia item-->
+    <style name="StyleTxtCantOracionesNoticiaItem" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/cantOraciones</item>
+        <item name="android:textSize">@dimen/size_14</item>
+        <item name="fontFamily">@font/spro_text_regular</item>
+    </style>
+
+    <style name="MyRadioButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">#a0a0a0</item>
+        <item name="colorControlActivated">#192a73</item>
+    </style>
+
+    <style name="MyCustomTab" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">11sp</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+</resources>

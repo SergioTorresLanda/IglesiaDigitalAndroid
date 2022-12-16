@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="mx.arquidiocesis.eamxregistromodule">
+    <application>
+        <activity
+            android:name=".ui.confirm.EAMXConfirmCodeActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.register.EAMXRegisterActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".ui.forgotpaswword.ui.EAMXManagerForgotActivity"  android:screenOrientation="portrait"/>
+    </application>
+</manifest>

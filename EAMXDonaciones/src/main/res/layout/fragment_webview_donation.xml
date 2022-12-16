@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clTimer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvTT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/spro_text_regular"
+                android:lineSpacingExtra="-1sp"
+                android:text="Tiempo restante para completar el pago"
+                android:textColor="@color/ling_color"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTT">
+
+                <TextView
+                    android:id="@+id/tvTH"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/ic_rec_timer"
+                    android:gravity="center"
+                    android:lineSpacingExtra="-5sp"
+                    android:text="00"
+                    android:textColor="#b7b2b2"
+                    android:textSize="42sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/ivSep"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_dos"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvTH"
+                    app:layout_constraintStart_toEndOf="@+id/tvTH"
+                    app:layout_constraintTop_toTopOf="@+id/tvTH" />
+
+                <TextView
+                    android:id="@+id/tvTM"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_rec_timer"
+                    android:gravity="center"
+                    android:lineSpacingExtra="-5sp"
+                    android:text="00"
+                    android:textColor="#b7b2b2"
+                    android:textSize="42sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/ivSep"
+                    app:layout_constraintTop_toTopOf="@+id/tvTH" />
+
+                <ImageView
+                    android:id="@+id/ivSep2"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_dos"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvTH"
+                    app:layout_constraintStart_toEndOf="@+id/tvTM"
+                    app:layout_constraintTop_toTopOf="@+id/tvTH" />
+
+                <TextView
+                    android:id="@+id/tvTS"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_rec_timer"
+                    android:gravity="center"
+                    android:lineSpacingExtra="-5sp"
+                    android:text="00"
+                    android:textColor="#b7b2b2"
+                    android:textSize="42sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/ivSep2"
+                    app:layout_constraintTop_toTopOf="@+id/tvTM" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <WebView
+            android:id="@+id/wvDonation"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clTimer" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

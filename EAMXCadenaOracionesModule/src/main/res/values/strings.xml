@@ -1,0 +1,15 @@
+<resources>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="write_here">Escribe tu causa para orar</string>
+    <string name="to_post">Publicar</string>
+    <string name="create_new">Crea una nueva oración</string>
+    <string name="people">Tu oración y %d más</string>
+    <string name="people_me">Tu oración</string>
+    <string name="playing_more">personas orando</string>
+    <string name="playing_one">persona orando</string>
+    <string name="player">Orar</string>
+    <string name="hour_">Hace %s %s</string>
+    <string name="on_item_click_listener_no_isinitialized">onItemClickListener no inicializado</string>
+    <string name="no_players">Aún no hay cadenas de oración</string>
+</resources>

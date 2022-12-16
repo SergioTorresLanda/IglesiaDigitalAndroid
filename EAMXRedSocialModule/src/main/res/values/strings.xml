@@ -1,0 +1,27 @@
+<resources>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="what_do_you_want_to_share">¿Qué quieres compartir?</string>
+    <string name="arquidiocesis">Arquidiocesis</string>
+    <string name="player">Oración</string>
+    <string name="photo_or_video">Foto/Video</string>
+    <string name="label_share_comments">¿Qué quiero compartir?</string>
+    <string name="enter_content">Ingresa el contenido de la publicación</string>
+    <string name="error_send_multimedia">Ocurrió un error al guardar sus videos/imágenes, intente más tarde</string>
+    <string name="on_item_click_listener_no_isinitialized">onItemClickListener no inicializado</string>
+    <string name="decline">cancelar</string>
+    <string name="accept">Aceptar</string>
+    <string name="img_hands">icono hands</string>
+    <string name="date_news">%s %s</string>
+    <string name="add_more_media">Agregar más</string>
+    <string name="name_news">Padre %s</string>
+    <string name="description_image">Icons back</string>
+    <string name="total_reactions">en total</string>
+    <string name="ready">Listo</string>
+    <string name="edit">Editar</string>
+    <string name="descartar">¿Deseas descartar la \n \n publicación?</string>
+    <string name="crear">Crear una publicación</string>
+    <string name="seguir">Seguir</string>
+    <string name="siguiendo">Siguiendo</string>
+    <string name="dejar_seguir">Dejar de seguir</string>
+</resources>

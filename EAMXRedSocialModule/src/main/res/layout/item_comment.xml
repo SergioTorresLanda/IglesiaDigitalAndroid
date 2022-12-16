@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvPriest"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/avenir_nextlt_pro_regular"
+            app:cardCornerRadius="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgPriest"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:scaleType="fitXY"
+                android:src="@drawable/user"
+                android:textColor="@color/white"
+                android:textSize="@dimen/size_24" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_toEndOf="@+id/cvPriest"
+            android:fontFamily="@font/spro_text_regular"
+            android:textColor="@color/primaryColorDark"
+            android:textSize="@dimen/size_18"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/ivOption"
+            app:layout_constraintStart_toEndOf="@+id/cvPriest"
+            app:layout_constraintTop_toTopOf="@+id/cvPriest"
+            tools:text="Padre Jorge Luis" />
+        <ImageView
+            android:id="@+id/ivOption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_tres_puntos"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txtName" />
+
+
+        <TextView
+            android:id="@+id/txtMessage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/avenir_nextlt_pro_regular"
+            android:textSize="@dimen/size_12"
+            app:layout_constraintEnd_toEndOf="@+id/ivOption"
+            app:layout_constraintStart_toStartOf="@+id/cvPriest"
+            app:layout_constraintTop_toBottomOf="@+id/cvPriest"
+            tools:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna." />
+
+
+        <TextView
+            android:id="@+id/tvFechaReview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/avenir_nextlt_pro_regular"
+            android:gravity="end"
+            android:text="hoy a las 13:56"
+            android:textSize="@dimen/size_12"
+            app:layout_constraintStart_toStartOf="@+id/cvPriest"
+            app:layout_constraintTop_toBottomOf="@+id/txtMessage" />
+
+        <TextView
+            android:id="@+id/tvLike"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:drawableLeft="@drawable/ic_hands"
+            android:drawablePadding="@dimen/size_10"
+            android:fontFamily="@font/avenir_nextlt_pro_regular"
+            android:text="0"
+            app:layout_constraintStart_toEndOf="@+id/tvFechaReview"
+            app:layout_constraintTop_toTopOf="@+id/tvFechaReview" />
+
+        <TextView
+            android:id="@+id/tvResponder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/avenir_nextlt_pro_regular"
+            android:gravity="end"
+            android:text="Responder"
+            android:textSize="@dimen/size_12"
+            app:layout_constraintStart_toEndOf="@+id/tvLike"
+            app:layout_constraintTop_toTopOf="@+id/tvFechaReview" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
