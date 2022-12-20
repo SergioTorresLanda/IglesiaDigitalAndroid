@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.common.*
+import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
 import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
 import mx.arquidiocesis.eamxcommonutils.util.userAllowAccessAsAdmin
 import mx.arquidiocesis.eamxprofilemodule.databinding.FragmentAdminModulesBinding
@@ -79,7 +81,17 @@ class AdminModulesFragment : FragmentBase() {
             }
 
             cvLogOut.setOnClickListener {
-                (requireActivity() as EAMXSignOut).signOut(true)
+
+                MaterialAlertDialogBuilder(requireContext())
+                    .setTitle("Aviso")
+                    .setMessage("Se borrará tu información de acceso.")
+                    .setPositiveButton("Eliminar") { _, _ ->
+                        showLoader()
+                       eamxcu_preferences.saveData("USER_PASSWORD","")
+                        (requireActivity() as EAMXSignOut).signOut(true)
+                    }.setNegativeButton("Cancelar") { _, _ ->
+
+                    }.show()
             }
         }
     }

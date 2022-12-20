@@ -46,6 +46,7 @@ abstract class EAMXBaseActivity : AppCompatActivity(), EAMXBackHandler {
         initDependency()
         initObservers()
         initView()
+
         adjustFontScale(resources.configuration, 1.0f)
     }
 

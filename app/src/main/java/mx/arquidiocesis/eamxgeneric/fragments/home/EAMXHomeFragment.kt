@@ -2,16 +2,12 @@ package mx.arquidiocesis.eamxgeneric.fragments.home
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import mx.arquidiocesis.eamxcommonutils.common.*
 import mx.arquidiocesis.eamxgeneric.R
 import mx.arquidiocesis.eamxgeneric.adapter.ViewPagerAdapter
 import mx.arquidiocesis.eamxgeneric.databinding.EamxHomeFragmentBinding
-import mx.arquidiocesis.eamxgeneric.repository.MainRepository
 import mx.arquidiocesis.eamxgeneric.viewmodel.TokenViewModel
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.wallia.eamxcomunidades.config.Constants
 import kotlinx.android.synthetic.main.eamx_home_fragment.*
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
@@ -22,13 +18,10 @@ import mx.arquidiocesis.eamxlivestreammodule.repository.LiveStreamRepository
 import mx.arquidiocesis.eamxlivestreammodule.viewmodel.LiveVideoViewModel
 import mx.arquidiocesis.eamxprofilemodule.repository.RepositoryProfile
 import mx.arquidiocesis.eamxprofilemodule.viewmodel.EAMXViewModelProfile
-import java.time.LocalDateTime
 import com.wallia.eamxcomunidades.ui.EAMXCommunitiesPrincipalFragment
 import com.wallia.eamxcomunidades.ui.EAMXComunidadesSacerdoteFragment
-import kotlinx.android.synthetic.main.activity_main.*
 import mx.arquidiocesis.eamxgeneric.databinding.ActivityMainBinding
 import mx.arquidiocesis.eamxgeneric.repository.MainRepository2
-import java.util.Calendar
 
 
 class EAMXHomeFragment : EAMXBaseFragment() {

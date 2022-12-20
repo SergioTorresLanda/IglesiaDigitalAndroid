@@ -102,6 +102,7 @@ open class EAMXSplashActivity : AppCompatActivity(), InstallStateUpdatedListener
     }
 
     private fun openSession() {
+
         if (!(eamxcu_preferences.getData(
                 EAMXEnumUser.SESSION.name,
                 EAMXTypeObject.BOOLEAN_OBJECT

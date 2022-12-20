@@ -5,10 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
 import androidx.core.view.get
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -17,9 +14,6 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.eamx_home_fragment.*
-import kotlinx.android.synthetic.main.eamx_toolbar.*
-import kotlinx.android.synthetic.main.eamx_toolbar.view.*
 import mx.arquidiocesis.eamxcommonutils.application.AppMyConstants
 import mx.arquidiocesis.eamxcommonutils.common.*
 import mx.arquidiocesis.eamxcommonutils.util.contrasresult.TakePhoto
@@ -31,7 +25,6 @@ import mx.arquidiocesis.eamxgeneric.R
 import mx.arquidiocesis.eamxgeneric.databinding.ActivityMainBinding
 import mx.arquidiocesis.eamxgeneric.fragments.home.EAMXHomeFragment
 import mx.arquidiocesis.eamxgeneric.model.TokenObj
-import mx.arquidiocesis.eamxgeneric.repository.MainRepository
 import mx.arquidiocesis.eamxgeneric.viewmodel.TokenViewModel
 import mx.arquidiocesis.eamxprofilemodule.ui.EAMXContenedorPrincipalFragment
 import mx.arquidiocesis.eamxprofilemodule.ui.profile.EAMXProfilePrincipalFragment
@@ -44,7 +37,6 @@ import mx.arquidiocesis.sos.ui.SOSProfileFragment
 import mx.arquidiocesis.eamxcommonutils.util.imagen.ImagenProfile
 import mx.arquidiocesis.eamxgeneric.repository.MainRepository2
 import mx.arquidiocesis.eamxredsocialmodule.ui.EAMXRedSocialFragment
-import java.io.File
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -66,7 +58,6 @@ class EAMXHomeActivity : EAMXBaseActivity(),
             TokenViewModel(MainRepository2(context = applicationContext))
         }
     }
-
     lateinit var mBinding: ActivityMainBinding
     lateinit var showDialogDescarte: () -> Boolean
     lateinit var tokenStr: String

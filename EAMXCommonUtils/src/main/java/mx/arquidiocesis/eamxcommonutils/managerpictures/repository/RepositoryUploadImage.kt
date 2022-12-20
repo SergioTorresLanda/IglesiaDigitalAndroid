@@ -11,7 +11,6 @@ import mx.arquidiocesis.eamxcommonutils.managerpictures.viewmodel.ManagerUploadI
 import mx.arquidiocesis.eamxcommonutils.managerpictures.viewmodel.ManagerUploadImageViewModel.Companion.SOURCE_PROFILE
 import mx.arquidiocesis.eamxcommonutils.managerpictures.api.ApiInterface
 import mx.arquidiocesis.eamxcommonutils.managerpictures.config.ValidationCodeImage
-import mx.arquidiocesis.eamxcommonutils.managerpictures.config.WebConfig
 import mx.arquidiocesis.eamxcommonutils.managerpictures.model.ImageRequestModel
 import mx.arquidiocesis.eamxcommonutils.retrofit.build.RetrofitApp
 import mx.arquidiocesis.eamxcommonutils.retrofit.managercall.ManagerCall

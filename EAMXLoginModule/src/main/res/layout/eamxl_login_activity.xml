@@ -1,281 +1,296 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.EAMXLoginActivity">
 
-    <ScrollView
-        android:background="@color/white"
+    <include
+        android:id="@+id/toolbarModelLogin"
+        layout="@layout/eamxr_register_toolbar_model"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    
+
+    <TextView
+        android:id="@+id/textView5"
+        style="@style/StyleTxtTitleRegister"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:letterSpacing="0.01"
+        android:lineSpacingExtra="-1sp"
+        android:text="@string/sign_in_login"
+        android:textColor="#192a73"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarModelLogin" />
+
+    <TextView
+        android:id="@+id/textView15"
+        style="@style/StyleTxtGeneric"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_20"
+        android:layout_marginTop="@dimen/margin_top_40"
+        android:gravity="center"
+        android:text="@string/nice_to_see_you_again"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_20"
+        android:layout_marginTop="@dimen/size_80"
         android:orientation="vertical"
-        tools:context=".ui.EAMXLoginActivity">
+        app:layout_constraintTop_toBottomOf="@+id/textView15">
 
-        <FrameLayout
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:letterSpacing="0.03"
+            android:lineSpacingExtra="0sp"
+            android:text="@string/label_email_phone"
+            android:textColor="#13277c"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etEmail"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:digits="@string/digits_email"
+            android:imeOptions="actionNext"
+            android:inputType="textEmailAddress"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="10sp"
+            android:maxLength="60"
+            android:nextFocusForward="@id/etPassword"
+            android:singleLine="true"
+            android:textColor="#99000000"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+    </LinearLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_20"
+        android:layout_marginTop="64dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:layout_editor_absoluteX="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:letterSpacing="0.03"
+            android:lineSpacingExtra="0sp"
+            android:text="@string/password"
+            android:textColor="#13277c"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/StyleEdtGeneric"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:expandedHintEnabled="false"
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPassword"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:letterSpacing="0.03"
+                android:lineSpacingExtra="0sp"
+                android:singleLine="true"
+                android:textColor="#99000000"
+                android:textSize="18sp"
+                android:textStyle="normal" />
 
-                <include
-                    android:id="@+id/toolbarModelLogin"
-                    layout="@layout/eamxr_login_toolbar_model"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/linearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginHorizontal="@dimen/margin_horizontal_20"
-                    android:layout_marginTop="@dimen/margin_horizontal_20"
-                    android:orientation="vertical"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/toolbarModelLogin">
+    <TextView
+        android:id="@+id/tvForgotPassword"
+        style="@style/StyleBtnModificarNumero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="150dp"
+        android:text="@string/i_forgot_my_password"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/blue_terminos"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
-                    <TextView
-                        style="@style/StyleTxtTitleRegister"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/sign_in_login"
-                        android:textStyle="bold"
-                        android:textSize="24sp"
-                        android:textColor="#192a73"
-                        android:letterSpacing="0.01"
-                        android:lineSpacingExtra="-1sp"
-                        />
+    <Button
+        android:id="@+id/btnIngresar"
+        style="@style/StyleBtnLogIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_20"
+        android:text="@string/login"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-                    <TextView
-                        style="@style/StyleTxtGeneric"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_top_20"
-                        android:gravity="center"
-                        android:text="@string/nice_to_see_you_again"
-                        android:textColor="@color/black" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/lnlNoAccount"
+        android:layout_marginTop="@dimen/margin_top_15"
+        android:layout_height="@dimen/width_20"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginTop="50dp">
+        <View
+            android:layout_width="40dp"
+            android:layout_height="1dp"
+            android:background="@color/gris_terminos" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/label_email_phone"
-                            android:textColor="#13277c"
-                            android:textStyle="bold"
-                            android:textSize="18sp"
-                            android:letterSpacing="0.03"
-                            android:lineSpacingExtra="0sp"
-                            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:gravity="center_horizontal"
+            android:lineSpacingExtra="5sp"
+            android:text="@string/you_do_not_have_an_account_yet"
+            android:textColor="#313131"
+            android:textSize="15sp"
+            android:textStyle="normal" />
 
-                        <EditText
-                            android:id="@+id/etEmail"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:digits="@string/digits_email"
-                            android:imeOptions="actionNext"
-                            android:singleLine="true"
-                            android:maxLength="60"
-                            android:nextFocusForward="@id/etPassword"
-                            android:inputType="textEmailAddress"
-                            android:textStyle="normal"
-                            android:textSize="18sp"
-                            android:textColor="#99000000"
-                            android:letterSpacing="0.01"
-                            android:lineSpacingExtra="10sp"/>
-                    </LinearLayout>
+        <View
+            android:layout_width="40dp"
+            android:layout_height="1dp"
+            android:background="@color/gris_terminos" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/btnLogin"
+        style="@style/StyleBtnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_20"
+        android:gravity="center"
+        android:paddingVertical="12dp"
+        android:text="@string/login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarModelLogin" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginTop="16dp">
+    <Button
+        android:id="@+id/btnRegistrar"
+        style="@style/StyleBtnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_20"
+        android:layout_marginTop="48dp"
+        android:gravity="center"
+        android:paddingVertical="12dp"
+        android:text="@string/register"
+        android:textColor="@color/primaryColor"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+        tools:layout_editor_absoluteX="-16dp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/password"
-                            android:textColor="#13277c"
-                            android:textStyle="bold"
-                            android:textSize="18sp"
-                            android:letterSpacing="0.03"
-                            android:lineSpacingExtra="0sp"
-                            />
+    <LinearLayout
+        android:id="@+id/linearLayoutDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            style="@style/StyleEdtGeneric"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:expandedHintEnabled="false"
-                            app:passwordToggleEnabled="true">
+        <TextView
+            style="@style/StyleTxtAlContinuartxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_40"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/when_using_our_app" />
 
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/etPassword"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="textPassword"
-                                android:imeOptions="actionDone"
-                                android:singleLine="true"
-                                android:textStyle="normal"
-                                android:textSize="18sp"
-                                android:textColor="#99000000"
-                                android:letterSpacing="0.03"
-                                android:lineSpacingExtra="0sp"/>
+        <LinearLayout
+            android:id="@+id/layoutTerminos"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-                        </com.google.android.material.textfield.TextInputLayout>
-                    </LinearLayout>
+            <TextView
+                style="@style/TestStyleTerminosCondiciones"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_and_conditions" />
 
-                    <TextView
-                        android:id="@+id/tvForgotPassword"
-                        style="@style/StyleBtnModificarNumero"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="30dp"
-                        android:text="@string/i_forgot_my_password"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:textColor="@color/blue_terminos"
-                        android:visibility="visible" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="3dp"
+                android:fontFamily="@font/spro_text_regular"
+                android:text="@string/and_ours"
+                android:textColor="@color/gris_terminos"
+                android:textSize="@dimen/size_10" />
 
-                    <Button
-                        android:id="@+id/btnIngresar"
-                        style="@style/StyleBtnLogIn"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_top_20"
-                        android:text="@string/login" />
-                    <TextView
-                        android:id="@+id/tvBiometric"
-                        style="@style/StyleBtnModificarNumero"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="10dp"
-                        android:text="@string/ini_bio"
-                        android:visibility="gone"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:textColor="@color/blue_terminos" />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/width_20"
-                        android:layout_marginTop="@dimen/margin_top_20"
-                        android:gravity="center">
+            <TextView
+                style="@style/TestStyleTerminosCondiciones"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/privacy_policy" />
 
-                        <View
-                            android:layout_width="40dp"
-                            android:layout_height="1dp"
-                            android:background="@color/gris_terminos" />
+        </LinearLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="30dp"
-                            android:text="@string/you_do_not_have_an_account_yet"
-                            android:textStyle="normal"
-                            android:textSize="15sp"
-                            android:textColor="#313131"
-                            android:lineSpacingExtra="5sp"
-                            android:gravity="center_horizontal" />
+        <LinearLayout
+            android:id="@+id/layoutPolitica"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginBottom="20dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-                        <View
-                            android:layout_width="40dp"
-                            android:layout_height="1dp"
-                            android:background="@color/gris_terminos" />
-                    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="3dp"
+                android:fontFamily="@font/spro_text_regular"
+                android:text="@string/meet_here"
+                android:textColor="@color/gris_terminos"
+                android:textSize="@dimen/size_10" />
 
-                    <Button
-                        android:id="@+id/btnRegirtrarme"
-                        style="@style/StyleBtnRegister"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_top_25"
-                        android:paddingVertical="12dp"
-                        android:gravity="center"
-                        android:text="@string/register"
-                        android:textColor="@color/primaryColor" />
+            <TextView
+                style="@style/TestStyleTerminosCondiciones"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/code_of_ethics" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="bottom"
-                        android:orientation="vertical">
+        </LinearLayout>
 
-                        <TextView
-                            style="@style/StyleTxtAlContinuartxt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/margin_top_40"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:text="@string/when_using_our_app" />
+    </LinearLayout>
 
-                        <LinearLayout
-                            android:id="@+id/layoutTerminos"
-                            android:layout_width="match_parent"
-                            android:layout_height="20dp"
-                            android:clickable="true"
-                            android:orientation="horizontal"
-                            android:gravity="center"
-                            android:focusable="true">
-                            <TextView
-                                style="@style/TestStyleTerminosCondiciones"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/terms_and_conditions" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="@dimen/size_10"
-                                android:text="@string/and_ours"
-                                android:layout_marginHorizontal="3dp"
-                                android:fontFamily="@font/spro_text_regular"
-                                android:textColor="@color/gris_terminos"/>
-                            <TextView
-                                style="@style/TestStyleTerminosCondiciones"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/privacy_policy" />
+    <TextView
+        android:id="@+id/tvBiometric"
+        style="@style/StyleBtnModificarNumero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/ini_bio"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/blue_terminos"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/btnIngresar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvForgotPassword" />
 
-                        </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
-                        <LinearLayout
-                            android:id="@+id/layoutPolitica"
-                            android:layout_width="match_parent"
-                            android:layout_height="20dp"
-                            android:orientation="horizontal"
-                            android:gravity="center"
-                            android:clickable="true"
-                            android:layout_marginBottom="20dp"
-                            android:focusable="true">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="@dimen/size_10"
-                                android:text="@string/meet_here"
-                                android:layout_marginHorizontal="3dp"
-                                android:fontFamily="@font/spro_text_regular"
-                                android:textColor="@color/gris_terminos"/>
-                            <TextView
-                                style="@style/TestStyleTerminosCondiciones"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/code_of_ethics" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </FrameLayout>
-    </ScrollView>
-</layout>

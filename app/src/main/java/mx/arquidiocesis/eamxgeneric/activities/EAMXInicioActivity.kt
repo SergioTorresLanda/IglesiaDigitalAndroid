@@ -1,13 +1,11 @@
 package mx.arquidiocesis.eamxgeneric.activities
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
-import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
 import mx.arquidiocesis.eamxcommonutils.model.ViewPagerModel
 import mx.arquidiocesis.eamxgeneric.R
 import mx.arquidiocesis.eamxgeneric.databinding.EamxInicioActivityBinding

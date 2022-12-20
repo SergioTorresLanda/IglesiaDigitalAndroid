@@ -2,10 +2,11 @@ package mx.arquidiocesis.eamxloginmodule.ui
 
 import android.app.Activity
 import android.content.Intent
-import android.net.Uri
-import android.provider.Settings
-import android.util.Log
+import android.graphics.Color
+import android.os.Handler
+import android.os.Looper
 import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
@@ -30,16 +31,16 @@ import mx.arquidiocesis.eamxcommonutils.util.eamxLog
 import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
 import mx.arquidiocesis.eamxcommonutils.util.getViewModel
 import mx.arquidiocesis.eamxcommonutils.util.log
+import mx.arquidiocesis.eamxcommonutils.util.repositoryrefreshtoken.model.EAMXUserLoginRequest
 import mx.arquidiocesis.eamxloginmodule.R
 import mx.arquidiocesis.eamxloginmodule.databinding.EamxlLoginActivityBinding
-import mx.arquidiocesis.eamxcommonutils.util.repositoryrefreshtoken.model.EAMXUserLoginRequest
 import mx.arquidiocesis.eamxprofilemodule.repository.RepositoryProfile
-import mx.arquidiocesis.eamxprofilemodule.ui.admin.binding
 import mx.arquidiocesis.eamxprofilemodule.viewmodel.EAMXViewModelProfile
 import mx.arquidiocesis.eamxregistromodule.ui.confirm.EAMXConfirmCodeActivity
 import mx.arquidiocesis.eamxregistromodule.ui.forgotpaswword.ui.EAMXManagerForgotActivity
 import mx.arquidiocesis.eamxregistromodule.ui.register.EAMXRegisterActivity
 import java.util.concurrent.Executor
+
 
 class EAMXLoginActivity : EAMXBaseActivity() {
 
@@ -49,7 +50,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
     private lateinit var biometricPrompt: BiometricPrompt
     private lateinit var promptInfo: BiometricPrompt.PromptInfo
     private var bio = false
-
+    private var doubleBackToExitPressedOnce = false
     override fun getLayout() = R.layout.eamxl_login_activity
 
     override fun initBinding(view: Int): View {
@@ -222,40 +223,46 @@ class EAMXLoginActivity : EAMXBaseActivity() {
     }
 
     override fun initView() {
+        hideLogin()
+        mBinding.btnRegistrar.setOnClickListener {
+            startActivityForResult(
+                Intent(
+                    this@EAMXLoginActivity,
+                    EAMXRegisterActivity::class.java
+                ), EAMXEnums.CONFIRM_CODE.code
+            )
+        }
+        mBinding.btnLogin.setOnClickListener {
+            showLogin()
+        }
         mBinding.apply {
-
             mBinding.etEmail.setText("")
             mBinding.etPassword.setText("")
             val pass = eamxcu_preferences.getData(
                 EAMXEnumUser.USER_PASSWORD.toString(),
                 EAMXTypeObject.STRING_OBJECT
             ) as String
-            if (!pass.isNullOrEmpty()) {
+            pass.trim()
+            if (pass.isEmpty()){
+                highlightButton(mBinding.btnRegistrar)
+            }else{
+                highlightButton(mBinding.btnLogin)
                 tvBiometric.visibility = View.VISIBLE
                 biometric()
                 tvBiometric.setOnClickListener {
                     biometricPrompt.authenticate(promptInfo)
                 }
+
             }
             btnIngresar.setOnClickListener {
-                if(EAMXInternetAvailability.isNetworkAvailable(this@EAMXLoginActivity)){
+                if (EAMXInternetAvailability.isNetworkAvailable(this@EAMXLoginActivity)) {
+
                     requestSignUp()
-                }else{
+                } else {
                     UtilAlert.Builder()
                         .setMessage("No hay conexión a internet")
                         .build().show(supportFragmentManager, "")
                 }
-            }
-
-            btnRegirtrarme.setOnClickListener {
-                mBinding.etEmail.setText("")
-                mBinding.etPassword.setText("")
-                startActivityForResult(
-                    Intent(
-                        this@EAMXLoginActivity,
-                        EAMXRegisterActivity::class.java
-                    ), EAMXEnums.CONFIRM_CODE.code
-                )
             }
             tvForgotPassword.setOnClickListener {
                 mBinding.etEmail.setText("")
@@ -267,18 +274,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                     ), EAMXEnums.CONFIRM_CODE.code
                 )
             }
-            layoutTerminos.setOnClickListener {
-                val url = "https://arquidiocesismexico.org.mx/aviso-de-privacidad/"
-                val uri = Uri.parse(url)
-                val i = Intent(Intent.ACTION_VIEW, uri)
-                startActivity(i)
-            }
-            layoutPolitica.setOnClickListener {
-                val url = "https://arquidiocesismexico.org.mx/aviso-de-privacidad/"
-                val uri = Uri.parse(url)
-                val i = Intent(Intent.ACTION_VIEW, uri)
-                startActivity(i)
-            }
+            toolbarModelLogin.btnBack.setOnClickListener { finish() }
         }
     }
 
@@ -340,14 +336,67 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                         .show()
                 }
             })
-
         promptInfo = BiometricPrompt.PromptInfo.Builder()
             .setTitle("Inicio de sesión biométrico ")
             .setSubtitle("Inicie sesión con su credencial biométrica")
             .setNegativeButtonText("Usar contraseña de cuenta")
             .build()
-
-
     }
 
+
+    fun hideLogin() {
+        mBinding.apply {
+            linearLayout.visibility = View.GONE
+            linearLayout4.visibility = View.GONE
+            tvForgotPassword.visibility = View.GONE
+            btnIngresar.visibility = View.GONE
+            btnLogin.visibility = View.VISIBLE
+            btnRegistrar.visibility = View.VISIBLE
+            lnlNoAccount.visibility = View.VISIBLE
+            linearLayoutDetails.visibility = View.VISIBLE
+            toolbarModelLogin.btnBack.visibility=View.GONE
+            textView5.setText(R.string.welcome)
+            textView15.setText(R.string.welcome_details)
+            tvBiometric.visibility=View.GONE
+        }
+    }
+
+    fun showLogin() {
+        mBinding.apply {
+            textView5.visibility = View.VISIBLE
+            textView15.visibility = View.VISIBLE
+            linearLayout.visibility = View.VISIBLE
+            linearLayout4.visibility = View.VISIBLE
+            tvForgotPassword.visibility = View.VISIBLE
+            btnIngresar.visibility = View.VISIBLE
+            linearLayoutDetails.visibility = View.GONE
+            btnLogin.visibility = View.GONE
+            lnlNoAccount.visibility = View.GONE
+            toolbarModelLogin.btnBack.visibility=View.VISIBLE
+            toolbarModelLogin.btnBack.setOnClickListener { hideLogin()}
+            btnRegistrar.visibility = View.GONE
+            textView5.setText(R.string.sign_in_login)
+            textView15.setText(R.string.nice_to_see_you_again)
+        }
+    }
+
+    fun highlightButton(button: Button) {
+        button.apply {
+            button.setBackgroundColor(Color.parseColor("#002166"))
+            button.setTextColor(Color.parseColor("#FFFFFFFF"))
+        }
+    }
+
+    override fun onBackPressed() {
+        hideLogin()
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed()
+            return
+        }
+        this.doubleBackToExitPressedOnce = true
+        Toast.makeText(this, R.string.back_pressed, Toast.LENGTH_SHORT).show()
+        Handler(Looper.getMainLooper()).postDelayed(Runnable {
+            doubleBackToExitPressedOnce = false
+        }, 2000)
+    }
 }
