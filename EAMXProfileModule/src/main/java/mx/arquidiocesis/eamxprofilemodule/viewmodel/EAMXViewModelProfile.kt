@@ -1,5 +1,7 @@
 package mx.arquidiocesis.eamxprofilemodule.viewmodel
 
+import android.util.Log
+import android.view.View
 import androidx.core.view.isVisible
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,6 +12,7 @@ import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
 import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
 import mx.arquidiocesis.eamxprofilemodule.adapter.ActivitiesAdapter
+import mx.arquidiocesis.eamxprofilemodule.adapter.ChurchAdapter
 import mx.arquidiocesis.eamxprofilemodule.databinding.EamxProfileInfoFragmentBinding
 import mx.arquidiocesis.eamxprofilemodule.model.*
 import mx.arquidiocesis.eamxprofilemodule.model.update.base.*
@@ -28,7 +31,7 @@ const val MARRIED = "Casado"
 const val WIDOWER = "Viudo"
 const val LAIC_CONSECRATED = "Laico consagrado"
 const val LAIC = "Laico"
-const val RELIGIOUS = "Religioso"
+const val RELIGIOUS = "Religioso (a)"
 const val DIACO = "Diácono (Transitorio o permanente)"
 const val PRIEST = "Sacerdote"
 
@@ -127,7 +130,7 @@ class EAMXViewModelProfile(val repositoryProfile: RepositoryProfile) : ViewModel
             return
         }
 
-        if (!validSpinners(binding, adapter)) {
+        if (!validSpinners(binding, adapter, churchList)) {
             return
         }
 
@@ -347,7 +350,8 @@ class EAMXViewModelProfile(val repositoryProfile: RepositoryProfile) : ViewModel
 
     private fun validSpinners(
         binding: EamxProfileInfoFragmentBinding,
-        adapter: ActivitiesAdapter
+        adapter: ActivitiesAdapter,
+        churchList: List<ChurchAndDescriptionModel>
     ): Boolean {
 
         val typeUserUpdateSelect = binding.spStyleLife.selectedItem
@@ -362,6 +366,23 @@ class EAMXViewModelProfile(val repositoryProfile: RepositoryProfile) : ViewModel
             errorResponse.value = "Falta completar tu estado de vida"
             return false
         }
+        if (binding.rbYes.isChecked && churchList.isNotEmpty()) {
+            for (item in churchList) {
+                if (item.activity.description == SELECT_ITEM) {
+                    errorResponse.value = "Falta completar tu servicio que prestas"
+                    return false
+                }
+            }
+//            val servicesProvides = binding.spServicesChurch.selectedItem as DataWithDescription
+//            Log.d("servicesProvides", servicesProvides.toString())
+//            if ( servicesProvides.description.equals(SELECT_ITEM)) {
+//                errorResponse.value = "Falta completar tu servicio que prestas"
+//                return false
+//            }
+        }
+
+
+
 
         if(binding.spPrefix.isVisible) {
             val prefixSelect = binding.spPrefix.selectedItem as DataWithDescription
