@@ -1,19 +1,21 @@
 package mx.arquidiocesis.eamxmaps
 
 import android.content.Context
-import android.location.Address
+import android.location.Geocoder
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
-import com.google.android.gms.location.LocationServices
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.model.*
+import com.google.android.gms.maps.model.BitmapDescriptor
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.MarkerOptions
 import mx.arquidiocesis.eamxcommonutils.util.log
-import android.location.Geocoder
 import java.util.*
 
 
@@ -24,6 +26,7 @@ class PublicMaps(
 ) :
     Fragment(), OnMapReadyCallback,
     GoogleMap.OnMarkerClickListener, GoogleApiClient.ConnectionCallbacks,
+    GoogleMap.OnMyLocationButtonClickListener,
     GoogleApiClient.OnConnectionFailedListener {
     private lateinit var contextLocal: Context
     val addressMap = MutableLiveData<String>()
@@ -31,6 +34,8 @@ class PublicMaps(
 
     override fun onMapReady(googleMap: GoogleMap?) {
         map.value = googleMap!!
+        map?.value?.isMyLocationEnabled = true
+        map?.value?.setOnMyLocationButtonClickListener(this)
     }
 
     override fun onMarkerClick(p0: Marker?): Boolean {
@@ -48,7 +53,8 @@ class PublicMaps(
     }
 
     @Synchronized
-    public fun buildGoogleApiClient(clientApi: MutableLiveData<GoogleApiClient>, context: Context) {
+    fun buildGoogleApiClient(clientApi: MutableLiveData<GoogleApiClient>, context: Context) {
+    //public fun buildGoogleApiClient(clientApi: MutableLiveData<GoogleApiClient>, context: Context) {
         this.contextLocal = context;
         client = clientApi
         client.value = GoogleApiClient.Builder(this.contextLocal)
@@ -111,5 +117,10 @@ class PublicMaps(
                 lng
             )
         maker.value?.position = centerMark
+    }
+
+    override fun onMyLocationButtonClick(): Boolean {
+        // enableMyLocation()
+        return false
     }
 }

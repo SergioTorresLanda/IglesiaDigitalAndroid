@@ -229,7 +229,7 @@ class EAMXPriestRegisterFragment : FragmentBase() {
             fragment = ViewPagerPrincipal(
                 listOf(
                     ViewPagerModel(
-                        "Gracias padre ${name} has sido registrado como sacerdote y ahora tienes derecho a:",
+                        "Estamos trabajando en la actualización de los datos. Agradecemos su comprensión.", //Gracias padre ${name} has sido registrado como sacerdote y ahora tienes derecho a:
                         BitmapFactory.decodeResource(resources, R.drawable.onbording_registro),
                         2, listOf(
                             "Ver y editar tu perfil",

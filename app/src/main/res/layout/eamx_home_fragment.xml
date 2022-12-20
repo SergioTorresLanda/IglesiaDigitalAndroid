@@ -37,7 +37,7 @@
                         android:orientation="horizontal">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/clRedSocial"
+                            android:id="@+id/clCadenas"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:clickable="true"
@@ -48,13 +48,13 @@
                             tools:visibility="visible">
 
                             <FrameLayout
-                                android:id="@+id/flRedSocial"
+                                android:id="@+id/flCadenaOraciones"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="8dp"
                                 android:layout_marginEnd="10dp"
-                                android:background="@drawable/shape_red_social"
+                                android:background="@drawable/shape_cadena_oracion"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent">
@@ -64,7 +64,7 @@
                                     android:layout_height="@dimen/with_img_30"
                                     android:layout_margin="@dimen/margin_top_20"
                                     android:contentDescription="@string/icono_mi_iglesia"
-                                    android:src="@drawable/ic_new_red_social"
+                                    android:src="@drawable/ic_cadena_oraciones"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
@@ -79,14 +79,14 @@
                                 android:layout_marginTop="8dp"
                                 android:layout_marginEnd="3dp"
                                 android:layout_marginBottom="8dp"
-                                android:text="@string/red_social"
+                                android:text="@string/cadena_de_oraci_n"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/size_11"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/flRedSocial" />
+                                app:layout_constraintTop_toBottomOf="@+id/flCadenaOraciones" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -147,7 +147,7 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/clComunidades"
+                            android:id="@+id/clFormacion"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:clickable="true"
@@ -158,13 +158,13 @@
                             tools:visibility="visible">
 
                             <FrameLayout
-                                android:id="@+id/flComunidades"
+                                android:id="@+id/flBiblioteca"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="8dp"
                                 android:layout_marginEnd="10dp"
-                                android:background="@drawable/shape_comunidades"
+                                android:background="@drawable/shape_formacion"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent">
@@ -174,7 +174,7 @@
                                     android:layout_height="@dimen/with_img_30"
                                     android:layout_margin="@dimen/margin_top_20"
                                     android:contentDescription="@string/icono_mi_iglesia"
-                                    android:src="@drawable/ic_new_comunidades"
+                                    android:src="@drawable/ic_biblioteca"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
@@ -189,68 +189,14 @@
                                 android:layout_marginTop="8dp"
                                 android:layout_marginEnd="3dp"
                                 android:layout_marginBottom="8dp"
-                                android:text="@string/comunidades"
+                                android:text="@string/biblioteca_virtual"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/size_11"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/flComunidades" />
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/clServicios"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:foreground="?attr/selectableItemBackgroundBorderless"
-                            android:visibility="gone"
-                            app:cardCornerRadius="@dimen/corner_radious_19"
-                            tools:visibility="visible">
-
-                            <FrameLayout
-                                android:id="@+id/flServicios"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginTop="8dp"
-                                android:layout_marginEnd="10dp"
-                                android:background="@drawable/shape_servicios"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent">
-
-                                <ImageView
-                                    android:layout_width="@dimen/with_img_30"
-                                    android:layout_height="@dimen/with_img_30"
-                                    android:layout_margin="@dimen/margin_top_20"
-                                    android:contentDescription="@string/icono_mi_iglesia"
-                                    android:src="@drawable/ic_servicios"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-
-                            </FrameLayout>
-
-                            <TextView
-                                style="@style/StyleTxtTitleRegister"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="3dp"
-                                android:layout_marginTop="8dp"
-                                android:layout_marginEnd="3dp"
-                                android:layout_marginBottom="8dp"
-                                android:text="@string/servicios"
-                                android:textAlignment="center"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/size_11"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/flServicios" />
+                                app:layout_constraintTop_toBottomOf="@+id/flBiblioteca" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -309,7 +255,7 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/clFormacion"
+                            android:id="@+id/clServicios"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:clickable="true"
@@ -320,13 +266,13 @@
                             tools:visibility="visible">
 
                             <FrameLayout
-                                android:id="@+id/flBiblioteca"
+                                android:id="@+id/flServicios"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="8dp"
                                 android:layout_marginEnd="10dp"
-                                android:background="@drawable/shape_formacion"
+                                android:background="@drawable/shape_servicios"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent">
@@ -336,7 +282,7 @@
                                     android:layout_height="@dimen/with_img_30"
                                     android:layout_margin="@dimen/margin_top_20"
                                     android:contentDescription="@string/icono_mi_iglesia"
-                                    android:src="@drawable/ic_biblioteca"
+                                    android:src="@drawable/ic_servicios"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
@@ -351,19 +297,19 @@
                                 android:layout_marginTop="8dp"
                                 android:layout_marginEnd="3dp"
                                 android:layout_marginBottom="8dp"
-                                android:text="@string/biblioteca_virtual"
+                                android:text="@string/servicios"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/size_11"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/flBiblioteca" />
+                                app:layout_constraintTop_toBottomOf="@+id/flServicios" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/clCadenas"
+                            android:id="@+id/clRedSocial"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:clickable="true"
@@ -374,13 +320,13 @@
                             tools:visibility="visible">
 
                             <FrameLayout
-                                android:id="@+id/flCadenaOraciones"
+                                android:id="@+id/flRedSocial"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="8dp"
                                 android:layout_marginEnd="10dp"
-                                android:background="@drawable/shape_cadena_oracion"
+                                android:background="@drawable/shape_red_social"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent">
@@ -390,7 +336,7 @@
                                     android:layout_height="@dimen/with_img_30"
                                     android:layout_margin="@dimen/margin_top_20"
                                     android:contentDescription="@string/icono_mi_iglesia"
-                                    android:src="@drawable/ic_cadena_oraciones"
+                                    android:src="@drawable/ic_new_red_social"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
@@ -405,16 +351,71 @@
                                 android:layout_marginTop="8dp"
                                 android:layout_marginEnd="3dp"
                                 android:layout_marginBottom="8dp"
-                                android:text="@string/cadena_de_oraci_n"
+                                android:text="@string/red_social"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/size_11"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/flCadenaOraciones" />
+                                app:layout_constraintTop_toBottomOf="@+id/flRedSocial" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/clComunidades"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?attr/selectableItemBackgroundBorderless"
+                            android:visibility="gone"
+                            app:cardCornerRadius="@dimen/corner_radious_19"
+                            tools:visibility="visible">
+
+                            <FrameLayout
+                                android:id="@+id/flComunidades"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="10dp"
+                                android:background="@drawable/shape_comunidades"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <ImageView
+                                    android:layout_width="@dimen/with_img_30"
+                                    android:layout_height="@dimen/with_img_30"
+                                    android:layout_margin="@dimen/margin_top_20"
+                                    android:contentDescription="@string/icono_mi_iglesia"
+                                    android:src="@drawable/ic_new_comunidades"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                            </FrameLayout>
+
+                            <TextView
+                                style="@style/StyleTxtTitleRegister"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="3dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="3dp"
+                                android:layout_marginBottom="8dp"
+                                android:text="@string/comunidades"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/size_11"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/flComunidades" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
                     </LinearLayout>
                 </HorizontalScrollView>
 
