@@ -123,7 +123,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/style_et"
+                android:background="@color/bacu_gray_light"
                 android:fontFamily="sans-serif-light"
                 android:hint="@string/txt_profile_civil_hint_telephone_number"
                 android:importantForAutofill="no"
@@ -137,6 +137,8 @@
                 android:textColorHint="@color/color_hint_input_text"
                 android:textSize="@dimen/font_size_14"
                 android:textStyle="normal"
+                android:layout_marginEnd="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvGeneralInformation" />
 
@@ -166,7 +168,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="30dp"
-                android:background="@drawable/style_et"
+                android:background="@color/bacu_gray_light"
                 android:fontFamily="sans-serif-light"
                 android:hint="@string/e_mail"
                 android:digits="@string/digits_email"

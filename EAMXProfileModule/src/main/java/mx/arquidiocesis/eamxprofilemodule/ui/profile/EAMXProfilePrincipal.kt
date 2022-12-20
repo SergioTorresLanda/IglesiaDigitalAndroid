@@ -213,7 +213,7 @@ class EAMXProfilePrincipalFragment :
         } else {
             UtilAlert.Builder()
                 .setTitle(getString(R.string.title_dialog_warning))
-                .setMessage("Debes otorgar el permiso para el uso de la cámara o la galería para poder agregar tu imagen de perfil")
+                .setMessage("Debes otorgar el permiso para el uso de la cámara o la galería para poder agregar tu imagen de perfil, además del permiso de fotos y videos")
                 .setTextButtonOk("Ir a la configuración")
                 .setListener {
                     startActivity(

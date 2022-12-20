@@ -3,12 +3,18 @@ package mx.arquidiocesis.eamxprofilemodule.ui.information
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
+import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.gson.Gson
@@ -36,15 +42,17 @@ import mx.arquidiocesis.eamxprofilemodule.model.update.base.ActivityChurchModel
 import mx.arquidiocesis.eamxprofilemodule.model.userdetail.User
 import mx.arquidiocesis.eamxprofilemodule.model.userdetail.toChurchAndDescriptionModel
 import mx.arquidiocesis.eamxprofilemodule.repository.RepositoryProfile
-import mx.arquidiocesis.eamxprofilemodule.ui.profile.*
+import mx.arquidiocesis.eamxprofilemodule.ui.profile.PERMISSION_STORAGE
 import mx.arquidiocesis.eamxprofilemodule.viewmodel.*
 import mx.arquidiocesis.registrosacerdote.view.EAMXPriestRegisterFragment
+
 
 class EAMXProfileInfoFragment : FragmentBase() {
 
     private val TAG_LOADER: String = "EAMXProfileInfoFragment"
 
     private lateinit var binding: EamxProfileInfoFragmentBinding
+//    private val SETTINGS_REQUEST_CODE = 2
 
     lateinit var signOut: EAMXSignOut
 
@@ -504,6 +512,7 @@ class EAMXProfileInfoFragment : FragmentBase() {
     }
 
     private fun initPermission() {
+
         if (UtilValidPermission().validListPermissionsAndBuildRequest(
                 this@EAMXProfileInfoFragment,
                 arrayListOf(
@@ -515,10 +524,14 @@ class EAMXProfileInfoFragment : FragmentBase() {
         ) {
             showLoader()
             viewModelProfile.getStateLife()
+
         } else {
-            toast("Es necesario otorgar el permiso")
+            showLoader()
+            viewModelProfile.getStateLife()
         }
+
     }
+
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -552,6 +565,8 @@ class EAMXProfileInfoFragment : FragmentBase() {
                     viewModelProfile.getStateLife()
                 }
             }
+        }else{
+//            initPermission()
         }
     }
 
@@ -603,7 +618,7 @@ class EAMXProfileInfoFragment : FragmentBase() {
                 activitiesAdapter,
                 idComunnity,
                 diaconoChurchList,
-                churchList
+                churchList,
             ) {
                 if (viewModelProfile.executeUpdateProfile(binding.spStyleLife.selectedItem)) {
                     showLoader()
