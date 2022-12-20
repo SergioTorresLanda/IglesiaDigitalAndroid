@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
@@ -29,8 +30,9 @@ import mx.arquidiocesis.eamxmaps.adapters.CustomInfoWindowGoogleMap
 import mx.arquidiocesis.eamxmaps.databinding.FragmentMapBinding
 import mx.arquidiocesis.eamxmaps.model.IgleciasModel
 import mx.arquidiocesis.eamxmaps.repository.Repository
-import mx.arquidiocesis.eamxmaps.viewmodel.MapViewModel
 import mx.arquidiocesis.eamxmaps.utils.base.FragmentMapBase
+import mx.arquidiocesis.eamxmaps.viewmodel.MapViewModel
+
 
 class MapFragment(
     val isLocation: Boolean = false,
@@ -52,6 +54,7 @@ class MapFragment(
     var map = MutableLiveData<GoogleMap>()
     var maker = MutableLiveData<Marker>()
     var publicMaps = PublicMaps(map, maker)
+    var mapView: View? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -220,6 +223,21 @@ class MapFragment(
 
     fun setMapa() {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+        mapView= mapFragment.view
+
+        // Get the button view
+        // Get the button view
+        val locationButton =
+            (mapView?.findViewById<View>("1".toInt())?.getParent() as View).findViewById<View>("2".toInt())
+        // and next place it, on bottom right (as Google Maps app)
+        // and next place it, on bottom right (as Google Maps app)
+        val layoutParams = locationButton.layoutParams as RelativeLayout.LayoutParams
+        // position on right bottom
+        // position on right bottom
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0)
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE)
+        layoutParams.setMargins(0, 0, 30, 30)
+
         mapFragment.getMapAsync(publicMaps)
     }
 }
