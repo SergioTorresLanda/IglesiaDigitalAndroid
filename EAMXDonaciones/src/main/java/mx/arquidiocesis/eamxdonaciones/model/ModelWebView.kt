@@ -29,7 +29,7 @@ data class ModelWebView(
     @SerializedName("rfc")
     @Expose
     var rfc: String? = null,
-    @SerializedName("business_Name")
+    @SerializedName("business_name")
     @Expose
     var businessName: String? = null,
     @SerializedName("address")
