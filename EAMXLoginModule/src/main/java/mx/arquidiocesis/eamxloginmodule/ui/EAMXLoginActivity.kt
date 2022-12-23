@@ -154,6 +154,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                                 "+52${mBinding.etEmail.text}" else mBinding.etEmail.text.toString()
 
                             UtilAlert.Builder()
+                                .setTitle("Atención")
                                 .setMessage(getString(R.string.your_user_already_exists_confirm_to_login))
                                 .setTextButtonOk("Solicitar código")
                                 .setListener {
@@ -179,6 +180,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                         }
                         else -> {
                             UtilAlert.Builder()
+                                .setTitle("Atención")
                                 .setMessage(response.errorData ?: "Error desconocido")
                                 .build().show(supportFragmentManager, "")
                         }
@@ -215,6 +217,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                 }
                 EAMXStatusValidation.INCORRECT -> {
                     UtilAlert.Builder()
+                        .setTitle("Atención")
                         .setMessage(it.errorMessage)
                         .build().show(supportFragmentManager, "")
                 }
@@ -260,6 +263,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                     requestSignUp()
                 } else {
                     UtilAlert.Builder()
+                        .setTitle("Atención")
                         .setMessage("No hay conexión a internet")
                         .build().show(supportFragmentManager, "")
                 }

@@ -77,9 +77,9 @@
     <string name="message_info_load_fail_code">La información necesaria no fue proporcionada para realizar esta acción.</string>
     <string name="text_password_info">Debe tener mínimo 8 caracteres, 1 mayúscula, 1 número y 1 carácter especial.</string>
     <string name="text_password_confirm_info">Ambas contraseñas deben coincidir.</string>
-    <string name="text_label_counter_inet">No podrás solicitar otro código hasta pasado un minuto.</string>
+    <string name="text_label_counter_inet">No podrás solicitar otro código \nhasta pasado un minuto.</string>
     <string name="message_retry_max">Se alcanzó el número máximo de intentos de ingreso del código, se solicitara uno nuevo.</string>
     <string name="etEmailSendCodeHint">Escribe tu correo aquí...</string>
-    <string name="eamx_resend_warning">No podrás solicitar otro código hasta pasados \n tres minutos</string>
+    <string name="eamx_resend_warning">No podrás solicitar otro código \nhasta pasados tres minutos</string>
     <string name="eamx_resend_error">Tu código no es correcto, por favor intenta de nuevo o solicita uno nuevo</string>
 </resources>

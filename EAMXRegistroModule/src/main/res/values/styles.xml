@@ -34,7 +34,7 @@
         <item name="cornerRadius">8dp</item>
     </style>
 
-    <style name="StyleButtonNormal" parent="Widget.AppCompat.Button">
+    <style name="StyleButtonNormal" parent="Widget.MaterialComponents.Button">
         <item name="android:backgroundTint">@color/primaryColor</item>
         <item name="android:layout_marginBottom">0dp</item>
         <item name="fontFamily">@font/spro_text_regular</item>

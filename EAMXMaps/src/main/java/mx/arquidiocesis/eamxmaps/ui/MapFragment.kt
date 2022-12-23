@@ -32,6 +32,7 @@ import mx.arquidiocesis.eamxmaps.model.IgleciasModel
 import mx.arquidiocesis.eamxmaps.repository.Repository
 import mx.arquidiocesis.eamxmaps.utils.base.FragmentMapBase
 import mx.arquidiocesis.eamxmaps.viewmodel.MapViewModel
+import java.text.Normalizer
 
 
 class MapFragment(
@@ -75,6 +76,10 @@ class MapFragment(
             busqueda = true
             viewModel.getiglesiasList(binding.etBusarMap.text.toString().trimEnd())
         }
+        /*binding.etBusarMap.setOnKeyListener { view, i, keyEvent ->
+            binding.etBusarMap.text =  stripAccents(binding.etBusarMap.text.toString())
+            false
+        }*/
         binding.etBusarMap.onItemClickListener =
             AdapterView.OnItemClickListener { parent, view, position, id ->
                 showLoader()
@@ -239,5 +244,17 @@ class MapFragment(
         layoutParams.setMargins(0, 0, 30, 30)
 
         mapFragment.getMapAsync(publicMaps)
+    }
+
+    private fun stripAccents(s: String): String? {
+        /*Salvamos las ñ*/
+        var s = s
+        s = s.replace('ñ', '\u0001')
+        s = s.replace('Ñ', '\u0002')
+        s = Normalizer.normalize(s, Normalizer.Form.NFD)
+        s = s.replace("[\\p{InCombiningDiacriticalMarks}]".toRegex(), "")
+        /*Volvemos las ñ a la cadena*/s = s.replace('\u0001', 'ñ')
+        s = s.replace('\u0002', 'Ñ')
+        return s
     }
 }
