@@ -46,6 +46,7 @@ const val CAMERA_GALLERY = 10002
 const val PERMISSION_CAMERA = 10004
 const val PERMISSION_GALLERY = 10005
 const val PERMISSION_STORAGE = 10006
+const val PERMISSION_LOCATION = 10007
 
 class EAMXProfilePrincipalFragment :
     EAMXBaseFragment<EAMXProfilePrincipalFragment.NavigationActivity, EamxProfilePrincipalFragmentBinding>(

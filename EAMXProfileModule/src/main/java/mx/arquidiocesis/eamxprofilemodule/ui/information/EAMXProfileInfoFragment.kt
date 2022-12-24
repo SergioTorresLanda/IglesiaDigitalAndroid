@@ -42,6 +42,8 @@ import mx.arquidiocesis.eamxprofilemodule.model.update.base.ActivityChurchModel
 import mx.arquidiocesis.eamxprofilemodule.model.userdetail.User
 import mx.arquidiocesis.eamxprofilemodule.model.userdetail.toChurchAndDescriptionModel
 import mx.arquidiocesis.eamxprofilemodule.repository.RepositoryProfile
+import mx.arquidiocesis.eamxprofilemodule.ui.profile.PERMISSION_CAMERA
+import mx.arquidiocesis.eamxprofilemodule.ui.profile.PERMISSION_LOCATION
 import mx.arquidiocesis.eamxprofilemodule.ui.profile.PERMISSION_STORAGE
 import mx.arquidiocesis.eamxprofilemodule.viewmodel.*
 import mx.arquidiocesis.registrosacerdote.view.EAMXPriestRegisterFragment
@@ -564,22 +566,51 @@ class EAMXProfileInfoFragment : FragmentBase() {
                     showLoader()
                     viewModelProfile.getStateLife()
                 }
+                PERMISSION_LOCATION ->{
+
+                }
             }
         }else{
 //            initPermission()
+            when (requestCode) {
+                PERMISSION_LOCATION ->{
+                    UtilAlert.Builder()
+                        .setTitle(getString(R.string.title_dialog_warning))
+                        .setMessage("Debes otorgar el permiso de ubicación para poder continuar")
+                        .setTextButtonOk("Ir a la configuración")
+                        .setListener {
+                            startActivity(
+                                Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                                    .setData(Uri.parse("package:" + context?.packageName))
+                            )
+                        }
+                        .build()
+                        .show(childFragmentManager, "")
+                }
+            }
+
         }
     }
 
     private fun initButtons() {
         binding.etSearchChurch.setOnClickListener {
-            ChurchesMapFragment(false) { church ->
-                this.addSearchChurch(
-                    ChurchAndDescriptionModel(
-                        church = church,
-                        activity = ActivityChurchModel()
-                    )
+            if (UtilValidPermission().validListPermissionsAndBuildRequest(
+                    this@EAMXProfileInfoFragment, arrayListOf(
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    ), PERMISSION_LOCATION
                 )
-            }.show(childFragmentManager, TAG_LOADER)
+            ){
+                    ChurchesMapFragment(false) { church ->
+                        this.addSearchChurch(
+                            ChurchAndDescriptionModel(
+                                church = church,
+                                activity = ActivityChurchModel()
+                            )
+                        )
+                    }.show(childFragmentManager, TAG_LOADER)
+                }
+
+
         }
         binding.etSearchCommunity.setOnClickListener {
             ChurchesMapFragment(true) { church ->

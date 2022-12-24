@@ -73,4 +73,5 @@
     <color name="golden">#bea978</color>
     <color name="color_hint_input_text">#75787b</color>
     <color name="color_input_text">#000000</color>
+    <color name="color_blue_no_editable">#F5F5F5</color>
 </resources>
