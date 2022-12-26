@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
@@ -48,7 +49,7 @@ class ChurchesMapFragment constructor(
 
     private var ubicacioList: MutableList<MarkerOptions> = mutableListOf()
     private var churchList: MutableList<ChurchModel> = mutableListOf()
-
+    var mapView: View? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,6 +62,20 @@ class ChurchesMapFragment constructor(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+        mapView= mapFragment.view
+
+        // Get the button view
+        // Get the button view
+        val locationButton =
+            (mapView?.findViewById<View>("1".toInt())?.getParent() as View).findViewById<View>("2".toInt())
+        // and next place it, on bottom right (as Google Maps app)
+        // and next place it, on bottom right (as Google Maps app)
+        val layoutParams = locationButton.layoutParams as RelativeLayout.LayoutParams
+        // position on right bottom
+        // position on right bottom
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0)
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE)
+        layoutParams.setMargins(0, 0, 30, 30)
 
         mapFragment.getMapAsync(publicMaps)
         ibBuscarMap.setOnClickListener {
