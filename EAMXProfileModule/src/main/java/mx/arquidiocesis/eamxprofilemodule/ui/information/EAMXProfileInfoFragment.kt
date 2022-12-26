@@ -238,7 +238,7 @@ class EAMXProfileInfoFragment : FragmentBase() {
                             etName.setText(dataUser.name)
                             etFatherSurname.setText(dataUser.first_surname)
                             etMotherSurname.setText(dataUser.second_surname ?: "")
-                            etTelephoneNumber.setText(dataUser.phone_number.replace("+52", ""))
+                            etTelephoneNumber.setText(dataUser.phone_number)
                             etEmail.setText(dataUser.email)
 
                             "Profile user -> set data".log()
