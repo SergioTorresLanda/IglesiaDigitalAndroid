@@ -130,7 +130,7 @@
                 android:inputType="number"
                 android:digits="@string/digits_only_number_phone"
                 android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
-                android:maxLength="10"
+                android:maxLength="13"
                 android:enabled="false"
                 android:padding="@dimen/small_margin_padding"
                 android:textColor="@color/color_input_text"
