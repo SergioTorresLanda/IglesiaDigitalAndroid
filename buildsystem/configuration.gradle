@@ -1,11 +1,9 @@
 ext.configuration = [
         applicationId    : "mx.arquidiocesis.eamxgeneric",
         minSdkVersion    : 23,
-        compileSdkVersion: 30,
-        targetSdkVersion : 30,
+        compileSdkVersion: 31,
+        targetSdkVersion : 31,
         buildToolsVersion: "30.0.3",
         versionName      : "1.12",
-        versionCode      : 28
-
+        versionCode      : 32
 ]
-

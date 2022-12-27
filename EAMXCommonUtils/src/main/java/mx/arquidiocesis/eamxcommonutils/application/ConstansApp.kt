@@ -22,4 +22,7 @@ object ConstansApp {
     external fun appId(): String
     external fun appIdKey(): String
     external fun kwv(): String
+    external fun chSalt(): String
+    external fun chSecretKey(): String
+    external fun chIv(): String
 }

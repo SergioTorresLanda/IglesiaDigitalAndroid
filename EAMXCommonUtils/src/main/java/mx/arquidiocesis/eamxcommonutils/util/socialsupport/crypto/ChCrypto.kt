@@ -7,18 +7,19 @@ import javax.crypto.SecretKeyFactory
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.PBEKeySpec
 import javax.crypto.spec.SecretKeySpec
+import mx.arquidiocesis.eamxcommonutils.application.ConstansApp
 
 object EAMXEncripAES {
 
 //    const val secretKey = "tK5UTui+DPh8lIlBxya5XVsmeDCoUl6vHhdIESMB6sQ="
 //    const val secretKey = "NjE2QzFCNDdCRTMyRDYyNDYxMDVEQjJFMTIzNDU2Nzg=" //lave que me proporcionaron convertida a base 64 mas los 8 digitos
-    const val salt = "QWlGNHNhMTJTQWZ2bGhpV3U=" // base64 decode => AiF4sa12SAfvlhiWu
+    private val salt = ConstansApp.chSalt() // base64 decode => AiF4sa12SAfvlhiWu
 //    const val iv = "bVQzNFNhRkQ1Njc4UUFaWA==" // base64 decode => mT34SaFD5678QAZX
 
-    const val secretKey = "616C1B47BE32D6246105DB2E12345678"
+    private val secretKey = ConstansApp.chSecretKey()
 //    const val iv = "1734df9a3c5fba88d221ca" //funciona pero son 22 caracteres
 //    const val iv = "1734df9a3c5fba88"
-    const val iv = "MTczNGRmOWEzYzVmYmE4OA==" //iv que me proporcionaron comvertido a base 64
+    private val iv = ConstansApp.chIv() //iv que me proporcionaron comvertido a base 64
 
     fun digitRandome(): Int {
         var i = 1
