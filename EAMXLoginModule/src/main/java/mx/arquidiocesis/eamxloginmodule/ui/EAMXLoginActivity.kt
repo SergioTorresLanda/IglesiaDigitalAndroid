@@ -366,10 +366,19 @@ class EAMXLoginActivity : EAMXBaseActivity() {
     }
 
     fun showLogin() {
-        biometric()
-        tvBiometric.setOnClickListener {
-            biometricPrompt.authenticate(promptInfo)
+        val pass = eamxcu_preferences.getData(
+            EAMXEnumUser.USER_PASSWORD.toString(),
+            EAMXTypeObject.STRING_OBJECT
+        ) as String
+        if (pass.isEmpty()){
+
+        }else  {
+            biometric()
+            tvBiometric.setOnClickListener {
+                biometricPrompt.authenticate(promptInfo)
+            }
         }
+
         mBinding.apply {
             textView5.visibility = View.VISIBLE
             textView15.visibility = View.VISIBLE
@@ -385,6 +394,11 @@ class EAMXLoginActivity : EAMXBaseActivity() {
             btnRegistrar.visibility = View.GONE
             textView5.setText(R.string.sign_in_login)
             textView15.setText(R.string.nice_to_see_you_again)
+
+        }
+        if (pass.isEmpty()){
+            mBinding.tvBiometric.visibility = View.GONE
+        }else  {
             tvBiometric.visibility = View.VISIBLE
         }
     }
