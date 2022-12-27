@@ -81,8 +81,8 @@ class AdminModulesFragment : FragmentBase() {
             }
 
             cvLogOut.setOnClickListener {
-
-                MaterialAlertDialogBuilder(requireContext())
+                (requireActivity() as EAMXSignOut).signOut(true)
+                /*MaterialAlertDialogBuilder(requireContext())
                     .setTitle("Aviso")
                     .setMessage("Se borrará tu información de acceso.")
                     .setPositiveButton("Eliminar") { _, _ ->
@@ -92,6 +92,7 @@ class AdminModulesFragment : FragmentBase() {
                     }.setNegativeButton("Cancelar") { _, _ ->
 
                     }.show()
+                */
             }
         }
     }

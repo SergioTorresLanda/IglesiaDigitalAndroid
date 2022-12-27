@@ -12,13 +12,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    
+
 
     <TextView
         android:id="@+id/textView5"
         style="@style/StyleTxtTitleRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top_40"
         android:gravity="center"
         android:letterSpacing="0.01"
         android:lineSpacingExtra="-1sp"
@@ -45,7 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_horizontal_20"
-        android:layout_marginTop="@dimen/size_80"
+        android:layout_marginTop="@dimen/margin_top_40"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/textView15">
 
@@ -73,7 +74,7 @@
             android:singleLine="true"
             android:textColor="#99000000"
             android:textSize="18sp"
-            android:textStyle="normal" />
+            android:textStyle="normal"/>
     </LinearLayout>
 
     <LinearLayout
@@ -81,7 +82,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_horizontal_20"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="@dimen/margin_top_40"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         tools:layout_editor_absoluteX="16dp">
@@ -125,7 +126,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_20"
+        android:layout_marginTop="@dimen/margin_top_40"
         android:text="@string/i_forgot_my_password"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@color/blue_terminos"
@@ -146,7 +148,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:id="@+id/lnlNoAccount"
-        android:layout_marginTop="@dimen/margin_top_15"
+        android:layout_marginTop="@dimen/margin_top_30"
         android:layout_height="@dimen/width_20"
         android:gravity="center"
         app:layout_constraintTop_toBottomOf="@+id/btnLogin">
@@ -191,7 +193,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_horizontal_20"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="80dp"
         android:gravity="center"
         android:paddingVertical="12dp"
         android:text="@string/register"
