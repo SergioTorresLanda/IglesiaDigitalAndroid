@@ -250,14 +250,13 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                 highlightButton(mBinding.btnRegistrar)
             }else{
                 highlightButton(mBinding.btnLogin)
-                tvBiometric.visibility = View.VISIBLE
-                biometric()
-                tvBiometric.setOnClickListener {
-                    biometricPrompt.authenticate(promptInfo)
-                }
+
 
             }
             btnIngresar.setOnClickListener {
+                tvBiometric.visibility = View.VISIBLE
+
+
                 if (EAMXInternetAvailability.isNetworkAvailable(this@EAMXLoginActivity)) {
 
                     requestSignUp()
@@ -349,6 +348,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
 
 
     fun hideLogin() {
+
         mBinding.apply {
             linearLayout.visibility = View.GONE
             linearLayout4.visibility = View.GONE
@@ -366,6 +366,10 @@ class EAMXLoginActivity : EAMXBaseActivity() {
     }
 
     fun showLogin() {
+        biometric()
+        tvBiometric.setOnClickListener {
+            biometricPrompt.authenticate(promptInfo)
+        }
         mBinding.apply {
             textView5.visibility = View.VISIBLE
             textView15.visibility = View.VISIBLE
@@ -381,6 +385,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
             btnRegistrar.visibility = View.GONE
             textView5.setText(R.string.sign_in_login)
             textView15.setText(R.string.nice_to_see_you_again)
+            tvBiometric.visibility = View.VISIBLE
         }
     }
 
