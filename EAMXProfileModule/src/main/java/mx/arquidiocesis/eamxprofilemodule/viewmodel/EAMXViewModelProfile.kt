@@ -152,7 +152,7 @@ class EAMXViewModelProfile(val repositoryProfile: RepositoryProfile) : ViewModel
         val styleUserItem = binding.spStyleLife.selectedItem as DataWithDescriptionCode
         val prefixUserItem = if(binding.spPrefix.selectedItem != null) binding.spPrefix.selectedItem as DataWithDescription else null
         this.interestTopicList = this.getTopicUser(adapter)
-        val numberPhone = "+52${binding.etTelephoneNumber.text}"
+        val numberPhone = "${binding.etTelephoneNumber.text}"
         when (styleUserItem.description) {
             SINGLE, MARRIED, WIDOWER -> {
                 listener()
@@ -338,7 +338,7 @@ class EAMXViewModelProfile(val repositoryProfile: RepositoryProfile) : ViewModel
             mapErrors[binding.etTelephoneNumber.id] = "Falta tu número de celular"
         }
 
-        if (binding.etTelephoneNumber.text.length.minus(10) != 0) {
+        if (binding.etTelephoneNumber.text.length.minus(13) != 0) {
             mapErrors[binding.etTelephoneNumber.id] = "El teléfono debe ser de 10 dígitos"
         }
 
