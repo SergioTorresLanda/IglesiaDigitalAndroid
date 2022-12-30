@@ -5,6 +5,7 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import mx.arquidiocesis.eamxcadenaoracionesmodule.R
@@ -19,7 +20,7 @@ import mx.arquidiocesis.eamxcommonutils.util.toCalendar
 import java.util.*
 
 class EAMXPrayChainAdapter(
-    private val listener: (Int, Boolean) -> Unit
+    private val listener: (Int, Boolean, ProgressBar) -> Unit
 ) : RecyclerView.Adapter<EAMXPrayChainAdapter.CadenaViewHolder>() {
 
     inner class CadenaViewHolder(val binding: ItemCadenaOracionBinding) :
@@ -66,7 +67,7 @@ class EAMXPrayChainAdapter(
                 txtCount.text = "$likes ${root.context.getString(if (likes == 1) R.string.playing_one else R.string.playing_more)}"
                 if (item.praying != 0) ivPray.setImageResource(R.drawable.icono_manos_azul)
                 val onClick = View.OnClickListener {
-                    listener(item.id, item.praying == 0)
+                    listener(item.id, item.praying == 0, pbOracion)
                 }
                 txtPlaying.setOnClickListener(onClick)
                 imPray.setOnClickListener(onClick)

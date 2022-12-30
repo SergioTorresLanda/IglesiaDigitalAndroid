@@ -46,8 +46,9 @@ class EAMXCadenaOracionesFragment : FragmentBase() {
     }
 
     private val adapter: EAMXPrayChainAdapter by lazy {
-        EAMXPrayChainAdapter { first,second ->
-            showLoader()
+        EAMXPrayChainAdapter { first,second, pbOracion ->
+//            showLoader()
+            pbOracion.visibility = View.VISIBLE
 
             val username = eamxcu_preferences.getData(
                 EAMXEnumUser.USER_EMAIL.toString(),
@@ -126,7 +127,7 @@ class EAMXCadenaOracionesFragment : FragmentBase() {
         }
 
         viewModel.prayingResponse.observe(viewLifecycleOwner) {
-            showLoader("LOADER")
+//            showLoader("LOADER")
             viewModel.getPrayers(userId)
         }
 

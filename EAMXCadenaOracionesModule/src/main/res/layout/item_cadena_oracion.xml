@@ -69,6 +69,19 @@
                     app:layout_constraintTop_toBottomOf="@+id/txtName"
                     tools:text="Les pido de se unan en oración por la pronta recuperación de mi primo Jorge Pineda que sufrió un accidente y se encuentra hospitalizado." />
 
+                <ProgressBar
+                    android:id="@+id/pb_oracion"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:indeterminate="true"
+                    android:minHeight="24dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivPray"
+                    app:layout_constraintEnd_toStartOf="@+id/ivPray"
+                    app:layout_constraintStart_toStartOf="@+id/imgUser"
+                    android:indeterminateTint="@android:color/darker_gray"
+                    app:layout_constraintTop_toTopOf="@+id/ivPray" />
+
                 <ImageView
                     android:id="@+id/ivPray"
                     android:layout_width="25dp"
@@ -86,8 +99,8 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:fontFamily="@font/spro_text_regular"
-                    android:textStyle="bold"
                     android:textColor="#75787b"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/ivPray"
                     app:layout_constraintEnd_toStartOf="@+id/txtTimeDate"
                     app:layout_constraintStart_toEndOf="@+id/ivPray"
@@ -116,10 +129,10 @@
                     android:fontFamily="@font/spro_text_regular"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:gravity="end"
-                    android:text="Orar"
                     android:src="@drawable/ic_icon_hands"
-                    android:visibility="gone"
+                    android:text="Orar"
                     android:textStyle="bold"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="@+id/txtDescripcion"
                     app:layout_constraintTop_toBottomOf="@+id/txtDescripcion" />
 

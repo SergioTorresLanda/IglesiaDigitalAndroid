@@ -369,7 +369,7 @@ class EAMXViewModelProfile(val repositoryProfile: RepositoryProfile) : ViewModel
         if (binding.rbYes.isChecked && churchList.isNotEmpty()) {
             for (item in churchList) {
                 if (item.activity.description == SELECT_ITEM) {
-                    errorResponse.value = "Falta completar tu servicio que prestas"
+                    errorResponse.value = "Falta completar el servicio que prestas"
                     return false
                 }
             }
