@@ -181,7 +181,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                         else -> {
                             UtilAlert.Builder()
                                 .setTitle("Atención")
-                                .setMessage(response.errorData ?: "Error desconocido")
+                                .setMessage(getString(R.string.friendly_message))
                                 .build().show(supportFragmentManager, "")
                         }
                     }
@@ -218,6 +218,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                 EAMXStatusValidation.INCORRECT -> {
                     UtilAlert.Builder()
                         .setTitle("Atención")
+                            //
                         .setMessage(it.errorMessage)
                         .build().show(supportFragmentManager, "")
                 }
@@ -263,7 +264,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                 } else {
                     UtilAlert.Builder()
                         .setTitle("Atención")
-                        .setMessage("No hay conexión a internet")
+                        .setMessage(getString(R.string.no_internet_connection))
                         .build().show(supportFragmentManager, "")
                 }
             }

@@ -31,5 +31,6 @@
     <string name="digits_only_letters_password">qwertyuiopasdfghjklñzxcvbnm QWERTYUIOPASDFGHJKLÑZXCVBNMáóíéúÁÉÍÓÚ 0123456789 ._-@</string>
     <string name="digits_email">qwertyuiopasdfghjklñzxcvbnmQWERTYUIOPASDFGHJKLÑZXCVBNM1234567890._-@</string>
     <string name="digits_only_number_phone">0123456789</string>
-
+    <string name="friendly_message">Por el momento el servicio no está disponible, inténtelo más tarde.\n Agradecemos su comprensión.</string>
+    <string name="no_internet_connection">Revisa tu conexión a internet, e intentalo nuevamente.</string>
 </resources>
