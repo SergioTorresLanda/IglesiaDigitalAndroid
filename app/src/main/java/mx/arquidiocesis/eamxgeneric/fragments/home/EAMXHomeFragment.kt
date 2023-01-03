@@ -91,6 +91,7 @@ class EAMXHomeFragment : EAMXBaseFragment() {
         date = dateFormatString()
         getTopics()
         viewModelProfile.getUserDetailAndSaveProfile(true)
+        mBinding.cardLiveEvent.visibility = View.GONE //TODO : (eliminar linea cuando se desee mostrar el live)
     }
 
     companion object {
