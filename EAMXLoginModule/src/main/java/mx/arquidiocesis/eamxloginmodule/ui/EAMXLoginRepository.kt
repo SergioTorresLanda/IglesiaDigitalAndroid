@@ -10,8 +10,21 @@ import mx.arquidiocesis.eamxcommonutils.util.repositoryrefreshtoken.model.UserRe
 import retrofit2.Call
 
 class EAMXLoginRepository {
-    fun callServiceSignIn(request: EAMXUserLoginRequest, observer: Observer<EAMXGenericResponse<UserResponse, String, EAMXUserLoginRequest>>) {
-        val initService: EAMXInitServices<EAMXUserLoginRequest, Call<UserResponse>> = EAMXInitServices()
-        EAMXValidResponse(observer, request, UserResponse::class).validationMethod(initService.postExecuteService(request, AppMyConstants.SIGN_IN_END_POINT))
+    fun callServiceSignIn(
+        request: EAMXUserLoginRequest,
+        observer: Observer<EAMXGenericResponse<UserResponse, String, EAMXUserLoginRequest>>
+    ) {
+        val initService: EAMXInitServices<EAMXUserLoginRequest, Call<UserResponse>> =
+            EAMXInitServices()
+        EAMXValidResponse(
+            observer,
+            request,
+            UserResponse::class
+        ).validationMethod(
+            initService.postExecuteService(
+                request,
+                AppMyConstants.SIGN_IN_END_POINT
+            )
+        )
     }
 }
