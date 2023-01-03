@@ -25,12 +25,12 @@ import mx.arquidiocesis.eamxcommonutils.base.FragmentDialogBase
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
 import mx.arquidiocesis.eamxcommonutils.util.getViewModel
 import mx.arquidiocesis.eamxmaps.PublicMaps
-import mx.arquidiocesis.eamxmaps.model.IgleciasModel
 import mx.arquidiocesis.eamxprofilemodule.R
 import mx.arquidiocesis.eamxprofilemodule.adapter.CustomInfoWindowGoogleMap
 import mx.arquidiocesis.eamxprofilemodule.model.ChurchModel
 import mx.arquidiocesis.eamxprofilemodule.repository.RepositoryProfile
 import mx.arquidiocesis.eamxprofilemodule.viewmodel.MapViewModel
+import java.text.Normalizer
 
 class ChurchesMapFragment constructor(
     val isLaico: Boolean = false,
@@ -40,17 +40,14 @@ class ChurchesMapFragment constructor(
     var maker = MutableLiveData<Marker>()
     var publicMaps = PublicMaps(map, maker)
     private var iniciarEdit = true
-
     private val viewModel: MapViewModel by lazy {
         getViewModel {
             MapViewModel(RepositoryProfile(requireContext()))
         }
     }
-
     private var ubicacioList: MutableList<MarkerOptions> = mutableListOf()
     private var churchList: MutableList<ChurchModel> = mutableListOf()
     var mapView: View? = null
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -62,25 +59,27 @@ class ChurchesMapFragment constructor(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
-        mapView= mapFragment.view
-
-        // Get the button view
+        mapView = mapFragment.view
         // Get the button view
         val locationButton =
-            (mapView?.findViewById<View>("1".toInt())?.getParent() as View).findViewById<View>("2".toInt())
-        // and next place it, on bottom right (as Google Maps app)
+            (mapView?.findViewById<View>("1".toInt())
+                ?.getParent() as View).findViewById<View>("2".toInt())
         // and next place it, on bottom right (as Google Maps app)
         val layoutParams = locationButton.layoutParams as RelativeLayout.LayoutParams
         // position on right bottom
-        // position on right bottom
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0)
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE)
-        layoutParams.setMargins(0, 0, 30, 30)
-
+        layoutParams.setMargins(0, 0, 60, 330)
         mapFragment.getMapAsync(publicMaps)
         ibBuscarMap.setOnClickListener {
             viewModel.getChurchList(etBusarMap.text.toString())
             showLoader()
+        }
+        etBusarMap.setOnKeyListener { view, i, keyEvent ->
+            etBusarMap.setText(stripAccents(etBusarMap.text.toString()))
+            val textLength: Int = etBusarMap.getText().length
+            etBusarMap.setSelection(textLength, textLength)
+            false
         }
         etBusarMap.onItemClickListener =
             AdapterView.OnItemClickListener { parent, view, position, id ->
@@ -109,14 +108,12 @@ class ChurchesMapFragment constructor(
     fun initObservers() {
         viewModel.response.observe(viewLifecycleOwner) {
             val churchTempList = it as MutableList<ChurchModel>
-
-            churchList = if(!isLaico){
+            churchList = if (!isLaico) {
                 val temp = churchTempList.filter { item -> item.category == "CHURCH" }
                 temp.toMutableList()
-            } else{
+            } else {
                 churchTempList
             }
-
             map.value?.clear()
             if (churchList.isNotEmpty()) {
                 val arrayString: MutableList<String> = mutableListOf()
@@ -139,7 +136,11 @@ class ChurchesMapFragment constructor(
                             }
                         }
                     if (iniciarEdit) {
-                        arrayString.add("${igleciasModel.name}\n${igleciasModel.address}")
+                        stripAccents("${igleciasModel.name}\n${igleciasModel.address}").let { it1 ->
+                            arrayString.add(
+                                it1
+                            )
+                        }
                     }
 
                     val markerOptions = MarkerOptions()
@@ -158,12 +159,14 @@ class ChurchesMapFragment constructor(
                     if (igleciasModel.latitude != null && igleciasModel.longitude != null) {
                         val marker = map.value?.addMarker(markerOptions)
                         marker?.tag = igleciasModel
-                       /* map.value?.setOnMarkerClickListener { p0 ->
-                            changeFragment((p0?.tag as ChurchModel))
-                            false
-                        }*/
                         map.value?.setInfoWindowAdapter(CustomInfoWindowGoogleMap(requireContext()))
                         ubicacioList.add(markerOptions)
+                        if (quitarEspacios(stripAccents(igleciasModel.name + igleciasModel.address)) == quitarEspacios(
+                                etBusarMap.text.toString()
+                            )
+                        ) {
+                            marker?.showInfoWindow()
+                        }
                     }
                 }
                 if (iniciarEdit) {
@@ -209,20 +212,16 @@ class ChurchesMapFragment constructor(
     }
 
     private fun changeFragment(church: ChurchModel) {
-        //dismiss()
         UtilAlert.Builder()
             .setTitle(getString(R.string.title_dialog_warning))
-            .setMessage("Se ha seleccionado "+ church.name)
+            .setMessage("Se ha seleccionado " + church.name)
             .setListener {
                 listener(church)
                 dismiss()
             }
             .build()
             .show(childFragmentManager, tag)
-        //listener(church)
-        //requireActivity().onBackPressed()
     }
-
 
     override fun onStart() {
         super.onStart()
@@ -230,5 +229,21 @@ class ChurchesMapFragment constructor(
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.MATCH_PARENT
         )
+    }
+
+    private fun stripAccents(s: String): String {
+        /*Salvamos las ñ*/
+        var s = s
+        s = s.replace('ñ', '\u0001')
+        s = s.replace('Ñ', '\u0002')
+        s = Normalizer.normalize(s, Normalizer.Form.NFD)
+        s = s.replace("[\\p{InCombiningDiacriticalMarks}]".toRegex(), "")
+        /*Volvemos las ñ a la cadena*/s = s.replace('\u0001', 'ñ')
+        s = s.replace('\u0002', 'Ñ')
+        return s
+    }
+
+    private fun quitarEspacios(s: String): String {
+        return s.replace("\\s".toRegex(), "");
     }
 }
