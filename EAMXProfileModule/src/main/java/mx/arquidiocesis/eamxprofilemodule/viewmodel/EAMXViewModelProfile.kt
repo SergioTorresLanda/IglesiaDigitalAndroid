@@ -281,6 +281,19 @@ class EAMXViewModelProfile(val repositoryProfile: RepositoryProfile) : ViewModel
         churchList: List<ChurchAndDescriptionModel>
     ): Boolean {
         val styleLife = styleLifeData as DataWithDescriptionCode
+        if(binding.rbYes.isChecked){
+            if(churchList.isEmpty()){
+                errorResponse.value = "Debe seleccionar una iglesia"
+                return false
+            }
+        }
+
+        if(binding.rbYesC.isChecked ){
+            if(binding.etSearchCommunity.text.toString() == ""){
+                errorResponse.value = "Debe seleccionar una comunidad"
+                return false
+            }
+        }
 
         when (styleLife.description) {
             SINGLE, MARRIED, WIDOWER -> {
@@ -379,6 +392,14 @@ class EAMXViewModelProfile(val repositoryProfile: RepositoryProfile) : ViewModel
 //                errorResponse.value = "Falta completar tu servicio que prestas"
 //                return false
 //            }
+        }
+        if (binding.rbYesC.isChecked && churchList.isNotEmpty()) {
+            for (item in churchList) {
+                if (item.activity.description == SELECT_ITEM) {
+                    errorResponse.value = "Falta completar el servicio que prestas"
+                    return false
+                }
+            }
         }
 
 

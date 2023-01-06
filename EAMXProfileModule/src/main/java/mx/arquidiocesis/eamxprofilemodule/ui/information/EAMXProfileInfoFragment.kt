@@ -292,6 +292,7 @@ class EAMXProfileInfoFragment : FragmentBase() {
                                         binding.rbYesC.isChecked = true
                                         binding.llResponsibleCommunity.visibility = View.VISIBLE
                                         binding.etSearchChurch.visibility = View.GONE
+                                        binding.etSearchCommunity.visibility = View.VISIBLE
                                     }
                                 }
                             }
@@ -415,7 +416,7 @@ class EAMXProfileInfoFragment : FragmentBase() {
     private fun showDataLocal(dataUser: User) {
         dataUser.life_status?.let { data ->
             when (data.name) {
-                SINGLE, MARRIED, WIDOWER, LAIC -> {
+                SINGLE, MARRIED, WIDOWER -> {
                     dataUser.services_provided?.let {
                         rbYes.isChecked = it.isNotEmpty()
                         rbNo.isChecked = it.isEmpty()
@@ -448,6 +449,15 @@ class EAMXProfileInfoFragment : FragmentBase() {
                     }
                 }
                 LAIC -> {
+                    dataUser.services_provided?.let {
+                        rbYes.isChecked = it.isNotEmpty()
+                        rbNo.isChecked = it.isEmpty()
+                        if (it.isNotEmpty()) {
+                            it.forEach {
+                                addSearchChurch(it.toChurchAndDescriptionModel())
+                            }
+                        }
+                    }
                     dataUser.is_provider?.let {
                         binding.apply {
                             if (it != null) {
@@ -619,6 +629,15 @@ class EAMXProfileInfoFragment : FragmentBase() {
                 if (idComunnity == 0) {
                     etSearchCommunity.setText("Registro pendiente")
                 } else {
+//                    this.addSearchChurch(
+//                        ChurchAndDescriptionModel(
+//                            church = church,
+//                            activity = ActivityChurchModel()
+//                        )
+//                    )
+                    llSearchCongragations.visibility = View.VISIBLE
+                    etSearchCongregations.visibility = View.GONE
+                    etPastoralActivity.visibility = View.GONE
                     etSearchCommunity.setText(church.name)
                 }
             }.show(childFragmentManager, TAG_LOADER)

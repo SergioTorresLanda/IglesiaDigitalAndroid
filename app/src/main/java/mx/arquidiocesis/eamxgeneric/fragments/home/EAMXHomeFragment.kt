@@ -189,7 +189,7 @@ class EAMXHomeFragment : EAMXBaseFragment() {
             mBinding.apply {
                 if (response?.data?.User != null) {
                     val user = response.data.User
-                    if (user.profile == Constants.COMMUNITY_RESPONSIBLE) {
+                    if (user.profile == Constants.COMMUNITY_RESPONSIBLE && false) {//TODO Remove false statement
 
                         flComunidades.background =
                             requireContext().getDrawable(R.drawable.shape_mi_iglesia_gold)
