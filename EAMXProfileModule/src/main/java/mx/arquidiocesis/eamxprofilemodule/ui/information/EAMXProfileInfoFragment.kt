@@ -49,6 +49,7 @@ import mx.arquidiocesis.eamxprofilemodule.viewmodel.*
 import mx.arquidiocesis.registrosacerdote.view.EAMXPriestRegisterFragment
 
 
+
 class EAMXProfileInfoFragment : FragmentBase() {
 
     private val TAG_LOADER: String = "EAMXProfileInfoFragment"
@@ -79,6 +80,8 @@ class EAMXProfileInfoFragment : FragmentBase() {
     var prefix: DataWithDescription = DataWithDescription("", 0)
     var styleLife = 0
     var arrayStyleLife: MutableList<DataWithNameCode> = mutableListOf()
+
+    var canSelectService = false
 
     companion object {
         @JvmStatic
@@ -483,6 +486,7 @@ class EAMXProfileInfoFragment : FragmentBase() {
                             }
                         }
                     }
+                    canSelectService = true
                     dataUser.community?.let {
                         binding.apply {
                             if (it.name != null) {
@@ -635,9 +639,12 @@ class EAMXProfileInfoFragment : FragmentBase() {
 //                            activity = ActivityChurchModel()
 //                        )
 //                    )
-                    llSearchCongragations.visibility = View.VISIBLE
-                    etSearchCongregations.visibility = View.GONE
-                    etPastoralActivity.visibility = View.GONE
+                    if (canSelectService){
+                        llSearchCongragations.visibility = View.VISIBLE
+                        etSearchCongregations.visibility = View.GONE
+                        etPastoralActivity.visibility = View.GONE
+                    }
+
                     etSearchCommunity.setText(church.name)
                 }
             }.show(childFragmentManager, TAG_LOADER)
