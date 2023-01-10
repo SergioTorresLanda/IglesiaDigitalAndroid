@@ -145,6 +145,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                         "Error_Data_Login",
                         "${response.errorData.toString() == EAMXErrorResponseEnum.USER_IS_NOT_CONFIRMED.messageError}"
                     )
+                    if (EAMXInternetAvailability.isNetworkAvailable(this@EAMXLoginActivity)) {
 
                     when (response.errorData) {
                         EAMXErrorResponseEnum.USER_IS_NOT_CONFIRMED.messageError,
@@ -185,7 +186,14 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                                 .build().show(supportFragmentManager, "")
                         }
                     }
-                }
+                } else {
+                UtilAlert.Builder()
+                    .setTitle("Atención")
+                    .setMessage(getString(R.string.no_internet_connection))
+                    .build().show(supportFragmentManager, "")
+            }
+
+            }
                 EAMXStatusRequestEnum.NONE -> {
                     hideProgressBarCustom()
                 }
@@ -249,18 +257,16 @@ class EAMXLoginActivity : EAMXBaseActivity() {
             pass.trim()
             if (pass.isEmpty()){
                 highlightButton(mBinding.btnRegistrar)
-            }else{
+            }else {
                 highlightButton(mBinding.btnLogin)
-
-
+                tvBiometric.visibility = View.VISIBLE
+                hideLogin()
             }
             btnIngresar.setOnClickListener {
-                tvBiometric.visibility = View.VISIBLE
-
-
+               // tvBiometric.visibility = View.VISIBLE
                 if (EAMXInternetAvailability.isNetworkAvailable(this@EAMXLoginActivity)) {
-
                     requestSignUp()
+
                 } else {
                     UtilAlert.Builder()
                         .setTitle("Atención")
