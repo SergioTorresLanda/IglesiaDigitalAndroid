@@ -34,7 +34,6 @@ import mx.arquidiocesis.eamxmaps.utils.base.FragmentMapBase
 import mx.arquidiocesis.eamxmaps.viewmodel.MapViewModel
 import java.text.Normalizer
 
-
 class MapFragment(
     val isLocation: Boolean = false,
     val listener: (IgleciasModel, Location?) -> Unit
@@ -70,16 +69,17 @@ class MapFragment(
         isCancelable = true
         showLoader()
         setMapa()
-
         binding.ibBuscarMap.setOnClickListener {
             showLoader()
             busqueda = true
             viewModel.getiglesiasList(binding.etBusarMap.text.toString().trimEnd())
         }
-        /*binding.etBusarMap.setOnKeyListener { view, i, keyEvent ->
-            binding.etBusarMap.text =  stripAccents(binding.etBusarMap.text.toString())
+        binding.etBusarMap.setOnKeyListener { view, i, keyEvent ->
+            binding.etBusarMap.setText(stripAccents(binding.etBusarMap.text.toString()))
+            val textLength: Int = binding.etBusarMap.getText().length
+            binding.etBusarMap.setSelection(textLength, textLength)
             false
-        }*/
+        }
         binding.etBusarMap.onItemClickListener =
             AdapterView.OnItemClickListener { parent, view, position, id ->
                 showLoader()
@@ -107,9 +107,12 @@ class MapFragment(
                                 busqueda = false
                             }
                             if (iniciarEdit) {
-                                arrayString.add("${igleciasModel.name}\n${igleciasModel.address}")
+                                stripAccents("${igleciasModel.name}\n${igleciasModel.address}").let { it1 ->
+                                    arrayString.add(
+                                        it1
+                                    )
+                                }
                             }
-
                             val centerMark =
                                 LatLng(
                                     igleciasModel.latitude.toDouble(),
@@ -129,7 +132,7 @@ class MapFragment(
                             markerOptions.icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
                             val marker = map.value?.addMarker(markerOptions)
                             marker?.tag = igleciasModel
-                           FunImagen().descargaImagen(
+                            FunImagen().descargaImagen(
                                 requireContext(),
                                 igleciasModel.imageUrl,
                                 igleciasModel.id.toString()
@@ -137,9 +140,7 @@ class MapFragment(
                             map.value?.setInfoWindowAdapter(CustomInfoWindowGoogleMap(requireContext()))
                         }
                     }
-
                 }
-
                 if (iniciarEdit) {
                     var adapter = ArrayAdapter(
                         requireContext(),
@@ -168,10 +169,6 @@ class MapFragment(
             hideLoader()
         }
         map.observe(viewLifecycleOwner) {
-            /*  if (location != null) {
-                  moveMap(location.latitude, location.longitude)
-              } else {
-              }*/
             if (first) {
                 moveMap(19.362028, -99.166414)
                 viewModel.getiglesiasList()
@@ -228,25 +225,21 @@ class MapFragment(
 
     fun setMapa() {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
-        mapView= mapFragment.view
-
-        // Get the button view
+        mapView = mapFragment.view
         // Get the button view
         val locationButton =
-            (mapView?.findViewById<View>("1".toInt())?.getParent() as View).findViewById<View>("2".toInt())
-        // and next place it, on bottom right (as Google Maps app)
+            (mapView?.findViewById<View>("1".toInt())
+                ?.getParent() as View).findViewById<View>("2".toInt())
         // and next place it, on bottom right (as Google Maps app)
         val layoutParams = locationButton.layoutParams as RelativeLayout.LayoutParams
         // position on right bottom
-        // position on right bottom
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0)
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE)
-        layoutParams.setMargins(0, 0, 30, 30)
-
+        layoutParams.setMargins(0, 0, 50, 330)
         mapFragment.getMapAsync(publicMaps)
     }
 
-    private fun stripAccents(s: String): String? {
+    private fun stripAccents(s: String): String {
         /*Salvamos las ñ*/
         var s = s
         s = s.replace('ñ', '\u0001')

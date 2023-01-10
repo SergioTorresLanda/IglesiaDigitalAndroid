@@ -3,7 +3,6 @@ package mx.arquidiocesis.servicios.ui
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -12,8 +11,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.view.forEach
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.item_schedule_hour.view.*
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
@@ -24,7 +21,6 @@ import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert.Companion.ACTIO
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert.Companion.ACTION_CLOSE
 import mx.arquidiocesis.eamxcommonutils.util.*
 import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
-
 import mx.arquidiocesis.eamxdonaciones.congig.WebConfig
 import mx.arquidiocesis.eamxdonaciones.model.ModelWebView
 import mx.arquidiocesis.eamxdonaciones.utils.toNumber
@@ -37,7 +33,6 @@ import mx.arquidiocesis.servicios.model.*
 import mx.arquidiocesis.servicios.repository.Repository
 import mx.arquidiocesis.servicios.viewModel.ServiciosViewModel
 import java.net.URLEncoder
-
 
 class IntentionScheduleHourFragment : FragmentBase() {
     private lateinit var day: String
@@ -56,18 +51,17 @@ class IntentionScheduleHourFragment : FragmentBase() {
     var locationId: Int = 0
     var schedule: Schedule? = null
     private var userId: Int = 0
-
     var dayInt: Int = 0
     var monthInt: Int = 0
     var yearInt: Int = 0
-
     var itemSelected = 0;
     lateinit var intentions: List<Intention>
 
     //Para quien es la intension
     val options: ArrayList<String> = ArrayList()
     private var amount: String = ""
-    var mentionInformation:String =""
+    var mentionInformation: String = ""
+
     companion object {
         fun newInstance(
             locationId: Int,
@@ -98,30 +92,22 @@ class IntentionScheduleHourFragment : FragmentBase() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         options.clear()
         options.add(0, "Descripción")
-
         userId = eamxcu_preferences.getData(
             EAMXEnumUser.USER_ID.name,
             EAMXTypeObject.INT_OBJECT
         ) as Int
-
         scheduleAdapter = ScheduleAdapter {
             schedule = schedules[it]
         }
         initObservers()
         showLoader()
-
         binding.rvSchedules.adapter = scheduleAdapter
-
         viewModel.getMassesSchedule(locationId, "MASSES")
         viewModel.getIntentions()
-
         binding.tvDate.text = date
-
         binding.btnFinish.setOnClickListener {
-
             if (itemSelected != 0) {
                 if (binding.etDescription.text.isNotEmpty() &&
                     EAMXEditText.validaMin(binding.etDescription, 0)
@@ -129,30 +115,15 @@ class IntentionScheduleHourFragment : FragmentBase() {
                     binding.etDescription.error = null
                     schedule?.let {
                         if (validaMonto()) {
-                            /*showLoader()
-                            viewModel.sendMention(
-                                MentionRequestPost(
-                                    binding.etDescription.text.toString(),
-                                    "MENTION",
-                                    locationId,
-                                    "${yearInt}-${monthInt + 1}-${dayInt}",
-                                    it.hour_start,
-                                    intentions[itemSelected - 1].id,
-                                    binding.etName.text.toString()
-                                )
-                            )
-                            hideLoader()*/
-
-                            mentionInformation=  binding.etDescription.text.toString()+"#"+
-                                    "MENTION"+"#"+
-                                    locationId+"#"+
-                                    "${yearInt}-${monthInt + 1}-${dayInt}"+"#"+
-                                    it.hour_start+"#"+
-                                    intentions[itemSelected - 1].id+"#"+
+                            mentionInformation = binding.etDescription.text.toString() + "#" +
+                                    "MENTION" + "#" +
+                                    locationId + "#" +
+                                    "${yearInt}-${monthInt + 1}-${dayInt}" + "#" +
+                                    it.hour_start + "#" +
+                                    intentions[itemSelected - 1].id + "#" +
                                     binding.etName.text.toString()
                             changeFragment(setLink())
                         }
-                        //initMentionObserver()
                     } ?: run {
                         UtilAlert.Builder()
                             .setIsCancel(false)
@@ -169,7 +140,6 @@ class IntentionScheduleHourFragment : FragmentBase() {
                         .build()
                         .show(childFragmentManager, "")
                     hideLoader()
-                    //binding.etDescription.error = "Campo obligatorio"
                 }
             } else {
                 UtilAlert
@@ -180,17 +150,7 @@ class IntentionScheduleHourFragment : FragmentBase() {
                     .show(childFragmentManager, "")
                 hideLoader()
             }
-
         }
-
-        /*binding.btnDonate.setOnClickListener {
-            EAMXPaymentFragment(this, mx.arquidiocesis.servicios.R.id.frame) {
-
-            }.show(
-                childFragmentManager,
-                ""
-            )
-        }*/
         binding.spIntenciones.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 try {
@@ -210,27 +170,10 @@ class IntentionScheduleHourFragment : FragmentBase() {
                 print("")
             }
         }
-
         setSpiner()
     }
 
-    private fun initMentionObserver() {
-        viewModel.mentionResponse.observe(viewLifecycleOwner) {
-            hideLoader()
-            UtilAlert.Builder()
-                .setTitle("Aviso")
-                .setMessage("Tu mención se envío correctamente.")
-                .build()
-                .show(childFragmentManager, "")
-
-            //binding.btnDonate.visibility = View.VISIBLE
-            //binding.btnFinish.visibility = View.GONE
-
-        }
-    }
-
     fun initObservers() {
-
         viewModel.errorResponseExit.observe(viewLifecycleOwner) {
             hideLoader()
             UtilAlert.Builder()
@@ -241,8 +184,6 @@ class IntentionScheduleHourFragment : FragmentBase() {
                 }
                 .build().show(childFragmentManager, "")
         }
-
-
         viewModel.massesScheduleResponse.observe(viewLifecycleOwner) {
             hideLoader()
             if (it == null) return@observe
@@ -255,6 +196,23 @@ class IntentionScheduleHourFragment : FragmentBase() {
                 if (schedules.size == 1) {
                     scheduleAdapter.selectedPosition = 0
                     schedule = schedules[0]
+                }
+                if (schedules.size == 0) {
+                    UtilAlert.Builder()
+                        .setTitle("Aviso")
+                        .setMessage("No se cuenta con horarios disponibles.")
+                        .setIsCancel(false)
+                        .setTextButtonOk(getString(R.string.aceptar))
+                        .setListener {
+                            when (it) {
+                                ACTION_ACCEPT -> {
+                                    back()
+                                }
+                                ACTION_CLOSE -> back()
+                            }
+                        }
+                        .build()
+                        .show(childFragmentManager, "")
                 }
             } else {
                 UtilAlert.Builder()
@@ -274,7 +232,6 @@ class IntentionScheduleHourFragment : FragmentBase() {
                     .show(childFragmentManager, "")
             }
         }
-
         viewModel.errorResponse.observe(viewLifecycleOwner) {
             hideLoader()
             UtilAlert.Builder()
@@ -282,17 +239,13 @@ class IntentionScheduleHourFragment : FragmentBase() {
                 .setMessage(it)
                 .build().show(childFragmentManager, "")
         }
-
         viewModel.intentionsResponse.observe(viewLifecycleOwner) {
-
             intentions = it
-
             it.forEach {
                 it.name?.let { intention ->
                     options.add(intention)
                 }
             }
-
             binding.spIntenciones.apply {
                 adapter =
                     object :
@@ -364,9 +317,7 @@ class IntentionScheduleHourFragment : FragmentBase() {
     fun validaMonto(): Boolean {
         val valida = true
         binding.apply {
-
             if (customSpinner.spMonto.selectedItemPosition <= 0) {
-                //error("Seleccione un monto.")
                 UtilAlert.Builder()
                     .setIsCancel(false)
                     .setTitle("Aviso")
@@ -377,7 +328,6 @@ class IntentionScheduleHourFragment : FragmentBase() {
             } else if (customSpinner.spMonto.selectedItemPosition == 9 && customSpinner.etMonto.text.toString()
                     .isEmpty()
             ) {
-                //error("Seleccione un monto.")
                 UtilAlert.Builder()
                     .setTitle("Aviso")
                     .setMessage("Seleccione un monto.")
@@ -389,7 +339,6 @@ class IntentionScheduleHourFragment : FragmentBase() {
             if (customSpinner.spMonto.selectedItemPosition == 9) {
                 try {
                     if (customSpinner.etMonto.text.toString().toNumber() < 10.00) {
-                        //error("¡Gracias! Desafortunadamente no podemos recibir ofrendas menores a $10.00 pesos.")
                         UtilAlert.Builder()
                             .setIsCancel(false)
                             .setTitle("Aviso")
@@ -399,7 +348,6 @@ class IntentionScheduleHourFragment : FragmentBase() {
                         return false
                     }
                     if (customSpinner.etMonto.text.toString().toNumber() > 10000.00) {
-                        //error("No es posible recibir ofrendas superiores a $10,000.00 pesos. Cualquier duda favor de comunicarte a contacto@miofrenda.mx")
                         UtilAlert.Builder()
                             .setIsCancel(false)
                             .setTitle("Aviso")
@@ -409,7 +357,6 @@ class IntentionScheduleHourFragment : FragmentBase() {
                         return false
                     }
                 } catch (e: Error) {
-                    //error("Seleccione un monto válido.")
                     UtilAlert.Builder()
                         .setIsCancel(false)
                         .setTitle("Aviso")

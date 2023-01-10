@@ -49,6 +49,7 @@ import mx.arquidiocesis.eamxprofilemodule.viewmodel.*
 import mx.arquidiocesis.registrosacerdote.view.EAMXPriestRegisterFragment
 
 
+
 class EAMXProfileInfoFragment : FragmentBase() {
 
     private val TAG_LOADER: String = "EAMXProfileInfoFragment"
@@ -79,6 +80,8 @@ class EAMXProfileInfoFragment : FragmentBase() {
     var prefix: DataWithDescription = DataWithDescription("", 0)
     var styleLife = 0
     var arrayStyleLife: MutableList<DataWithNameCode> = mutableListOf()
+
+    var canSelectService = false
 
     companion object {
         @JvmStatic
@@ -292,6 +295,7 @@ class EAMXProfileInfoFragment : FragmentBase() {
                                         binding.rbYesC.isChecked = true
                                         binding.llResponsibleCommunity.visibility = View.VISIBLE
                                         binding.etSearchChurch.visibility = View.GONE
+                                        binding.etSearchCommunity.visibility = View.VISIBLE
                                     }
                                 }
                             }
@@ -415,7 +419,7 @@ class EAMXProfileInfoFragment : FragmentBase() {
     private fun showDataLocal(dataUser: User) {
         dataUser.life_status?.let { data ->
             when (data.name) {
-                SINGLE, MARRIED, WIDOWER, LAIC -> {
+                SINGLE, MARRIED, WIDOWER -> {
                     dataUser.services_provided?.let {
                         rbYes.isChecked = it.isNotEmpty()
                         rbNo.isChecked = it.isEmpty()
@@ -448,6 +452,15 @@ class EAMXProfileInfoFragment : FragmentBase() {
                     }
                 }
                 LAIC -> {
+                    dataUser.services_provided?.let {
+                        rbYes.isChecked = it.isNotEmpty()
+                        rbNo.isChecked = it.isEmpty()
+                        if (it.isNotEmpty()) {
+                            it.forEach {
+                                addSearchChurch(it.toChurchAndDescriptionModel())
+                            }
+                        }
+                    }
                     dataUser.is_provider?.let {
                         binding.apply {
                             if (it != null) {
@@ -473,6 +486,7 @@ class EAMXProfileInfoFragment : FragmentBase() {
                             }
                         }
                     }
+                    canSelectService = true
                     dataUser.community?.let {
                         binding.apply {
                             if (it.name != null) {
@@ -619,6 +633,18 @@ class EAMXProfileInfoFragment : FragmentBase() {
                 if (idComunnity == 0) {
                     etSearchCommunity.setText("Registro pendiente")
                 } else {
+//                    this.addSearchChurch(
+//                        ChurchAndDescriptionModel(
+//                            church = church,
+//                            activity = ActivityChurchModel()
+//                        )
+//                    )
+                    if (canSelectService){
+                        llSearchCongragations.visibility = View.VISIBLE
+                        etSearchCongregations.visibility = View.GONE
+                        etPastoralActivity.visibility = View.GONE
+                    }
+
                     etSearchCommunity.setText(church.name)
                 }
             }.show(childFragmentManager, TAG_LOADER)

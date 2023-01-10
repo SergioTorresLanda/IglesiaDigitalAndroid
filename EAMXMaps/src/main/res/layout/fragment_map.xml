@@ -2,15 +2,18 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ctMisas"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <fragment
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:visibility="visible"
             tools:context=".ui.MapFragment" />
 
         <androidx.cardview.widget.CardView
@@ -33,14 +36,12 @@
 
                 <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                     android:id="@+id/etBusarMap"
-                    android:inputType="text"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:backgroundTint="#00FFFFFF"
                     android:gravity="center_vertical"
-                    android:textSize="@dimen/size_10"
                     android:hint="Buscar una iglesia"
                     android:maxLines="1"
                     android:singleLine="true"
@@ -61,7 +62,5 @@
                     app:layout_constraintTop_toTopOf="@+id/etBusarMap" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

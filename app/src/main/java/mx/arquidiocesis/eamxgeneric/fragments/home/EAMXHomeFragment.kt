@@ -259,7 +259,7 @@ class EAMXHomeFragment : EAMXBaseFragment() {
                             eamxcu_preferences.saveData(EAMXEnumUser.USER_COMMUNITY_ID.name, 0)
                             eamxcu_preferences.saveData(EAMXEnumUser.USER_COMMUNITY_STATUS.name, "")
                             eamxcu_preferences.saveData(EAMXEnumUser.CHURCH.name, 0)
-                            if (isFirstTime) {
+                            if (isFirstTime && false) { //TODO : Remove false statement
 
                                 eamxBackHandler.changeFragment(
                                     EAMXCommunitiesPrincipalFragment.newInstance(
@@ -274,6 +274,15 @@ class EAMXHomeFragment : EAMXBaseFragment() {
                                 FragmentLayoutMain.visibility = View.VISIBLE
                                 horizontalScrollView.visibility = View.GONE
                                 btnApoyar.visibility = View.GONE
+                            }
+                            if (existSaint) {
+                                cvSaint.visibility = View.VISIBLE
+                            }
+                            if (existRelease) {
+                                cvSuggestions.visibility = View.VISIBLE
+                            }
+                            if (existSuggestion) {
+                                cvNews.visibility = View.VISIBLE
                             }
                         }
                     } else {
