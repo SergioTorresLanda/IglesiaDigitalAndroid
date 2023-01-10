@@ -3,6 +3,9 @@ package mx.arquidiocesis.eamxprofilemodule.ui.information
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -15,6 +18,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.gson.Gson
@@ -606,13 +610,17 @@ class EAMXProfileInfoFragment : FragmentBase() {
         }
     }
 
+    private fun chechPermissions(): Boolean {
+        return UtilValidPermission().validListPermissionsAndBuildRequest(
+            this@EAMXProfileInfoFragment, arrayListOf(
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ), PERMISSION_LOCATION
+        )
+    }
+
     private fun initButtons() {
         binding.etSearchChurch.setOnClickListener {
-            if (UtilValidPermission().validListPermissionsAndBuildRequest(
-                    this@EAMXProfileInfoFragment, arrayListOf(
-                        Manifest.permission.ACCESS_FINE_LOCATION
-                    ), PERMISSION_LOCATION
-                )
+            if (chechPermissions()
             ){
                     ChurchesMapFragment(false) { church ->
                         this.addSearchChurch(
@@ -627,27 +635,30 @@ class EAMXProfileInfoFragment : FragmentBase() {
 
         }
         binding.etSearchCommunity.setOnClickListener {
-            ChurchesMapFragment(true) { church ->
-                viewModelProfile.congregationItem = null
-                idComunnity = church.id
-                if (idComunnity == 0) {
-                    etSearchCommunity.setText("Registro pendiente")
-                } else {
+            if(chechPermissions()){
+                ChurchesMapFragment(true) { church ->
+                    viewModelProfile.congregationItem = null
+                    idComunnity = church.id
+                    if (idComunnity == 0) {
+                        etSearchCommunity.setText("Registro pendiente")
+                    } else {
 //                    this.addSearchChurch(
 //                        ChurchAndDescriptionModel(
 //                            church = church,
 //                            activity = ActivityChurchModel()
 //                        )
 //                    )
-                    if (canSelectService){
-                        llSearchCongragations.visibility = View.VISIBLE
-                        etSearchCongregations.visibility = View.GONE
-                        etPastoralActivity.visibility = View.GONE
-                    }
+                        if (canSelectService){
+                            llSearchCongragations.visibility = View.VISIBLE
+                            etSearchCongregations.visibility = View.GONE
+                            etPastoralActivity.visibility = View.GONE
+                        }
 
-                    etSearchCommunity.setText(church.name)
-                }
-            }.show(childFragmentManager, TAG_LOADER)
+                        etSearchCommunity.setText(church.name)
+                    }
+                }.show(childFragmentManager, TAG_LOADER)
+            }
+
         }
         binding.etSearchCongregations.setOnClickListener {
 

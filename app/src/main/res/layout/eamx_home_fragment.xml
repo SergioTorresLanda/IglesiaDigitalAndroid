@@ -634,7 +634,7 @@
                             android:layout_marginTop="16dp"
                             android:layout_marginBottom="8dp"
                             android:lineSpacingExtra="-1sp"
-                            android:text="Desde la fé"
+                            android:text="Desde la fe"
                             android:textColor="#192a73"
                             android:textSize="13sp"
                             android:textStyle="bold"
