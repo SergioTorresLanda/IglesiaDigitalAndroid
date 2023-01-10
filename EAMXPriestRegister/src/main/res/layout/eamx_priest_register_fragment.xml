@@ -484,6 +484,7 @@
                 android:backgroundTint="@color/btn_background_color"
                 android:text="@string/txt_registry_priest_save"
                 app:cornerRadius="@dimen/corner_radius_button"
+                android:textAllCaps="false"
                 android:textColor="@color/text_button_color"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

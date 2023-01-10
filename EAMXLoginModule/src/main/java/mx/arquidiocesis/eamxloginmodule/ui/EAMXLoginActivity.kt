@@ -257,18 +257,16 @@ class EAMXLoginActivity : EAMXBaseActivity() {
             pass.trim()
             if (pass.isEmpty()){
                 highlightButton(mBinding.btnRegistrar)
-            }else{
+            }else {
                 highlightButton(mBinding.btnLogin)
-
-
+                tvBiometric.visibility = View.VISIBLE
+                hideLogin()
             }
             btnIngresar.setOnClickListener {
-                tvBiometric.visibility = View.VISIBLE
-
-
+               // tvBiometric.visibility = View.VISIBLE
                 if (EAMXInternetAvailability.isNetworkAvailable(this@EAMXLoginActivity)) {
-
                     requestSignUp()
+
                 } else {
                     UtilAlert.Builder()
                         .setTitle("Atención")

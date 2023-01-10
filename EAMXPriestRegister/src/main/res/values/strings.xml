@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="txt_registry_priest_title">Registro de Sacerdotes</string>
-    <string name="txt_registry_priest_description">Vamos a confirmar algunos datos para darte de alta como sacerdote dentro de la App Encuentro.</string>
+    <string name="txt_registry_priest_description">Vamos a confirmar algunos datos para darte de alta como sacerdote dentro de la app Iglesia Digital.</string>
     <string name="txt_registry_priest_general_information">Datos personales</string>
     <string name="txt_registry_priest_hint_name">Nombre (s)</string>
-    <string name="txt_registry_priest_hint_description">Descripción / presentación</string>
+    <string name="txt_registry_priest_hint_description">Descripción / Presentación</string>
     <string name="txt_registry_priest_date_title">Fecha de nacimiento</string>
     <string name="txt_registry_priest_mask_date">dd/mm/aaaa</string>
     <string name="txt_registry_priest_date_title_ordination">Fecha de ordenación</string>
