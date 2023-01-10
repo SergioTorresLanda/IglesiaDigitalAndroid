@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.eamx_profile_info_fragment.*
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
+import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.common.EAMXHome
 import mx.arquidiocesis.eamxcommonutils.common.EAMXSignOut
 import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
@@ -491,6 +492,7 @@ class EAMXProfileInfoFragment : FragmentBase() {
                         }
                     }
                     canSelectService = true
+
                     dataUser.community?.let {
                         binding.apply {
                             if (it.name != null) {
@@ -502,6 +504,13 @@ class EAMXProfileInfoFragment : FragmentBase() {
 
                         }
                         // viewModelProfile.congregationItem = CongregationModel(it.name, it.id)
+                    }
+                    Log.d("TAG", "showDataLocal: " + eamxcu_preferences.getData("COMMUNITY_NAME",EAMXTypeObject.STRING_OBJECT) as String)
+                    if (eamxcu_preferences.getData("COMMUNITY_NAME",EAMXTypeObject.STRING_OBJECT) as String != "") {
+                        Log.d("TAG", "showDataLocal: " + eamxcu_preferences.getData("COMMUNITY_NAME",EAMXTypeObject.STRING_OBJECT) as String)
+                        binding.etSearchCommunity.setText(eamxcu_preferences.getData("COMMUNITY_NAME", EAMXTypeObject.STRING_OBJECT) as String)
+                    }else{
+
                     }
                 }
                 DIACO -> {
@@ -690,6 +699,8 @@ class EAMXProfileInfoFragment : FragmentBase() {
             ) {
                 if (viewModelProfile.executeUpdateProfile(binding.spStyleLife.selectedItem)) {
                     showLoader()
+                    eamxcu_preferences.saveData("COMMUNITY_NAME", binding.etSearchCommunity.text.toString())
+                    Log.d("TAG", "saveLocal: ${binding.etSearchCommunity.text.toString()}")
                 } else {
                     viewModelProfile.saveData(binding, activitiesAdapter)
                     NavigationFragment.Builder()
