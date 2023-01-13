@@ -40,7 +40,7 @@ class CustomInfoWindowCommunity(
 
 
 
-    override fun getInfoWindow(p0: Marker?): View? {
+    override fun getInfoWindow(p0: Marker): View? {
         return null
     }
 }

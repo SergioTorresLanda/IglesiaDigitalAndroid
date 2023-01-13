@@ -6,7 +6,7 @@ import mx.arquidiocesis.eamxbiblioteca.repository.LibraryRepository
 import java.lang.IllegalArgumentException
 
 class LibraryDetailViewModelFactory(val repository: LibraryRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(LibraryDetailViewModel::class.java)) {
             return LibraryDetailViewModel(repository) as T
         }
