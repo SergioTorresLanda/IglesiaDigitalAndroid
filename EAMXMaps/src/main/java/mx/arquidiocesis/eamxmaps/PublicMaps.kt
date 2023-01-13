@@ -1,8 +1,11 @@
 package mx.arquidiocesis.eamxmaps
 
+import android.Manifest
 import android.content.Context
+import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.os.Bundle
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.common.ConnectionResult
@@ -32,13 +35,30 @@ class PublicMaps(
     val addressMap = MutableLiveData<String>()
     private lateinit var client: MutableLiveData<GoogleApiClient>
 
-    override fun onMapReady(googleMap: GoogleMap?) {
+    override fun onMapReady(googleMap: GoogleMap) {
         map.value = googleMap!!
+        /*if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return
+        }*/
         map?.value?.isMyLocationEnabled = true
         map?.value?.setOnMyLocationButtonClickListener(this)
     }
 
-    override fun onMarkerClick(p0: Marker?): Boolean {
+    override fun onMarkerClick(p0: Marker): Boolean {
         maker.value = p0!!
         return true
     }

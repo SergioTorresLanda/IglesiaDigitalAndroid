@@ -292,7 +292,7 @@ class EAMXRegisterCommunityFragment : FragmentBase() {
             mapFragment =
                 childFragmentManager.findFragmentById(R.id.mapDetail) as SupportMapFragment
             publicMaps?.buildGoogleApiClient(client, requireContext())
-            mapFragment.getMapAsync(publicMaps)
+            publicMaps?.let { mapFragment.getMapAsync(it) }
 
             val groupByDays = itemDetail
                 ?.serviceHoursGeneral
