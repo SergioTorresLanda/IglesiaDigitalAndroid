@@ -118,12 +118,13 @@ class EAMXHomeFragment : EAMXBaseFragment() {
                 if (response != null) {
                     if (!response.isNullOrEmpty()) {
 
-                        tvTitleSaint.text = response.get(0)?.title
-                        response.get(0)?.imageUrl?.let { ivSaint.loadByUrl(it) }
+                        tvTitleSaint.text = "SANTO DEL DÍA"
+                        tvDescSaint.text = response[0].title
+                        response[0].imageUrl?.let { ivSaint.loadByUrl(it) }
                         cvSaint.setOnClickListener {
-                            val urlString = response.get(0)?.publishUrl
+                            val urlString = response[0].publishUrl
                             if (!urlString.isNullOrEmpty()) {
-                                webView(urlString!!)
+                                webView(urlString)
                             }
                         }
                     }

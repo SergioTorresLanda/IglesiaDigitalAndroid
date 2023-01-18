@@ -124,7 +124,7 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
             } else {
                 UtilAlert.Builder()
                     .setMessage("Registro completo")
-                    .setListener {_ ->
+                    .setListener { _ ->
                         setResult(Activity.RESULT_OK, it.data)
                         finish()
                     }
@@ -151,10 +151,9 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
             .matcher(this).matches()
 
     private fun String.validNumberPhoneContent() =
-                EAMXFieldValidation.validateNumberPhone(this) &&
+        EAMXFieldValidation.validateNumberPhone(this) &&
                 this.isNotEmpty() &&
                 EAMXFieldValidation.validateNumberLength(this)
-
 
 
     private var formating = false
@@ -164,20 +163,20 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
         mBinding.apply {
 
             etName.addTextChangedListener {
-                if(etName.text.toString().isNotEmpty()){
+                if (etName.text.toString().isNotEmpty()) {
                     tilName.error = null
                     enableIconStart(tilName, true)
-                }else{
+                } else {
                     tilName.error = getString(R.string.enter_your_name)
                     enableIconStart(tilName, null)
                 }
             }
 
             etLastNameFather.addTextChangedListener {
-                if(etLastNameFather.text.toString().isNotEmpty()){
+                if (etLastNameFather.text.toString().isNotEmpty()) {
                     tilLastName.error = null
                     enableIconStart(tilLastName, true)
-                }else{
+                } else {
                     enableIconStart(tilLastName, null)
                     tilLastName.error = getString(R.string.enter_your_paternal_last_name)
                 }
@@ -185,24 +184,27 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
 
             etLastNameMother.addTextChangedListener {
                 enableIconStart(tilLastNameMother, true)
-                if(etLastNameMother.text.toString().isEmpty()){
+                if (etLastNameMother.text.toString().isEmpty()) {
                     enableIconStart(tilLastNameMother, null)
                 }
             }
 
             etNumberPhone.addTextChangedListener {
                 enableIconStart(tilNumberPhone, etNumberPhone.text.toString().validNumberPhoneContent())
-                if(etNumberPhone.text.toString().isEmpty()){
+                if (etNumberPhone.text.toString().isEmpty()) {
                     enableIconStart(tilNumberPhone, null)
                     tilNumberPhone.error = getString(R.string.enter_your_telephone_number)
-                }else{
-                    if(EAMXFieldValidation.validateNumberPhone(etNumberPhone.text.toString()) && EAMXFieldValidation.validateNumberLength(etNumberPhone.text.toString())){
+                } else {
+                    if (EAMXFieldValidation.validateNumberPhone(etNumberPhone.text.toString()) && EAMXFieldValidation.validateNumberLength(
+                            etNumberPhone.text.toString()
+                        )
+                    ) {
                         tilNumberPhone.error = null
                     }
-                    if(!EAMXFieldValidation.validateNumberPhone(etNumberPhone.text.toString())){
+                    if (!EAMXFieldValidation.validateNumberPhone(etNumberPhone.text.toString())) {
                         tilNumberPhone.error = getString(R.string.wrong_phone_number)
                     }
-                    if(!EAMXFieldValidation.validateNumberLength(etNumberPhone.text.toString())){
+                    if (!EAMXFieldValidation.validateNumberLength(etNumberPhone.text.toString())) {
                         tilNumberPhone.error = getString(R.string.min_phone)
                     }
                 }
@@ -213,8 +215,8 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
                 text?.let { emailTxt ->
                     enableIconStart(tilEmail, Patterns.EMAIL_ADDRESS.matcher(emailTxt).matches())
                     tilEmail.error = null
-                   EAMXFieldValidation.validateEmail(emailTxt, tilEmail)
-                    if(emailTxt.isEmpty()){
+                    EAMXFieldValidation.validateEmail(emailTxt, tilEmail)
+                    if (emailTxt.isEmpty()) {
                         enableIconStart(tilEmail, null)
                     }
                 }
@@ -225,18 +227,24 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
             etPassword.addTextChangedListener {
                 if (formating) return@addTextChangedListener
                 val text = it?.toString()
-                text?.let{ passText ->
-                    if (passText?.length != passText?.trim()?.length){
+                text?.let { passText ->
+                    if (passText?.length != passText?.trim()?.length) {
                         formating = true
-                        etPassword.setText(passText?.trim() ?: "")
+                        etPassword.setText(passText.trim())
                         formating = false
-                    }else
+                    } else
 //                    {
 //                        enableIconStart(tilPassword, if (passText.isNullOrEmpty()) null else passText.validPass())
 //                        enableIconStart(tilCodeConfirmPassword, if (passText.isNullOrEmpty()) null else passText == etConfirmPassword.text?.toString())
 //                    }
-                    EAMXFieldValidation.passValidation(passText, tilPassword, etConfirmPassword.text.toString(), tilCodeConfirmPassword, getString(R.string.enter_your_password))
-                    if(passText.isEmpty()){
+                        EAMXFieldValidation.passValidation(
+                            passText,
+                            tilPassword,
+                            etConfirmPassword.text.toString(),
+                            tilCodeConfirmPassword,
+                            getString(R.string.enter_your_password)
+                        )
+                    if (passText.isEmpty()) {
 //                        enableIconStart(tilPassword, null)
                     }
                 }
@@ -247,27 +255,27 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
             etConfirmPassword.addTextChangedListener {
                 if (formating) return@addTextChangedListener
                 val text = it?.toString()
-                text?.let {confirmText ->
-                    if (confirmText?.length != confirmText?.trim()?.length){
+                text?.let { confirmText ->
+                    if (confirmText?.length != confirmText?.trim()?.length) {
                         formating = true
                         etConfirmPassword.setText(confirmText?.trim() ?: "")
                         formating = false
-                    }else
+                    } else
 //                    {
 //                        enableIconStart(
 //                            tilCodeConfirmPassword,
 //                            if (confirmText.isNullOrEmpty()) null else confirmText == etPassword.text?.toString()
 //                        )
 //                    }
-                   if(confirmText.isNotEmpty()){
-                       if(!confirmText.equals(etPassword.text.toString())){
-                           tilCodeConfirmPassword.error = "La confirmación de la contraseña debe ser igual a la contraseña"
-                       }else{
-                           tilCodeConfirmPassword.error = null
-                       }
-                   }else {
-                       tilCodeConfirmPassword.error = "Ingresa la confirmación de la contraseña"
-                   }
+                        if (confirmText.isNotEmpty()) {
+                            if (!confirmText.equals(etPassword.text.toString())) {
+                                tilCodeConfirmPassword.error = "La confirmación de la contraseña debe ser igual a la contraseña"
+                            } else {
+                                tilCodeConfirmPassword.error = null
+                            }
+                        } else {
+                            tilCodeConfirmPassword.error = "Ingresa la confirmación de la contraseña"
+                        }
                 }
 
             }

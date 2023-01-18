@@ -45,7 +45,7 @@ class EAMXHomeActivity : EAMXBaseActivity(),
     EAMXSignOut,
     EAMXActionBottom,
     EAMXComunicationCreateFragment,
-    EAMXProfilePrincipalFragment.NavigationActivity{
+    EAMXProfilePrincipalFragment.NavigationActivity {
 
     private lateinit var registerCamera: ActivityResultLauncher<Context>
     private var cancelOnBack = false
@@ -146,7 +146,7 @@ class EAMXHomeActivity : EAMXBaseActivity(),
     }
 
     override fun initView() {
-        registerCamera = registerForActivityResult(TakePhoto()){onResultPickerCamera?.invoke(it)}
+        registerCamera = registerForActivityResult(TakePhoto()) { onResultPickerCamera?.invoke(it) }
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         mBinding.toolbar.txtSaludo.text = saludoUsuario()
         mBinding.toolbar.txtNameUser.text = nameCompleted
@@ -307,7 +307,7 @@ class EAMXHomeActivity : EAMXBaseActivity(),
                     AppMyConstants.ofrendaTarjeta -> {
                     }
                     AppMyConstants.ofrenda -> toolbarBlue(titleFragment)
-                        "" -> {
+                    "" -> {
                         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
                         window.statusBarColor = resources.getColor(R.color.white)
                         mBinding.apply {

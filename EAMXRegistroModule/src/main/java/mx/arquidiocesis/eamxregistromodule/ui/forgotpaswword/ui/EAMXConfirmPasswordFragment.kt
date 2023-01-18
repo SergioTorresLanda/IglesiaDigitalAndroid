@@ -5,11 +5,14 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doAfterTextChanged
 import kotlinx.android.synthetic.main.eamxr_confirm_password_activity.*
+import mx.arquidiocesis.eamxcommonutils.application.validation.EAMXFieldValidation
 import mx.arquidiocesis.eamxcommonutils.common.EAMXBaseFragment
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
@@ -27,20 +30,21 @@ import mx.arquidiocesis.eamxregistromodule.ui.forgotpaswword.viewmodel.ERROR_COD
 import mx.arquidiocesis.eamxregistromodule.ui.forgotpaswword.viewmodel.ERROR_CONFIRM_PASSWORD
 import mx.arquidiocesis.eamxregistromodule.ui.forgotpaswword.viewmodel.ERROR_PASSWORD
 
-class EAMXConfirmPasswordFragment(val listener : () -> (Unit)) : EAMXBaseFragment() {
+class EAMXConfirmPasswordFragment(val listener: () -> (Unit)) : EAMXBaseFragment() {
     //region without use
-        override fun setViewModel(){}
-        override fun initDependency(savedInstanceState: Bundle?) {}
+    override fun setViewModel() {}
+    override fun initDependency(savedInstanceState: Bundle?) {}
     //endregion
 
     private val TAG = this.javaClass.name
     private val loader by lazy { UtilLoader() }
     private lateinit var binding: EamxrConfirmPasswordActivityBinding
 
-    private val viewModel : EAMXForgotPasswordViewModel by lazy {
+    private val viewModel: EAMXForgotPasswordViewModel by lazy {
         getViewModel {
             EAMXForgotPasswordViewModel(
-                    EAMXForgotPasswordRepository(requireContext()))
+                EAMXForgotPasswordRepository(requireContext())
+            )
         }
     }
 
@@ -54,7 +58,7 @@ class EAMXConfirmPasswordFragment(val listener : () -> (Unit)) : EAMXBaseFragmen
 
     override fun initObservers() {
 
-        viewModel.validationInputs.observe(this){ map ->
+        viewModel.validationInputs.observe(this) { map ->
             binding.apply {
                 if (map.containsKey(ERROR_PASSWORD)) {
                     tilCodePassword.error = map[ERROR_PASSWORD]
@@ -78,7 +82,7 @@ class EAMXConfirmPasswordFragment(val listener : () -> (Unit)) : EAMXBaseFragmen
             }
         }
 
-        viewModel.responseError.observe(this){ messageError ->
+        viewModel.responseError.observe(this) { messageError ->
             hideLoader()
             UtilAlert.Builder()
                 .setTitle(getString(R.string.title_alert))
@@ -87,7 +91,7 @@ class EAMXConfirmPasswordFragment(val listener : () -> (Unit)) : EAMXBaseFragmen
                 .show(childFragmentManager, TAG)
         }
 
-        viewModel.responseSendCode.observe(this){
+        viewModel.responseSendCode.observe(this) {
             binding.apply {
                 etCodeSix.text.clear()
                 etCodeFive.text.clear()
@@ -107,11 +111,11 @@ class EAMXConfirmPasswordFragment(val listener : () -> (Unit)) : EAMXBaseFragmen
                 .show(childFragmentManager, TAG)*/
         }
 
-        viewModel.responseConfirmPassword.observe(this){
+        viewModel.responseConfirmPassword.observe(this) {
             hideLoader()
             UtilAlert.Builder()
-                    .setTitle(getString(R.string.title_alert))
-                    .setIsCancel(false)
+                .setTitle(getString(R.string.title_alert))
+                .setIsCancel(false)
                 .setMessage(getString(R.string.meessage_success_confirm_password))
                 .setListener {
                     listener()
@@ -126,28 +130,29 @@ class EAMXConfirmPasswordFragment(val listener : () -> (Unit)) : EAMXBaseFragmen
         viewModel.responseErrorConfirmPassword.observe(this) { messageError ->
             hideLoader()
             UtilAlert.Builder()
-                    .setTitle(getString(R.string.title_alert))
-                    .setMessage(messageError)
-                    .build()
-                    .show(childFragmentManager, "")
+                .setTitle(getString(R.string.title_alert))
+                .setMessage(messageError)
+                .build()
+                .show(childFragmentManager, "")
         }
 
         viewModel.launchRequestCode.observe(this) { result ->
             if (result) {
                 hideLoader()
                 UtilAlert.Builder()
-                        .setTitle(getString(R.string.title_alert))
-                        .setMessage(getString(R.string.message_retry_max))
-                        .setListener {
-                            viewModel.sendCode(arguments?.getString(EAMXEnumUser.USER_CHANGE_PASSWORD.name)!!) {
-                                showLoader(TAG)
-                            }
+                    .setTitle(getString(R.string.title_alert))
+                    .setMessage(getString(R.string.message_retry_max))
+                    .setListener {
+                        viewModel.sendCode(arguments?.getString(EAMXEnumUser.USER_CHANGE_PASSWORD.name)!!) {
+                            showLoader(TAG)
                         }
-                        .build()
-                        .show(childFragmentManager, "")
+                    }
+                    .build()
+                    .show(childFragmentManager, "")
             }
         }
     }
+
     val timer = object : CountDownTimer(180000, 1000) {
 
         @SuppressLint("SetTextI18n")
@@ -165,6 +170,7 @@ class EAMXConfirmPasswordFragment(val listener : () -> (Unit)) : EAMXBaseFragmen
 
         }
     }
+
     private fun enableResend(enable: Boolean) {
         binding.tvReSendCode.visibility = if (enable) View.VISIBLE else View.INVISIBLE
         //mBinding.llResend.visibility = if (enable) View.VISIBLE else View.INVISIBLE
@@ -177,7 +183,7 @@ class EAMXConfirmPasswordFragment(val listener : () -> (Unit)) : EAMXBaseFragmen
             binding.etCodeFive.setText("")
             binding.etCodeSix.setText("")
             binding.txtWarning.visibility = View.VISIBLE
-        }else {
+        } else {
             binding.apply {
                 tvReSendCode.isEnabled = true
                 tvReSendCode.text = getString(R.string.label_re_send_code)
@@ -193,13 +199,13 @@ class EAMXConfirmPasswordFragment(val listener : () -> (Unit)) : EAMXBaseFragmen
     override fun initView(view: View) {
         if (arguments == null || !(requireArguments().containsKey(EAMXEnumUser.USER_CHANGE_PASSWORD.name))) {
             UtilAlert.Builder()
-                    .setTitle(getString(R.string.title_alert))
-                    .setMessage(getString(R.string.message_info_load_fail_code))
-                    .setListener {
-                        listener()
-                    }
-                    .build()
-                    .show(childFragmentManager, TAG)
+                .setTitle(getString(R.string.title_alert))
+                .setMessage(getString(R.string.message_info_load_fail_code))
+                .setListener {
+                    listener()
+                }
+                .build()
+                .show(childFragmentManager, TAG)
         }
 
         binding.apply {
@@ -216,7 +222,7 @@ class EAMXConfirmPasswordFragment(val listener : () -> (Unit)) : EAMXBaseFragmen
             tvReSendCode.setOnClickListener {
                 timer.start()
                 enableResend(false)
-                viewModel.sendCode(arguments?.getString(EAMXEnumUser.USER_CHANGE_PASSWORD.name,)!!){
+                viewModel.sendCode(arguments?.getString(EAMXEnumUser.USER_CHANGE_PASSWORD.name)!!) {
                     showLoader(TAG)
                 }
             }
@@ -234,8 +240,37 @@ class EAMXConfirmPasswordFragment(val listener : () -> (Unit)) : EAMXBaseFragmen
                     buildCode(),
                     etCodePassword.text.toString(),
                     etCodeConfirmPassword.text.toString()
-                ){
+                ) {
                     showLoader(TAG)
+                }
+            }
+            etCodePassword.addTextChangedListener {
+                val text = it.toString()
+                text.let { passText ->
+
+                    EAMXFieldValidation.passValidation(
+                        passText,
+                        tilCodePassword,
+                        etCodeConfirmPassword.text.toString(),
+                        tilCodeConfirmPassword,
+                        "Ingresa tu contraseña"
+                    )
+
+                }
+            }
+
+            etCodeConfirmPassword.addTextChangedListener {
+                val text = it.toString()
+                text.let { confirmtext ->
+                    if (confirmtext.isNotEmpty()) {
+                        if (confirmtext != etCodePassword.text.toString()) {
+                            tilCodeConfirmPassword.error = "La confirmación de la contraseña debe ser igual a la contraseña"
+                        } else {
+                            tilCodeConfirmPassword.error = null
+                        }
+                    } else {
+                        tilCodeConfirmPassword.error = "Ingresa la confirmación de la contraseña"
+                    }
                 }
             }
 
@@ -247,21 +282,21 @@ class EAMXConfirmPasswordFragment(val listener : () -> (Unit)) : EAMXBaseFragmen
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.privacity_notification))))
             }
 
-            etCodePassword.doAfterTextChanged { editable ->
-                if(editable!!.isNotEmpty()){
-                    tilCodePassword.error = null
-                }
-            }
+//            etCodePassword.doAfterTextChanged { editable ->
+//                if(editable!!.isNotEmpty()){
+//                    tilCodePassword.error = null
+//                }
+//            }
 
-            etCodeConfirmPassword.doAfterTextChanged { editable ->
-                if(editable!!.isNotEmpty()){
-                    tilCodeConfirmPassword.error = null
-                }
-            }
+//            etCodeConfirmPassword.doAfterTextChanged { editable ->
+//                if (editable!!.isNotEmpty()) {
+//                    tilCodeConfirmPassword.error = null
+//                }
+//            }
         }
     }
 
-    private fun buildCode() : String {
+    private fun buildCode(): String {
         var code = ""
         binding.apply {
             code = etCodeOne.text.toString() +
@@ -275,7 +310,7 @@ class EAMXConfirmPasswordFragment(val listener : () -> (Unit)) : EAMXBaseFragmen
         return code
     }
 
-    private fun showLoader(tag : String = "") {
+    private fun showLoader(tag: String = "") {
         if (!loader.isAdded) {
             loader.show(childFragmentManager, tag)
         }
@@ -305,11 +340,11 @@ class EAMXConfirmPasswordFragment(val listener : () -> (Unit)) : EAMXBaseFragmen
         }
     }
 
-    private fun initCounter(){
+    private fun initCounter() {
         binding.apply {
             tvReSendCode.isEnabled = false
             tvReSendCode.text = getString(R.string.text_label_counter_inet)
-            tvTimer.visibility  = View.VISIBLE
+            tvTimer.visibility = View.VISIBLE
         }
         viewModel.counterJob()
     }

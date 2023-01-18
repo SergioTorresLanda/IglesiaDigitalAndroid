@@ -560,15 +560,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-                        <ImageView
-                            android:id="@+id/ivSaint"
-                            android:layout_width="0dp"
-                            android:layout_height="140dp"
-                            android:scaleType="centerCrop"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:srcCompat="@tools:sample/avatars" />
 
                         <TextView
                             android:id="@+id/tvTitleSaint"
@@ -578,13 +569,14 @@
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="8dp"
                             android:lineSpacingExtra="-1sp"
+                            android:textAllCaps="true"
                             android:textColor="#192a73"
                             android:textSize="13sp"
                             android:textStyle="bold"
-                            android:textAllCaps="true"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/ivSaint"
-                            tools:text="Desde la fe" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="Santo del día" />
 
                         <TextView
                             android:id="@+id/tvDescSaint"
@@ -592,16 +584,29 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:layout_marginEnd="8dp"
-                            android:layout_marginBottom="8dp"
+                            android:layout_marginBottom="6dp"
                             android:lineSpacingExtra="-2sp"
-                            android:textColor="#363636"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:textColor="@color/textBlue"
+                            android:textSize="13sp"
+                            android:textStyle="normal"
+                            app:layout_constraintBottom_toTopOf="@+id/ivSaint"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tvTitleSaint"
                             tools:text="Lorem ipsum dolor sit amet, consetetur" />
+
+                        <ImageView
+                            android:id="@+id/ivSaint"
+                            android:layout_width="0dp"
+                            android:layout_height="200dp"
+                            android:contentDescription=""
+                            android:scaleType="centerCrop"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tvDescSaint"
+                            app:layout_constraintBaseline_toBottomOf="parent"
+                            tools:srcCompat="@tools:sample/avatars" />
+
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
@@ -700,10 +705,10 @@
                             android:layout_marginBottom="2dp"
                             android:lineSpacingExtra="-1sp"
                             android:text="@string/sugerencias_para_ti"
+                            android:textAllCaps="true"
                             android:textColor="#192a73"
                             android:textSize="13sp"
                             android:textStyle="bold"
-                            android:textAllCaps="true"
                             app:layout_constraintBottom_toTopOf="@+id/viewPagerSuggestion"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
