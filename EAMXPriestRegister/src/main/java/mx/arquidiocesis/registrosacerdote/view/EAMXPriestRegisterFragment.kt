@@ -1,29 +1,34 @@
 package mx.arquidiocesis.registrosacerdote.view
 
+import android.app.DatePickerDialog
+import android.app.DatePickerDialog.OnDateSetListener
 import android.graphics.BitmapFactory
 import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Editable
 import android.text.SpannableString
 import android.text.Spanned
+import android.text.TextWatcher
 import android.text.style.StyleSpan
 import android.text.style.UnderlineSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.eamx_priest_register_fragment.*
 import mx.arquidiocesis.eamxcommonutils.base.DatePickerFragment
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
-import mx.arquidiocesis.eamxcommonutils.model.ViewPagerModel
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.common.EAMXHome
 import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
+import mx.arquidiocesis.eamxcommonutils.model.ViewPagerModel
 import mx.arquidiocesis.eamxcommonutils.util.ViewPager.ViewPagerPrincipal
 import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
 import mx.arquidiocesis.eamxcommonutils.util.getViewModel
@@ -37,6 +42,9 @@ import mx.arquidiocesis.registrosacerdote.model.catalog.InterestTopic
 import mx.arquidiocesis.registrosacerdote.model.update.base.BaseOnlyId
 import mx.arquidiocesis.registrosacerdote.repository.Repository
 import mx.arquidiocesis.registrosacerdote.viewmodel.PriestRegisterViewModel
+import java.util.*
+import java.util.regex.Pattern
+import kotlin.collections.ArrayList
 
 
 class EAMXPriestRegisterFragment : FragmentBase() {
@@ -60,7 +68,8 @@ class EAMXPriestRegisterFragment : FragmentBase() {
             PriestRegisterViewModel(Repository(context = requireContext()))
         }
     }
-
+    private var dateBirthToSet: String = ""
+    private var dateOrdinationToSet: String = ""
     private var congregationValue: Int = 0
     private var activitiesList: MutableList<ActivitiesModel> = mutableListOf()
     private var flagDiocesanOrReligious = 0
@@ -241,41 +250,26 @@ class EAMXPriestRegisterFragment : FragmentBase() {
             ) {
                 fragment.dismiss()
             }
-
             fragment.show(childFragmentManager, "LOADER")
-
-            /*val transaction = requireActivity().supportFragmentManager.beginTransaction()
-            transaction.replace(
-                (parentFragmentManager.fragments.first().requireView().parent as ViewGroup).id,
-                fragment
-            )
-                .addToBackStack(tag)
-                .commit()*/
-
-
-            /* UtilAlert.Builder()
-                 .setTitle(it)
-                 .setMessage(it)
-                 .build().show(childFragmentManager, tag)*/
         }
     }
-
-
     private fun initServices() {
         showLoader()
         priestRegisterViewModel.getActivitiesList()
     }
 
     private fun initListener() {
-        ivBirthDate.setOnClickListener { showDatePickerBirthDate() }
         tvBirthDate.setOnClickListener { showDatePickerBirthDate() }
+        ivBirthDate.setOnClickListener { showDatePickerBirthDate() }
         tvOrdinationDate.setOnClickListener { showDatePickerOrdination() }
-        ivOrdinationDate.setOnClickListener { showDatePickerOrdination() }
+        ivOrdinationDate.setOnClickListener { showDatePickerOrdination()}
         btnSave.setOnClickListener { priestRegister() }
         rbDiocesan.setOnClickListener { showDiocesan() }
         rbReligius.setOnClickListener { showReligious() }
         spOrderOrCongregation.setOnClickListener { showDialogCongregation() }
+
     }
+
 
     private fun showDatePickerBirthDate() {
         val datePicker =
@@ -287,7 +281,7 @@ class EAMXPriestRegisterFragment : FragmentBase() {
         val dayCurrent = if (day < 10) "0$day" else day
         val monthCurrent = month + 1
         val montCurrent = if (month < 9) "0$monthCurrent" else monthCurrent
-        tvBirthDate.text = "$dayCurrent/$montCurrent/$year"
+        tvBirthDate.setText("$dayCurrent/$montCurrent/$year")
         birthDate = "$year-$montCurrent-$dayCurrent"
         tvBirthDate.error = null
     }
@@ -302,7 +296,7 @@ class EAMXPriestRegisterFragment : FragmentBase() {
         val dayCurrent = if (day < 10) "0$day" else day
         val monthCurrent = month + 1
         val montCurrent = if (month < 9) "0$monthCurrent" else monthCurrent
-        tvOrdinationDate.text = "$dayCurrent/$montCurrent/$year"
+        tvOrdinationDate.setText("$dayCurrent/$montCurrent/$year")
         ordinationDate = "$year-$montCurrent-$dayCurrent"
         tvOrdinationDate.error = null
     }

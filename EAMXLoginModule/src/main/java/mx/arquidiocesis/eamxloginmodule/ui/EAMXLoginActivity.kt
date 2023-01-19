@@ -367,7 +367,8 @@ class EAMXLoginActivity : EAMXBaseActivity() {
             linearLayoutDetails.visibility = View.VISIBLE
             toolbarModelLogin.btnBack.visibility=View.GONE
             textView5.setText(R.string.welcome)
-            textView15.setText(R.string.welcome_details)
+            textViewIngresar.visibility = View.VISIBLE
+            textView15.visibility=View.GONE
             tvBiometric.visibility=View.GONE
         }
     }
@@ -398,6 +399,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
             lnlNoAccount.visibility = View.GONE
             toolbarModelLogin.btnBack.visibility=View.VISIBLE
             toolbarModelLogin.btnBack.setOnClickListener { hideLogin()}
+            textViewIngresar.visibility = View.GONE
             btnRegistrar.visibility = View.GONE
             textView5.setText(R.string.sign_in_login)
             textView15.setText(R.string.nice_to_see_you_again)

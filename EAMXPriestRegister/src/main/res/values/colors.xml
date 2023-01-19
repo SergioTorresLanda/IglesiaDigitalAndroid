@@ -16,4 +16,6 @@
     <color name="blueTxtCodeConfirmacion">#192a73</color>
     <color name="add_button_color">#1c75bc</color>
     <color name="textBlue">#192a73</color>
+    <color name="colorGrayBackground">#FAF8F8</color>
+
 </resources>

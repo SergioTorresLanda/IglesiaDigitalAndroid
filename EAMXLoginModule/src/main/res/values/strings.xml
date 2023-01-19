@@ -12,7 +12,7 @@
     <string name="login">Ingresar</string>
     <string name="nice_to_see_you_again">Que gusto verte de nuevo, por favor inicia sesión para continuar.</string>
     <string name="welcome">¡Bienvenido!</string>
-    <string name="welcome_details">Accede con tu usuario y contraseña, o regístrate ¡totalmente gratis!</string>
+    <string name="welcome_details">Accede con tu usuario y contraseña.</string>
     <string name="password">Contraseña</string>
     <string name="register">Registrarme</string>
     <string name="sign_in_login">Iniciar sesión</string>

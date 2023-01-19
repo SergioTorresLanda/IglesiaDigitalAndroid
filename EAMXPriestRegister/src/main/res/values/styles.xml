@@ -48,4 +48,14 @@
         <item name="colorControlNormal">#a0a0a0</item>
         <item name="colorControlActivated">#192a73</item>
     </style>
+    <style name="MyCalendarDatePickerDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="android:datePickerStyle">@style/CalendarDatePicker</item>
+        <item name="android:background">?attr/colorBackgroundFloating</item>
+
+    </style>
+
+    <style name="CalendarDatePicker" parent="@android:style/Widget.Material.DatePicker">
+        <item name="android:calendarViewShown">false</item>
+        <item name="android:datePickerMode">spinner</item>
+    </style>
 </resources>

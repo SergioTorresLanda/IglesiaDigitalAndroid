@@ -165,6 +165,49 @@ class PublicFunctions {
         }
     }
 
+    fun obtenerDia(dias: List<Day>): String {
+        lateinit var Saturday: ArrayList<String>
+        Saturday = arrayListOf()
+        var primerString = ""
+        dias.forEach {
+            if (it.checked) {
+                    if (it.name == "Sábado") {
+                    println("I M P R I M I E N D O " + it.name)
+                    println("I M P R I M I E N D O " + it.id)
+                    primerString=it.name
+                }
+            }
+        }
+        return primerString
+
+    }
+    fun obtenerNombre(dias: List<Day>,dia:String): String {
+        var primerString = ""
+        dias.forEach {
+            if (it.checked) {
+
+                if (it.name == dia) {
+                    primerString=it.name
+                }
+            }
+        }
+        return primerString
+
+    }
+    fun obtenerLunes(dias: List<Day>): String {
+        var primerString = ""
+        dias.forEach {
+            if (it.checked) {
+                if (it.name == "Lunes") {
+                    primerString=it.name
+                }
+            }
+        }
+        return primerString
+
+    }
+
+
     fun selectDayRange(context: Context, tvDia: TextView, days: MutableList<String>, dias: String) {
         val builder = AlertDialog.Builder(context)
         builder.setTitle("Selecciona los dias")

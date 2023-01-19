@@ -3,11 +3,14 @@ package mx.arquidiocesis.eamxcommonutils.base
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Context
+import android.content.res.ColorStateList
 import android.content.res.Configuration
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Message
 import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
+import mx.arquidiocesis.eamxcommonutils.R
 import java.util.*
 
 class DatePickerFragment(
@@ -30,17 +33,24 @@ class DatePickerFragment(
         configuration.setLayoutDirection(locale)
         context.createConfigurationContext(configuration)
 
+
+
+
+
+
+
+
+
+
+
+
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
         val month = c.get(Calendar.MONTH)
         val day = c.get(Calendar.DAY_OF_MONTH)
-        val dialog = DatePickerDialog(context, this, year, month, day)
-
+        val dialog = DatePickerDialog(context, R.style.MyCalendarDatePickerDialog,this, year, month, day)
         dialog.setButton(DatePickerDialog.BUTTON_POSITIVE, "Aceptar", dialog)
         dialog.setButton(DatePickerDialog.BUTTON_NEGATIVE, "Cancelar", dialog)
-
-        //dialog.setButton(DatePickerDialog.BUTTON_POSITIVE, "Aceptar", Message())
-        //dialog.setButton(DatePickerDialog.BUTTON_NEGATIVE, "Cancelar", Message())
         if (isMax) {
             dialog.datePicker.maxDate = Date().time
         }
@@ -51,8 +61,6 @@ class DatePickerFragment(
         if (maxDate != null) {
             dialog.datePicker.maxDate = maxDate.time
         }
-
         return dialog
     }
-
 }
