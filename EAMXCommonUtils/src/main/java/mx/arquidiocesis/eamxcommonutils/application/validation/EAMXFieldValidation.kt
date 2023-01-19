@@ -37,27 +37,17 @@ class EAMXFieldValidation {
 
             } else {
 
-//                if (string.isNotEmpty() && string.length < 8) {
-//                    til.error = "La contraseña debe tener al menos 8 caracteres"
-//                } else {
-//                    if (!passwordValidation(string)) {
-//                        Log.d("PassChanged", "passvalidation : ${getPasswordValidationMessage(string)}")
-//                        til.error = getPasswordValidationMessage(string)
-//                    } else {
-//                        til.error = null
-//                    }
-//                }
-                if (!passwordValidation(string)) {
-                    Log.d("PassChanged", "passvalidation : ${getPasswordValidationMessage(string)}")
-                    til.error = getPasswordValidationMessage(string)
+                if (string.isNotEmpty() && string.length < 8) {
+                    til.error = "La contraseña debe contener mínimo 8 caracteres"
                 } else {
-                    if (string.isNotEmpty() && string.length < 8) {
-                        til.error = "La contraseña debe tener al menos 8 caracteres"
+                    if (!passwordValidation(string)) {
+                        Log.d("PassChanged", "passvalidation : ${getPasswordValidationMessage(string)}")
+                        til.error = getPasswordValidationMessage(string)
                     } else {
                         til.error = null
                     }
-
                 }
+
 //                (if (string.isNotEmpty() && string.length < 8) "La contraseña debe ser de mínimo 8 caracteres" else null).also { til.error = it }
 //                (if (!passwordValidation(string)) "Ingresa una contraseña válida" else null).also { til.error = it }
                 if (confirmString == string) {

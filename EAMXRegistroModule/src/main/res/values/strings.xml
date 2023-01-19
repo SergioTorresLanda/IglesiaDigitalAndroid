@@ -75,7 +75,7 @@
     <string name="label_change_user"><u>Corregir usuario</u></string>
     <string name="meessage_success_confirm_password">La contraseña se actualizo correctamente.</string>
     <string name="message_info_load_fail_code">La información necesaria no fue proporcionada para realizar esta acción.</string>
-    <string name="text_password_info">Debe tener mínimo 8 caracteres, 1 mayúscula, 1 número y 1 carácter especial.</string>
+    <string name="text_password_info">Debe tener mínimo 8 caracteres, incluyendo: 1 minúscula, 1 mayúscula, 1 número y 1 carácter especial.</string>
     <string name="text_password_confirm_info">Ambas contraseñas deben coincidir.</string>
     <string name="text_label_counter_inet">No podrás solicitar otro código \nhasta pasado un minuto.</string>
     <string name="message_retry_max">Se alcanzó el número máximo de intentos de ingreso del código, se solicitara uno nuevo.</string>
