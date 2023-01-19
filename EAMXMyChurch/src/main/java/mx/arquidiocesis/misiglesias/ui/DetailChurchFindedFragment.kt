@@ -85,10 +85,10 @@ class DetailChurchFindedFragment : FragmentBase() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-         arguments?.let {
-             isPrincipal=it.getBoolean("isPrincipal")?:false
-             idIglesia = it.getInt("idIglesia")?:0
-         }
+        arguments?.let {
+            isPrincipal = it.getBoolean("isPrincipal") ?: false
+            idIglesia = it.getInt("idIglesia") ?: 0
+        }
 
 
         if (userAllowAccessAsAdmin(EAMXEnumUser.USER_PERMISSION_CHURCH.name) && isChurchAvailableForEdit(
@@ -124,6 +124,7 @@ class DetailChurchFindedFragment : FragmentBase() {
 
             detalleIglesiaViewModel.obtenerDetalle(idIglesia)
             initObservers()
+
             showLoader()
 
 
@@ -137,6 +138,7 @@ class DetailChurchFindedFragment : FragmentBase() {
                 val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
                 startActivity(mapIntent)
             }
+
             btnHeart.setOnClickListener {
 
                 if (isFav) {
@@ -160,8 +162,8 @@ class DetailChurchFindedFragment : FragmentBase() {
                     showLoader()
                 }
             }
-        }
 
+        }
     }
 
     private fun isChurchAvailableForEdit(churchId: Int): Boolean {
@@ -202,32 +204,95 @@ class DetailChurchFindedFragment : FragmentBase() {
                 tvDescripcionIglesia.text = it.description
                 if (!it.principal?.name.isNullOrEmpty()) {
                     tvResponsable.visibility = View.VISIBLE
-                    tvResponsable.text = it.principal?.name
+                    tvResponsable.text = "Responsable: "+it.principal?.name
+                }else{
+                    tvResponsable.visibility = View.VISIBLE
+                    tvResponsable.text = "Responsable: No disponible"
                 }
                 if (!it.address.isNullOrEmpty()) {
                     tvDireccionIglesia.visibility = View.VISIBLE
                     tvDireccionIglesia.text = it.address
                 }
                 if (!it.schedules.isNullOrEmpty()) {
-
+                    lnlHora.visibility = View.VISIBLE
                     val item = it.schedules!!.first()
-                    tvHorario.visibility = View.VISIBLE
-                    tvHorario.text =
-                        "Horario del templo: ${PublicFunctions().obtenerDias(item.days)} de ${item.hour_start} a ${item.hour_end} \n"
+                    tvHT.text = "Horario de templo:"
+                    tvHorarioTemplo.text =
+                        "${PublicFunctions().obtenerDias(item.days)} de ${item.hour_start} a ${item.hour_end} \n"
+
+                } else {
+                    lnlHora.visibility = View.VISIBLE
+                    tvHT.text = "Horario de templo:"
+                    tvHorarioTemplo.text =
+                        "No disponible"
 
                 }
                 if (!it.attention.isNullOrEmpty()) {
-                    val item = it.attention!!.first()
-                    tvHorario.visibility = View.VISIBLE
-                    tvHorario.text =
-                        tvHorario.text.toString() + "Oficinas: ${PublicFunctions().obtenerDias(item.days)} de ${item.hour_start} a ${item.hour_end}"
+                    lnlHora.visibility = View.VISIBLE
+                    val horariosLunes = arrayListOf<ScheduleAttention>()
+                    val horariosMartes = arrayListOf<ScheduleAttention>()
+                    val horariosMiercoles = arrayListOf<ScheduleAttention>()
+                    val horariosJueves = arrayListOf<ScheduleAttention>()
+                    val horariosViernes = arrayListOf<ScheduleAttention>()
+                    val horariosSabado = arrayListOf<ScheduleAttention>()
+                    val horariosDomingo = arrayListOf<ScheduleAttention>()
+                    tvHS.text = "Horarios de oficina:"
+                    tvHorario.text = ""
+                    if (!cargar(horariosDomingo, it, 0).isNullOrEmpty()) {
+                        tvHorario.text =
+                            tvHorario.text.toString() + "Domingo :\n" + cargar(
+                                horariosDomingo,
+                                it,
+                                0
+                            )
+                    }
+                    if (!cargar(horariosLunes, it, 1).isNullOrEmpty()) {
+                        tvHorario.text =
+                            tvHorario.text.toString() + "Lunes :\n" + cargar(horariosLunes, it, 1)
+                    }
 
+                    if (!cargar(horariosMartes, it, 2).isNullOrEmpty()) {
+                        tvHorario.text =
+                            tvHorario.text.toString() + "Martes :\n" + cargar(horariosMartes, it, 2)
+                    }
+
+                    if (!cargar(horariosMiercoles, it, 3).isNullOrEmpty()) {
+                        tvHorario.text = tvHorario.text.toString() + "Miércoles :\n" + cargar(
+                            horariosMiercoles,
+                            it,
+                            3
+                        )
+                    }
+
+                    if (!cargar(horariosJueves, it, 4).isNullOrEmpty()) {
+                        tvHorario.text =
+                            tvHorario.text.toString() + "Jueves :\n" + cargar(horariosJueves, it, 4)
+                    }
+
+                    if (!cargar(horariosViernes, it, 5).isNullOrEmpty()) {
+                        tvHorario.text =
+                            tvHorario.text.toString() + "Viernes :\n" + cargar(
+                                horariosViernes,
+                                it,
+                                5
+                            )
+                    }
+                    if (!cargar(horariosSabado, it, 6).isNullOrEmpty()) {
+                        tvHorario.text =
+                            binding.tvHorario.text.toString() + "Sábado :\n" + cargar(
+                                horariosSabado,
+                                it,
+                                6
+                            )
+                    }
+                } else {
+                    lnlHora.visibility = View.VISIBLE
+                    tvHS.text = "Horarios de oficina:"
+                    tvHorario.text = "No disponible"
                 }
-
                 val phone = it.phone
                 val email = it.email
                 setMailPhone(phone, email)
-
                 latitude = it.latitude.toString()
                 longitude = it.longitude.toString()
                 if (latitude == "0.0" && longitude == "0.0") {
@@ -317,7 +382,8 @@ class DetailChurchFindedFragment : FragmentBase() {
             }
 
         }
-        detalleIglesiaViewModel.favResponse.observe(viewLifecycleOwner) {
+        detalleIglesiaViewModel.favResponse.observe(viewLifecycleOwner)
+        {
             if (isPrincipal) {
                 actualizaIconPrincipal(true)
                 binding.btnActivarIglesia.isEnabled = false
@@ -327,12 +393,14 @@ class DetailChurchFindedFragment : FragmentBase() {
             }
             hideLoader()
         }
-        detalleIglesiaViewModel.delResponse.observe(viewLifecycleOwner) {
+        detalleIglesiaViewModel.delResponse.observe(viewLifecycleOwner)
+        {
             isFav = false
             actualizaIcon()
             hideLoader()
         }
-        detalleIglesiaViewModel.responseFavotritas.observe(viewLifecycleOwner) {
+        detalleIglesiaViewModel.responseFavotritas.observe(viewLifecycleOwner)
+        {
             if (isPrincipal) {
                 if (it?.assigned?.id == idIglesia) {
                     actualizaIconPrincipal(true)
@@ -349,7 +417,8 @@ class DetailChurchFindedFragment : FragmentBase() {
 
 
         }
-        detalleIglesiaViewModel.errorResponse.observe(viewLifecycleOwner) {
+        detalleIglesiaViewModel.errorResponse.observe(viewLifecycleOwner)
+        {
             hideLoader()
             UtilAlert
                 .Builder()
@@ -359,7 +428,8 @@ class DetailChurchFindedFragment : FragmentBase() {
                 .build()
                 .show(childFragmentManager, "")
         }
-        reviewViewModel.opinionListResponse.observe(viewLifecycleOwner) { item ->
+        reviewViewModel.opinionListResponse.observe(viewLifecycleOwner)
+        { item ->
             hideLoader()
             var list: MutableList<ReviewModel> = mutableListOf()
             if (item.my_review != null) {
@@ -392,10 +462,12 @@ class DetailChurchFindedFragment : FragmentBase() {
             }
 
         }
-        reviewViewModel.errorResponse.observe(viewLifecycleOwner) {
+        reviewViewModel.errorResponse.observe(viewLifecycleOwner)
+        {
             error(it)
         }
-        detalleIglesiaViewModel.errorExitScreenResponse.observe(viewLifecycleOwner) {
+        detalleIglesiaViewModel.errorExitScreenResponse.observe(viewLifecycleOwner)
+        {
             error(it)
         }
     }
@@ -582,6 +654,41 @@ class DetailChurchFindedFragment : FragmentBase() {
             .setBundle(bundle)
             .setAllowStack(true)
             .build().nextWithReplace()
+    }
+
+    private fun cargar(
+        arrayList: MutableList<ScheduleAttention>,
+        churchDetailModel: ChurchDetaillModel,
+        day: Int
+    ): String {
+        var horas = ""
+        churchDetailModel.attention!!.sortedBy {
+            it.hour_start
+        }.forEach { it ->
+            arrayList.clear()
+            arrayList.add(
+                ScheduleAttention(
+                    it.days[day].name,
+                    it.days[day].checked, Hour(it.hour_start, it.hour_end)
+                )
+            )
+            var list: MutableList<ScheduleAttention> = mutableListOf()
+            list =
+                arrayList.sortedByDescending { it.hours.end_hour } as MutableList<ScheduleAttention>
+            for (i in list.indices) {
+                list.forEach {
+                    if (it.status == true) {
+                        var count = i
+                        for (i in i..count) {
+                            horas += "${list[i].hours.start_hour} a ${list[i].hours.end_hour}\n"
+                        }
+                    }
+
+                }
+            }
+
+        }
+        return horas
     }
 
     private fun error(it: String?) {

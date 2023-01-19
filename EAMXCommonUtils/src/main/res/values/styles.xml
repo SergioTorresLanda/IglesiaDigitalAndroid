@@ -376,5 +376,14 @@
         <item name="android:paddingTop">12dp</item>
         <item name="textAllCaps">false</item>
     </style>
+    <style name="MyCalendarDatePickerDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="android:datePickerStyle">@style/CalendarDatePicker</item>
+        <item name="android:background">?attr/colorBackgroundFloating</item>
 
+    </style>
+
+    <style name="CalendarDatePicker" parent="@android:style/Widget.Material.DatePicker">
+        <item name="android:calendarViewShown">false</item>
+        <item name="android:datePickerMode">spinner</item>
+    </style>
 </resources>

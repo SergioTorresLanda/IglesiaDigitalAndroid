@@ -124,7 +124,7 @@ Cuenta con un impresionante vitral de Victor Vasarely."
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="8dp"
                             android:drawableStart="@drawable/icon_responsable"
-                            android:drawablePadding="16dp"
+                            android:drawablePadding="12dp"
                             android:lineSpacingExtra="3sp"
                             android:padding="8dp"
                             android:text="Responsable: Pbro Juan José López Rodríguez"
@@ -150,31 +150,89 @@ Cuenta con un impresionante vitral de Victor Vasarely."
                             android:text="Bosques de la Reforma 486, Bosques de  las Lomas, Miguel Hidalgo, 11700,  Ciudad de México, CDMX"
                             android:textColor="#363636"
                             android:textSize="12sp"
-                            android:textStyle="normal"
                             android:visibility="gone"
+                            android:textStyle="normal"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tvResponsable" />
 
-                        <TextView
-                            android:id="@+id/tvHorario"
-                            android:layout_width="0dp"
+                        <LinearLayout
+                            android:id="@+id/lnlHora"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginEnd="8dp"
-                            android:drawableLeft="@drawable/ic_calendario"
-                            android:drawablePadding="16dp"
-                            android:lineSpacingExtra="3sp"
-                            android:padding="8dp"
-                            android:textColor="#363636"
-                            android:textSize="12sp"
-                            android:textStyle="normal"
+                            android:orientation="horizontal"
                             android:visibility="gone"
-                            app:layout_constraintEnd_toEndOf="parent"
+                            android:padding="8dp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tvDireccionIglesia"
-                            tools:text="Bosques de la Reforma 486, Bosques de  las Lomas, Miguel Hidalgo, 11700,  Ciudad de México, CDMX" />
+                            app:layout_constraintTop_toBottomOf="@+id/tvDireccionIglesia">
+
+                            <TextView
+                                android:id="@+id/tvCalendar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="8dp"
+                                android:drawableLeft="@drawable/ic_calendario"
+                                android:textColor="#363636"
+                                android:textSize="12sp"
+                                android:textStyle="normal" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="14dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tvHT"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:textColor="#363636"
+                                    android:textSize="12sp"
+                                    android:textStyle="normal"
+                                    tools:text="Horario de templo:" />
+
+                                <TextView
+                                    android:id="@+id/tvHS"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:textColor="#363636"
+                                    android:textSize="12sp"
+                                    android:textStyle="normal"
+                                    tools:text="Horarios de oficina:" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:id="@+id/tvHorarioTemplo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:lineSpacingExtra="3sp"
+                                    android:layout_marginHorizontal="5dp"
+                                    android:layout_marginTop="8dp"
+                                    android:textColor="#363636"
+                                    android:textSize="12sp"
+                                    android:textStyle="normal"
+                                    app:layout_constraintStart_toEndOf="@+id/tvH"
+                                    app:layout_constraintTop_toBottomOf="@+id/tvDireccionIglesia"
+                                    tools:text="00:00 a 00:00" />
+                                <TextView
+                                    android:id="@+id/tvHorario"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:lineSpacingExtra="3sp"
+                                    android:layout_marginHorizontal="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:textColor="#363636"
+                                    android:textSize="12sp"
+                                    android:textStyle="normal"
+                                    tools:text="Lunes:\n 00:00 a 00:00" />
+                            </LinearLayout>
+                        </LinearLayout>
 
                         <TextView
                             android:id="@+id/tvInformacion"
@@ -193,7 +251,7 @@ Cuenta con un impresionante vitral de Victor Vasarely."
                             android:visibility="gone"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tvHorario"
+                            app:layout_constraintTop_toBottomOf="@+id/lnlHora"
                             tools:text="Bosques de la Reforma 486, Bosques de  las Lomas, Miguel Hidalgo, 11700,  Ciudad de México, CDMX" />
 
                         <ImageView

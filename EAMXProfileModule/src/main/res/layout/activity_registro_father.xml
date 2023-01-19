@@ -28,22 +28,22 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"> -->
-                    <!--                <ImageView-->
-                    <!--                    android:id="@+id/imgPortada"-->
-                    <!--                    android:layout_width="match_parent"-->
-                    <!--                    android:layout_height="match_parent"-->
-                    <!--                    android:scaleType="centerCrop"-->
-                    <!--                    android:src="@drawable/parroquia" />-->
+                <!--                <ImageView-->
+                <!--                    android:id="@+id/imgPortada"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:scaleType="centerCrop"-->
+                <!--                    android:src="@drawable/parroquia" />-->
 
-                    <!--                <ImageButton-->
-                    <!--                    android:id="@+id/btnBack"-->
-                    <!--                    android:layout_width="20dp"-->
-                    <!--                    android:layout_height="20dp"-->
-                    <!--                    android:layout_marginStart="16dp"-->
-                    <!--                    android:layout_marginTop="50dp"-->
-                    <!--                    android:background="?attr/selectableItemBackgroundBorderless"-->
-                    <!--                    android:foreground="?attr/selectableItemBackgroundBorderless"-->
-                    <!--                    android:src="@drawable/ic_icono_atras" />-->
+                <!--                <ImageButton-->
+                <!--                    android:id="@+id/btnBack"-->
+                <!--                    android:layout_width="20dp"-->
+                <!--                    android:layout_height="20dp"-->
+                <!--                    android:layout_marginStart="16dp"-->
+                <!--                    android:layout_marginTop="50dp"-->
+                <!--                    android:background="?attr/selectableItemBackgroundBorderless"-->
+                <!--                    android:foreground="?attr/selectableItemBackgroundBorderless"-->
+                <!--                    android:src="@drawable/ic_icono_atras" />-->
 
                 <!-- </FrameLayout> -->
 
@@ -64,23 +64,23 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
                     android:layout_marginTop="@dimen/margin_top_25"
+                    android:layout_marginEnd="16dp"
                     android:gravity="center"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    tools:text="Diego Mrtinez"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/circle_user_image_profile" />
+                    app:layout_constraintTop_toBottomOf="@+id/circle_user_image_profile"
+                    tools:text="Diego Mrtinez" />
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tabLayout"
                     android:layout_width="250dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="8dp"
-                    android:background="@color/white"
                     android:layout_marginTop="@dimen/margin_top_15"
+                    android:background="@color/white"
                     app:layout_constraintEnd_toEndOf="@+id/txtName"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtName"
@@ -153,10 +153,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="26dp"
-                android:textStyle="bold"
                 android:text="@string/date_of_birth"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtPhone" />
+
+
 
             <TextView
                 android:id="@+id/txtDate"
@@ -203,8 +205,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="18dp"
-                android:textStyle="bold"
                 android:text="Email"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtDate" />
 
