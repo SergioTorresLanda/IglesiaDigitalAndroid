@@ -727,7 +727,7 @@ class EAMXProfileInfoFragment : FragmentBase() {
                 binding.llSearchCongragations.visibility = View.GONE
                 binding.llResponsibleCommunity.visibility = View.GONE
                 if (typeUser == PRIEST) {
-                    binding.btnSave.text = "Siguiente"
+                    binding.btnSave.text = "Continuar"
                 }
             }
             SINGLE, MARRIED, WIDOWER -> {

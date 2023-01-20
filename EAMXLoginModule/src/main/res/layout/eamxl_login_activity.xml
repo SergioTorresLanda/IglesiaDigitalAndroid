@@ -168,10 +168,10 @@
         android:gravity="center"
         android:layout_marginTop="100dp"
         app:layout_constraintTop_toBottomOf="@+id/textView5">
-        <View
+        <!--<View
             android:layout_width="40dp"
             android:layout_height="2dp"
-            android:background="@color/gris_terminos" />
+            android:background="@color/gris_terminos" />-->
 
         <TextView
             android:layout_width="wrap_content"
@@ -181,10 +181,10 @@
             android:gravity="center_horizontal"
             android:text="@string/you_do_not_have_an_account_yet" />
 
-        <View
+        <!--<View
             android:layout_width="40dp"
             android:layout_height="2dp"
-            android:background="@color/gris_terminos" />
+            android:background="@color/gris_terminos" />-->
     </LinearLayout>
     <TextView
         android:id="@+id/textViewIngresar"

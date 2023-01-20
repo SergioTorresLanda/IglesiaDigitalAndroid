@@ -18,10 +18,10 @@
                 android:id="@+id/tvInformationTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="@dimen/padding_margin_15"
                 android:fontFamily="sans-serif-medium"
                 android:letterSpacing="@dimen/letter_spacing_dimen"
-                android:layout_marginStart="15dp"
                 android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_4"
                 android:text="@string/txt_profile_information_title"
                 android:textColor="@color/textview_title_color"
@@ -34,20 +34,20 @@
                 android:id="@+id/etName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="30dp"
                 android:background="@drawable/style_et"
-                android:fontFamily="sans-serif-light"
                 android:digits="@string/digits_only_letters"
+                android:fontFamily="sans-serif-light"
                 android:hint="@string/txt_registry_priest_hint_name"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
                 android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
                 android:maxLength="@integer/name_field_size"
                 android:padding="@dimen/small_margin_padding"
-                android:textColorHint="@color/color_hint_input_text"
                 android:textColor="@color/color_input_text"
+                android:textColorHint="@color/color_hint_input_text"
                 android:textSize="@dimen/font_size_14"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="parent"
@@ -57,20 +57,20 @@
                 android:id="@+id/etFatherSurname"
                 android:layout_width="@dimen/no_margin_padding"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="@dimen/very_small_margin_padding"
+                android:background="@drawable/style_et"
+                android:digits="@string/digits_only_letters"
                 android:fontFamily="sans-serif-light"
                 android:hint="@string/txt_registry_priest_father_surname"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
-                android:digits="@string/digits_only_letters"
                 android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
                 android:maxLength="@integer/surname_field_size"
-                android:background="@drawable/style_et"
                 android:padding="@dimen/small_margin_padding"
-                android:textColorHint="@color/color_hint_input_text"
                 android:textColor="@color/color_input_text"
+                android:textColorHint="@color/color_hint_input_text"
                 android:textSize="@dimen/font_size_14"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toStartOf="@+id/etMotherSurname"
@@ -84,8 +84,8 @@
                 android:layout_marginStart="@dimen/very_small_margin_padding"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="30dp"
-                android:digits="@string/digits_only_letters"
                 android:background="@drawable/style_et"
+                android:digits="@string/digits_only_letters"
                 android:fontFamily="sans-serif-light"
                 android:hint="@string/txt_registry_priest_mother_surname"
                 android:importantForAutofill="no"
@@ -93,8 +93,8 @@
                 android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
                 android:maxLength="@integer/surname_field_size"
                 android:padding="@dimen/small_margin_padding"
-                android:textColorHint="@color/color_hint_input_text"
                 android:textColor="@color/color_input_text"
+                android:textColorHint="@color/color_hint_input_text"
                 android:textSize="@dimen/font_size_14"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -105,11 +105,11 @@
                 android:id="@+id/tvGeneralInformation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="@dimen/padding_margin_15"
                 android:fontFamily="sans-serif-medium"
                 android:letterSpacing="@dimen/letter_spacing_dimen"
                 android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_4"
-                android:layout_marginStart="30dp"
                 android:text="@string/txt_profile_telephone_number"
                 android:textColor="@color/textview_title_color"
                 android:textSize="@dimen/font_size_16"
@@ -123,21 +123,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="30dp"
                 android:background="@color/color_blue_no_editable"
+                android:digits="@string/digits_only_number_phone"
+                android:enabled="false"
                 android:fontFamily="sans-serif-light"
                 android:hint="@string/txt_profile_civil_hint_telephone_number"
                 android:importantForAutofill="no"
                 android:inputType="number"
-                android:digits="@string/digits_only_number_phone"
                 android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
                 android:maxLength="13"
-                android:enabled="false"
                 android:padding="@dimen/small_margin_padding"
                 android:textColor="@color/color_input_text"
                 android:textColorHint="@color/color_hint_input_text"
                 android:textSize="@dimen/font_size_14"
                 android:textStyle="normal"
-                android:layout_marginEnd="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvGeneralInformation" />
@@ -162,23 +162,23 @@
 
             <EditText
                 android:id="@+id/etEmail"
-                android:enabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="30dp"
                 android:background="@color/color_blue_no_editable"
+                android:digits="@string/digits_email"
+                android:enabled="false"
                 android:fontFamily="sans-serif-light"
                 android:hint="@string/e_mail"
-                android:digits="@string/digits_email"
                 android:importantForAutofill="no"
                 android:inputType="textEmailAddress|textWebEmailAddress"
                 android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
                 android:maxLength="@integer/email_field_size"
                 android:padding="@dimen/small_margin_padding"
-                android:textColorHint="@color/color_hint_input_text"
                 android:textColor="@color/color_input_text"
+                android:textColorHint="@color/color_hint_input_text"
                 android:textSize="@dimen/font_size_14"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -189,11 +189,11 @@
                 android:id="@+id/tvCivilStatus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="27dp"
+                android:layout_marginEnd="30dp"
                 android:ellipsize="end"
                 android:ems="3"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
                 android:fontFamily="sans-serif-medium"
                 android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_4"
                 android:lines="1"
@@ -226,11 +226,11 @@
                 android:id="@+id/tvPrefix"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="27dp"
+                android:layout_marginEnd="30dp"
                 android:ellipsize="end"
                 android:ems="3"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
                 android:fontFamily="sans-serif-medium"
                 android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_4"
                 android:lines="1"
@@ -282,27 +282,27 @@
                     android:id="@+id/llDiacono"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_marginBottom="27dp"
+                    android:orientation="vertical"
                     android:visibility="gone">
 
                     <EditText
                         android:id="@+id/etSearchChurchDiaco"
-                        android:focusable="false"
-                        android:enabled="true"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/size_spinner"
                         android:background="@drawable/style_et"
                         android:drawableLeft="@drawable/ic_search"
                         android:drawablePadding="10dp"
+                        android:enabled="true"
+                        android:focusable="false"
                         android:fontFamily="sans-serif-light"
                         android:hint="@string/txt_profile_hint_church_search"
                         android:importantForAutofill="no"
                         android:inputType="text"
                         android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
                         android:maxLength="@integer/email_field_size"
-                        android:textColorHint="@color/color_hint_input_text"
                         android:textColor="@color/color_input_text"
+                        android:textColorHint="@color/color_hint_input_text"
                         android:textSize="@dimen/font_size_14"
                         android:textStyle="normal"
                         android:visibility="visible" />
@@ -311,16 +311,16 @@
                         android:id="@+id/rvDiacono"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/padding_margin_7"/>
+                        android:layout_marginTop="@dimen/padding_margin_7" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/llSearchChurch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="27dp"
                     android:orientation="vertical"
-                    android:visibility="visible"
-                    android:layout_marginBottom="27dp">
+                    android:visibility="visible">
 
                     <TextView
                         android:id="@+id/tvDescription"
@@ -393,22 +393,22 @@
 
                     <EditText
                         android:id="@+id/etSearchChurch"
-                        android:focusable="false"
-                        android:enabled="true"
-                        android:layout_marginTop="27dp"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/size_spinner"
+                        android:layout_marginTop="27dp"
                         android:background="@drawable/style_et"
                         android:drawableLeft="@drawable/ic_search"
                         android:drawablePadding="10dp"
+                        android:enabled="true"
+                        android:focusable="false"
                         android:fontFamily="sans-serif-light"
                         android:hint="@string/txt_profile_hint_church_search"
                         android:importantForAutofill="no"
                         android:inputType="text"
                         android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
                         android:maxLength="@integer/email_field_size"
-                        android:textColorHint="@color/color_hint_input_text"
                         android:textColor="@color/color_input_text"
+                        android:textColorHint="@color/color_hint_input_text"
                         android:textSize="@dimen/font_size_14"
                         android:textStyle="normal"
                         android:visibility="gone" />
@@ -430,16 +430,17 @@
                         android:id="@+id/rv_church"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/padding_margin_7"/>
+                        android:layout_marginTop="@dimen/padding_margin_7" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/llResponsibleCommunity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="27dp"
                     android:orientation="vertical"
-                    android:visibility="gone"
-                    android:layout_marginBottom="27dp">
+                    android:visibility="gone">
 
                     <RelativeLayout
                         android:id="@+id/rgResponsibleCommunity"
@@ -447,25 +448,25 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:visibility="visible">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
                             android:layout_alignParentEnd="true"
-                            >
+                            android:orientation="horizontal">
+
                             <Switch
                                 android:id="@+id/swResponsibleCommunity"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:switchPadding="@dimen/normal_margin_padding"
-                                android:trackTint="#C3EC96"
                                 android:thumbTint="#81D51F"
-                                />
+                                android:trackTint="#C3EC96" />
+
                             <TextView
                                 android:id="@+id/tvSwResposibleCommunity"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                />
+                                android:layout_height="wrap_content" />
 
                         </LinearLayout>
 
@@ -483,57 +484,60 @@
                             android:textSize="@dimen/font_size_12"
                             android:textStyle="normal" />
                     </RelativeLayout>
+
                     <EditText
                         android:id="@+id/etSearchCommunity"
-                        android:focusable="false"
-                        android:enabled="true"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/size_spinner"
                         android:background="@drawable/style_et"
                         android:drawableLeft="@drawable/ic_search"
                         android:drawablePadding="10dp"
+                        android:enabled="true"
+                        android:focusable="false"
                         android:fontFamily="sans-serif-light"
                         android:hint="¿En qué comunidad prestas el servicio?"
                         android:importantForAutofill="no"
                         android:inputType="text"
                         android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
                         android:maxLength="@integer/email_field_size"
-                        android:textColorHint="@color/color_hint_input_text"
                         android:textColor="@color/color_input_text"
+                        android:textColorHint="@color/color_hint_input_text"
                         android:textSize="@dimen/font_size_14"
                         android:textStyle="normal"
                         android:visibility="visible" />
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_community"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/padding_margin_7"/>
+                        android:layout_marginTop="@dimen/padding_margin_7" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/llSearchCongragations"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="27dp"
                     android:orientation="vertical"
-                    android:visibility="visible"
-                    android:layout_marginBottom="27dp">
+                    android:visibility="visible">
 
                     <EditText
                         android:id="@+id/etSearchCongregations"
-                        android:focusable="false"
-                        android:enabled="true"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/size_spinner"
                         android:background="@drawable/style_et"
                         android:drawableLeft="@drawable/ic_search"
                         android:drawablePadding="10dp"
+                        android:enabled="true"
+                        android:focusable="false"
                         android:fontFamily="sans-serif-light"
                         android:hint="@string/txt_profile_hint_congregation_search"
                         android:importantForAutofill="no"
                         android:inputType="text"
                         android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
                         android:maxLength="@integer/email_field_size"
-                        android:textColorHint="@color/color_hint_input_text"
                         android:textColor="@color/color_input_text"
+                        android:textColorHint="@color/color_hint_input_text"
                         android:textSize="@dimen/font_size_14"
                         android:textStyle="normal"
                         android:visibility="visible" />
@@ -558,16 +562,15 @@
                         android:id="@+id/spServicesChurch"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/size_spinner"
+                        android:layout_marginTop="10dp"
                         android:background="@drawable/style_spinner_selector"
                         android:fontFamily="sans-serif-light"
-                        android:layout_marginTop="10dp"
                         android:letterSpacing="0.01"
                         android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
                         android:textColor="@color/edittext_text_hint_color"
                         android:textSize="@dimen/font_size_14"
                         android:textStyle="normal"
                         android:visibility="visible" />
-
 
 
                     <EditText
@@ -583,8 +586,8 @@
                         android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
                         android:maxLength="@integer/name_field_size"
                         android:padding="@dimen/small_margin_padding"
-                        android:textColorHint="@color/color_hint_input_text"
                         android:textColor="@color/color_input_text"
+                        android:textColorHint="@color/color_hint_input_text"
                         android:textSize="@dimen/font_size_14"
                         android:textStyle="normal"
                         android:visibility="visible" />
@@ -636,13 +639,13 @@
                     android:id="@+id/rvThemesInterest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/padding_margin_7"/>
+                    android:layout_marginTop="@dimen/padding_margin_7" />
 
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSave"
-                android:layout_width="match_parent"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
@@ -659,7 +662,7 @@
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
