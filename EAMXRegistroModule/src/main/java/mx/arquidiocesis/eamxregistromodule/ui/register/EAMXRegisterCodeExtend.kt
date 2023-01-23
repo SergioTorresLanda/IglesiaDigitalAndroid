@@ -55,7 +55,7 @@ fun EAMXRegisterActivity.requestSignUp() {
         }
 
         if(etPassword.text.toString().isEmpty()){
-            tilPassword.error = getString(R.string.enter_your_password)
+            tilPassword.error = "Ingresa una contraseña válida"
         }else{
             (if(etPassword.text.toString().isNotEmpty() && etPassword.text.toString().length < 8) "La contraseña debe ser de mínimo 8 caracteres" else null).also { tilPassword.error = it }
             (if(!passwordValidation(etPassword.text.toString())) "Ingresa una contraseña válida" else null).also { tilPassword.error = it }
@@ -210,7 +210,7 @@ fun EAMXRegisterActivity.requestSignUp() {
                         etPassword,
                         EAMXTypeValidation.NOT_EMPTY,
                         true,
-                        getString(R.string.enter_your_password)
+                        "Ingresa una contraseña válida"
                     )
                 )
             }
