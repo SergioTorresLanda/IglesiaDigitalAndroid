@@ -294,7 +294,7 @@ class EAMXHomeFragment : EAMXBaseFragment() {
                             cvNews.visibility = View.VISIBLE
                         }
                         if (existSuggestion) {
-                             cvSuggestions.visibility = View.VISIBLE
+                            cvSuggestions.visibility = View.VISIBLE
                         }
                         var permissionType =
                             eamxcu_preferences.getData(
@@ -381,7 +381,8 @@ class EAMXHomeFragment : EAMXBaseFragment() {
             }
         }
     }
-    fun getTopics(){
+
+    fun getTopics() {
         tokenViewModel.getHomeRelease(
             userId,
             "RELEASE",

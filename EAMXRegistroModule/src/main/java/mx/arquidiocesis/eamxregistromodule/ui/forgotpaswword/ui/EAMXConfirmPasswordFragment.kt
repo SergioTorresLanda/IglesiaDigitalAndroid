@@ -253,7 +253,7 @@ class EAMXConfirmPasswordFragment(val listener: () -> (Unit)) : EAMXBaseFragment
                         tilCodePassword,
                         etCodeConfirmPassword.text.toString(),
                         tilCodeConfirmPassword,
-                        "Ingresa tu contraseña"
+                        "Ingresa una contraseña válida"
                     )
 
                 }

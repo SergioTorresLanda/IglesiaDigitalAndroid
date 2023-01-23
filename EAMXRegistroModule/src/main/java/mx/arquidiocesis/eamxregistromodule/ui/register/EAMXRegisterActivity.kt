@@ -138,8 +138,9 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
             when (it.statusValidation) {
                 EAMXStatusValidation.CORRECT -> viewModelEAMX.requestSignUp(it.request)
                 EAMXStatusValidation.INCORRECT -> {
-//                    UtilAlert.Builder().setMessage(it.errorMessage).build()
-//                        .show(supportFragmentManager, "")
+                    UtilAlert.Builder().setMessage("Verifique sus datos").build()
+                        .show(supportFragmentManager, "")
+
                 }
             }
         }
@@ -242,7 +243,7 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
                             tilPassword,
                             etConfirmPassword.text.toString(),
                             tilCodeConfirmPassword,
-                            getString(R.string.enter_your_password)
+                            "Ingresa una contraseña válida"
                         )
                     if (passText.isEmpty()) {
 //                        enableIconStart(tilPassword, null)

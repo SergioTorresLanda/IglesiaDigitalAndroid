@@ -115,7 +115,8 @@ class EAMXFieldValidation {
                     passValue.matches("[0-9]".toRegex()) -> {
                         containNumber++
                     }
-                    passValue.matches("[=+^\$*.\\[\\]\\{}()?\\\"!-?@#%&/\\,><':;|_~`]".toRegex()) -> {
+//                    passValue.matches("[=+^\$*.\\[\\]\\{}()?\\\"!-?@#%&/\\,><':;|_~`]".toRegex()) -> {
+                    passValue.matches("[\\^\\$\\*\\.\\[\\]\\{\\}\\(\\)\\?\"\\!@#\\%&\\/\\\\,><':;|_~`=+-]".toRegex()) -> {
                         containEspecial++
                     }
                 }
@@ -124,15 +125,21 @@ class EAMXFieldValidation {
                 return "Ingresa una minúscula"
             }
             if (containToUpper < 1.toByte()) {
-                return "Ingresa una mayúscula."
+                return "Ingresa una mayúscula"
             }
             if (containNumber < 1.toByte()) {
-                return "Ingresa un número."
+                return "Ingresa un número"
             }
             if (containEspecial < 1.toByte()) {
-                return "La contraseña debe contener al menos un carácter especial (^ \$ * . [ ] { } ( ) ? \" ! @ # % & / \\ , > < ' : ; | _ ~ ` = + -)."
+                return "La contraseña debe contener al menos un carácter especial (^ \$ * . [ ] { } ( ) ? \" ! @ # % & / \\ , > < ' : ; | _ ~ ` = + -)"
             }
             return message
+
+        }
+
+        fun validateRegex(){
+            // characteres * . [ ] { } ( ) ? " ! - @ # % & / , > < ' : ; | _ ~ ` \
+            val regex = "[=+^\$*.\\[\\]\\{}()?\\\"!-?@#%&/\\,><':;|_~`]"
 
         }
 
