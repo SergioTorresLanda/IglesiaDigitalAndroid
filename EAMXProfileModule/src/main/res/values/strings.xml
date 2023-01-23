@@ -64,7 +64,7 @@
     </string-array>
 
     <string name="txt_profile_telephone_number">Número de celular</string>
-    <string name="txt_profile_information_title">Información de perfil</string>
+    <string name="txt_profile_information_title">Información personal</string>
 
     <string name="txt_profile_civil_status_default">Selecciona</string>
     <string name="txt_profile_civil_status_alone">Soltero</string>

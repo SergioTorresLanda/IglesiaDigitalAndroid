@@ -137,21 +137,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="0dp"
                 android:layout_marginEnd="15dp"
-
                 android:background="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/eamx_remove_account"
-                app:tabIndicatorColor="@color/golden"
+                app:tabIndicatorColor="@color/transparent"
                 app:tabIndicatorHeight="4dp"
                 app:tabMode="scrollable"
                 app:tabPaddingEnd="2dp"
                 app:tabPaddingStart="2dp"
-                app:tabSelectedTextColor="@color/primaryColor"
+                app:tabSelectedTextColor="@color/transparent"
                 app:tabTextAppearance="@style/MyCustomTab" />
-
+<!--@color/golden @color/primaryColor-->
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewPagerInfo"
                 android:layout_width="match_parent"
