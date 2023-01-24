@@ -31,6 +31,7 @@ import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
 import mx.arquidiocesis.eamxcommonutils.customui.alert.ProgressDialog
 import mx.arquidiocesis.eamxcommonutils.util.EAMXCUMySharedPreferences
 import mx.arquidiocesis.eamxcommonutils.util.eamxLog
+//import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
 import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
 import mx.arquidiocesis.eamxgeneric.BuildConfig
 import mx.arquidiocesis.eamxgeneric.R
@@ -41,6 +42,7 @@ import mx.arquidiocesis.eamxloginmodule.ui.EAMXLoginActivity
 
 open class EAMXSplashActivity : AppCompatActivity(), InstallStateUpdatedListener {
 
+    //private var firebaseAnalytics: EAMXFirebaseManager? = null
     private val appUpdateManager by lazy {
         AppUpdateManagerFactory.create(this)
     }
@@ -69,7 +71,13 @@ open class EAMXSplashActivity : AppCompatActivity(), InstallStateUpdatedListener
         //setContentView(mBinding.root)
         initSecondaryFirebaseInstance()
         checkUpdateApp()
-
+        /*firebaseAnalytics = EAMXFirebaseManager(applicationContext)
+        firebaseAnalytics?.setLogEvent("screen_view_tag", Bundle().apply {
+            putString("flow", "view_form_card")
+            putString("section", "dontation")
+            putString("screen_name", "android_Home_Home")
+            putString("element", "sebastian")
+        })*/
     }
 
     private fun checkUpdateApp() {

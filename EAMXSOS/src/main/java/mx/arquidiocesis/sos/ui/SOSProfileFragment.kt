@@ -1,6 +1,7 @@
 package mx.arquidiocesis.sos.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.common.EAMXHome
 import mx.arquidiocesis.eamxcommonutils.common.EAMXProfile
 import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
+import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
 import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
 import mx.arquidiocesis.eamxcommonutils.util.userAllowAccessAsAdmin
 
@@ -47,8 +49,12 @@ class SOSProfileFragment : Fragment() {
             if (userIsAdmin) {//Sacerdote
                 PriestProfileFragment.newInstance()
             }else{//Fiel
-                 FaithfulProfileFragment.newInstance()
-
+                activity?.let {
+                    EAMXFirebaseManager(it).setLogEvent("screen_view_tag", Bundle().apply {
+                        putString("screen_name", "Android_Sos")
+                    })
+                }
+                FaithfulProfileFragment.newInstance()
                 /*if (fromSOS) {
                  FaithfulProfileFragment.newInstance()
                 } else {

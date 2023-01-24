@@ -3,10 +3,13 @@ package mx.arquidiocesis.eamxgeneric.adapter
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
+import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
 import mx.arquidiocesis.eamxcommonutils.util.loadByUrl
 import mx.arquidiocesis.eamxgeneric.databinding.ItemReleaseBinding
 import mx.arquidiocesis.eamxgeneric.model.DataHomeReleaseResponse
@@ -37,6 +40,9 @@ class ViewPagerAdapter(private val releases: List<DataHomeReleaseResponse>, val 
             }
 
             binding.root.setOnClickListener {
+                EAMXFirebaseManager(it.context).setLogEvent("screen_view_tag", Bundle().apply {
+                    putString("screen_name", "Android_DesdeLaFe")
+                })
                 val urlString = release.publishUrl
                 if(!urlString.isNullOrEmpty()){
                     listener(urlString)

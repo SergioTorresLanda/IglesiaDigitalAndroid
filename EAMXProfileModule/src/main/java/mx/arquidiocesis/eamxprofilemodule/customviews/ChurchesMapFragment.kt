@@ -3,6 +3,7 @@ package mx.arquidiocesis.eamxprofilemodule.customviews
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +24,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.fragment_churches_map.*
 import mx.arquidiocesis.eamxcommonutils.base.FragmentDialogBase
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
+import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
 import mx.arquidiocesis.eamxcommonutils.util.getViewModel
 import mx.arquidiocesis.eamxmaps.PublicMaps
 import mx.arquidiocesis.eamxprofilemodule.R
@@ -58,6 +60,11 @@ class ChurchesMapFragment constructor(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.let {
+            EAMXFirebaseManager(it).setLogEvent("screen_view_tag", Bundle().apply {
+                putString("screen_name", "Android_Perfil_Mapa")
+            })
+        }
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapView = mapFragment.view
         // Get the button view
@@ -90,6 +97,17 @@ class ChurchesMapFragment constructor(
             }
         if (isLaico) {
             btnCommunity.visibility = View.VISIBLE
+            activity?.let {
+                EAMXFirebaseManager(it).setLogEvent("screen_view_tag", Bundle().apply {
+                    putString("screen_name", "Android_Perfil_Mapa_Comunidad")
+                })
+            }
+        } else {
+            activity?.let {
+                EAMXFirebaseManager(it).setLogEvent("screen_view_tag", Bundle().apply {
+                    putString("screen_name", "Android_Perfil_Mapa_Iglesias")
+                })
+            }
         }
         btnCommunity.setOnClickListener {
             UtilAlert.Builder()

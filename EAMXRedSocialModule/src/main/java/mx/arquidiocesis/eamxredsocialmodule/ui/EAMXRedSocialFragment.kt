@@ -3,6 +3,7 @@ package mx.arquidiocesis.eamxredsocialmodule.ui
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import androidx.lifecycle.MutableLiveData
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
+import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
 import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
 import mx.arquidiocesis.eamxcommonutils.util.imagen.ImagenProfile
 import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
@@ -70,8 +72,12 @@ class EAMXRedSocialFragment : FragmentBase() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.let {
+            EAMXFirebaseManager(it).setLogEvent("screen_view_tag", Bundle().apply {
+                putString("screen_name", "Android_RedSocial")
+            })
+        }
         initView()
-
     }
 
     fun initElements() {

@@ -1,6 +1,7 @@
 package mx.upax.formacion.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,7 @@ import mx.upax.formacion.model.BaseModel
 import mx.upax.formacion.model.FeaturedModel
 import mx.upax.formacion.repository.Repository
 import mx.upax.formacion.viewModel.FormationViewModel
+import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
 
 const val PDF = "FILE"
 const val YOUTUBE = "VIDEO"
@@ -52,6 +54,11 @@ class FormationFragment: FragmentBase() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.let {
+            EAMXFirebaseManager(it).setLogEvent("screen_view_tag", Bundle().apply {
+                putString("screen_name", "Android_BibliotecaVirtual")
+            })
+        }
         initView()
         initObservers()
     }

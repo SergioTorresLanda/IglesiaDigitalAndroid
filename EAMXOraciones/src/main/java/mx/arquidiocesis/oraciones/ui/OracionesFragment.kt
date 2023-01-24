@@ -3,6 +3,7 @@ package mx.arquidiocesis.oraciones.ui
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +21,7 @@ import mx.arquidiocesis.eamxcommonutils.application.AppMyConstants
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.common.EAMXHome
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
+import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
 import mx.arquidiocesis.eamxcommonutils.util.getViewModel
 import mx.arquidiocesis.oraciones.adapter.AdapterExpandible
 import mx.arquidiocesis.oraciones.adapter.TipoOracionesAdapter
@@ -63,6 +65,11 @@ class OracionesFragment : FragmentBase() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.let {
+            EAMXFirebaseManager(it).setLogEvent("screen_view_tag", Bundle().apply {
+                putString("screen_name", "Android_Oraciones")
+            })
+        }
         callBack = (activity as EAMXHome)
         callBack.showToolbar(true, AppMyConstants.oraciones)
 

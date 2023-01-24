@@ -2,6 +2,7 @@ package com.wallia.eamxcomunidades.ui
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -26,10 +27,7 @@ import com.wallia.eamxcomunidades.viewmodel.PRINCIPAL
 import com.wallia.eamxcomunidades.viewmodel.SEARCH
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.common.*
-import mx.arquidiocesis.eamxcommonutils.util.convertToBitmap
-import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
-import mx.arquidiocesis.eamxcommonutils.util.getViewModel
-import mx.arquidiocesis.eamxcommonutils.util.log
+import mx.arquidiocesis.eamxcommonutils.util.*
 import java.lang.reflect.Type
 
 class EAMXComunidadesFielFragment : FragmentBase() {
@@ -141,6 +139,11 @@ class EAMXComunidadesFielFragment : FragmentBase() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.let {
+            EAMXFirebaseManager(it).setLogEvent("screen_view_tag", Bundle().apply {
+                putString("screen_name", "Android_Comunidades")
+            })
+        }
         rol =eamxcu_preferences.getData(
             EAMXEnumUser.USER_PROFILE.name,
             EAMXTypeObject.STRING_OBJECT

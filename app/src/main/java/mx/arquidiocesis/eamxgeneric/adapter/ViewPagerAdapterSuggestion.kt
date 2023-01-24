@@ -1,9 +1,12 @@
 package mx.arquidiocesis.eamxgeneric.adapter
 
+import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
 import mx.arquidiocesis.eamxcommonutils.util.extraIdUrlVideoYoutube
 import mx.arquidiocesis.eamxcommonutils.util.loadByUrl
 import mx.arquidiocesis.eamxgeneric.databinding.ItemSuggestionBinding
@@ -34,7 +37,6 @@ class ViewPagerAdapterSuggestion(
         fun bind(suggestionModel: SuggestionModel, listener: (SuggestionModel) -> Unit) {
             binding.apply {
                 tvTitleSuggestion.text = suggestionModel.title
-
                 val image = if (suggestionModel.type == VIDEO) {
                     "https://img.youtube.com/vi/${suggestionModel.article_url?.extraIdUrlVideoYoutube()}/0.jpg"
                 } else {
@@ -50,6 +52,9 @@ class ViewPagerAdapterSuggestion(
                     .into(ivSuggestion)*/
 
                 root.setOnClickListener {
+                    EAMXFirebaseManager(it.context).setLogEvent("screen_view_tag", Bundle().apply {
+                        putString("screen_name", "Android_Sugerencias")
+                    })
                     listener(suggestionModel)
                 }
             }

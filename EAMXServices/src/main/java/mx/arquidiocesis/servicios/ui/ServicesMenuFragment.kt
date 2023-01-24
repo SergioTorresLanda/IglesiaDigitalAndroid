@@ -1,6 +1,7 @@
 package mx.arquidiocesis.servicios.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import mx.arquidiocesis.eamxcommonutils.application.AppMyConstants
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.common.EAMXHome
+import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
 import mx.arquidiocesis.servicios.adapter.ServiceAdapter
 import mx.arquidiocesis.servicios.databinding.FragmentServicesMenuBinding
 import mx.arquidiocesis.servicios.model.ServiceMenuMainModel
@@ -36,6 +38,11 @@ class ServicesMenuFragment : FragmentBase() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.let {
+            EAMXFirebaseManager(it).setLogEvent("screen_view_tag", Bundle().apply {
+                putString("screen_name", "Android_Servicios")
+            })
+        }
         initView()
     }
 

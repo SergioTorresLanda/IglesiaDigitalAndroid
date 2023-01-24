@@ -1,6 +1,7 @@
 package mx.arquidiocesis.sos.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import com.upax.eamxsos.R
 import com.upax.eamxsos.databinding.FragmentFaithfulProfileBinding
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
+import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
 import mx.arquidiocesis.eamxcommonutils.util.getViewModel
 import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
 import mx.arquidiocesis.sos.repository.SOSRepository
@@ -153,6 +155,19 @@ class FaithfulProfileFragment : FragmentBase() {
         } else {
             showLoader()
             boton = true
+            if (viewModel.itemService!!.id==12){
+                activity?.let {
+                    EAMXFirebaseManager(it).setLogEvent("screen_view_tag", Bundle().apply {
+                        putString("screen_name", "Android_Sos_UncionDeLosEnfermos")
+                    })
+                }
+            } else if (viewModel.itemService!!.id==13){
+                activity?.let {
+                    EAMXFirebaseManager(it).setLogEvent("screen_view_tag", Bundle().apply {
+                        putString("screen_name", "Android_Sos_CelebracionDeDifuntos")
+                    })
+                }
+            }
             // viewModel.getPriestServicesWithDevotee(viewModel.getUserId())
             viewModel.pendiente(viewModel.getUserId(), "FIEL", viewModel.itemService!!.id)
         }
