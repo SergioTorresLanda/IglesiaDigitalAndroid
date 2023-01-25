@@ -4,6 +4,6 @@ ext.configuration = [
         compileSdkVersion: 33,
         targetSdkVersion : 31,
         buildToolsVersion: "30.0.3",
-        versionName      : "1.14",
-        versionCode      : 34
+        versionName      : "1.15",
+        versionCode      : 35
 ]
