@@ -17,7 +17,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/margin_16"
-                android:layout_marginHorizontal="@dimen/margin_30"
+                android:layout_marginHorizontal="@dimen/margin_20"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -90,15 +90,15 @@
                     android:layout_marginTop="18dp"
                     android:src="@drawable/icono_manos"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/imgUser"
+                    app:layout_constraintStart_toStartOf="@+id/txtDescripcion"
                     app:layout_constraintTop_toBottomOf="@+id/txtDescripcion" />
 
                 <TextView
                     android:id="@+id/txtCount"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="3dp"
                     android:fontFamily="@font/spro_text_regular"
                     android:textColor="#75787b"
                     android:textStyle="bold"
