@@ -2,6 +2,7 @@ package mx.arquidiocesis.servicios.ui
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -69,6 +70,8 @@ class IntentionScheduleDayFragment : FragmentBase() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentIntentionScheduleDayBinding.inflate(inflater, container, false)
+        val establecimientoNombre2 = arguments?.getString("ESTABLECIMIENTO_NAME")
+        Log.d("IntentionScheduleDay", "establecimientoNombre: $establecimientoNombre2")
         return binding.root
     }
 
@@ -77,6 +80,7 @@ class IntentionScheduleDayFragment : FragmentBase() {
         val establecimientoNombre = arguments?.getString("ESTABLECIMIENTO_NAME")
 
         if (establecimientoNombre != null || establecimientoNombre!="") {
+            Log.d("IntentionScheduleDay", "establecimientoNombre: $establecimientoNombre")
             establecimientoToGet=establecimientoNombre.toString()
         } else {
             establecimientoToGet="Ha ocurrido un error, intente nuevamente."
@@ -127,12 +131,13 @@ class IntentionScheduleDayFragment : FragmentBase() {
 
     fun initObservers() {
         viewModel.churchDetailResponse.observe(viewLifecycleOwner) {
+            Log.d("IntentionScheduleDay", "churchDetailResponse: $it")
             binding.apply {
                 Glide.with(requireContext())
                     .load(Uri.parse(it.image_url))
                     .into(ivChurchSchedule)
                 //
-                tvChurchNameSchedule.text = establecimientoToGet
+                tvChurchNameSchedule.text = it.name
             }
             hideLoader()
         }

@@ -2,6 +2,7 @@ package mx.arquidiocesis.servicios.ui
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -127,6 +128,7 @@ private var instalacionNombre=""
         activity?.supportFragmentManager?.let {
             val dialog = DialogFindChurchFragment.newInstance()
             dialog.churchSelected = {
+                Log.d("IntentionScheduleDay1", it.toString())
                 scheduleMention(it.id)
             }
             dialog.show(it, "Show Dialog Congregation")
