@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doAfterTextChanged
 import kotlinx.android.synthetic.main.eamxr_confirm_password_activity.*
@@ -173,8 +174,6 @@ class EAMXConfirmPasswordFragment(val listener: () -> (Unit)) : EAMXBaseFragment
 
     private fun enableResend(enable: Boolean) {
         binding.tvReSendCode.visibility = if (enable) View.VISIBLE else View.INVISIBLE
-        //mBinding.llResend.visibility = if (enable) View.VISIBLE else View.INVISIBLE
-        //mBinding.btnResendCode.visibility = if (enable) View.VISIBLE else View.INVISIBLE
         if (!enable) {
             binding.etCodeOne.setText("")
             binding.etCodeTwo.setText("")
@@ -185,9 +184,10 @@ class EAMXConfirmPasswordFragment(val listener: () -> (Unit)) : EAMXBaseFragment
             binding.txtWarning.visibility = View.VISIBLE
         } else {
             binding.apply {
+                val colorText = ContextCompat.getColor(requireContext(), R.color.underscopetext)
                 tvReSendCode.isEnabled = true
                 tvReSendCode.text = getString(R.string.label_re_send_code)
-                tvReSendCode.buildTextWithUnderscore(requireContext().getColor(R.color.underscopetext))
+                tvReSendCode.buildTextWithUnderscore(colorText = colorText)
                 tvTimer.text = ""
                 txtWarning.visibility = View.GONE
 
