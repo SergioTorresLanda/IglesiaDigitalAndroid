@@ -20,6 +20,8 @@ object ServiceBuilder {
                 return@Interceptor chain.proceed(builder.build())
             }
         )
+        connectTimeout(40000, TimeUnit.MILLISECONDS)
+        readTimeout(40000, TimeUnit.MILLISECONDS)
     }
 
     private val retrofit = Retrofit.Builder()

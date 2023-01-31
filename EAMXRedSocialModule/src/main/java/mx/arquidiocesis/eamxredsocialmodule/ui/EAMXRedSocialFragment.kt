@@ -55,7 +55,7 @@ class EAMXRedSocialFragment : FragmentBase() {
     var totalLastResult = -1
     var cargado = false
     var istFirst = true
-    var maximo = 4
+    var maximo = 0
     var list = listOf<ResultMultiProfileModel>()
 
     lateinit var resultModel: ResultModel
@@ -148,12 +148,12 @@ class EAMXRedSocialFragment : FragmentBase() {
                     }
 
             }
-            /*val prevSize = adapter.items.size
+            val prevSize = adapter.items.size
             if (prevSize != 0) {
                 adapter.notifyItemRangeInserted(prevSize, adapter.items.count() - 1)
             } else {
 
-            }*/
+            }
         }
         viewmodel.responseDelete.observe(viewLifecycleOwner) {
             showSkeleton(false)
@@ -226,7 +226,7 @@ class EAMXRedSocialFragment : FragmentBase() {
         adapter.items= arrayListOf<PostModel>()
         setupRecyclerView()
         click()
-        maximo = 4
+        maximo = 0
         showSkeleton(true)
         viewmodel.requestAllpost()
     }
@@ -250,7 +250,7 @@ class EAMXRedSocialFragment : FragmentBase() {
     fun rechargePost() {
         cargado = false
         if (resultModel.pagination!!.hasMore) {
-            maximo = 4
+            maximo = 0
             showSkeleton(true)
             viewmodel.requestAllpost(resultModel.pagination!!.next)
         } else {
