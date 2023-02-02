@@ -40,6 +40,10 @@ class RedSocialViewModel(private val repository: Repository) : ViewModel() {
         EAMXEnumUser.USER_ID.name,
         EAMXTypeObject.INT_OBJECT
     ) as Int
+    val urlImageProfile = eamxcu_preferences.getData(
+        EAMXEnumUser.URL_PICTURE_PROFILE_USER.name,
+        EAMXTypeObject.STRING_OBJECT
+    ).toString()
 
     fun setProfileId() {
         profileId = eamxcu_preferences.getData(
@@ -57,7 +61,8 @@ class RedSocialViewModel(private val repository: Repository) : ViewModel() {
 
         var jsonObject: JsonObject = JsonObject()
         jsonObject.addProperty("userId", profileId)
-        jsonObject.addProperty("content", content)
+        jsonObject.addProperty("content", content.trim())
+        jsonObject.addProperty("imageProfile",urlImageProfile)
         var multimediaArray = JsonArray()
         multimediaList.forEach {
             var multimedia: JsonObject = JsonObject()
@@ -84,7 +89,7 @@ class RedSocialViewModel(private val repository: Repository) : ViewModel() {
         jsonObject.addProperty("userId", profileId)
 
         jsonObject.addProperty("statusId", 1)
-        jsonObject.addProperty("content", content)
+        jsonObject.addProperty("content", content.trim())
         var multimediaDelArray = JsonArray()
         multimediaDelList.forEach {
             multimediaDelArray.add(it.id!!.toInt())
@@ -191,8 +196,9 @@ class RedSocialViewModel(private val repository: Repository) : ViewModel() {
         var jsonObject: JsonObject = JsonObject()
         jsonObject.addProperty("postId", idPost)
         jsonObject.addProperty("commentId", idComent)
+        jsonObject.addProperty("imageProfile",urlImageProfile)
         jsonObject.addProperty("userId", profileId)
-        jsonObject.addProperty("content", comment)
+        jsonObject.addProperty("content", comment.trim())
         jsonObject.addProperty("scope", scope)
         jsonObject.addProperty("groupId", idUser)
         jsonObject = getAs(scope, jsonObject)
@@ -204,7 +210,7 @@ class RedSocialViewModel(private val repository: Repository) : ViewModel() {
     fun updateComment(idCommen: Int, comment: String) {
         var jsonObject: JsonObject = JsonObject()
         jsonObject.addProperty("userId", profileId)
-        jsonObject.addProperty("content", comment)
+        jsonObject.addProperty("content", comment.trim())
         GlobalScope.launch {
             repository.updateComment(idCommen, jsonObject)
         }

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
 import mx.arquidiocesis.eamxcommonutils.util.EAMXFormatDate
@@ -17,6 +18,7 @@ import mx.arquidiocesis.eamxredsocialmodule.model.ResultMultiProfileModel
 import mx.arquidiocesis.eamxredsocialmodule.ui.COMENTARIO
 import mx.arquidiocesis.eamxredsocialmodule.ui.EDITAR
 import mx.arquidiocesis.eamxredsocialmodule.ui.ELIMINAR
+import kotlin.random.Random
 
 class CommentAdapter(
     val context: Context,
@@ -35,7 +37,7 @@ class CommentAdapter(
     }
 
     override fun onBindViewHolder(holder: MassesViewHolder, position: Int) =
-        holder.bind(context, listener, list[position], listProfile, isSuper,this)
+        holder.bind(context, listener, list[position], listProfile, isSuper, this)
 
     override fun getItemCount(): Int = list.size
 
@@ -77,56 +79,40 @@ class CommentAdapter(
                     EAMXEnumUser.USER_ID_REDSOCIAL.name,
                     EAMXTypeObject.INT_OBJECT
                 ) as Int
-                item.scope?.let { s ->
-                    s.typeId?.let { type ->
-                        if (type > 1) {
-                            var isMy = false
-                            s.id.let { i ->
-                                list?.let { p ->
-                                    p.forEach {
-                                        if (it.id == i) {
-                                            isMy = true
-                                            return@forEach
-                                        }
-                                    }
-                                }
-                            }
-                            if (isMy||isSuper) {
-                                ivOption.visibility = View.VISIBLE
-                            } else {
-                                ivOption.visibility = View.GONE
-                            }
-                            txtName.text = s.name
-                            if (!s.image.isNullOrEmpty()) {
-                                Glide.with(root.context)
-                                    .load(s.image)
-                                    .centerCrop()
-                                    .into(imgPriest)
-                            }
-                        } else {
-                            if (profileId == item.author.id||isSuper) {
-                                ivOption.visibility = View.VISIBLE
-                            } else {
-                                ivOption.visibility = View.GONE
-                            }
-                            txtName.text = item.author.name
-                            if (!item.author.image.isNullOrEmpty()) {
-                                Glide.with(root.context)
-                                    .load(item.author.image)
-                                    .centerCrop()
-                                    .into(imgPriest)
+                var isMy = false
+                if (item.scope.typeId!! > 1) {
+                    list?.let { p ->
+                        p.forEach {
+                            if (it.id == item.scope.id) {
+                                isMy = true
+                                return@forEach
                             }
                         }
                     }
+                } else {
+                    isMy = profileId == item.author.id
                 }
-
+                if (isSuper || isMy) {
+                    ivOption.visibility = View.VISIBLE
+                } else {
+                    ivOption.visibility = View.GONE
+                }
+                txtName.text = item.author.name
+                if (!item.author.image.isNullOrEmpty()) {
+                    Glide.with(root.context)
+                        .load(item.author.image+"?"+Random.nextInt(0,200))
+                        .centerCrop()
+                        .skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE).into(imgPriest)
+                }
                 val dateResponse = item.createdAt.toLong()
                 val objectFormat = EAMXFormatDate(root.context)
                 val miFecha = objectFormat.diferencia(dateResponse)
                 tvFechaReview.text = miFecha
                 txtMessage.text = item.content
-                tvLike.text = item.totalReactions.toString()
-                ivOption.setOnClickListener {
+                //tvLike.text = item.totalReactions.toString()
+                tvLike.visibility = View.GONE
+                /*ivOption.setOnClickListener {
+                    Log.d("ClicComment","True")
                     val popupMenu: PopupMenu = PopupMenu(context, ivOption)
                     popupMenu.menuInflater.inflate(
                         mx.arquidiocesis.eamxcommonutils.R.menu.menu_review,
@@ -144,11 +130,11 @@ class CommentAdapter(
                     })
                     popupMenu.show()
 
-                }
-                tvResponder.setOnClickListener {
+                }*/
+                /*tvResponder.setOnClickListener {
                     listener(COMENTARIO, item)
-                }
-
+                }*/
+                tvResponder.visibility = View.GONE
             }
         }
     }

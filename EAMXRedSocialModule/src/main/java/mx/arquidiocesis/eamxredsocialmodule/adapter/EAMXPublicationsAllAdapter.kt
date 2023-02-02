@@ -1,6 +1,8 @@
 package mx.arquidiocesis.eamxredsocialmodule.adapter
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,12 +10,10 @@ import android.widget.PopupMenu
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
-import mx.arquidiocesis.eamxcommonutils.util.EAMXFormatDate
-import mx.arquidiocesis.eamxcommonutils.util.buildTextSuccess
-import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
-import mx.arquidiocesis.eamxcommonutils.util.visibility
+import mx.arquidiocesis.eamxcommonutils.util.*
 import mx.arquidiocesis.eamxredsocialmodule.R
 import mx.arquidiocesis.eamxredsocialmodule.databinding.ItemMediaPickerBinding
 import mx.arquidiocesis.eamxredsocialmodule.databinding.ItemRedSocialBinding
@@ -59,56 +59,45 @@ class EAMXPublicationsAllAdapter(
                 EAMXEnumUser.USER_ID_REDSOCIAL.name,
                 EAMXTypeObject.INT_OBJECT
             ) as Int
-            item.scope.let { s ->
-                s.typeId?.let { type ->
-                    if (type > 1) {
-                        var isMy = false
-                        s.id.let { i ->
-                            list?.let { p ->
-                                p.forEach {
-                                    if (it.id == i) {
-                                        isMy = true
-                                        return@forEach
-                                    }
-                                }
-                            }
-                        }
-                        if (isSuper || isMy) {
-                            ivOption.visibility = View.VISIBLE
-                        } else {
-                            ivOption.visibility = View.GONE
-                        }
-                        txtName.text = s.name
-                        if (!s.image.isNullOrEmpty()) {
-                            Glide.with(root.context)
-                                .load(s.image)
-                                .centerCrop()
-                                .into(imgPriest)
-                        }
-                    } else {
-                        if (profileId == item.author.id || isSuper) {
-                            ivOption.visibility = View.VISIBLE
-                        } else {
-                            ivOption.visibility = View.GONE
-                        }
-                        txtName.text = item.author.name
-                        if (!item.author.image.isNullOrEmpty()) {
-                            Glide.with(root.context)
-                                .load(item.author.image)
-                                .centerCrop()
-                                .into(imgPriest)
+            var isMy = false
+            if (item.scope.typeId!! > 1) {
+                list?.let { p ->
+                    p.forEach {
+                        if (it.id == item.scope.id) {
+                            isMy = true
+                            return@forEach
                         }
                     }
                 }
+            } else {
+                isMy = profileId == item.author.id
             }
-
-
+            if (isSuper || isMy) {
+                ivOption.visibility = View.VISIBLE
+            } else {
+                ivOption.visibility = View.GONE
+            }
+            txtName.text = item.author.name
+            if (!item.author.image.isNullOrEmpty()) {
+                Glide.with(root.context)
+                    .load(item.author.image+"?".getRandomString(10))
+                    .centerCrop()
+                    .skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE).into(imgPriest)
+            }
             val dateResponse = item.createdAt.toLong()
             val objectFormat = EAMXFormatDate(root.context)
             val miFecha = objectFormat.diferencia(dateResponse)
             txtDate.text = miFecha
-
-            txtMessage.buildTextSuccess(item.content)
+            var urlPrueba = ""
+            txtMessage.buildTextSuccess(item.content, root.context)
+            txtMessage.setOnClickListener {
+                urlPrueba = "".buildTextSuccessUrl(item.content)
+                if (urlPrueba.urlValidator()) {
+                    val uri = Uri.parse(urlPrueba)
+                    val i = Intent(Intent.ACTION_VIEW, uri)
+                    context.startActivity(i)
+                }
+            }
             tvLike.text = item.totalReactions.toString()
             tvLikeDado.text = item.totalReactions.toString()
             tvComent.text = item.totalComments.toString()
@@ -154,18 +143,14 @@ class EAMXPublicationsAllAdapter(
                 onItemClickListener(item, COMPARTIR)
 
             }
-
             iMediaGallery.cGallery.visibility(item.multimedia.isNotEmpty())
             iMediaGallery.cGallery.setOnClickListener {
                 onItemClickListener(item, "")
             }
-
             resetContainer(iMediaGallery.iThumbnail1)
             resetContainer(iMediaGallery.iThumbnail2)
             resetContainer(iMediaGallery.iThumbnail3)
             resetContainer(iMediaGallery.iThumbnail4)
-
-
             for ((index, media) in item.multimedia.withIndex()) {
                 when (index) {
                     0 -> {

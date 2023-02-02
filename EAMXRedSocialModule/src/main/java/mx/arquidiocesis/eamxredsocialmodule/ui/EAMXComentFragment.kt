@@ -8,10 +8,12 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
 import mx.arquidiocesis.eamxcommonutils.util.EAMXFormatDate
 import mx.arquidiocesis.eamxcommonutils.util.buildTextSuccess
+import mx.arquidiocesis.eamxcommonutils.util.getRandomString
 import mx.arquidiocesis.eamxcommonutils.util.getViewModel
 import mx.arquidiocesis.eamxredsocialmodule.R
 import mx.arquidiocesis.eamxredsocialmodule.databinding.EamxCommentFragmentBinding
@@ -23,6 +25,7 @@ import mx.arquidiocesis.eamxredsocialmodule.model.MultimediaModel
 import mx.arquidiocesis.eamxredsocialmodule.model.PostModel
 import mx.arquidiocesis.eamxredsocialmodule.model.ResultMultiProfileModel
 import mx.arquidiocesis.eamxredsocialmodule.viewmodel.RedSocialViewModel
+import kotlin.random.Random
 
 class EAMXComentFragment(
     var postModel: PostModel,
@@ -65,17 +68,17 @@ class EAMXComentFragment(
                         txtName.text = postModel.scope.name
                         if (!postModel.scope.image.isNullOrEmpty()) {
                             Glide.with(root.context)
-                                .load(postModel.scope.image)
+                                .load(postModel.scope.image+"?".getRandomString(10))
                                 .centerCrop()
-                                .into(imgPriest)
+                                .skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE).into(imgPriest)
                         }
                     } else {
                         txtName.text = postModel.author.name
                         if (!postModel.author.image.isNullOrEmpty()) {
                             Glide.with(root.context)
-                                .load(postModel.author.image)
+                                .load(postModel.author.image+"?".getRandomString(10))
                                 .centerCrop()
-                                .into(imgPriest)
+                                .skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE).into(imgPriest)
                         }
                     }
                 }
@@ -84,19 +87,26 @@ class EAMXComentFragment(
                 val miFecha = objectFormat.diferencia(dateResponse)
                 txtDate.text = miFecha
 
-                txtMessage.buildTextSuccess(postModel.content)
-                tvLike.text = postModel.totalReactions.toString()
-                tvComent.text = postModel.totalComments.toString()
+                txtMessage.buildTextSuccess(postModel.content, root.context)
+                //tvLike.text = postModel.totalReactions.toString()
+                tvLike.visibility = View.GONE
+                //tvComent.text = postModel.totalComments.toString()
+                tvComent.text = "Responder"
                 ivOption.visibility = View.GONE
                 viewTop.visibility = View.GONE
 
-                tvLike.setOnClickListener {
+                /*tvLike.setOnClickListener {
                     //  onItemClickListener(postModel, LIKE)
-                }
+                }*/
                 tvComent.setOnClickListener {
                     model.value = null
                     showBottomSheet()
                 }
+
+                //Acción provicional
+                iMediaGallery.cGallery.visibility = View.GONE
+
+                /*
                 if (postModel.multimedia.isEmpty()) {
                     iMediaGallery.cGallery.visibility = View.GONE
                 } else {
@@ -105,13 +115,10 @@ class EAMXComentFragment(
                 iMediaGallery.cGallery.setOnClickListener {
                     // onItemClickListener(postModel, "")
                 }
-
                 resetContainer(iMediaGallery.iThumbnail1)
                 resetContainer(iMediaGallery.iThumbnail2)
                 resetContainer(iMediaGallery.iThumbnail3)
                 resetContainer(iMediaGallery.iThumbnail4)
-
-
                 for ((index, media) in postModel.multimedia.withIndex()) {
                     when (index) {
                         0 -> {
@@ -133,7 +140,7 @@ class EAMXComentFragment(
                             }
                         }
                     }
-                }
+                }*/
             }
             showSkeleton(true)
             viewmodel.getComment(idPost)
@@ -154,7 +161,8 @@ class EAMXComentFragment(
                         if (resultModel.Pagination.hasMore) {
                             viewmodel.getComment(idPost, resultModel.Pagination.next)
                         } else {
-                            ilPublication.tvComent.text = listComent.size.toString()
+                            //ilPublication.tvComent.text = listComent.size.toString()
+                            ilPublication.tvComent.text = "Responder"
                             commentAdapter = CommentAdapter(
                                 requireContext(),
                                 listComent,

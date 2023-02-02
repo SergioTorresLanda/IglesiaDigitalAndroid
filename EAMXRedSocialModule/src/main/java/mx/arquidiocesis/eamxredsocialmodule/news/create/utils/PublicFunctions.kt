@@ -39,7 +39,7 @@ class PublicFunctionsMaps {
                 .load(Uri.parse(ruta))
                 .override(300, 200)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(true)
+                .skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(object : CustomTarget<Bitmap>() {
                     override fun onResourceReady(
                         resource: Bitmap,

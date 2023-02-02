@@ -144,3 +144,10 @@ fun String.convertToBitmap(): Bitmap? {
         null
     }
 }
+
+fun String.getRandomString(length: Int) : String {
+    val charset = "ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz0123456789"
+    return this+(1..length)
+        .map { charset.random() }
+        .joinToString("")
+}

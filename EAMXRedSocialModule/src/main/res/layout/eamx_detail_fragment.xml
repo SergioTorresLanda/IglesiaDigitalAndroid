@@ -7,13 +7,13 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/white"
             android:clickable="true"
             android:fillViewport="true"
             android:focusable="true">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <!--<androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
@@ -55,14 +55,14 @@
                     tools:text="Titulo del fragment" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
+-->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/constraintLayout">
+                app:layout_constraintStart_toStartOf="parent">
+                <!--app:layout_constraintTop_toBottomOf="@id/constraintLayout"-->
 
                 <ScrollView
                     android:layout_width="match_parent"
@@ -84,17 +84,16 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/constrainView"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
+                            android:layout_height="300dp"
                             android:layout_weight="0.7">
 
                             <androidx.viewpager2.widget.ViewPager2
                                 android:id="@+id/viewPagerCarousel"
                                 android:layout_width="0dp"
-                                android:layout_height="0dp"
+                                android:layout_height="match_parent"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                app:layout_constraintStart_toStartOf="parent"/>
 
                             <com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
                                 android:id="@+id/dots_indicator"
@@ -115,28 +114,26 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
+                            android:layout_height="wrap_content"
                             android:layout_weight="0.3"
                             android:orientation="vertical"
-                            android:paddingHorizontal="25dp">
+                            android:paddingHorizontal="16dp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/margin_top_20"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/padding_5">
+                                android:orientation="horizontal">
 
-                                <de.hdodenhof.circleimageview.CircleImageView
+                                <!--<de.hdodenhof.circleimageview.CircleImageView
                                     android:id="@+id/imgUser"
                                     android:layout_width="@dimen/width_40"
                                     android:layout_height="@dimen/width_40"
-                                    tools:src="@drawable/img_cura" />
+                                    tools:src="@drawable/img_cura" />-->
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/margin_15"
                                     android:orientation="vertical">
 
                                     <LinearLayout
@@ -150,9 +147,10 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="@string/arquidiocesis"
-                                            android:textColor="@color/black"
-                                            android:textSize="@dimen/size_14"
-                                            android:textStyle="bold" />
+                                            android:fontFamily="@font/spro_text_regular"
+                                            android:textColor="@color/primaryColorDark"
+                                            android:textSize="@dimen/size_18"
+                                            android:textStyle="bold"/>
 
                                         <!--                                <TextView-->
                                         <!--                                    style="@style/StyleTxtSubtitleItem"-->
@@ -170,16 +168,15 @@
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/avenir_nextlt_pro_regular"
                                         android:gravity="end"
-                                        android:textSize="@dimen/size_10"
+                                        android:textSize="@dimen/size_12"
                                         tools:text="26 Marzo" />
 
                                     <TextView
                                         android:id="@+id/txtNameChurch"
-                                        style="@style/StyleTxtAddressParroquia"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="@dimen/margin_5"
-                                        android:textColor="@color/black"
+                                        android:fontFamily="@font/avenir_nextlt_pro_regular"
                                         android:textSize="@dimen/size_14"
                                         tools:text="Hi" />
                                 </LinearLayout>
@@ -196,16 +193,18 @@
                                 android:padding="@dimen/padding_5"
                                 android:weightSum="1">
 
-                                <ImageView
+                                <!--<ImageView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:background="@drawable/ic_icon_hands" />
+                                    android:background="@drawable/ic_icon_hands" />-->
 
                                 <TextView
                                     android:id="@+id/txtCount"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.7"
+                                    android:drawableLeft="@drawable/ic_hands"
+                                    android:drawablePadding="@dimen/size_10"
                                     android:fontFamily="@font/avenir_nextlt_pro_regular"
                                     android:paddingStart="@dimen/padding_5"
                                     android:textStyle="bold"
@@ -230,11 +229,11 @@
                                     android:textStyle="bold" />
                             </LinearLayout>
 
-                            <View
+                            <!--<View
                                 android:layout_width="wrap_content"
                                 android:layout_height="1dp"
                                 android:layout_marginTop="@dimen/margin_10"
-                                android:background="@color/grayLight" />
+                                android:background="@color/grayLight" />-->
                         </LinearLayout>
                     </LinearLayout>
                 </ScrollView>

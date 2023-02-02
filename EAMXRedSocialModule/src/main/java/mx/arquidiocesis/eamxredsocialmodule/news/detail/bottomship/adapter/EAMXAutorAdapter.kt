@@ -6,10 +6,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import mx.arquidiocesis.eamxcommonutils.util.getRandomString
 import mx.arquidiocesis.eamxredsocialmodule.R
 import mx.arquidiocesis.eamxredsocialmodule.databinding.ItemRactionsAllBinding
 import mx.arquidiocesis.eamxredsocialmodule.news.detail.bottomship.EamxBottomSheetDialogFragment.Companion.TAG
 import mx.arquidiocesis.eamxredsocialmodule.news.detail.bottomship.model.getpublitaion.Autor
+import kotlin.random.Random
 
 class EAMXAutorAdapter : ListAdapter<Autor, EAMXAutorAdapter.AutorViewHolder>(EAMXDiffCallback) {
 
@@ -30,9 +33,9 @@ class EAMXAutorAdapter : ListAdapter<Autor, EAMXAutorAdapter.AutorViewHolder>(EA
         fun bind(autorModel: Autor) = with(binding) {
             txtName.text = autorModel.nombre
             Glide.with(binding.root.context)
-                .load(autorModel.imagen)
+                .load(autorModel.imagen+"?".getRandomString(10))
                 .centerCrop()
-                .into(imgPriest)
+                .skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE).into(imgPriest)
 
             root.setOnClickListener {
                 if (::onItemClickListener.isInitialized) {

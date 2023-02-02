@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import mx.arquidiocesis.eamxcommonutils.util.getRandomString
 import mx.arquidiocesis.eamxredsocialmodule.databinding.ItemBuscarBinding
 import mx.arquidiocesis.eamxredsocialmodule.databinding.ItemFollowBinding
 import mx.arquidiocesis.eamxredsocialmodule.model.FollowModel
@@ -46,8 +48,8 @@ class FollowAdapter(
                 if (!item.image.isNullOrEmpty()) {
                     Glide.with(root.context)
                         .asBitmap()
-                        .load(item.image)
-                        .into(imgPriest)
+                        .load(item.image+"?".getRandomString(10))
+                        .skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE).into(imgPriest)
                 }
                 ivSegir.visibility = View.VISIBLE
                 ivSeguiendo.visibility = View.GONE
