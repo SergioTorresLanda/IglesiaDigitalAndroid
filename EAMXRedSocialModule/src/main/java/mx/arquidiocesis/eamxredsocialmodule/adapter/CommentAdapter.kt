@@ -97,6 +97,7 @@ class CommentAdapter(
                 } else {
                     ivOption.visibility = View.GONE
                 }
+                ivOption.visibility = View.VISIBLE
                 txtName.text = item.author.name
                 if (!item.author.image.isNullOrEmpty()) {
                     Glide.with(root.context)
@@ -111,8 +112,7 @@ class CommentAdapter(
                 txtMessage.text = item.content
                 //tvLike.text = item.totalReactions.toString()
                 tvLike.visibility = View.GONE
-                /*ivOption.setOnClickListener {
-                    Log.d("ClicComment","True")
+                ivOption.setOnClickListener {
                     val popupMenu: PopupMenu = PopupMenu(context, ivOption)
                     popupMenu.menuInflater.inflate(
                         mx.arquidiocesis.eamxcommonutils.R.menu.menu_review,
@@ -130,7 +130,7 @@ class CommentAdapter(
                     })
                     popupMenu.show()
 
-                }*/
+                }
                 /*tvResponder.setOnClickListener {
                     listener(COMENTARIO, item)
                 }*/

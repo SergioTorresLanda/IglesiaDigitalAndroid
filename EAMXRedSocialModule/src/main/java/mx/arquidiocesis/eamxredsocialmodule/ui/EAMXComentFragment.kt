@@ -1,5 +1,8 @@
 package mx.arquidiocesis.eamxredsocialmodule.ui
 
+import android.annotation.SuppressLint
+import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -59,6 +62,7 @@ class EAMXComentFragment(
 
     }
 
+    @SuppressLint("ResourceAsColor")
     fun initView() {
         binding.apply {
             ilPublication.apply {
@@ -92,6 +96,10 @@ class EAMXComentFragment(
                 tvLike.visibility = View.GONE
                 //tvComent.text = postModel.totalComments.toString()
                 tvComent.text = "Responder"
+                tvComent.setTextColor(Color.parseColor("#278bd2"))
+                val img = binding.root.context.getDrawable(R.drawable.ic_comment_active)
+                img?.setBounds(0,0,60,60)
+                tvComent.setCompoundDrawables(img,null,null,null)
                 ivOption.visibility = View.GONE
                 viewTop.visibility = View.GONE
 
