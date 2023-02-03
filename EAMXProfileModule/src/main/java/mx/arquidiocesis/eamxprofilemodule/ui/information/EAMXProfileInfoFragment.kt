@@ -629,8 +629,9 @@ class EAMXProfileInfoFragment : FragmentBase() {
 
     private fun initButtons() {
         binding.etSearchChurch.setOnClickListener {
-            if (chechPermissions()
-            ){
+            if(churchAdapter.itemCount<10) {
+                if (chechPermissions()
+                ) {
                     ChurchesMapFragment(false) { church ->
                         this.addSearchChurch(
                             ChurchAndDescriptionModel(
@@ -640,8 +641,13 @@ class EAMXProfileInfoFragment : FragmentBase() {
                         )
                     }.show(childFragmentManager, TAG_LOADER)
                 }
-
-
+            } else {
+                UtilAlert.Builder()
+                    .setTitle(getString(R.string.title_dialog_warning))
+                    .setMessage("Puedes seleccionar un máximo de 10 iglesias")
+                    .build()
+                    .show(childFragmentManager, TAG_LOADER)
+            }
         }
         binding.etSearchCommunity.setOnClickListener {
             if(chechPermissions()){
@@ -805,13 +811,14 @@ class EAMXProfileInfoFragment : FragmentBase() {
 
     private fun addSearchChurch(church: ChurchAndDescriptionModel) {
         binding.rvChurch.visibility = View.VISIBLE
-        if(churchAdapter.itemCount==0) {
+        //if(churchAdapter.itemCount<=10) {
             if (!churchAdapter.existId(church.church.id)) {
                 viewModelProfile.setUpdateChurchInModuleMyChurch()
                 churchAdapter.addItem(church, viewModelProfile.userNeedCompletedProfile())
-                binding.etSearchChurch.visibility = View.INVISIBLE
+                //binding.etSearchChurch.visibility = View.INVISIBLE
+                binding.etSearchChurch.visibility = View.VISIBLE
             }
-        }
+        //}
     }
 
     private fun addDiaconoChurch(church: ChurchModel) {
