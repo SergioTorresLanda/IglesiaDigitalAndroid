@@ -48,7 +48,7 @@
                     android:fontFamily="sans-serif"
                     android:lineSpacingExtra="4sp"
                     android:textColor="#052166"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/size_10"
                     android:textStyle="bold"
                     android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -166,7 +166,7 @@ y líbranos del mal. Amén.
         <Button
             android:id="@+id/btnBack"
             style="@style/StyleBtnFlotante"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="@dimen/margin_16"
             android:text="Ver más oraciones"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
