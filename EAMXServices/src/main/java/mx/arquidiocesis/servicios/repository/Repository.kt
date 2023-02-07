@@ -236,11 +236,11 @@ class Repository(val context: Context) : ManagerCall() {
         }
     }
 
-    suspend fun getAllChurches() {
+    suspend fun getAllChurches(type_location: String) {
         managerCallApi(
             context = context,
             call = {
-                retrofitInstance.getListadoMapIglesiasAsync().await()
+                retrofitInstance.getListadoMapIglesiasAsync(type_location).await()
             },validation = ValidationCodes()
         ).let { response ->
             GlobalScope.launch(Dispatchers.Main) {

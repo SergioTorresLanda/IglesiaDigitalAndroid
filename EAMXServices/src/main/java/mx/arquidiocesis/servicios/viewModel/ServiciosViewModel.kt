@@ -65,7 +65,7 @@ class ServiciosViewModel(private val repository: Repository) : ViewModel() {
 
     fun getAllChurches() {
         GlobalScope.launch {
-            repository.getAllChurches()
+            repository.getAllChurches("CHURCH")
         }
     }
 

@@ -7,6 +7,7 @@ import kotlinx.android.parcel.Parcelize
 data class IgleciasModel(
     val id: Int,
     val name:String,
+    val address: String,
     val image_url: String,
     val latitude: String,
     val longitude: String,

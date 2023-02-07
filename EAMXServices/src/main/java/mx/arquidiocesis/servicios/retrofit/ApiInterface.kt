@@ -32,7 +32,9 @@ interface ApiInterface {
     ): Deferred<Response<MisIgleciasModel>>
 
     @GET(WebConfigSer.GET_LIST_CHURCH_AND_MASS)
-    fun getListadoMapIglesiasAsync(): Deferred<Response<List<IgleciasModel>>>
+    fun getListadoMapIglesiasAsync(
+        @Query("type_location") type_location: String
+    ): Deferred<Response<List<IgleciasModel>>>
 
     @GET(WebConfigSer.GET_LIST_CHURCH_AND_MASS)
     fun getBuscarIglesiasAsync(@Query("name") name: String): Deferred<Response<List<IgleciasModel>>>
