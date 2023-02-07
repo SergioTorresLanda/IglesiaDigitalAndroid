@@ -31,8 +31,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvPriest"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/avenir_nextlt_pro_regular"
@@ -78,7 +78,7 @@
             android:layout_marginTop="4dp"
             android:fontFamily="@font/avenir_nextlt_pro_regular"
             android:gravity="end"
-            android:textSize="@dimen/size_12"
+            android:textSize="@dimen/size_14"
             app:layout_constraintStart_toStartOf="@+id/txtName"
             app:layout_constraintTop_toBottomOf="@+id/txtName"
             tools:text="26 Marzo" />

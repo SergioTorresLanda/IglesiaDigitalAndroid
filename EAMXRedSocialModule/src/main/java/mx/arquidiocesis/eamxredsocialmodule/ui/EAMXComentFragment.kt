@@ -19,6 +19,7 @@ import mx.arquidiocesis.eamxcommonutils.util.buildTextSuccess
 import mx.arquidiocesis.eamxcommonutils.util.getRandomString
 import mx.arquidiocesis.eamxcommonutils.util.getViewModel
 import mx.arquidiocesis.eamxredsocialmodule.R
+import mx.arquidiocesis.eamxredsocialmodule.R.drawable
 import mx.arquidiocesis.eamxredsocialmodule.databinding.EamxCommentFragmentBinding
 import mx.arquidiocesis.eamxredsocialmodule.Repository.Repository
 import mx.arquidiocesis.eamxredsocialmodule.adapter.CommentAdapter
@@ -97,7 +98,7 @@ class EAMXComentFragment(
                 //tvComent.text = postModel.totalComments.toString()
                 tvComent.text = "Responder"
                 tvComent.setTextColor(Color.parseColor("#278bd2"))
-                val img = binding.root.context.getDrawable(R.drawable.ic_comment_active)
+                val img = binding.root.context.getDrawable(drawable.ic_comment_active)
                 img?.setBounds(0,0,60,60)
                 tvComent.setCompoundDrawables(img,null,null,null)
                 ivOption.visibility = View.GONE
@@ -266,7 +267,7 @@ class EAMXComentFragment(
     private fun displayContent(item: ItemMediaPickerBinding, media: MultimediaModel) {
         val placeHolderDrawable = ContextCompat.getDrawable(
             item.itemRoot.context,
-            R.drawable.ic_placeholder
+            drawable.ic_placeholder
         )?.apply {
             setTintList(
                 ContextCompat.getColorStateList(

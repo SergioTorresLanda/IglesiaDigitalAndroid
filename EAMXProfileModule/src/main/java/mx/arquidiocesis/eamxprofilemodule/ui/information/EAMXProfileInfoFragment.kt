@@ -632,7 +632,7 @@ class EAMXProfileInfoFragment : FragmentBase() {
             if(churchAdapter.itemCount<10) {
                 if (chechPermissions()
                 ) {
-                    ChurchesMapFragment(false) { church ->
+                    ChurchesMapFragment(false) { church,location ->
                         this.addSearchChurch(
                             ChurchAndDescriptionModel(
                                 church = church,
@@ -651,7 +651,7 @@ class EAMXProfileInfoFragment : FragmentBase() {
         }
         binding.etSearchCommunity.setOnClickListener {
             if(chechPermissions()){
-                ChurchesMapFragment(true) { church ->
+                ChurchesMapFragment(true) { church, location ->
                     viewModelProfile.congregationItem = null
                     idComunnity = church.id
                     if (idComunnity == 0) {
@@ -690,7 +690,7 @@ class EAMXProfileInfoFragment : FragmentBase() {
         }
 
         binding.etSearchChurchDiaco.setOnClickListener {
-            ChurchesMapFragment { church ->
+            ChurchesMapFragment { church, location ->
                 this.addDiaconoChurch(church)
             }.show(childFragmentManager, TAG_LOADER)
         }

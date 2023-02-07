@@ -35,7 +35,7 @@
                     android:backgroundTint="#00FFFFFF"
                     android:fontFamily="sans-serif"
                     android:gravity="center_vertical"
-                    android:hint="¿Qué oraciones buscas?"
+                    android:hint="¿Qué oración buscas?"
                     android:digits="@string/digits_only_search"
                     android:letterSpacing="-0.02"
                     android:lineSpacingExtra="5sp"

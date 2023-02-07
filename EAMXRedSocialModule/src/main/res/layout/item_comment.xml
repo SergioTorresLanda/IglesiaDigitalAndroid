@@ -46,6 +46,20 @@
             app:layout_constraintStart_toEndOf="@+id/cvPriest"
             app:layout_constraintTop_toTopOf="@+id/cvPriest"
             tools:text="Padre Jorge Luis" />
+
+        <TextView
+            android:id="@+id/tvFechaReview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/avenir_nextlt_pro_regular"
+            android:gravity="end"
+            android:textSize="@dimen/size_12"
+            app:layout_constraintStart_toStartOf="@+id/txtName"
+            app:layout_constraintTop_toBottomOf="@+id/txtName"
+            tools:text="26 Marzo" />
+
         <ImageView
             android:id="@+id/ivOption"
             android:layout_width="wrap_content"
@@ -53,6 +67,7 @@
             android:layout_marginEnd="16dp"
             android:padding="8dp"
             android:src="@drawable/ic_tres_puntos"
+            android:contentDescription="@string/arquidiocesis"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/txtName" />
 
@@ -71,20 +86,6 @@
             app:layout_constraintTop_toBottomOf="@+id/cvPriest"
             tools:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna." />
 
-
-        <TextView
-            android:id="@+id/tvFechaReview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/avenir_nextlt_pro_regular"
-            android:gravity="end"
-            android:text="hoy a las 13:56"
-            android:textSize="@dimen/size_12"
-            app:layout_constraintStart_toStartOf="@+id/cvPriest"
-            app:layout_constraintTop_toBottomOf="@+id/txtMessage" />
-
         <TextView
             android:id="@+id/tvLike"
             android:layout_width="0dp"
@@ -94,8 +95,8 @@
             android:drawablePadding="@dimen/size_10"
             android:fontFamily="@font/avenir_nextlt_pro_regular"
             android:text="0"
-            app:layout_constraintStart_toEndOf="@+id/tvFechaReview"
-            app:layout_constraintTop_toTopOf="@+id/tvFechaReview" />
+            app:layout_constraintStart_toStartOf="@+id/cvPriest"
+            app:layout_constraintTop_toBottomOf="@+id/txtMessage" />
 
         <TextView
             android:id="@+id/tvResponder"
@@ -109,7 +110,7 @@
             android:text="Responder"
             android:textSize="@dimen/size_12"
             app:layout_constraintStart_toEndOf="@+id/tvLike"
-            app:layout_constraintTop_toTopOf="@+id/tvFechaReview" />
+            app:layout_constraintTop_toTopOf="@+id/tvLike" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

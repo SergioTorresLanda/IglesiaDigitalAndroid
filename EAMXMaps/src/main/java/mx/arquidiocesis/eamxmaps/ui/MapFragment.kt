@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.location.Location
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -96,16 +97,21 @@ class MapFragment(
             map.value?.clear()
             if (it.isNotEmpty()) {
                 val arrayString: MutableList<String> = mutableListOf()
+                if (busqueda) {
+                    moveMap(
+                        it[0].latitude.toDouble(),
+                        it[0].longitude.toDouble()
+                    )
+                    busqueda = false
+                }
                 it.forEach { igleciasModel ->
                     if (!igleciasModel.latitude.isNullOrEmpty() && !igleciasModel.longitude.isNullOrEmpty()) {
                         if (igleciasModel.latitude.toDouble() != 0.0 && igleciasModel.longitude.toDouble() != 0.0) {
-                            if (busqueda) {
-                                moveMap(
+                            val centerMark =
+                                LatLng(
                                     igleciasModel.latitude.toDouble(),
                                     igleciasModel.longitude.toDouble()
                                 )
-                                busqueda = false
-                            }
                             if (iniciarEdit) {
                                 stripAccents("${igleciasModel.name}\n${igleciasModel.address}").let { it1 ->
                                     arrayString.add(
@@ -113,11 +119,6 @@ class MapFragment(
                                     )
                                 }
                             }
-                            val centerMark =
-                                LatLng(
-                                    igleciasModel.latitude.toDouble(),
-                                    igleciasModel.longitude.toDouble()
-                                )
                             val markerOptions = MarkerOptions()
                             markerOptions.position(centerMark)
                             markerOptions.title(igleciasModel.name)
@@ -127,8 +128,7 @@ class MapFragment(
                                     R.drawable.ic_church_map
                                 )
                             } as BitmapDrawable
-                            val smallMarker =
-                                Bitmap.createBitmap(bitmapDraw.bitmap)
+                            val smallMarker = Bitmap.createBitmap(bitmapDraw.bitmap)
                             markerOptions.icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
                             val marker = map.value?.addMarker(markerOptions)
                             marker?.tag = igleciasModel
@@ -137,7 +137,14 @@ class MapFragment(
                                 igleciasModel.imageUrl,
                                 igleciasModel.id.toString()
                             )
-                            map.value?.setInfoWindowAdapter(CustomInfoWindowGoogleMap(requireContext()))
+                            map.value?.setInfoWindowAdapter(
+                                CustomInfoWindowGoogleMap(
+                                    requireContext()
+                                )
+                            )
+                            if (igleciasModel.name + igleciasModel.address == binding.etBusarMap.text.toString()) {
+                                marker?.showInfoWindow()
+                            }
                         }
                     }
                 }
@@ -162,7 +169,6 @@ class MapFragment(
                 moveMap(location!!.latitude, location!!.longitude)
                 firstLocation = false
             }
-
         }
         viewModel.errorResponse.observe(viewLifecycleOwner) {
             Toast.makeText(context, it, Toast.LENGTH_LONG).show()
@@ -170,7 +176,7 @@ class MapFragment(
         }
         map.observe(viewLifecycleOwner) {
             if (first) {
-                moveMap(19.362028, -99.166414)
+                //moveMap(19.362028, -99.166414)
                 viewModel.getiglesiasList()
                 first = false
             }

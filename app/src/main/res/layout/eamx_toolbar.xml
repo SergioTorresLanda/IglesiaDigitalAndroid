@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:fontFamily="@font/avenir_nextlt_pro_regular"
-                android:textColor="@color/textColorGreatingsHome"
+                android:textColor="@color/text_blue"
                 android:textSize="@dimen/size_14"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/txtNameUser"
@@ -89,8 +89,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="Admin"
-                android:textStyle="bold"
                 android:textColor="#bda978"
+                android:textStyle="bold"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/imgUser"
@@ -187,6 +187,7 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/toolbarWhiteSmall"
             android:layout_width="match_parent"

@@ -1,7 +1,10 @@
 package com.wallia.eamxcomunidades.ui
 
+import android.Manifest
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -28,6 +31,8 @@ import com.wallia.eamxcomunidades.viewmodel.SEARCH
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.common.*
 import mx.arquidiocesis.eamxcommonutils.util.*
+import mx.arquidiocesis.eamxcommonutils.util.permission.UtilValidPermission
+import mx.arquidiocesis.eamxprofilemodule.ui.profile.PERMISSION_LOCATION
 import java.lang.reflect.Type
 
 class EAMXComunidadesFielFragment : FragmentBase() {
@@ -222,18 +227,58 @@ class EAMXComunidadesFielFragment : FragmentBase() {
         }
     }
 
-    private fun changeFragmen(search: String, fragment: Fragment, isPrincipal: Boolean = false) {
-        val bundle = Bundle()
-        bundle.apply {
-            putString(SEARCH, search ?: "")
-            putBoolean(PRINCIPAL, isPrincipal)
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray,
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (UtilValidPermission().allPermissionsAreAgree(grantResults)) {
+            when (requestCode) {
+                PERMISSION_LOCATION ->{
+
+                }
+            }
+        }else{
+            when (requestCode) {
+                PERMISSION_LOCATION ->{
+                    UtilAlert.Builder()
+                        .setTitle(getString(R.string.title_dialog_warning))
+                        .setMessage("Debes otorgar el permiso de ubicación para poder continuar")
+                        .setTextButtonOk("Ir a la configuración")
+                        .setListener {
+                            startActivity(
+                                Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                                    .setData(Uri.parse("package:" + context?.packageName))
+                            )
+                        }
+                        .build()
+                        .show(childFragmentManager, "")
+                }
+            }
+
         }
-        NavigationFragment.Builder()
-            .setActivity(requireActivity())
-            .setView(requireView().parent as ViewGroup)
-            .setFragment(fragment)
-            .setBundle(bundle)
-            .build().nextWithReplace()
+    }
+
+    private fun changeFragmen(search: String, fragment: Fragment, isPrincipal: Boolean = false) {
+        if (UtilValidPermission().validListPermissionsAndBuildRequest(
+                this@EAMXComunidadesFielFragment, arrayListOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ), PERMISSION_LOCATION
+            )
+        ) {
+            val bundle = Bundle()
+            bundle.apply {
+                putString(SEARCH, search ?: "")
+                putBoolean(PRINCIPAL, isPrincipal)
+            }
+            NavigationFragment.Builder()
+                .setActivity(requireActivity())
+                .setView(requireView().parent as ViewGroup)
+                .setFragment(fragment)
+                .setBundle(bundle)
+                .build().nextWithReplace()
+        }
     }
 
     private fun changeFragmen(id: Int, isPrincipal: Boolean = false) {

@@ -1,7 +1,10 @@
 package mx.arquidiocesis.eamxdonaciones.ui
 
+import android.Manifest
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,12 +21,14 @@ import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
 import mx.arquidiocesis.eamxcommonutils.util.getViewModel
 import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
+import mx.arquidiocesis.eamxcommonutils.util.permission.UtilValidPermission
 import mx.arquidiocesis.eamxcommonutils.util.visibility
 import mx.arquidiocesis.eamxdonaciones.model.DonationModel
 import mx.arquidiocesis.eamxmaps.ui.MapFragment
 import mx.arquidiocesis.misiglesias.adapters.ChurchAdapter
 import mx.arquidiocesis.misiglesias.database.instance.MeetRoomDataBase
 import mx.arquidiocesis.misiglesias.repository.Repository
+import mx.arquidiocesis.misiglesias.ui.PERMISSION_LOCATION
 import mx.arquidiocesis.misiglesias.viewmodel.MisIgleciasViewModel
 
 
@@ -176,15 +181,55 @@ class MyDonationFragment : FragmentBase() {
             .build().nextWithReplace()
     }
 
-    private fun changeMap() {
-        fragmentMap = MapFragment(true) { item, location ->
-            changeFragment(DonationModel(item.id,item.name,item.imageUrl))
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray,
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (UtilValidPermission().allPermissionsAreAgree(grantResults)) {
+            when (requestCode) {
+                PERMISSION_LOCATION ->{
+
+                }
+            }
+        }else{
+            when (requestCode) {
+                PERMISSION_LOCATION ->{
+                    UtilAlert.Builder()
+                        .setTitle(getString(mx.arquidiocesis.misiglesias.R.string.title_dialog_warning))
+                        .setMessage("Debes otorgar el permiso de ubicación para poder continuar")
+                        .setTextButtonOk("Ir a la configuración")
+                        .setListener {
+                            startActivity(
+                                Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                                    .setData(Uri.parse("package:" + context?.packageName))
+                            )
+                        }
+                        .build()
+                        .show(childFragmentManager, "")
+                }
+            }
+
         }
-        NavigationFragment.Builder()
-            .setActivity(requireActivity())
-            .setView(requireView().parent as ViewGroup)
-            .setFragment(fragmentMap)
-            .setAllowStack(true)
-            .build().nextWithReplace()
+    }
+
+    private fun changeMap() {
+        if (UtilValidPermission().validListPermissionsAndBuildRequest(
+                this@MyDonationFragment, arrayListOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ), PERMISSION_LOCATION
+            )
+        ) {
+            fragmentMap = MapFragment(true) { item, location ->
+                changeFragment(DonationModel(item.id, item.name, item.imageUrl))
+            }
+            NavigationFragment.Builder()
+                .setActivity(requireActivity())
+                .setView(requireView().parent as ViewGroup)
+                .setFragment(fragmentMap)
+                .setAllowStack(true)
+                .build().nextWithReplace()
+        }
     }
 }
