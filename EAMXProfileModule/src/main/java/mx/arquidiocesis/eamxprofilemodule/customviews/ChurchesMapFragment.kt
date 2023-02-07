@@ -2,6 +2,7 @@ package mx.arquidiocesis.eamxprofilemodule.customviews
 
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -36,7 +37,7 @@ import java.text.Normalizer
 
 class ChurchesMapFragment constructor(
     val isLaico: Boolean = false,
-    val listener: (ChurchModel) -> Unit
+    val listener: (ChurchModel, Location?) -> Unit
 ) : FragmentDialogBase() {
     var map = MutableLiveData<GoogleMap>()
     var maker = MutableLiveData<Marker>()
@@ -47,6 +48,9 @@ class ChurchesMapFragment constructor(
             MapViewModel(RepositoryProfile(requireContext()))
         }
     }
+    private var location: Location? = null
+    private var busqueda = false
+    private var firstLocation = true
     private var ubicacioList: MutableList<MarkerOptions> = mutableListOf()
     private var churchList: MutableList<ChurchModel> = mutableListOf()
     var mapView: View? = null
@@ -79,8 +83,9 @@ class ChurchesMapFragment constructor(
         layoutParams.setMargins(0, 0, 60, 330)
         mapFragment.getMapAsync(publicMaps)
         ibBuscarMap.setOnClickListener {
-            viewModel.getChurchList(etBusarMap.text.toString())
             showLoader()
+            busqueda = true
+            viewModel.getChurchList(etBusarMap.text.toString())
         }
         etBusarMap.setOnKeyListener { view, i, keyEvent ->
             etBusarMap.setText(stripAccents(etBusarMap.text.toString()))
@@ -91,6 +96,7 @@ class ChurchesMapFragment constructor(
         etBusarMap.onItemClickListener =
             AdapterView.OnItemClickListener { parent, view, position, id ->
                 showLoader()
+                busqueda = true
                 viewModel.getChurchList(
                     etBusarMap.text.toString().substringBefore("\n").trimEnd()
                 )
@@ -114,7 +120,7 @@ class ChurchesMapFragment constructor(
                 .setTitle(getString(R.string.title_dialog_warning))
                 .setMessage("Por lo visto tu comunidad no está en nuestra base de datos. En cuanto guardes tu perfil, te aparecerá un formulario donde podrás registrar tu comunidad")
                 .setListener {
-                    listener(ChurchModel(0, "", "", "", "", ""))
+                    listener(ChurchModel(0, "", "", "", "", ""), location)
                     dismiss()
                 }
                 .build()
@@ -135,13 +141,16 @@ class ChurchesMapFragment constructor(
             map.value?.clear()
             if (churchList.isNotEmpty()) {
                 val arrayString: MutableList<String> = mutableListOf()
-                churchList[0].latitude?.toDouble()?.let { it1 ->
-                    churchList[0].longitude?.toDouble()?.let { it2 ->
-                        moveMap(
-                            it1,
-                            it2
-                        )
+                if (busqueda) {
+                    churchList[0].latitude?.toDouble()?.let { it1 ->
+                        churchList[0].longitude?.toDouble()?.let { it2 ->
+                            moveMap(
+                                it1,
+                                it2
+                            )
+                        }
                     }
+                    busqueda = false
                 }
                 churchList.forEach { igleciasModel ->
                     val centerMark =
@@ -160,7 +169,6 @@ class ChurchesMapFragment constructor(
                             )
                         }
                     }
-
                     val markerOptions = MarkerOptions()
                     if (centerMark != null)
                         markerOptions.position(centerMark)
@@ -173,7 +181,6 @@ class ChurchesMapFragment constructor(
                     } as BitmapDrawable
                     val smallMarker = Bitmap.createScaledBitmap(bitmapDraw.bitmap, 80, 100, false)
                     markerOptions.icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
-
                     if (igleciasModel.latitude != null && igleciasModel.longitude != null) {
                         val marker = map.value?.addMarker(markerOptions)
                         marker?.tag = igleciasModel
@@ -199,12 +206,22 @@ class ChurchesMapFragment constructor(
             hideLoader()
 
         }
+        viewModel.getLocation()
+        viewModel.locationResponse.observe(viewLifecycleOwner) {
+            hideLoader()
+            if (firstLocation) {
+                location = it
+                moveMap(location!!.latitude, location!!.longitude)
+                firstLocation = false
+            }
+
+        }
         viewModel.errorResponse.observe(viewLifecycleOwner) {
             Toast.makeText(context, it, Toast.LENGTH_LONG).show()
             hideLoader()
         }
         map.observe(viewLifecycleOwner) {
-            moveMap(19.362028, -99.166414)
+            //moveMap(19.362028, -99.166414)
             it.setOnMarkerClickListener(publicMaps)
             if (isLaico) {
                 viewModel.getCommunitiesByName("")
@@ -234,7 +251,7 @@ class ChurchesMapFragment constructor(
             .setTitle(getString(R.string.title_dialog_warning))
             .setMessage("Se ha seleccionado " + church.name)
             .setListener {
-                listener(church)
+                listener(church, location)
                 dismiss()
             }
             .build()

@@ -9,6 +9,7 @@ import mx.arquidiocesis.eamxprofilemodule.repository.RepositoryProfile
 class MapViewModel(private val repositoryProfile: RepositoryProfile) : ViewModel() {
 
     val response = repositoryProfile.iglesiasMapResponse
+    val locationResponse = repositoryProfile.locationResponse
     var errorResponse = repositoryProfile.errorResponse
     fun getChurchList () {
         GlobalScope.launch {
@@ -25,5 +26,9 @@ class MapViewModel(private val repositoryProfile: RepositoryProfile) : ViewModel
         GlobalScope.launch {
             repositoryProfile.getChurch(name)
         }
+    }
+
+    fun getLocation() {
+        repositoryProfile.getLocation()
     }
 }

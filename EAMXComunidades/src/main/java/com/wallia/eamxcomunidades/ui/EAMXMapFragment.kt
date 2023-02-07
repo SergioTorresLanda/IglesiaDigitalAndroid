@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.RelativeLayout
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.MutableLiveData
@@ -42,7 +43,9 @@ class EAMXMapFragment : FragmentBase() {
     var map = MutableLiveData<GoogleMap>()
     var maker = MutableLiveData<Marker>()
     var publicMaps = PublicMaps(map, maker)
+    var mapView: View? = null
     private var busqueda = false
+    private var firstLocation = true
     private var iniciarEdit = true
     lateinit var binding: FragmentEamxMapBinding
     lateinit var mapFragment: SupportMapFragment
@@ -70,7 +73,6 @@ class EAMXMapFragment : FragmentBase() {
     }
 
     private fun initObservers() {
-
         viewModel.getCommunitiesByNameResponse.observe(viewLifecycleOwner) {
             if (!it.isNullOrEmpty()) {
                 val arrayString: MutableList<String> = mutableListOf()
@@ -142,15 +144,30 @@ class EAMXMapFragment : FragmentBase() {
                 .build()
                 .show(childFragmentManager, "")
         }
+        viewModel.getLocation()
         viewModel.locationResponse.observe(viewLifecycleOwner) {
-            if (it != null) {
+            hideLoader()
+            if (firstLocation) {
+                moveMap(it.latitude, it.longitude)
+                firstLocation = false
+            } else if (it != null) {
                 if (isLocatio) {
                     isLocatio = false
                     location.value = it
+                    mapFragment = childFragmentManager.findFragmentById(R.id.mapCommunity) as SupportMapFragment
+                    mapView = mapFragment.view
+                    // Get the button view
+                    val locationButton =
+                        (mapView?.findViewById<View>("1".toInt())
+                            ?.getParent() as View).findViewById<View>("2".toInt())
+                    // and next place it, on bottom right (as Google Maps app)
+                    val layoutParams = locationButton.layoutParams as RelativeLayout.LayoutParams
+                    // position on right bottom
+                    layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0)
+                    layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE)
+                    layoutParams.setMargins(0, 0, 50, 330)
                     mapFragment.getMapAsync(publicMaps)
                 }
-
-
             } else {
                 hideLoader()
                 UtilAlert.Builder()
@@ -161,7 +178,7 @@ class EAMXMapFragment : FragmentBase() {
             }
         }
         map.observe(viewLifecycleOwner) {
-            moveMap(location.value!!.latitude, location.value!!.longitude)
+            //moveMap(location.value!!.latitude, location.value!!.longitude)
             it.setOnMarkerClickListener(publicMaps)
             /*  viewModel.getCommunitiesByLocations(
                   location.value!!.latitude.toString(),

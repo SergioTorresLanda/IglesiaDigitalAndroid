@@ -1,6 +1,10 @@
 package mx.arquidiocesis.eamxprofilemodule.repository
 
 import android.content.Context
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
+import android.os.Bundle
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -53,6 +57,7 @@ class RepositoryProfile(val context: Context) : ManagerCall() {
     val topicResponse = MutableLiveData<TopicsModel>()
     val congregationsResponse = MutableLiveData<CongregationsModel>()
     val iglesiasMapResponse = MutableLiveData<List<ChurchModel>>()
+    val locationResponse = MutableLiveData<Location>()
     val userDetailResponse = MutableLiveData<UserResponse>()
     val updateMessage = MutableLiveData<String>()
     val errorResponse = MutableLiveData<String>()
@@ -707,5 +712,31 @@ class RepositoryProfile(val context: Context) : ManagerCall() {
             }
         }
         return null
+    }
+    fun getLocation(): MutableLiveData<Location> {
+        var locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager?
+        val locationListener = object : LocationListener {
+            override fun onLocationChanged(location: Location) {
+                locationResponse.value = location
+            }
+
+            override fun onStatusChanged(provider: String, status: Int, extras: Bundle) {}
+            override fun onProviderEnabled(provider: String) {}
+            override fun onProviderDisabled(provider: String) {}
+        }
+
+        try {
+            // Request location updates
+            locationManager?.requestLocationUpdates(
+                LocationManager.NETWORK_PROVIDER,
+                0L,
+                0f,
+                locationListener
+            )
+        } catch (ex: SecurityException) {
+            errorResponse.value = "No fue posible obtener sus datos de geolocalización."
+        }
+
+        return locationResponse
     }
 }
