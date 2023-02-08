@@ -21,13 +21,13 @@ class WebAppInterface internal constructor(
     // Show a toast from the web page
     @JavascriptInterface
     fun showToast(s: String?) {
-        firebaseAnalytics?.setLogEvent("ui_interaction", Bundle().apply {
+        /*firebaseAnalytics?.setLogEvent("ui_interaction", Bundle().apply {
             putString("flow", "view_form_card")
             putString("subflow", "pay_complete")
             putString("section", "donation")
-            putString("screen_name", "form_card")
+            putString("screen_class", "form_card")
             putString("element", s)
-        })
+        })*/
         s?.let { t ->
             val json = JSONObject(t)
             when (json.get("status")) {

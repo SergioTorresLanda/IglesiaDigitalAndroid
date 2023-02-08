@@ -155,19 +155,19 @@ class FaithfulProfileFragment : FragmentBase() {
         } else {
             showLoader()
             boton = true
-            if (viewModel.itemService!!.id==12){
+            /*if (viewModel.itemService!!.id==12){
                 activity?.let {
-                    EAMXFirebaseManager(it).setLogEvent("screen_view_tag", Bundle().apply {
-                        putString("screen_name", "Android_Sos_UncionDeLosEnfermos")
+                    EAMXFirebaseManager(it).setLogEvent("screen_view", Bundle().apply {
+                        putString("screen_class", "Sos_UncionDeLosEnfermos")
                     })
                 }
             } else if (viewModel.itemService!!.id==13){
                 activity?.let {
-                    EAMXFirebaseManager(it).setLogEvent("screen_view_tag", Bundle().apply {
-                        putString("screen_name", "Android_Sos_CelebracionDeDifuntos")
+                    EAMXFirebaseManager(it).setLogEvent("screen_view", Bundle().apply {
+                        putString("screen_class", "Sos_CelebracionDeDifuntos")
                     })
                 }
-            }
+            }*/
             // viewModel.getPriestServicesWithDevotee(viewModel.getUserId())
             viewModel.pendiente(viewModel.getUserId(), "FIEL", viewModel.itemService!!.id)
         }

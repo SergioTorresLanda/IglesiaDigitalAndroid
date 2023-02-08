@@ -38,7 +38,7 @@ class EAMXInicioActivity : AppCompatActivity() {
 
     private fun leaveOnBoarding() {
         eamxcu_preferences.saveData(EAMXEnumUser.SKIP.name, true)
-        startActivity(Intent(baseContext, EAMXHomeActivity::class.java))
+        startActivity(Intent(baseContext, Home_Home::class.java))
         finish()
     }
 }

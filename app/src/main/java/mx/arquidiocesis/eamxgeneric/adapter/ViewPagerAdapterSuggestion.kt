@@ -52,9 +52,9 @@ class ViewPagerAdapterSuggestion(
                     .into(ivSuggestion)*/
 
                 root.setOnClickListener {
-                    EAMXFirebaseManager(it.context).setLogEvent("screen_view_tag", Bundle().apply {
-                        putString("screen_name", "Android_Sugerencias")
-                    })
+                    /*EAMXFirebaseManager(it.context).setLogEvent("screen_view", Bundle().apply {
+                        putString("screen_class", "Sugerencias")
+                    })*/
                     listener(suggestionModel)
                 }
             }

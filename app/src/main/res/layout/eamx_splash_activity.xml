@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/color_card_eventos"
-        tools:context=".activities.EAMXHomeActivity">
+        tools:context=".activities.Home_Home">
 
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"

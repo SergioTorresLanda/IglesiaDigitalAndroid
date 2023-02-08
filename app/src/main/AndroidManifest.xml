@@ -26,12 +26,13 @@
         tools:replace="android:allowBackup"
         android:theme="@style/Theme.EAMXGeneric"
         android:name="mx.arquidiocesis.eamxcommonutils.util.EAMXMyApp">
+        <meta-data android:name="google_analytics_automatic_screen_reporting_enabled" android:value="false" />
         <activity
             android:name=".activities.EAMXInicioActivity"
             android:screenOrientation="portrait"
             android:theme="@style/ThemeEAMXWhite" />
         <activity
-            android:name=".activities.EAMXHomeActivity"
+            android:name=".activities.Home_Home"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.EAMXSplashActivity"

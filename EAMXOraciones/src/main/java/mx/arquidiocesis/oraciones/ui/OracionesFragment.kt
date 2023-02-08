@@ -66,8 +66,8 @@ class OracionesFragment : FragmentBase() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.let {
-            EAMXFirebaseManager(it).setLogEvent("screen_view_tag", Bundle().apply {
-                putString("screen_name", "Android_Oraciones")
+            EAMXFirebaseManager(it).setLogEvent("screen_view", Bundle().apply {
+                putString("screen_class", "Home_Oraciones")
             })
         }
         callBack = (activity as EAMXHome)

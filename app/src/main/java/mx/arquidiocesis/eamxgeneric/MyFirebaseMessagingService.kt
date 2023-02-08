@@ -12,7 +12,7 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import mx.arquidiocesis.eamxcommonutils.util.eamxLog
-import mx.arquidiocesis.eamxgeneric.activities.EAMXHomeActivity
+import mx.arquidiocesis.eamxgeneric.activities.Home_Home
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 
@@ -60,7 +60,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
      * @param messageBody FCM message body received.
      */
     private fun sendNotification(title: String, messageBody: String) {
-        val intent = Intent(this, EAMXHomeActivity::class.java)
+        val intent = Intent(this, Home_Home::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         val pendingIntent = PendingIntent.getActivity(
             this,

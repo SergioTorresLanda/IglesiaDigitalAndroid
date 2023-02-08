@@ -23,8 +23,8 @@ class EAMXProfilePrincipalFragmentViewModel() : ViewModel() {
             adapter = EAMXProfilePagerAdapter(eamxViewPagerConstructor)
         }
         if (fragmentsFromViewPagerList.isEmpty()) {
-            EAMXFirebaseManager(context).setLogEvent("screen_view_tag", Bundle().apply {
-                putString("screen_name", "Android_Perfil")
+            EAMXFirebaseManager(context).setLogEvent("screen_view", Bundle().apply {
+                putString("screen_class", "Home_Perfil")
             })
             fragmentsFromViewPagerList.addAll(interactor.getFragmentForContainer(signOut, callBack, listener))
             adapter?.let {

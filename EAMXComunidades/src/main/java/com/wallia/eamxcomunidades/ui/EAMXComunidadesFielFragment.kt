@@ -145,8 +145,8 @@ class EAMXComunidadesFielFragment : FragmentBase() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.let {
-            EAMXFirebaseManager(it).setLogEvent("screen_view_tag", Bundle().apply {
-                putString("screen_name", "Android_Comunidades")
+            EAMXFirebaseManager(it).setLogEvent("screen_view", Bundle().apply {
+                putString("screen_class", "Home_Comunidades")
             })
         }
         rol =eamxcu_preferences.getData(
