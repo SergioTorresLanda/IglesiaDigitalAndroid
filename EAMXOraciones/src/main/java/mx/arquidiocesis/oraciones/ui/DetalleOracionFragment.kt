@@ -56,7 +56,7 @@ class DetalleOracionFragment : FragmentBase() {
             binding.tvDetalleOracionText.text = oracionModel.description
             callBack = (activity as EAMXHome)
             callBack.showToolbar(true, oracionModel.name)
-            binding.tvTitulos.text = oracionModel.name
+            //binding.tvTitulos.text = oracionModel.name
             Glide.with(requireContext()).load(Uri.parse(oracionModel.image_url))
                 .apply(RequestOptions()
                     //.override(700, 373)
