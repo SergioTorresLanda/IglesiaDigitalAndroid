@@ -25,6 +25,7 @@ fun EAMXDetailFragment.initElements() {
         txtName.text = modelPublication.author.name
         //Glide.with(this@initElements).load(modelPublication.author.image).centerCrop().skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE).into(imgUser)
         txtNameChurch.buildTextSuccess(modelPublication.content, root.context)
+        /*
         txtNameChurch.setOnClickListener {
             urlPrueba = "".buildTextSuccessUrl(modelPublication.content)
             if (urlPrueba.urlValidator()) {
@@ -33,6 +34,8 @@ fun EAMXDetailFragment.initElements() {
                 startActivity(i)
             }
         }
+
+         */
         //txtCount.text = modelPublication.totalReactions.toString()
         txtCount.visibility = View.GONE
         val dateResponse = modelPublication.createdAt.toLong()

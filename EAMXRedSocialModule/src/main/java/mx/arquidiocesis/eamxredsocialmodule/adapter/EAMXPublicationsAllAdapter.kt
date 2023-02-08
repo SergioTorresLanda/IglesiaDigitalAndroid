@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -88,16 +89,10 @@ class EAMXPublicationsAllAdapter(
             val objectFormat = EAMXFormatDate(root.context)
             val miFecha = objectFormat.diferencia(dateResponse)
             txtDate.text = miFecha
-            var urlPrueba = ""
-            txtMessage.buildTextSuccess(item.content, root.context)
             txtMessage.setOnClickListener {
-                urlPrueba = "".buildTextSuccessUrl(item.content)
-                if (urlPrueba.urlValidator()) {
-                    val uri = Uri.parse(urlPrueba)
-                    val i = Intent(Intent.ACTION_VIEW, uri)
-                    context.startActivity(i)
-                }
+                onItemClickListener(item, "")
             }
+            txtMessage.buildTextSuccess(item.content, root.context)
             tvLike.text = item.totalReactions.toString()
             tvLikeDado.text = item.totalReactions.toString()
             tvComent.text = item.totalComments.toString()

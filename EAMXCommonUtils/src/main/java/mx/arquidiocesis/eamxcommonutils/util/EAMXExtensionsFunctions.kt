@@ -10,13 +10,16 @@ import android.net.Uri
 import android.provider.MediaStore
 import android.text.*
 import android.text.style.ForegroundColorSpan
+import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
 import android.text.style.UnderlineSpan
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.youtube.player.YouTubeStandalonePlayer
+import mx.arquidiocesis.eamxcommonutils.R
 import mx.arquidiocesis.eamxcommonutils.application.ConstansApp
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -135,7 +138,7 @@ fun Activity.openGallery(code: Int, typeImage: String = "image/*") {
 fun TextView.buildTextSuccess(textNormal: String, context: Context) {
     val spannableString = SpannableString(textNormal)
     val hashtagSpans: ArrayList<IntArray> = getSpans(textNormal, "#\\w+")
-    setSpanHashtag(spannableString, hashtagSpans)
+    setSpanHashtag(spannableString, hashtagSpans, context)
     val httSpans: ArrayList<IntArray> = getSpans(
         textNormal,
         "https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)"
@@ -159,19 +162,15 @@ private fun getSpans(body: String?, prefix: String): ArrayList<IntArray> {
     return spans
 }
 
-private fun setSpanHashtag(hashtagsContent: SpannableString, hashtagSpans: ArrayList<IntArray>) {
+private fun setSpanHashtag(hashtagsContent: SpannableString, hashtagSpans: ArrayList<IntArray>, context: Context) {
+    var colorLink = ContextCompat.getColor(context, R.color.blue_toast)
     for (i in 0 until hashtagSpans.size) {
         val span = hashtagSpans[i]
         val hashTagStart = span[0]
         val hashTagEnd = span[1]
         hashtagsContent.apply {
             setSpan(
-                ForegroundColorSpan(Color.BLUE),
-                hashTagStart,
-                hashTagEnd, 0
-            )
-            setSpan(
-                ForegroundColorSpan(Color.BLUE),
+                ForegroundColorSpan(colorLink),
                 hashTagStart,
                 hashTagEnd, 0
             )
@@ -184,18 +183,19 @@ private fun setSpanUrl(
     hashtagSpans: ArrayList<IntArray>,
     context: Context
 ) {
+    var colorLink = ContextCompat.getColor(context, R.color.blue_toast)
     for (i in 0 until hashtagSpans.size) {
         val span = hashtagSpans[i]
         val hashTagStart = span[0]
         val hashTagEnd = span[1]
         val underline = UnderlineSpan().apply {
             updateDrawState(TextPaint().apply {
-                color = Color.BLUE
+                color = colorLink
             })
         }
         UrlsContent.apply {
             setSpan(
-                ForegroundColorSpan(Color.BLUE),
+                ForegroundColorSpan(colorLink),
                 hashTagStart,
                 hashTagEnd,
                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
@@ -213,7 +213,7 @@ private fun setSpanUrl(
                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
             )
             setSpan(
-                CalloutLink(context),
+                CalloutLink(context).clickableSpan,
                 hashTagStart,
                 hashTagEnd,
                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
