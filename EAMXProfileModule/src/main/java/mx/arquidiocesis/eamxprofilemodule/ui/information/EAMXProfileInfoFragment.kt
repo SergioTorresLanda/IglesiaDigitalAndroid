@@ -371,7 +371,7 @@ class EAMXProfileInfoFragment : FragmentBase() {
                             Intent().apply {
                                 setClassName(
                                     requireActivity(),
-                                    "mx.arquidiocesis.eamxgeneric.activities.EAMXHomeActivity"
+                                    "mx.arquidiocesis.eamxgeneric.activities.Home_Home"
                                 )
                             })
 

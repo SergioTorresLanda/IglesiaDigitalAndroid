@@ -40,9 +40,9 @@ class ViewPagerAdapter(private val releases: List<DataHomeReleaseResponse>, val 
             }
 
             binding.root.setOnClickListener {
-                EAMXFirebaseManager(it.context).setLogEvent("screen_view_tag", Bundle().apply {
-                    putString("screen_name", "Android_DesdeLaFe")
-                })
+                /*EAMXFirebaseManager(it.context).setLogEvent("screen_view", Bundle().apply {
+                    putString("screen_class", "DesdeLaFe")
+                })*/
                 val urlString = release.publishUrl
                 if(!urlString.isNullOrEmpty()){
                     listener(urlString)

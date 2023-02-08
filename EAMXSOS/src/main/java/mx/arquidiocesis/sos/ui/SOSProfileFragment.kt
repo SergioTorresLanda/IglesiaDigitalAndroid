@@ -47,11 +47,16 @@ class SOSProfileFragment : Fragment() {
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frameSOSProfile,
             if (userIsAdmin) {//Sacerdote
+                activity?.let {
+                    EAMXFirebaseManager(it).setLogEvent("screen_view", Bundle().apply {
+                        putString("screen_class", "Home_SOSPriest")
+                    })
+                }
                 PriestProfileFragment.newInstance()
             }else{//Fiel
                 activity?.let {
-                    EAMXFirebaseManager(it).setLogEvent("screen_view_tag", Bundle().apply {
-                        putString("screen_name", "Android_Sos")
+                    EAMXFirebaseManager(it).setLogEvent("screen_view", Bundle().apply {
+                        putString("screen_class", "Home_SOSPrincipal")
                     })
                 }
                 FaithfulProfileFragment.newInstance()

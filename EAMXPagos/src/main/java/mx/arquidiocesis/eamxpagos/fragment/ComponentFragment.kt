@@ -71,12 +71,12 @@ class ComponentFragment(private val link: String, private val originType: Origin
         }
         binding.wvDonation.apply {
             showLoader()
-            firebaseAnalytics?.setLogEvent("ui_interaction", Bundle().apply {
+            /*firebaseAnalytics?.setLogEvent("ui_interaction", Bundle().apply {
                 putString("flow", "view_form_card")
                 putString("section", "dontation")
-                putString("screen_name", "form_card")
+                putString("screen_class", "form_card")
                 putString("element", link)
-            })
+            })*/
             loadUrl(link)
             eamxLog("rutaLink $link")
             settings.apply {
@@ -136,7 +136,7 @@ class ComponentFragment(private val link: String, private val originType: Origin
                             Intent().apply {
                                 setClassName(
                                     requireActivity(),
-                                    "mx.arquidiocesis.eamxgeneric.activities.EAMXHomeActivity"
+                                    "mx.arquidiocesis.eamxgeneric.activities.Home_Home"
                                 )
                             })
                         finish()
@@ -180,7 +180,7 @@ class ComponentFragment(private val link: String, private val originType: Origin
                             Intent().apply {
                                 setClassName(
                                     requireActivity(),
-                                    "mx.arquidiocesis.eamxgeneric.activities.EAMXHomeActivity"
+                                    "mx.arquidiocesis.eamxgeneric.activities.Home_Home"
                                 )
                             })
                         finish()

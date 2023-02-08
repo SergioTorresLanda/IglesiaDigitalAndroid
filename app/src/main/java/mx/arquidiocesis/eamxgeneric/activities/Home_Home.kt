@@ -3,6 +3,7 @@ package mx.arquidiocesis.eamxgeneric.activities
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Bundle
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.core.content.ContextCompat
@@ -16,11 +17,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import mx.arquidiocesis.eamxcommonutils.application.AppMyConstants
 import mx.arquidiocesis.eamxcommonutils.common.*
+import mx.arquidiocesis.eamxcommonutils.util.*
 import mx.arquidiocesis.eamxcommonutils.util.contrasresult.TakePhoto
-import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
-import mx.arquidiocesis.eamxcommonutils.util.getViewModel
-import mx.arquidiocesis.eamxcommonutils.util.log
-import mx.arquidiocesis.eamxcommonutils.util.toast
 import mx.arquidiocesis.eamxgeneric.R
 import mx.arquidiocesis.eamxgeneric.databinding.ActivityMainBinding
 import mx.arquidiocesis.eamxgeneric.fragments.home.EAMXHomeFragment
@@ -40,7 +38,7 @@ import mx.arquidiocesis.eamxredsocialmodule.ui.EAMXRedSocialFragment
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class EAMXHomeActivity : EAMXBaseActivity(),
+class Home_Home : EAMXBaseActivity(),
     EAMXHome,
     EAMXSignOut,
     EAMXActionBottom,
@@ -238,7 +236,9 @@ class EAMXHomeActivity : EAMXBaseActivity(),
                 TokenObj(tokenStr)
             )
         })
-
+        EAMXFirebaseManager(applicationContext).setLogEvent("screen_view", Bundle().apply {
+            putString("screen_class", "Home_Home")
+        })
     }
 
     override fun restoreToolbar() {
@@ -422,7 +422,7 @@ class EAMXHomeActivity : EAMXBaseActivity(),
         window.statusBarColor = resources.getColor(R.color.white)
         mBinding.toolbar.apply {
 
-            ImagenProfile().loadImageProfile(imgUser, this@EAMXHomeActivity)
+            ImagenProfile().loadImageProfile(imgUser, this@Home_Home)
 
             constraintToolbar.visibility = View.VISIBLE
             toolbarHomeSaludo.visibility = View.VISIBLE
@@ -476,7 +476,7 @@ class EAMXHomeActivity : EAMXBaseActivity(),
             ivIconToobar.visibility = View.GONE
             txtTitleFragmentBlue.setTextColor(
                 ContextCompat.getColor(
-                    this@EAMXHomeActivity,
+                    this@Home_Home,
                     R.color.white
                 )
             )
@@ -499,7 +499,7 @@ class EAMXHomeActivity : EAMXBaseActivity(),
             ivIconToobar.visibility = View.GONE
             txtTitleFragmentGeneral.setTextColor(
                 ContextCompat.getColor(
-                    this@EAMXHomeActivity,
+                    this@Home_Home,
                     R.color.white
                 )
             )
@@ -521,7 +521,7 @@ class EAMXHomeActivity : EAMXBaseActivity(),
             toolbarGeneral.visibility = View.GONE
             txtTitleFragmentBlue.setTextColor(
                 ContextCompat.getColor(
-                    this@EAMXHomeActivity,
+                    this@Home_Home,
                     R.color.white
                 )
             )

@@ -65,8 +65,8 @@ class ChurchesMapFragment constructor(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.let {
-            EAMXFirebaseManager(it).setLogEvent("screen_view_tag", Bundle().apply {
-                putString("screen_name", "Android_Perfil_Mapa")
+            EAMXFirebaseManager(it).setLogEvent("screen_view", Bundle().apply {
+                putString("screen_class", "Perfil_Mapa")
             })
         }
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
@@ -103,17 +103,17 @@ class ChurchesMapFragment constructor(
             }
         if (isLaico) {
             btnCommunity.visibility = View.VISIBLE
-            activity?.let {
-                EAMXFirebaseManager(it).setLogEvent("screen_view_tag", Bundle().apply {
-                    putString("screen_name", "Android_Perfil_Mapa_Comunidad")
+            /*activity?.let {
+                EAMXFirebaseManager(it).setLogEvent("screen_view", Bundle().apply {
+                    putString("screen_class", "Perfil_Mapa_Comunidad")
                 })
-            }
+            }*/
         } else {
-            activity?.let {
-                EAMXFirebaseManager(it).setLogEvent("screen_view_tag", Bundle().apply {
-                    putString("screen_name", "Android_Perfil_Mapa_Iglesias")
+            /*activity?.let {
+                EAMXFirebaseManager(it).setLogEvent("screen_view", Bundle().apply {
+                    putString("screen_class", "Perfil_Mapa_Iglesias")
                 })
-            }
+            }*/
         }
         btnCommunity.setOnClickListener {
             UtilAlert.Builder()

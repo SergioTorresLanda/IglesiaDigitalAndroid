@@ -39,8 +39,8 @@ class ServicesMenuFragment : FragmentBase() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.let {
-            EAMXFirebaseManager(it).setLogEvent("screen_view_tag", Bundle().apply {
-                putString("screen_name", "Android_Servicios")
+            EAMXFirebaseManager(it).setLogEvent("screen_view", Bundle().apply {
+                putString("screen_class", "Home_Servicios")
             })
         }
         initView()

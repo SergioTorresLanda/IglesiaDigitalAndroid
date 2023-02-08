@@ -72,10 +72,10 @@ open class EAMXSplashActivity : AppCompatActivity(), InstallStateUpdatedListener
         initSecondaryFirebaseInstance()
         checkUpdateApp()
         /*firebaseAnalytics = EAMXFirebaseManager(applicationContext)
-        firebaseAnalytics?.setLogEvent("screen_view_tag", Bundle().apply {
+        firebaseAnalytics?.setLogEvent("screen_view", Bundle().apply {
             putString("flow", "view_form_card")
             putString("section", "dontation")
-            putString("screen_name", "android_Home_Home")
+            putString("screen_class", "android_Home_Home")
             putString("element", "sebastian")
         })*/
     }
@@ -122,7 +122,7 @@ open class EAMXSplashActivity : AppCompatActivity(), InstallStateUpdatedListener
                 EAMXTypeObject.BOOLEAN_OBJECT
             ) as Boolean
         ) {
-            startActivity(Intent(applicationContext, EAMXHomeActivity::class.java))
+            startActivity(Intent(applicationContext, Home_Home::class.java))
             finish()
         } else {
             startActivity(Intent(applicationContext, EAMXInicioActivity::class.java))
