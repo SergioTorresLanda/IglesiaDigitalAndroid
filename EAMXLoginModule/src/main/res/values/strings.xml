@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">LoginBAZ</string>
-    <string name="description_image">icono encuentro</string>
+    <string name="description_image">icono iglesia digital</string>
     <string name="label_email_phone">Correo electrónico / Número celular</string>
     <string name="enter_your_email">Ingresa tu correo electrónico/ Número celular</string>
     <string name="enter_a_valid_email">Ingresa un correo electrónico válido o un número celular válido</string>

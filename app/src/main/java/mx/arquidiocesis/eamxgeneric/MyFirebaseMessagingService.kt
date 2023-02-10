@@ -25,7 +25,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
 
         sendNotification(
-            remoteMessage.notification?.title ?: "Encuentro",
+            remoteMessage.notification?.title ?: "Iglesia Digital",
             remoteMessage.notification?.body ?: "Entra a la app"
         )
     }

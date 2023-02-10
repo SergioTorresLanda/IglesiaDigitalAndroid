@@ -59,7 +59,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="A este espacio de Encuentro de la Arquidiócesis de México, donde fieles, sacerdotes, religiosos, comunidades e instituciones de inspiración católica tenemos un lugar especial." />
+                    tools:text="A este espacio de encuentro de la Arquidiócesis de México, donde fieles, sacerdotes, religiosos, comunidades e instituciones de inspiración católica tenemos un lugar especial." />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvObciones"
