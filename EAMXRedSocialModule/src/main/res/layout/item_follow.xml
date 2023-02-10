@@ -105,7 +105,7 @@
             android:layout_height="1sp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
-            android:background="@color/view"
+            android:background="@color/colorGray"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/clSegir"
             app:layout_constraintStart_toStartOf="@+id/cvPriest"

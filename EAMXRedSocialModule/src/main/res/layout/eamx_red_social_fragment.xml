@@ -6,17 +6,55 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/tabs"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints">
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/margin_15"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvPublicaciones"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tab"
+                    android:paddingBottom="@dimen/margin_12"
+                    android:fontFamily="@font/spro_text_regular"
+                    android:text="Publicaciones"
+                    android:textColor="#192a73"
+                    android:textSize="@dimen/size_18"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/tvMiRed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_40"
+                    android:fontFamily="@font/spro_text_regular"
+                    android:text="Mi Red"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/size_18" />
+            </LinearLayout>
+        </RelativeLayout>
         <androidx.cardview.widget.CardView
             android:id="@+id/iv_user_image"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_margin="@dimen/margin_16"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="@dimen/margin_16"
+            android:layout_marginBottom="@dimen/margin_16"
             app:cardBackgroundColor="@color/colorTxtServicios"
             app:cardCornerRadius="50dp"
             app:contentPadding="2dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintStart_toStartOf="@+id/tabs"
+            app:layout_constraintTop_toTopOf="@+id/tabs">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
