@@ -351,7 +351,6 @@ abstract class EAMXBaseActivity : AppCompatActivity(), EAMXBackHandler {
             imm.showSoftInput(viewEditable, InputMethodManager.SHOW_IMPLICIT)
         }
     }
-
     /**
      * MUESTRA U OCULTA EL LOTTIE
      */

@@ -3,7 +3,9 @@
     package="mx.arquidiocesis.eamxcommonutils">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <application>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application
+        android:usesCleartextTraffic="true">
         <activity android:name=".util.socialsupport.qr.EAMXQRActivity" />
     </application>
 

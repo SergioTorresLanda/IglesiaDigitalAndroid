@@ -1,27 +1,38 @@
 package mx.arquidiocesis.eamxgeneric.fragments.home
 
+import android.content.Intent
+import mx.arquidiocesis.eamxgeneric.R
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.viewpager2.widget.ViewPager2
-import mx.arquidiocesis.eamxcommonutils.common.*
-import mx.arquidiocesis.eamxgeneric.R
-import mx.arquidiocesis.eamxgeneric.adapter.ViewPagerAdapter
-import mx.arquidiocesis.eamxgeneric.databinding.EamxHomeFragmentBinding
-import mx.arquidiocesis.eamxgeneric.viewmodel.TokenViewModel
 import com.wallia.eamxcomunidades.config.Constants
+import com.wallia.eamxcomunidades.ui.EAMXCommunitiesPrincipalFragment
+import com.wallia.eamxcomunidades.ui.EAMXComunidadesSacerdoteFragment
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.eamx_home_fragment.*
+import mx.arquidiocesis.eamxcommonutils.R.*
+import mx.arquidiocesis.eamxcommonutils.common.*
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
+import mx.arquidiocesis.eamxcommonutils.multimedia.EAMXPdfFragment
+import mx.arquidiocesis.eamxcommonutils.multimedia.EAMXUrlFragment
+import mx.arquidiocesis.eamxcommonutils.multimedia.EAMXVideoFragment
 import mx.arquidiocesis.eamxcommonutils.util.*
+import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
+import mx.arquidiocesis.eamxgeneric.adapter.ViewPagerAdapter
 import mx.arquidiocesis.eamxgeneric.adapter.ViewPagerAdapterSuggestion
 import mx.arquidiocesis.eamxgeneric.customviews.PrayDialogFragment
+import mx.arquidiocesis.eamxgeneric.databinding.ActivityMainBinding
+import mx.arquidiocesis.eamxgeneric.databinding.EamxHomeFragmentBinding
+import mx.arquidiocesis.eamxgeneric.repository.MainRepository2
+import mx.arquidiocesis.eamxgeneric.viewmodel.TokenViewModel
 import mx.arquidiocesis.eamxlivestreammodule.repository.LiveStreamRepository
 import mx.arquidiocesis.eamxlivestreammodule.viewmodel.LiveVideoViewModel
 import mx.arquidiocesis.eamxprofilemodule.repository.RepositoryProfile
+import mx.arquidiocesis.eamxprofilemodule.ui.admin.binding
 import mx.arquidiocesis.eamxprofilemodule.viewmodel.EAMXViewModelProfile
-import com.wallia.eamxcomunidades.ui.EAMXCommunitiesPrincipalFragment
-import com.wallia.eamxcomunidades.ui.EAMXComunidadesSacerdoteFragment
-import mx.arquidiocesis.eamxgeneric.databinding.ActivityMainBinding
-import mx.arquidiocesis.eamxgeneric.repository.MainRepository2
 
 
 class EAMXHomeFragment : EAMXBaseFragment() {
@@ -80,7 +91,6 @@ class EAMXHomeFragment : EAMXBaseFragment() {
             LiveVideoViewModel(LiveStreamRepository(context = requireContext()))
         }
     }
-
     override fun initView(view: View) {
         setFullUserName()
         initOnClickListener(this.signOut!!)
@@ -109,6 +119,33 @@ class EAMXHomeFragment : EAMXBaseFragment() {
         }
     }
 
+    private fun changeFragment() {
+        val bundle = Bundle()
+        bundle.putString(
+            "url", "https://media.geeksforgeeks.org/wp-content/uploads/20201217192146/Screenrecorder-2020-12-17-19-17-36-828.mp4?_=1"
+        )
+        bundle.putString(
+            "pdf_url", "https://demo.codeseasy.com/downloads/CodesEasy.pdf"
+        )
+        bundle.putString(
+           "text", "¿Por qué no vemos a Dios? La pregunta de Rémy, 5 años. Lo invisible no es percibido por nuestros sentidos y, sin embargo, accedemos a ello. ¿Cómo explicárselo a un niño? "
+        )
+        bundle.putString(
+            "image", "https://es.la-croix.com/images/0000/por-que-no-podemos-ver-a-dios.jpeg"
+        )
+        bundle.putString(
+            "urlWeb", "https://es.wikipedia.org/wiki/Reproductor_de_audio_(software)"
+        )
+        NavigationFragment.Builder()
+            .setActivity(requireActivity())
+            .setView(requireView().parent as ViewGroup)
+            .setBundle(bundle)
+            .setFragment(
+                EAMXVideoFragment()
+            )
+            .setAllowStack(true)
+            .build().nextWithReplace()
+    }
     override fun initObservers() {
         tokenViewModel.dataHomeSaintResponse.observe(this) { response ->
             if (response.isNotEmpty() == true) {
@@ -131,6 +168,34 @@ class EAMXHomeFragment : EAMXBaseFragment() {
                 }
             }
         }
+
+/*
+        tokenViewModel.dataHomeSuggestionResponse.observe(this) { response ->
+            mBinding.apply {
+
+                btnShow.setOnClickListener {
+                    val newfragment = EAMXUrlFragment()
+                    val manager: FragmentManager = requireActivity().supportFragmentManager
+                    manager.beginTransaction()
+                        .replace(R.id.contentFragment, newfragment)
+                        .addToBackStack(null)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .commit()
+                }
+            }
+       }
+
+ */
+
+        tokenViewModel.dataHomeSuggestionResponse.observe(this) { response ->
+
+            btnShow.setOnClickListener {
+                changeFragment()
+            }
+        }
+
+
+
 
         tokenViewModel.dataHomeReleaseResponse.observe(this) { response ->
             if (response.isNotEmpty()) {
@@ -231,7 +296,7 @@ class EAMXHomeFragment : EAMXBaseFragment() {
                                 }
                                 Constants.PENDING_VICARAGE_APPROVAL -> {
                                     UtilAlert.Builder()
-                                        .setTitle(getString(R.string.title_dialog_warning))
+                                        .setTitle(getString(mx.arquidiocesis.eamxgeneric.R.string.title_dialog_warning))
                                         .setMessage("Tu solicitud esta en proceso de revisión")
                                         .setListener {
                                             when (it) {
@@ -268,7 +333,7 @@ class EAMXHomeFragment : EAMXBaseFragment() {
                                         signOut!!,
                                         false
                                     ),
-                                    R.id.FragmentLayoutMain,
+                                    mx.arquidiocesis.eamxgeneric.R.id.FragmentLayoutMain,
                                     EAMXCommunitiesPrincipalFragment::class.java.simpleName
                                 )
                                 isFirstTime = false
@@ -308,20 +373,20 @@ class EAMXHomeFragment : EAMXBaseFragment() {
                                     LOCATION_INFORMATION -> {
                                         if (permissionType == "CHURCH") {
                                             flMiIglesia.background =
-                                                requireContext().getDrawable(R.drawable.shape_mi_iglesia_gold)
+                                                requireContext().getDrawable(mx.arquidiocesis.eamxgeneric.R.drawable.shape_mi_iglesia_gold)
                                         }
                                         if (permissionType == "COMMUNITY") {
                                             flComunidades.background =
-                                                requireContext().getDrawable(R.drawable.shape_mi_iglesia_gold)
+                                                requireContext().getDrawable(mx.arquidiocesis.eamxgeneric.R.drawable.shape_mi_iglesia_gold)
                                         }
                                     }
                                     SERVICES -> {
                                         flServicios.background =
-                                            requireContext().getDrawable(R.drawable.shape_servicios_gold)
+                                            requireContext().getDrawable(mx.arquidiocesis.eamxgeneric.R.drawable.shape_servicios_gold)
                                     }
                                     SOCIAL_NETWORKS -> {
                                         flRedSocial.background =
-                                            requireContext().getDrawable(R.drawable.shape_red_social_gold)
+                                            requireContext().getDrawable(mx.arquidiocesis.eamxgeneric.R.drawable.shape_red_social_gold)
                                     }
                                     DONATIONS -> {
 
@@ -347,8 +412,8 @@ class EAMXHomeFragment : EAMXBaseFragment() {
         viewModelLive.searchInfoContent.observe(this) { response ->
             mBinding.apply {
                 cardLiveEvent.setCardBackgroundColor(
-                    if (response) requireContext().getColor(R.color.color_card_eventos_exist) else requireContext().getColor(
-                        R.color.color_card_eventos_empty
+                    if (response) requireContext().getColor(mx.arquidiocesis.eamxgeneric.R.color.color_card_eventos_exist) else requireContext().getColor(
+                        mx.arquidiocesis.eamxgeneric.R.color.color_card_eventos_empty
                     )
                 )
             }
@@ -396,3 +461,4 @@ class EAMXHomeFragment : EAMXBaseFragment() {
         tokenViewModel.getHomeSuggestion(userId, "SUGGESTIONS")
     }
 }
+

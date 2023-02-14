@@ -30,11 +30,15 @@
                         android:layout_height="wrap_content"
                         android:adjustViewBounds="true"
                         android:scaleType="fitCenter"
+                        android:clickable="true"
+                        android:longClickable="true"
+                        android:contextClickable="true"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHeight_percent=".3"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:src="@mipmap/oraciones" />
+                        tools:src="@mipmap/oraciones"
+                        android:focusable="true" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
