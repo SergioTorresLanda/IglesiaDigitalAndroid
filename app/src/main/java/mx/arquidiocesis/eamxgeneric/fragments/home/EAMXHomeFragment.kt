@@ -1,69 +1,55 @@
 package mx.arquidiocesis.eamxgeneric.fragments.home
 
-import android.content.Intent
-import mx.arquidiocesis.eamxgeneric.R
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.viewpager2.widget.ViewPager2
-import com.wallia.eamxcomunidades.config.Constants
-import com.wallia.eamxcomunidades.ui.EAMXCommunitiesPrincipalFragment
-import com.wallia.eamxcomunidades.ui.EAMXComunidadesSacerdoteFragment
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.eamx_home_fragment.*
-import mx.arquidiocesis.eamxcommonutils.R.*
 import mx.arquidiocesis.eamxcommonutils.common.*
-import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
-import mx.arquidiocesis.eamxcommonutils.multimedia.EAMXPdfFragment
-import mx.arquidiocesis.eamxcommonutils.multimedia.EAMXUrlFragment
-import mx.arquidiocesis.eamxcommonutils.multimedia.EAMXVideoFragment
-import mx.arquidiocesis.eamxcommonutils.util.*
-import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
+import mx.arquidiocesis.eamxgeneric.R
 import mx.arquidiocesis.eamxgeneric.adapter.ViewPagerAdapter
-import mx.arquidiocesis.eamxgeneric.adapter.ViewPagerAdapterSuggestion
-import mx.arquidiocesis.eamxgeneric.customviews.PrayDialogFragment
-import mx.arquidiocesis.eamxgeneric.databinding.ActivityMainBinding
 import mx.arquidiocesis.eamxgeneric.databinding.EamxHomeFragmentBinding
-import mx.arquidiocesis.eamxgeneric.repository.MainRepository2
 import mx.arquidiocesis.eamxgeneric.viewmodel.TokenViewModel
+import com.wallia.eamxcomunidades.config.Constants
+import kotlinx.android.synthetic.main.eamx_home_fragment.*
+import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
+import mx.arquidiocesis.eamxcommonutils.util.*
+import mx.arquidiocesis.eamxgeneric.adapter.ViewPagerAdapterSuggestion
 import mx.arquidiocesis.eamxlivestreammodule.repository.LiveStreamRepository
 import mx.arquidiocesis.eamxlivestreammodule.viewmodel.LiveVideoViewModel
 import mx.arquidiocesis.eamxprofilemodule.repository.RepositoryProfile
-import mx.arquidiocesis.eamxprofilemodule.ui.admin.binding
 import mx.arquidiocesis.eamxprofilemodule.viewmodel.EAMXViewModelProfile
-
+import com.wallia.eamxcomunidades.ui.EAMXCommunitiesPrincipalFragment
+import com.wallia.eamxcomunidades.ui.EAMXComunidadesSacerdoteFragment
+import mx.arquidiocesis.eamxgeneric.repository.MainRepository2
 
 class EAMXHomeFragment : EAMXBaseFragment() {
-
     val LOCATION_INFORMATION = "LOCATION_INFORMATION"
     val SERVICES = "SERVICES"
     val SOCIAL_NETWORKS = "SOCIAL_NETWORKS"
     val DONATIONS = "DONATIONS"
     val SOS = "SOS"
     val APPOINT_ADMINISTRATOR = "APPOINT_ADMINISTRATOR"
-
     val LINK = "LINK"
+    val PDF = "PDF"
     val VIDEO = "VIDEO"
-
-    var existSaint: Boolean = false
+    val AUDIO = "AUDIO"
     var existRelease: Boolean = false
     var existSuggestion: Boolean = false
-    var date = ""
     var isFirstTime = true
+    lateinit var mBinding: EamxHomeFragmentBinding
+    var callBack: EAMXHome? = null
+    var signOut: EAMXSignOut? = null
+    var callBackBottom: EAMXActionBottom? = null
 
     override fun initDependency(savedInstanceState: Bundle?) {}
 
     override fun setViewModel() {}
 
+    //Declaración de modelos
     private val tokenViewModel: TokenViewModel by lazy {
         getViewModel {
             TokenViewModel(MainRepository2(requireContext()))
         }
     }
-
-    var homeActivityBinding: ActivityMainBinding? = null
 
     private val viewModelProfile: EAMXViewModelProfile by lazy {
         getViewModel {
@@ -73,37 +59,33 @@ class EAMXHomeFragment : EAMXBaseFragment() {
         }
     }
 
-    lateinit var mBinding: EamxHomeFragmentBinding
-    var callBack: EAMXHome? = null
-    var signOut: EAMXSignOut? = null
-    var callBackBottom: EAMXActionBottom? = null
-    var homeBinding: ActivityMainBinding? = null
-    var userId: Int = 0
-
-    override fun getLayout() = R.layout.eamx_home_fragment
-
-    override fun initBinding(view: View) {
-        mBinding = EamxHomeFragmentBinding.bind(view)
-    }
-
-    val viewModelLive: LiveVideoViewModel by lazy {
+    private val viewModelLive: LiveVideoViewModel by lazy {
         getViewModel {
             LiveVideoViewModel(LiveStreamRepository(context = requireContext()))
         }
     }
+
+    //Declaración del layout del fragmento
+    override fun getLayout() = R.layout.eamx_home_fragment
+
+    //Declaración del binding
+    override fun initBinding(view: View) {
+        mBinding = EamxHomeFragmentBinding.bind(view)
+    }
+
     override fun initView(view: View) {
         setFullUserName()
         initOnClickListener(this.signOut!!)
         visibleModulesByProfile()
-        viewModelLive.getExistsLiveVideos()
-        userId =
-            eamxcu_preferences.getData(EAMXEnumUser.USER_ID.name, EAMXTypeObject.INT_OBJECT) as Int
-        date = dateFormatString()
-        getTopics()
+        //Consultar de datos del usuario
         viewModelProfile.getUserDetailAndSaveProfile(true)
-        mBinding.cardLiveEvent.visibility = View.VISIBLE //TODO : (eliminar linea cuando se desee mostrar el live)
+        //Para ver Si existen transmisiones
+        viewModelLive.getExistsLiveVideos()
+        //Consulta de contenido en carruseles
+        getTopics()
     }
 
+    //Instancia de objeto
     companion object {
         @JvmStatic
         fun newInstance(
@@ -119,154 +101,100 @@ class EAMXHomeFragment : EAMXBaseFragment() {
         }
     }
 
-    private fun changeFragment() {
-        val bundle = Bundle()
-        bundle.putString(
-            "url", "https://media.geeksforgeeks.org/wp-content/uploads/20201217192146/Screenrecorder-2020-12-17-19-17-36-828.mp4?_=1"
-        )
-        bundle.putString(
-            "pdf_url", "https://demo.codeseasy.com/downloads/CodesEasy.pdf"
-        )
-        bundle.putString(
-           "text", "¿Por qué no vemos a Dios? La pregunta de Rémy, 5 años. Lo invisible no es percibido por nuestros sentidos y, sin embargo, accedemos a ello. ¿Cómo explicárselo a un niño? "
-        )
-        bundle.putString(
-            "image", "https://es.la-croix.com/images/0000/por-que-no-podemos-ver-a-dios.jpeg"
-        )
-        bundle.putString(
-            "urlWeb", "https://es.wikipedia.org/wiki/Reproductor_de_audio_(software)"
-        )
-        NavigationFragment.Builder()
-            .setActivity(requireActivity())
-            .setView(requireView().parent as ViewGroup)
-            .setBundle(bundle)
-            .setFragment(
-                EAMXVideoFragment()
-            )
-            .setAllowStack(true)
-            .build().nextWithReplace()
-    }
     override fun initObservers() {
+        //Carruseles
         tokenViewModel.dataHomeSaintResponse.observe(this) { response ->
             if (response.isNotEmpty() == true) {
-                existSaint = true
+                //existSaint = true
             }
             mBinding.apply {
                 if (response != null) {
                     if (!response.isNullOrEmpty()) {
-
-                        tvTitleSaint.text = "SANTO DEL DÍA"
-                        tvDescSaint.text = response[0].title
-                        response[0].imageUrl?.let { ivSaint.loadByUrl(it) }
-                        cvSaint.setOnClickListener {
-                            val urlString = response[0].publishUrl
-                            if (!urlString.isNullOrEmpty()) {
-                                webView(urlString)
-                            }
-                        }
+                        //val DataHomeReleaseResponse
+                        //tokenViewModel.dataHomeReleaseResponse.value
+                        response[0].id
+                        //response[0].title
+                        //publish_date
+                        ////response[0].imageUrl
+                        ////response[0].publishUrl
                     }
                 }
             }
         }
-
-/*
-        tokenViewModel.dataHomeSuggestionResponse.observe(this) { response ->
-            mBinding.apply {
-
-                btnShow.setOnClickListener {
-                    val newfragment = EAMXUrlFragment()
-                    val manager: FragmentManager = requireActivity().supportFragmentManager
-                    manager.beginTransaction()
-                        .replace(R.id.contentFragment, newfragment)
-                        .addToBackStack(null)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit()
-                }
-            }
-       }
-
- */
-
-        tokenViewModel.dataHomeSuggestionResponse.observe(this) { response ->
-
-            btnShow.setOnClickListener {
-                changeFragment()
-            }
-        }
-
-
-
-
+        //Noticias
         tokenViewModel.dataHomeReleaseResponse.observe(this) { response ->
             if (response.isNotEmpty()) {
                 existRelease = true
             }
-
-            val viewPagerAdapter = ViewPagerAdapter(response) {
-                webView(it)
+            val viewPagerAdapter = ViewPagerAdapter(response) { url ->
+                //IR a fragment: webView(new) "url" : url
             }
-
-            mBinding.viewPager.apply {
+            mBinding.viewPagerNoticias.apply {
                 adapter = viewPagerAdapter
                 orientation = ViewPager2.ORIENTATION_HORIZONTAL
             }
-
-            mBinding.viewPagerIndicatorSuggestion.setViewPager(mBinding.viewPager)
+            mBinding.viewPagerIndicatorNoticias.setViewPager(mBinding.viewPagerNoticias)
         }
-
+        //Espiritualidad
         tokenViewModel.dataHomeSuggestionResponse.observe(this) { response ->
-
             if (response.isNotEmpty() == true) {
                 existSuggestion = true
             }
-
             val viewPagerAdapterSuggestion = response.let {
                 ViewPagerAdapterSuggestion(it) { suggestion ->
-                    if (suggestion.type == VIDEO) {
-                        suggestion.article_url?.let { it1 -> openYoutubeApi(it1) }
-                    } else if (suggestion.type == LINK) {
-                        if (suggestion.article_url == null) {
-                            activity?.supportFragmentManager?.let {
-                                val dialog = PrayDialogFragment.newInstance(suggestion.id) {
-                                    oracionesChange()
+                    if ((suggestion.type == LINK && suggestion.imageUrl.isNullOrEmpty() && suggestion.article_url.isNullOrEmpty())||(suggestion.type != LINK && suggestion.article_url.isNullOrEmpty())) {
+                        UtilAlert.Builder()
+                            .setTitle(getString(R.string.title_dialog_warning))
+                            .setMessage("Contenido no disponible")
+                            .build()
+                            .show(childFragmentManager, tag)
+                    } else {
+                            if (suggestion.type == AUDIO) {
+                                //IR a fragment: "audio" : suggestion.article_url, "titulo" : suggestion.title
+                            } else if (suggestion.type == PDF) {
+                                //IR a fragment: "pdf" : suggestion.article_url
+                            } else if (suggestion.type == VIDEO) {
+                                if (suggestion.article_url!!.isUrlYoutube()) {
+                                    //IR a fragment: "youtube" : suggestion.article_url, "titulo" : suggestion.title
+                                } else {
+                                    //IR a fragment: "video" : suggestion.article_url, "titulo" : suggestion.title
                                 }
-                                dialog.show(it, "")
+                            } else if (suggestion.type == LINK) {
+                                if (!suggestion.article_url.isNullOrEmpty()) {
+                                    //IR a fragment: "web" : suggestion.article_url
+                                } else {
+                                    suggestion.id?.let { it1 -> tokenViewModel.getPrayDetail(it1) }
+                                    tokenViewModel.prayResponse.observe(this){
+                                        //IR a fragment: "img" : it.image_url, "text": it.description
+                                    }
+                                }
                             }
-                        } else {
-                            val urlString = suggestion.article_url
-                            if (!urlString.isNullOrEmpty()) {
-                                webView(urlString!!)
-                            }
-                        }
+
                     }
                 }
             }
-
-            mBinding.viewPagerSuggestion.apply {
+            mBinding.viewPagerEspiritualidad.apply {
                 adapter = viewPagerAdapterSuggestion
                 orientation = ViewPager2.ORIENTATION_HORIZONTAL
             }
-            mBinding.viewPagerIndicator.setViewPager(mBinding.viewPagerSuggestion)
+            mBinding.viewPagerIndicatorEspiritualidad.setViewPager(mBinding.viewPagerEspiritualidad)
         }
 
+        //Configuraciones del usuario
         viewModelProfile.responseUserDetail.observe(this) { response ->
             FragmentLayoutMain.visibility = View.GONE
-            //cvSaint.visibility = View.VISIBLE
             mBinding.apply {
                 if (response?.data?.User != null) {
                     val user = response.data.User
                     if (user.profile == Constants.COMMUNITY_RESPONSIBLE) {
-
                         flComunidades.background =
                             requireContext().getDrawable(R.drawable.shape_mi_iglesia_gold)
                         flRedSocial.background =
                             requireContext().getDrawable(R.drawable.shape_mi_iglesia_gold)
-
                         "Flow COMMUNITY_RESPONSIBLE".log()
                         if (user.community != null) {
                             "Flow COMMUNITY_RESPONSIBLE != null".log()
                             val status = user.community?.status ?: ""
-
                             eamxcu_preferences.saveData(
                                 EAMXEnumUser.USER_COMMUNITY_ID.name,
                                 user.community?.id ?: 0
@@ -279,10 +207,8 @@ class EAMXHomeFragment : EAMXBaseFragment() {
                                 EAMXEnumUser.CHURCH.name,
                                 user.community?.id ?: 0
                             )
-
                             when (status) {
                                 Constants.PENDING_COMPLETION -> {
-                                    cvSaint.visibility = View.GONE
                                     cvSuggestions.visibility = View.GONE
                                     cvNews.visibility = View.GONE
 
@@ -296,7 +222,7 @@ class EAMXHomeFragment : EAMXBaseFragment() {
                                 }
                                 Constants.PENDING_VICARAGE_APPROVAL -> {
                                     UtilAlert.Builder()
-                                        .setTitle(getString(mx.arquidiocesis.eamxgeneric.R.string.title_dialog_warning))
+                                        .setTitle(getString(R.string.title_dialog_warning))
                                         .setMessage("Tu solicitud esta en proceso de revisión")
                                         .setListener {
                                             when (it) {
@@ -309,9 +235,6 @@ class EAMXHomeFragment : EAMXBaseFragment() {
                                         .show(childFragmentManager, tag)
                                 }
                                 else -> {
-                                    if (existSaint) {
-                                        cvSaint.visibility = View.VISIBLE
-                                    }
                                     if (existRelease) {
                                         cvSuggestions.visibility = View.VISIBLE
                                     }
@@ -333,16 +256,13 @@ class EAMXHomeFragment : EAMXBaseFragment() {
                                         signOut!!,
                                         false
                                     ),
-                                    mx.arquidiocesis.eamxgeneric.R.id.FragmentLayoutMain,
+                                    R.id.FragmentLayoutMain,
                                     EAMXCommunitiesPrincipalFragment::class.java.simpleName
                                 )
                                 isFirstTime = false
                                 FragmentLayoutMain.visibility = View.VISIBLE
                                 horizontalScrollView.visibility = View.GONE
                                 btnApoyar.visibility = View.GONE
-                            }
-                            if (existSaint) {
-                                cvSaint.visibility = View.VISIBLE
                             }
                             if (existRelease) {
                                 cvSuggestions.visibility = View.VISIBLE
@@ -352,9 +272,6 @@ class EAMXHomeFragment : EAMXBaseFragment() {
                             }
                         }
                     } else {
-                        if (existSaint) {
-                            cvSaint.visibility = View.VISIBLE
-                        }
                         if (existRelease) {
                             cvNews.visibility = View.VISIBLE
                         }
@@ -366,37 +283,30 @@ class EAMXHomeFragment : EAMXBaseFragment() {
                                 EAMXEnumUser.USER_PERMISSION_TYPE.name,
                                 EAMXTypeObject.STRING_OBJECT
                             ) as String
-
                         user.location_modules?.forEach { modulesList ->
                             modulesList.modules.forEach {
                                 when (it) {
                                     LOCATION_INFORMATION -> {
                                         if (permissionType == "CHURCH") {
                                             flMiIglesia.background =
-                                                requireContext().getDrawable(mx.arquidiocesis.eamxgeneric.R.drawable.shape_mi_iglesia_gold)
+                                                requireContext().getDrawable(R.drawable.shape_mi_iglesia_gold)
                                         }
                                         if (permissionType == "COMMUNITY") {
                                             flComunidades.background =
-                                                requireContext().getDrawable(mx.arquidiocesis.eamxgeneric.R.drawable.shape_mi_iglesia_gold)
+                                                requireContext().getDrawable(R.drawable.shape_mi_iglesia_gold)
                                         }
                                     }
                                     SERVICES -> {
                                         flServicios.background =
-                                            requireContext().getDrawable(mx.arquidiocesis.eamxgeneric.R.drawable.shape_servicios_gold)
+                                            requireContext().getDrawable(R.drawable.shape_servicios_gold)
                                     }
                                     SOCIAL_NETWORKS -> {
                                         flRedSocial.background =
-                                            requireContext().getDrawable(mx.arquidiocesis.eamxgeneric.R.drawable.shape_red_social_gold)
+                                            requireContext().getDrawable(R.drawable.shape_red_social_gold)
                                     }
-                                    DONATIONS -> {
-
-                                    }
-                                    SOS -> {
-
-                                    }
-                                    APPOINT_ADMINISTRATOR -> {
-
-                                    }
+                                    DONATIONS -> {}
+                                    SOS -> {}
+                                    APPOINT_ADMINISTRATOR -> {}
                                 }
                             }
                         }
@@ -405,22 +315,22 @@ class EAMXHomeFragment : EAMXBaseFragment() {
             }
         }
 
-        tokenViewModel.errorResponse.observe(this) {
-            print("")
-        }
+        //Error de token
+        tokenViewModel.errorResponse.observe(this) {}
 
+        //Live Streaming
         viewModelLive.searchInfoContent.observe(this) { response ->
             mBinding.apply {
                 cardLiveEvent.setCardBackgroundColor(
-                    if (response) requireContext().getColor(mx.arquidiocesis.eamxgeneric.R.color.color_card_eventos_exist) else requireContext().getColor(
-                        mx.arquidiocesis.eamxgeneric.R.color.color_card_eventos_empty
+                    if (response) requireContext().getColor(R.color.color_card_eventos_exist) else requireContext().getColor(
+                        R.color.color_card_eventos_empty
                     )
                 )
             }
         }
 
+        //Configuraciones para perfil de sacerdote
         EAMXComunidadesSacerdoteFragment.isBack.observe(this) {
-
             val name = eamxcu_preferences
                 .getData(EAMXEnumUser.USER_NAME.name, EAMXTypeObject.STRING_OBJECT)
                 .toString()
@@ -428,16 +338,9 @@ class EAMXHomeFragment : EAMXBaseFragment() {
                 EAMXEnumUser.USER_LAST_NAME.name,
                 EAMXTypeObject.STRING_OBJECT
             ) as String
-
-
             callBack?.showToolbar(true, "$name $lastName")
-
             mBinding.FragmentLayoutMain.visibility = View.GONE
             horizontalScrollView.visibility = View.VISIBLE
-
-            if (existSaint) {
-                cvSaint.visibility = View.VISIBLE
-            }
             if (existRelease) {
                 cvSuggestions.visibility = View.VISIBLE
             }
@@ -448,17 +351,11 @@ class EAMXHomeFragment : EAMXBaseFragment() {
     }
 
     fun getTopics() {
-        tokenViewModel.getHomeRelease(
-            userId,
-            "RELEASE",
-            date
-        )
-        tokenViewModel.getHomeSaint(
-            userId,
-            "SAINT",
-            date
-        )
+        val userId =
+            eamxcu_preferences.getData(EAMXEnumUser.USER_ID.name, EAMXTypeObject.INT_OBJECT) as Int
+        val date = "2023-02-14"//dateFormatString()
+        tokenViewModel.getHomeSaint(userId, "SAINT", date)
+        tokenViewModel.getHomeRelease(userId, "RELEASE", date)
         tokenViewModel.getHomeSuggestion(userId, "SUGGESTIONS")
     }
 }
-

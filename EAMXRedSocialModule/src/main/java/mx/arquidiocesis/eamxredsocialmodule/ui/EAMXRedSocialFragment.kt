@@ -88,6 +88,11 @@ class EAMXRedSocialFragment : FragmentBase() {
                 showBottonSheeat()
 
             }
+            tvMiRed.setOnClickListener {
+                changeFragment(
+                    EAMXFollowFragment()
+                )
+            }
             ivUserImage.setOnClickListener {
                 changeFragment(
                     EAMXFollowFragment()

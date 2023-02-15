@@ -3,12 +3,10 @@ package mx.arquidiocesis.eamxgeneric.fragments.home
 import android.view.View
 import com.wallia.eamxcomunidades.ui.EAMXCommunitiesPrincipalFragment
 import mx.arquidiocesis.eamxcadenaoracionesmodule.ui.EAMXCadenaOracionesFragment
-import mx.arquidiocesis.eamxcommonutils.application.AppMyConstants
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.common.EAMXProfile
 import mx.arquidiocesis.eamxcommonutils.common.EAMXSignOut
 import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
-import mx.arquidiocesis.eamxcommonutils.util.dialogs.EAMXPaymentFragment
 import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
 import mx.arquidiocesis.eamxdonaciones.ui.ProfileDonacionesFragment
 import mx.arquidiocesis.eamxgeneric.R

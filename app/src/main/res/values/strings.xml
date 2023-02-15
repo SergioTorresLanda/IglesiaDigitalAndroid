@@ -87,6 +87,7 @@
     <string name="onbording_inicio_2">En la app encontrarás espacios de oración, formación, interacción e información relevante de iglesias y comunidades que te ayudarán a vivir tu fe.</string>
     <string name="onbording_inicio_3">Te invitamos a completar tu registro para conocerte mejor y darte acceso a las funciones que podrás utilizar según tu rol.</string>
     <string name="comunidades">Comunidades</string>
-    <string name="sugerencias_para_ti">Sugerencias para ti</string>
+    <string name="noticias">Noticias</string>
+    <string name="espiritualidad">Espiritualidad</string>
 
 </resources>

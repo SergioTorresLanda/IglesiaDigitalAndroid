@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
-import android.util.Log
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.target.CustomTarget
@@ -58,6 +57,13 @@ fun String.extraIdUrlVideoYoutube(): String {
     } else {
         ""
     }
+}
+
+fun String.isUrlYoutube(): Boolean {
+    val pattern = "^(http(s)?:\\/\\/)?((w){3}.)?youtu(be|.be)?(\\.com)?\\/.+$"
+    val compiledPattern = Pattern.compile(pattern)
+    val matcher = compiledPattern.matcher(this)
+    return matcher.find()
 }
 
 fun String.buildTextSuccessUrl(textNormal: String): String {

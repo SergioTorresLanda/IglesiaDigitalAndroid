@@ -16,8 +16,8 @@ import okhttp3.ResponseBody
 class MainRepository2(val context : Context): ManagerCall(){
     val sendTokenResponse = MutableLiveData<ResponseBody>()
     val deleteTokenResponse = MutableLiveData<ResponseBody>()
-    val dataHomeReleaseResponse = MutableLiveData<List<DataHomeReleaseResponse>>()
     val dataHomeSaintResponse = MutableLiveData<List<DataHomeSaintResponse>>()
+    val dataHomeReleaseResponse = MutableLiveData<List<DataHomeReleaseResponse>>()
     val dataHomeSuggestionResponse = MutableLiveData<List<SuggestionModel>>()
     val prayResponse = MutableLiveData<OracionDetalleModel>()
     val errorResponse = MutableLiveData<String>()
@@ -72,28 +72,6 @@ class MainRepository2(val context : Context): ManagerCall(){
         }
     }
 
-    suspend fun getHomeRelease(id: Int, type: String, starting_date: String) {
-        managerCallApi(
-            context = context,
-            call = {
-                retrofitInstance
-                    .setHost( ConstansApp.hostEncuentro())
-                    .builder().instance().getHomeReleaseAsync(id, type, starting_date).await()
-            },
-            validation = ValidationCodes()
-        ).let { response ->
-            GlobalScope.launch(Dispatchers.Main) {
-                if (response.sucess) {
-                    response.data?.let {
-                        dataHomeReleaseResponse.value = it
-                    }
-                } else {
-                    errorResponse.value = "Error Appointments : ${response.exception?.message}"
-                }
-            }
-        }
-    }
-
     suspend fun getHomeSaint(id: Int, type: String, startingDate: String) {
         managerCallApi(
             context = context,
@@ -108,6 +86,28 @@ class MainRepository2(val context : Context): ManagerCall(){
                 if (response.sucess) {
                     response.data?.let {
                         dataHomeSaintResponse.value = it
+                    }
+                } else {
+                    errorResponse.value = "Error Appointments : ${response.exception?.message}"
+                }
+            }
+        }
+    }
+
+    suspend fun getHomeRelease(id: Int, type: String, starting_date: String) {
+        managerCallApi(
+            context = context,
+            call = {
+                retrofitInstance
+                    .setHost( ConstansApp.hostEncuentro())
+                    .builder().instance().getHomeReleaseAsync(id, type, starting_date).await()
+            },
+            validation = ValidationCodes()
+        ).let { response ->
+            GlobalScope.launch(Dispatchers.Main) {
+                if (response.sucess) {
+                    response.data?.let {
+                        dataHomeReleaseResponse.value = it
                     }
                 } else {
                     errorResponse.value = "Error Appointments : ${response.exception?.message}"
