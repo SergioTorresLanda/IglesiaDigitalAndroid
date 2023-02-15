@@ -18,6 +18,7 @@ import mx.arquidiocesis.eamxredsocialmodule.Repository.Repository
 import mx.arquidiocesis.eamxredsocialmodule.adapter.FollowAdapter
 import mx.arquidiocesis.eamxredsocialmodule.adapter.ViewPagerRedAdapter
 import mx.arquidiocesis.eamxredsocialmodule.model.FollowModel
+import mx.arquidiocesis.eamxredsocialmodule.model.Publication
 import mx.arquidiocesis.eamxredsocialmodule.model.SearchModel
 import mx.arquidiocesis.eamxredsocialmodule.news.create.utils.GetPerfilImagen
 import mx.arquidiocesis.eamxredsocialmodule.viewmodel.RedSocialViewModel
@@ -68,6 +69,7 @@ class EAMXFollowFragment : FragmentBase() {
                 ) as String, ivUser
             )
             tvUserName.text = nameCompleted
+            tvPublicaciones.setOnClickListener { activity?.onBackPressed() }
         }
         initObservers()
         showLoader()

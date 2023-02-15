@@ -1,26 +1,21 @@
 package mx.arquidiocesis.eamxgeneric.adapter
 
-import android.content.ActivityNotFoundException
-import android.content.Intent
-import android.net.Uri
-import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
 import mx.arquidiocesis.eamxcommonutils.util.loadByUrl
 import mx.arquidiocesis.eamxgeneric.databinding.ItemReleaseBinding
 import mx.arquidiocesis.eamxgeneric.model.DataHomeReleaseResponse
-import mx.arquidiocesis.eamxgeneric.model.SuggestionModel
 
-class ViewPagerAdapter(private val releases: List<DataHomeReleaseResponse>, val listener: (String) -> Unit) :
+class ViewPagerAdapter(
+    private val releases: List<DataHomeReleaseResponse>,
+    val listener: (String) -> Unit
+) :
     RecyclerView.Adapter<ViewPagerAdapter.ViewPagerViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewPagerViewHolder {
         val binding = ItemReleaseBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewPagerViewHolder(binding,listener)
+        return ViewPagerViewHolder(binding, listener)
     }
 
     override fun onBindViewHolder(holder: ViewPagerViewHolder, position: Int) =
@@ -44,19 +39,20 @@ class ViewPagerAdapter(private val releases: List<DataHomeReleaseResponse>, val 
                     putString("screen_class", "DesdeLaFe")
                 })*/
                 val urlString = release.publishUrl
-                if(!urlString.isNullOrEmpty()){
+                if (!urlString.isNullOrEmpty()) {
                     listener(urlString)
                 }
-               /* val intent = Intent(Intent.ACTION_VIEW, Uri.parse(urlString))
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                intent.setPackage("com.android.chrome")
-                try {
-                    binding.root.context.startActivity(intent)
-                } catch (ex: ActivityNotFoundException) {
-                    intent.setPackage(null)
-                    binding.root.context.startActivity(intent)
-                }*/
+                /* val intent = Intent(Intent.ACTION_VIEW, Uri.parse(urlString))
+                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                 intent.setPackage("com.android.chrome")
+                 try {
+                     binding.root.context.startActivity(intent)
+                 } catch (ex: ActivityNotFoundException) {
+                     intent.setPackage(null)
+                     binding.root.context.startActivity(intent)
+                 }*/
             }
         }
     }
+
 }

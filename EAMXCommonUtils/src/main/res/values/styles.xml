@@ -1,5 +1,12 @@
 <resources>
-
+    <!-- Iglesia Digital -->
+    <style name="Titulo">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">#192a73</item>
+        <item name="android:fontFamily">@font/spro_text_regular</item>
+    </style>
+    <!-- Iglesia Digital -->
     <style name="styleTxtDialogTitle" parent="Theme.MaterialComponents.Light">
         <item name="android:textSize">22sp</item>
         <item name="android:textColor">#090909</item>

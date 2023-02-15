@@ -70,3 +70,13 @@ fun ImageView.loadIntDrawable(resource : Int){
         .error(R.drawable.default_image)
         .into(this)
 }
+
+fun ImageView.loadByUrlIntDrawableerror(url: String,resource : Int){
+    Glide.with(this)
+        .load(url)
+        .placeholder(resource)
+        .error(resource)
+        .transition(withCrossFade())
+        .skipMemoryCache(true)
+        .into(this)
+}
