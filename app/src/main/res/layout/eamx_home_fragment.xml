@@ -542,87 +542,6 @@
                 </androidx.cardview.widget.CardView>
 
                 <LinearLayout
-                    android:id="@+id/cvSaint"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginEnd="12dp"
-                    android:layout_marginBottom="1dp"
-                    android:elevation="8dp"
-                    android:visibility="gone"
-                    app:cardCornerRadius="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cardLiveEvent"
-                    tools:visibility="visible">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-
-                        <TextView
-                            android:id="@+id/tvTitleSaint"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginEnd="8dp"
-                            android:lineSpacingExtra="-1sp"
-                            android:textAllCaps="true"
-                            android:textColor="#192a73"
-                            android:textSize="13sp"
-                            android:textStyle="bold"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:text="Santo del día" />
-
-                        <TextView
-                            android:id="@+id/tvDescSaint"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginEnd="8dp"
-                            android:layout_marginBottom="6dp"
-                            android:lineSpacingExtra="-2sp"
-                            android:textColor="@color/textBlue"
-                            android:textSize="13sp"
-                            android:textStyle="normal"
-                            app:layout_constraintBottom_toTopOf="@+id/ivSaint"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tvTitleSaint"
-                            tools:text="Lorem ipsum dolor sit amet, consetetur" />
-
-                        <ImageView
-                            android:id="@+id/ivSaint"
-                            android:layout_width="0dp"
-                            android:layout_height="200dp"
-                            android:contentDescription=""
-                            android:scaleType="centerCrop"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tvDescSaint"
-                            app:layout_constraintBaseline_toBottomOf="parent"
-                            tools:srcCompat="@tools:sample/avatars" />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginHorizontal="8dp"
-                            android:layout_marginTop="3dp"
-                            android:background="@android:color/darker_gray"
-                            app:layout_constraintTop_toBottomOf="@+id/ivSaint"/>
-
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </LinearLayout>
-
-                <LinearLayout
                     android:id="@+id/cvNews"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -650,28 +569,28 @@
                             android:layout_marginTop="16dp"
                             android:layout_marginBottom="2dp"
                             android:lineSpacingExtra="-1sp"
-                            android:text="Desde la fe"
+                            android:text="@string/noticias"
                             android:textAllCaps="true"
                             android:textColor="#192a73"
                             android:textSize="13sp"
                             android:textStyle="bold"
-                            app:layout_constraintBottom_toTopOf="@+id/viewPager"
+                            app:layout_constraintBottom_toTopOf="@+id/viewPagerNoticias"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <androidx.viewpager2.widget.ViewPager2
-                            android:id="@+id/viewPager"
+                            android:id="@+id/viewPagerNoticias"
                             android:layout_width="match_parent"
                             android:layout_height="220dp"
                             android:layout_marginTop="0dp"
                             android:layout_marginBottom="8dp"
-                            app:layout_constraintBottom_toTopOf="@+id/viewPagerIndicatorSuggestion"
+                            app:layout_constraintBottom_toTopOf="@+id/viewPagerIndicatorNoticias"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
                         <me.relex.circleindicator.CircleIndicator3
-                            android:id="@+id/viewPagerIndicatorSuggestion"
+                            android:id="@+id/viewPagerIndicatorNoticias"
                             android:layout_width="match_parent"
                             android:layout_height="12dp"
                             android:layout_marginStart="16dp"
@@ -682,16 +601,17 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/viewPager" />
+                            app:layout_constraintTop_toBottomOf="@+id/viewPagerNoticias" />
+
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
                             android:layout_marginHorizontal="8dp"
                             android:layout_marginTop="3dp"
                             android:background="@android:color/darker_gray"
-                            app:layout_constraintTop_toBottomOf="@+id/viewPagerIndicatorSuggestion"/>
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/viewPagerIndicatorNoticias" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
@@ -724,28 +644,28 @@
                             android:layout_marginTop="16dp"
                             android:layout_marginBottom="2dp"
                             android:lineSpacingExtra="-1sp"
-                            android:text="@string/sugerencias_para_ti"
+                            android:text="@string/espiritualidad"
                             android:textAllCaps="true"
                             android:textColor="#192a73"
                             android:textSize="13sp"
                             android:textStyle="bold"
-                            app:layout_constraintBottom_toTopOf="@+id/viewPagerSuggestion"
+                            app:layout_constraintBottom_toTopOf="@+id/viewPagerEspiritualidad"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <androidx.viewpager2.widget.ViewPager2
-                            android:id="@+id/viewPagerSuggestion"
+                            android:id="@+id/viewPagerEspiritualidad"
                             android:layout_width="match_parent"
                             android:layout_height="230dp"
                             android:layout_marginTop="0dp"
                             android:layout_marginBottom="8dp"
-                            app:layout_constraintBottom_toTopOf="@+id/viewPagerIndicator"
+                            app:layout_constraintBottom_toTopOf="@+id/viewPagerIndicatorEspiritualidad"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
                         <me.relex.circleindicator.CircleIndicator3
-                            android:id="@+id/viewPagerIndicator"
+                            android:id="@+id/viewPagerIndicatorEspiritualidad"
                             android:layout_width="match_parent"
                             android:layout_height="12dp"
                             android:layout_marginStart="16dp"
@@ -756,17 +676,17 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/viewPagerSuggestion" />
+                            app:layout_constraintTop_toBottomOf="@+id/viewPagerEspiritualidad" />
+
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
                             android:layout_marginHorizontal="8dp"
                             android:layout_marginTop="3dp"
                             android:background="@android:color/darker_gray"
-                            app:layout_constraintTop_toBottomOf="@+id/viewPagerIndicator"/>
-
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/viewPagerIndicatorEspiritualidad" />
 
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -774,14 +694,14 @@
                 </LinearLayout>
 
 
-
                 <FrameLayout
                     android:id="@+id/FragmentLayoutMain"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
+
                 <View
                     android:layout_width="0dp"
-                    android:layout_height="40dp"/>
+                    android:layout_height="40dp" />
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
