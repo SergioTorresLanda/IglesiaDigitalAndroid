@@ -6,24 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".multimedia.EAMXYoutubeFragment">
 
-    <TextView
-        android:id="@+id/tittleYoutube"
-        style="@style/styleTxtMultimediaGeneric"
-        android:layout_width="338dp"
-        android:layout_height="41dp"
-        android:layout_marginBottom="288dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <WebView
         android:id="@+id/viewYoutube"
         style="@style/styleContentMultimediaGeneric"
-        android:layout_width="match_parent"
-        android:layout_height="254dp"
-        android:layout_marginBottom="68dp"
-        app:layout_constraintBottom_toTopOf="@+id/tittleYoutube"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.138" />
+
+    <TextView
+        android:id="@+id/Tyoutube"
+        style="@style/styleTxtMultimediaGeneric"
+        android:layout_width="202dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="328dp"
+        android:text="Titulo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewYoutube"
+        app:layout_constraintVertical_bias="0.915" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

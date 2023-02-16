@@ -542,11 +542,6 @@
 
                 </androidx.cardview.widget.CardView>
 
-                <ImageButton
-                    android:id="@+id/btnShow"
-                    android:layout_width="242dp"
-                    android:layout_height="62dp"></ImageButton>
-
                 <LinearLayout
                     android:id="@+id/cvNews"
                     android:layout_width="match_parent"

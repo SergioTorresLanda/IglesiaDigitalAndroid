@@ -2,6 +2,8 @@ package mx.arquidiocesis.eamxgeneric.fragments.home
 
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import mx.arquidiocesis.eamxcommonutils.common.*
 import mx.arquidiocesis.eamxgeneric.R
@@ -19,6 +21,8 @@ import mx.arquidiocesis.eamxprofilemodule.repository.RepositoryProfile
 import mx.arquidiocesis.eamxprofilemodule.viewmodel.EAMXViewModelProfile
 import com.wallia.eamxcomunidades.ui.EAMXCommunitiesPrincipalFragment
 import com.wallia.eamxcomunidades.ui.EAMXComunidadesSacerdoteFragment
+import mx.arquidiocesis.eamxcommonutils.multimedia.*
+import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
 import mx.arquidiocesis.eamxgeneric.repository.MainRepository2
 
 class EAMXHomeFragment : EAMXBaseFragment() {
@@ -30,6 +34,7 @@ class EAMXHomeFragment : EAMXBaseFragment() {
     val APPOINT_ADMINISTRATOR = "APPOINT_ADMINISTRATOR"
     val LINK = "LINK"
     val PDF = "PDF"
+    val FILE = "FILE"
     val VIDEO = "VIDEO"
     val AUDIO = "AUDIO"
     var existRelease: Boolean = false
@@ -128,6 +133,9 @@ class EAMXHomeFragment : EAMXBaseFragment() {
             }
             val viewPagerAdapter = ViewPagerAdapter(response) { url ->
                 //IR a fragment: webView(new) "url" : url
+                var bundle = Bundle()
+                bundle.putString("url", url)
+                changeFragment(EAMXUrlFragment(), bundle)
             }
             mBinding.viewPagerNoticias.apply {
                 adapter = viewPagerAdapter
@@ -142,33 +150,50 @@ class EAMXHomeFragment : EAMXBaseFragment() {
             }
             val viewPagerAdapterSuggestion = response.let {
                 ViewPagerAdapterSuggestion(it) { suggestion ->
-                    if ((suggestion.type == LINK && suggestion.imageUrl.isNullOrEmpty() && suggestion.article_url.isNullOrEmpty())||(suggestion.type != LINK && suggestion.article_url.isNullOrEmpty())) {
+                    if ((suggestion.type == LINK && suggestion.imageUrl.isNullOrEmpty() && suggestion.article_url.isNullOrEmpty()) || (suggestion.type != LINK && suggestion.article_url.isNullOrEmpty())) {
                         UtilAlert.Builder()
                             .setTitle(getString(R.string.title_dialog_warning))
                             .setMessage("Contenido no disponible")
                             .build()
                             .show(childFragmentManager, tag)
                     } else {
-                            if (suggestion.type == AUDIO) {
-                                //IR a fragment: "audio" : suggestion.article_url, "titulo" : suggestion.title
-                            } else if (suggestion.type == PDF) {
-                                //IR a fragment: "pdf" : suggestion.article_url
-                            } else if (suggestion.type == VIDEO) {
-                                if (suggestion.article_url!!.isUrlYoutube()) {
-                                    //IR a fragment: "youtube" : suggestion.article_url, "titulo" : suggestion.title
-                                } else {
-                                    //IR a fragment: "video" : suggestion.article_url, "titulo" : suggestion.title
-                                }
-                            } else if (suggestion.type == LINK) {
-                                if (!suggestion.article_url.isNullOrEmpty()) {
-                                    //IR a fragment: "web" : suggestion.article_url
-                                } else {
-                                    suggestion.id?.let { it1 -> tokenViewModel.getPrayDetail(it1) }
-                                    tokenViewModel.prayResponse.observe(this){
-                                        //IR a fragment: "img" : it.image_url, "text": it.description
-                                    }
+                        var bundle = Bundle()
+                        if (suggestion.type == AUDIO) {
+                            //IR a fragment: "audio" : suggestion.article_url, "titulo" : suggestion.title
+                            bundle.putString("audio", suggestion.article_url)
+                            bundle.putString("titulo", suggestion.title)
+                            changeFragment(EAMXPlayerFragment(), bundle)
+                        } else if (suggestion.type == PDF && suggestion.type == FILE) {
+                            //IR a fragment: "pdf" : suggestion.article_url
+                            bundle.putString("pdf", suggestion.article_url)
+                            changeFragment(EAMXPdfFragment(), bundle)
+                        } else if (suggestion.type == VIDEO) {
+                            if (suggestion.article_url!!.isUrlYoutube()) {
+                                //IR a fragment: "youtube" : suggestion.article_url, "titulo" : suggestion.title
+                                bundle.putString("youtube", suggestion.article_url)
+                                bundle.putString("titulo", suggestion.title)
+                                changeFragment(EAMXYoutubeFragment(), bundle)
+                            } else {
+                                //IR a fragment: "video" : suggestion.article_url, "titulo" : suggestion.title
+                                bundle.putString("video", suggestion.article_url)
+                                bundle.putString("titulo", suggestion.title)
+                                changeFragment(EAMXVideoFragment(), bundle)
+                            }
+                        } else if (suggestion.type == LINK) {
+                            if (!suggestion.article_url.isNullOrEmpty()) {
+                                //IR a fragment: "web" : suggestion.article_url
+                                bundle.putString("web", suggestion.article_url)
+                                changeFragment(EAMXUrlFragment(), bundle)
+                            } else {
+                                suggestion.id?.let { it1 -> tokenViewModel.getPrayDetail(it1) }
+                                tokenViewModel.prayResponse.observe(this) {
+                                    //IR a fragment: "img" : it.image_url, "text": it.description
+                                    bundle.putString("img", it.image_url)
+                                    bundle.putString("text", it.description)
+                                    changeFragment(EAMXTextFragment(), bundle)
                                 }
                             }
+                        }
 
                     }
                 }
@@ -353,9 +378,19 @@ class EAMXHomeFragment : EAMXBaseFragment() {
     fun getTopics() {
         val userId =
             eamxcu_preferences.getData(EAMXEnumUser.USER_ID.name, EAMXTypeObject.INT_OBJECT) as Int
-        val date = "2023-02-14"//dateFormatString()
+        val date = dateFormatString()
         tokenViewModel.getHomeSaint(userId, "SAINT", date)
         tokenViewModel.getHomeRelease(userId, "RELEASE", date)
         tokenViewModel.getHomeSuggestion(userId, "SUGGESTIONS")
+    }
+
+    private fun changeFragment(fragment: Fragment, bundle: Bundle) {
+        NavigationFragment.Builder()
+            .setActivity(requireActivity())
+            .setView(requireView().parent as ViewGroup)
+            .setBundle(bundle)
+            .setFragment(fragment)
+            .setAllowStack(true)
+            .build().nextWithReplace()
     }
 }

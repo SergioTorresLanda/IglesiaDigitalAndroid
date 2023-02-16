@@ -13,36 +13,23 @@ import mx.arquidiocesis.eamxcommonutils.R
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.databinding.FragmentUrlsBinding
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 class EAMXUrlFragment : FragmentBase() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    var webViewurl: WebView?= null
 
     lateinit var binding: EAMXUrlFragment
-    var Information = ""
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private fun initView() {
+        showLoader("lOADER")
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+initView()
         return(FragmentUrlsBinding.inflate(inflater, container, false)
             .viewUrl.apply {
                 settings.javaScriptEnabled
                 webViewClient = object :WebViewClient(){
+                    @Deprecated("Deprecated in Java")
                     override fun shouldOverrideUrlLoading(
                         view: WebView?,
                         urlWeb: String
@@ -51,26 +38,7 @@ class EAMXUrlFragment : FragmentBase() {
                         return true
                     }
                 }
-                loadUrl(Uri.parse(arguments?.getString("urlWeb")).toString())
+                loadUrl(Uri.parse(arguments?.getString("url")).toString())
             }).rootView
-
-        /*
-        val urlWeb = arguments?.getString("urlWeb").toString()
-        val view: View = inflater.inflate(R.layout.fragment_urls, container, false)
-        webViewurl = view.findViewById(R.id.viewUrl)
-        webViewurl?.settings?.javaScriptEnabled
-
-        webViewurl?.webViewClient = object : WebViewClient(){
-            override fun shouldOverrideUrlLoading(
-                view: WebView?, url: String
-            ): Boolean {
-                view?.loadUrl(url)
-                return true
-            }
-        }
-        webViewurl?.loadUrl("https://es.wikipedia.org/wiki/Reproductor_de_audio_(software)")
-        return view
-
-         */
     }
 }

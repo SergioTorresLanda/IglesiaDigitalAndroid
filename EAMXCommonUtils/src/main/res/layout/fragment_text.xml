@@ -8,7 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constImage"
-        android:layout_width="410dp"
+        android:layout_width="413dp"
         android:layout_height="232dp"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp"
@@ -19,7 +19,6 @@
             style="@style/styleContentMultimediaGeneric"
             android:scaleType="fitCenter"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent=".3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_intentions" />
@@ -30,11 +29,10 @@
         style="@style/styleTxtMultimediaGeneric"
         android:layout_width="348dp"
         android:layout_height="197dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="288dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constImage"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

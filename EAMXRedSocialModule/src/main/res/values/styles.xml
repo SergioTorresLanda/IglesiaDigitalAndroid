@@ -1,5 +1,12 @@
 <resources xmlns:ns2="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
+    <style name="Titulo">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">#192a73</item>
+        <item name="android:fontFamily">@font/spro_text_regular</item>
+    </style>
+    <!-- Base application theme. -->
     <style name="Theme.ArqLoginModule" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primaryColor</item>
