@@ -15,6 +15,7 @@ class EAMXVideoFragment : FragmentBase() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        initView()
         val binding: FragmentVideoBinding
         binding = FragmentVideoBinding.inflate(inflater, container, false)
         val titulo = arguments?.getString("titulo")
@@ -34,5 +35,12 @@ class EAMXVideoFragment : FragmentBase() {
 
         }
         return view
+    }
+    private fun initView() {
+        showLoader("lOADER")
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        callBack.restoreToolbar()
     }
 }

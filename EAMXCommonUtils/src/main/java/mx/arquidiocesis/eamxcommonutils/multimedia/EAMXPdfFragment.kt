@@ -20,7 +20,7 @@ class EAMXPdfFragment : FragmentBase() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+    initView()
         return (FragmentPdfBinding.inflate(inflater, container, false)
             .viewPdf.apply {
                 val pdf = arguments?.getString("pdf")
@@ -40,6 +40,13 @@ class EAMXPdfFragment : FragmentBase() {
                     loadUrl("https://docs.google.com/gview?embedded=true&url=" + pdf)
 
             }).rootView
+    }
+    private fun initView() {
+        showLoader("lOADER")
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        callBack.restoreToolbar()
     }
 
 }

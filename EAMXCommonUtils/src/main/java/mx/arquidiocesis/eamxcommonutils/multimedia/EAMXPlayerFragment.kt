@@ -18,10 +18,12 @@ class EAMXPlayerFragment : FragmentBase() {
     ): View? {
         binding = FragmentPlayerBinding.inflate(inflater, container, false)
         return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView()
         val titulo = arguments?.getString("titulo")
         val audio = arguments?.getString("audio")
         if (audio != null) {
@@ -41,6 +43,13 @@ class EAMXPlayerFragment : FragmentBase() {
                 binding.tituloplayer.setText("Ha ocurrido un error, intente nuevamente.")
             }
         }
+    }
+    private fun initView() {
+        showLoader("lOADER")
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        callBack.restoreToolbar()
     }
 }
 

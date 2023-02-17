@@ -24,6 +24,7 @@ class EAMXTextFragment : FragmentBase() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        initView()
         lateinit var binding: FragmentTextBinding
 
         binding = FragmentTextBinding.inflate(inflater, container, false)
@@ -63,5 +64,12 @@ class EAMXTextFragment : FragmentBase() {
             null
         )
         return Uri.parse(path)
+    }
+    private fun initView() {
+        showLoader("lOADER")
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        callBack.restoreToolbar()
     }
 }
