@@ -25,7 +25,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/spro_text_regular"
                     android:text="Publicaciones"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/colorGray"
                     android:textSize="@dimen/size_18"
                     android:textStyle="normal" />
 
@@ -35,8 +35,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_40"
                     android:background="@drawable/tab"
-                    android:paddingBottom="@dimen/margin_12"
                     android:fontFamily="@font/spro_text_regular"
+                    android:paddingBottom="@dimen/margin_12"
                     android:text="Mi Red"
                     android:textColor="#192a73"
                     android:textSize="@dimen/size_18" />
@@ -91,6 +91,53 @@
             app:layout_constraintStart_toEndOf="@id/iv_user_image"
             app:layout_constraintTop_toTopOf="@id/iv_user_image"
             tools:text="PADRE JOSE LUIS" />
+
+
+        <!--<androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clSegir"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/ic_btn_follow"
+            app:cornerRadius="8dp"
+            android:elevation="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txtName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txtName">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ivSegir"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                android:drawableStart="@drawable/ic_icono_seguir"
+                android:drawablePadding="8dp"
+                android:padding="16dp"
+                android:gravity="center"
+                android:scaleType="fitXY"
+                android:visibility="gone"
+                android:text="@string/seguir"
+                android:textColor="@color/gris"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ivSeguiendo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/ic_btn_follow"
+                android:drawableStart="@drawable/ic_icono_seguir"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/blue_terminos"
+                android:gravity="center"
+                android:padding="16dp"
+                android:visibility="visible"
+                android:text="@string/siguiendo"
+                android:textColor="@color/blue_terminos"
+                android:textStyle="bold"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tlFollower"

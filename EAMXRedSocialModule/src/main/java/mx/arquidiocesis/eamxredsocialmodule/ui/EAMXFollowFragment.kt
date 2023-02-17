@@ -1,10 +1,12 @@
 package mx.arquidiocesis.eamxredsocialmodule.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.widget.TextView
+import androidx.core.view.marginTop
 import com.google.android.material.tabs.TabLayoutMediator
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
@@ -12,25 +14,35 @@ import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
 import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
 import mx.arquidiocesis.eamxcommonutils.util.getViewModel
+import mx.arquidiocesis.eamxcommonutils.util.loadByUrlIntDrawableerror
+import mx.arquidiocesis.eamxcommonutils.util.setMargins
 import mx.arquidiocesis.eamxredsocialmodule.R
 import mx.arquidiocesis.eamxredsocialmodule.databinding.ItemFollowerBinding
 import mx.arquidiocesis.eamxredsocialmodule.Repository.Repository
 import mx.arquidiocesis.eamxredsocialmodule.adapter.FollowAdapter
+import mx.arquidiocesis.eamxredsocialmodule.adapter.PostAdapter
 import mx.arquidiocesis.eamxredsocialmodule.adapter.ViewPagerRedAdapter
 import mx.arquidiocesis.eamxredsocialmodule.model.FollowModel
-import mx.arquidiocesis.eamxredsocialmodule.model.Publication
-import mx.arquidiocesis.eamxredsocialmodule.model.SearchModel
+import mx.arquidiocesis.eamxredsocialmodule.model.PostModel
+import mx.arquidiocesis.eamxredsocialmodule.model.ResultModel
 import mx.arquidiocesis.eamxredsocialmodule.news.create.utils.GetPerfilImagen
 import mx.arquidiocesis.eamxredsocialmodule.viewmodel.RedSocialViewModel
 
-class EAMXFollowFragment : FragmentBase() {
+class EAMXFollowFragment(val idUser: Int, val Name: String, val Image: String?) : FragmentBase() {
     lateinit var binding: ItemFollowerBinding
     lateinit var followAdapter: FollowAdapter
     lateinit var followesAdapter: FollowAdapter
+    lateinit var postsAdapter: PostAdapter
+    lateinit var resultModel: ResultModel
     var new = true
+    var listPost = mutableListOf<PostModel>()
     var listFollow = mutableListOf<FollowModel>()
     var listFollowes = mutableListOf<FollowModel>()
     var type = 1
+
+    //Provicional
+    var cargado = false
+    var maximo = 0
 
     val viewModel: RedSocialViewModel by lazy {
         getViewModel {
@@ -48,35 +60,67 @@ class EAMXFollowFragment : FragmentBase() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val name =
-            eamxcu_preferences.getData(EAMXEnumUser.USER_NAME.name, EAMXTypeObject.STRING_OBJECT)
-                .toString()
-        val lastName = eamxcu_preferences.getData(
-            EAMXEnumUser.USER_LAST_NAME.name,
-            EAMXTypeObject.STRING_OBJECT
-        ) as String
-        val middleName = eamxcu_preferences.getData(
-            EAMXEnumUser.USER_MIDDLE_NAME.name,
-            EAMXTypeObject.STRING_OBJECT
-        ) as String
-        val nameCompleted = "$name $lastName $middleName"
         binding.apply {
-            GetPerfilImagen().loadImageProfile(
-                requireContext(),
-                eamxcu_preferences.getData(
-                    EAMXEnumUser.URL_PICTURE_PROFILE_USER.name,
-                    EAMXTypeObject.STRING_OBJECT
-                ) as String, ivUser
-            )
-            tvUserName.text = nameCompleted
-            tvPublicaciones.setOnClickListener { activity?.onBackPressed() }
+            val profileId = eamxcu_preferences.getData(
+                EAMXEnumUser.USER_ID_REDSOCIAL.name,
+                EAMXTypeObject.INT_OBJECT
+            ) as Int
+            if (idUser != profileId) {
+                tabs.visibility = View.GONE
+                ivUserImage.setMargins(top = 32)
+            } else {
+                tvPublicaciones.setOnClickListener { activity?.onBackPressed() }
+            }
+            ivUser.loadByUrlIntDrawableerror(Image ?: "", R.drawable.user)
+            tvUserName.text = Name
         }
         initObservers()
         showLoader()
-        viewModel.getFollow(type)
+        viewModel.requestAllpost()
+        viewModel.getFollow(type, null, idUser)
     }
 
     fun initObservers() {
+        viewModel.responseAllPost.observe(viewLifecycleOwner) { item ->
+            if (new) {
+                new = false
+                listPost = mutableListOf<PostModel>()
+            }
+            item?.let { i ->
+                i.result?.let { r ->
+                    resultModel = r
+                    if (!resultModel.posts.isNullOrEmpty()) {
+                        resultModel.posts.forEach {
+                            it.multimedia.forEach {
+                                if (it.format == "jpeg" || it.format == "jpg")
+                                    it.format = "image"
+                            }
+                        }
+                        listPost.addAll(resultModel.posts)
+                        //postsAdapter.notifyDataSetChanged()
+                    }
+                    resultModel.pagination?.let { p ->
+                        if (p.hasMore && maximo > 0) {
+                            maximo--
+                            viewModel.requestAllpost(p.next)
+                        } else {
+                            //showSkeleton(false)
+                            cargado = true
+                            //binding.swrRefresh.isRefreshing = false
+                        }
+                    }
+                }
+            }
+            val prevSize = listPost.size
+            if (prevSize != 0) {
+                postsAdapter = PostAdapter(listPost) { item ->
+                    Log.e("Post", "Si")
+                }
+                //postsAdapter.notifyItemRangeInserted(prevSize, postsAdapter.items.count() - 1)
+            } else {
+
+            }
+        }
         viewModel.reponseFollow.observe(viewLifecycleOwner) {
             if (new) {
                 new = false
@@ -90,7 +134,7 @@ class EAMXFollowFragment : FragmentBase() {
                 }
                 resultModel.Pagination?.let {
                     if (resultModel.Pagination.hasMore) {
-                        viewModel.getFollow(type, resultModel.Pagination.next)
+                        viewModel.getFollow(type, resultModel.Pagination.next, idUser)
                     } else {
                         followAdapter = FollowAdapter(
                             listFollow
@@ -98,7 +142,7 @@ class EAMXFollowFragment : FragmentBase() {
                             //seguir(item, 1)
                         }
                         type = 2
-                        viewModel.getFollow(type)
+                        viewModel.getFollow(type, null, idUser)
                     }
                 }
             }
@@ -117,7 +161,7 @@ class EAMXFollowFragment : FragmentBase() {
                 }
                 resultModel.Pagination?.let {
                     if (resultModel.Pagination.hasMore) {
-                        viewModel.getFollow(type, resultModel.Pagination.next)
+                        viewModel.getFollow(type, resultModel.Pagination.next, idUser)
                     } else {
                         followesAdapter = FollowAdapter(
                             listFollowes
@@ -132,9 +176,8 @@ class EAMXFollowFragment : FragmentBase() {
 
         }
         viewModel.reponseFollowPost.observe(viewLifecycleOwner) {
-
             new = true
-            viewModel.getFollow(2)
+            viewModel.getFollow(2, null, idUser)
         }
         viewModel.error.observe(viewLifecycleOwner) {
             hideLoader()
@@ -156,7 +199,7 @@ class EAMXFollowFragment : FragmentBase() {
                 follower = true
             }
         }
-        item.type?.let { t ->
+        item.type.let { t ->
             when (t) {
                 "User" -> {
                     showLoader()
@@ -177,20 +220,30 @@ class EAMXFollowFragment : FragmentBase() {
 
     fun initView() {
         hideLoader()
-        var adapter = ViewPagerRedAdapter(this, followAdapter, followesAdapter)
+        var adapter =
+            ViewPagerRedAdapter(this, postsAdapter, followesAdapter, followAdapter, idUser)
         binding.vpFollower.adapter = adapter
         TabLayoutMediator(binding.tlFollower, binding.vpFollower) { tab, position ->
             when (position) {
                 0 -> {
-                    tab.text = "${listFollowes.size} Seguidores"
-                    // tab.icon = drawable1
+                    tab.setCustomView(R.layout.item_perfile)
+                    tab.customView?.findViewById<TextView>(R.id.tvConteo)?.text =
+                        listPost.size.toString()
+                    tab.customView?.findViewById<TextView>(R.id.tvCategoria)?.text = "Publicaciones"
                 }
                 1 -> {
-                    tab.text = "${listFollow.size} Seguidos"
-                    // tab.icon = drawable1
+                    tab.setCustomView(R.layout.item_perfile)
+                    tab.customView?.findViewById<TextView>(R.id.tvConteo)?.text =
+                        listFollowes.size.toString()
+                    tab.customView?.findViewById<TextView>(R.id.tvCategoria)?.text = "Seguidores"
+                }
+                2 -> {
+                    tab.setCustomView(R.layout.item_perfile)
+                    tab.customView?.findViewById<TextView>(R.id.tvConteo)?.text =
+                        listFollow.size.toString()
+                    tab.customView?.findViewById<TextView>(R.id.tvCategoria)?.text = "Seguidos"
                 }
             }
-
         }.attach()
 
 

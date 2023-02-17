@@ -27,7 +27,7 @@ class EAMXContentFragmentRedSocial : EAMXBaseFragment() {
 
     override fun initView(view: View) {
         callBack.showToolbar(true, AppMyConstants.red_social)
-        val fragment = EAMXRedSocialFragment()
+        val fragment = EAMXRedSocialFragment(true,0)
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
         transaction.replace(R.id.contentFragmentRedSocial, fragment)
         transaction.disallowAddToBackStack()

@@ -1,14 +1,14 @@
 package mx.arquidiocesis.eamxredsocialmodule.adapter
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import mx.arquidiocesis.eamxcommonutils.util.getRandomString
-import mx.arquidiocesis.eamxredsocialmodule.databinding.ItemBuscarBinding
+import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
+import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
+import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
+import mx.arquidiocesis.eamxcommonutils.util.loadByUrlIntDrawableerror
+import mx.arquidiocesis.eamxredsocialmodule.R
 import mx.arquidiocesis.eamxredsocialmodule.databinding.ItemFollowBinding
 import mx.arquidiocesis.eamxredsocialmodule.model.FollowModel
 
@@ -30,13 +30,10 @@ class FollowAdapter(
 
     override fun getItemCount(): Int = list.size
 
-
     class ViewHolder(val binding: ItemFollowBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
         init {
-            binding.root.setOnClickListener {
-            }
+            binding.root.setOnClickListener {}
         }
 
         fun bind(
@@ -45,22 +42,31 @@ class FollowAdapter(
         ) {
             binding.apply {
                 txtName.text = item.name
-                if (!item.image.isNullOrEmpty()) {
-                    Glide.with(root.context)
-                        .asBitmap()
-                        .load(item.image+"?".getRandomString(10))
-                        .skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE).into(imgPriest)
+                item.image.let {
+                    imgPriest.loadByUrlIntDrawableerror(
+                        it.toString(),
+                        R.drawable.user
+                    )
                 }
-                ivSegir.visibility = View.VISIBLE
-                ivSeguiendo.visibility = View.GONE
-                item.relationshipStatus?.let { r ->
-                    if (r == 1||r==3) {
-                        ivSegir.visibility = View.GONE
-                        ivSeguiendo.visibility = View.VISIBLE
+                val profileId = eamxcu_preferences.getData(
+                    EAMXEnumUser.USER_ID_REDSOCIAL.name,
+                    EAMXTypeObject.INT_OBJECT
+                ) as Int
+                if (profileId != item.id) {
+                    ivSegir.visibility = View.VISIBLE
+                    ivSeguiendo.visibility = View.GONE
+                    item.relationshipStatus?.let { r ->
+                        if (r == 1 || r == 3) {
+                            ivSegir.visibility = View.GONE
+                            ivSeguiendo.visibility = View.VISIBLE
+                        }
                     }
-                }
-                ivSegir.setOnClickListener {
-                    listener(item)
+                    ivSegir.setOnClickListener {
+                        listener(item)
+                    }
+                } else {
+                    ivSegir.visibility = View.GONE
+                    ivSeguiendo.visibility = View.GONE
                 }
             }
         }

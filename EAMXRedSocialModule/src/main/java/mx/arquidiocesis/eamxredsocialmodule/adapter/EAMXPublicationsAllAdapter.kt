@@ -28,6 +28,7 @@ class EAMXPublicationsAllAdapter(
     val context: Context,
     val listProfile: List<ResultMultiProfileModel>? = null,
     val isSuper: Boolean = false,
+    val isPrincipal: Boolean = true
 ) :
     RecyclerView.Adapter<EAMXPublicationsAllAdapter.NewsViewHolder>() {
     var items: ArrayList<PostModel> = ArrayList()
@@ -81,7 +82,7 @@ class EAMXPublicationsAllAdapter(
             txtName.text = item.author.name
             if (!item.author.image.isNullOrEmpty()) {
                 Glide.with(root.context)
-                    .load(item.author.image+"?".getRandomString(10))
+                    .load(item.author.image + "?".getRandomString(10))
                     .centerCrop()
                     .skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE).into(imgPriest)
             }
@@ -89,8 +90,10 @@ class EAMXPublicationsAllAdapter(
             val objectFormat = EAMXFormatDate(root.context)
             val miFecha = objectFormat.diferencia(dateResponse)
             txtDate.text = miFecha
-            txtMessage.setOnClickListener {
-                onItemClickListener(item, "")
+            if (isPrincipal) {
+                txtMessage.setOnClickListener {
+                    onItemClickListener(item, "")
+                }
             }
             txtMessage.buildTextSuccess(item.content, root.context)
             tvLike.text = item.totalReactions.toString()
@@ -139,8 +142,10 @@ class EAMXPublicationsAllAdapter(
 
             }
             iMediaGallery.cGallery.visibility(item.multimedia.isNotEmpty())
-            iMediaGallery.cGallery.setOnClickListener {
-                onItemClickListener(item, "")
+            if(isPrincipal) {
+                iMediaGallery.cGallery.setOnClickListener {
+                    onItemClickListener(item, "")
+                }
             }
             resetContainer(iMediaGallery.iThumbnail1)
             resetContainer(iMediaGallery.iThumbnail2)
@@ -167,6 +172,17 @@ class EAMXPublicationsAllAdapter(
                         }
                     }
                 }
+            }
+            if (isPrincipal) {
+                imgPriest.setOnClickListener {
+                    onItemClickListener(item, PERFIL)
+                }
+            }
+            if (!isPrincipal) {
+                ivOption.visibility = View.GONE
+                tvLike.visibility = View.GONE
+                tvComent.visibility = View.GONE
+                tvLikeDado.visibility = View.GONE
             }
             executePendingBindings()
         }

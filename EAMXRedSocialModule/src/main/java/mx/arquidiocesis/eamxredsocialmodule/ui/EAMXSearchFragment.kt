@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -13,6 +14,7 @@ import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
 import mx.arquidiocesis.eamxcommonutils.util.eamxLog
 import mx.arquidiocesis.eamxcommonutils.util.getViewModel
+import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
 import mx.arquidiocesis.eamxredsocialmodule.R
 import mx.arquidiocesis.eamxredsocialmodule.Repository.Repository
 import mx.arquidiocesis.eamxredsocialmodule.adapter.SearchAdapter
@@ -32,6 +34,9 @@ class EAMXSearchFragment : FragmentBase() {
                 }
                 UNFOLLOW -> {
                     follower = true
+                }
+                PERFIL -> {
+                    item.name?.let { changeFragment(EAMXFollowFragment(item.id, it, item.image)) }
                 }
             }
             item.metadata?.let { m ->
@@ -185,5 +190,13 @@ class EAMXSearchFragment : FragmentBase() {
         }
     }
 
+    fun changeFragment(fragment: Fragment) {
+        NavigationFragment.Builder()
+            .setActivity(requireActivity())
+            .setView(requireView().parent as ViewGroup)
+            .setFragment(fragment)
+            .setAllowStack(true)
+            .build().nextWithReplace()
 
+    }
 }

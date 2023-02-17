@@ -154,7 +154,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/tvSugerencia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -179,7 +179,7 @@
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="@+id/tvNew"
                 app:layout_constraintStart_toStartOf="@+id/tvSugerencia"
-                app:layout_constraintTop_toBottomOf="@+id/tvSugerencia" />
+                app:layout_constraintTop_toBottomOf="@+id/tvSugerencia" />-->
 
             <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                 android:id="@+id/swrRefresh"
@@ -189,7 +189,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rvSugerencia">
+                app:layout_constraintTop_toBottomOf="@+id/tvNew">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvPubliction"
@@ -212,7 +212,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rvSugerencia" />
+                app:layout_constraintTop_toBottomOf="@+id/tvNew" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

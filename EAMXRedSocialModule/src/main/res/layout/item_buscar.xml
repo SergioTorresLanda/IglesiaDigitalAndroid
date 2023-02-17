@@ -93,7 +93,7 @@
                 android:drawableTint="@color/blue_terminos"
                 android:gravity="center"
                 android:scaleType="fitXY"
-                android:text="@string/dejar_seguir"
+                android:text="@string/siguiendo"
                 android:textColor="@color/blue_terminos"
                 android:textStyle="bold"
                 android:visibility="gone" />

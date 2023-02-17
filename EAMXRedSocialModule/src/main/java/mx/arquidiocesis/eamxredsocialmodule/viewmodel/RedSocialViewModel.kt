@@ -162,9 +162,9 @@ class RedSocialViewModel(private val repository: Repository) : ViewModel() {
         }
     }
 
-    fun getFollow(type: Int, page: String? = null) {
+    fun getFollow(type: Int, page: String? = null, ProfileId: Int) {
         GlobalScope.launch {
-            repository.getFollow(type, profileId, page)
+            repository.getFollow(type, ProfileId, page)
         }
     }
 
