@@ -36,10 +36,10 @@ class ViewPagerAdapterSuggestion(
 
         fun bind(suggestionModel: SuggestionModel, listener: (SuggestionModel) -> Unit) {
             binding.apply {
-                tvTitleSuggestion.text = suggestionModel.title
-                var draw:Int = R.drawable.ic_place_holder_by_pictures_upload
+                var draw: Int = R.drawable.ic_place_holder_by_pictures_upload
                 var img: String? = suggestionModel.imageUrl
                 ivSuggestion.apply {
+                    tvTitleSuggestion.text = suggestionModel.title
                     if (suggestionModel.type == AUDIO) {
                         draw = R.drawable.exo_icon_circular_play
                     } else if (suggestionModel.type == PDF) {
@@ -47,7 +47,8 @@ class ViewPagerAdapterSuggestion(
                     } else if (suggestionModel.type == VIDEO) {
                         if (suggestionModel.article_url!!.isUrlYoutube()) {
                             draw = com.upax.formacion.R.drawable.ic_player
-                            img = "https://img.youtube.com/vi/${suggestionModel.article_url.extraIdUrlVideoYoutube()}/0.jpg"
+                            img =
+                                "https://img.youtube.com/vi/${suggestionModel.article_url.extraIdUrlVideoYoutube()}/0.jpg"
                         } else {
                             draw = R.drawable.ic_video
                         }
@@ -63,26 +64,8 @@ class ViewPagerAdapterSuggestion(
                         )
                     }
                 }
-                root.setOnClickListener {
-                    /*EAMXFirebaseManager(it.context).setLogEvent("screen_view", Bundle().apply {
-                        putString("screen_class", "Sugerencias")
-                    })*/
-                    listener(suggestionModel)
-                }
+                root.setOnClickListener { listener(suggestionModel) }
             }
-
-            /*binding.root.setOnClickListener {
-                val urlString = suggestionModel.
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(urlString))
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                intent.setPackage("com.android.chrome")
-                try {
-                    binding.root.context.startActivity(intent)
-                } catch (ex: ActivityNotFoundException) {
-                    intent.setPackage(null)
-                    binding.root.context.startActivity(intent)
-                }
-            }*/
         }
     }
 }
