@@ -3,7 +3,8 @@ package mx.arquidiocesis.eamxgeneric.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import mx.arquidiocesis.eamxcommonutils.util.loadByUrl
+import mx.arquidiocesis.eamxcommonutils.R
+import mx.arquidiocesis.eamxcommonutils.util.loadByUrlIntDrawableerror
 import mx.arquidiocesis.eamxgeneric.databinding.ItemReleaseBinding
 import mx.arquidiocesis.eamxgeneric.model.DataHomeReleaseResponse
 
@@ -28,31 +29,14 @@ class ViewPagerAdapter(
         fun bind(release: DataHomeReleaseResponse) {
             binding.apply {
                 tvTitleRelease.text = release.title
-
                 release.imageUrl?.let {
-                    ivRelease.loadByUrl(it)
+                    ivRelease.loadByUrlIntDrawableerror(
+                        it,
+                        R.drawable.ic_place_holder_by_pictures_upload
+                    )
                 }
-            }
-
-            binding.root.setOnClickListener {
-                /*EAMXFirebaseManager(it.context).setLogEvent("screen_view", Bundle().apply {
-                    putString("screen_class", "DesdeLaFe")
-                })*/
-                val urlString = release.publishUrl
-                if (!urlString.isNullOrEmpty()) {
-                    listener(urlString)
-                }
-                /* val intent = Intent(Intent.ACTION_VIEW, Uri.parse(urlString))
-                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                 intent.setPackage("com.android.chrome")
-                 try {
-                     binding.root.context.startActivity(intent)
-                 } catch (ex: ActivityNotFoundException) {
-                     intent.setPackage(null)
-                     binding.root.context.startActivity(intent)
-                 }*/
+                root.setOnClickListener { release.publishUrl?.let { it1 -> listener(it1) } }
             }
         }
     }
-
 }

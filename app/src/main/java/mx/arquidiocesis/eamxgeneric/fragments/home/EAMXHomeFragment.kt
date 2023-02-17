@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import androidx.viewpager2.widget.ViewPager2
 import mx.arquidiocesis.eamxcommonutils.common.*
 import mx.arquidiocesis.eamxgeneric.R
@@ -23,6 +24,7 @@ import com.wallia.eamxcomunidades.ui.EAMXCommunitiesPrincipalFragment
 import com.wallia.eamxcomunidades.ui.EAMXComunidadesSacerdoteFragment
 import mx.arquidiocesis.eamxcommonutils.multimedia.*
 import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
+import mx.arquidiocesis.eamxgeneric.model.DataHomeReleaseResponse
 import mx.arquidiocesis.eamxgeneric.repository.MainRepository2
 
 class EAMXHomeFragment : EAMXBaseFragment() {
@@ -108,34 +110,55 @@ class EAMXHomeFragment : EAMXBaseFragment() {
 
     override fun initObservers() {
         //Carruseles
+        //Santo del día
+        val LDHRR = MutableLiveData<List<DataHomeReleaseResponse>?>()
+        LDHRR.value = null
         tokenViewModel.dataHomeSaintResponse.observe(this) { response ->
-            if (response.isNotEmpty() == true) {
-                //existSaint = true
+            if (!response.isNullOrEmpty()) {
+                existRelease = true
             }
-            mBinding.apply {
-                if (response != null) {
-                    if (!response.isNullOrEmpty()) {
-                        //val DataHomeReleaseResponse
-                        //tokenViewModel.dataHomeReleaseResponse.value
-                        response[0].id
-                        //response[0].title
-                        //publish_date
-                        ////response[0].imageUrl
-                        ////response[0].publishUrl
-                    }
+            tokenViewModel.dataHomeReleaseResponse.observe(this) { response1 ->
+                if (!response1.isNullOrEmpty() && existRelease) {
+                    LDHRR.postValue(
+                        listOf(
+                            response1[0], response1[1], DataHomeReleaseResponse(
+                                response[0].id,
+                                response[0].imageUrl,
+                                response[0].startingDate,
+                                response[0].publishUrl,
+                                response[0].title
+                            )
+                        )
+                    )
+                } else if (existRelease) {
+                    LDHRR.postValue(listOf(response1[0], response1[1]))
+                } else if (!response1.isNullOrEmpty()) {
+                    LDHRR.postValue(
+                        listOf(
+                            DataHomeReleaseResponse(
+                                response[0].id,
+                                response[0].imageUrl,
+                                response[0].startingDate,
+                                response[0].publishUrl,
+                                response[0].title
+                            )
+                        )
+                    )
                 }
             }
         }
         //Noticias
-        tokenViewModel.dataHomeReleaseResponse.observe(this) { response ->
-            if (response.isNotEmpty()) {
+        LDHRR.observe(this) { response ->
+            if (!response.isNullOrEmpty()) {
                 existRelease = true
             }
-            val viewPagerAdapter = ViewPagerAdapter(response) { url ->
-                //IR a fragment: webView(new) "url" : url
-                var bundle = Bundle()
-                bundle.putString("url", url)
-                changeFragment(EAMXUrlFragment(), bundle)
+            val viewPagerAdapter = response?.let {
+                ViewPagerAdapter(it) { url ->
+                    //IR a fragment: webView(new) "url" : url
+                    var bundle = Bundle()
+                    bundle.putString("url", url)
+                    changeFragment(EAMXUrlFragment(), bundle)
+                }
             }
             mBinding.viewPagerNoticias.apply {
                 adapter = viewPagerAdapter
@@ -145,7 +168,7 @@ class EAMXHomeFragment : EAMXBaseFragment() {
         }
         //Espiritualidad
         tokenViewModel.dataHomeSuggestionResponse.observe(this) { response ->
-            if (response.isNotEmpty() == true) {
+            if (!response.isNullOrEmpty()) {
                 existSuggestion = true
             }
             val viewPagerAdapterSuggestion = response.let {
