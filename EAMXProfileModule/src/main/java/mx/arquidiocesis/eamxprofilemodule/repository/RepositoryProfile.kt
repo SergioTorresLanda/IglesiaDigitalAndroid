@@ -445,10 +445,15 @@ class RepositoryProfile(val context: Context) : ManagerCall() {
     }
 
     suspend fun updateUserLaic(user: UserLaic) {
+        val url = if (WebConfig.HOST_USER=="https://api.qa-iglesia-digital.com/arquidiocesis/gestion-usuarios/v1/") {
+            "https://fozto7kqkker5ug4krqat3uvwi0zkwgc.lambda-url.us-east-1.on.aws/"
+        } else {
+            WebConfig.HOST_USER
+        }
         managerCallApi(
             context = context,
             call = {
-                retrofitInstance.setHost(WebConfig.HOST_USER)
+                retrofitInstance.setHost(url)
                     .setUseToken(true).builder().instance()
                     .postUpdateUserLaicAsync(user).await()
             },
