@@ -80,7 +80,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_16"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="135dp"
             android:fontFamily="@font/spro_text_regular"
             android:gravity="center_vertical"
             android:textColor="#192a73"
@@ -93,17 +93,17 @@
             tools:text="PADRE JOSE LUIS" />
 
 
-        <!--<androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clSegir"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="@drawable/ic_btn_follow"
             app:cornerRadius="8dp"
             android:elevation="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/txtName"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_user_name"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/txtName">
+            app:layout_constraintTop_toTopOf="@+id/tv_user_name">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/ivSegir"
@@ -136,7 +136,7 @@
                 android:textColor="@color/blue_terminos"
                 android:textStyle="bold"
                 />
-        </androidx.constraintlayout.widget.ConstraintLayout>-->
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <com.google.android.material.tabs.TabLayout

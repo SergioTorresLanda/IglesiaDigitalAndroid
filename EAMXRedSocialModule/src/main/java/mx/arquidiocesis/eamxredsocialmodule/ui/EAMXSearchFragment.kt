@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -36,7 +35,13 @@ class EAMXSearchFragment : FragmentBase() {
                     follower = true
                 }
                 PERFIL -> {
-                    item.name?.let { changeFragment(EAMXFollowFragment(item.id, it, item.image)) }
+                    var siguiendo = false
+                    item.relationship?.let {
+                        if (it.statusId == 1 || it.statusId == 3) {
+                            siguiendo = true
+                        }
+                    }
+                    item.name?.let { changeFragment(EAMXFollowFragment(item.id, it, item.image,siguiendo,item.metadata)) }
                 }
             }
             item.metadata?.let { m ->
@@ -51,7 +56,6 @@ class EAMXSearchFragment : FragmentBase() {
                     viewmodel.followPost(item.id, 2, follower)
                 }
             }
-
         }
     }
     var list = mutableListOf<SearchModel>()
@@ -90,9 +94,9 @@ class EAMXSearchFragment : FragmentBase() {
 
     fun initObservers() {
         viewmodel.reponseSearch.observe(viewLifecycleOwner) {
+            list = mutableListOf<SearchModel>()
             if (new) {
                 new = false
-                list = mutableListOf<SearchModel>()
             }
             it.result?.let { resultModel ->
                 if (!resultModel.results.isNullOrEmpty()) {

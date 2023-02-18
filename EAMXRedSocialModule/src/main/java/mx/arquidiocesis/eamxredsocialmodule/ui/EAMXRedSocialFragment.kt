@@ -164,6 +164,7 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, val id_user: Int) : Fragme
                             if (isPrincipal) {
                                 resultModel.posts
                             } else {
+                                Log.e("red_social",adapter.items.size.toString())
                                 resultModel.posts.filter { it.author.id == id_user }
                             }
                         )

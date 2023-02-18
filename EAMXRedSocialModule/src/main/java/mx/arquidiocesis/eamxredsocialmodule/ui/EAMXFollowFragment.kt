@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.view.marginTop
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.android.synthetic.main.item_follower.*
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
@@ -23,12 +23,13 @@ import mx.arquidiocesis.eamxredsocialmodule.adapter.FollowAdapter
 import mx.arquidiocesis.eamxredsocialmodule.adapter.PostAdapter
 import mx.arquidiocesis.eamxredsocialmodule.adapter.ViewPagerRedAdapter
 import mx.arquidiocesis.eamxredsocialmodule.model.FollowModel
+import mx.arquidiocesis.eamxredsocialmodule.model.MetadataModel
 import mx.arquidiocesis.eamxredsocialmodule.model.PostModel
 import mx.arquidiocesis.eamxredsocialmodule.model.ResultModel
-import mx.arquidiocesis.eamxredsocialmodule.news.create.utils.GetPerfilImagen
 import mx.arquidiocesis.eamxredsocialmodule.viewmodel.RedSocialViewModel
 
-class EAMXFollowFragment(val idUser: Int, val Name: String, val Image: String?) : FragmentBase() {
+class EAMXFollowFragment(val idUser: Int, val Name: String, val Image: String?, val siguiendo:Boolean=true,
+                         val metadata: MetadataModel? = MetadataModel(null,null,null,null,null,null,null,null,null)) : FragmentBase() {
     lateinit var binding: ItemFollowerBinding
     lateinit var followAdapter: FollowAdapter
     lateinit var followesAdapter: FollowAdapter
@@ -68,7 +69,48 @@ class EAMXFollowFragment(val idUser: Int, val Name: String, val Image: String?) 
             if (idUser != profileId) {
                 tabs.visibility = View.GONE
                 ivUserImage.setMargins(top = 32)
+                if(siguiendo){
+                    ivSeguiendo.visibility = View.VISIBLE
+                    ivSegir.visibility = View.GONE
+                    ivSeguiendo.setOnClickListener {
+                        metadata?.let { m ->
+                            m.personId?.let {
+                                showLoader()
+                                viewModel.followPost(idUser, 1, true)
+                            } ?: m.communityId?.let {
+                                showLoader()
+                                viewModel.followPost(idUser, 3, true)
+                            } ?: m.churchId?.let {
+                                showLoader()
+                                viewModel.followPost(idUser, 2, true)
+                            }
+                        }
+                        ivSeguiendo.visibility = View.GONE
+                        ivSegir.visibility = View.VISIBLE
+                    }
+                } else {
+                    ivSeguiendo.visibility = View.GONE
+                    ivSegir.visibility = View.VISIBLE
+                    ivSegir.setOnClickListener {
+                        metadata?.let { m ->
+                            m.personId?.let {
+                                showLoader()
+                                viewModel.followPost(idUser, 1, false)
+                            } ?: m.communityId?.let {
+                                showLoader()
+                                viewModel.followPost(idUser, 3, false)
+                            } ?: m.churchId?.let {
+                                showLoader()
+                                viewModel.followPost(idUser, 2, false)
+                            }
+                        }
+                        ivSeguiendo.visibility = View.VISIBLE
+                        ivSegir.visibility = View.GONE
+                    }
+                }
             } else {
+                tv_user_name.setMargins(right = 0)
+                ivSeguiendo.visibility = View.GONE
                 tvPublicaciones.setOnClickListener { activity?.onBackPressed() }
             }
             ivUser.loadByUrlIntDrawableerror(Image ?: "", R.drawable.user)
@@ -96,7 +138,8 @@ class EAMXFollowFragment(val idUser: Int, val Name: String, val Image: String?) 
                                     it.format = "image"
                             }
                         }
-                        listPost.addAll(resultModel.posts)
+                        listPost.addAll(resultModel.posts.filter { it.author.id == idUser })
+                        //resultModel.posts
                         //postsAdapter.notifyDataSetChanged()
                     }
                     resultModel.pagination?.let { p ->

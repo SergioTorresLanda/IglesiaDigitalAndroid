@@ -10,12 +10,13 @@
         android:visibility="visible">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="115dp"
+            android:layout_width="75dp"
             android:layout_height="74dp"
+            android:elevation="62dp"
             android:background="@drawable/shape_tab"
             android:paddingBottom="16dp"
             android:visibility="visible"
-            app:cardCornerRadius="8dp"
+            app:cardCornerRadius="30dp"
             app:cardElevation="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -47,7 +48,7 @@
                     android:gravity="center"
                     android:lineSpacingExtra="2sp"
                     android:textColor="#75787b"
-                    android:textSize="@dimen/size_14"
+                    android:textSize="@dimen/size_10"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="@+id/tvConteo"
                     app:layout_constraintStart_toStartOf="@+id/tvConteo"

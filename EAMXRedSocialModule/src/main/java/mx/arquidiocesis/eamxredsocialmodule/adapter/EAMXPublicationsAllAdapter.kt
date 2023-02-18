@@ -173,11 +173,11 @@ class EAMXPublicationsAllAdapter(
                     }
                 }
             }
-            if (isPrincipal) {
+            /*if (isPrincipal) {
                 imgPriest.setOnClickListener {
                     onItemClickListener(item, PERFIL)
                 }
-            }
+            }*/
             if (!isPrincipal) {
                 ivOption.visibility = View.GONE
                 tvLike.visibility = View.GONE
