@@ -13,7 +13,7 @@ import mx.arquidiocesis.eamxcommonutils.R
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.databinding.FragmentUrlsBinding
 
-class EAMXUrlFragment : FragmentBase() {
+class EAMXUrlFragment : Fragment() {
 
     lateinit var binding: EAMXUrlFragment
 
@@ -25,7 +25,7 @@ class EAMXUrlFragment : FragmentBase() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        initView()
+        //initView()
         return (FragmentUrlsBinding.inflate(inflater, container, false)
             .viewUrl.apply {
                 settings.javaScriptEnabled
@@ -43,10 +43,10 @@ class EAMXUrlFragment : FragmentBase() {
             }).rootView
     }
     private fun initView() {
-        showLoader("lOADER")
+        //showLoader("lOADER")
     }
     override fun onDestroyView() {
         super.onDestroyView()
-        callBack.restoreToolbar()
+        //callBack.restoreToolbar()
     }
 }

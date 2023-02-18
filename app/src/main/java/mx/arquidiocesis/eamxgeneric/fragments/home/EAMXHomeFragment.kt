@@ -186,7 +186,7 @@ class EAMXHomeFragment : EAMXBaseFragment() {
                             bundle.putString("audio", suggestion.article_url)
                             bundle.putString("titulo", suggestion.title)
                             changeFragment(EAMXPlayerFragment(), bundle)
-                        } else if (suggestion.type == PDF && suggestion.type == FILE) {
+                        } else if (suggestion.type == PDF || suggestion.type == FILE) {
                             //IR a fragment: "pdf" : suggestion.article_url
                             bundle.putString("pdf", suggestion.article_url)
                             changeFragment(EAMXPdfFragment(), bundle)
@@ -195,7 +195,8 @@ class EAMXHomeFragment : EAMXBaseFragment() {
                                 //IR a fragment: "youtube" : suggestion.article_url, "titulo" : suggestion.title
                                 bundle.putString("youtube", suggestion.article_url)
                                 bundle.putString("titulo", suggestion.title)
-                                changeFragment(EAMXYoutubeFragment(), bundle)
+                                openYoutubeApi(suggestion.article_url)
+                                //changeFragment(EAMXYoutubeFragment(), bundle)
                             } else {
                                 //IR a fragment: "video" : suggestion.article_url, "titulo" : suggestion.title
                                 bundle.putString("video", suggestion.article_url)

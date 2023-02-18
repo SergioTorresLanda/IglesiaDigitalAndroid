@@ -6,16 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.fragment.app.Fragment
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.databinding.FragmentYoutubeBinding
 
+class EAMXYoutubeFragment : Fragment() {
 
-class EAMXYoutubeFragment : FragmentBase() {
-
-lateinit var binding: FragmentYoutubeBinding
+    lateinit var binding: FragmentYoutubeBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentYoutubeBinding.inflate(inflater, container, false)
         return binding.root
@@ -25,7 +25,7 @@ lateinit var binding: FragmentYoutubeBinding
         super.onViewCreated(view, savedInstanceState)
         initView()
 
-        /*
+
         val titulo = arguments?.getString("titulo")
         val youtube = arguments?.getString("youtube")
 
@@ -51,7 +51,7 @@ lateinit var binding: FragmentYoutubeBinding
         } else {
             binding.Tyoutube.setText("Ha ocurrido un error, intente nuevamente.")
         }
-*/
+
 
 /*
         var posicion = 0
@@ -70,12 +70,14 @@ val url = ArrayList<String>()
 
          */
     }
+
     private fun initView() {
-        showLoader("lOADER")
+        //showLoader("lOADER")
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
-        callBack.restoreToolbar()
+        //callBack.restoreToolbar()
     }
 
 

@@ -1,6 +1,7 @@
 package mx.arquidiocesis.eamxgeneric.fragments.home
 
 import android.view.View
+import androidx.fragment.app.Fragment
 import com.wallia.eamxcomunidades.ui.EAMXCommunitiesPrincipalFragment
 import mx.arquidiocesis.eamxcadenaoracionesmodule.ui.EAMXCadenaOracionesFragment
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
@@ -114,6 +115,14 @@ fun EAMXHomeFragment.oracionesChange() {
         ProfileOrationFragment.newInstance(callBack!!),
         R.id.contentFragment,
         ProfileLiveFragment::class.java.simpleName
+    )
+}
+
+fun EAMXHomeFragment.IrFragment(f: Fragment,name:String) {
+    eamxBackHandler.changeFragment(
+        f, //Fragmente
+        R.id.contentFragment,
+        name //ProfileLiveFragment::class.java.simpleName
     )
 }
 

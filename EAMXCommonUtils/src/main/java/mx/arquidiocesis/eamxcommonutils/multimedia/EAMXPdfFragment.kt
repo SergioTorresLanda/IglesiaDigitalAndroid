@@ -9,18 +9,19 @@ import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
 import com.google.common.reflect.Reflection.getPackageName
 import mx.arquidiocesis.eamxcommonutils.R
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.databinding.FragmentPdfBinding
 
-class EAMXPdfFragment : FragmentBase() {
+class EAMXPdfFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-    initView()
+    //initView()
         return (FragmentPdfBinding.inflate(inflater, container, false)
             .viewPdf.apply {
                 val pdf = arguments?.getString("pdf")
@@ -42,11 +43,11 @@ class EAMXPdfFragment : FragmentBase() {
             }).rootView
     }
     private fun initView() {
-        showLoader("lOADER")
+        //showLoader("lOADER")
     }
     override fun onDestroyView() {
         super.onDestroyView()
-        callBack.restoreToolbar()
+        //callBack.restoreToolbar()
     }
 
 }

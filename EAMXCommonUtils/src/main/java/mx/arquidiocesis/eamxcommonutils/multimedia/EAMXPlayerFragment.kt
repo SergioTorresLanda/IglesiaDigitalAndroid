@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.databinding.FragmentPlayerBinding
 import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
 
-class EAMXPlayerFragment : FragmentBase() {
+class EAMXPlayerFragment : Fragment() {
     lateinit var binding: FragmentPlayerBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,7 +24,7 @@ class EAMXPlayerFragment : FragmentBase() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView()
+        //initView()
         val titulo = arguments?.getString("titulo")
         val audio = arguments?.getString("audio")
         if (audio != null) {
@@ -45,11 +46,11 @@ class EAMXPlayerFragment : FragmentBase() {
         }
     }
     private fun initView() {
-        showLoader("lOADER")
+        //showLoader("lOADER")
     }
     override fun onDestroyView() {
         super.onDestroyView()
-        callBack.restoreToolbar()
+        //callBack.restoreToolbar()
     }
 }
 
