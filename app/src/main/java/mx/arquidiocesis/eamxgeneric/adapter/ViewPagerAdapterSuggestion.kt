@@ -33,6 +33,7 @@ class ViewPagerAdapterSuggestion(
         val AUDIO = "AUDIO"
         val PDF = "PDF"
         val LINK = "LINK"
+        val FILE = "FILE"
 
         fun bind(suggestionModel: SuggestionModel, listener: (SuggestionModel) -> Unit) {
             binding.apply {
@@ -42,8 +43,8 @@ class ViewPagerAdapterSuggestion(
                     tvTitleSuggestion.text = suggestionModel.title
                     if (suggestionModel.type == AUDIO) {
                         draw = R.drawable.exo_icon_circular_play
-                    } else if (suggestionModel.type == PDF) {
-                        draw = R.drawable.ic_pdfviewpager
+                    } else if (suggestionModel.type == PDF && suggestionModel.type == FILE) {
+                        draw = R.drawable.img_pdf
                     } else if (suggestionModel.type == VIDEO) {
                         if (suggestionModel.article_url!!.isUrlYoutube()) {
                             draw = com.upax.formacion.R.drawable.ic_player

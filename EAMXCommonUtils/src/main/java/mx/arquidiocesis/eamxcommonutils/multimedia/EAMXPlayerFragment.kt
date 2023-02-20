@@ -29,7 +29,7 @@ class EAMXPlayerFragment : Fragment() {
         val audio = arguments?.getString("audio")
         if (audio != null) {
             binding.playerv.apply {
-                val player = ExoPlayer.Builder(requireContext()).build()
+        val player = ExoPlayer.Builder(requireContext()).build()
                 setPlayer(player)
                 val media = MediaItem.fromUri(arguments?.getString("audio").toString())
                 player.setMediaItem(media)
@@ -37,14 +37,14 @@ class EAMXPlayerFragment : Fragment() {
                 player.pause()
                 player.playbackParameters
                 player.play()
-            }
+    }
             if (titulo != null) {
                 binding.tituloplayer.setText(titulo.toString())
             } else {
                 binding.tituloplayer.setText("Ha ocurrido un error, intente nuevamente.")
-            }
-        }
     }
+    }
+        }
     private fun initView() {
         //showLoader("lOADER")
     }
