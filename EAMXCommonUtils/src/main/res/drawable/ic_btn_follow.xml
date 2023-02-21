@@ -1,0 +1,26 @@
+<!--<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="107dp"
+    android:height="50dp"
+    android:viewportWidth="107"
+    android:viewportHeight="50">
+  <path
+      android:pathData="M19,6L88,6A10,10 0,0 1,98 16L98,28A10,10 0,0 1,88 38L19,38A10,10 0,0 1,9 28L9,16A10,10 0,0 1,19 6z"
+      android:fillColor="#fff"/>
+</vector>-->
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<!-- Gray shadow. -->
+<item android:left="3dp" android:top="5dp">
+  <shape>
+    <solid android:color="@android:color/darker_gray" />
+    <corners android:radius="15dp" />
+  </shape>
+</item>
+<!-- White foreground. -->
+<item android:bottom="4dp" android:right="2dp">
+  <shape>
+    <solid android:color="@android:color/white" />
+    <corners android:radius="15dp" />
+  </shape>
+</item>
+</layer-list>

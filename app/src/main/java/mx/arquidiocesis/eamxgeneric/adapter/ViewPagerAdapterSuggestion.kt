@@ -8,6 +8,7 @@ import mx.arquidiocesis.eamxgeneric.databinding.ItemSuggestionBinding
 import mx.arquidiocesis.eamxgeneric.model.SuggestionModel
 import mx.arquidiocesis.eamxcommonutils.util.isUrlYoutube
 import mx.arquidiocesis.eamxcommonutils.util.loadByUrlIntDrawableerror
+import mx.arquidiocesis.eamxcommonutils.util.loadIntDrawable
 import mx.arquidiocesis.eamxredsocialmodule.R
 
 class ViewPagerAdapterSuggestion(
@@ -45,6 +46,7 @@ class ViewPagerAdapterSuggestion(
                         draw = R.drawable.exo_icon_circular_play
                     } else if (suggestionModel.type == PDF && suggestionModel.type == FILE) {
                         draw = R.drawable.img_pdf
+                        //https://arquidiocesis-app-mx.s3.amazonaws.com/ICONOS/BIBLIOTECA/icon_link.png
                     } else if (suggestionModel.type == VIDEO) {
                         if (suggestionModel.article_url!!.isUrlYoutube()) {
                             draw = com.upax.formacion.R.drawable.ic_player
@@ -59,8 +61,7 @@ class ViewPagerAdapterSuggestion(
                         }
                     }
                     img?.let {
-                        loadByUrlIntDrawableerror(
-                            it,
+                        loadIntDrawable(
                             draw
                         )
                     }

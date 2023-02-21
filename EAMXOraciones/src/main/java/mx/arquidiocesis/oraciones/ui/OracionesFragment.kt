@@ -39,7 +39,6 @@ class OracionesFragment : FragmentBase() {
         }
     }
 
-
     private lateinit var binding: FragmentOracionesBinding
     private val oracionViewModel: OracionViewModel by lazy {
         getViewModel {

@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="@dimen/margin_top_20"
-                android:src="@drawable/ic_encuentro" />
+                android:src="@drawable/logo_splash" />
 
             <TextView
                 android:id="@+id/txtLoading"

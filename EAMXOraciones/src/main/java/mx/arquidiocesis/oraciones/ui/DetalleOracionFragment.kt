@@ -75,7 +75,7 @@ class DetalleOracionFragment : FragmentBase() {
             Glide.with(requireContext()).load(parse(oracionModel.image_url)).apply(RequestOptions()).into(binding.ivDetalleOracion)
             binding.ivDetalleOracion.isSelected
             hideLoader()
-            binding.ivDetalleOracion.setOnClickListener {
+            binding.shareImg.setOnClickListener {
                 binding.ivDetalleOracion.buildDrawingCache();
                 val image: Bitmap = binding.ivDetalleOracion.getDrawingCache()
                 val share = Intent(Intent.ACTION_SEND)
@@ -83,6 +83,18 @@ class DetalleOracionFragment : FragmentBase() {
                 share.putExtra(Intent.EXTRA_STREAM, getImageUri(requireActivity(), image))
                 startActivity(Intent.createChooser(share, "Compartir con"))
             }
+            binding.shareText.setOnClickListener {
+                binding.tvDetalleOracionText.setTextIsSelectable(true)
+            }
+
+           // binding.ivDetalleOracion.setOnClickListener {
+             //   binding.ivDetalleOracion.buildDrawingCache();
+               // val image: Bitmap = binding.ivDetalleOracion.getDrawingCache()
+               // val share = Intent(Intent.ACTION_SEND)
+               // share.type = "image/*"
+               // share.putExtra(Intent.EXTRA_STREAM, getImageUri(requireActivity(), image))
+               // startActivity(Intent.createChooser(share, "Compartir con"))
+            //}
 
             oracionDetalleViewModel.errorResponse.observe(viewLifecycleOwner) {
                 println("ErrorResponse")
