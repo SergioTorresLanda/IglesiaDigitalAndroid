@@ -39,13 +39,13 @@ class ViewPagerAdapterSuggestion(
         fun bind(suggestionModel: SuggestionModel, listener: (SuggestionModel) -> Unit) {
             binding.apply {
                 var draw: Int = R.drawable.ic_place_holder_by_pictures_upload
-                var img: String? = suggestionModel.imageUrl
+                var img: String = suggestionModel.imageUrl.toString()
                 ivSuggestion.apply {
                     tvTitleSuggestion.text = suggestionModel.title
                     if (suggestionModel.type == AUDIO) {
                         draw = R.drawable.exo_icon_circular_play
                     } else if (suggestionModel.type == PDF && suggestionModel.type == FILE) {
-                        img = null
+                        img = ""
                         draw = R.drawable.img_pdf
                         //https://arquidiocesis-app-mx.s3.amazonaws.com/ICONOS/BIBLIOTECA/icon_link.png
                     } else if (suggestionModel.type == VIDEO) {
