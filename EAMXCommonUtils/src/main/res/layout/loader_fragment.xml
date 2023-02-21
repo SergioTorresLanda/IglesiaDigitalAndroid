@@ -15,20 +15,20 @@
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:layout_margin="20dp">
 
             <ImageView
                 android:id="@+id/imgCharging"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="@dimen/margin_top_20"
+                android:layout_height="115dp"
                 android:src="@drawable/logo_splash" />
 
             <TextView
                 android:id="@+id/txtLoading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/size_20"
                 android:gravity="center"
                 android:layout_below="@id/imgCharging"
                 android:textColor="@color/black"
