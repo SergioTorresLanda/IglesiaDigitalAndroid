@@ -44,7 +44,7 @@ class EAMXFollowFragment(val idUser: Int, val Name: String, val Image: String?, 
 
     //Provicional
     var cargado = false
-    var maximo = 0
+    var maximo = 10
 
     val viewModel: RedSocialViewModel by lazy {
         getViewModel {

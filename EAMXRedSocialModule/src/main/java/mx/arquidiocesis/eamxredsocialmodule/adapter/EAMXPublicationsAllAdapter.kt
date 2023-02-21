@@ -80,12 +80,7 @@ class EAMXPublicationsAllAdapter(
                 ivOption.visibility = View.GONE
             }
             txtName.text = item.author.name
-            if (!item.author.image.isNullOrEmpty()) {
-                Glide.with(root.context)
-                    .load(item.author.image + "?".getRandomString(10))
-                    .centerCrop()
-                    .skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE).into(imgPriest)
-            }
+            imgPriest.loadByUrl(item.author.image.toString(),false,true)
             val dateResponse = item.createdAt.toLong()
             val objectFormat = EAMXFormatDate(root.context)
             val miFecha = objectFormat.diferencia(dateResponse)
