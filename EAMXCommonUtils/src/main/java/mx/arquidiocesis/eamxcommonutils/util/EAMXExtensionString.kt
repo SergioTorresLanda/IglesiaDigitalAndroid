@@ -65,6 +65,12 @@ fun String.isUrlYoutube(): Boolean {
     val matcher = compiledPattern.matcher(this)
     return matcher.find()
 }
+fun String.isUrlArquidiocesis(): Boolean {
+    val pattern = "^(http(s)?:\\/\\/)?((w){3}.)?arquidiocesismexico?(\\.org)(\\.mx)?\\/.+$"
+    val compiledPattern = Pattern.compile(pattern)
+    val matcher = compiledPattern.matcher(this)
+    return matcher.find()
+}
 
 fun String.buildTextSuccessUrl(textNormal: String): String {
 
