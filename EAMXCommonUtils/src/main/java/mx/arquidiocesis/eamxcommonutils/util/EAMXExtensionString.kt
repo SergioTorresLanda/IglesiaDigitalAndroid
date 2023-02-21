@@ -65,8 +65,8 @@ fun String.isUrlYoutube(): Boolean {
     val matcher = compiledPattern.matcher(this)
     return matcher.find()
 }
-fun String.isUrlArquidiocesis(): Boolean {
-    val pattern = "^(http(s)?:\\/\\/)?((w){3}.)?arquidiocesismexico?(\\.org)(\\.mx)?\\/.+$"
+fun String.isUrlArquidiocesisComunicado(): Boolean {
+    val pattern = "^(http(s)?:\\/\\/)?((w){3}.)?arquidiocesismexico(\\.org)(\\.mx)\\/((\\d){4})\\/((\\d){2})\\/((\\d){2})\\/comunicado\\-?.+$"
     val compiledPattern = Pattern.compile(pattern)
     val matcher = compiledPattern.matcher(this)
     return matcher.find()
