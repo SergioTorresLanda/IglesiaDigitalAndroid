@@ -1,8 +1,11 @@
 package mx.arquidiocesis.eamxgeneric.adapter
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import mx.arquidiocesis.eamxcommonutils.R
 import mx.arquidiocesis.eamxcommonutils.util.isUrlArquidiocesisComunicado
 import mx.arquidiocesis.eamxcommonutils.util.isUrlYoutube

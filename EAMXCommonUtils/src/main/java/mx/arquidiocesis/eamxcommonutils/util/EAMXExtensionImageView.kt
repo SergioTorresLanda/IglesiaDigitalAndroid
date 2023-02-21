@@ -76,7 +76,7 @@ fun ImageView.loadByUrlIntDrawableerror(url: String,resource : Int){
         .load(url)
         .placeholder(resource)
         .error(resource)
-        .transition(withCrossFade())
+        //.transition(withCrossFade())
         .skipMemoryCache(true)
         .into(this)
 }
