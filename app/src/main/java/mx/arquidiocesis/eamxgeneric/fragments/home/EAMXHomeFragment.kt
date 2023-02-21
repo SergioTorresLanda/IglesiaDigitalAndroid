@@ -38,6 +38,7 @@ class EAMXHomeFragment : EAMXBaseFragment() {
     val LINK = "LINK"
     val PDF = "PDF"
     val FILE = "FILE"
+    val IMAGE = "IMAGE"
     val VIDEO = "VIDEO"
     val AUDIO = "AUDIO"
     var existRelease: Boolean = false
@@ -219,6 +220,10 @@ class EAMXHomeFragment : EAMXBaseFragment() {
                                     changeFragment(EAMXTextFragment(), bundle)
                                 }*/
                             }
+                        } else if (suggestion.type == IMAGE) {
+                            bundle.putString("img", suggestion.article_url)
+                            bundle.putString("text", suggestion.title)
+                            changeFragment(EAMXTextFragment(), bundle)
                         }
 
                     }

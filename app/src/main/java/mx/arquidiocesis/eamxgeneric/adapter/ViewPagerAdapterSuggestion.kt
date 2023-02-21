@@ -35,6 +35,7 @@ class ViewPagerAdapterSuggestion(
         val PDF = "PDF"
         val LINK = "LINK"
         val FILE = "FILE"
+        val IMAGE = "IMAGE"
 
         fun bind(suggestionModel: SuggestionModel, listener: (SuggestionModel) -> Unit) {
             binding.apply {
@@ -60,8 +61,12 @@ class ViewPagerAdapterSuggestion(
                         if (!suggestionModel.article_url.isNullOrEmpty()) {
                             draw = com.upax.formacion.R.drawable.ic_empty_library
                         }
+                    } else if (suggestionModel.type == IMAGE) {
+                        if (!suggestionModel.article_url.isNullOrEmpty()) {
+                            img = suggestionModel.article_url
+                        }
                     }
-                    img?.let {
+                    img.let {
                         loadByUrlIntDrawableerror(
                             it,
                             draw
