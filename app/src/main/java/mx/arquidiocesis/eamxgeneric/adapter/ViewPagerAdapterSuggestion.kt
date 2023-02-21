@@ -45,6 +45,7 @@ class ViewPagerAdapterSuggestion(
                     if (suggestionModel.type == AUDIO) {
                         draw = R.drawable.exo_icon_circular_play
                     } else if (suggestionModel.type == PDF && suggestionModel.type == FILE) {
+                        img = null
                         draw = R.drawable.img_pdf
                         //https://arquidiocesis-app-mx.s3.amazonaws.com/ICONOS/BIBLIOTECA/icon_link.png
                     } else if (suggestionModel.type == VIDEO) {
