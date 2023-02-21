@@ -12,10 +12,7 @@ import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
-import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
-import mx.arquidiocesis.eamxcommonutils.util.getViewModel
-import mx.arquidiocesis.eamxcommonutils.util.loadByUrlIntDrawableerror
-import mx.arquidiocesis.eamxcommonutils.util.setMargins
+import mx.arquidiocesis.eamxcommonutils.util.*
 import mx.arquidiocesis.eamxredsocialmodule.R
 import mx.arquidiocesis.eamxredsocialmodule.databinding.ItemFollowerBinding
 import mx.arquidiocesis.eamxredsocialmodule.Repository.Repository
@@ -119,7 +116,6 @@ class EAMXFollowFragment(val idUser: Int, val Name: String, val Image: String?, 
         }
         showLoader()
         viewModel.requestAllpost()
-        viewModel.getFollow(type, null, idUser)
         initObservers()
     }
 
@@ -149,6 +145,7 @@ class EAMXFollowFragment(val idUser: Int, val Name: String, val Image: String?, 
                             viewModel.requestAllpost(p.next)
                         } else {
                             //showSkeleton(false)
+                            viewModel.getFollow(type, null, idUser)
                             cargado = true
                             //binding.swrRefresh.isRefreshing = false
                         }
@@ -162,8 +159,8 @@ class EAMXFollowFragment(val idUser: Int, val Name: String, val Image: String?, 
                 }
                 //postsAdapter.notifyItemRangeInserted(prevSize, postsAdapter.items.count() - 1)
             } else {
-
             }
+            //postsAdapter.list.size.toString().log()
         }
         viewModel.reponseFollow.observe(viewLifecycleOwner) {
             if (new) {
