@@ -61,7 +61,8 @@ class ViewPagerAdapterSuggestion(
                         }
                     }
                     img?.let {
-                        loadIntDrawable(
+                        loadByUrlIntDrawableerror(
+                            it,
                             draw
                         )
                     }

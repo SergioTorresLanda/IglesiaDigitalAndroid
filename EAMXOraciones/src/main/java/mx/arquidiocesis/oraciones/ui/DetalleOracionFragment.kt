@@ -27,6 +27,7 @@ import mx.arquidiocesis.eamxcommonutils.application.AppMyConstants
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.common.EAMXHome
 import mx.arquidiocesis.eamxcommonutils.util.getViewModel
+import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
 import mx.arquidiocesis.oraciones.adapter.OracionDetalleAdapter
 import mx.arquidiocesis.oraciones.repository.Repository
 import mx.arquidiocesis.oraciones.viewmodel.OracionDetallesViewModel
@@ -59,7 +60,15 @@ class DetalleOracionFragment : FragmentBase() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        btnBack.setOnClickListener { activity?.onBackPressed() }
+        btnBack.setOnClickListener {
+            NavigationFragment.Builder()
+                .setActivity(requireActivity())
+                .setView(requireView().parent as ViewGroup)
+                .setFragment(OracionesFragment.newInstance())
+                .setAllowStack(true)
+                .build().nextWithReplace()
+            //activity?.onBackPressed()
+        }
         val idOracion = requireArguments().getInt("idOracion")
         oracionDetalleViewModel.obtenerDetalle(idOracion)
         showLoader()

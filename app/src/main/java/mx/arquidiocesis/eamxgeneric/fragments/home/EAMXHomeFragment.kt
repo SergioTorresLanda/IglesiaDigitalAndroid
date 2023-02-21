@@ -26,6 +26,7 @@ import mx.arquidiocesis.eamxcommonutils.multimedia.*
 import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
 import mx.arquidiocesis.eamxgeneric.model.DataHomeReleaseResponse
 import mx.arquidiocesis.eamxgeneric.repository.MainRepository2
+import mx.arquidiocesis.oraciones.ui.DetalleOracionFragment
 
 class EAMXHomeFragment : EAMXBaseFragment() {
     val LOCATION_INFORMATION = "LOCATION_INFORMATION"
@@ -209,13 +210,14 @@ class EAMXHomeFragment : EAMXBaseFragment() {
                                 bundle.putString("web", suggestion.article_url)
                                 changeFragment(EAMXUrlFragment(), bundle)
                             } else {
-                                suggestion.id?.let { it1 -> tokenViewModel.getPrayDetail(it1) }
+                                suggestion.id?.let { it1 -> selectItem(it1) }
+                                /*suggestion.id?.let { it1 -> tokenViewModel.getPrayDetail(it1) }
                                 tokenViewModel.prayResponse.observe(this) {
                                     //IR a fragment: "img" : it.image_url, "text": it.description
                                     bundle.putString("img", it.image_url)
                                     bundle.putString("text", it.description)
                                     changeFragment(EAMXTextFragment(), bundle)
-                                }
+                                }*/
                             }
                         }
 
@@ -414,6 +416,18 @@ class EAMXHomeFragment : EAMXBaseFragment() {
             .setView(requireView().parent as ViewGroup)
             .setBundle(bundle)
             .setFragment(fragment)
+            .setAllowStack(true)
+            .build().nextWithReplace()
+    }
+
+    private fun selectItem(id: Int) {
+        val bundle = Bundle()
+        bundle.putInt("idOracion", id)
+        NavigationFragment.Builder()
+            .setActivity(requireActivity())
+            .setView(requireView().parent as ViewGroup)
+            .setBundle(bundle)
+            .setFragment(DetalleOracionFragment.newInstance())
             .setAllowStack(true)
             .build().nextWithReplace()
     }
