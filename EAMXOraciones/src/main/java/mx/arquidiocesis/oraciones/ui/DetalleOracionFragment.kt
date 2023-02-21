@@ -93,17 +93,13 @@ class DetalleOracionFragment : FragmentBase() {
                 startActivity(Intent.createChooser(share, "Compartir con"))
             }
             binding.shareText.setOnClickListener {
-                binding.tvDetalleOracionText.setTextIsSelectable(true)
+                //binding.tvDetalleOracionText.setTextIsSelectable(true)
+                val text = binding.tvDetalleOracionText.getText().toString()
+                val share = Intent(Intent.ACTION_SEND)
+                share.type = "text/*"
+                share.putExtra(Intent.EXTRA_TEXT, text)
+                startActivity(Intent.createChooser(share, "Compartir con"))
             }
-
-           // binding.ivDetalleOracion.setOnClickListener {
-             //   binding.ivDetalleOracion.buildDrawingCache();
-               // val image: Bitmap = binding.ivDetalleOracion.getDrawingCache()
-               // val share = Intent(Intent.ACTION_SEND)
-               // share.type = "image/*"
-               // share.putExtra(Intent.EXTRA_STREAM, getImageUri(requireActivity(), image))
-               // startActivity(Intent.createChooser(share, "Compartir con"))
-            //}
 
             oracionDetalleViewModel.errorResponse.observe(viewLifecycleOwner) {
                 println("ErrorResponse")
