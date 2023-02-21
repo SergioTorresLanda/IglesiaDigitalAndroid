@@ -4,9 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import mx.arquidiocesis.eamxcommonutils.R
+import mx.arquidiocesis.eamxcommonutils.util.isUrlArquidiocesis
+import mx.arquidiocesis.eamxcommonutils.util.isUrlYoutube
 import mx.arquidiocesis.eamxcommonutils.util.loadByUrlIntDrawableerror
 import mx.arquidiocesis.eamxgeneric.databinding.ItemReleaseBinding
 import mx.arquidiocesis.eamxgeneric.model.DataHomeReleaseResponse
+import java.util.regex.Pattern
 
 class ViewPagerAdapter(
     private val releases: List<DataHomeReleaseResponse>,
@@ -31,8 +34,10 @@ class ViewPagerAdapter(
                 tvTitleRelease.text = release.title
                 release.imageUrl?.let {
                     ivRelease.loadByUrlIntDrawableerror(
-                        it,
-                        R.drawable.ic_place_holder_by_pictures_upload
+                        if(release.publishUrl?.isUrlArquidiocesis() == true)
+                            "https://arquidiocesismexico.org.mx/wp-content/uploads/2020/11/escudo-arquidiocesis-1.png"
+                         else
+                            it, R.drawable.ic_place_holder_by_pictures_upload
                     )
                 }
                 root.setOnClickListener { release.publishUrl?.let { it1 -> listener(it1) } }
