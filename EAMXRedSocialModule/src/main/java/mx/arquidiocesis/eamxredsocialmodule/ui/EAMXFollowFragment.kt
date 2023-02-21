@@ -31,6 +31,7 @@ import mx.arquidiocesis.eamxredsocialmodule.viewmodel.RedSocialViewModel
 class EAMXFollowFragment(val idUser: Int, val Name: String, val Image: String?, val siguiendo:Boolean=true,
                          val metadata: MetadataModel? = MetadataModel(null,null,null,null,null,null,null,null,null)) : FragmentBase() {
     lateinit var binding: ItemFollowerBinding
+    //lateinit followAdapter: FollowAdapter
     lateinit var followAdapter: FollowAdapter
     lateinit var followesAdapter: FollowAdapter
     lateinit var postsAdapter: PostAdapter
@@ -116,10 +117,10 @@ class EAMXFollowFragment(val idUser: Int, val Name: String, val Image: String?, 
             ivUser.loadByUrlIntDrawableerror(Image ?: "", R.drawable.user)
             tvUserName.text = Name
         }
-        initObservers()
         showLoader()
         viewModel.requestAllpost()
         viewModel.getFollow(type, null, idUser)
+        initObservers()
     }
 
     fun initObservers() {
@@ -212,7 +213,6 @@ class EAMXFollowFragment(val idUser: Int, val Name: String, val Image: String?, 
                             seguir(item, 2)
                         }
                         initView()
-
                     }
                 }
             }
@@ -263,9 +263,7 @@ class EAMXFollowFragment(val idUser: Int, val Name: String, val Image: String?, 
 
     fun initView() {
         hideLoader()
-        var adapter =
-            ViewPagerRedAdapter(this, postsAdapter, followesAdapter, followAdapter, idUser)
-        binding.vpFollower.adapter = adapter
+        binding.vpFollower.adapter = ViewPagerRedAdapter(this,null , followesAdapter, followAdapter, idUser)
         TabLayoutMediator(binding.tlFollower, binding.vpFollower) { tab, position ->
             when (position) {
                 0 -> {
