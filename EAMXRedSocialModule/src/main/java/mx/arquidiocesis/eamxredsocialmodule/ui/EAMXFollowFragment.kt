@@ -25,9 +25,22 @@ import mx.arquidiocesis.eamxredsocialmodule.model.PostModel
 import mx.arquidiocesis.eamxredsocialmodule.model.ResultModel
 import mx.arquidiocesis.eamxredsocialmodule.viewmodel.RedSocialViewModel
 
-class EAMXFollowFragment(val idUser: Int, val Name: String, val Image: String?, val siguiendo:Boolean=true,
-                         val metadata: MetadataModel? = MetadataModel(null,null,null,null,null,null,null,null,null)) : FragmentBase() {
+class EAMXFollowFragment(
+    val idUser: Int, val Name: String, val Image: String?, val siguiendo: Boolean = true,
+    val metadata: MetadataModel? = MetadataModel(
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    ),
+) : FragmentBase() {
     lateinit var binding: ItemFollowerBinding
+
     //lateinit followAdapter: FollowAdapter
     lateinit var followAdapter: FollowAdapter
     lateinit var followesAdapter: FollowAdapter
@@ -51,7 +64,7 @@ class EAMXFollowFragment(val idUser: Int, val Name: String, val Image: String?, 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         binding = ItemFollowerBinding.inflate(inflater, container, false)
         return binding.root
@@ -59,6 +72,10 @@ class EAMXFollowFragment(val idUser: Int, val Name: String, val Image: String?, 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        showLoader()
+        idUser.toString() + "red_social___".log()
+        viewModel.requestAllpostMi(idUser)
+        initObservers()
         binding.apply {
             val profileId = eamxcu_preferences.getData(
                 EAMXEnumUser.USER_ID_REDSOCIAL.name,
@@ -67,7 +84,7 @@ class EAMXFollowFragment(val idUser: Int, val Name: String, val Image: String?, 
             if (idUser != profileId) {
                 tabs.visibility = View.GONE
                 ivUserImage.setMargins(top = 32)
-                if(siguiendo){
+                if (siguiendo) {
                     ivSeguiendo.visibility = View.VISIBLE
                     ivSegir.visibility = View.GONE
                     ivSeguiendo.setOnClickListener {
@@ -114,12 +131,10 @@ class EAMXFollowFragment(val idUser: Int, val Name: String, val Image: String?, 
             ivUser.loadByUrlIntDrawableerror(Image ?: "", R.drawable.user)
             tvUserName.text = Name
         }
-        showLoader()
-        viewModel.requestAllpost()
-        initObservers()
     }
 
     fun initObservers() {
+        //viewModel.getFollow(type, null, idUser)
         viewModel.responseAllPost.observe(viewLifecycleOwner) { item ->
             if (new) {
                 new = false
@@ -136,15 +151,17 @@ class EAMXFollowFragment(val idUser: Int, val Name: String, val Image: String?, 
                             }
                         }
                         listPost.addAll(resultModel.posts.filter { it.author.id == idUser })
+                        //listPost.addAll(resultModel.posts)
                         //resultModel.posts
                         //postsAdapter.notifyDataSetChanged()
                     }
                     resultModel.pagination?.let { p ->
                         if (p.hasMore && maximo > 0) {
                             maximo--
-                            viewModel.requestAllpost(p.next)
+                            viewModel.requestAllpostMi(idUser, p.next)
                         } else {
                             //showSkeleton(false)
+                            new = true
                             viewModel.getFollow(type, null, idUser)
                             cargado = true
                             //binding.swrRefresh.isRefreshing = false
@@ -183,6 +200,7 @@ class EAMXFollowFragment(val idUser: Int, val Name: String, val Image: String?, 
                             //seguir(item, 1)
                         }
                         type = 2
+                        new = true
                         viewModel.getFollow(type, null, idUser)
                     }
                 }
@@ -260,7 +278,8 @@ class EAMXFollowFragment(val idUser: Int, val Name: String, val Image: String?, 
 
     fun initView() {
         hideLoader()
-        binding.vpFollower.adapter = ViewPagerRedAdapter(this,null , followesAdapter, followAdapter, idUser)
+        binding.vpFollower.adapter =
+            ViewPagerRedAdapter(this, null, followesAdapter, followAdapter, idUser)
         TabLayoutMediator(binding.tlFollower, binding.vpFollower) { tab, position ->
             when (position) {
                 0 -> {
@@ -283,7 +302,5 @@ class EAMXFollowFragment(val idUser: Int, val Name: String, val Image: String?, 
                 }
             }
         }.attach()
-
-
     }
 }

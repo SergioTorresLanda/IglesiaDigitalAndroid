@@ -51,18 +51,20 @@ class RedSocialViewModel(private val repository: Repository) : ViewModel() {
             EAMXTypeObject.INT_OBJECT
         ) as Int
     }
-    fun getSuper():Boolean {
-        return userId==1
+
+    fun getSuper(): Boolean {
+        return userId == 1
     }
+
     fun setPost(
         idUser: Int, scope: Int, content: String,
-        multimediaList: List<EAMXMultimedia>
+        multimediaList: List<EAMXMultimedia>,
     ) {
 
         var jsonObject: JsonObject = JsonObject()
         jsonObject.addProperty("userId", profileId)
         jsonObject.addProperty("content", content.trim())
-        jsonObject.addProperty("imageProfile",urlImageProfile)
+        jsonObject.addProperty("imageProfile", urlImageProfile)
         var multimediaArray = JsonArray()
         multimediaList.forEach {
             var multimedia: JsonObject = JsonObject()
@@ -82,7 +84,7 @@ class RedSocialViewModel(private val repository: Repository) : ViewModel() {
 
     fun updatePost(
         content: String, idPost: Int, multimediaDelList: List<EAMXMultimedia>,
-        multimediaList: List<EAMXMultimedia>
+        multimediaList: List<EAMXMultimedia>,
     ) {
         var jsonObject: JsonObject = JsonObject()
 
@@ -121,16 +123,30 @@ class RedSocialViewModel(private val repository: Repository) : ViewModel() {
         }
     }
 
+    fun requestAllpostMi(id: Int) {
+        GlobalScope.launch {
+            repository.getAllPost(id)
+        }
+    }
+
+    fun requestAllpostMi(id: Int, page: String) {
+        GlobalScope.launch {
+            repository.getAllPost(id, page)
+        }
+    }
+
     fun deletePost(idPost: Int) {
         GlobalScope.launch {
             repository.deletePost(idPost, profileId)
         }
     }
+
     fun deleteComment(idPost: Int) {
         GlobalScope.launch {
             repository.deleteComment(idPost, profileId)
         }
     }
+
     fun reactDel(idPost: Int) {
         GlobalScope.launch {
             repository.reactDel(idPost, profileId)
@@ -155,10 +171,11 @@ class RedSocialViewModel(private val repository: Repository) : ViewModel() {
         jsonObject.addProperty("entityType", entityType)
 
         GlobalScope.launch {
-            if(follower){
-                repository.unfollowPost(profileId,entityId,entityType)
-            }else{
-            repository.followPost(jsonObject)}
+            if (follower) {
+                repository.unfollowPost(profileId, entityId, entityType)
+            } else {
+                repository.followPost(jsonObject)
+            }
         }
     }
 
@@ -196,7 +213,7 @@ class RedSocialViewModel(private val repository: Repository) : ViewModel() {
         var jsonObject: JsonObject = JsonObject()
         jsonObject.addProperty("postId", idPost)
         jsonObject.addProperty("commentId", idComent)
-        jsonObject.addProperty("imageProfile",urlImageProfile)
+        jsonObject.addProperty("imageProfile", urlImageProfile)
         jsonObject.addProperty("userId", profileId)
         jsonObject.addProperty("content", comment.trim())
         jsonObject.addProperty("scope", scope)
