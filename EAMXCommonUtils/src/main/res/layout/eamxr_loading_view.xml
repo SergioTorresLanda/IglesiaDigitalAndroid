@@ -1,44 +1,37 @@
-<?xml version="1.0" encoding="utf-8"?>
-<layout>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center">
 
-    <com.google.android.material.card.MaterialCardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:orientation="vertical"
         app:cardCornerRadius="@dimen/corner_radious_20"
         app:cardElevation="0dp">
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:layout_margin="20dp">
 
             <ImageView
                 android:id="@+id/imgCharging"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="@dimen/margin_top_20"
-                android:src="@drawable/ic_encuentro" />
-
-<!--            <com.airbnb.lottie.LottieAnimationView-->
-<!--                android:id="@+id/lottieView"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                app:lottie_autoPlay="true"-->
-<!--                app:lottie_loop="true"-->
-<!--                app:lottie_rawRes="@raw/spinner" />-->
+                android:layout_height="115dp"
+                android:src="@drawable/logo_splash" />
 
             <TextView
                 android:id="@+id/txtLoading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_below="@id/imgCharging"
+                android:gravity="center"
+                android:text="@string/cargando"
                 android:textColor="@color/black"
-                android:text="@string/cargando" />
+                android:textSize="@dimen/size_20" />
         </RelativeLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-</layout>
+    </androidx.cardview.widget.CardView>
+</FrameLayout>

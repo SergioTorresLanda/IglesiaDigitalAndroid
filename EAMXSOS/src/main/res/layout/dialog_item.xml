@@ -19,7 +19,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:src="@drawable/ic_logo_app_dialog"
+                android:src="@drawable/logo_splash"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@+id/ivClose"
                 app:layout_constraintStart_toStartOf="parent"
