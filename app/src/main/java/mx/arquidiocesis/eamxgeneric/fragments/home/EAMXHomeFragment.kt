@@ -133,7 +133,12 @@ class EAMXHomeFragment : EAMXBaseFragment() {
                         )
                     )
                 } else if (existRelease) {
-                    LDHRR.postValue(listOf(response1[0], response1[1]))
+                    if (response1.size==2){
+                        LDHRR.postValue(listOf(response1[0], response1[1]))
+                    }
+                    if (response1.size==1){
+                        LDHRR.postValue(listOf(response1[0]))
+                    }
                 } else if (!response1.isNullOrEmpty()) {
                     LDHRR.postValue(
                         listOf(

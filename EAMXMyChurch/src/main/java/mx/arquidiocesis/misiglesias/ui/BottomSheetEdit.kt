@@ -87,6 +87,7 @@ open class BottomSheetEdit(
             iNom.apply {
                 tvItemTitulo.text = "Nombre de la Iglesia"
                 etItemEdit.isFocusable = false
+                etItemEdit.isEnabled = false
                 if (model.name.isNullOrEmpty()) {
                     etItemEdit.hint = "Parroquia del Señor de la Santísima Resurrección"
                 } else {
@@ -103,7 +104,8 @@ open class BottomSheetEdit(
                     etItemEdit.setText(model.principal?.name)
                     idPrincipal = model.principal!!.id
                 }
-                etItemEdit.addTextChangedListener(object : TextWatcher {
+                etItemEdit.isEnabled = false
+                /*etItemEdit.addTextChangedListener(object : TextWatcher {
                     override fun afterTextChanged(s: Editable?) {
                         viewModel.getpriests(s.toString())
                     }
@@ -124,8 +126,7 @@ open class BottomSheetEdit(
                     ) {
 
                     }
-                })
-
+                })*/
             }
             iDir.apply {
                 tvItemTitulo.text = "Dirección"
