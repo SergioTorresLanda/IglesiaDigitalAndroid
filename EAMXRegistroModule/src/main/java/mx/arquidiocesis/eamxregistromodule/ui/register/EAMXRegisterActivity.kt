@@ -2,15 +2,21 @@ package mx.arquidiocesis.eamxregistromodule.ui.register
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.net.Uri
 import android.util.Patterns
 import android.view.View
+import android.widget.Switch
+import androidx.appcompat.widget.SwitchCompat
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.children
 import androidx.core.widget.addTextChangedListener
+import androidx.databinding.adapters.SwitchCompatBindingAdapter
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import mx.arquidiocesis.eamxcommonutils.api.core.errorresponse.EAMXErrorResponseEnum
@@ -31,6 +37,7 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
 
     lateinit var mBinding: EamxrRegisterActivityBinding
     lateinit var viewModelEAMX: EAMXRegisterViewModel
+    lateinit var contexto: Context
 
     override fun getLayout() = R.layout.eamxr_register_activity
 
@@ -279,6 +286,16 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
                         }
                 }
 
+            }
+
+
+            when (switch1) {
+                Switch(contexto) -> {
+                    switch1.isChecked = true
+                    etName.visibility = View.GONE
+                    etLastNameFather.visibility = View.GONE
+                    etLastNameMother.visibility = View.GONE
+                }
             }
 
 
