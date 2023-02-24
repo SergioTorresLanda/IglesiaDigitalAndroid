@@ -18,6 +18,7 @@ import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
 import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
 import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
 import mx.arquidiocesis.eamxcommonutils.util.imagen.ImagenProfile
+import mx.arquidiocesis.eamxcommonutils.util.log
 import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
 import mx.arquidiocesis.eamxcommonutils.util.urlValidator
 import mx.arquidiocesis.eamxredsocialmodule.R
@@ -44,7 +45,7 @@ const val SEARCH = "SEARCH"
 const val FOLLOW = "FOLLOW"
 const val UNFOLLOW = "UNFOLLOW"
 
-class EAMXRedSocialFragment(val isPrincipal: Boolean, val id_user: Int) : FragmentBase() {
+class EAMXRedSocialFragment(val isPrincipal: Boolean, var id_user: Int) : FragmentBase() {
 
     lateinit var binding: EamxRedSocialFragmentBinding
 
@@ -66,6 +67,8 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, val id_user: Int) : Fragme
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        maximo = if(isPrincipal) maximo else 21
+        maximo.toString().log()
         viewmodel = RedSocialViewModel(Repository(requireContext()))
         initObservers()
         binding = EamxRedSocialFragmentBinding.inflate(inflater, container, false)
@@ -109,6 +112,7 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, val id_user: Int) : Fragme
                 EAMXEnumUser.URL_PICTURE_PROFILE_USER.name,
                 EAMXTypeObject.STRING_OBJECT
             ) as String
+            id_user = if(isPrincipal) idUser else id_user
             val nameCompleted = "$name $lastName $middleName"
             tvMiRed.setOnClickListener {
                 changeFragment(
@@ -164,7 +168,6 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, val id_user: Int) : Fragme
                             if (isPrincipal) {
                                 resultModel.posts
                             } else {
-                                Log.e("red_social",adapter.items.size.toString())
                                 resultModel.posts.filter { it.author.id == id_user }
                             }
                         )
@@ -173,7 +176,7 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, val id_user: Int) : Fragme
                     resultModel.pagination?.let { p ->
                         if (p.hasMore && maximo > 0) {
                             maximo--
-                            viewmodel.requestAllpost(p.next)
+                            viewmodel.requestAllpostMi(id_user,p.next)
                         } else {
                             //showSkeleton(false)
                             cargado = true
@@ -270,9 +273,9 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, val id_user: Int) : Fragme
         adapter.items = arrayListOf<PostModel>()
         setupRecyclerView()
         click()
-        maximo = 0
+        //maximo = 0
         //showSkeleton(true)
-        viewmodel.requestAllpost()
+        viewmodel.requestAllpostMi(id_user)
     }
 
     fun dismmisPost() {
@@ -294,9 +297,10 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, val id_user: Int) : Fragme
     fun rechargePost() {
         cargado = false
         if (resultModel.pagination!!.hasMore) {
-            maximo = 0
+            //maximo = 0
             //showSkeleton(true)
-            viewmodel.requestAllpost(resultModel.pagination!!.next)
+            viewmodel.requestAllpostMi(id_user,resultModel.pagination!!.next)
+            binding.swrRefresh.isRefreshing = true
         } else {
             binding.swrRefresh.isRefreshing = false
         }
