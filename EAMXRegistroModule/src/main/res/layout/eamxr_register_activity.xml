@@ -26,28 +26,6 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <LinearLayout
-                    android:id="@+id/laySac"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="@+id/toolbarModel">
-
-                <Switch
-                    android:id="@+id/switch1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="¿Eres sacerdote?"
-                    android:thumbTint="#192A73"
-                    android:trackTint="#6F7ABC"
-                    android:layout_marginHorizontal="@dimen/margin_15"
-                    />
-                    <TextView
-                        android:id="@+id/SWSacerdote"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-
-                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginHorizontal="@dimen/margin_15"
@@ -55,7 +33,7 @@
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/laySac">
+                    app:layout_constraintTop_toBottomOf="@+id/toolbarModel">
 
                     <TextView
                         style="@style/StyleTxtTitleRegister"
