@@ -42,7 +42,7 @@
                     android:textAlignment="textEnd"
                     android:text="¿Eres sacerdote?"
                     android:textOff="No"
-                    android:layout_marginHorizontal="@dimen/margin_15"
+                    android:layout_marginHorizontal="@dimen/margin_10"
                     />
                     <TextView
                         android:id="@+id/SWSacerdote"
