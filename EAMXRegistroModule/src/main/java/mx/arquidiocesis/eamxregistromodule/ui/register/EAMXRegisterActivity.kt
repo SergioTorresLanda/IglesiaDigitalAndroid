@@ -14,19 +14,21 @@ import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.children
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.adapters.SwitchCompatBindingAdapter
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.eamxr_register_activity.*
 import mx.arquidiocesis.eamxcommonutils.api.core.errorresponse.EAMXErrorResponseEnum
 import mx.arquidiocesis.eamxcommonutils.api.core.status.EAMXStatusRequestEnum
 import mx.arquidiocesis.eamxcommonutils.application.AppMyConstants
 import mx.arquidiocesis.eamxcommonutils.application.validation.EAMXFieldValidation
 import mx.arquidiocesis.eamxcommonutils.application.validation.EAMXStatusValidation
-import mx.arquidiocesis.eamxcommonutils.common.EAMXBaseActivity
-import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
-import mx.arquidiocesis.eamxcommonutils.common.EAMXEnums
+import mx.arquidiocesis.eamxcommonutils.application.validation.EAMXValidationModel
+import mx.arquidiocesis.eamxcommonutils.common.*
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
 import mx.arquidiocesis.eamxregistromodule.R
 import mx.arquidiocesis.eamxregistromodule.databinding.EamxrRegisterActivityBinding
@@ -165,7 +167,6 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
 
 
     private var formating = false
-
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun initView() {
         mBinding.apply {
@@ -198,7 +199,10 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
             }
 
             etNumberPhone.addTextChangedListener {
-                enableIconStart(tilNumberPhone, etNumberPhone.text.toString().validNumberPhoneContent())
+                enableIconStart(
+                    tilNumberPhone,
+                    etNumberPhone.text.toString().validNumberPhoneContent()
+                )
                 if (etNumberPhone.text.toString().isEmpty()) {
                     enableIconStart(tilNumberPhone, null)
                     tilNumberPhone.error = getString(R.string.enter_your_telephone_number)
@@ -277,27 +281,18 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
 //                    }
                         if (confirmText.isNotEmpty()) {
                             if (!confirmText.equals(etPassword.text.toString())) {
-                                tilCodeConfirmPassword.error = "La confirmación de la contraseña debe ser igual a la contraseña"
+                                tilCodeConfirmPassword.error =
+                                    "La confirmación de la contraseña debe ser igual a la contraseña"
                             } else {
                                 tilCodeConfirmPassword.error = null
                             }
                         } else {
-                            tilCodeConfirmPassword.error = "Ingresa la confirmación de la contraseña"
+                            tilCodeConfirmPassword.error =
+                                "Ingresa la confirmación de la contraseña"
                         }
                 }
 
             }
-
-
-            when (switch1) {
-                Switch(contexto) -> {
-                    switch1.isChecked = true
-                    etName.visibility = View.GONE
-                    etLastNameFather.visibility = View.GONE
-                    etLastNameMother.visibility = View.GONE
-                }
-            }
-
 
             btnRegistrar.setOnClickListener { requestSignUp() }
             etDate.setOnClickListener { showDatePickerDialog() }
@@ -314,8 +309,33 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
                 val i = Intent(Intent.ACTION_VIEW, uri)
                 startActivity(i)
             }
+
+            switch1.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    SWSacerdote.text = "Si"
+                    rName.visibility = View.GONE
+                    rLasNameMother.visibility = View.GONE
+                    rLasNameFather.visibility = View.GONE
+                    etPassword.isEnabled = false
+                    etConfirmPassword.isTextInputLayoutFocusedRectEnabled = false
+
+
+                } else {
+                    rName.visibility = View.VISIBLE
+                    rLasNameMother.visibility = View.VISIBLE
+                    rLasNameFather.visibility = View.VISIBLE
+                    SWSacerdote.text = "No"
+                    etNumberPhone.setText("")
+                    etEmail.setText("")
+                    etPassword.setText("")
+                    etConfirmPassword.setText("")
+
+                }
+            }
         }
     }
+
+
 
     @SuppressLint("UseCompatLoadingForDrawables")
     fun enableIconStart(input: TextInputLayout, success: Boolean?) {
