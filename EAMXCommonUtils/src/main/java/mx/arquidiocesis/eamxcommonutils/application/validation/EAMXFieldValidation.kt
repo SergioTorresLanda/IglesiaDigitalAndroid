@@ -9,6 +9,11 @@ import mx.arquidiocesis.eamxcommonutils.R
 class EAMXFieldValidation {
     companion object {
         fun validateNumberPhone(number: String): Boolean {
+            val regex = "d{10}$"
+            val pattern = Pattern.compile(regex)
+            val matcher = pattern.matcher("")
+            matcher.matches()
+
             return !number.equals("0000000000") &&
                     !number.equals("1111111111") &&
                     !number.equals("2222222222") &&
