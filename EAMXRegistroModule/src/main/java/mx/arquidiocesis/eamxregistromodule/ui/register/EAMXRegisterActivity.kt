@@ -316,7 +316,7 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
                     rName.visibility = View.GONE
                     rLasNameMother.visibility = View.GONE
                     rLasNameFather.visibility = View.GONE
-                    etPassword.isEnabled = false
+                    etPassword.isEnabled = true
                     etConfirmPassword.isTextInputLayoutFocusedRectEnabled = false
 
 
