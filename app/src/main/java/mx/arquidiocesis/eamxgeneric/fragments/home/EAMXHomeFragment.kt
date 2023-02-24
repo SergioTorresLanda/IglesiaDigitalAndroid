@@ -41,6 +41,8 @@ class EAMXHomeFragment : EAMXBaseFragment() {
     val IMAGE = "IMAGE"
     val VIDEO = "VIDEO"
     val AUDIO = "AUDIO"
+    var existSaint: Boolean = false
+    var existNews: Boolean = false
     var existRelease: Boolean = false
     var existSuggestion: Boolean = false
     var isFirstTime = true
@@ -116,30 +118,42 @@ class EAMXHomeFragment : EAMXBaseFragment() {
         val LDHRR = MutableLiveData<List<DataHomeReleaseResponse>?>()
         LDHRR.value = null
         tokenViewModel.dataHomeSaintResponse.observe(this) { response ->
-            if (!response.isNullOrEmpty()) {
-                existRelease = true
-            }
+            existSaint = !response.isNullOrEmpty()
             tokenViewModel.dataHomeReleaseResponse.observe(this) { response1 ->
-                if (!response1.isNullOrEmpty() && existRelease) {
-                    LDHRR.postValue(
-                        listOf(
-                            response1[0], response1[1], DataHomeReleaseResponse(
-                                response[0].id,
-                                response[0].imageUrl,
-                                response[0].startingDate,
-                                response[0].publishUrl,
-                                response[0].title
+                existNews = !response1.isNullOrEmpty()
+                if (existNews && existSaint) {
+                    if (response1.size == 2) {
+                        LDHRR.postValue(
+                            listOf(
+                                response1[0], response1[1], DataHomeReleaseResponse(
+                                    response[0].id,
+                                    response[0].imageUrl,
+                                    response[0].startingDate,
+                                    response[0].publishUrl,
+                                    response[0].title
+                                )
                             )
                         )
-                    )
-                } else if (existRelease) {
-                    if (response1.size==2){
-                        LDHRR.postValue(listOf(response1[0], response1[1]))
+                    } else if (response1.size == 1) {
+                        LDHRR.postValue(
+                            listOf(
+                                response1[0], DataHomeReleaseResponse(
+                                    response[0].id,
+                                    response[0].imageUrl,
+                                    response[0].startingDate,
+                                    response[0].publishUrl,
+                                    response[0].title
+                                )
+                            )
+                        )
                     }
-                    if (response1.size==1){
+                } else if (existNews) {
+                    if (response1.size == 2) {
+                        LDHRR.postValue(listOf(response1[0], response1[1]))
+                    } else if (response1.size == 1) {
                         LDHRR.postValue(listOf(response1[0]))
                     }
-                } else if (!response1.isNullOrEmpty()) {
+                } else if (existSaint) {
                     LDHRR.postValue(
                         listOf(
                             DataHomeReleaseResponse(
@@ -158,6 +172,9 @@ class EAMXHomeFragment : EAMXBaseFragment() {
         LDHRR.observe(this) { response ->
             if (!response.isNullOrEmpty()) {
                 existRelease = true
+                cvNews.visibility = View.VISIBLE
+            } else {
+                cvNews.visibility = View.GONE
             }
             val viewPagerAdapter = response?.let {
                 ViewPagerAdapter(it) { url ->
@@ -177,6 +194,9 @@ class EAMXHomeFragment : EAMXBaseFragment() {
         tokenViewModel.dataHomeSuggestionResponse.observe(this) { response ->
             if (!response.isNullOrEmpty()) {
                 existSuggestion = true
+                cvSuggestions.visibility = View.VISIBLE
+            } else {
+                cvSuggestions.visibility = View.GONE
             }
             val viewPagerAdapterSuggestion = response.let {
                 ViewPagerAdapterSuggestion(it) { suggestion ->
@@ -296,12 +316,12 @@ class EAMXHomeFragment : EAMXBaseFragment() {
                                         .show(childFragmentManager, tag)
                                 }
                                 else -> {
-                                    if (existRelease) {
+                                    /*if (existRelease) {
                                         cvSuggestions.visibility = View.VISIBLE
                                     }
                                     if (existSuggestion) {
                                         cvNews.visibility = View.VISIBLE
-                                    }
+                                    }*/
                                 }
                             }
                         } else {
@@ -325,20 +345,20 @@ class EAMXHomeFragment : EAMXBaseFragment() {
                                 horizontalScrollView.visibility = View.GONE
                                 btnApoyar.visibility = View.GONE
                             }
-                            if (existRelease) {
+                            /*if (existRelease) {
                                 cvSuggestions.visibility = View.VISIBLE
                             }
                             if (existSuggestion) {
                                 cvNews.visibility = View.VISIBLE
-                            }
+                            }*/
                         }
                     } else {
-                        if (existRelease) {
+                        /*if (existRelease) {
                             cvNews.visibility = View.VISIBLE
                         }
                         if (existSuggestion) {
                             cvSuggestions.visibility = View.VISIBLE
-                        }
+                        }*/
                         var permissionType =
                             eamxcu_preferences.getData(
                                 EAMXEnumUser.USER_PERMISSION_TYPE.name,
@@ -402,12 +422,12 @@ class EAMXHomeFragment : EAMXBaseFragment() {
             callBack?.showToolbar(true, "$name $lastName")
             mBinding.FragmentLayoutMain.visibility = View.GONE
             horizontalScrollView.visibility = View.VISIBLE
-            if (existRelease) {
+            /*if (existRelease) {
                 cvSuggestions.visibility = View.VISIBLE
             }
             if (existSuggestion) {
                 cvNews.visibility = View.VISIBLE
-            }
+            }*/
         }
     }
 
