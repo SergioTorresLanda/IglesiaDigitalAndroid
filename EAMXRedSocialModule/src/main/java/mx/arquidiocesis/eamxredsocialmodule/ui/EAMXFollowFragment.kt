@@ -198,8 +198,8 @@ class EAMXFollowFragment(
                     } else {
                         followAdapter = FollowAdapter(
                             listFollow
-                        ) { //item ->
-                            //seguir(item, 1)
+                        ) { item ->
+                            seguir(item, 1)
                         }
                         type = 2
                         new = true

@@ -94,7 +94,6 @@ class EAMXPublicationsAllAdapter(
             tvLike.text = item.totalReactions.toString()
             tvLikeDado.text = item.totalReactions.toString()
             tvComent.text = item.totalComments.toString()
-
             ivOption.setOnClickListener {
                 val popupMenu: PopupMenu = PopupMenu(context, ivOption)
                 popupMenu.menuInflater.inflate(

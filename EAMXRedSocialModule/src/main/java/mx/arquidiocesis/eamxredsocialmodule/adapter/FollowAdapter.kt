@@ -64,12 +64,12 @@ class FollowAdapter(
                     ivSegir.setOnClickListener {
                         listener(item)
                     }
-                } else {
-                    ivSegir.visibility = View.GONE
-                    ivSeguiendo.visibility = View.GONE
                     ivSeguiendo.setOnClickListener {
                         listener(item)
                     }
+                } else {
+                    ivSegir.visibility = View.GONE
+                    ivSeguiendo.visibility = View.GONE
                 }
             }
         }
