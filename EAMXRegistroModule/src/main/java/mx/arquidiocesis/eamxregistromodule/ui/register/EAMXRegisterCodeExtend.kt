@@ -8,6 +8,7 @@ import mx.arquidiocesis.eamxcommonutils.application.validation.EAMXValidationMod
 import mx.arquidiocesis.eamxcommonutils.base.DatePickerFragment
 import mx.arquidiocesis.eamxcommonutils.util.EAMXEditText
 import mx.arquidiocesis.eamxregistromodule.R
+import mx.arquidiocesis.eamxregistromodule.ui.register.model.EAMXPriestRequest
 import mx.arquidiocesis.eamxregistromodule.ui.register.model.EAMXSignUpRequest
 import java.util.Date
 
@@ -20,6 +21,7 @@ fun EAMXRegisterActivity.requestSignUp() {
     lateinit var numberPhone: String
     lateinit var phone: String
     lateinit var pws: String
+
     mBinding.apply {
         name = EAMXEditText.firstUpperCase(etName.text.toString().trimEnd())
         lastName = EAMXEditText.firstUpperCase(etLastNameFather.text.toString().trimEnd())
@@ -33,6 +35,7 @@ fun EAMXRegisterActivity.requestSignUp() {
 
 
         (if(etName.text.toString().isEmpty()) getString(R.string.enter_your_name) else null).also { tilName.error = it }
+        (if(switch1.isChecked) "" else null).also { tilName.error = it }
         (if(etLastNameFather.text.toString().isEmpty()) getString(R.string.enter_your_paternal_last_name) else null).also { tilLastName.error = it }
 
         if(etNumberPhone.text.toString().isEmpty()){
@@ -264,8 +267,138 @@ fun EAMXRegisterActivity.requestSignUp() {
                 name,
                 lastName,
                 middleName,
-                getString(R.string.faithful),
+                if (switch1.isChecked) getString(R.string.priest) else getString(R.string.faithful),
+                if (switch1.isChecked) "2" else "1"
             ), arraylistValidations
+        )
+    }
+}
+
+fun EAMXRegisterActivity.requestPriestSignUp(){
+    lateinit var typeLogin: String
+    lateinit var phone_number: String
+    val arraylistValidations: ArrayList<EAMXValidationModel> = ArrayList()
+
+    mBinding.apply {
+        typeLogin = "priest"
+        phone_number = etNumberPhone.text.toString()
+
+        if (etNumberPhone.text.toString().isEmpty()) {
+            tilNumberPhone.error = getString(R.string.enter_your_telephone_number)
+        } else {
+            if (!EAMXFieldValidation.validateNumberLength(etNumberPhone.text.toString())) {
+                tilNumberPhone.error = getString(R.string.min_phone)
+            }
+
+            if (!EAMXFieldValidation.validateNumberPhone(etNumberPhone.text.toString())) {
+                tilNumberPhone.error = getString(R.string.wrong_phone_number)
+            }
+        }
+
+        arraylistValidations.apply {
+            add(
+                EAMXValidationModel(
+                    etNumberPhone,
+                    EAMXTypeValidation.NOT_EMPTY,
+                    true,
+                    getString(R.string.enter_your_telephone_number)
+                )
+            )
+            add(
+                EAMXValidationModel(
+                    etNumberPhone,
+                    EAMXTypeValidation.EQUALS_FIELD,
+                    "0000000000",
+                    getString(R.string.wrong_phone_number)
+                )
+            )
+            add(
+                EAMXValidationModel(
+                    etNumberPhone,
+                    EAMXTypeValidation.EQUALS_FIELD,
+                    "1111111111",
+                    getString(R.string.wrong_phone_number)
+                )
+            )
+            add(
+                EAMXValidationModel(
+                    etNumberPhone,
+                    EAMXTypeValidation.EQUALS_FIELD,
+                    "2222222222",
+                    getString(R.string.wrong_phone_number)
+                )
+            )
+            add(
+                EAMXValidationModel(
+                    etNumberPhone,
+                    EAMXTypeValidation.EQUALS_FIELD,
+                    "3333333333",
+                    getString(R.string.wrong_phone_number)
+                )
+            )
+            add(
+                EAMXValidationModel(
+                    etNumberPhone,
+                    EAMXTypeValidation.EQUALS_FIELD,
+                    "4444444444",
+                    getString(R.string.wrong_phone_number)
+                )
+            )
+            add(
+                EAMXValidationModel(
+                    etNumberPhone,
+                    EAMXTypeValidation.EQUALS_FIELD,
+                    "5555555555",
+                    getString(R.string.wrong_phone_number)
+                )
+            )
+            add(
+                EAMXValidationModel(
+                    etNumberPhone,
+                    EAMXTypeValidation.EQUALS_FIELD,
+                    "6666666666",
+                    getString(R.string.wrong_phone_number)
+                )
+            )
+            add(
+                EAMXValidationModel(
+                    etNumberPhone,
+                    EAMXTypeValidation.EQUALS_FIELD,
+                    "9999999999",
+                    getString(R.string.wrong_phone_number)
+                )
+            )
+            add(
+                EAMXValidationModel(
+                    etNumberPhone,
+                    EAMXTypeValidation.EQUALS_FIELD,
+                    "7777777777",
+                    getString(R.string.wrong_phone_number)
+                )
+            )
+            add(
+                EAMXValidationModel(
+                    etNumberPhone,
+                    EAMXTypeValidation.EQUALS_FIELD,
+                    "8888888888",
+                    getString(R.string.wrong_phone_number)
+                )
+            )
+            add(
+                EAMXValidationModel(
+                    etNumberPhone,
+                    EAMXTypeValidation.MIN_VALUE,
+                    10,
+                    getString(R.string.min_phone)
+                )
+            )
+        }
+
+        viewModelEAMX.requestPrestSignUp(
+            EAMXPriestRequest(
+                typeLogin,
+                phone_number
+            )
         )
     }
 }

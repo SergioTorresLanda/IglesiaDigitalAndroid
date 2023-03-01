@@ -1,20 +1,13 @@
 package mx.arquidiocesis.eamxcommonutils.application.validation
 
-import android.content.Context
 import android.util.Log
 import android.util.Patterns
 import com.google.android.material.textfield.TextInputLayout
-import mx.arquidiocesis.eamxcommonutils.R
 
 class EAMXFieldValidation {
     companion object {
         fun validateNumberPhone(number: String): Boolean {
-            val regex = "d{10}$"
-            val pattern = Pattern.compile(regex)
-            val matcher = pattern.matcher("")
-            matcher.matches()
-
-            return !number.equals("0000000000") &&
+               return !number.equals("0000000000") &&
                     !number.equals("1111111111") &&
                     !number.equals("2222222222") &&
                     !number.equals("3333333333") &&

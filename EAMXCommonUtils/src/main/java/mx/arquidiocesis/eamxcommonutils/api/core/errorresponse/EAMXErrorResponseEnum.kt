@@ -7,6 +7,7 @@ enum class EAMXErrorResponseEnum(val messageError: String, val defaultError: Str
     CONEXION_ERROR("Tu conexion ha fallado", "Error conexion",1012),
     INVALID_CONFIRM_CODE("Codigo de verificacion invalido", "Invalid verification code", 106),
     USER_ALREADY_CONFIRMED("El correo o numero ya esta registrado", "User is already confirmed", 104),
+    USER_NOT_PRIEST("No encontramos ningún registro de sacerdote asociado a este número. Verifícalo y/o ponte en contacto con un administrador.", "User is not a priest",104),
     USER_IS_NOT_CONFIRMED("Su usuario no se encuentra confirmado, confirme para inicar sesión.", "Username is unconfirmed", 103),
     USER_IS_NOT_CONFIRMED_QA("Su usuario no se encuentra confirmado, confirme para iniciar sesión.", "Username is unconfirmed", 103),
     USER_NAME_PASSWORD_INCORRECT("El usuario o la contraseña son incorrectos", "Username / password incorrect", 107),

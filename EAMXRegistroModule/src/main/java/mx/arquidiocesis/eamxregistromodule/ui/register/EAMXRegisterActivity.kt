@@ -5,21 +5,17 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
+import android.graphics.Color
 import android.net.Uri
 import android.util.Patterns
 import android.view.View
-import android.widget.Switch
-import androidx.appcompat.widget.SwitchCompat
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.view.children
+import androidx.core.view.isEmpty
 import androidx.core.widget.addTextChangedListener
-import androidx.databinding.adapters.SwitchCompatBindingAdapter
-import androidx.lifecycle.MutableLiveData
+import androidx.databinding.adapters.CompoundButtonBindingAdapter.setChecked
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.switchmaterial.SwitchMaterial
-import com.google.android.material.textfield.TextInputEditText
+import androidx.lifecycle.viewmodel.CreationExtras
 import com.google.android.material.textfield.TextInputLayout
+import io.reactivex.rxjava3.schedulers.Schedulers.start
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.eamxr_register_activity.*
 import mx.arquidiocesis.eamxcommonutils.api.core.errorresponse.EAMXErrorResponseEnum
@@ -27,12 +23,15 @@ import mx.arquidiocesis.eamxcommonutils.api.core.status.EAMXStatusRequestEnum
 import mx.arquidiocesis.eamxcommonutils.application.AppMyConstants
 import mx.arquidiocesis.eamxcommonutils.application.validation.EAMXFieldValidation
 import mx.arquidiocesis.eamxcommonutils.application.validation.EAMXStatusValidation
-import mx.arquidiocesis.eamxcommonutils.application.validation.EAMXValidationModel
 import mx.arquidiocesis.eamxcommonutils.common.*
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
+import mx.arquidiocesis.eamxcommonutils.util.log
+import mx.arquidiocesis.eamxcommonutils.util.visibility
 import mx.arquidiocesis.eamxregistromodule.R
 import mx.arquidiocesis.eamxregistromodule.databinding.EamxrRegisterActivityBinding
 import mx.arquidiocesis.eamxregistromodule.ui.confirm.EAMXConfirmCodeActivity
+import okhttp3.internal.EMPTY_REQUEST
+import okhttp3.internal.EMPTY_RESPONSE
 import java.util.regex.Pattern
 
 class EAMXRegisterActivity : EAMXBaseActivity() {
@@ -146,6 +145,111 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
         viewModelEAMX.validationDataActionFromActivity.observe(this) {
             when (it.statusValidation) {
                 EAMXStatusValidation.CORRECT -> viewModelEAMX.requestSignUp(it.request)
+                EAMXStatusValidation.INCORRECT -> {
+                    UtilAlert.Builder().setMessage("Verifique sus datos").build()
+                        .show(supportFragmentManager, "")
+
+                }
+            }
+        }
+        //Priest
+        viewModelEAMX.responsePriest.observe(this) { response ->
+            response.statusRequest.toString().log()
+            when (response.statusRequest) {
+                EAMXStatusRequestEnum.LOADING -> {
+                    showProgressBarCustom()
+                }
+                EAMXStatusRequestEnum.SUCCESS -> {
+                    hideProgressBarCustom()
+                    if (!response.successData?.name.isNullOrEmpty()) {
+                        response.successData?.let {
+                            it.name.log()
+                            it.fcappaterno.log()
+                            it.fcapmaterno.log()
+                            it.fccelular.log()
+                            it.fccorreo.log()
+                            etName.setText(response.successData!!.name)
+                            rName.visibility = View.VISIBLE
+                            etName.isEnabled = false
+                            etLastNameMother.setText(response.successData!!.fcapmaterno)
+                            rLasNameMother.visibility = View.VISIBLE
+                            etLastNameMother.isEnabled = false
+                            etLastNameFather.setText(response.successData!!.fcappaterno)
+                            rLasNameFather.visibility = View.VISIBLE
+                            etLastNameFather.isEnabled = false
+                            etNumberPhone.setText(response.successData!!.fccelular)
+                            rPhone.visibility = View.VISIBLE
+                            etNumberPhone.isEnabled = false
+                            etEmail.setText(response.successData!!.fccorreo)
+                            rEmail.visibility = View.VISIBLE
+                            rPassword.visibility = View.VISIBLE
+                            rNewPassword.visibility = View.VISIBLE
+                            switch1.visibility = View.GONE
+                            btnEnviar.visibility = View.GONE
+                            laySac.visibility = View.GONE
+                            SWSacerdote.visibility = View.GONE
+                            UpdateDataPriest.visibility = View.VISIBLE
+                            btnRegistrar.visibility = View.VISIBLE
+                            UpdateDataPriest.visibility = View.VISIBLE
+                        }
+                    } else {
+                        UtilAlert.Builder().setTitle("¡Ups!")
+                            .setMessage(getString(R.string.user_is_not_a_priest))
+                            .build().show(supportFragmentManager, "")
+
+                        tilNumberPhone.isEmpty()
+                        etNumberPhone.setText("")
+                        }
+                }
+                EAMXStatusRequestEnum.FAILURE -> {
+                    hideProgressBarCustom()
+                    response.errorData?.let { errorMessage ->
+                        when (errorMessage) {
+                            EAMXErrorResponseEnum.USER_NOT_PRIEST.messageError -> {
+                                UtilAlert.Builder().setTitle("Aviso")
+                                    .setMessage(getString(R.string.user_is_not_a_priest))
+                                    .setListener {
+                                        setResult(
+                                            Activity.RESULT_CANCELED, intent.putExtra(
+                                                EAMXEnumUser.USER_PHONE.name,
+                                                response.successData?.fccelular
+                                            )
+                                        )
+                                        EAMXRegisterActivity@ finish()
+                                    }.build().show(supportFragmentManager, "")
+                                return@let
+                            }
+                            else -> {
+                                UtilAlert.Builder().setMessage(errorMessage).build()
+                                    .show(supportFragmentManager, "")
+                            }
+                        }
+                    }
+                }
+                EAMXStatusRequestEnum.NONE -> {
+                    hideProgressBarCustom()
+                }
+            }
+        }
+        viewModelEAMX.openLoginFromActivity.observe(this) {
+            if (!it.result) {
+                setResult(Activity.RESULT_CANCELED)
+            } else {
+                UtilAlert.Builder()
+                    .setMessage("Registro completo")
+                    .setListener { _ ->
+                        setResult(Activity.RESULT_OK, it.data)
+                        finish()
+                    }
+                    .setIsCancel(false)
+                    .build()
+                    .show(supportFragmentManager)
+            }
+        }
+
+        viewModelEAMX.validationDataActionFromActivityPr.observe(this) {
+            when (it.statusValidation) {
+                EAMXStatusValidation.CORRECT -> viewModelEAMX.requestPrestSignUp(it.request)
                 EAMXStatusValidation.INCORRECT -> {
                     UtilAlert.Builder().setMessage("Verifique sus datos").build()
                         .show(supportFragmentManager, "")
@@ -310,32 +414,44 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
                 startActivity(i)
             }
 
+        }
             switch1.setOnCheckedChangeListener { buttonView, isChecked ->
                 if (isChecked) {
-                    SWSacerdote.text = "Si"
                     rName.visibility = View.GONE
                     rLasNameMother.visibility = View.GONE
                     rLasNameFather.visibility = View.GONE
-                    etPassword.isEnabled = true
-                    etConfirmPassword.isTextInputLayoutFocusedRectEnabled = false
-
+                    rEmail.visibility = View.GONE
+                    rPassword.visibility = View.GONE
+                    rNewPassword.visibility = View.GONE
+                    btnRegistrar.visibility = View.GONE
+                    btnEnviar.visibility = View.VISIBLE
+                    SWSacerdote.visibility = View.VISIBLE
+                    switch1.thumbTintList = getColorStateList(R.color.green_retirar)
 
                 } else {
                     rName.visibility = View.VISIBLE
                     rLasNameMother.visibility = View.VISIBLE
                     rLasNameFather.visibility = View.VISIBLE
-                    SWSacerdote.text = "No"
-                    etNumberPhone.setText("")
-                    etEmail.setText("")
-                    etPassword.setText("")
-                    etConfirmPassword.setText("")
+                    rEmail.visibility = View.VISIBLE
+                    rPassword.visibility = View.VISIBLE
+                    rNewPassword.visibility = View.VISIBLE
+                    btnRegistrar.visibility = View.VISIBLE
+                    btnEnviar.visibility = View.GONE
+                    laySac.visibility = View.VISIBLE
+                    SWSacerdote.visibility = View.GONE
+                    switch1.thumbTintList = getColorStateList(R.color.hint_color)
 
+                    tilName.isEmpty()
+                    tilLastNameMother.isEmpty()
+                    tilLastName.isEmpty()
+                    tilNumberPhone.isEmpty()
+                    tilEmail.isEmpty()
+                    tilPassword.isEmpty()
+                    tilCodeConfirmPassword.isEmpty()
                 }
+                btnEnviar.setOnClickListener { requestPriestSignUp() }
             }
         }
-    }
-
-
 
     @SuppressLint("UseCompatLoadingForDrawables")
     fun enableIconStart(input: TextInputLayout, success: Boolean?) {

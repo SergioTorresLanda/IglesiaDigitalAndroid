@@ -54,9 +54,11 @@
     <string name="confirm_your_password">Confirma tu contraseña</string>
     <string name="password_do_not_match">Las contraseñas no coinciden</string>
     <string name="faithful">Fiel</string>
+    <string name="priest">Sacerdote</string>
     <string name="you_have_already_an_account">Ya tienes una cuenta</string>
     <string name="enter_the_complete_code">Ingrese el código completo</string>
     <string name="your_user_already_exists_confirm_to_login">Tu usuario ya existe, confirme para iniciar sesión</string>
+    <string name="user_is_not_a_priest">No encontramos ningún registro de sacerdote asociado a este número. Verifícalo y/o ponte en contacto con un administrador.</string>
     <string name="text_date_born">Fecha de nacimiento</string>
     <string name="sign_in_register">Registrarme</string>
 
@@ -82,4 +84,8 @@
     <string name="etEmailSendCodeHint">Escribe tu correo aquí...</string>
     <string name="eamx_resend_warning">No podrás solicitar otro código \nhasta pasados tres minutos</string>
     <string name="eamx_resend_error">Tu código no es correcto, por favor intenta de nuevo o solicita uno nuevo</string>
+    <string name="enviar">Enviar</string>
+    <string name="si_quieres_modificar_alg_n_dato_escribenos_a_iglesiadigital_arquidiocesismexico_org">Si quieres modificar algún dato escribenos a iglesiadigital@arquidiocesismexico.org</string>
+    <string name="soy_sacerdote">Soy sacerdote</string>
+    <string name="ingresa_tu_n_mero_de_celular_para_identificarte">Ingresa tu número de celular para identificarte.</string>
 </resources>

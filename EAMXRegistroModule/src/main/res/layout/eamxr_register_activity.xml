@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <ScrollView
         android:id="@+id/eamx_register_activity"
@@ -26,32 +27,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <LinearLayout
-                    android:id="@+id/laySac"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="@+id/toolbarModel">
-
-                <Switch
-                    android:id="@+id/switch1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:thumbTint="#192A73"
-                    android:trackTint="#6F7ABC"
-                    android:switchPadding="@dimen/global_margin"
-                    android:textAlignment="textEnd"
-                    android:text="¿Eres sacerdote?"
-                    android:textOff="No"
-                    android:layout_marginHorizontal="@dimen/margin_10"
-                    />
-                    <TextView
-                        android:id="@+id/SWSacerdote"
-                        android:layout_width="wrap_content"
-                        android:text="Si"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-
-                <LinearLayout
+                    android:id="@+id/txtGeneric"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginHorizontal="@dimen/margin_15"
@@ -59,7 +35,7 @@
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/laySac">
+                    app:layout_constraintTop_toBottomOf="@+id/toolbarModel">
 
                     <TextView
                         style="@style/StyleTxtTitleRegister"
@@ -84,6 +60,59 @@
                         android:text="@string/sign_up_to_have"
                         android:textColor="#000000"
                         android:textSize="@dimen/size_14" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/laySac"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="@dimen/margin_15"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtGeneric">
+
+                    <!--
+                        android:thumbTint="#81D51F"
+                        android:trackTint="#C3EC96"
+                    -->
+                    <Switch
+                        android:id="@+id/switch1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/margin_bottom_25"
+                        android:switchPadding="@dimen/global_margin_extra"
+                        android:text="@string/soy_sacerdote"
+                        android:textSize="16sp"
+                        android:trackTint="#C3EC96"
+                        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+                    <TextView
+                        android:id="@+id/SWSacerdote"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20sp"
+                        android:text="@string/ingresa_tu_n_mero_de_celular_para_identificarte"
+                        android:textAlignment="textStart"
+                        android:textColor="#192a73"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/contData"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="@dimen/margin_15"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/laySac">
 
                     <LinearLayout
                         android:id="@+id/rName"
@@ -105,12 +134,13 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/tilName"
+                            style="@style/StyleEdtGeneric"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:expandedHintEnabled="false"
                             app:endIconMode="custom"
                             app:errorIconDrawable="@drawable/ic_check_error"
-                            style="@style/StyleEdtGeneric">
+                            app:expandedHintEnabled="false">
+
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/etName"
                                 android:layout_width="match_parent"
@@ -151,12 +181,13 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/tilLastName"
+                            style="@style/StyleEdtGeneric"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:expandedHintEnabled="false"
                             app:endIconMode="custom"
                             app:errorIconDrawable="@drawable/ic_check_error"
-                            style="@style/StyleEdtGeneric">
+                            app:expandedHintEnabled="false">
+
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/etLastNameFather"
                                 android:layout_width="match_parent"
@@ -196,12 +227,13 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/tilLastNameMother"
+                            style="@style/StyleEdtGeneric"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:expandedHintEnabled="false"
                             app:endIconMode="custom"
                             app:errorIconDrawable="@drawable/ic_check_error"
-                            style="@style/StyleEdtGeneric">
+                            app:expandedHintEnabled="false">
+
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/etLastNameMother"
                                 android:layout_width="match_parent"
@@ -241,12 +273,13 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/tilNumberPhone"
+                            style="@style/StyleEdtGeneric"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:expandedHintEnabled="false"
                             app:endIconMode="custom"
                             app:errorIconDrawable="@drawable/ic_check_error"
-                            style="@style/StyleEdtGeneric">
+                            app:expandedHintEnabled="false">
+
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/etNumberPhone"
                                 android:layout_width="match_parent"
@@ -263,7 +296,14 @@
                                 android:textStyle="normal" />
                         </com.google.android.material.textfield.TextInputLayout>
 
-
+                        <Button
+                            android:id="@+id/btnEnviar"
+                            style="@style/StyleBtnLogIn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_top_20"
+                            android:text="@string/enviar"
+                            android:visibility="gone" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -331,12 +371,12 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/tilEmail"
+                            style="@style/StyleEdtGeneric"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:expandedHintEnabled="false"
-                            app:errorIconDrawable="@drawable/ic_check_error"
                             app:endIconMode="custom"
-                            style="@style/StyleEdtGeneric">
+                            app:errorIconDrawable="@drawable/ic_check_error"
+                            app:expandedHintEnabled="false">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/etEmail"
@@ -443,8 +483,8 @@
                             style="@style/StyleEdtGeneric"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:expandedHintEnabled="false"
                             app:errorIconDrawable="@null"
+                            app:expandedHintEnabled="false"
                             app:passwordToggleEnabled="true">
 
                             <com.google.android.material.textfield.TextInputEditText
@@ -462,6 +502,33 @@
                                 android:textStyle="normal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/UpdatePriest"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginHorizontal="@dimen/margin_15"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/rNewPassword">
+
+                        <TextView
+                            android:id="@+id/UpdateDataPriest"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20sp"
+                            android:textIsSelectable="true"
+                            android:text="@string/si_quieres_modificar_alg_n_dato_escribenos_a_iglesiadigital_arquidiocesismexico_org"
+                            android:textAlignment="textStart"
+                            android:textColor="#192a73"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:visibility="gone"/>
 
                     </LinearLayout>
 
