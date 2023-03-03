@@ -47,12 +47,13 @@ class PriestRegisterViewModel(val repository: Repository) : ViewModel() {
         activities: List<ActivitiesModel>,
         congregation: BaseOnlyId,
         stream: String,
-        flagDiocesanOrReligious : Int,
+        flagDiocesanOrReligious: Int,
         lifeStatus: BaseOnlyId,
         interestTopics: List<InterestTopic>
     ) {
         val validateForm: HashMap<String, String> = HashMap()
         var descriptionValidate = ""
+        var streamValidate = ""
 
         if (name.isEmpty())
             validateForm[Constants.KEY_NAME] = Constants.EMPTY_FIELD
@@ -90,6 +91,12 @@ class PriestRegisterViewModel(val repository: Repository) : ViewModel() {
             descriptionValidate = description
         }
 
+        if(stream.isEmpty()){
+            streamValidate = "Without"
+        }else{
+            streamValidate = stream
+        }
+
 
         val userId =
             eamxcu_preferences.getData(EAMXEnumUser.USER_ID.name, EAMXTypeObject.INT_OBJECT) as Int
@@ -123,7 +130,7 @@ class PriestRegisterViewModel(val repository: Repository) : ViewModel() {
                     ordination_date = ordinationDate,
                     description = descriptionValidate,
                     position = "Without",
-                    stream = stream,
+                    stream = streamValidate,
                     congregation = null,
                     activities = activities
                 )
@@ -142,7 +149,7 @@ class PriestRegisterViewModel(val repository: Repository) : ViewModel() {
                     ordination_date = ordinationDate,
                     description = descriptionValidate,
                     position = "Without",
-                    stream = stream,
+                    stream = streamValidate,
                     congregation = congregation,
                     activities = activities
                 )

@@ -80,9 +80,9 @@ class Repository(val context : Context) : ManagerCall() {
                     val responseDetail = getUserDetail(userId = user.id)
                     "Save profile -> success get detail $responseDetail".log()
                     saveDataUser(responseDetail.data)
-                    registerResponse.value = "Registro exitoso del sacerdote"
+                    registerResponse.value = "Se actualizaron tus datos correctamente."
                 }else{
-                    errorResponse.value = "Verifica que cancillería tenga tus datos, en caso de duda o aclaración envíar correo electrónico a la siguiente dirección cancilleria@arquidiocesismexico.org para que se autorice tu registro"
+                    errorResponse.value = "Verifica que cancilleria tenga tus datos. En caso de duda o aclaracion, enviar correo electronico a la siguiente dirección para autorizar tu registro: cancilleria@arquidiocesismexico.org"
                 }
             }
         }

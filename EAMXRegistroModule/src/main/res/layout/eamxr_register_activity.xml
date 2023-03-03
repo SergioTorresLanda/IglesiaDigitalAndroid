@@ -505,32 +505,37 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
+                    <TextView
                         android:id="@+id/UpdatePriest"
+                        android:textAlignment="center"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginHorizontal="@dimen/margin_15"
-                        android:layout_marginTop="20dp"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/rNewPassword">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_top_20"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:visibility="gone"
+                        android:textColor="#13277c"
+                        android:textStyle="bold"
+                        android:text="@string/updPriest" />
 
-                        <TextView
-                            android:id="@+id/UpdateDataPriest"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="20sp"
-                            android:textIsSelectable="true"
-                            android:text="@string/si_quieres_modificar_alg_n_dato_escribenos_a_iglesiadigital_arquidiocesismexico_org"
-                            android:textAlignment="textStart"
-                            android:textColor="#192a73"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:visibility="gone"/>
+                <LinearLayout
+                    android:id="@+id/UpdateDataPriest"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:visibility="gone"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-                    </LinearLayout>
+                    <TextView
+                        android:textIsSelectable="true"
+                        android:autoLink="web|all"
+                        android:textColorLink="@color/blue_toast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="iglesiadigital@arquidiocesismexico.org" />
+                </LinearLayout>
 
                     <Button
                         android:id="@+id/btnRegistrar"

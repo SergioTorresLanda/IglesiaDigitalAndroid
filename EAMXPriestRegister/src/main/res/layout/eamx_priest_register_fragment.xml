@@ -21,6 +21,7 @@
 
             <TextView
                 android:id="@+id/tvTitlePriest"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
@@ -44,14 +45,15 @@
                 android:fontFamily="sans-serif"
                 android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
                 android:text="@string/txt_registry_priest_description"
-                android:textColor="@color/textview_description_color"
+                android:textColor="@color/textview_text_color"
                 android:textSize="@dimen/font_size_14"
                 android:textStyle="normal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvTitlePriest" />
+                app:layout_constraintStart_toStartOf="parent"/>
+
 
             <TextView
                 android:id="@+id/tvGeneralInformation"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
@@ -68,20 +70,22 @@
 
             <EditText
                 android:id="@+id/etNamePriest"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/style_edittext"
                 android:digits="@string/digits_only_letters"
                 android:fontFamily="sans-serif-light"
                 android:hint="@string/txt_registry_priest_hint_name"
                 android:importantForAutofill="no"
+                android:enabled="false"
                 android:inputType="textPersonName"
                 android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
                 android:maxLength="@integer/name_field_size"
                 android:padding="@dimen/small_margin_padding"
                 android:textColor="@color/edittext_text_hint_color"
+                android:background="#F5F5F5"
                 android:textCursorDrawable="@drawable/color_cursor"
                 android:textSize="@dimen/font_size_14"
                 android:textStyle="normal"
@@ -90,11 +94,11 @@
 
             <EditText
                 android:id="@+id/etFatherSurname"
+                android:visibility="gone"
                 android:layout_width="@dimen/no_margin_padding"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/style_edittext"
                 android:digits="@string/digits_only_letters"
                 android:fontFamily="sans-serif-light"
                 android:hint="@string/txt_registry_priest_father_surname"
@@ -103,6 +107,7 @@
                 android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
                 android:maxLength="@integer/surname_field_size"
                 android:padding="@dimen/small_margin_padding"
+                android:background="#F5F5F5"
                 android:textColor="@color/edittext_text_hint_color"
                 android:textCursorDrawable="@drawable/color_cursor"
                 android:textSize="@dimen/font_size_14"
@@ -113,11 +118,12 @@
 
             <EditText
                 android:id="@+id/etMotherSurname"
+                android:visibility="gone"
                 android:layout_width="@dimen/no_margin_padding"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/very_small_margin_padding"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/style_edittext"
+                android:background="#F5F5F5"
                 android:digits="@string/digits_only_letters"
                 android:fontFamily="sans-serif-light"
                 android:hint="@string/txt_registry_priest_mother_surname"
@@ -147,7 +153,7 @@
                 android:textSize="@dimen/font_size_10"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etMotherSurname" />
+                app:layout_constraintTop_toBottomOf="@id/tvGeneralInformation" />
 
             <EditText
                 android:id="@+id/etDescription"
@@ -164,7 +170,7 @@
                 android:inputType="text|textMultiLine"
                 android:maxLength="@integer/description_field_size"
                 android:padding="@dimen/small_margin_padding"
-                android:textColor="@color/textedit_description_color"
+                android:textColor="@color/textview_text_color"
                 android:textSize="@dimen/font_size_13"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="parent"
@@ -217,21 +223,23 @@
                 app:layout_constraintStart_toStartOf="@+id/tvDateOne"
                 app:layout_constraintTop_toBottomOf="@+id/tvDateOne">
 
+                <!--
+                android:inputType="date"
+                android:text="@string/txt_registry_priest_mask_date"
+                -->
                 <TextView
                     android:id="@+id/tvBirthDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_margin_2"
                     android:layout_weight="1"
-                    android:background="@drawable/style_edittext"
                     android:clickable="true"
                     android:focusable="true"
                     android:fontFamily="sans-serif-light"
-                    android:inputType="date"
                     android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
+                    android:background="#F5F5F5"
                     android:maxLength="10"
                     android:padding="@dimen/small_margin_padding"
-                    android:text="@string/txt_registry_priest_mask_date"
                     android:textColor="@color/edittext_text_hint_color"
                     android:textSize="@dimen/font_size_14"
                     android:textStyle="normal" />
@@ -254,7 +262,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="@dimen/padding_margin_2"
                     android:layout_weight="1"
-                    android:background="@drawable/style_edittext"
+                    android:background="#F5F5F5"
                     android:clickable="true"
                     android:focusable="true"
                     android:fontFamily="sans-serif-light"
@@ -281,6 +289,7 @@
 
             <TextView
                 android:id="@+id/tvEmail"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
@@ -299,11 +308,12 @@
 
             <EditText
                 android:id="@+id/etEmail"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="@dimen/padding_margin_3"
-                android:background="@drawable/style_edittext"
+                android:background="#F5F5F5"
                 android:fontFamily="sans-serif-light"
                 android:hint="@string/txt_registry_priest_hint_email"
                 android:importantForAutofill="no"
@@ -445,6 +455,9 @@
                 app:layout_constraintTop_toBottomOf="@+id/rvActivity"
                 tools:ignore="TextFields" />
 
+            <!--
+
+            -->
             <EditText
                 android:id="@+id/etUrl"
                 android:layout_width="match_parent"
@@ -454,12 +467,12 @@
                 android:background="@drawable/style_edittext"
                 android:fontFamily="sans-serif-light"
                 android:hint="@string/txt_registry_priest_hint_streaming"
-                android:importantForAutofill="no"
                 android:inputType="textWebEmailAddress"
+                android:importantForAutofill="no"
                 android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
                 android:maxLength="@integer/url_stream_field_size"
                 android:padding="@dimen/small_margin_padding"
-                android:textColor="@color/edittext_text_hint_color"
+                android:textColor="@color/textview_text_color"
                 android:textSize="@dimen/font_size_14"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="parent"

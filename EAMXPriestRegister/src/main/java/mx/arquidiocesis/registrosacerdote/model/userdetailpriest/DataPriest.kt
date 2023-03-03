@@ -16,6 +16,8 @@ data class UserPriest(
     val phone_number: String,
     val pastoral_work: String?= null,
     val location_id: Int?= null,
+    val birthdate: String,
+    val ordination_date: String,
     val profile: String? = null,
     val image: String?= null,
     var email: String,

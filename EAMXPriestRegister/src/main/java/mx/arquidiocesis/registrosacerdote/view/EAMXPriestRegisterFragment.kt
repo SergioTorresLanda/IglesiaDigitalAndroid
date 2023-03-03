@@ -1,23 +1,20 @@
 package mx.arquidiocesis.registrosacerdote.view
 
-import android.app.DatePickerDialog
-import android.app.DatePickerDialog.OnDateSetListener
 import android.graphics.BitmapFactory
 import android.graphics.Typeface
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.SpannableString
 import android.text.Spanned
-import android.text.TextWatcher
 import android.text.style.StyleSpan
 import android.text.style.UnderlineSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.fragment.app.DialogFragment
-import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -29,9 +26,8 @@ import mx.arquidiocesis.eamxcommonutils.common.EAMXHome
 import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
 import mx.arquidiocesis.eamxcommonutils.model.ViewPagerModel
+import mx.arquidiocesis.eamxcommonutils.util.*
 import mx.arquidiocesis.eamxcommonutils.util.ViewPager.ViewPagerPrincipal
-import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
-import mx.arquidiocesis.eamxcommonutils.util.getViewModel
 import mx.arquidiocesis.registrosacerdote.R
 import mx.arquidiocesis.registrosacerdote.adapter.ActivitiesAdapter
 import mx.arquidiocesis.registrosacerdote.adapter.AdapterCustomSpinner
@@ -42,8 +38,8 @@ import mx.arquidiocesis.registrosacerdote.model.catalog.InterestTopic
 import mx.arquidiocesis.registrosacerdote.model.update.base.BaseOnlyId
 import mx.arquidiocesis.registrosacerdote.repository.Repository
 import mx.arquidiocesis.registrosacerdote.viewmodel.PriestRegisterViewModel
-import java.util.*
-import java.util.regex.Pattern
+import okhttp3.HttpUrl.Companion.toHttpUrl
+import retrofit2.http.Url
 import kotlin.collections.ArrayList
 
 
@@ -75,6 +71,7 @@ class EAMXPriestRegisterFragment : FragmentBase() {
     private var flagDiocesanOrReligious = 0
     private var birthDate = ""
     private var ordinationDate = ""
+    private var stream = ""
     private var fragment = DialogFragment()
 
     override fun onCreateView(
@@ -103,16 +100,41 @@ class EAMXPriestRegisterFragment : FragmentBase() {
             EAMXEnumUser.USER_MIDDLE_NAME.name,
             EAMXTypeObject.STRING_OBJECT
         ) as String
-
         val email = eamxcu_preferences.getData(
             EAMXEnumUser.USER_EMAIL.name,
             EAMXTypeObject.STRING_OBJECT
         ) as String
+        val ordinationDate = eamxcu_preferences.getData(
+            EAMXEnumUser.ORDINATION_DATE.name,
+            EAMXTypeObject.STRING_OBJECT
+        ) as String
+        val birthDate = eamxcu_preferences.getData(
+            EAMXEnumUser.BIRTHDATE.name,
+            EAMXTypeObject.STRING_OBJECT
+        ) as String
+        val description = eamxcu_preferences.getData(
+            EAMXEnumUser.DESCRIPTION.name,
+            EAMXTypeObject.STRING_OBJECT
+        ) as String
+        val stream = eamxcu_preferences.getData(
+            EAMXEnumUser.STREAM.name,
+            EAMXTypeObject.STRING_OBJECT
+        ) as String
 
         etNamePriest.text = Editable.Factory.getInstance().newEditable(name)
+        etNamePriest.isEnabled = false
         etFatherSurname.text = Editable.Factory.getInstance().newEditable(lastName)
+        etFatherSurname.isEnabled = false
         etMotherSurname.text = Editable.Factory.getInstance().newEditable(middleName)
+        etMotherSurname.isEnabled = false
         etEmail.text = Editable.Factory.getInstance().newEditable(email)
+        etEmail.isEnabled = false
+        tvBirthDate.text = Editable.Factory.getInstance().newEditable(birthDate.replace("-","/"))
+        tvBirthDate.isEnabled = false
+        tvOrdinationDate.text = Editable.Factory.getInstance().newEditable(ordinationDate.replace("-","/"))
+        tvOrdinationDate.isEnabled = false
+        etDescription.text = Editable.Factory.getInstance().newEditable(description)
+        etUrl.text = Editable.Factory.getInstance().newEditable(stream)
 
 
         priestRegisterViewModel.activitiesLiveData.observe(viewLifecycleOwner) {
@@ -257,7 +279,6 @@ class EAMXPriestRegisterFragment : FragmentBase() {
         showLoader()
         priestRegisterViewModel.getActivitiesList()
     }
-
     private fun initListener() {
         tvBirthDate.setOnClickListener { showDatePickerBirthDate() }
         ivBirthDate.setOnClickListener { showDatePickerBirthDate() }
@@ -271,7 +292,7 @@ class EAMXPriestRegisterFragment : FragmentBase() {
     }
 
 
-    private fun showDatePickerBirthDate() {
+    fun showDatePickerBirthDate() {
         val datePicker =
             DatePickerFragment(isMax = true) { day, month, year -> onBirthDate(day, month, year) }
         datePicker.show(parentFragmentManager, "datePicker")
@@ -335,15 +356,15 @@ class EAMXPriestRegisterFragment : FragmentBase() {
             etFatherSurname.text.toString(),
             etMotherSurname.text.toString(),
             etDescription.text.toString(),
-            birthDate,
-            ordinationDate,
+            tvBirthDate.text.toString().transformaData(),
+            tvOrdinationDate.text.toString().transformaData(),
             etEmail.text.toString(),
             activitiesList,
             BaseOnlyId(congregationValue),
             etUrl.text.toString(),
             flagDiocesanOrReligious,
             BaseOnlyId(lifeStatus),
-            interestTopicsList
+            interestTopicsList,
         )
     }
 

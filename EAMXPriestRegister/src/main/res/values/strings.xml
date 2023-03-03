@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="txt_registry_priest_title">Registro de Sacerdotes</string>
-    <string name="txt_registry_priest_description">Vamos a confirmar algunos datos para darte de alta como sacerdote dentro de la app Iglesia Digital.</string>
+    <string name="txt_registry_priest_description">Termina de actualizar los siguientes datos para darte de alta como sacerdote dentro de la app Iglesia digital.</string>
     <string name="txt_registry_priest_general_information">Datos personales</string>
     <string name="txt_registry_priest_hint_name">Nombre (s)</string>
     <string name="txt_registry_priest_hint_description">Descripción / Presentación</string>
@@ -14,8 +14,8 @@
     <string name="txt_registry_priest_activities_spinner">Actividades pastorales virtuales</string>
     <string name="txt_registry_priest_information_description">Descríbete en pocas palabras. ¿Qué te gustaría que las personas conozcan de tí? Años de sacerdocio, una frase que te inspire, etc.</string>
     <string name="txt_registry_priest_information_activies">Puedes agregar más de una actividad</string>
-    <string name="txt_registry_priest_message_streaming">Canal de streaming por el que transmites contenido a nombre propio <b>Ej. www.youtubestreamingchannel.com</b></string>
-    <string name="txt_registry_priest_hint_streaming">Canal de streaming</string>
+    <string name="txt_registry_priest_message_streaming">Red social principal que utilizas como sacerdote. <b>Ej. www.facebook.com/miPrefildeFB</b></string>
+    <string name="txt_registry_priest_hint_streaming">Red social</string>
     <string name="txt_registry_priest_icon_calendar">calendar</string>
     <string name="txt_registry_priest_error_services">Ocurrio un error</string>
     <string name="txt_registry_priest_error_field_empty">Campo obligatorio</string>
@@ -49,8 +49,8 @@
     <string name="digits_only_letters">qwertyuiopasdfghjklñzxcvbnm QWERTYUIOPASDFGHJKLÑZXCVBNMáóíéúÁÉÍÓÚ </string>
     <string name="digits_email">qwertyuiopasdfghjklñzxcvbnmQWERTYUIOPASDFGHJKLÑZXCVBNM1234567890._-@</string>
     <string name="digits_only_number_phone">0123456789</string>
-    <string name="title_dialog_warning">Atención</string>
-    <string name="email_to_error">cancilleria@arquidiocesismexico.org</string>
+    <string name="title_dialog_warning">Error</string>
+    <string name="email_to_error">Verifica que cancilleria tenga tus datos. En caso de duda o aclaracion, enviar correo electronico a la siguiente dirección para autorizar tu registro: cancilleria@arquidiocesismexico.org.</string>
     <string name="selected_congragation">Seleccione una orden o congregación</string>
     <string name="selected_activity">Seleccione al menos una actividad</string>
     <string name="format_date">dd/mm/aaaa</string>

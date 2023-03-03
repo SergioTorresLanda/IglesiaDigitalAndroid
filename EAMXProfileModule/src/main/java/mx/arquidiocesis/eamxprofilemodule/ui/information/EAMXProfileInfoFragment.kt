@@ -146,6 +146,7 @@ class EAMXProfileInfoFragment : FragmentBase() {
                 if (element.id == styleLife)
                     idxspStyle = index
             }
+
             spStyleLife.setSelection(idxspStyle)
 
             viewModelProfile.getTopics()
@@ -734,6 +735,17 @@ class EAMXProfileInfoFragment : FragmentBase() {
                 binding.llResponsibleCommunity.visibility = View.GONE
                 if (typeUser == PRIEST) {
                     binding.btnSave.text = "Continuar"
+                    binding.etName.isEnabled = false
+                    binding.etName.setBackgroundColor(-657931)
+                    binding.etMotherSurname.isEnabled = false
+                    binding.etMotherSurname.setBackgroundColor(-657931)
+                    binding.etFatherSurname.isEnabled = false
+                    binding.etFatherSurname.setBackgroundColor(-657931)
+                    binding.spStyleLife.isEnabled = false
+                    binding.spStyleLife.setBackgroundColor(-657931)
+                    binding.mssUpdate.visibility = View.VISIBLE
+                    binding.mssUpdateDataPriest.visibility = View.VISIBLE
+
                 }
             }
             SINGLE, MARRIED, WIDOWER -> {

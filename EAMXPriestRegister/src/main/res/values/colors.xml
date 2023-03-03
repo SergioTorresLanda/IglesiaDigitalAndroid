@@ -5,6 +5,7 @@
     <color name="text_button_color">#ffffff</color>
     <color name="textedit_description_color">#717171</color>
     <color name="textview_description_color">#a0a0a0</color>
+    <color name="textview_text_color">@color/black</color>
     <color name="edittext_text_hint_color">#717171</color>
     <color name="primaryColor">#13277c</color>
     <color name="white">#FFFFFFFF</color>

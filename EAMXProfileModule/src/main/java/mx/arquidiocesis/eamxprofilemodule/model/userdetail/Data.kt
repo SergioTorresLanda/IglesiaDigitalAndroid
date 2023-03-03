@@ -4,9 +4,7 @@ import com.google.gson.annotations.SerializedName
 import mx.arquidiocesis.eamxcommonutils.common.ModuleAdminEnabled
 import mx.arquidiocesis.eamxprofilemodule.model.ChurchAndDescriptionModel
 import mx.arquidiocesis.eamxprofilemodule.model.ChurchModel
-import mx.arquidiocesis.eamxprofilemodule.model.DataWithDescription
 import mx.arquidiocesis.eamxprofilemodule.model.update.base.ActivityChurchModel
-import java.net.URL
 
 data class Data(
     val User: User
@@ -18,11 +16,15 @@ data class User(
     val first_surname: String,
     val second_surname: String? = null,
     val phone_number: String,
+    val birthdate: String,
+    val ordination_day: String,
+    val description: String?,
     val pastoral_work: String? = null,
     val location_id: Int? = null,
     val profile: String? = null,
     var image: String? = null,
     var email: String,
+    var stream: String,
     var community: CommunityModel? = null,
     val life_status: LifeStatusModel? = null,
     val congregation: CongregationModel? = null,

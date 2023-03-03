@@ -182,6 +182,7 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
                             etNumberPhone.isEnabled = false
                             etEmail.setText(response.successData!!.fccorreo)
                             rEmail.visibility = View.VISIBLE
+                            etEmail.isEnabled = false
                             rPassword.visibility = View.VISIBLE
                             rNewPassword.visibility = View.VISIBLE
                             switch1.visibility = View.GONE
@@ -190,7 +191,7 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
                             SWSacerdote.visibility = View.GONE
                             UpdateDataPriest.visibility = View.VISIBLE
                             btnRegistrar.visibility = View.VISIBLE
-                            UpdateDataPriest.visibility = View.VISIBLE
+                            UpdatePriest.visibility = View.VISIBLE
                         }
                     } else {
                         UtilAlert.Builder().setTitle("¡Ups!")
@@ -199,7 +200,7 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
 
                         tilNumberPhone.isEmpty()
                         etNumberPhone.setText("")
-                        }
+                    }
                 }
                 EAMXStatusRequestEnum.FAILURE -> {
                     hideProgressBarCustom()
@@ -228,32 +229,6 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
                 }
                 EAMXStatusRequestEnum.NONE -> {
                     hideProgressBarCustom()
-                }
-            }
-        }
-        viewModelEAMX.openLoginFromActivity.observe(this) {
-            if (!it.result) {
-                setResult(Activity.RESULT_CANCELED)
-            } else {
-                UtilAlert.Builder()
-                    .setMessage("Registro completo")
-                    .setListener { _ ->
-                        setResult(Activity.RESULT_OK, it.data)
-                        finish()
-                    }
-                    .setIsCancel(false)
-                    .build()
-                    .show(supportFragmentManager)
-            }
-        }
-
-        viewModelEAMX.validationDataActionFromActivityPr.observe(this) {
-            when (it.statusValidation) {
-                EAMXStatusValidation.CORRECT -> viewModelEAMX.requestPrestSignUp(it.request)
-                EAMXStatusValidation.INCORRECT -> {
-                    UtilAlert.Builder().setMessage("Verifique sus datos").build()
-                        .show(supportFragmentManager, "")
-
                 }
             }
         }
@@ -413,7 +388,6 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
                 val i = Intent(Intent.ACTION_VIEW, uri)
                 startActivity(i)
             }
-
         }
             switch1.setOnCheckedChangeListener { buttonView, isChecked ->
                 if (isChecked) {

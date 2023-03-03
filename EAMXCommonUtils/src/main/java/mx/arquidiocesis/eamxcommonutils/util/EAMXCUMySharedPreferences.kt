@@ -90,6 +90,10 @@ class EAMXCUMySharedPreferences(context: Context) {
         get() = shared.getString(EAMXEnumUser.USER_EMAIL.name, "")
         set(value) = shared.edit().putString(EAMXEnumUser.USER_EMAIL.name, value).apply()
 
+    var stream: String?
+        get() = shared.getString(EAMXEnumUser.STREAM.name, "")
+        set(value) = shared.edit().putString(EAMXEnumUser.STREAM.name, value).apply()
+
     var pas4d: String?
         get() = shared.getString("password", null)
         set(value) = shared.edit().putString("password", value).apply()

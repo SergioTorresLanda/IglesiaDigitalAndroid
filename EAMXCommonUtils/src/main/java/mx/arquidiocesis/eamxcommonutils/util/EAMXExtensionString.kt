@@ -2,20 +2,25 @@ package mx.arquidiocesis.eamxcommonutils.util
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.os.Build
+import android.text.TextUtils
+import android.util.Base64
+import androidx.annotation.RequiresApi
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
-import android.graphics.BitmapFactory
-import android.text.TextUtils
-import android.util.Base64
-import java.io.ByteArrayOutputStream
 
 
 val EMAIL_ADDRESS_PATTERN_VALID: Pattern = Pattern.compile(
@@ -88,7 +93,34 @@ fun String.buildTextSuccessUrl(textNormal: String): String {
     }
     return url
 }
+fun String.transformaData(): String {
+    val patternLetterWithInitialMonths = Pattern.compile("[efmajsond]")
+    val dateReceivedString = this
+    val formatReceived = "dd/MM/yyyy"
+    val formatOut = "Y-MM-dd"
 
+    val simpleFormat = SimpleDateFormat(formatReceived, Locale("es", "MX"))
+    val dateReceived: Date? = simpleFormat.parse(dateReceivedString)
+    simpleFormat.applyPattern(formatOut)
+    val dateOk =
+        StringBuilder().append(dateReceived?.let { simpleFormat.format(it) } ?: kotlin.run { "" })
+
+    if (dateOk.isNotEmpty()) {
+        //This comparation is when day has one digit
+        when (patternLetterWithInitialMonths.matcher(dateOk.substring(3, 4).toLowerCase()).find()) {
+            true -> dateOk.setRange(3, 4, dateOk.substring(3, 4).toUpperCase())
+            //This comparation is when day has two digit
+            false -> when (patternLetterWithInitialMonths.matcher(
+                dateOk.toString().substring(2, 3).toLowerCase()
+            ).find()) {
+                true -> dateOk.setRange(2, 3, dateOk.substring(2, 3).toUpperCase())
+                false -> print("Not funding initial data")
+            }
+        }
+    }
+
+    return dateOk.toString()
+}
 fun String.transformDateYYYYMMddToDDMonthNameYYYY(): String {
     val patternLetterWithInitialMonths = Pattern.compile("[efmajsond]")
     val dateReceivedString = this

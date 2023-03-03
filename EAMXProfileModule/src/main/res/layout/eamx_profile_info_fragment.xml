@@ -641,6 +641,39 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_margin_7" />
 
+                <TextView
+                    android:id="@+id/mssUpdate"
+                    android:textAlignment="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_top_20"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:visibility="gone"
+                    android:textColor="#13277c"
+                    android:textStyle="bold"
+                    android:text="Si requieres modificar algún dato escríbenos a"
+                    app:layout_constraintTop_toBottomOf="@+id/rvThemesInterest"/>
+
+                <LinearLayout
+                    android:id="@+id/mssUpdateDataPriest"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:visibility="gone"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:textIsSelectable="true"
+                        android:autoLink="web|all"
+                        android:textColorLink="@color/blue_toast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="iglesiadigital@arquidiocesismexico.org" />
+                </LinearLayout>
+
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton

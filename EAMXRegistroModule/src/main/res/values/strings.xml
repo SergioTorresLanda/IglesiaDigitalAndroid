@@ -85,7 +85,7 @@
     <string name="eamx_resend_warning">No podrás solicitar otro código \nhasta pasados tres minutos</string>
     <string name="eamx_resend_error">Tu código no es correcto, por favor intenta de nuevo o solicita uno nuevo</string>
     <string name="enviar">Enviar</string>
-    <string name="si_quieres_modificar_alg_n_dato_escribenos_a_iglesiadigital_arquidiocesismexico_org">Si quieres modificar algún dato escribenos a iglesiadigital@arquidiocesismexico.org</string>
+    <string name="updPriest">Si requieres modificar algún dato escríbenos a</string>
     <string name="soy_sacerdote">Soy sacerdote</string>
     <string name="ingresa_tu_n_mero_de_celular_para_identificarte">Ingresa tu número de celular para identificarte.</string>
 </resources>
