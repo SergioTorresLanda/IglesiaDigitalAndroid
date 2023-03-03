@@ -81,6 +81,7 @@ class AdminModulesFragment : FragmentBase() {
             }
 
             cvLogOut.setOnClickListener {
+                eamxcu_preferences.saveData(EAMXEnumUser.GUEST.name,false)
                 (requireActivity() as EAMXSignOut).signOut(true)
                 /*MaterialAlertDialogBuilder(requireContext())
                     .setTitle("Aviso")

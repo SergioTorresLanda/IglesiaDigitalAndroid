@@ -25,4 +25,5 @@ object ConstansApp {
     external fun chSalt(): String
     external fun chSecretKey(): String
     external fun chIv(): String
+    external fun usrDummy(): String
 }

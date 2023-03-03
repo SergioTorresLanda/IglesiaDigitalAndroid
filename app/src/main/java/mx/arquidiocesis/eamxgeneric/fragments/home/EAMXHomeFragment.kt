@@ -315,14 +315,7 @@ class EAMXHomeFragment : EAMXBaseFragment() {
                                         .build()
                                         .show(childFragmentManager, tag)
                                 }
-                                else -> {
-                                    /*if (existRelease) {
-                                        cvSuggestions.visibility = View.VISIBLE
-                                    }
-                                    if (existSuggestion) {
-                                        cvNews.visibility = View.VISIBLE
-                                    }*/
-                                }
+                                else -> {}
                             }
                         } else {
                             "Flow COMMUNITY_RESPONSIBLE == NULL".log()
@@ -345,20 +338,8 @@ class EAMXHomeFragment : EAMXBaseFragment() {
                                 horizontalScrollView.visibility = View.GONE
                                 btnApoyar.visibility = View.GONE
                             }
-                            /*if (existRelease) {
-                                cvSuggestions.visibility = View.VISIBLE
-                            }
-                            if (existSuggestion) {
-                                cvNews.visibility = View.VISIBLE
-                            }*/
                         }
                     } else {
-                        /*if (existRelease) {
-                            cvNews.visibility = View.VISIBLE
-                        }
-                        if (existSuggestion) {
-                            cvSuggestions.visibility = View.VISIBLE
-                        }*/
                         var permissionType =
                             eamxcu_preferences.getData(
                                 EAMXEnumUser.USER_PERMISSION_TYPE.name,
@@ -422,12 +403,6 @@ class EAMXHomeFragment : EAMXBaseFragment() {
             callBack?.showToolbar(true, "$name $lastName")
             mBinding.FragmentLayoutMain.visibility = View.GONE
             horizontalScrollView.visibility = View.VISIBLE
-            /*if (existRelease) {
-                cvSuggestions.visibility = View.VISIBLE
-            }
-            if (existSuggestion) {
-                cvNews.visibility = View.VISIBLE
-            }*/
         }
     }
 
@@ -460,5 +435,15 @@ class EAMXHomeFragment : EAMXBaseFragment() {
             .setFragment(DetalleOracionFragment.newInstance())
             .setAllowStack(true)
             .build().nextWithReplace()
+    }
+
+    fun msgGuest(guest: Boolean): Boolean {
+        if (guest) {
+            UtilAlert.Builder()
+                .setTitle(getString(mx.arquidiocesis.registrosacerdote.R.string.title_dialog_warning))
+                .setMessage("Regístrate o inicia sesión para poder acceder a este módulo")
+                .build().show(childFragmentManager, "")
+        }
+        return guest
     }
 }

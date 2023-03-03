@@ -12,11 +12,9 @@ fun EAMXLoginActivity.requestSignUp() {
     mBinding.apply {
         email = etEmail.text.toString()
         pws = etPassword.text.toString()
-
         val arraylistValidations: ArrayList<EAMXValidationModel> = ArrayList()
         arraylistValidations.add(EAMXValidationModel(etEmail, EAMXTypeValidation.NOT_EMPTY, true, getString(R.string.enter_your_email)))
         arraylistValidations.add(EAMXValidationModel(etPassword, EAMXTypeValidation.NOT_EMPTY, true, getString(R.string.enter_your_password)))
-
         val pattern = Regex("[0-9]*")
         if(etEmail.text.toString().isNotEmpty()) {
             if (etEmail.text.toString().matches(pattern)) {
@@ -47,7 +45,6 @@ fun EAMXLoginActivity.requestSignUp() {
                 )
             }
         }
-
         viewModel.requestValidationSingIn(EAMXUserLoginRequest(email, pws), arraylistValidations)
     }
 }

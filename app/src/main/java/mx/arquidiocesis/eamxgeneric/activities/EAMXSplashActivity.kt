@@ -33,6 +33,7 @@ import mx.arquidiocesis.eamxcommonutils.util.EAMXCUMySharedPreferences
 import mx.arquidiocesis.eamxcommonutils.util.eamxLog
 //import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
 import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
+import mx.arquidiocesis.eamxcommonutils.util.log
 import mx.arquidiocesis.eamxgeneric.BuildConfig
 import mx.arquidiocesis.eamxgeneric.R
 import mx.arquidiocesis.eamxgeneric.config.RemoteConfigFirebase
@@ -42,7 +43,6 @@ import mx.arquidiocesis.eamxloginmodule.ui.EAMXLoginActivity
 
 open class EAMXSplashActivity : AppCompatActivity(), InstallStateUpdatedListener {
 
-    //private var firebaseAnalytics: EAMXFirebaseManager? = null
     private val appUpdateManager by lazy {
         AppUpdateManagerFactory.create(this)
     }
@@ -71,13 +71,6 @@ open class EAMXSplashActivity : AppCompatActivity(), InstallStateUpdatedListener
         //setContentView(mBinding.root)
         initSecondaryFirebaseInstance()
         checkUpdateApp()
-        /*firebaseAnalytics = EAMXFirebaseManager(applicationContext)
-        firebaseAnalytics?.setLogEvent("screen_view", Bundle().apply {
-            putString("flow", "view_form_card")
-            putString("section", "dontation")
-            putString("screen_class", "android_Home_Home")
-            putString("element", "sebastian")
-        })*/
     }
 
     private fun checkUpdateApp() {
@@ -98,19 +91,18 @@ open class EAMXSplashActivity : AppCompatActivity(), InstallStateUpdatedListener
                         if (forceVersion && updateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) codeResultUpdateForce else codeResultUpdate
                     )
                 } else openSession()
-            } catch (_: Exception){
+            } catch (_: Exception) {
                 openSession()
             }
         }
     }
 
     private fun reloadActivity() {
-        startActivity(Intent(this,this::class.java))
+        startActivity(Intent(this, this::class.java))
         finish()
     }
 
     private fun openSession() {
-
         if (!(eamxcu_preferences.getData(
                 EAMXEnumUser.SESSION.name,
                 EAMXTypeObject.BOOLEAN_OBJECT
@@ -200,12 +192,17 @@ open class EAMXSplashActivity : AppCompatActivity(), InstallStateUpdatedListener
         }
     }
 
-    private fun openPlaystore(){
+    private fun openPlaystore() {
         try {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$packageName")))
         } catch (e: ActivityNotFoundException) {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$packageName")))
-        }finally {
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://play.google.com/store/apps/details?id=$packageName")
+                )
+            )
+        } finally {
             finish()
         }
     }
