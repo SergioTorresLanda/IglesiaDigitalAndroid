@@ -69,7 +69,36 @@
                 app:layout_constraintEnd_toStartOf="@+id/imgNotification"
                 app:layout_constraintStart_toEndOf="@+id/imgUser"
                 app:layout_constraintTop_toBottomOf="@+id/txtSaludo"
-                tools:text="Carlos Morales" />
+                tools:text="Cargando..." />
+
+            <LinearLayout
+                android:id="@+id/ll_cuenta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="@dimen/margin_16"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toEndOf="@+id/imgUser"
+                app:layout_constraintTop_toBottomOf="@+id/txtNameUser"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_top_30"
+                    android:fontFamily="@font/spro_text_regular"
+                    android:text="@string/iniciar_sesi_n"
+                    android:textColor="@color/blue_terminos" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/spro_text_regular"
+                    android:text="@string/registrarmee"
+                    android:textColor="@color/blue_terminos" />
+
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/imgNotification"
@@ -183,7 +212,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:text="Titulo del fragment"/>
+                tools:text="Titulo del fragment" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

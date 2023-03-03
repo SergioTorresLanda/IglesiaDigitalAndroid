@@ -20,22 +20,30 @@ import mx.arquidiocesis.servicios.ui.ServicesMainFragment
 import mx.upax.formacion.ui.FormationFragment
 
 fun EAMXHomeFragment.initOnClickListener(signOut: EAMXSignOut) {
+    var guest = eamxcu_preferences.getData(
+        EAMXEnumUser.GUEST.name,
+        EAMXTypeObject.BOOLEAN_OBJECT
+    ) as Boolean
     mBinding.apply {
         cardLiveEvent.setOnClickListener {
-            if (cardLiveEvent.cardBackgroundColor.defaultColor == requireContext().getColor(R.color.color_card_eventos_exist))
-                eamxBackHandler.changeFragment(
-                    ProfileLiveFragment.newInstance(callBack!!),
-                    R.id.contentFragment,
-                    ProfileLiveFragment::class.java.simpleName
-                )
+            if (!msgGuest(guest)) {
+                if (cardLiveEvent.cardBackgroundColor.defaultColor == requireContext().getColor(R.color.color_card_eventos_exist))
+                    eamxBackHandler.changeFragment(
+                        ProfileLiveFragment.newInstance(callBack!!),
+                        R.id.contentFragment,
+                        ProfileLiveFragment::class.java.simpleName
+                    )
+            }
         }
 
         clRedSocial.setOnClickListener {
-            eamxBackHandler.changeFragment(
-                EAMXContentFragmentRedSocial.newInstance(callBack!!),
-                R.id.contentFragment,
-                EAMXContentFragmentRedSocial::class.java.simpleName
-            )
+            if (!msgGuest(guest)) {
+                eamxBackHandler.changeFragment(
+                    EAMXContentFragmentRedSocial.newInstance(callBack!!),
+                    R.id.contentFragment,
+                    EAMXContentFragmentRedSocial::class.java.simpleName
+                )
+            }
         }
 
         clOraciones.setOnClickListener {
@@ -55,49 +63,52 @@ fun EAMXHomeFragment.initOnClickListener(signOut: EAMXSignOut) {
         }
 
         clMiIglesia.setOnClickListener {
-            eamxBackHandler.changeFragment(
-                ProfileChurchFragment.newInstance(callBack!!),
-                R.id.contentFragment,
-                ProfileChurchFragment::class.java.simpleName
-            )
+            if (!msgGuest(guest)) {
+                eamxBackHandler.changeFragment(
+                    ProfileChurchFragment.newInstance(callBack!!),
+                    R.id.contentFragment,
+                    ProfileChurchFragment::class.java.simpleName
+                )
+            }
         }
 
         clCadenas.setOnClickListener {
-            eamxBackHandler.changeFragment(
-                EAMXCadenaOracionesFragment.newInstance(callBack!!),
-                R.id.contentFragment,
-                EAMXCadenaOracionesFragment::class.java.simpleName
-            )
+            if (!msgGuest(guest)) {
+                eamxBackHandler.changeFragment(
+                    EAMXCadenaOracionesFragment.newInstance(callBack!!),
+                    R.id.contentFragment,
+                    EAMXCadenaOracionesFragment::class.java.simpleName
+                )
+            }
         }
 
         clServicios.setOnClickListener {
-            eamxBackHandler.changeFragment(
-                ServicesMainFragment.newInstance(callBack!!),
-                R.id.contentFragment,
-                ServicesMainFragment::class.java.simpleName
-            )
+            if (!msgGuest(guest)) {
+                eamxBackHandler.changeFragment(
+                    ServicesMainFragment.newInstance(callBack!!),
+                    R.id.contentFragment,
+                    ServicesMainFragment::class.java.simpleName
+                )
+            }
         }
 
         clComunidades.setOnClickListener {
-            eamxBackHandler.changeFragment(
-                EAMXCommunitiesPrincipalFragment.newInstance(callBack!!, signOut, false),
-                R.id.contentFragment,
-                EAMXCommunitiesPrincipalFragment::class.java.simpleName
-            )
+            if (!msgGuest(guest)) {
+                eamxBackHandler.changeFragment(
+                    EAMXCommunitiesPrincipalFragment.newInstance(callBack!!, signOut, false),
+                    R.id.contentFragment,
+                    EAMXCommunitiesPrincipalFragment::class.java.simpleName
+                )
+            }
         }
         mBinding.btnApoyar.setOnClickListener {
-            eamxBackHandler.changeFragment(
-                ProfileDonacionesFragment.newInstance(),
-                R.id.contentFragment,
-                ProfileDonacionesFragment::class.java.simpleName
-            )
-//            EAMXPaymentFragment(callBack!!, R.id.framePrincipalLocal) {
-//                //mBinding.clViewGenmeral.visibility = if (it) View.VISIBLE else View.GONE
-//                //mBinding.framePrincipalLocal.visibility = if (it) View.GONE else View.VISIBLE
-//            }.show(
-//                childFragmentManager,
-//                ""
-//            )
+            if (!msgGuest(guest)) {
+                eamxBackHandler.changeFragment(
+                    ProfileDonacionesFragment.newInstance(),
+                    R.id.contentFragment,
+                    ProfileDonacionesFragment::class.java.simpleName
+                )
+            }
         }
     }
 }
@@ -118,7 +129,7 @@ fun EAMXHomeFragment.oracionesChange() {
     )
 }
 
-fun EAMXHomeFragment.IrFragment(f: Fragment,name:String) {
+fun EAMXHomeFragment.IrFragment(f: Fragment, name: String) {
     eamxBackHandler.changeFragment(
         f, //Fragmente
         R.id.contentFragment,
@@ -245,6 +256,4 @@ fun EAMXHomeFragment.setFullUserName() {
 
     callBack?.showToolbar(true, "$name $lastName ")
 }
-
-
 

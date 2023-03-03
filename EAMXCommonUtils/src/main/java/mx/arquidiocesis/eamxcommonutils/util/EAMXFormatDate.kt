@@ -1,5 +1,6 @@
 package mx.arquidiocesis.eamxcommonutils.util
 
+import android.annotation.SuppressLint
 import android.content.Context
 import mx.arquidiocesis.eamxcommonutils.R
 import java.text.SimpleDateFormat
@@ -39,7 +40,7 @@ open class EAMXFormatDate(val context: Context) {
         }
     }
 
-    fun diferencia(fecha: Long) : String{
+    fun diferencia(fecha: Long): String {
         val now = Date()
         val date = Date(fecha)
 
@@ -47,11 +48,17 @@ open class EAMXFormatDate(val context: Context) {
         val today = sdf.format(now).toInt()
         val yesterday = sdf.format(date).toInt()
 
-        return when(today - yesterday){
-                0 -> { context.getString(R.string.today, time(date)) }
-                1 -> { context.getString(R.string.yesterday, time(date)) }
-                2 -> { day(date) }
-                else -> dayMonth(date)
+        return when (today - yesterday) {
+            0 -> {
+                context.getString(R.string.today, time(date))
+            }
+            1 -> {
+                context.getString(R.string.yesterday, time(date))
+            }
+            2 -> {
+                day(date)
+            }
+            else -> dayMonth(date)
         }.capitalize()
     }
 
@@ -66,7 +73,12 @@ open class EAMXFormatDate(val context: Context) {
     }
 
     fun dayMonth(date: Date): String {
-        val sdf = SimpleDateFormat("dd MMMM", Locale.forLanguageTag("es-MX"))
+        val dateFormat = SimpleDateFormat("yyyy", Locale.forLanguageTag("es-MX"))
+        val year_diff = dateFormat.format(Date()).toInt() - dateFormat.format(date).toInt()
+        val sdf = SimpleDateFormat(
+            if (year_diff == 0) "dd MMMM" else "dd MMMM yyyy",
+            Locale.forLanguageTag("es-MX")
+        )
         return sdf.format(date)
     }
 
@@ -82,9 +94,12 @@ open class EAMXFormatDate(val context: Context) {
     }
 }
 
-fun dateFormatString(format: String = "yyyy-MM-dd",calendar: Calendar = Calendar.getInstance()): String =
-    SimpleDateFormat(format,Locale("es","MX")).format(calendar.time)
+fun dateFormatString(
+    format: String = "yyyy-MM-dd",
+    calendar: Calendar = Calendar.getInstance(),
+): String =
+    SimpleDateFormat(format, Locale("es", "MX")).format(calendar.time)
 
 fun String.toCalendar(pattern: String = "yyyy-MM-dd"): Calendar = Calendar.getInstance().apply {
-    time = SimpleDateFormat(pattern,Locale("es","MX")).parse(this@toCalendar)
+    time = SimpleDateFormat(pattern, Locale("es", "MX")).parse(this@toCalendar)
 }

@@ -54,7 +54,9 @@ class EAMXFollowFragment(
 
     //Provicional
     var cargado = false
-    var maximo = 10
+    var maximo = 21
+    var maximo_follow = 29
+    var maximo_followes = 29
 
     val viewModel: RedSocialViewModel by lazy {
         getViewModel {
@@ -73,7 +75,6 @@ class EAMXFollowFragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showLoader()
-        idUser.toString() + "red_social___".log()
         viewModel.requestAllpostMi(idUser)
         initObservers()
         binding.apply {
@@ -191,13 +192,14 @@ class EAMXFollowFragment(
                     }
                 }
                 resultModel.Pagination?.let {
-                    if (resultModel.Pagination.hasMore) {
+                    if (resultModel.Pagination.hasMore && maximo_follow > 0) {
+                        maximo_follow--
                         viewModel.getFollow(type, resultModel.Pagination.next, idUser)
                     } else {
                         followAdapter = FollowAdapter(
                             listFollow
-                        ) { //item ->
-                            //seguir(item, 1)
+                        ) { item ->
+                            seguir(item, 1)
                         }
                         type = 2
                         new = true
@@ -205,7 +207,6 @@ class EAMXFollowFragment(
                     }
                 }
             }
-
         }
         viewModel.reponseFollowes.observe(viewLifecycleOwner) {
             if (new) {
@@ -219,7 +220,8 @@ class EAMXFollowFragment(
                     }
                 }
                 resultModel.Pagination?.let {
-                    if (resultModel.Pagination.hasMore) {
+                    if (resultModel.Pagination.hasMore && maximo_followes > 0) {
+                        maximo_followes--
                         viewModel.getFollow(type, resultModel.Pagination.next, idUser)
                     } else {
                         followesAdapter = FollowAdapter(
@@ -231,7 +233,6 @@ class EAMXFollowFragment(
                     }
                 }
             }
-
         }
         viewModel.reponseFollowPost.observe(viewLifecycleOwner) {
             new = true
@@ -285,7 +286,7 @@ class EAMXFollowFragment(
                 0 -> {
                     tab.setCustomView(R.layout.item_perfile)
                     tab.customView?.findViewById<TextView>(R.id.tvConteo)?.text =
-                        listPost.size.toString()
+                        (if(listPost.size>100) 100 else listPost.size).toString()
                     tab.customView?.findViewById<TextView>(R.id.tvCategoria)?.text = "Publicaciones"
                 }
                 1 -> {

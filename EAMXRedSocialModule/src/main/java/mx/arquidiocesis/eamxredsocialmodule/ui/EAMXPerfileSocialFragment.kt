@@ -22,7 +22,7 @@ class EAMXPerfileSocialFragment : FragmentBase() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         initObservers()
         binding = EamxPerfilFragmentBinding.inflate(inflater, container, false)
@@ -56,15 +56,7 @@ class EAMXPerfileSocialFragment : FragmentBase() {
         }
 
     }
-     fun initObservers() {
 
-
-    }
-
-     fun initView() {
-
-    }
-
-
-
+    fun initObservers() {}
+    fun initView() {}
 }

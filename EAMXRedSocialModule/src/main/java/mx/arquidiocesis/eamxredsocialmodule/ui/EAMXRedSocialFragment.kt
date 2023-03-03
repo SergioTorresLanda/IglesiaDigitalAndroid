@@ -3,7 +3,6 @@ package mx.arquidiocesis.eamxredsocialmodule.ui
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,10 +43,9 @@ const val SEARCH = "SEARCH"
 const val FOLLOW = "FOLLOW"
 const val UNFOLLOW = "UNFOLLOW"
 
-class EAMXRedSocialFragment(val isPrincipal: Boolean, val id_user: Int) : FragmentBase() {
+class EAMXRedSocialFragment(val isPrincipal: Boolean, var id_user: Int) : FragmentBase() {
 
     lateinit var binding: EamxRedSocialFragmentBinding
-
     lateinit var viewmodel: RedSocialViewModel
     lateinit var adapter: EAMXPublicationsAllAdapter
     lateinit var mBottomSheetFragment: EAMXPostFragment
@@ -59,95 +57,20 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, val id_user: Int) : Fragme
     var istFirst = true
     var maximo = 0
     var list = listOf<ResultMultiProfileModel>()
-
     lateinit var resultModel: ResultModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
+        maximo = if (isPrincipal) maximo else 21
         viewmodel = RedSocialViewModel(Repository(requireContext()))
-        initObservers()
         binding = EamxRedSocialFragmentBinding.inflate(inflater, container, false)
+        initObservers()
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        activity?.let {
-            EAMXFirebaseManager(it).setLogEvent("screen_view", Bundle().apply {
-                putString("screen_class", "Home_RedSocial")
-            })
-        }
-        initView()
-    }
-
-    fun initElements() {
-        binding.apply {
-            //txtName.text = nameCompleted
-            tvNew.setOnClickListener {
-                model.value = null
-                showBottonSheeat()
-
-            }
-            val idUser = eamxcu_preferences.getData(
-                EAMXEnumUser.USER_ID_REDSOCIAL.name,
-                EAMXTypeObject.INT_OBJECT
-            ) as Int
-            val name =
-                eamxcu_preferences.getData(EAMXEnumUser.USER_NAME.name, EAMXTypeObject.STRING_OBJECT)
-                    .toString()
-            val lastName = eamxcu_preferences.getData(
-                EAMXEnumUser.USER_LAST_NAME.name,
-                EAMXTypeObject.STRING_OBJECT
-            ) as String
-            val middleName = eamxcu_preferences.getData(
-                EAMXEnumUser.USER_MIDDLE_NAME.name,
-                EAMXTypeObject.STRING_OBJECT
-            ) as String
-            val Image = eamxcu_preferences.getData(
-                EAMXEnumUser.URL_PICTURE_PROFILE_USER.name,
-                EAMXTypeObject.STRING_OBJECT
-            ) as String
-            val nameCompleted = "$name $lastName $middleName"
-            tvMiRed.setOnClickListener {
-                changeFragment(
-                    EAMXFollowFragment(idUser,nameCompleted,Image)
-                )
-            }
-            ivUserImage.setOnClickListener {
-                changeFragment(
-                    EAMXFollowFragment(idUser,nameCompleted,Image)
-                )
-            }
-            svBusarRed.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
-                androidx.appcompat.widget.SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String?): Boolean {
-                    search()
-                    return false
-                }
-
-                override fun onQueryTextChange(newText: String?): Boolean {
-                    newText?.let {
-                    }
-                    return false
-                }
-            })
-            ibBusacar.setOnClickListener {
-                search()
-            }
-            ImagenProfile().loadImageProfile(ivUser, requireContext())
-            swrRefresh.setColorSchemeResources(R.color.primaryColor)
-            swrRefresh.setOnRefreshListener {
-                getAllPost()
-            }
-        }
-
-
-    }
-
     fun initObservers() {
-
         viewmodel.responseAllPost.observe(viewLifecycleOwner) { item ->
             item?.let { i ->
                 i.result?.let { r ->
@@ -164,7 +87,6 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, val id_user: Int) : Fragme
                             if (isPrincipal) {
                                 resultModel.posts
                             } else {
-                                Log.e("red_social",adapter.items.size.toString())
                                 resultModel.posts.filter { it.author.id == id_user }
                             }
                         )
@@ -173,22 +95,17 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, val id_user: Int) : Fragme
                     resultModel.pagination?.let { p ->
                         if (p.hasMore && maximo > 0) {
                             maximo--
-                            viewmodel.requestAllpost(p.next)
+                            viewmodel.requestAllpostMi(id_user, p.next)
                         } else {
-                            //showSkeleton(false)
                             cargado = true
                             binding.swrRefresh.isRefreshing = false
                         }
                     }
-
                 }
-
             }
             val prevSize = adapter.items.size
             if (prevSize != 0) {
                 adapter.notifyItemRangeInserted(prevSize, adapter.items.count() - 1)
-            } else {
-
             }
         }
         viewmodel.responseDelete.observe(viewLifecycleOwner) {
@@ -209,6 +126,7 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, val id_user: Int) : Fragme
             it.result?.let {
                 list = it
             }
+            initElements()
             getAllPost()
             showSkeleton(false)
         }
@@ -233,6 +151,16 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, val id_user: Int) : Fragme
         }
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        activity?.let {
+            EAMXFirebaseManager(it).setLogEvent("screen_view", Bundle().apply {
+                putString("screen_class", "Home_RedSocial")
+            })
+        }
+        initView()
+    }
+
     fun initView() {
         if (!isPrincipal) {
             binding.apply {
@@ -247,37 +175,95 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, val id_user: Int) : Fragme
             showSkeleton(true)
             viewmodel.getProfile()
         } else {
+            initElements()
             getAllPost()
         }
-        initElements()
+    }
 
+    fun initElements() {
+        binding.apply {
+            tvNew.setOnClickListener {
+                model.value = null
+                showBottonSheeat()
+            }
+            val idUser = eamxcu_preferences.getData(
+                EAMXEnumUser.USER_ID_REDSOCIAL.name,
+                EAMXTypeObject.INT_OBJECT
+            ) as Int
+            val name = eamxcu_preferences.getData(
+                EAMXEnumUser.USER_NAME.name,
+                EAMXTypeObject.STRING_OBJECT
+            ) as String
+            val lastName = eamxcu_preferences.getData(
+                EAMXEnumUser.USER_LAST_NAME.name,
+                EAMXTypeObject.STRING_OBJECT
+            ) as String
+            val middleName = eamxcu_preferences.getData(
+                EAMXEnumUser.USER_MIDDLE_NAME.name,
+                EAMXTypeObject.STRING_OBJECT
+            ) as String
+            val Image = eamxcu_preferences.getData(
+                EAMXEnumUser.URL_PICTURE_PROFILE_USER.name,
+                EAMXTypeObject.STRING_OBJECT
+            ) as String
+            id_user = if (isPrincipal) idUser else id_user
+            val nameCompleted = "$name $lastName $middleName"
+            tvMiRed.setOnClickListener {
+                changeFragment(
+                    EAMXFollowFragment(
+                        idUser,
+                        nameCompleted,
+                        Image
+                    )
+                )
+            }
+            ivUserImage.setOnClickListener {
+                changeFragment(
+                    EAMXFollowFragment(
+                        idUser,
+                        nameCompleted,
+                        Image
+                    )
+                )
+            }
+            svBusarRed.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+                androidx.appcompat.widget.SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    search()
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    newText?.let {}
+                    return false
+                }
+            })
+            ibBusacar.setOnClickListener { search() }
+            ImagenProfile().loadImageProfile(ivUser, requireContext())
+            swrRefresh.setColorSchemeResources(R.color.primaryColor)
+            swrRefresh.setOnRefreshListener { getAllPost() }
+        }
     }
 
     fun selectRow(item: PostModel) {
-        val bundle = Bundle()
-        bundle.putParcelable(EAMXEnumUser.PUBLICATIONS.name, item)
         if (item.content.urlValidator()) {
-            val uri = Uri.parse(item.content)
-            val i = Intent(Intent.ACTION_VIEW, uri)
-            startActivity(i)
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(item.content)))
         } else {
-            changeFragment(bundle, EAMXDetailFragment())
+            changeFragment(EAMXDetailFragment(), Bundle().apply {
+                putParcelable(EAMXEnumUser.PUBLICATIONS.name, item)
+            })
         }
     }
 
     fun getAllPost() {
-        adapter = EAMXPublicationsAllAdapter(requireContext(), list, viewmodel.getSuper(),isPrincipal)
+        adapter =
+            EAMXPublicationsAllAdapter(requireContext(), list, viewmodel.getSuper(), isPrincipal)
         adapter.items = arrayListOf<PostModel>()
         setupRecyclerView()
         click()
-        maximo = 0
+        //maximo = 0
         //showSkeleton(true)
-        viewmodel.requestAllpost()
-    }
-
-    fun dismmisPost() {
-        mBottomSheetFragment.dismiss()
-        getAllPost()
+        viewmodel.requestAllpostMi(id_user)
     }
 
     fun showBottonSheeat() {
@@ -294,18 +280,17 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, val id_user: Int) : Fragme
     fun rechargePost() {
         cargado = false
         if (resultModel.pagination!!.hasMore) {
-            maximo = 0
+            //maximo = 0
             //showSkeleton(true)
-            viewmodel.requestAllpost(resultModel.pagination!!.next)
+            viewmodel.requestAllpostMi(id_user, resultModel.pagination!!.next)
+            binding.swrRefresh.isRefreshing = true
         } else {
             binding.swrRefresh.isRefreshing = false
         }
-
     }
 
     fun click() {
         adapter.onItemClickListener = { item, Etiqueta ->
-            Log.d("red_social",Etiqueta)
             when (Etiqueta) {
                 EDITAR -> {
                     model.value = item
@@ -322,23 +307,16 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, val id_user: Int) : Fragme
                                     //showSkeleton(true)
                                     viewmodel.deletePost(item.id)
                                 }
-                                UtilAlert.ACTION_CANCEL -> {
-
-                                }
+                                UtilAlert.ACTION_CANCEL -> {}
                             }
                         }
                         .build()
                         .show(childFragmentManager, tag)
                 }
                 COMENTARIO -> {
-                    changeFragment(
-                        EAMXComentFragment(item,list)
-                    )
-
+                    changeFragment(EAMXComentFragment(item, list))
                 }
-                COMPARTIR -> {
-
-                }
+                COMPARTIR -> {}
                 LIKE -> {
                     //showSkeleton(true)
                     viewmodel.reactPost(item.id)
@@ -348,13 +326,16 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, val id_user: Int) : Fragme
                         showSkeleton(true)
                         viewmodel.reactDel(it.id)
                     }
-
                 }
-                SEGUIR -> {
-
-                }
+                SEGUIR -> {}
                 PERFIL -> {
-                    changeFragment(EAMXFollowFragment(item.author.id, item.author.name, item.author.image))
+                    changeFragment(
+                        EAMXFollowFragment(
+                            item.author.id,
+                            item.author.name,
+                            item.author.image
+                        )
+                    )
                 }
                 "" -> {
                     selectRow(item)
@@ -378,34 +359,26 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, val id_user: Int) : Fragme
     }
 
     fun search() {
-        if (binding.svBusarRed.query.isNotEmpty()) {
-            var bundle = Bundle()
-            bundle.putString(SEARCH, binding.svBusarRed.query.toString())
-            changeFragment(
-                bundle,
-                EAMXSearchFragment()
-            )
-
+        binding.svBusarRed.apply {
+            if (query.isNotEmpty()) {
+                changeFragment(EAMXSearchFragment(), Bundle().apply {
+                    putString(SEARCH, query.toString())
+                })
+            }
         }
     }
 
-    fun changeFragment(bundle: Bundle, fragment: Fragment) {
-        NavigationFragment.Builder()
-            .setActivity(requireActivity())
-            .setView(requireView().parent as ViewGroup)
-            .setFragment(fragment)
-            .setBundle(bundle)
-            .build().nextWithReplace()
-
-    }
-
-    fun changeFragment(fragment: Fragment) {
-        NavigationFragment.Builder()
-            .setActivity(requireActivity())
-            .setView(requireView().parent as ViewGroup)
-            .setFragment(fragment)
-            .setAllowStack(true)
-            .build().nextWithReplace()
-
+    fun changeFragment(fragment: Fragment, bundle: Bundle? = null) {
+        NavigationFragment.Builder().apply {
+            setActivity(requireActivity())
+            setView(requireView().parent as ViewGroup)
+            setFragment(fragment)
+            if (bundle != null) {
+                setBundle(bundle)
+            } else {
+                setAllowStack(true)
+            }
+            build().nextWithReplace()
+        }
     }
 }

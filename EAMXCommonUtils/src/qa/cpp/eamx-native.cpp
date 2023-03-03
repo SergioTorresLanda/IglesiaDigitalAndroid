@@ -103,3 +103,9 @@ Java_mx_arquidiocesis_eamxcommonutils_application_ConstansApp_chIv(JNIEnv *env, 
     std::string base_url = "MTczNGRmOWEzYzVmYmE4OA==";
     return env->NewStringUTF(base_url.c_str());
 }
+
+extern "C" JNIEXPORT jstring JNICALL
+Java_mx_arquidiocesis_eamxcommonutils_application_ConstansApp_usrDummy(JNIEnv *env, jobject) {
+    std::string base_url = "CredencialesDummyAppQA";
+    return env->NewStringUTF(base_url.c_str());
+}

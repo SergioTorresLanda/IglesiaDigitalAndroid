@@ -3,6 +3,7 @@ package mx.arquidiocesis.eamxloginmodule.ui
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
+import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
@@ -15,10 +16,13 @@ import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.ViewModelProvider
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.eamxl_login_activity.*
 import mx.arquidiocesis.eamxcommonutils.api.core.errorresponse.EAMXErrorResponseEnum
 import mx.arquidiocesis.eamxcommonutils.api.core.status.EAMXStatusRequestEnum
 import mx.arquidiocesis.eamxcommonutils.application.AppMyConstants
+import mx.arquidiocesis.eamxcommonutils.application.ConstansApp
 import mx.arquidiocesis.eamxcommonutils.application.validation.EAMXInternetAvailability
 import mx.arquidiocesis.eamxcommonutils.application.validation.EAMXStatusValidation
 import mx.arquidiocesis.eamxcommonutils.application.validation.EAMXValidationModel
@@ -50,6 +54,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
     private lateinit var biometricPrompt: BiometricPrompt
     private lateinit var promptInfo: BiometricPrompt.PromptInfo
     private var bio = false
+    private var noInvitado = false
     private var doubleBackToExitPressedOnce = false
     override fun getLayout() = R.layout.eamxl_login_activity
 
@@ -78,7 +83,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
 
         viewModelProfile.responseUserDetail.observe(this) { dataUser ->
             hideProgressBarCustom()
-            "FINALIZO GETDETAIL".log()
+            "FINALIZO GETDETAIL ${isGUEST()}".log()
             eamxcu_preferences.apply {
                 dataUser.data.User.let { data ->
                     saveData(EAMXEnumUser.USER_ID.name, data.id)
@@ -120,11 +125,13 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                             ) as String
                             val actUse = etEmail.text.toString()
                             if (number != actUse || email != actUse) {
+                                var guest = isGUEST()
                                 removeFile()
                                 saveData(
                                     EAMXEnumUser.USER_PASSWORD.name,
                                     etPassword.text.toString()
                                 )
+                                saveData(EAMXEnumUser.GUEST.name, guest)
                             }
                         }
                         response.successData?.UserAttributes?.apply {
@@ -151,53 +158,54 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                     )
                     if (EAMXInternetAvailability.isNetworkAvailable(this@EAMXLoginActivity)) {
 
-                    when (response.errorData) {
-                        EAMXErrorResponseEnum.USER_IS_NOT_CONFIRMED.messageError,
-                        EAMXErrorResponseEnum.USER_IS_NOT_CONFIRMED_QA.messageError -> {
+                        when (response.errorData) {
+                            EAMXErrorResponseEnum.USER_IS_NOT_CONFIRMED.messageError,
+                            EAMXErrorResponseEnum.USER_IS_NOT_CONFIRMED_QA.messageError,
+                            -> {
 
-                            val userValue = if (mBinding.etEmail.text.toString().isDigitsOnly())
-                                "+52${mBinding.etEmail.text}" else mBinding.etEmail.text.toString()
+                                val userValue = if (mBinding.etEmail.text.toString().isDigitsOnly())
+                                    "+52${mBinding.etEmail.text}" else mBinding.etEmail.text.toString()
 
-                            UtilAlert.Builder()
-                                .setTitle("Atención")
-                                .setMessage(getString(R.string.your_user_already_exists_confirm_to_login))
-                                .setTextButtonOk("Solicitar código")
-                                .setListener {
-                                    if (it.toString() == "ACCEPT") {
-                                        startActivity(
-                                            Intent(this, EAMXConfirmCodeActivity::class.java)
-                                                .putExtra(
-                                                    EAMXEnumUser.USER_EMAIL.name,
-                                                    userValue
-                                                )
-                                                .putExtra(
-                                                    AppMyConstants.RESEND_CODE_END_POINT,
-                                                    AppMyConstants.RESEND_CODE_END_POINT
-                                                )
-                                                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                                                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                                        )
+                                UtilAlert.Builder()
+                                    .setTitle("Atención")
+                                    .setMessage(getString(R.string.your_user_already_exists_confirm_to_login))
+                                    .setTextButtonOk("Solicitar código")
+                                    .setListener {
+                                        if (it.toString() == "ACCEPT") {
+                                            startActivity(
+                                                Intent(this, EAMXConfirmCodeActivity::class.java)
+                                                    .putExtra(
+                                                        EAMXEnumUser.USER_EMAIL.name,
+                                                        userValue
+                                                    )
+                                                    .putExtra(
+                                                        AppMyConstants.RESEND_CODE_END_POINT,
+                                                        AppMyConstants.RESEND_CODE_END_POINT
+                                                    )
+                                                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                                                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                            )
+                                        }
                                     }
-                                }
-                                .build().show(supportFragmentManager, "")
+                                    .build().show(supportFragmentManager, "")
 
 
+                            }
+                            else -> {
+                                UtilAlert.Builder()
+                                    .setTitle("Atención")
+                                    .setMessage(getString(R.string.friendly_message))
+                                    .build().show(supportFragmentManager, "")
+                            }
                         }
-                        else -> {
-                            UtilAlert.Builder()
-                                .setTitle("Atención")
-                                .setMessage(getString(R.string.friendly_message))
-                                .build().show(supportFragmentManager, "")
-                        }
+                    } else {
+                        UtilAlert.Builder()
+                            .setTitle("Atención")
+                            .setMessage(getString(R.string.no_internet_connection))
+                            .build().show(supportFragmentManager, "")
                     }
-                } else {
-                UtilAlert.Builder()
-                    .setTitle("Atención")
-                    .setMessage(getString(R.string.no_internet_connection))
-                    .build().show(supportFragmentManager, "")
-            }
 
-            }
+                }
                 EAMXStatusRequestEnum.NONE -> {
                     hideProgressBarCustom()
                 }
@@ -230,7 +238,6 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                 EAMXStatusValidation.INCORRECT -> {
                     UtilAlert.Builder()
                         .setTitle("Atención")
-                            //
                         .setMessage(it.errorMessage)
                         .build().show(supportFragmentManager, "")
                 }
@@ -240,7 +247,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
 
     override fun initView() {
         hideLogin()
-        mBinding.btnRegistrar.setOnClickListener {
+        btnRegistrar.setOnClickListener {
             startActivityForResult(
                 Intent(
                     this@EAMXLoginActivity,
@@ -248,8 +255,12 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                 ), EAMXEnums.CONFIRM_CODE.code
             )
         }
-        mBinding.btnLogin.setOnClickListener {
+        btnLogin.setOnClickListener {
             showLogin()
+        }
+        btnContinuarSinRegistro.setOnClickListener {
+            eamxcu_preferences.saveData(EAMXEnumUser.GUEST.name, true)
+            ingrsoGUEST()
         }
         mBinding.apply {
             mBinding.etEmail.setText("")
@@ -259,24 +270,17 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                 EAMXTypeObject.STRING_OBJECT
             ) as String
             pass.trim()
-            if (pass.isEmpty()){
-                highlightButton(mBinding.btnRegistrar)
-            }else {
-                highlightButton(mBinding.btnLogin)
+            if (pass.isEmpty()||isGUEST()) {
+                highlightButton(btnRegistrar)
+            } else {
+                highlightButton(btnLogin)
                 tvBiometric.visibility = View.VISIBLE
                 hideLogin()
             }
             btnIngresar.setOnClickListener {
-               // tvBiometric.visibility = View.VISIBLE
-                if (EAMXInternetAvailability.isNetworkAvailable(this@EAMXLoginActivity)) {
-                    requestSignUp()
-
-                } else {
-                    UtilAlert.Builder()
-                        .setTitle("Atención")
-                        .setMessage(getString(R.string.no_internet_connection))
-                        .build().show(supportFragmentManager, "")
-                }
+                // tvBiometric.visibility = View.VISIBLE
+                noInvitado = true
+                ingresar()
             }
             tvForgotPassword.setOnClickListener {
                 mBinding.etEmail.setText("")
@@ -289,6 +293,45 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                 )
             }
             toolbarModelLogin.btnBack.setOnClickListener { finish() }
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        ingrsoGUEST()
+    }
+
+    private fun ingrsoGUEST() {
+        if (isGUEST()) {
+            // Access a Cloud Firestore instance from your Activity
+            val db = Firebase.firestore
+            db.collection(ConstansApp.usrDummy())
+                .whereEqualTo("activo", true)
+                .get()
+                .addOnSuccessListener { result ->
+                    for (document in result) {
+                        ("${document.id} => ${document.data["usuario"]}").log()
+                        mBinding.apply {
+                            etEmail.setText(document.data["usuario"].toString())
+                            etPassword.setText(document.data["contrasena"].toString())
+                            ingresar()
+                        }
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    ("Error getting documents." + exception).log()
+                }
+        }
+    }
+
+    private fun ingresar() {
+        if (EAMXInternetAvailability.isNetworkAvailable(this@EAMXLoginActivity)) {
+            requestSignUp()
+        } else {
+            UtilAlert.Builder()
+                .setTitle("Atención")
+                .setMessage(getString(R.string.no_internet_connection))
+                .build().show(supportFragmentManager, "")
         }
     }
 
@@ -310,7 +353,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
             object : BiometricPrompt.AuthenticationCallback() {
                 override fun onAuthenticationError(
                     errorCode: Int,
-                    errString: CharSequence
+                    errString: CharSequence,
                 ) {
                     super.onAuthenticationError(errorCode, errString)
                     Toast.makeText(
@@ -321,7 +364,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                 }
 
                 override fun onAuthenticationSucceeded(
-                    result: BiometricPrompt.AuthenticationResult
+                    result: BiometricPrompt.AuthenticationResult,
                 ) {
                     super.onAuthenticationSucceeded(result)
                     val pass = eamxcu_preferences.getData(
@@ -359,7 +402,6 @@ class EAMXLoginActivity : EAMXBaseActivity() {
 
 
     fun hideLogin() {
-
         mBinding.apply {
             linearLayout.visibility = View.GONE
             linearLayout4.visibility = View.GONE
@@ -367,13 +409,14 @@ class EAMXLoginActivity : EAMXBaseActivity() {
             btnIngresar.visibility = View.GONE
             btnLogin.visibility = View.VISIBLE
             btnRegistrar.visibility = View.VISIBLE
+            btnContinuarSinRegistro.visibility = View.VISIBLE
             lnlNoAccount.visibility = View.VISIBLE
             linearLayoutDetails.visibility = View.VISIBLE
-            toolbarModelLogin.btnBack.visibility=View.GONE
+            toolbarModelLogin.btnBack.visibility = View.GONE
             textView5.setText(R.string.welcome)
             textViewIngresar.visibility = View.VISIBLE
-            textView15.visibility=View.GONE
-            tvBiometric.visibility=View.GONE
+            textView15.visibility = View.GONE
+            tvBiometric.visibility = View.GONE
         }
     }
 
@@ -382,9 +425,9 @@ class EAMXLoginActivity : EAMXBaseActivity() {
             EAMXEnumUser.USER_PASSWORD.toString(),
             EAMXTypeObject.STRING_OBJECT
         ) as String
-        if (pass.isEmpty()){
-
-        }else  {
+        val guest = isGUEST()
+        if (pass.isEmpty()||guest) {
+        } else {
             biometric()
             tvBiometric.setOnClickListener {
                 biometricPrompt.authenticate(promptInfo)
@@ -401,17 +444,18 @@ class EAMXLoginActivity : EAMXBaseActivity() {
             linearLayoutDetails.visibility = View.GONE
             btnLogin.visibility = View.GONE
             lnlNoAccount.visibility = View.GONE
-            toolbarModelLogin.btnBack.visibility=View.VISIBLE
-            toolbarModelLogin.btnBack.setOnClickListener { hideLogin()}
+            toolbarModelLogin.btnBack.visibility = View.VISIBLE
+            toolbarModelLogin.btnBack.setOnClickListener { hideLogin() }
             textViewIngresar.visibility = View.GONE
             btnRegistrar.visibility = View.GONE
+            btnContinuarSinRegistro.visibility = View.GONE
             textView5.setText(R.string.sign_in_login)
             textView15.setText(R.string.nice_to_see_you_again)
 
         }
-        if (pass.isEmpty()){
+        if (pass.isEmpty()||guest) {
             mBinding.tvBiometric.visibility = View.GONE
-        }else  {
+        } else {
             tvBiometric.visibility = View.VISIBLE
         }
     }
@@ -427,6 +471,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
         hideLogin()
         if (doubleBackToExitPressedOnce) {
             super.onBackPressed()
+            eamxcu_preferences.saveData(EAMXEnumUser.GUEST.name, true)
             return
         }
         this.doubleBackToExitPressedOnce = true
@@ -434,5 +479,17 @@ class EAMXLoginActivity : EAMXBaseActivity() {
         Handler(Looper.getMainLooper()).postDelayed(Runnable {
             doubleBackToExitPressedOnce = false
         }, 2000)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        eamxcu_preferences.saveData(EAMXEnumUser.GUEST.name, !noInvitado)
+    }
+
+    private fun isGUEST():Boolean{
+        return eamxcu_preferences.getData(
+            EAMXEnumUser.GUEST.name,
+            EAMXTypeObject.BOOLEAN_OBJECT
+        ) as Boolean
     }
 }
