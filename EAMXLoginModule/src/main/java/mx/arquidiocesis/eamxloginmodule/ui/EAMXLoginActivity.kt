@@ -94,7 +94,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                     saveData(EAMXEnumUser.USER_PROFILE.name, data.profile ?: "")
                     saveData(EAMXEnumUser.BIRTHDATE.name, data.birthdate ?: "")
                     saveData(EAMXEnumUser.ORDINATION_DATE.name, data.ordination_day ?: "")
-                    saveData(EAMXEnumUser.STREAM.name, data.stream)
+                    saveData(EAMXEnumUser.STREAM.name, data.stream ?: "")
                     saveData(EAMXEnumUser.DESCRIPTION.name, data.description ?: "")
                     saveData(EAMXEnumUser.USER_EMAIL.name, data.email)
                     saveData(EAMXEnumUser.USER_PHONE.name, data.phone_number)

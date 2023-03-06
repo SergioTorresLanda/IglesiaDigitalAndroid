@@ -58,7 +58,7 @@
     <string name="you_have_already_an_account">Ya tienes una cuenta</string>
     <string name="enter_the_complete_code">Ingrese el código completo</string>
     <string name="your_user_already_exists_confirm_to_login">Tu usuario ya existe, confirme para iniciar sesión</string>
-    <string name="user_is_not_a_priest">No encontramos ningún registro de sacerdote asociado a este número. Verifícalo y/o ponte en contacto con un administrador.</string>
+    <string name="user_is_not_a_priest">No encontramos ningún registro de sacerdote asociado a este número. Verifícalo y/o ponte en contacto con iglesiadigital@arquidiocesismexico.org.</string>
     <string name="text_date_born">Fecha de nacimiento</string>
     <string name="sign_in_register">Registrarme</string>
 
