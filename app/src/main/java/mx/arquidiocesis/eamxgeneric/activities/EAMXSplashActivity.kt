@@ -108,6 +108,14 @@ open class EAMXSplashActivity : AppCompatActivity(), InstallStateUpdatedListener
                 EAMXTypeObject.BOOLEAN_OBJECT
             ) as Boolean)
         ) {
+            val userId = eamxcu_preferences.getData(
+                EAMXEnumUser.USER_EMAIL.name,
+                EAMXTypeObject.STRING_OBJECT
+            ) as String
+            userId.trim()
+            if (userId.isEmpty()) {
+                eamxcu_preferences.saveData(EAMXEnumUser.GUEST.name, true)
+            }
             showLoggin()
         } else if (eamxcu_preferences.getData(
                 EAMXEnumUser.SKIP.name,

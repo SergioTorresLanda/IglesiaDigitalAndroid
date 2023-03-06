@@ -270,15 +270,17 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                 EAMXTypeObject.STRING_OBJECT
             ) as String
             pass.trim()
-            if (pass.isEmpty()||isGUEST()) {
+            if (pass.isEmpty()) {
                 highlightButton(btnRegistrar)
             } else {
                 highlightButton(btnLogin)
-                tvBiometric.visibility = View.VISIBLE
+                if(!isGUEST()){
+                    tvBiometric.visibility = View.VISIBLE
+                }
                 hideLogin()
             }
             btnIngresar.setOnClickListener {
-                // tvBiometric.visibility = View.VISIBLE
+                tvBiometric.visibility = View.VISIBLE
                 noInvitado = true
                 ingresar()
             }
@@ -426,11 +428,13 @@ class EAMXLoginActivity : EAMXBaseActivity() {
             EAMXTypeObject.STRING_OBJECT
         ) as String
         val guest = isGUEST()
-        if (pass.isEmpty()||guest) {
+        if (pass.isEmpty()) {
         } else {
-            biometric()
-            tvBiometric.setOnClickListener {
-                biometricPrompt.authenticate(promptInfo)
+            if (!guest) {
+                biometric()
+                tvBiometric.setOnClickListener {
+                    biometricPrompt.authenticate(promptInfo)
+                }
             }
         }
 
@@ -451,12 +455,14 @@ class EAMXLoginActivity : EAMXBaseActivity() {
             btnContinuarSinRegistro.visibility = View.GONE
             textView5.setText(R.string.sign_in_login)
             textView15.setText(R.string.nice_to_see_you_again)
-
+            tvBiometric.visibility = View.VISIBLE
         }
-        if (pass.isEmpty()||guest) {
+        if (pass.isEmpty()) {
             mBinding.tvBiometric.visibility = View.GONE
         } else {
-            tvBiometric.visibility = View.VISIBLE
+            if (!guest) {
+                tvBiometric.visibility = View.VISIBLE
+            }
         }
     }
 
@@ -486,7 +492,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
         eamxcu_preferences.saveData(EAMXEnumUser.GUEST.name, !noInvitado)
     }
 
-    private fun isGUEST():Boolean{
+    private fun isGUEST(): Boolean {
         return eamxcu_preferences.getData(
             EAMXEnumUser.GUEST.name,
             EAMXTypeObject.BOOLEAN_OBJECT
