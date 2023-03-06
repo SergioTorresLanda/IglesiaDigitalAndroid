@@ -74,10 +74,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtGeneric">
 
-                    <!--
-                        android:thumbTint="#81D51F"
-                        android:trackTint="#C3EC96"
-                    -->
                     <Switch
                         android:id="@+id/switch1"
                         android:layout_width="wrap_content"
@@ -85,7 +81,9 @@
                         android:layout_marginHorizontal="@dimen/margin_bottom_25"
                         android:switchPadding="@dimen/global_margin_extra"
                         android:text="@string/soy_sacerdote"
-                        android:textSize="16sp"
+                        android:textColor="#192a73"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
                         android:trackTint="#C3EC96"
                         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
@@ -97,7 +95,7 @@
                         android:text="@string/ingresa_tu_n_mero_de_celular_para_identificarte"
                         android:textAlignment="textStart"
                         android:textColor="#192a73"
-                        android:textSize="16sp"
+                        android:textSize="18sp"
                         android:textStyle="bold"
                         android:visibility="gone"/>
 
@@ -262,6 +260,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/labelPhone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:letterSpacing="0.03"
@@ -276,15 +275,15 @@
                             style="@style/StyleEdtGeneric"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="1dp"
                             app:endIconMode="custom"
                             app:errorIconDrawable="@drawable/ic_check_error"
-                            app:expandedHintEnabled="false">
-
-                            <com.google.android.material.textfield.TextInputEditText
+                            app:expandedHintEnabled="false"
+                            app:layout_constraintTop_toBottomOf="@+id/etNumberPhone">
+                            <EditText
                                 android:id="@+id/etNumberPhone"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:digits="@string/digits_only_number_phone"
                                 android:imeOptions="actionDone"
                                 android:inputType="phone"
                                 android:letterSpacing="0.01"
@@ -294,6 +293,7 @@
                                 android:textColor="#99000000"
                                 android:textSize="18sp"
                                 android:textStyle="normal" />
+
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <Button
@@ -546,6 +546,7 @@
                         android:text="@string/sign_in_register" />
 
                     <TextView
+                        android:id="@+id/labelTerminos"
                         style="@style/StyleTxtAlContinuartxt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

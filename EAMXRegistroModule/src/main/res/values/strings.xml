@@ -47,7 +47,7 @@
     <string name="wrong_phone_number">Número de celular incorrecto</string>
     <string name="insert_hbd">Ingresa tu fecha de nacimiento</string>
     <string name="insert_ur_email">Ingresa tu correo electrónico</string>
-    <string name="min_phone">El número de celular debe de contener 10 dígitos</string>
+    <string name="min_phone">El número debe tener 10 dígitos</string>
     <string name="enter_your_email">Ingresa tu correo electrónico</string>
     <string name="enter_a_valid_email">Ingresa un correo electrónico válido</string>
     <string name="enter_your_password">Ingresa tu contraseña</string>
@@ -58,7 +58,7 @@
     <string name="you_have_already_an_account">Ya tienes una cuenta</string>
     <string name="enter_the_complete_code">Ingrese el código completo</string>
     <string name="your_user_already_exists_confirm_to_login">Tu usuario ya existe, confirme para iniciar sesión</string>
-    <string name="user_is_not_a_priest">No encontramos ningún registro de sacerdote asociado a este número. Verifícalo y/o ponte en contacto con iglesiadigital@arquidiocesismexico.org.</string>
+    <string name="user_is_not_a_priest">No encontramos ningún registro de sacerdote asociado a este número. Verifícalo y/o ponte en contacto con el administrador en iglesiadigital@arquidiocesismexico.org.</string>
     <string name="text_date_born">Fecha de nacimiento</string>
     <string name="sign_in_register">Registrarme</string>
 

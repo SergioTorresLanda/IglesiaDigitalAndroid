@@ -284,7 +284,7 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
                 )
                 if (etNumberPhone.text.toString().isEmpty()) {
                     enableIconStart(tilNumberPhone, null)
-                    tilNumberPhone.error = getString(R.string.enter_your_telephone_number)
+                    tilNumberPhone.error = getString(R.string.min_phone)
                 } else {
                     if (EAMXFieldValidation.validateNumberPhone(etNumberPhone.text.toString()) && EAMXFieldValidation.validateNumberLength(
                             etNumberPhone.text.toString()
@@ -400,7 +400,10 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
                     btnRegistrar.visibility = View.GONE
                     btnEnviar.visibility = View.VISIBLE
                     SWSacerdote.visibility = View.VISIBLE
+                    labelPhone.visibility = View.GONE
                     switch1.thumbTintList = getColorStateList(R.color.green_retirar)
+                    etNumberPhone.hint = "Número a 10 digitos"
+
 
                 } else {
                     rName.visibility = View.VISIBLE
@@ -414,8 +417,9 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
                     laySac.visibility = View.VISIBLE
                     SWSacerdote.visibility = View.GONE
                     switch1.thumbTintList = getColorStateList(R.color.hint_color)
+                    labelPhone.visibility = View.VISIBLE
+                    etNumberPhone.hint = ""
 
-                    tilName.isEmpty()
                     tilLastNameMother.isEmpty()
                     tilLastName.isEmpty()
                     tilNumberPhone.isEmpty()

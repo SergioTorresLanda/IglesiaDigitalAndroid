@@ -150,11 +150,13 @@ class UtilAlert private constructor(
 
             llMultiSelection.visibility = View.VISIBLE
             llAlertSimple.visibility = View.GONE
-
+/*
             ivClose.setOnClickListener {
                 dismiss()
                 listener(ACTION_CLOSE)
             }
+
+ */
 
             if(title == null && titleCustom == null) {
                 tvTitleMultiSelection.visibility = View.GONE
@@ -221,12 +223,12 @@ class UtilAlert private constructor(
             isCancelCustom?.let{
                 isCancelable = it
             }
-
+/*
             ivClose.setOnClickListener {
                 dismiss()
                 listener(ACTION_CLOSE)
             }
-
+ */
             btnAccept.setOnClickListener {
                 dismiss()
                 listener(ACTION_ACCEPT)

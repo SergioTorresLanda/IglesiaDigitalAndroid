@@ -19,17 +19,20 @@
                 android:id="@+id/ivClose"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="35dp"
                 android:layout_marginEnd="8dp"
-                android:src="@drawable/ic_close_dialog"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+            <!--
+            android:src="@drawable/ic_close_dialog"
+                -->
 
             <ImageView
                 android:id="@+id/ivLogo"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="12dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginStart="10dp"
                 android:src="@drawable/logo_splash"
                 app:layout_constraintBottom_toBottomOf="@+id/ivClose"
                 app:layout_constraintStart_toStartOf="parent"
@@ -99,26 +102,29 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
+                    android:layout_marginTop="10dp"
                     android:gravity="center_horizontal"
                     android:lineSpacingExtra="4sp"
                     android:textColor="#13277c"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    tools:text="CONCLUIR SERVICIO" />
+                    android:fontFamily="System semibold"
+                    tools:text="CONCLUIR SERVICIO"
+                    app:layout_constraintTop_toBottomOf="@+id/ivLogo"/>
 
                 <TextView
                     android:id="@+id/tvBody"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="16dp"
                     android:fontFamily="sans-serif"
                     android:gravity="center_horizontal"
                     android:lineSpacingExtra="4sp"
                     android:textColor="#1d2c3c"
-                    android:textSize="14sp"
+                    android:textSize="16sp"
                     android:textStyle="normal"
                     tools:text="El servicio será concluido y se notificará al fiel" />
 
@@ -149,19 +155,24 @@
                         app:strokeColor="@color/btn_background_accept"
                         app:strokeWidth="2dp" />
 
+                    <!--
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    -->
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnAccept"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="110dp"
+                        android:layout_height="36dp"
                         android:layout_marginStart="10dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="20dp"
                         android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/background_button_accept"
+                        android:layout_marginBottom="15dp"
                         android:gravity="center"
+                        android:background="@drawable/background_button_accept"
+                        app:cornerRadius="@dimen/size_corner_general_button"
                         android:text="Aceptar"
                         android:textAllCaps="false"
+                        android:textSize="15sp"
                         android:textColor="@color/btn_background_cancel" />
                 </LinearLayout>
 

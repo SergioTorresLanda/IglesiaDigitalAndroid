@@ -49,7 +49,7 @@
     <dimen name="margin_horizontal_20">20dp</dimen>
 
 
-    <dimen name="size_corner_general_button">6dp</dimen>
+    <dimen name="size_corner_general_button">8dp</dimen>
 
 
 </resources>
