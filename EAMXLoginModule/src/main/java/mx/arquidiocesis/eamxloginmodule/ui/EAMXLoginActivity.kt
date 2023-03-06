@@ -330,6 +330,10 @@ class EAMXLoginActivity : EAMXBaseActivity() {
         if (EAMXInternetAvailability.isNetworkAvailable(this@EAMXLoginActivity)) {
             requestSignUp()
         } else {
+            if(isGUEST()){
+                etEmail.setText("")
+                etPassword.setText("")
+            }
             UtilAlert.Builder()
                 .setTitle("Atención")
                 .setMessage(getString(R.string.no_internet_connection))

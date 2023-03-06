@@ -2,6 +2,9 @@ package mx.arquidiocesis.eamxloginmodule.ui
 
 import mx.arquidiocesis.eamxcommonutils.application.validation.EAMXTypeValidation
 import mx.arquidiocesis.eamxcommonutils.application.validation.EAMXValidationModel
+import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
+import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
+import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
 import mx.arquidiocesis.eamxloginmodule.R
 import mx.arquidiocesis.eamxcommonutils.util.repositoryrefreshtoken.model.EAMXUserLoginRequest
 
@@ -44,6 +47,13 @@ fun EAMXLoginActivity.requestSignUp() {
                     )
                 )
             }
+        }
+        if(eamxcu_preferences.getData(
+                EAMXEnumUser.GUEST.name,
+                EAMXTypeObject.BOOLEAN_OBJECT
+            ) as Boolean){
+            etEmail.setText("")
+            etPassword.setText("")
         }
         viewModel.requestValidationSingIn(EAMXUserLoginRequest(email, pws), arraylistValidations)
     }
