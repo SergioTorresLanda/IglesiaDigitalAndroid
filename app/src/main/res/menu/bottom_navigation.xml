@@ -10,5 +10,5 @@
 
     <item android:id="@+id/perfilFragment"
         android:icon="@drawable/profile_selected"
-        android:title="Mi perfil"/>
+        android:title="Mi Perfil"/>
 </menu>
