@@ -262,18 +262,19 @@ class Home_Home : EAMXBaseActivity(),
     override fun showToolbar(toolbarShow: Boolean, titleFragment: String) {
         bottomNavigation.visibility = View.VISIBLE
         cancelOnBack = false
-        if (!guest) {
             if (toolbarShow) {
                 "NAME USER $name".log()
                 "titleFragment $titleFragment".log()
                 if (titleFragment.contains(name)) {
-                    window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-                    window.statusBarColor = resources.getColor(R.color.white)
-                    mBinding.apply {
-                        toolbarHome()
-                        toolbar.txtNameUser.text = titleFragment
-                        bottomNavigation.menu[0].isChecked = true
-                    }
+                        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                        window.statusBarColor = resources.getColor(R.color.white)
+                        mBinding.apply {
+                            toolbarHome()
+                            if (!guest) {
+                                toolbar.txtNameUser.text = titleFragment
+                            }
+                            bottomNavigation.menu[0].isChecked = true
+                        }
                 } else {
                     when (titleFragment) {
                         nameCompleted -> {
@@ -352,7 +353,6 @@ class Home_Home : EAMXBaseActivity(),
 
                 mBinding.toolbar.constraintToolbar.visibility = View.GONE
             }
-        }
     }
 
     override fun showToolbar(
@@ -437,34 +437,36 @@ class Home_Home : EAMXBaseActivity(),
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         window.statusBarColor = resources.getColor(R.color.white)
         mBinding.toolbar.apply {
-
-            ImagenProfile().loadImageProfile(imgUser, this@Home_Home)
-
+            if (!guest) {
+                ImagenProfile().loadImageProfile(imgUser, this@Home_Home)
+            }
             constraintToolbar.visibility = View.VISIBLE
             toolbarHomeSaludo.visibility = View.VISIBLE
             toolbarBlue.visibility = View.GONE
             toolbarGeneral.visibility = View.GONE
             toolbarWhiteSmall.visibility = View.GONE
-
             ivConfig.apply {
-                visibility = if (isVisibleConfig) View.VISIBLE else View.GONE
-                setOnClickListener {
-                    changeFragment(
-                        perfilFragment,
-                        R.id.contentFragment,
-                        EAMXContenedorPrincipalFragment::class.java.simpleName
-                    )
+                visibility = if (!guest) if (isVisibleConfig) View.VISIBLE else View.GONE else View.GONE
+                if (!guest) {
+                    setOnClickListener {
+                        changeFragment(
+                            perfilFragment,
+                            R.id.contentFragment,
+                            EAMXContenedorPrincipalFragment::class.java.simpleName
+                        )
+                    }
                 }
             }
-
             if (userProfile == EAMXProfile.DevotedAdmin.rol || userProfile == EAMXProfile.PriestAdmin.rol) {
                 constraintToolbar.setBackgroundResource(R.drawable.shape_blue_profile)
-                txtNameUser.setTextColor(
-                    ContextCompat.getColor(
-                        root.context,
-                        R.color.white
+                if (!guest) {
+                    txtNameUser.setTextColor(
+                        ContextCompat.getColor(
+                            root.context,
+                            R.color.white
+                        )
                     )
-                )
+                }
                 txtSaludo.setTextColor(
                     ContextCompat.getColor(
                         root.context,
