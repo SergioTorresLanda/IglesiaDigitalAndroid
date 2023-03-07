@@ -48,13 +48,6 @@ fun EAMXLoginActivity.requestSignUp() {
                 )
             }
         }
-        if(eamxcu_preferences.getData(
-                EAMXEnumUser.GUEST.name,
-                EAMXTypeObject.BOOLEAN_OBJECT
-            ) as Boolean){
-            etEmail.setText("")
-            etPassword.setText("")
-        }
         viewModel.requestValidationSingIn(EAMXUserLoginRequest(email, pws), arraylistValidations)
     }
 }

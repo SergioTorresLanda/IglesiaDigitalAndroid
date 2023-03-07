@@ -280,6 +280,7 @@
                             app:errorIconDrawable="@drawable/ic_check_error"
                             app:expandedHintEnabled="false"
                             app:layout_constraintTop_toBottomOf="@+id/etNumberPhone">
+
                             <EditText
                                 android:id="@+id/etNumberPhone"
                                 android:layout_width="match_parent"

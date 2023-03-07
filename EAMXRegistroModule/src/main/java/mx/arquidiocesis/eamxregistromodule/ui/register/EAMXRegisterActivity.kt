@@ -185,10 +185,10 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
                             etEmail.isEnabled = false
                             rPassword.visibility = View.VISIBLE
                             rNewPassword.visibility = View.VISIBLE
-                            switch1.visibility = View.GONE
+                            //switch1.visibility = View.GONE
                             btnEnviar.visibility = View.GONE
-                            laySac.visibility = View.GONE
-                            SWSacerdote.visibility = View.GONE
+                            //laySac.visibility = View.GONE
+                            //SWSacerdote.visibility = View.GONE
                             UpdateDataPriest.visibility = View.VISIBLE
                             btnRegistrar.visibility = View.VISIBLE
                             UpdatePriest.visibility = View.VISIBLE
@@ -282,6 +282,11 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
                     tilNumberPhone,
                     etNumberPhone.text.toString().validNumberPhoneContent()
                 )
+                if (etNumberPhone.text.toString() == 10.toString()) {
+                    btnEnviar.isEnabled
+                } else {
+
+                }
                 if (etNumberPhone.text.toString().isEmpty()) {
                     enableIconStart(tilNumberPhone, null)
                     tilNumberPhone.error = getString(R.string.min_phone)
@@ -404,7 +409,6 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
                     switch1.thumbTintList = getColorStateList(R.color.green_retirar)
                     etNumberPhone.hint = "Número a 10 digitos"
 
-
                 } else {
                     rName.visibility = View.VISIBLE
                     rLasNameMother.visibility = View.VISIBLE
@@ -419,7 +423,15 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
                     switch1.thumbTintList = getColorStateList(R.color.hint_color)
                     labelPhone.visibility = View.VISIBLE
                     etNumberPhone.hint = ""
+                    SWSacerdote.visibility = View.GONE
 
+                    etName.setText("")
+                    etLastNameFather.setText("")
+                    etLastNameMother.setText("")
+                    etNumberPhone.setText("")
+                    etEmail.setText("")
+                    etPassword.setText("")
+                    etConfirmPassword.setText("")
                     tilLastNameMother.isEmpty()
                     tilLastName.isEmpty()
                     tilNumberPhone.isEmpty()

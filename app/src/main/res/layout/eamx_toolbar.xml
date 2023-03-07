@@ -43,6 +43,7 @@
                 android:id="@+id/txtSaludo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 android:layout_marginStart="@dimen/size_12"
                 android:fontFamily="@font/avenir_nextlt_pro_regular"
                 android:textColor="@color/text_blue"
@@ -50,7 +51,7 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/txtNameUser"
                 app:layout_constraintStart_toEndOf="@+id/imgUser"
-                app:layout_constraintTop_toTopOf="@+id/imgUser"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="@string/good_afternon" />
 
             <TextView
