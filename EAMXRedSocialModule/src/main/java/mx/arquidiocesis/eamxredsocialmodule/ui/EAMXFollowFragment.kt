@@ -74,6 +74,11 @@ class EAMXFollowFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.let {
+            EAMXFirebaseManager(it).setLogEvent("screen_view", Bundle().apply {
+                putString("screen_class", "RedSocial_MiRed")
+            })
+        }
         showLoader()
         viewModel.requestAllpostMi(idUser)
         initObservers()

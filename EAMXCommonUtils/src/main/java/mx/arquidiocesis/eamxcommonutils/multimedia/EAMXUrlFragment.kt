@@ -6,12 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import mx.arquidiocesis.eamxcommonutils.R
-import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.databinding.FragmentUrlsBinding
+import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
 
 class EAMXUrlFragment : Fragment() {
 
@@ -19,7 +17,11 @@ class EAMXUrlFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        activity?.let {
+            EAMXFirebaseManager(it).setLogEvent("screen_view", Bundle().apply {
+                putString("screen_class", "Home_ModalWeb ")
+            })
+        }
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -84,7 +84,11 @@ class DetailChurchFindedFragment : FragmentBase() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        activity?.let {
+            EAMXFirebaseManager(it).setLogEvent("screen_view", Bundle().apply {
+                putString("screen_class", "MiIglesia_InfoIglesia")
+            })
+        }
         arguments?.let {
             isPrincipal = it.getBoolean("isPrincipal") ?: false
             idIglesia = it.getInt("idIglesia") ?: 0

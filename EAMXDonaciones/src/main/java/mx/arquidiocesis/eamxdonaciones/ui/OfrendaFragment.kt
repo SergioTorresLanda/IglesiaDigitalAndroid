@@ -1,7 +1,6 @@
 package mx.arquidiocesis.eamxdonaciones.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +9,7 @@ import mx.arquidiocesis.eamxdonaciones.adapters.OfrendaViewPagerAdapter
 import com.example.eamxdonaciones.databinding.FragmentOfrendaBinding
 import mx.arquidiocesis.eamxdonaciones.viewmodel.DonacionesViewModel
 import com.google.android.material.tabs.TabLayoutMediator
-import mx.arquidiocesis.eamxcommonutils.application.AppMyConstants
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
-import mx.arquidiocesis.eamxcommonutils.common.EAMXHome
 import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
 import mx.arquidiocesis.eamxcommonutils.util.getViewModel
 import mx.arquidiocesis.eamxdonaciones.Repository.RepositoryDonation
@@ -44,7 +41,7 @@ class OfrendaFragment : FragmentBase() {
         super.onViewCreated(view, savedInstanceState)
         activity?.let {
             EAMXFirebaseManager(it).setLogEvent("screen_view", Bundle().apply {
-                putString("screen_class", "Home_Miofrenda")
+                putString("screen_class", "Home_MiOfrenda")
             })
         }
         var adapter = OfrendaViewPagerAdapter(this)

@@ -31,10 +31,7 @@ import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnums
 import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
-import mx.arquidiocesis.eamxcommonutils.util.eamxLog
-import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
-import mx.arquidiocesis.eamxcommonutils.util.getViewModel
-import mx.arquidiocesis.eamxcommonutils.util.log
+import mx.arquidiocesis.eamxcommonutils.util.*
 import mx.arquidiocesis.eamxcommonutils.util.repositoryrefreshtoken.model.EAMXUserLoginRequest
 import mx.arquidiocesis.eamxloginmodule.R
 import mx.arquidiocesis.eamxloginmodule.databinding.EamxlLoginActivityBinding
@@ -283,6 +280,9 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                 tvBiometric.visibility = View.VISIBLE
                 noInvitado = true
                 ingresar()
+                EAMXFirebaseManager(applicationContext).setLogEvent("screen_view", Bundle().apply {
+                    putString("screen_class", "Login_Login")
+                })
             }
             tvForgotPassword.setOnClickListener {
                 mBinding.etEmail.setText("")
