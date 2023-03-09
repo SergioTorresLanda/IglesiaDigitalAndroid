@@ -436,14 +436,4 @@ class EAMXHomeFragment : EAMXBaseFragment() {
             .setAllowStack(true)
             .build().nextWithReplace()
     }
-
-    fun msgGuest(guest: Boolean): Boolean {
-        if (guest) {
-            UtilAlert.Builder()
-                .setTitle(getString(mx.arquidiocesis.registrosacerdote.R.string.title_dialog_warning))
-                .setMessage("Regístrate o inicia sesión para poder acceder a este módulo")
-                .build().show(childFragmentManager, "")
-        }
-        return guest
-    }
 }

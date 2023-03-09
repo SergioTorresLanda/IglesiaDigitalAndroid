@@ -19,7 +19,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import mx.arquidiocesis.eamxcommonutils.R
+import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
 import mx.arquidiocesis.eamxcommonutils.databinding.EamxrLoadingViewBinding
+import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
 
 abstract class EAMXBaseActivity : AppCompatActivity(), EAMXBackHandler {
 
@@ -394,5 +396,19 @@ abstract class EAMXBaseActivity : AppCompatActivity(), EAMXBackHandler {
         wm.defaultDisplay.getMetrics(metrics)
         metrics.scaledDensity = configuration.fontScale * metrics.density
         baseContext.resources.updateConfiguration(configuration, metrics)
+    }
+
+    protected fun msgGuest(msg: String = "poder acceder a este módulo"): Boolean {
+        var guest = eamxcu_preferences.getData(
+            EAMXEnumUser.GUEST.name,
+            EAMXTypeObject.BOOLEAN_OBJECT
+        ) as Boolean
+        if (guest) {
+            UtilAlert.Builder()
+                .setTitle(getString(R.string.title_dialog_warning))
+                .setMessage("Regístrate o inicia sesión para ${msg}.")
+                .build().show(supportFragmentManager, "")
+        }
+        return guest
     }
 }

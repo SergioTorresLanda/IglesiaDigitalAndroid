@@ -1,11 +1,9 @@
 package mx.arquidiocesis.eamxcadenaoracionesmodule.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
 import mx.arquidiocesis.eamxcadenaoracionesmodule.adapter.EAMXPrayChainAdapter
 import mx.arquidiocesis.eamxcadenaoracionesmodule.databinding.EamxCadenaOracionesFragmentBinding
 import mx.arquidiocesis.eamxcadenaoracionesmodule.model.EAMXSendPrayStatus
@@ -16,10 +14,7 @@ import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.common.EAMXHome
 import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
-import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
-import mx.arquidiocesis.eamxcommonutils.util.eamxLog
-import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
-import mx.arquidiocesis.eamxcommonutils.util.getViewModel
+import mx.arquidiocesis.eamxcommonutils.util.*
 
 class EAMXCadenaOracionesFragment : FragmentBase() {
 
@@ -49,15 +44,14 @@ class EAMXCadenaOracionesFragment : FragmentBase() {
 
     private val adapter: EAMXPrayChainAdapter by lazy {
         EAMXPrayChainAdapter { first,second, pbOracion ->
-//            showLoader()
-            pbOracion.visibility = View.VISIBLE
-
-            val username = eamxcu_preferences.getData(
-                EAMXEnumUser.USER_EMAIL.toString(),
-                EAMXTypeObject.STRING_OBJECT
-            ) as String
-
-            viewModel.prayingOration(first, EAMXSendPrayStatus(userId, username, second))
+            if (!msgGuest("interactuar con el contenido")) {
+                pbOracion.visibility = View.VISIBLE
+                val username = eamxcu_preferences.getData(
+                    EAMXEnumUser.USER_EMAIL.toString(),
+                    EAMXTypeObject.STRING_OBJECT
+                ) as String
+                viewModel.prayingOration(first, EAMXSendPrayStatus(userId, username, second))
+            }
         }
     }
 
@@ -150,7 +144,7 @@ class EAMXCadenaOracionesFragment : FragmentBase() {
     }
 
     private fun initView() {
-        initElements(binding, activity, viewModel, callBack) {
+        initElements(binding, activity, viewModel, callBack, { msgGuest("crear una oración") }) {
             showLoader("lOADER")
         }
     }

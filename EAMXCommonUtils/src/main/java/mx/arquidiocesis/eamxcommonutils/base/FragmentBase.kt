@@ -1,8 +1,13 @@
 package mx.arquidiocesis.eamxcommonutils.base
 
 import androidx.fragment.app.Fragment
+import mx.arquidiocesis.eamxcommonutils.R
+import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.common.EAMXHome
+import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
+import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
 import mx.arquidiocesis.eamxcommonutils.customui.loader.UtilLoader
+import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
 
 open class FragmentBase : Fragment(), EAMXHome {
 
@@ -40,4 +45,18 @@ open class FragmentBase : Fragment(), EAMXHome {
         tryGoBackListener: (goBackEvent: (Boolean) -> Unit) -> Unit,
         onActionClickListener: () -> Unit
     ) {}
+
+    protected fun msgGuest(msg: String = "poder acceder a este módulo"): Boolean {
+        var guest = eamxcu_preferences.getData(
+            EAMXEnumUser.GUEST.name,
+            EAMXTypeObject.BOOLEAN_OBJECT
+        ) as Boolean
+        if (guest) {
+            UtilAlert.Builder()
+                .setTitle(getString(R.string.title_dialog_warning))
+                .setMessage("Regístrate o inicia sesión para ${msg}.")
+                .build().show(childFragmentManager, "")
+        }
+        return guest
+    }
 }

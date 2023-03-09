@@ -10,7 +10,9 @@ import androidx.fragment.app.Fragment
 import com.airbnb.lottie.LottieAnimationView
 import com.kaopiz.kprogresshud.KProgressHUD
 import mx.arquidiocesis.eamxcommonutils.R
+import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
 import mx.arquidiocesis.eamxcommonutils.databinding.EamxrLoadingViewBinding
+import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
 
 @Keep
 abstract class EAMXBaseFragment : Fragment() {
@@ -154,4 +156,17 @@ abstract class EAMXBaseFragment : Fragment() {
         fun onBackPress(): Boolean
     }
 
+    fun msgGuest(msg: String = "poder acceder a este módulo"): Boolean {
+        var guest = eamxcu_preferences.getData(
+            EAMXEnumUser.GUEST.name,
+            EAMXTypeObject.BOOLEAN_OBJECT
+        ) as Boolean
+        if (guest) {
+            UtilAlert.Builder()
+                .setTitle(getString(R.string.title_dialog_warning))
+                .setMessage("Regístrate o inicia sesión para ${msg}.")
+                .build().show(childFragmentManager, "")
+        }
+        return guest
+    }
 }

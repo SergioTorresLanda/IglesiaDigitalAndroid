@@ -159,7 +159,7 @@ class Home_Home : EAMXBaseActivity(),
                     }
                 }
                 imgUser.setOnClickListener {
-                    msgGuest(guest)
+                    msgGuest()
                 }
             }
         } else {
@@ -201,17 +201,15 @@ class Home_Home : EAMXBaseActivity(),
                     )
                 }
                 R.id.helpFragment -> {
-                    if (!msgGuest(guest)) {
-                        eamxcu_preferences.saveData("FROMSOS", true)
-                        changeFragment(
-                            sosFragment,
-                            R.id.contentFragment,
-                            SOSProfileFragment::class.java.simpleName
-                        )
-                    }
+                    eamxcu_preferences.saveData("FROMSOS", true)
+                    changeFragment(
+                        sosFragment,
+                        R.id.contentFragment,
+                        SOSProfileFragment::class.java.simpleName
+                    )
                 }
                 R.id.perfilFragment -> {
-                    if (!msgGuest(guest)) {
+                    if (!msgGuest()) {
                         changeFragment(
                             perfilFragment,
                             R.id.contentFragment,
@@ -262,97 +260,97 @@ class Home_Home : EAMXBaseActivity(),
     override fun showToolbar(toolbarShow: Boolean, titleFragment: String) {
         bottomNavigation.visibility = View.VISIBLE
         cancelOnBack = false
-            if (toolbarShow) {
-                "NAME USER $name".log()
-                "titleFragment $titleFragment".log()
-                if (titleFragment.contains(name)) {
-                        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        if (toolbarShow) {
+            "NAME USER $name".log()
+            "titleFragment $titleFragment".log()
+            if (titleFragment.contains(name)) {
+                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                window.statusBarColor = resources.getColor(R.color.white)
+                mBinding.apply {
+                    toolbarHome()
+                    if (!guest) {
+                        toolbar.txtNameUser.text = titleFragment
+                    }
+                    bottomNavigation.menu[0].isChecked = true
+                }
+            } else {
+                when (titleFragment) {
+                    nameCompleted -> {
+                        window.decorView.systemUiVisibility =
+                            View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
                         window.statusBarColor = resources.getColor(R.color.white)
                         mBinding.apply {
                             toolbarHome()
-                            if (!guest) {
-                                toolbar.txtNameUser.text = titleFragment
-                            }
                             bottomNavigation.menu[0].isChecked = true
                         }
-                } else {
-                    when (titleFragment) {
-                        nameCompleted -> {
-                            window.decorView.systemUiVisibility =
-                                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-                            window.statusBarColor = resources.getColor(R.color.white)
-                            mBinding.apply {
-                                toolbarHome()
-                                bottomNavigation.menu[0].isChecked = true
-                            }
 
-                        }
-                        AppMyConstants.home -> {
-                            cancelOnBack = false
-                            bottomNavigation.visibility = View.VISIBLE
-                            bottomNavigation.menu[0].isChecked = true
-                            bottomNavigation.selectedItemId = R.id.homeFragment
-                            changeFragmentValidateBackStack(
-                                EAMXHomeFragment.newInstance(this, this, signOut = this),
-                                R.id.contentFragment,
-                                EAMXHomeFragment::class.java.simpleName
-                            )
-                        }
-                        AppMyConstants.cadenaOracion -> toolbarBlue(titleFragment)
-                        AppMyConstants.sos -> {
-                            toolbarBlue(titleFragment)
-                            bottomNavigation.menu[1].isChecked = true
-                        }
-                        AppMyConstants.eventos_vivo -> toolbarBlue(titleFragment)
-                        AppMyConstants.formacion -> toolbarBlue(titleFragment)
-                        AppMyConstants.miIglesia -> toolbarBlue(titleFragment)
-                        AppMyConstants.oraciones -> toolbarBlue(titleFragment)
-                        AppMyConstants.servicios -> toolbarBlue(titleFragment)
-                        "Bendecir casa" -> toolbarBlue(titleFragment)
-                        "Comunión a los enfermos" -> toolbarBlue(titleFragment)
-                        AppMyConstants.notificaciones -> toolbarBlue(titleFragment)
-                        AppMyConstants.comentarios -> toolbarBlue(titleFragment)
-                        AppMyConstants.intentions -> toolbarBlue(titleFragment)
-                        AppMyConstants.comunidad -> toolbarBlue(titleFragment)
-                        AppMyConstants.comunidadAdd -> {
-                            toolbarHome(isVisibleConfig = false)
-                            bottomNavigation.visibility = View.GONE
-                            cancelOnBack = true
-                        }
-                        AppMyConstants.editarComunidad -> toolbarBlue(titleFragment)
-                        AppMyConstants.intentionsCommunity -> toolbarBlue(titleFragment)
-                        AppMyConstants.ofrendaTarjeta -> {
-                        }
-                        AppMyConstants.ofrenda -> toolbarBlue(titleFragment)
-                        "" -> {
-                            window.decorView.systemUiVisibility =
-                                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-                            window.statusBarColor = resources.getColor(R.color.white)
-                            mBinding.apply {
-                                toolbarHome()
-                                toolbar.txtNameUser.text = titleFragment
-                                bottomNavigation.menu[0].isChecked = true
-                            }
-                        }
-                        else -> {
-                            toolbarBlueGeneral(titleFragment)
-                        }
                     }
-                }
-
-            } else {
-                when (titleFragment) {
-                    AppMyConstants.red_social -> {
+                    AppMyConstants.home -> {
+                        cancelOnBack = false
+                        bottomNavigation.visibility = View.VISIBLE
                         bottomNavigation.menu[0].isChecked = true
+                        bottomNavigation.selectedItemId = R.id.homeFragment
+                        changeFragmentValidateBackStack(
+                            EAMXHomeFragment.newInstance(this, this, signOut = this),
+                            R.id.contentFragment,
+                            EAMXHomeFragment::class.java.simpleName
+                        )
+                    }
+                    AppMyConstants.cadenaOracion -> toolbarBlue(titleFragment)
+                    AppMyConstants.sos -> {
+                        toolbarBlue(titleFragment)
+                        bottomNavigation.menu[1].isChecked = true
+                    }
+                    AppMyConstants.eventos_vivo -> toolbarBlue(titleFragment)
+                    AppMyConstants.formacion -> toolbarBlue(titleFragment)
+                    AppMyConstants.miIglesia -> toolbarBlue(titleFragment)
+                    AppMyConstants.oraciones -> toolbarBlue(titleFragment)
+                    AppMyConstants.servicios -> toolbarBlue(titleFragment)
+                    "Bendecir casa" -> toolbarBlue(titleFragment)
+                    "Comunión a los enfermos" -> toolbarBlue(titleFragment)
+                    AppMyConstants.notificaciones -> toolbarBlue(titleFragment)
+                    AppMyConstants.comentarios -> toolbarBlue(titleFragment)
+                    AppMyConstants.intentions -> toolbarBlue(titleFragment)
+                    AppMyConstants.comunidad -> toolbarBlue(titleFragment)
+                    AppMyConstants.comunidadAdd -> {
+                        toolbarHome(isVisibleConfig = false)
+                        bottomNavigation.visibility = View.GONE
+                        cancelOnBack = true
+                    }
+                    AppMyConstants.editarComunidad -> toolbarBlue(titleFragment)
+                    AppMyConstants.intentionsCommunity -> toolbarBlue(titleFragment)
+                    AppMyConstants.ofrendaTarjeta -> {
+                    }
+                    AppMyConstants.ofrenda -> toolbarBlue(titleFragment)
+                    "" -> {
+                        window.decorView.systemUiVisibility =
+                            View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                        window.statusBarColor = resources.getColor(R.color.white)
+                        mBinding.apply {
+                            toolbarHome()
+                            toolbar.txtNameUser.text = titleFragment
+                            bottomNavigation.menu[0].isChecked = true
+                        }
                     }
                     else -> {
-                        bottomNavigation.menu[2].isChecked = true
-
+                        toolbarBlueGeneral(titleFragment)
                     }
                 }
-
-                mBinding.toolbar.constraintToolbar.visibility = View.GONE
             }
+
+        } else {
+            when (titleFragment) {
+                AppMyConstants.red_social -> {
+                    bottomNavigation.menu[0].isChecked = true
+                }
+                else -> {
+                    bottomNavigation.menu[2].isChecked = true
+
+                }
+            }
+
+            mBinding.toolbar.constraintToolbar.visibility = View.GONE
+        }
     }
 
     override fun showToolbar(
@@ -446,7 +444,8 @@ class Home_Home : EAMXBaseActivity(),
             toolbarGeneral.visibility = View.GONE
             toolbarWhiteSmall.visibility = View.GONE
             ivConfig.apply {
-                visibility = if (!guest) if (isVisibleConfig) View.VISIBLE else View.GONE else View.GONE
+                visibility =
+                    if (!guest) if (isVisibleConfig) View.VISIBLE else View.GONE else View.GONE
                 if (!guest) {
                     setOnClickListener {
                         changeFragment(
@@ -589,10 +588,11 @@ class Home_Home : EAMXBaseActivity(),
 
     override fun signOut(closeSession: Boolean) {
         toast("Sesión cerrada")
-        if(eamxcu_preferences.getData(
+        if (eamxcu_preferences.getData(
                 EAMXEnumUser.SESSION.name,
                 EAMXTypeObject.BOOLEAN_OBJECT
-            ) as Boolean){
+            ) as Boolean
+        ) {
             eamxcu_preferences.saveData(EAMXEnumUser.USER_PASSWORD.name, "")
         }
         eamxcu_preferences.saveData(EAMXEnumUser.GUEST.name, false)
@@ -735,15 +735,5 @@ class Home_Home : EAMXBaseActivity(),
     override fun launchCamera(cb: (Uri?) -> Unit) {
         this.onResultPickerCamera = cb
         registerCamera.launch(this)
-    }
-
-    fun msgGuest(guest: Boolean): Boolean {
-        if (guest) {
-            UtilAlert.Builder()
-                .setTitle(getString(mx.arquidiocesis.registrosacerdote.R.string.title_dialog_warning))
-                .setMessage("Regístrate o inicia sesión para poder acceder a este módulo")
-                .build().show(supportFragmentManager, "")
-        }
-        return guest
     }
 }
