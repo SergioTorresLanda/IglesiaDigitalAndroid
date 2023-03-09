@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
@@ -71,6 +72,10 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, var id_user: Int) : Fragme
     }
 
     fun initObservers() {
+        var guest = eamxcu_preferences.getData(
+            EAMXEnumUser.GUEST.name,
+            EAMXTypeObject.BOOLEAN_OBJECT
+        ) as Boolean
         viewmodel.responseAllPost.observe(viewLifecycleOwner) { item ->
             item?.let { i ->
                 i.result?.let { r ->
@@ -84,7 +89,9 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, var id_user: Int) : Fragme
                         }
                         //adapter.items.addAll(resultModel.posts)
                         adapter.items.addAll(
-                            if (isPrincipal) {
+                            if (guest) {
+                                resultModel.posts.filter { it.author.id != id_user }
+                            } else if (isPrincipal) {
                                 resultModel.posts
                             } else {
                                 resultModel.posts.filter { it.author.id == id_user }
@@ -182,10 +189,6 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, var id_user: Int) : Fragme
 
     fun initElements() {
         binding.apply {
-            tvNew.setOnClickListener {
-                model.value = null
-                showBottonSheeat()
-            }
             val idUser = eamxcu_preferences.getData(
                 EAMXEnumUser.USER_ID_REDSOCIAL.name,
                 EAMXTypeObject.INT_OBJECT
@@ -206,30 +209,42 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, var id_user: Int) : Fragme
                 EAMXEnumUser.URL_PICTURE_PROFILE_USER.name,
                 EAMXTypeObject.STRING_OBJECT
             ) as String
+            tvNew.setOnClickListener {
+                if (!msgGuest("publicar en nuestra red social")) {
+                    model.value = null
+                    showBottonSheeat()
+                }
+            }
             id_user = if (isPrincipal) idUser else id_user
             val nameCompleted = "$name $lastName $middleName"
             tvMiRed.setOnClickListener {
-                changeFragment(
-                    EAMXFollowFragment(
-                        idUser,
-                        nameCompleted,
-                        Image
+                if (!msgGuest("tener un perfil en nuestra red social")) {
+                    changeFragment(
+                        EAMXFollowFragment(
+                            idUser,
+                            nameCompleted,
+                            Image
+                        )
                     )
-                )
+                }
             }
             ivUserImage.setOnClickListener {
-                changeFragment(
-                    EAMXFollowFragment(
-                        idUser,
-                        nameCompleted,
-                        Image
+                if (!msgGuest("tener un perfil en nuestra red social")) {
+                    changeFragment(
+                        EAMXFollowFragment(
+                            idUser,
+                            nameCompleted,
+                            Image
+                        )
                     )
-                )
+                }
             }
             svBusarRed.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
                 androidx.appcompat.widget.SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
-                    search()
+                    if (!msgGuest("buscar y seguir a otros usuarios")) {
+                        search()
+                    }
                     return false
                 }
 
@@ -238,8 +253,18 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, var id_user: Int) : Fragme
                     return false
                 }
             })
-            ibBusacar.setOnClickListener { search() }
-            ImagenProfile().loadImageProfile(ivUser, requireContext())
+            ibBusacar.setOnClickListener {
+                if (!msgGuest("buscar y seguir a otros usuarios")) {
+                    search()
+                }
+            }
+            var guest = eamxcu_preferences.getData(
+                EAMXEnumUser.GUEST.name,
+                EAMXTypeObject.BOOLEAN_OBJECT
+            ) as Boolean
+            if (!guest) {
+                ImagenProfile().loadImageProfile(ivUser, requireContext())
+            }
             swrRefresh.setColorSchemeResources(R.color.primaryColor)
             swrRefresh.setOnRefreshListener { getAllPost() }
         }
@@ -290,6 +315,7 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, var id_user: Int) : Fragme
     }
 
     fun click() {
+        val interactuar = "interactuar con el contenido de la red social"
         adapter.onItemClickListener = { item, Etiqueta ->
             when (Etiqueta) {
                 EDITAR -> {
@@ -314,31 +340,41 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, var id_user: Int) : Fragme
                         .show(childFragmentManager, tag)
                 }
                 COMENTARIO -> {
-                    changeFragment(EAMXComentFragment(item, list))
+                    if (!msgGuest(interactuar)) {
+                        changeFragment(EAMXComentFragment(item, list))
+                    }
                 }
                 COMPARTIR -> {}
                 LIKE -> {
                     //showSkeleton(true)
-                    viewmodel.reactPost(item.id)
+                    if (!msgGuest(interactuar)) {
+                        viewmodel.reactPost(item.id)
+                    }
                 }
                 LIKED -> {
-                    item.reaction?.let {
-                        showSkeleton(true)
-                        viewmodel.reactDel(it.id)
+                    if (!msgGuest(interactuar)) {
+                        item.reaction?.let {
+                            showSkeleton(true)
+                            viewmodel.reactDel(it.id)
+                        }
                     }
                 }
                 SEGUIR -> {}
                 PERFIL -> {
-                    changeFragment(
-                        EAMXFollowFragment(
-                            item.author.id,
-                            item.author.name,
-                            item.author.image
+                    if (!msgGuest("tener un perfil en nuestra red social")) {
+                        changeFragment(
+                            EAMXFollowFragment(
+                                item.author.id,
+                                item.author.name,
+                                item.author.image
+                            )
                         )
-                    )
+                    }
                 }
                 "" -> {
-                    selectRow(item)
+                    if (!msgGuest(interactuar)) {
+                        selectRow(item)
+                    }
                 }
             }
         }

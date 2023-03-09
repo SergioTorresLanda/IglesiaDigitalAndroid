@@ -28,7 +28,7 @@ class EAMXPublicationsAllAdapter(
     val context: Context,
     val listProfile: List<ResultMultiProfileModel>? = null,
     val isSuper: Boolean = false,
-    val isPrincipal: Boolean = true
+    val isPrincipal: Boolean = true,
 ) :
     RecyclerView.Adapter<EAMXPublicationsAllAdapter.NewsViewHolder>() {
     var items: ArrayList<PostModel> = ArrayList()
@@ -61,6 +61,10 @@ class EAMXPublicationsAllAdapter(
                 EAMXEnumUser.USER_ID_REDSOCIAL.name,
                 EAMXTypeObject.INT_OBJECT
             ) as Int
+            var guest = eamxcu_preferences.getData(
+                EAMXEnumUser.GUEST.name,
+                EAMXTypeObject.BOOLEAN_OBJECT
+            ) as Boolean
             var isMy = false
             if (item.scope.typeId!! > 1) {
                 list?.let { p ->
@@ -80,7 +84,7 @@ class EAMXPublicationsAllAdapter(
                 ivOption.visibility = View.GONE
             }
             txtName.text = item.author.name
-            imgPriest.loadByUrl(item.author.image.toString(),false,true)
+            imgPriest.loadByUrl(item.author.image.toString(), false, true)
             val dateResponse = item.createdAt.toLong()
             val objectFormat = EAMXFormatDate(root.context)
             val miFecha = objectFormat.diferencia(dateResponse)
@@ -136,7 +140,7 @@ class EAMXPublicationsAllAdapter(
 
             }
             iMediaGallery.cGallery.visibility(item.multimedia.isNotEmpty())
-            if(isPrincipal) {
+            if (isPrincipal) {
                 iMediaGallery.cGallery.setOnClickListener {
                     onItemClickListener(item, "")
                 }
@@ -179,6 +183,9 @@ class EAMXPublicationsAllAdapter(
                 tvLikeDado.visibility = View.GONE
             }
             executePendingBindings()
+            if (guest) {
+                ivOption.visibility = View.GONE
+            }
         }
     }
 
