@@ -278,13 +278,13 @@
                             android:layout_marginTop="1dp"
                             app:endIconMode="custom"
                             app:errorIconDrawable="@drawable/ic_check_error"
-                            app:expandedHintEnabled="false"
-                            app:layout_constraintTop_toBottomOf="@+id/etNumberPhone">
+                            app:expandedHintEnabled="false">
 
-                            <EditText
+                            <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/etNumberPhone"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:digits="@string/digits_only_number_phone"
                                 android:imeOptions="actionDone"
                                 android:inputType="phone"
                                 android:letterSpacing="0.01"
@@ -329,10 +329,9 @@
                             style="@style/StyleEdtGeneric"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-
                             app:expandedHintEnabled="false">
 
-                            <EditText
+                            <com.google.android.material.textfield.TextInputEditText
 
                                 android:id="@+id/etDate"
                                 android:layout_width="match_parent"

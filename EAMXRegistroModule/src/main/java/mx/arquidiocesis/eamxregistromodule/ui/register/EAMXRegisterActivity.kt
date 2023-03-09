@@ -5,17 +5,14 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
-import android.graphics.Color
 import android.net.Uri
+import android.os.Bundle
 import android.util.Patterns
 import android.view.View
 import androidx.core.view.isEmpty
 import androidx.core.widget.addTextChangedListener
-import androidx.databinding.adapters.CompoundButtonBindingAdapter.setChecked
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewmodel.CreationExtras
 import com.google.android.material.textfield.TextInputLayout
-import io.reactivex.rxjava3.schedulers.Schedulers.start
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.eamxr_register_activity.*
 import mx.arquidiocesis.eamxcommonutils.api.core.errorresponse.EAMXErrorResponseEnum
@@ -25,13 +22,11 @@ import mx.arquidiocesis.eamxcommonutils.application.validation.EAMXFieldValidati
 import mx.arquidiocesis.eamxcommonutils.application.validation.EAMXStatusValidation
 import mx.arquidiocesis.eamxcommonutils.common.*
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
+import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
 import mx.arquidiocesis.eamxcommonutils.util.log
-import mx.arquidiocesis.eamxcommonutils.util.visibility
 import mx.arquidiocesis.eamxregistromodule.R
 import mx.arquidiocesis.eamxregistromodule.databinding.EamxrRegisterActivityBinding
 import mx.arquidiocesis.eamxregistromodule.ui.confirm.EAMXConfirmCodeActivity
-import okhttp3.internal.EMPTY_REQUEST
-import okhttp3.internal.EMPTY_RESPONSE
 import java.util.regex.Pattern
 
 class EAMXRegisterActivity : EAMXBaseActivity() {
@@ -185,10 +180,10 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
                             etEmail.isEnabled = false
                             rPassword.visibility = View.VISIBLE
                             rNewPassword.visibility = View.VISIBLE
-                            //switch1.visibility = View.GONE
+                            switch1.visibility = View.GONE
                             btnEnviar.visibility = View.GONE
-                            //laySac.visibility = View.GONE
-                            //SWSacerdote.visibility = View.GONE
+                            laySac.visibility = View.GONE
+                            SWSacerdote.visibility = View.GONE
                             UpdateDataPriest.visibility = View.VISIBLE
                             btnRegistrar.visibility = View.VISIBLE
                             UpdatePriest.visibility = View.VISIBLE
@@ -200,6 +195,7 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
 
                         tilNumberPhone.isEmpty()
                         etNumberPhone.setText("")
+                        etName.setText("")
                     }
                 }
                 EAMXStatusRequestEnum.FAILURE -> {
@@ -278,15 +274,12 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
             }
 
             etNumberPhone.addTextChangedListener {
+                val validatePhone =  etNumberPhone.text.toString().validNumberPhoneContent()
+                btnEnviar.isEnabled = validatePhone
                 enableIconStart(
                     tilNumberPhone,
-                    etNumberPhone.text.toString().validNumberPhoneContent()
+                    validatePhone
                 )
-                if (etNumberPhone.text.toString() == 10.toString()) {
-                    btnEnviar.isEnabled
-                } else {
-
-                }
                 if (etNumberPhone.text.toString().isEmpty()) {
                     enableIconStart(tilNumberPhone, null)
                     tilNumberPhone.error = getString(R.string.min_phone)
@@ -408,6 +401,8 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
                     labelPhone.visibility = View.GONE
                     switch1.thumbTintList = getColorStateList(R.color.green_retirar)
                     etNumberPhone.hint = "Número a 10 digitos"
+                    etNumberPhone.setText("")
+                    etNumberPhone.text.toString().isEmpty()
 
                 } else {
                     rName.visibility = View.VISIBLE
@@ -439,10 +434,10 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
                     tilPassword.isEmpty()
                     tilCodeConfirmPassword.isEmpty()
                 }
-                btnEnviar.setOnClickListener { requestPriestSignUp() }
             }
-        }
-
+            btnEnviar.isEnabled = false
+            btnEnviar.setOnClickListener { requestPriestSignUp() }
+    }
     @SuppressLint("UseCompatLoadingForDrawables")
     fun enableIconStart(input: TextInputLayout, success: Boolean?) {
         when (success) {
@@ -462,6 +457,9 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        EAMXFirebaseManager(applicationContext).setLogEvent("screen_view", Bundle().apply {
+            putString("screen_class", "Login_Registro")
+        })
         viewModelEAMX.nextToView(requestCode, resultCode, data)
     }
 }
