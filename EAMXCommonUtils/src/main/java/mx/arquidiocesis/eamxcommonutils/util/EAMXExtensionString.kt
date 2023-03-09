@@ -14,6 +14,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import java.io.ByteArrayOutputStream
+import java.text.Normalizer
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -70,18 +71,38 @@ fun String.isUrlYoutube(): Boolean {
     val matcher = compiledPattern.matcher(this)
     return matcher.find()
 }
+
 fun String.isUrlArquidiocesisComunicado(): Boolean {
-    val pattern = "^(http(s)?:\\/\\/)?((w){3}.)?arquidiocesismexico(\\.org)(\\.mx)\\/((\\d){4})\\/((\\d){2})\\/((\\d){2})\\/comunicado\\-?.+$"
+    val pattern =
+        "^(http(s)?:\\/\\/)?((w){3}.)?arquidiocesismexico(\\.org)(\\.mx)\\/((\\d){4})\\/((\\d){2})\\/((\\d){2})\\/comunicado\\-?.+$"
     val compiledPattern = Pattern.compile(pattern)
     val matcher = compiledPattern.matcher(this)
     return matcher.find()
 }
 
-fun String.buildTextSuccessUrl(textNormal: String): String {
+fun String.SinEspaciosSinAcentos(): String {
+    var str = this.SinEspacios()
+    return str.SinAcentos()
+}
 
+fun String.SinEspacios(): String {
+    var str = this.replace("\\s".toRegex(), "")
+    return str
+}
+
+fun String.SinAcentos(): String {
+    var str = this.replace('ñ', '\u0001')
+    str = str.replace('Ñ', '\u0002')
+    str = Normalizer.normalize(str, Normalizer.Form.NFD)
+    str = str.replace("[\\p{InCombiningDiacriticalMarks}]".toRegex(), "")
+    /*Volvemos las ñ a la cadena*/str = str.replace('\u0001', 'ñ')
+    str = str.replace('\u0002', 'Ñ')
+    return str
+}
+
+fun String.buildTextSuccessUrl(textNormal: String): String {
     val positionFirstHttpUrl = textNormal.indexOf("http")
     var url = ""
-
     val arrayTextNew: MutableMap<Int, String> = mutableMapOf()
     if (positionFirstHttpUrl > -1) {
         val arrayTextAndUrl = textNormal.substring(positionFirstHttpUrl).split(" ")
@@ -93,18 +114,17 @@ fun String.buildTextSuccessUrl(textNormal: String): String {
     }
     return url
 }
+
 fun String.transformaData(): String {
     val patternLetterWithInitialMonths = Pattern.compile("[efmajsond]")
     val dateReceivedString = this
     val formatReceived = "dd/MM/yyyy"
     val formatOut = "Y-MM-dd"
-
     val simpleFormat = SimpleDateFormat(formatReceived, Locale("es", "MX"))
     val dateReceived: Date? = simpleFormat.parse(dateReceivedString)
     simpleFormat.applyPattern(formatOut)
     val dateOk =
         StringBuilder().append(dateReceived?.let { simpleFormat.format(it) } ?: kotlin.run { "" })
-
     if (dateOk.isNotEmpty()) {
         //This comparation is when day has one digit
         when (patternLetterWithInitialMonths.matcher(dateOk.substring(3, 4).toLowerCase()).find()) {
@@ -118,21 +138,19 @@ fun String.transformaData(): String {
             }
         }
     }
-
     return dateOk.toString()
 }
+
 fun String.transformDateYYYYMMddToDDMonthNameYYYY(): String {
     val patternLetterWithInitialMonths = Pattern.compile("[efmajsond]")
     val dateReceivedString = this
     val formatReceived = "yyyy-MM-dd"
     val formatOut = "dd MMMM yyyy"
-
     val simpleFormat = SimpleDateFormat(formatReceived, Locale("es", "MX"))
     val dateReceived: Date? = simpleFormat.parse(dateReceivedString)
     simpleFormat.applyPattern(formatOut)
     val dateOk =
         StringBuilder().append(dateReceived?.let { simpleFormat.format(it) } ?: kotlin.run { "" })
-
     if (dateOk.isNotEmpty()) {
         //This comparation is when day has one digit
         when (patternLetterWithInitialMonths.matcher(dateOk.substring(3, 4).toLowerCase()).find()) {
@@ -146,7 +164,6 @@ fun String.transformDateYYYYMMddToDDMonthNameYYYY(): String {
             }
         }
     }
-
     return dateOk.toString()
 }
 
@@ -164,7 +181,7 @@ fun String.downloadImageUrlToBitArray(context: Context, listener: (String) -> Un
         .into(object : CustomTarget<Bitmap>() {
             override fun onResourceReady(
                 resource: Bitmap,
-                transition: Transition<in Bitmap>?
+                transition: Transition<in Bitmap>?,
             ) {
                 val baos = ByteArrayOutputStream()
                 resource.compress(Bitmap.CompressFormat.PNG, 100, baos)
@@ -189,9 +206,9 @@ fun String.convertToBitmap(): Bitmap? {
     }
 }
 
-fun String.getRandomString(length: Int) : String {
+fun String.getRandomString(length: Int): String {
     val charset = "ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz0123456789"
-    return this+(1..length)
+    return this + (1..length)
         .map { charset.random() }
         .joinToString("")
 }

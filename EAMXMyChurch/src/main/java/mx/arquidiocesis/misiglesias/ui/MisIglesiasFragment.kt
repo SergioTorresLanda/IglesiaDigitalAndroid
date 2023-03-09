@@ -36,6 +36,7 @@ import mx.arquidiocesis.misiglesias.repository.Repository
 import mx.arquidiocesis.misiglesias.viewmodel.MisIgleciasViewModel
 
 const val PERMISSION_LOCATION = 10007
+
 class MisIglesiasFragment : FragmentBase() {
     companion object {
         fun newInstance(callBack: EAMXHome): MisIglesiasFragment {
@@ -62,7 +63,7 @@ class MisIglesiasFragment : FragmentBase() {
     private var isPrincipal = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         binding = FragmentMyChurchesBinding.inflate(inflater, container, false)
         return binding.root
@@ -84,20 +85,28 @@ class MisIglesiasFragment : FragmentBase() {
                 false
             )
             tvChangePrincipal.setOnClickListener {
-                isPrincipal = true
-                changeMap()
+                if (!msgGuest("agregar una iglesia principal")) {
+                    isPrincipal = true
+                    changeMap()
+                }
             }
             cvEmptyChurchPrincipal.setOnClickListener {
-                isPrincipal = true
-                changeMap()
+                if (!msgGuest("agregar una iglesia principal")) {
+                    isPrincipal = true
+                    changeMap()
+                }
             }
             tvAddFavorite.setOnClickListener {
-                isPrincipal = false
-                changeMap()
+                if (!msgGuest("agregar una iglesia favorita")) {
+                    isPrincipal = false
+                    changeMap()
+                }
             }
             clEmptyChurchFavorites.setOnClickListener {
-                isPrincipal = false
-                changeMap()
+                if (!msgGuest("agregar una iglesia favorita")) {
+                    isPrincipal = false
+                    changeMap()
+                }
             }
             tvGeo.setOnClickListener {
                 isPrincipal = false
@@ -263,6 +272,7 @@ class MisIglesiasFragment : FragmentBase() {
             .setAllowStack(true)
             .build().nextWithReplace()
     }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -271,13 +281,13 @@ class MisIglesiasFragment : FragmentBase() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (UtilValidPermission().allPermissionsAreAgree(grantResults)) {
             when (requestCode) {
-                PERMISSION_LOCATION ->{
+                PERMISSION_LOCATION -> {
 
                 }
             }
-        }else{
+        } else {
             when (requestCode) {
-                PERMISSION_LOCATION ->{
+                PERMISSION_LOCATION -> {
                     UtilAlert.Builder()
                         .setTitle(getString(R.string.title_dialog_warning))
                         .setMessage("Debes otorgar el permiso de ubicación para poder continuar")
@@ -302,8 +312,8 @@ class MisIglesiasFragment : FragmentBase() {
                     Manifest.permission.ACCESS_FINE_LOCATION
                 ), PERMISSION_LOCATION
             )
-        ){
-            fragmentMap = MapFragment(true) { item, location->
+        ) {
+            fragmentMap = MapFragment(true) { item, location ->
                 changeMapFragment(item.id)
             }
             NavigationFragment.Builder()

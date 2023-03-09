@@ -81,7 +81,6 @@ class DetailChurchFindedFragment : FragmentBase() {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.let {
@@ -93,8 +92,6 @@ class DetailChurchFindedFragment : FragmentBase() {
             isPrincipal = it.getBoolean("isPrincipal") ?: false
             idIglesia = it.getInt("idIglesia") ?: 0
         }
-
-
         if (userAllowAccessAsAdmin(EAMXEnumUser.USER_PERMISSION_CHURCH.name) && isChurchAvailableForEdit(
                 idIglesia
             )
@@ -107,10 +104,8 @@ class DetailChurchFindedFragment : FragmentBase() {
             "NOT EDIT CHURCH".log()
             callBack.showToolbar(true, AppMyConstants.miIglesia)
         }
-
         userId = PublicFunctions().getUserId()
         binding.apply {
-
             var isTutorial = eamxcu_preferences.getData(
                 tutorial,
                 EAMXTypeObject.BOOLEAN_OBJECT
@@ -125,13 +120,9 @@ class DetailChurchFindedFragment : FragmentBase() {
                 llButtons.visibility = View.GONE
                 btnActivarIglesia.visibility = View.VISIBLE
             }
-
             detalleIglesiaViewModel.obtenerDetalle(idIglesia)
             initObservers()
-
             showLoader()
-
-
             btnLlevame.setOnClickListener {
                 val gmmIntentUri = Uri.parse(
                     "geo:0,0?q=" + latitude.replace(",", ".") + "," + longitude.replace(
@@ -142,31 +133,32 @@ class DetailChurchFindedFragment : FragmentBase() {
                 val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
                 startActivity(mapIntent)
             }
-
             btnHeart.setOnClickListener {
-
-                if (isFav) {
-                    detalleIglesiaViewModel.delFavoritas(userId, idIglesia)
-                } else {
-                    detalleIglesiaViewModel.setFavoritas(churchDetaillModel, false)
+                if (!msgGuest("agregar una iglesia favorita")) {
+                    if (isFav) {
+                        detalleIglesiaViewModel.delFavoritas(userId, idIglesia)
+                    } else {
+                        detalleIglesiaViewModel.setFavoritas(churchDetaillModel, false)
+                    }
+                    showLoader()
                 }
-                showLoader()
-
             }
             ivChurch.setOnClickListener {
                 //  changeFragmentEdit()
             }
             btnComentarios.setOnClickListener {
-                changeFragment()
-            }
-
-            btnActivarIglesia.setOnClickListener {
-                if (isPrincipal) {
-                    detalleIglesiaViewModel.setFavoritas(churchDetaillModel, true)
-                    showLoader()
+                if (!msgGuest("escribir una opinión a la iglesia")) {
+                    changeFragment()
                 }
             }
-
+            btnActivarIglesia.setOnClickListener {
+                if (!msgGuest("agregar una iglesia principal")) {
+                    if (isPrincipal) {
+                        detalleIglesiaViewModel.setFavoritas(churchDetaillModel, true)
+                        showLoader()
+                    }
+                }
+            }
         }
     }
 
@@ -178,7 +170,6 @@ class DetailChurchFindedFragment : FragmentBase() {
         if (list.isEmpty()) {
             return false
         }
-
         return try {
             val collectionType: Type =
                 object : TypeToken<Collection<ModuleAdminEnabled?>?>() {}.type
@@ -208,8 +199,8 @@ class DetailChurchFindedFragment : FragmentBase() {
                 tvDescripcionIglesia.text = it.description
                 if (!it.principal?.name.isNullOrEmpty()) {
                     tvResponsable.visibility = View.VISIBLE
-                    tvResponsable.text = "Responsable: "+it.principal?.name
-                }else{
+                    tvResponsable.text = "Responsable: " + it.principal?.name
+                } else {
                     tvResponsable.visibility = View.VISIBLE
                     tvResponsable.text = "Responsable: No disponible"
                 }
@@ -267,12 +258,10 @@ class DetailChurchFindedFragment : FragmentBase() {
                             3
                         )
                     }
-
                     if (!cargar(horariosJueves, it, 4).isNullOrEmpty()) {
                         tvHorario.text =
                             tvHorario.text.toString() + "Jueves :\n" + cargar(horariosJueves, it, 4)
                     }
-
                     if (!cargar(horariosViernes, it, 5).isNullOrEmpty()) {
                         tvHorario.text =
                             tvHorario.text.toString() + "Viernes :\n" + cargar(
@@ -331,7 +320,6 @@ class DetailChurchFindedFragment : FragmentBase() {
                 if (redes) {
                     cvRedes.visibility = View.VISIBLE
                 }
-
                 /*if (!it.stream.isNullOrEmpty()) {
                     cvEventosEnvivo.visibility = View.VISIBLE
                     cvEventosEnvivo.setOnClickListener {
@@ -342,7 +330,6 @@ class DetailChurchFindedFragment : FragmentBase() {
                     star = PublicFunctions().redondearStar(it.rating!!.toFloat())
                     rbIglesia.rating = star
                 }
-
                 if (!it.masses.isNullOrEmpty()) {
                     binding.rvHorarios.visibility = View.VISIBLE
                     binding.tvTitleHorario.visibility = View.VISIBLE
@@ -352,9 +339,7 @@ class DetailChurchFindedFragment : FragmentBase() {
                             LinearLayoutManager.VERTICAL,
                             false
                         )
-
                         adapter = MassAdapter(getMasses(it.masses!!), false, binding.rvHorarios)
-
                         /*adapter = HorarioAdapter(
                             requireContext(),
                             getMasses(it.masses!!),
@@ -364,7 +349,6 @@ class DetailChurchFindedFragment : FragmentBase() {
                         }*/
                     }
                 }
-
                 if (!it.services.isNullOrEmpty()) {
                     binding.rvHorariosServicios.visibility = View.VISIBLE
                     binding.textView4.visibility = View.VISIBLE
@@ -382,9 +366,7 @@ class DetailChurchFindedFragment : FragmentBase() {
                     }
                 }
                 reviewViewModel.getComentarios(idIglesia, 1)
-
             }
-
         }
         detalleIglesiaViewModel.favResponse.observe(viewLifecycleOwner)
         {
@@ -418,8 +400,6 @@ class DetailChurchFindedFragment : FragmentBase() {
                 }
                 actualizaIcon()
             }
-
-
         }
         detalleIglesiaViewModel.errorResponse.observe(viewLifecycleOwner)
         {
@@ -464,7 +444,6 @@ class DetailChurchFindedFragment : FragmentBase() {
                     }
                 }
             }
-
         }
         reviewViewModel.errorResponse.observe(viewLifecycleOwner)
         {
@@ -479,26 +458,18 @@ class DetailChurchFindedFragment : FragmentBase() {
     private fun getMasses(masses: List<HoraryModelItem>): ArrayList<ScheduleMass> {
         val lunesHora = ArrayList<Hour>()
         val lunes = ScheduleMass("Lunes", lunesHora)
-
         val martesHora = ArrayList<Hour>()
         val martes = ScheduleMass("Martes", martesHora)
-
         val miercolesHora = ArrayList<Hour>()
         val miercoles = ScheduleMass("Miercoles", miercolesHora)
-
         val juevesHora = ArrayList<Hour>()
         val jueves = ScheduleMass("Jueves", juevesHora)
-
         val viernesHora = ArrayList<Hour>()
         val viernes = ScheduleMass("Viernes", viernesHora)
-
         val sabadoHora = ArrayList<Hour>()
         val sabado = ScheduleMass("Sabado", sabadoHora)
-
         val domingoHora = ArrayList<Hour>()
         val domingo = ScheduleMass("Domingo", domingoHora)
-
-
         masses.forEach { hora ->
             hora.days.forEach { day ->
                 when (day.name) {
@@ -533,7 +504,6 @@ class DetailChurchFindedFragment : FragmentBase() {
                 }
             }
         }
-
         val diasHorarios = ArrayList<ScheduleMass>()
         if (lunes.hours.isNotEmpty()) {
             diasHorarios.add(lunes)
@@ -556,7 +526,6 @@ class DetailChurchFindedFragment : FragmentBase() {
         if (domingo.hours.isNotEmpty()) {
             diasHorarios.add(domingo)
         }
-
         return diasHorarios
         //return masses as MutableList<HoraryModelItem>
     }
@@ -588,8 +557,6 @@ class DetailChurchFindedFragment : FragmentBase() {
                 ivCall.visibility = View.INVISIBLE
             }
         }
-
-
     }
 
     private fun actualizaIcon() {
@@ -629,7 +596,6 @@ class DetailChurchFindedFragment : FragmentBase() {
             eamxcu_preferences.saveData(tutorial, true)
             fragment.dismiss()
         }
-
         fragment.show(childFragmentManager, "LOADER")
     }
 
@@ -645,7 +611,6 @@ class DetailChurchFindedFragment : FragmentBase() {
             .setBundle(bundle)
             .setAllowStack(true)
             .build().nextWithReplace()
-
     }
 
     private fun changeFragmentEdit() {
@@ -663,7 +628,7 @@ class DetailChurchFindedFragment : FragmentBase() {
     private fun cargar(
         arrayList: MutableList<ScheduleAttention>,
         churchDetailModel: ChurchDetaillModel,
-        day: Int
+        day: Int,
     ): String {
         var horas = ""
         churchDetailModel.attention!!.sortedBy {
@@ -690,7 +655,6 @@ class DetailChurchFindedFragment : FragmentBase() {
 
                 }
             }
-
         }
         return horas
     }
@@ -720,6 +684,5 @@ class DetailChurchFindedFragment : FragmentBase() {
                 .build()
                 .show(childFragmentManager, "")
         }
-
     }
 }

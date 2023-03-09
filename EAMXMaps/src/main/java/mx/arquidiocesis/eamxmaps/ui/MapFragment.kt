@@ -21,8 +21,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
-import mx.arquidiocesis.eamxcommonutils.util.getViewModel
+import mx.arquidiocesis.eamxcommonutils.util.*
 import mx.arquidiocesis.eamxcommonutils.util.imagen.FunImagen
 import mx.arquidiocesis.eamxcommonutils.util.permission.UtilValidPermission
 import mx.arquidiocesis.eamxmaps.PublicMaps
@@ -35,31 +34,30 @@ import mx.arquidiocesis.eamxmaps.utils.base.FragmentMapBase
 import mx.arquidiocesis.eamxmaps.viewmodel.MapViewModel
 import java.text.Normalizer
 
-class MapFragment(
+class MapFragment constructor(
     val isLocation: Boolean = false,
-    val listener: (IgleciasModel, Location?) -> Unit
-) :
-    FragmentMapBase() {
+    val listener: (IgleciasModel, Location?) -> Unit,
+) : FragmentMapBase() {
+    var map = MutableLiveData<GoogleMap>()
+    var maker = MutableLiveData<Marker>()
+    var publicMaps = PublicMaps(map, maker)
+    private var iniciarEdit = true
     private val viewModel: MapViewModel by lazy {
         getViewModel {
             MapViewModel(Repository(requireContext()))
         }
     }
     private var location: Location? = null
-    private var LOCATIONP = 100
-    private var iniciarEdit = true
     private var busqueda = false
-    private var first = true
     private var firstLocation = true
+    private var LOCATIONP = 100
+    private var first = true
     private lateinit var binding: FragmentMapBinding
-    var map = MutableLiveData<GoogleMap>()
-    var maker = MutableLiveData<Marker>()
-    var publicMaps = PublicMaps(map, maker)
     var mapView: View? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         binding = FragmentMapBinding.inflate(inflater, container, false)
         return binding.root
@@ -81,7 +79,7 @@ class MapFragment(
             viewModel.getiglesiasList(binding.etBusarMap.text.toString().trimEnd())
         }
         binding.etBusarMap.setOnKeyListener { view, i, keyEvent ->
-            binding.etBusarMap.setText(stripAccents(binding.etBusarMap.text.toString()))
+            binding.etBusarMap.setText(binding.etBusarMap.text.toString().SinAcentos())
             val textLength: Int = binding.etBusarMap.getText().length
             binding.etBusarMap.setSelection(textLength, textLength)
             false
@@ -118,11 +116,12 @@ class MapFragment(
                                     igleciasModel.longitude.toDouble()
                                 )
                             if (iniciarEdit) {
-                                stripAccents("${igleciasModel.name}\n${igleciasModel.address}").let { it1 ->
-                                    arrayString.add(
-                                        it1
-                                    )
-                                }
+                                "${igleciasModel.name}\n${igleciasModel.address}".SinAcentos()
+                                    .let { it1 ->
+                                        arrayString.add(
+                                            it1
+                                        )
+                                    }
                             }
                             val markerOptions = MarkerOptions()
                             markerOptions.position(centerMark)
@@ -147,7 +146,9 @@ class MapFragment(
                                     requireContext()
                                 )
                             )
-                            if (igleciasModel.name + igleciasModel.address == binding.etBusarMap.text.toString()) {
+                            if ((igleciasModel.name + igleciasModel.address).SinEspaciosSinAcentos() == binding.etBusarMap.text.toString()
+                                    .SinEspaciosSinAcentos()
+                            ) {
                                 marker?.showInfoWindow()
                             }
                         }
@@ -222,7 +223,7 @@ class MapFragment(
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
-        grantResults: IntArray
+        grantResults: IntArray,
     ) {
         if (UtilValidPermission().allPermissionsAreAgree(grantResults)) {
             when (requestCode) {
@@ -248,17 +249,5 @@ class MapFragment(
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE)
         layoutParams.setMargins(0, 0, 50, 330)
         mapFragment.getMapAsync(publicMaps)
-    }
-
-    private fun stripAccents(s: String): String {
-        /*Salvamos las ñ*/
-        var s = s
-        s = s.replace('ñ', '\u0001')
-        s = s.replace('Ñ', '\u0002')
-        s = Normalizer.normalize(s, Normalizer.Form.NFD)
-        s = s.replace("[\\p{InCombiningDiacriticalMarks}]".toRegex(), "")
-        /*Volvemos las ñ a la cadena*/s = s.replace('\u0001', 'ñ')
-        s = s.replace('\u0002', 'Ñ')
-        return s
     }
 }
