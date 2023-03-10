@@ -77,12 +77,13 @@ class ServicesMenuFragment : FragmentBase() {
             )
         )
 
-        listServicesMain.add(ServiceMenuMainModel(
-            id = 0,
-            title = "Sacramentos",
-            desc = "Requisitos",
-            img = "Sacrament"
-        )
+        listServicesMain.add(
+            ServiceMenuMainModel(
+                id = 0,
+                title = "Sacramentos",
+                desc = "Requisitos",
+                img = "Sacrament"
+            )
         )
 
         binding.rvServices.apply {
@@ -102,12 +103,13 @@ class ServicesMenuFragment : FragmentBase() {
                     .addToBackStack(tag).commit()
             }
             1 -> {
-                val transaction = requireActivity().supportFragmentManager.beginTransaction()
-                val fragment = MyChurchesMentionFragment()
-                transaction.replace((requireView().parent as ViewGroup).id, fragment)
-                    .addToBackStack(tag).commit()
+                if (!msgGuest("solicitar una intención")) {
+                    val transaction = requireActivity().supportFragmentManager.beginTransaction()
+                    val fragment = MyChurchesMentionFragment()
+                    transaction.replace((requireView().parent as ViewGroup).id, fragment)
+                        .addToBackStack(tag).commit()
+                }
             }
-
             2 -> {
                 val transaction = requireActivity().supportFragmentManager.beginTransaction()
                 val fragment = MyCommunitiesMentionFragment()
@@ -115,10 +117,12 @@ class ServicesMenuFragment : FragmentBase() {
                     .addToBackStack(tag).commit()
             }
             3 -> {
-                val transaction = requireActivity().supportFragmentManager.beginTransaction()
-                val fragment = ServicesOtherFragment()
-                transaction.replace((requireView().parent as ViewGroup).id, fragment)
-                    .addToBackStack(tag).commit()
+                if (!msgGuest("solicitar otros servicios")) {
+                    val transaction = requireActivity().supportFragmentManager.beginTransaction()
+                    val fragment = ServicesOtherFragment()
+                    transaction.replace((requireView().parent as ViewGroup).id, fragment)
+                        .addToBackStack(tag).commit()
+                }
             }
         }
     }

@@ -106,7 +106,7 @@
                     android:gravity="center_horizontal"
                     android:lineSpacingExtra="4sp"
                     android:textColor="#13277c"
-                    android:textSize="20sp"
+                    android:textSize="22sp"
                     android:textStyle="bold"
                     android:fontFamily="System semibold"
                     tools:text="CONCLUIR SERVICIO"
@@ -124,7 +124,7 @@
                     android:gravity="center_horizontal"
                     android:lineSpacingExtra="4sp"
                     android:textColor="#1d2c3c"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="normal"
                     tools:text="El servicio será concluido y se notificará al fiel" />
 
@@ -172,7 +172,7 @@
                         app:cornerRadius="@dimen/size_corner_general_button"
                         android:text="Aceptar"
                         android:textAllCaps="false"
-                        android:textSize="15sp"
+                        android:textSize="16sp"
                         android:textColor="@color/btn_background_cancel" />
                 </LinearLayout>
 
