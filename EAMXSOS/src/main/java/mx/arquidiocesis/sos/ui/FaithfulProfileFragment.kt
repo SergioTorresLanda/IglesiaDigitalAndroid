@@ -137,9 +137,10 @@ class FaithfulProfileFragment : FragmentBase() {
 
     private fun initView() {
         //callBack.showToolbar(true, AppMyConstants.sosServicios)
-
         binding.tvActionNext.setOnClickListener {
-            process()
+            if (!msgGuest("solicitar un servicio de emergencia")) {
+                process()
+            }
         }
     }
 
