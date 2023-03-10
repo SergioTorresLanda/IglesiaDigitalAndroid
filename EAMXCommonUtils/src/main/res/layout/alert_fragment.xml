@@ -172,7 +172,7 @@
                         app:cornerRadius="@dimen/size_corner_general_button"
                         android:text="Aceptar"
                         android:textAllCaps="false"
-                        android:textSize="20sp"
+                        android:textSize="16sp"
                         android:textColor="@color/btn_background_cancel" />
                 </LinearLayout>
 
