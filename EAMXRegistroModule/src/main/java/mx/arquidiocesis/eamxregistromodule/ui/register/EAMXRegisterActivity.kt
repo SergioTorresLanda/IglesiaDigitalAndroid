@@ -197,6 +197,7 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
 
                         tilNumberPhone.isEmpty()
                         etNumberPhone.setText("")
+                        etNumberPhone.isEnabled
                         etName.setText("")
                     }
                 }
@@ -410,6 +411,21 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
                     etNumberPhone.text.toString().isEmpty()
 
                 } else {
+                        rName.isEmpty()
+                        etName.setText("")
+                        rLasNameFather.isEmpty()
+                        etLastNameFather.setText("")
+                        rLasNameMother.isEmpty()
+                        etLastNameMother.setText("")
+                        rPhone.isEmpty()
+                        etNumberPhone.setText("")
+                        rEmail.isEmpty()
+                        etEmail.setText("")
+                        rPassword.isEmpty()
+                        etPassword.setText("")
+                        rNewPassword.isEmpty()
+                        etConfirmPassword.setText("")
+
                     rName.visibility = View.VISIBLE
                     rLasNameMother.visibility = View.VISIBLE
                     rLasNameFather.visibility = View.VISIBLE
@@ -424,21 +440,6 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
                     switch1.thumbTintList = getColorStateList(R.color.hint_color)
                     labelPhone.visibility = View.VISIBLE
                     etNumberPhone.hint = ""
-
-                    rName.isEmpty()
-                    etName.setText("")
-                    rLasNameFather.isEmpty()
-                    etLastNameFather.setText("")
-                    rLasNameMother.isEmpty()
-                    etLastNameMother.setText("")
-                    rPhone.isEmpty()
-                    etNumberPhone.setText("")
-                    rEmail.isEmpty()
-                    etEmail.setText("")
-                    rPassword.isEmpty()
-                    etPassword.setText("")
-                    rNewPassword.isEmpty()
-                    etConfirmPassword.setText("")
                 }
             }
             btnEnviar.isEnabled = false
