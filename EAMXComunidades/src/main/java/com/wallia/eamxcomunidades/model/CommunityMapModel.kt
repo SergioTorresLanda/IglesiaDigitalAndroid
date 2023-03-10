@@ -12,5 +12,6 @@ data class CommunityMapModel (
     val longitude: String,
     @SerializedName("name")
     val name: String?,
-
+    @SerializedName("address")
+    val address: String?,
 )

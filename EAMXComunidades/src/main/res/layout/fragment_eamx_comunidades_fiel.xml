@@ -237,7 +237,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cvEmpyPrincipal"
+                        android:id="@+id/cvAddPrincipal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -278,7 +278,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/clPrincipal" />
 
                 <TextView
-                    android:id="@+id/tvAdd"
+                    android:id="@+id/tvAddFavorite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
@@ -298,7 +298,7 @@
                     app:layout_constraintTop_toTopOf="@+id/tvFavoritas" />
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cvFavorite"
+                    android:id="@+id/cvAddFavorite"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"

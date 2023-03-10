@@ -282,29 +282,32 @@ class EAMXDetalleComunidadFragment : FragmentBase() {
                 btnHeart.visibility = View.VISIBLE
                 btnActivarIglesia.visibility = View.GONE
             } else {
-
                 btnHeart.visibility = View.GONE
                 btnActivarIglesia.visibility = View.VISIBLE
             }
             btnHeart.setOnClickListener {
-                if (isPrincipal) {
-                    viewModel.postFavoriteCommunity(idComunity, true, communityDetail)
-                    showLoader()
-                } else {
-                    if (isFav) {
-                        isDel = true
-                        viewModel.deleteCommunity(idComunity)
+                if (!msgGuest("agregar una comunidad favorita")) {
+                    if (isPrincipal) {
+                        viewModel.postFavoriteCommunity(idComunity, true, communityDetail)
+                        showLoader()
                     } else {
-                        isDel = false
-                        viewModel.postFavoriteCommunity(idComunity, false, communityDetail)
+                        if (isFav) {
+                            isDel = true
+                            viewModel.deleteCommunity(idComunity)
+                        } else {
+                            isDel = false
+                            viewModel.postFavoriteCommunity(idComunity, false, communityDetail)
+                        }
+                        showLoader()
                     }
-                    showLoader()
                 }
             }
             btnActivarIglesia.setOnClickListener {
-                if (isPrincipal) {
-                    viewModel.postFavoriteCommunity(idComunity, true, communityDetail)
-                    showLoader()
+                if (!msgGuest("agregar una comunidad principal")) {
+                    if (isPrincipal) {
+                        viewModel.postFavoriteCommunity(idComunity, true, communityDetail)
+                        showLoader()
+                    }
                 }
             }
             btnLlevame.setOnClickListener {
@@ -327,18 +330,20 @@ class EAMXDetalleComunidadFragment : FragmentBase() {
             }
 
             btnComment.setOnClickListener {
-                val bundle = Bundle()
-                bundle.apply {
-                    putInt("idIglesia", idComunity ?: 0)
-                    bundle.putFloat(STAR, star)
-                    putString("nombre", name)
+                if (!msgGuest("escribir una opinión a la comunidad")) {
+                    val bundle = Bundle()
+                    bundle.apply {
+                        putInt("idIglesia", idComunity ?: 0)
+                        bundle.putFloat(STAR, star)
+                        putString("nombre", name)
+                    }
+                    NavigationFragment.Builder()
+                        .setActivity(requireActivity())
+                        .setView(requireView().parent as ViewGroup)
+                        .setFragment(ReviewFragment.newInstance(requireActivity() as EAMXHome))
+                        .setBundle(bundle)
+                        .build().nextWithReplace()
                 }
-                NavigationFragment.Builder()
-                    .setActivity(requireActivity())
-                    .setView(requireView().parent as ViewGroup)
-                    .setFragment(ReviewFragment.newInstance(requireActivity() as EAMXHome))
-                    .setBundle(bundle)
-                    .build().nextWithReplace()
             }
         }
 

@@ -67,7 +67,7 @@ class EAMXComunidadesFielFragment : FragmentBase() {
             binding.apply {
                 if (it.assigned != null) {
                     val item = it.assigned
-                    cvEmpyPrincipal.visibility = View.GONE
+                    cvAddPrincipal.visibility = View.GONE
                     iPrincipal.apply {
                         if (rol != EAMXProfile.CommunityResponsible.rol) {
                             tvChangePrincipal.visibility = View.VISIBLE
@@ -98,8 +98,8 @@ class EAMXComunidadesFielFragment : FragmentBase() {
                     }
                 }
                 if (!it.locations.isNullOrEmpty()) {
-                    cvFavorite.visibility = View.GONE
-                    tvAdd.visibility = View.VISIBLE
+                    cvAddFavorite.visibility = View.GONE
+                    tvAddFavorite.visibility = View.VISIBLE
                     val comunityAdapter = ComunityAdapter(it.locations, requireContext()) {
                         it.id?.let {
                             changeFragmen(it)
@@ -175,34 +175,43 @@ class EAMXComunidadesFielFragment : FragmentBase() {
                     }
                     return false
                 }
-
                 override fun onQueryTextChange(newText: String?): Boolean {
                     newText?.let {
                     }
                     return false
                 }
             })
-
-            ibSearch.setOnClickListener {
-                changeFragmen(svBusarComunidad.query.toString(), EAMXSearchFragment.newInstance())
+            //Principal
+            cvAddPrincipal.setOnClickListener {
+                if (!msgGuest("agregar una comunidad principal")) {
+                    changeFragmen("", EAMXSearchFragment.newInstance(), true)
+                }
             }
+            tvChangePrincipal.setOnClickListener {
+                if (!msgGuest("agregar una comunidad principal")) {
+                    changeFragmen("", EAMXSearchFragment.newInstance(), true)
+                }
+            }
+            //Favorite
+            cvAddFavorite.setOnClickListener {
+                if (!msgGuest("agregar una comunidad favorita")) {
+                    changeFragmen("", EAMXSearchFragment.newInstance())
+                }
+            }
+            tvAddFavorite.setOnClickListener {
+                if (!msgGuest("agregar una comunidad favorita")) {
+                    changeFragmen("", EAMXSearchFragment.newInstance())
+                }
+            }
+            //Buscar
             tvGeo.setOnClickListener {
                 changeFragmen("", EAMXMapFragment.newInstance())
             }
             ivGeo.setOnClickListener {
                 changeFragmen("", EAMXMapFragment.newInstance())
             }
-            tvAdd.setOnClickListener {
-                changeFragmen("", EAMXSearchFragment.newInstance())
-            }
-            cvFavorite.setOnClickListener {
-                changeFragmen("", EAMXSearchFragment.newInstance())
-            }
-            tvChangePrincipal.setOnClickListener {
-                changeFragmen("", EAMXSearchFragment.newInstance(), true)
-            }
-            cvEmpyPrincipal.setOnClickListener {
-                changeFragmen("", EAMXSearchFragment.newInstance(), true)
+            ibSearch.setOnClickListener {
+                changeFragmen(svBusarComunidad.query.toString(), EAMXSearchFragment.newInstance())
             }
         }
     }

@@ -34,6 +34,8 @@ import com.wallia.eamxcomunidades.databinding.FragmentEamxMapBinding
 import com.wallia.eamxcomunidades.model.CommunityMapModel
 import com.wallia.eamxcomunidades.viewmodel.PRINCIPAL
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
+import mx.arquidiocesis.eamxcommonutils.util.SinAcentos
+import mx.arquidiocesis.eamxcommonutils.util.SinEspaciosSinAcentos
 import mx.arquidiocesis.eamxcommonutils.util.getViewModel
 import mx.arquidiocesis.eamxcommonutils.util.imagen.FunImagen
 import mx.arquidiocesis.eamxcommonutils.util.permission.UtilValidPermission
@@ -87,10 +89,11 @@ class EAMXMapFragment : FragmentBase() {
                                     it.imgUrl,
                                     it.latitude,
                                     it.longitude,
-                                    it.name
+                                    it.name,
+                                    it.address
                                 )
                                 if (iniciarEdit) {
-                                    arrayString.add("${it.name}\n${it.address}")
+                                    arrayString.add("${it.name}\n${it.address}".SinAcentos())
                                 }
                                 addMarker(item, isFirst)
                                 isFirst = false
@@ -123,7 +126,8 @@ class EAMXMapFragment : FragmentBase() {
                                 it.imgUrl,
                                 it.latitude,
                                 it.longitude,
-                                it.name
+                                it.name,
+                                it.address
                             )
                             addMarker(item, isFirst)
                             isFirst = false
@@ -313,6 +317,11 @@ class EAMXMapFragment : FragmentBase() {
             item.id.toString()
         )
         map.value?.setInfoWindowAdapter(CustomInfoWindowCommunity(requireContext()))
+        if ((item.name + item.address).SinEspaciosSinAcentos() == binding.svBusarComunidad.text.toString()
+                .SinEspaciosSinAcentos()
+        ) {
+            marker?.showInfoWindow()
+        }
     }
 
     private fun changeFragmen(id: Int?) {
