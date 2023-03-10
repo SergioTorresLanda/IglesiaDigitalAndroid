@@ -7,6 +7,7 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.net.Uri
 import android.os.Bundle
+import android.util.AttributeSet
 import android.util.Patterns
 import android.view.View
 import androidx.core.view.isEmpty
@@ -47,7 +48,6 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
     }
 
     override fun initDependency() {}
-
     override fun initObservers() {
         viewModelEAMX.responseGeneric.observe(this) { response ->
             when (response.statusRequest) {
@@ -180,9 +180,11 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
                             etEmail.isEnabled = false
                             rPassword.visibility = View.VISIBLE
                             rNewPassword.visibility = View.VISIBLE
-                            switch1.visibility = View.GONE
+                            //sw
+                            switch1.visibility = View.VISIBLE
                             btnEnviar.visibility = View.GONE
-                            laySac.visibility = View.GONE
+                            //sw
+                            laySac.visibility = View.VISIBLE
                             SWSacerdote.visibility = View.GONE
                             UpdateDataPriest.visibility = View.VISIBLE
                             btnRegistrar.visibility = View.VISIBLE
@@ -195,6 +197,7 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
 
                         tilNumberPhone.isEmpty()
                         etNumberPhone.setText("")
+                        etNumberPhone.isEnabled
                         etName.setText("")
                     }
                 }
@@ -282,6 +285,7 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
                 )
                 if (etNumberPhone.text.toString().isEmpty()) {
                     enableIconStart(tilNumberPhone, null)
+                    tilNumberPhone.isEmpty()
                     tilNumberPhone.error = getString(R.string.min_phone)
                 } else {
                     if (EAMXFieldValidation.validateNumberPhone(etNumberPhone.text.toString()) && EAMXFieldValidation.validateNumberLength(
@@ -400,11 +404,28 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
                     SWSacerdote.visibility = View.VISIBLE
                     labelPhone.visibility = View.GONE
                     switch1.thumbTintList = getColorStateList(R.color.green_retirar)
-                    etNumberPhone.hint = "Número a 10 digitos"
+                    etNumberPhone.hint = "Número a 10 dígitos"
                     etNumberPhone.setText("")
+                    tilNumberPhone.isEmpty()
+                    tilNumberPhone.isEnabled
                     etNumberPhone.text.toString().isEmpty()
 
                 } else {
+                        rName.isEmpty()
+                        etName.setText("")
+                        rLasNameFather.isEmpty()
+                        etLastNameFather.setText("")
+                        rLasNameMother.isEmpty()
+                        etLastNameMother.setText("")
+                        rPhone.isEmpty()
+                        etNumberPhone.setText("")
+                        rEmail.isEmpty()
+                        etEmail.setText("")
+                        rPassword.isEmpty()
+                        etPassword.setText("")
+                        rNewPassword.isEmpty()
+                        etConfirmPassword.setText("")
+
                     rName.visibility = View.VISIBLE
                     rLasNameMother.visibility = View.VISIBLE
                     rLasNameFather.visibility = View.VISIBLE
@@ -413,31 +434,18 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
                     rNewPassword.visibility = View.VISIBLE
                     btnRegistrar.visibility = View.VISIBLE
                     btnEnviar.visibility = View.GONE
-                    laySac.visibility = View.VISIBLE
+                    //laySac.visibility = View.VISIBLE
+                    switch1.visibility = View.VISIBLE
                     SWSacerdote.visibility = View.GONE
                     switch1.thumbTintList = getColorStateList(R.color.hint_color)
                     labelPhone.visibility = View.VISIBLE
                     etNumberPhone.hint = ""
-                    SWSacerdote.visibility = View.GONE
-
-                    etName.setText("")
-                    etLastNameFather.setText("")
-                    etLastNameMother.setText("")
-                    etNumberPhone.setText("")
-                    etEmail.setText("")
-                    etPassword.setText("")
-                    etConfirmPassword.setText("")
-                    tilLastNameMother.isEmpty()
-                    tilLastName.isEmpty()
-                    tilNumberPhone.isEmpty()
-                    tilEmail.isEmpty()
-                    tilPassword.isEmpty()
-                    tilCodeConfirmPassword.isEmpty()
                 }
             }
             btnEnviar.isEnabled = false
             btnEnviar.setOnClickListener { requestPriestSignUp() }
     }
+
     @SuppressLint("UseCompatLoadingForDrawables")
     fun enableIconStart(input: TextInputLayout, success: Boolean?) {
         when (success) {

@@ -3,28 +3,22 @@ package mx.arquidiocesis.eamxprofilemodule.ui.information
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
-import android.content.res.ColorStateList
-import android.graphics.Color
-import android.graphics.PorterDuff
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.os.Environment
 import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
-import androidx.core.content.ContextCompat
+import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.eamx_profile_info_fragment.*
+import kotlinx.android.synthetic.main.eamx_profile_principal_fragment.*
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
-import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.common.EAMXHome
 import mx.arquidiocesis.eamxcommonutils.common.EAMXSignOut
 import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
@@ -32,7 +26,6 @@ import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
 import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
 import mx.arquidiocesis.eamxcommonutils.util.getViewModel
 import mx.arquidiocesis.eamxcommonutils.util.log
-import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
 import mx.arquidiocesis.eamxcommonutils.util.permission.UtilValidPermission
 import mx.arquidiocesis.eamxcommonutils.util.toast
 import mx.arquidiocesis.eamxprofilemodule.R
@@ -47,7 +40,6 @@ import mx.arquidiocesis.eamxprofilemodule.model.update.base.ActivityChurchModel
 import mx.arquidiocesis.eamxprofilemodule.model.userdetail.User
 import mx.arquidiocesis.eamxprofilemodule.model.userdetail.toChurchAndDescriptionModel
 import mx.arquidiocesis.eamxprofilemodule.repository.RepositoryProfile
-import mx.arquidiocesis.eamxprofilemodule.ui.profile.PERMISSION_CAMERA
 import mx.arquidiocesis.eamxprofilemodule.ui.profile.PERMISSION_LOCATION
 import mx.arquidiocesis.eamxprofilemodule.ui.profile.PERMISSION_STORAGE
 import mx.arquidiocesis.eamxprofilemodule.viewmodel.*
@@ -55,7 +47,7 @@ import mx.arquidiocesis.registrosacerdote.view.EAMXPriestRegisterFragment
 
 
 
-class EAMXProfileInfoFragment : FragmentBase() {
+class EAMXProfileInfoFragment: FragmentBase() {
 
     private val TAG_LOADER: String = "EAMXProfileInfoFragment"
 
@@ -710,11 +702,13 @@ class EAMXProfileInfoFragment : FragmentBase() {
                     Log.d("TAG", "saveLocal: ${binding.etSearchCommunity.text.toString()}")
                 } else {
                     viewModelProfile.saveData(binding, activitiesAdapter)
-                    NavigationFragment.Builder()
-                        .setActivity(requireActivity())
-                        .setView(requireView().parent as ViewGroup)
-                        .setFragment(EAMXPriestRegisterFragment.newInstance(callBack))
-                        .build().nextWithReplace()
+                   // val fragment = EAMXProfileInfoFragment
+                    callBack.showToolbar(true, "Registro de Sacerdotes")
+                    val transaction = requireActivity().supportFragmentManager.beginTransaction()
+                    transaction.replace(R.id.contentFragmentProfile, EAMXPriestRegisterFragment.newInstance(callBack))
+                    //transaction.addToBackStack(null)
+                    transaction.disallowAddToBackStack()
+                    transaction.commit()
                 }
             }
         }

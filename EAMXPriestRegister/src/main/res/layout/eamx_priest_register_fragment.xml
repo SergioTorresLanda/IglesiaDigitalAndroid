@@ -239,6 +239,7 @@
                     android:lineSpacingExtra="@dimen/line_spacing_extra_dimen_2"
                     android:background="#F5F5F5"
                     android:maxLength="10"
+                    android:text="@string/txt_registry_priest_mask_date"
                     android:padding="@dimen/small_margin_padding"
                     android:textColor="@color/textview_text_color"
                     android:textSize="@dimen/font_size_14"
