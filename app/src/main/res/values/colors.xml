@@ -36,6 +36,7 @@
     <color name="color_cadena_oracion_socalstroke">#cedee4</color>
     <color name="color_card_eventos_empty">#1C75BC</color>
     <color name="color_card_eventos_exist">#b20b0b</color>
+    <color name="color_card_actividades_voluntariado">#F19B38</color>
 
     <!--background toolbar blue-->
     <color name="blueToolbar">#162977</color>

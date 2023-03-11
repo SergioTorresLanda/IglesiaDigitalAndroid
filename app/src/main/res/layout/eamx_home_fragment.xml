@@ -423,7 +423,7 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardLiveEvent"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="10dp"
@@ -446,8 +446,8 @@
 
                         <ImageView
                             android:id="@+id/imageView10"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
                             android:adjustViewBounds="true"
                             android:padding="12dp"
                             android:scaleType="fitXY"
@@ -461,7 +461,7 @@
                             style="@style/StyleTxtTitleRegister"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
+                            android:layout_marginTop="@dimen/margin_5"
                             android:text="Transmisiones"
                             android:textColor="@color/white"
                             android:textStyle="bold"
@@ -473,6 +473,7 @@
                             android:id="@+id/txtDescripcion"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_5"
                             android:autoSizeTextType="uniform"
                             android:maxLines="1"
                             android:paddingEnd="@dimen/padding_10"
@@ -489,6 +490,75 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_actividades_voluntariado"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="10dp"
+                    android:clickable="true"
+                    android:elevation="10dp"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:visibility="visible"
+                    app:cardBackgroundColor="@color/color_card_actividades_voluntariado"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <ImageView
+                            android:id="@+id/iv_actividades_voluntariado"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:padding="12dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_calendar"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_actividades_voluntariado_title"
+                            style="@style/StyleTxtTitleRegister"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_5"
+                            android:text="Actividades"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/iv_actividades_voluntariado"
+                            app:layout_constraintTop_toTopOf="parent" />
+                        <!--y voluntariado-->
+                        <TextView
+                            android:id="@+id/tv_actividades_voluntariado_descripcion"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_5"
+                            android:autoSizeTextType="uniform"
+                            android:maxLines="2"
+                            android:paddingEnd="@dimen/padding_10"
+                            android:text="Participa como organizador, asistente, voluntario y/o donante"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/size_16"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toEndOf="@+id/iv_actividades_voluntariado"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_actividades_voluntariado_title"
+                            app:layout_constraintVertical_bias="0.0" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
                     android:id="@+id/cvGo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -499,7 +569,7 @@
                     app:cardCornerRadius="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cardLiveEvent"
+                    app:layout_constraintTop_toBottomOf="@+id/cv_actividades_voluntariado"
                     tools:visibility="visible">
 
                     <androidx.constraintlayout.widget.ConstraintLayout

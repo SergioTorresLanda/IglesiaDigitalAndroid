@@ -13,6 +13,7 @@ import mx.arquidiocesis.eamxdonaciones.ui.ProfileDonacionesFragment
 import mx.arquidiocesis.eamxgeneric.R
 import mx.arquidiocesis.eamxgeneric.fragments.WebViewHomeFragment
 import mx.arquidiocesis.eamxlivestreammodule.ProfileLiveFragment
+import mx.arquidiocesis.eamxevent.ui.EventFragment
 import mx.arquidiocesis.eamxredsocialmodule.EAMXContentFragmentRedSocial
 import mx.arquidiocesis.misiglesias.ui.ProfileChurchFragment
 import mx.arquidiocesis.oraciones.ui.ProfileOrationFragment
@@ -28,6 +29,15 @@ fun EAMXHomeFragment.initOnClickListener(signOut: EAMXSignOut) {
                     R.id.contentFragment,
                     ProfileLiveFragment::class.java.simpleName
                 )
+        }
+        cvActividadesVoluntariado.setOnClickListener {
+            if (!msgGuest()) {
+                eamxBackHandler.changeFragment(
+                    EventFragment.newInstance(callBack!!),
+                    R.id.contentFragment,
+                    EventFragment::class.java.simpleName
+                )
+            }
         }
 
         clRedSocial.setOnClickListener {
