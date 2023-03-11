@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.EventFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/actyvol"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/margin_15"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvPublicaciones"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tab"
+                    android:paddingBottom="@dimen/margin_top_15"
+                    android:fontFamily="@font/spro_text_regular"
+                    android:text="Comedores"
+                    android:textColor="#192a73"
+                    android:textSize="@dimen/size_18"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/tvMiRed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_top_40"
+                    android:fontFamily="@font/spro_text_regular"
+                    android:text="Despensas"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/size_18" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clVistaPrincipal"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/actyvol">
+
+            <TextView
+                android:id="@+id/tvNew"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:drawableRight="@drawable/cio_paypal_logo"
+                android:fontFamily="sans-serif"
+                android:letterSpacing="0.01"
+                android:gravity="center"
+                android:lineSpacingExtra="8sp"
+                android:text="Crear una actividad"
+                android:textColor="#2769d2"
+                android:textSize="@dimen/size_16"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,7 +1,7 @@
-package com.example.eamxevent.models
+package mx.arquidiocesis.eamxevent.model
 
 
-import com.example.eamxevent.models.catalog.Zone
+import mx.arquidiocesis.eamxevent.model.catalog.Zone
 import com.google.gson.annotations.SerializedName
 
 data class Event(

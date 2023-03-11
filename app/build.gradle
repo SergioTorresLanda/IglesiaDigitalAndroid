@@ -72,5 +72,6 @@ dependencies {
     implementation project(path: ':EAMXServices')
     implementation project(path: ':EAMXComunidades')
     implementation project(path: ':EAMXDonaciones')
+    implementation project(path: ':EAMXEvento')
 }
 

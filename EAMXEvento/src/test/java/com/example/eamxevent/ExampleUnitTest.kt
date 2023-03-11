@@ -1,4 +1,4 @@
-package com.example.eamxevent
+package mx.arquidiocesis.eamxevent
 
 import org.junit.Test
 

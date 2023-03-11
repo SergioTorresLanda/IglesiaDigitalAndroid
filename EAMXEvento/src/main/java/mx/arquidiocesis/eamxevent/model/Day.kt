@@ -1,4 +1,4 @@
-package com.example.eamxevent.models
+package mx.arquidiocesis.eamxevent.model
 
 
 import com.google.gson.annotations.SerializedName

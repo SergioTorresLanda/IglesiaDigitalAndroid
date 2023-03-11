@@ -1,4 +1,4 @@
-package com.example.eamxevent.models.enum
+package mx.arquidiocesis.eamxevent.model.enum
 
 enum class Day(val day: String){
     Domingo("Domingo"),

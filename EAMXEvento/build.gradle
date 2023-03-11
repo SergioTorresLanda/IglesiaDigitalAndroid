@@ -12,12 +12,12 @@ apply from: "$rootProject.projectDir/buildsystem/configuration.gradle"
 def configuration = ext.configuration
 
 android {
-    namespace 'com.example.eamxevent'
+    namespace 'mx.arquidiocesis.eamxevent'
     compileSdkVersion configuration.compileSdkVersion
     buildToolsVersion configuration.buildToolsVersion
 
     defaultConfig {
-        //applicationId "com.example.eamxevent"
+        //applicationId "mx.arquidiocesis.eamxevent"
         minSdkVersion configuration.minSdkVersion
         targetSdkVersion configuration.targetSdkVersion
 
