@@ -70,7 +70,7 @@ class Home_Home : EAMXBaseActivity(),
     private lateinit var nameCompleted: String
     private lateinit var userRole: String
     private var guest: Boolean = true
-    private var tokenSaved: Boolean
+    private var tokenSaved: Boolean = false
     private var userId: Int
     private var userProfile: String
 

@@ -286,7 +286,7 @@ class EAMXDetalleComunidadFragment : FragmentBase() {
                 btnActivarIglesia.visibility = View.VISIBLE
             }
             btnHeart.setOnClickListener {
-                if (!msgGuest("agregar una comunidad favorita")) {
+                if (!msgGuest("agregar una comunidad como favorita")) {
                     if (isPrincipal) {
                         viewModel.postFavoriteCommunity(idComunity, true, communityDetail)
                         showLoader()
@@ -303,7 +303,7 @@ class EAMXDetalleComunidadFragment : FragmentBase() {
                 }
             }
             btnActivarIglesia.setOnClickListener {
-                if (!msgGuest("agregar una comunidad principal")) {
+                if (!msgGuest("agregar una comunidad como principal")) {
                     if (isPrincipal) {
                         viewModel.postFavoriteCommunity(idComunity, true, communityDetail)
                         showLoader()

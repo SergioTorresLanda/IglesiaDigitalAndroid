@@ -183,23 +183,23 @@ class EAMXComunidadesFielFragment : FragmentBase() {
             })
             //Principal
             cvAddPrincipal.setOnClickListener {
-                if (!msgGuest("agregar una comunidad principal")) {
+                if (!msgGuest("agregar una comunidad como principal")) {
                     changeFragmen("", EAMXSearchFragment.newInstance(), true)
                 }
             }
             tvChangePrincipal.setOnClickListener {
-                if (!msgGuest("agregar una comunidad principal")) {
+                if (!msgGuest("agregar una comunidad como principal")) {
                     changeFragmen("", EAMXSearchFragment.newInstance(), true)
                 }
             }
             //Favorite
             cvAddFavorite.setOnClickListener {
-                if (!msgGuest("agregar una comunidad favorita")) {
+                if (!msgGuest("agregar una comunidad como favorita")) {
                     changeFragmen("", EAMXSearchFragment.newInstance())
                 }
             }
             tvAddFavorite.setOnClickListener {
-                if (!msgGuest("agregar una comunidad favorita")) {
+                if (!msgGuest("agregar una comunidad como favorita")) {
                     changeFragmen("", EAMXSearchFragment.newInstance())
                 }
             }
