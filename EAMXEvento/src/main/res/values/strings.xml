@@ -2,4 +2,18 @@
     <string name="app_name">My Application</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="digits_only_number_phone">0123456789</string>
+    <string name="enter_your_req">Ingresa los requisitos</string>
+    <string name="enter_your_name">Ingresa el nombre del responsable</string>
+    <string name="min_phone">El número debe tener 10 dígitos</string>
+    <string name="wrong_phone_number">Número de celular incorrecto</string>
+    <string-array name="zona">
+        <item>Seleccione</item>
+        <item>Norte</item>
+        <item>Centro</item>
+        <item>Oriente</item>
+        <item>Poniente</item>
+        <item>Sur</item>
+    </string-array>
+
 </resources>

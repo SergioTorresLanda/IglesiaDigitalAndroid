@@ -32,18 +32,6 @@ class DatePickerFragment(
         configuration.setLocale(locale)
         configuration.setLayoutDirection(locale)
         context.createConfigurationContext(configuration)
-
-
-
-
-
-
-
-
-
-
-
-
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
         val month = c.get(Calendar.MONTH)

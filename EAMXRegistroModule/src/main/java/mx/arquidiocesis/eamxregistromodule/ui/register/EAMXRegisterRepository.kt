@@ -11,8 +11,14 @@ import retrofit2.Call
 
 class EAMXRegisterRepository {
 
-    fun callServiceSignUp(requestModel: EAMXSignUpRequest, observer: Observer<EAMXGenericResponse<EAMXSignUpResponse, String, EAMXSignUpRequest>>) {
-        val initService: EAMXInitServices<EAMXSignUpRequest, Call<EAMXSignUpResponse>> = EAMXInitServices()
-        EAMXValidResponse(observer, requestModel, EAMXSignUpResponse::class).validationMethod(initService.postExecuteService(requestModel, AppMyConstants.SIGN_UP_END_POINT))
+    fun callServiceSignUp(
+        requestModel: EAMXSignUpRequest,
+        observer: Observer<EAMXGenericResponse<EAMXSignUpResponse, String, EAMXSignUpRequest>>
+    ) {
+        val initService: EAMXInitServices<EAMXSignUpRequest, Call<EAMXSignUpResponse>> =
+            EAMXInitServices()
+        EAMXValidResponse(observer, requestModel, EAMXSignUpResponse::class).validationMethod(
+            initService.postExecuteService(requestModel, AppMyConstants.SIGN_UP_END_POINT)
+        )
     }
 }

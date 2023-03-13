@@ -50,6 +50,7 @@
 
 
     <dimen name="size_corner_general_button">8dp</dimen>
+    <dimen name="size_corner_button">90dp</dimen>
 
 
 </resources>

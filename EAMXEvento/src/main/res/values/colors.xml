@@ -7,4 +7,24 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="success">#2BAA22</color>
+    <color name="error">#DE1733</color>
+
+    <color name="textview_title_color">#002166</color>
+    <color name="btn_background_color">#192a73</color>
+    <color name="text_button_color">#ffffff</color>
+    <color name="textedit_description_color">#717171</color>
+    <color name="textview_description_color">#a0a0a0</color>
+    <color name="textview_text_color">@color/black</color>
+    <color name="edittext_text_hint_color">#717171</color>
+    <color name="primaryColor">#13277c</color>
+    <color name="colorBtnDonation">#192a73</color>
+    <color name="colorDialogGray">#75787b</color>
+    <color name="blueColorBtn">#192a73</color>
+    <color name="orangeTerminosCondiciones">#f19b38</color>
+    <color name="colorGrayBackgroun">#f5f5f5</color>
+    <color name="blueTxtCodeConfirmacion">#192a73</color>
+    <color name="add_button_color">#1c75bc</color>
+    <color name="textBlue">#192a73</color>
+    <color name="colorGrayBackground">#FAF8F8</color>
 </resources>

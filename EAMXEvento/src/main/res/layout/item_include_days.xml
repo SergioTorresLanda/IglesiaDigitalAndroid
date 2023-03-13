@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cwcDays"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/iDayLu"
+            layout="@layout/item_days"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/iDayMa"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/iDayMa"
+            layout="@layout/item_days"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/iDayMi"
+            app:layout_constraintStart_toEndOf="@+id/iDayLu"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/iDayMi"
+            layout="@layout/item_days"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toStartOf="@id/iDayJu"
+            app:layout_constraintStart_toEndOf="@+id/iDayMa"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/iDayJu"
+            layout="@layout/item_days"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toStartOf="@id/iDayVi"
+            app:layout_constraintStart_toEndOf="@+id/iDayMi"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/iDayVi"
+            layout="@layout/item_days"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toStartOf="@id/iDaySa"
+            app:layout_constraintStart_toEndOf="@+id/iDayJu"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/iDaySa"
+            layout="@layout/item_days"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toStartOf="@id/iDayDo"
+            app:layout_constraintStart_toEndOf="@+id/iDayVi"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/iDayDo"
+            layout="@layout/item_days"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iDaySa"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:listitem="@layout/fragment_event_detail"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>
