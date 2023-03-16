@@ -14,6 +14,9 @@ object AppMyConstants {
     val LOG_OUT_END_POINT = EAMXEnumsEndPoint.LOG_OUT.name.toLowerCase(Locale.ROOT)
     val UPDATE_END_POINT = EAMXEnumsEndPoint.UPDATE.name.toLowerCase(Locale.ROOT)
 
+    val BASE_URLC = ConstansApp.hostUser()
+    val CREATE_DINER = EAMXEnumsEndPoint.CREATEC.name.toLowerCase(Locale.ROOT)
+
     const val BASE_NEWS_URL = "https://api.arquidiocesis.mx/"
 
     const val PUBLICATIONS_MAKE_END_POINT = "publications/make"
@@ -37,6 +40,7 @@ object AppMyConstants {
 
     /*Titulos para los toolbar de cada Fragment*/
     const val evento = "Actividades y voluntariado"
+    const val detailEvento = "Alta de comedores"
     const val perfil = "Perfil"
     const val expanded = "Expanded"
     const val servicios = "Servicios"

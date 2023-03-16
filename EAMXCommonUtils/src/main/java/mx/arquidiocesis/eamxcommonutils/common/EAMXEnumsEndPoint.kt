@@ -7,5 +7,6 @@ enum class EAMXEnumsEndPoint{
     RESEND_CODE,
     INFO,
     LOG_OUT,
-    UPDATE
+    UPDATE,
+    CREATEC
 }

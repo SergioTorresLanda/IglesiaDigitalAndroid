@@ -5,15 +5,44 @@
     <string name="digits_only_number_phone">0123456789</string>
     <string name="enter_your_req">Ingresa los requisitos</string>
     <string name="enter_your_name">Ingresa el nombre del responsable</string>
+    <string name="enter_diner_name">Ingresa el nombre del comedor</string>
+    <string name="enter_diner_fh">Ingresa un horario de apertura</string>
+    <string name="enter_diner_eh">Ingresa un horario de cierre</string>
     <string name="min_phone">El número debe tener 10 dígitos</string>
     <string name="wrong_phone_number">Número de celular incorrecto</string>
-    <string-array name="zona">
-        <item>Seleccione</item>
-        <item>Norte</item>
-        <item>Centro</item>
-        <item>Oriente</item>
-        <item>Poniente</item>
-        <item>Sur</item>
+    <string name="not_create_event">Verifica tus datos.</string>
+    <string name="create_event">Se ha dado de alta el comedor correctamente.</string>
+    <string name="txt_empty">Campo obligatorio</string>
+    <string name="txt_invalidate_email">Formato de correo electronico incorrecto</string>
+    <string-array name="delegations">
+        <item>Todas</item>
+        <item>Álvaro Obregón</item>
+        <item>Azcapotzalco</item>
+        <item>Benito Juárez</item>
+        <item>Coyoacán</item>
+        <item>Cuajimalpa de Morelos</item>
+        <item>Cuauhtémoc</item>
+        <item>Gustavo A. Madero</item>
+        <item>Iztacalco</item>
+        <item>Iztapalapa</item>
+        <item>Magdalena Contreras</item>
+        <item>Miguel Hidalgo</item>
+        <item>Milpa Alta</item>
+        <item>Tláhuac</item>
+        <item>Tlalpan</item>
+        <item>Venustiano Carranza</item>
+        <item>Xochimilco</item>
     </string-array>
+    <string name="txt_empty_name">El nombre del comedor no puede quedar vacío.</string> 1
+    <string name="txt_empty_location">Actualiza la ubicación de tu comedor.</string> 1
+    <string name="txt_empty_day">Activa por lo menos un día a la semana en el que preste sevicio tu comedor.</string> 1
+    <string name="txt_empty_hour_first">Selecciona un horario de apertura.</string> 1
+    <string name="txt_empty_hour_end">Selecciona un horario de cierre.</string> 1
+    <string name="txt_empty_responsability">El nombre del responsable no puede quedar vacío.</string> 1
+    <string name="txt_empty_email">El campo del correo no puede quedar vacío.</string> 1
+    <string name="txt_empty_phone">El campo de teléfono no puede quedar vacío.</string>
+    <string name="txt_invalid_phone">El campo de teléfono debe contener 10 dígitos.</string>
+    <string name="txt_empty_requi">El campo de requisitos no puede quedar vacío.</string>
+    <string name="txt_empty_zone">El campo de zona no puede quedar vacío.</string>
 
 </resources>

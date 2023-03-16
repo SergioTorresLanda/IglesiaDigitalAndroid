@@ -74,6 +74,7 @@
         ayudes otorgando los permisos te vamos a llevar a las configuraciones de la app.</string>
     <string name="button_message_go_to_settings">Ir a configuraciones</string>
     <string name="title_dialog_warning">Aviso</string>
+    <string name="title_dialog_error">Datos faltantes</string>
     <string name="text_button_cancel">Cancelar</string>
     <string name="button_message_available_gps">Habilitar gps</string>
     <string name="text_message_available_gps">Es necesario obtener tu localización, ayúdanos habilitando tu gps.</string>

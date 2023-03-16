@@ -1,16 +1,18 @@
 package mx.arquidiocesis.eamxevent.model
 
-
 import mx.arquidiocesis.eamxevent.model.catalog.Zone
 import com.google.gson.annotations.SerializedName
+import mx.arquidiocesis.eamxevent.model.enum.Delegations
 
 data class Event(
     @SerializedName("id")
     val id: Int? = null,
     @SerializedName("nombre")
     val name: String? = null,
+    @SerializedName("user_id")
+    val user_id: Int? = null,
     @SerializedName("horarios")
-    val schedule: List<Schedules>,
+    val schedule: MutableList<Schedules>,
     @SerializedName("responsable")
     val responsability: String? = null,
     @SerializedName("correo")
@@ -28,11 +30,11 @@ data class Event(
     @SerializedName("requisitos")
     val requirements: String? = null,
     @SerializedName("voluntarios")
-    val volunteers: String? = null,
+    val volunteers: Int? = null,
     @SerializedName("donantes")
-    val donors: List<Int>,
+    val donors: ArrayList<Int> = ArrayList(),
     @SerializedName("zona")
-    val zone_id: List<Zone>,
+    val zone_id: Int? = null,
     @SerializedName("status")
     val status: Int? = null,
     //@SerializedName("type_event_id")

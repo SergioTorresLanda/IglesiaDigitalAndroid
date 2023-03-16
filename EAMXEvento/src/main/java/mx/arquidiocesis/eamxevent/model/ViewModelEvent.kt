@@ -1,16 +1,157 @@
 package mx.arquidiocesis.eamxevent.model
 
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import mx.arquidiocesis.eamxcommonutils.api.core.request.EAMXGenericRequest
+import mx.arquidiocesis.eamxcommonutils.api.core.response.EAMXGenericResponse
+import mx.arquidiocesis.eamxcommonutils.api.core.status.EAMXStatusRequestEnum
+import mx.arquidiocesis.eamxcommonutils.application.EAMXGenericMutableLiveData
+import mx.arquidiocesis.eamxcommonutils.application.validation.EAMXRequestWithValidation
+import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
+import mx.arquidiocesis.eamxcommonutils.common.EAMXPutExtraModel
+import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
+import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
+import mx.arquidiocesis.eamxcommonutils.util.log
+import mx.arquidiocesis.eamxevent.constants.Constants
+import mx.arquidiocesis.eamxevent.model.enum.Delegations
+import mx.arquidiocesis.eamxevent.repository.RepositoryEvent
+
 
 class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
 
-    val topicsModel = repositoryEvent.zonaResponse
+    val responseGeneric: EAMXGenericRequest<EAMXGenericResponse<EventResponse, String, Event>> =
+        EAMXGenericRequest()
+    val zoneModel = repositoryEvent.zonaResponse
+    val errorResponse = repositoryEvent.errorResponse
+    var registerResponse = repositoryEvent.registerResponse
+    var validateForm = MutableLiveData<HashMap<String, String>>()
+    var showLoaderView = MutableLiveData<Boolean>()
 
-    fun getTopics() {
-        GlobalScope.launch {
-            repositoryEvent.getZone()
+
+    /**
+    Metodo ejecutado desde EventFragment
+     */
+    fun requestEvent(requestModel: Event) {
+        responseGeneric.postValue(
+            EAMXGenericResponse(
+                EAMXStatusRequestEnum.LOADING,
+                requestData = requestModel
+            )
+        )
+        repositoryEvent.callServiceEvent(requestModel, observeEventResponse())
+    }
+
+    private fun observeEventResponse() =
+        Observer<EAMXGenericResponse<EventResponse, String, Event>> {
+            responseGeneric.postValue(it)
+        }
+
+    fun validateFormRegister(
+        name: String,
+        user_id: Int,
+        schedule: MutableList<Schedules>,
+        responsability: String,
+        email: String,
+        phone: String,
+        address: String,
+        longitude: String,
+        latitude: String,
+        amount: Int,
+        requeriments: String,
+        volunteers: Int,
+        donors: ArrayList<Int> = ArrayList(),
+        zone_id: Int,
+        status: Int
+    ) {
+        val userId =
+            eamxcu_preferences.getData(EAMXEnumUser.USER_ID.name, EAMXTypeObject.INT_OBJECT) as Int
+        val email =
+            eamxcu_preferences.getData(
+                EAMXEnumUser.USER_EMAIL.name,
+                EAMXTypeObject.STRING_OBJECT
+            ) as String
+
+        val validateForm: HashMap<String, String> = HashMap()
+        var descriptionValidate = ""
+
+        if (name.isEmpty())
+            validateForm[Constants.KEY_NAME] = Constants.EMPTY_FIELD
+
+        val filter = schedule[0].days.filter { it.checked }
+
+        if (filter.size == 0)
+            validateForm[Constants.KEY_DAYS] = Constants.EMPTY_FIELD
+        // if ((schedule[0].days.filter { it.checked == true }).size == 0)
+
+        if (schedule[0].hour_start == "00:00")
+            validateForm[Constants.KEY_HOUR_FIRST] = Constants.EMPTY_FIELD
+
+        if (schedule[0].hour_end == "00:00")
+            validateForm[Constants.KEY_HOUR_END] = Constants.EMPTY_FIELD
+
+        if (zone_id == 0)
+            validateForm[Constants.KEY_ZONE] = Constants.EMPTY_FIELD
+
+        if (responsability.isEmpty())
+            validateForm[Constants.KEY_RESPONSABILITY] = Constants.EMPTY_FIELD
+
+        if (email.isEmpty()) {
+            validateForm[Constants.KEY_EMAIL] = Constants.EMPTY_FIELD
+        } else {
+            if (!Constants.EMAIL_ADDRESS.matcher(email).matches())
+                validateForm[Constants.KEY_EMAIL] = Constants.INVALID_EMAIL
+        }
+
+        if (phone.isEmpty())
+            validateForm[Constants.KEY_PHONE] = Constants.EMPTY_FIELD
+
+        if (phone.length < 10)
+            validateForm[Constants.KEY_PHONE] = Constants.INVALID_PHONE
+
+        if (address.isEmpty())
+            validateForm[Constants.KEY_ADDRESS] = Constants.EMPTY_FIELD
+
+
+        if (requeriments.isEmpty()) {
+            descriptionValidate =
+                "Presentarse puntual para garantizar el servicio. No asistir en estado de ebriedad o bajo la influencia de estupefacientes. Seguir las indicaciones de los administradores en todo momento. Actitud de respeto y cordialidad con el resto de los participantes."
+        } else {
+            descriptionValidate = requeriments
+        }
+
+        validateForm.toString().log()
+        // if (validateForm.size > 0) {
+        if (validateForm.size > 0) {
+            this.validateForm.value = validateForm
+        } else {
+
+            this.showLoaderView.value = true
+            println("hola2")
+
+            val eventRegisterModel = Event(
+                name = name,
+                user_id = userId,
+                schedule = schedule,
+                responsability = responsability,
+                email = email,
+                phone = phone,
+                address = address,
+                longitude = longitude,
+                latitude = latitude,
+                amount = amount,
+                requirements = descriptionValidate,
+                volunteers = volunteers,
+                donors = donors,
+                zone_id = zone_id,
+                status = status
+            )
+
+            GlobalScope.launch {
+                repositoryEvent.saveEventDiner(eventRegisterModel)
+            }
         }
     }
 }
