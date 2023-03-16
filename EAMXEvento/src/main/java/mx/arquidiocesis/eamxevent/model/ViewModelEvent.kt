@@ -8,15 +8,11 @@ import kotlinx.coroutines.launch
 import mx.arquidiocesis.eamxcommonutils.api.core.request.EAMXGenericRequest
 import mx.arquidiocesis.eamxcommonutils.api.core.response.EAMXGenericResponse
 import mx.arquidiocesis.eamxcommonutils.api.core.status.EAMXStatusRequestEnum
-import mx.arquidiocesis.eamxcommonutils.application.EAMXGenericMutableLiveData
-import mx.arquidiocesis.eamxcommonutils.application.validation.EAMXRequestWithValidation
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
-import mx.arquidiocesis.eamxcommonutils.common.EAMXPutExtraModel
 import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
 import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
 import mx.arquidiocesis.eamxcommonutils.util.log
 import mx.arquidiocesis.eamxevent.constants.Constants
-import mx.arquidiocesis.eamxevent.model.enum.Delegations
 import mx.arquidiocesis.eamxevent.repository.RepositoryEvent
 
 
@@ -114,6 +110,11 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
         if (address.isEmpty())
             validateForm[Constants.KEY_ADDRESS] = Constants.EMPTY_FIELD
 
+        if (longitude.isEmpty())
+            validateForm[Constants.KEY_LONGITUDE] = Constants.EMPTY_FIELD
+
+        if (latitude.isEmpty())
+            validateForm[Constants.KEY_LATITUDE] = Constants.EMPTY_FIELD
 
         if (requeriments.isEmpty()) {
             descriptionValidate =
@@ -129,7 +130,6 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
         } else {
 
             this.showLoaderView.value = true
-            println("hola2")
 
             val eventRegisterModel = Event(
                 name = name,

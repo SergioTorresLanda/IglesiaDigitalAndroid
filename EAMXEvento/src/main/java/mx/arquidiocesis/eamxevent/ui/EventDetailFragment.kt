@@ -1,5 +1,6 @@
 package mx.arquidiocesis.eamxevent.ui
 
+import android.Manifest
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
@@ -35,6 +36,9 @@ import mx.arquidiocesis.eamxevent.model.*
 import mx.arquidiocesis.eamxevent.model.enum.Delegations
 import mx.arquidiocesis.eamxevent.repository.RepositoryEvent
 import mx.arquidiocesis.eamxevent.model.enum.Day as week
+import mx.arquidiocesis.eamxcommonutils.multimedia.MapsFragment
+import mx.arquidiocesis.eamxcommonutils.multimedia.PERMISSION_LOCATION
+import mx.arquidiocesis.eamxcommonutils.util.permission.UtilValidPermission
 
 class EventDetailFragment : FragmentBase() {
 
@@ -44,7 +48,9 @@ class EventDetailFragment : FragmentBase() {
     private val TAG_LOADER: String = "EventFragment"
     private var fragment = DialogFragment()
     private var delegations: Array<Delegations> = Delegations.values()
-    private var zona : Int = 0
+    private var zona: Int = 0
+    var latitude: Double = 0.0
+    var longitude: Double = 0.0
 
     var listDays: MutableList<Day> = mutableListOf()
 
@@ -81,7 +87,7 @@ class EventDetailFragment : FragmentBase() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
         // Inflate thelayout for this fragment
@@ -126,7 +132,7 @@ class EventDetailFragment : FragmentBase() {
                     .setIsCancel(false)
                     .build().show(childFragmentManager, tag)
             }
-            if (it.containsKey(Constants.KEY_ADDRESS)) {
+            if (it.containsKey(Constants.KEY_ADDRESS)||it.containsKey(Constants.KEY_LONGITUDE)||it.containsKey(Constants.KEY_LATITUDE)) {
                 UtilAlert.Builder()
                     .setTitle(getString(R.string.title_dialog_error))
                     .setMessage(getString(R.string.txt_empty_location))
@@ -278,7 +284,7 @@ class EventDetailFragment : FragmentBase() {
 
             etNombreC.hint = "Nombre del comedor"
             etResponsable.hint = "Tu nombre y apellido"
-
+            etgetAddress.hint = "Actualiza la ubicación de tu comedor en el mapa para obtener la dirección"
             etNombreC.addTextChangedListener {
                 if (etNombreC.text.toString().isNotEmpty()) {
                     tilNombreC.error = null
@@ -325,44 +331,44 @@ class EventDetailFragment : FragmentBase() {
                 }
             }
 
-           etNumberPhone.addTextChangedListener {
-               val validatePhone = etNumberPhone.text.toString().validNumberPhoneContent()
-               enableIconStart(
-                   tilNumberPhone,
-                   validatePhone
-               )
-               if (etNumberPhone.text.toString().isEmpty()) {
-                   enableIconStart(tilNumberPhone, null)
-                   tilNumberPhone.isEmpty()
-                   tilNumberPhone.error = getString(R.string.min_phone)
-               } else {
-                   if (EAMXFieldValidation.validateNumberPhone(etNumberPhone.text.toString()) && EAMXFieldValidation.validateNumberLength(
-                           etNumberPhone.text.toString()
-                       )
-                   ) {
-                       tilNumberPhone.error = null
-                   }
-                   if (!EAMXFieldValidation.validateNumberPhone(etNumberPhone.text.toString())) {
-                       tilNumberPhone.error = getString(R.string.wrong_phone_number)
-                   }
-                   if (!EAMXFieldValidation.validateNumberLength(etNumberPhone.text.toString())) {
-                       tilNumberPhone.error = getString(R.string.min_phone)
-                   }
-               }
-           }
+            etNumberPhone.addTextChangedListener {
+                val validatePhone = etNumberPhone.text.toString().validNumberPhoneContent()
+                enableIconStart(
+                    tilNumberPhone,
+                    validatePhone
+                )
+                if (etNumberPhone.text.toString().isEmpty()) {
+                    enableIconStart(tilNumberPhone, null)
+                    tilNumberPhone.isEmpty()
+                    tilNumberPhone.error = getString(R.string.min_phone)
+                } else {
+                    if (EAMXFieldValidation.validateNumberPhone(etNumberPhone.text.toString()) && EAMXFieldValidation.validateNumberLength(
+                            etNumberPhone.text.toString()
+                        )
+                    ) {
+                        tilNumberPhone.error = null
+                    }
+                    if (!EAMXFieldValidation.validateNumberPhone(etNumberPhone.text.toString())) {
+                        tilNumberPhone.error = getString(R.string.wrong_phone_number)
+                    }
+                    if (!EAMXFieldValidation.validateNumberLength(etNumberPhone.text.toString())) {
+                        tilNumberPhone.error = getString(R.string.min_phone)
+                    }
+                }
+            }
 
 
-           etEmail.addTextChangedListener {
-               val text = it?.toString()
-               text?.let { emailTxt ->
-                   enableIconStart(tilEmail, Patterns.EMAIL_ADDRESS.matcher(emailTxt).matches())
-                   tilEmail.error = null
-                   EAMXFieldValidation.validateEmail(emailTxt, tilEmail)
-                   if (emailTxt.isEmpty()) {
-                       enableIconStart(tilEmail, null)
-                   }
-               }
-           }
+            etEmail.addTextChangedListener {
+                val text = it?.toString()
+                text?.let { emailTxt ->
+                    enableIconStart(tilEmail, Patterns.EMAIL_ADDRESS.matcher(emailTxt).matches())
+                    tilEmail.error = null
+                    EAMXFieldValidation.validateEmail(emailTxt, tilEmail)
+                    if (emailTxt.isEmpty()) {
+                        enableIconStart(tilEmail, null)
+                    }
+                }
+            }
         }
         initButtons()
     }
@@ -376,12 +382,10 @@ class EventDetailFragment : FragmentBase() {
                     binding.iDays.iDayDo.tvCDay.setTextColor(Color.BLACK)
                     val gson = Gson()
                     val jsonString = gson.toJson(listDays)
-                    println("Object to JSON string:$jsonString")
                 } else {
                     binding.iDays.iDayDo.tvCDay.setTextColor(Color.rgb(0, 191, 255))
                     val gson = Gson()
                     val jsonString = gson.toJson(listDays)
-                    println("Object to JSON string:$jsonString")
                 }
             }
 
@@ -391,12 +395,10 @@ class EventDetailFragment : FragmentBase() {
                     binding.iDays.iDayLu.tvCDay.setTextColor(Color.BLACK)
                     val gson = Gson()
                     val jsonString = gson.toJson(listDays)
-                    println("Object to JSON string:$jsonString")
                 } else {
                     binding.iDays.iDayLu.tvCDay.setTextColor(Color.rgb(0, 191, 255))
                     val gson = Gson()
                     val jsonString = gson.toJson(listDays)
-                    println("Object to JSON string:$jsonString")
                 }
             }
 
@@ -406,12 +408,10 @@ class EventDetailFragment : FragmentBase() {
                     binding.iDays.iDayMa.tvCDay.setTextColor(Color.BLACK)
                     val gson = Gson()
                     val jsonString = gson.toJson(listDays)
-                    println("Object to JSON string:$jsonString")
                 } else {
                     binding.iDays.iDayMa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
                     val gson = Gson()
                     val jsonString = gson.toJson(listDays)
-                    println("Object to JSON string:$jsonString")
                 }
             }
             iDays.iDayMi.tvCDay.setOnClickListener {
@@ -420,12 +420,10 @@ class EventDetailFragment : FragmentBase() {
                     binding.iDays.iDayMi.tvCDay.setTextColor(Color.BLACK)
                     val gson = Gson()
                     val jsonString = gson.toJson(listDays)
-                    println("Object to JSON string:$jsonString")
                 } else {
                     binding.iDays.iDayMi.tvCDay.setTextColor(Color.rgb(0, 191, 255))
                     val gson = Gson()
                     val jsonString = gson.toJson(listDays)
-                    println("Object to JSON string:$jsonString")
                 }
             }
 
@@ -435,12 +433,10 @@ class EventDetailFragment : FragmentBase() {
                     binding.iDays.iDayJu.tvCDay.setTextColor(Color.BLACK)
                     val gson = Gson()
                     val jsonString = gson.toJson(listDays)
-                    println("Object to JSON string:$jsonString")
                 } else {
                     binding.iDays.iDayJu.tvCDay.setTextColor(Color.rgb(0, 191, 255))
                     val gson = Gson()
                     val jsonString = gson.toJson(listDays)
-                    println("Object to JSON string:$jsonString")
                 }
             }
 
@@ -450,12 +446,10 @@ class EventDetailFragment : FragmentBase() {
                     binding.iDays.iDayVi.tvCDay.setTextColor(Color.BLACK)
                     val gson = Gson()
                     val jsonString = gson.toJson(listDays)
-                    println("Object to JSON string:$jsonString")
                 } else {
                     binding.iDays.iDayVi.tvCDay.setTextColor(Color.rgb(0, 191, 255))
                     val gson = Gson()
                     val jsonString = gson.toJson(listDays)
-                    println("Object to JSON string:$jsonString")
                 }
             }
 
@@ -465,12 +459,10 @@ class EventDetailFragment : FragmentBase() {
                     binding.iDays.iDaySa.tvCDay.setTextColor(Color.BLACK)
                     val gson = Gson()
                     val jsonString = gson.toJson(listDays)
-                    println("Object to JSON string:$jsonString")
                 } else {
                     binding.iDays.iDaySa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
                     val gson = Gson()
                     val jsonString = gson.toJson(listDays)
-                    println("Object to JSON string:$jsonString")
                 }
             }
 
@@ -516,10 +508,11 @@ class EventDetailFragment : FragmentBase() {
                     parent: AdapterView<*>,
                     view: View?,
                     position: Int,
-                    id: Long
+                    id: Long,
                 ) {
                     zona = delegations[position].pos
                 }
+
                 override fun onNothingSelected(parent: AdapterView<*>) {
                     lblSeleccion.text = "Sin selección"
                 }
@@ -527,11 +520,30 @@ class EventDetailFragment : FragmentBase() {
 
 
             btnGuardar.setOnClickListener { eventRegister() }
+            ivAddress.setOnClickListener { showMap() }
             tvFirstH.setOnClickListener { showTimePickerFirst() }
             ivFirstH.setOnClickListener { showTimePickerFirst() }
             tvEndH.setOnClickListener { showTimePickerEnd() }
             ivEndH.setOnClickListener { showTimePickerEnd() }
         }
+    }
+
+    fun showMap() {
+        if (chechPermissions()) {
+            MapsFragment(latitude, longitude) { rlatitude, rlongitude, raddress ->
+                etgetAddress.setText(raddress)
+                latitude = rlatitude
+                longitude = rlongitude
+            }.show(childFragmentManager, TAG_LOADER)
+        }
+    }
+
+    private fun chechPermissions(): Boolean {
+        return UtilValidPermission().validListPermissionsAndBuildRequest(
+            this@EventDetailFragment, arrayListOf(
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ), PERMISSION_LOCATION
+        )
     }
 
     fun showTimePickerFirst() {
@@ -600,9 +612,8 @@ class EventDetailFragment : FragmentBase() {
 
     private fun eventRegister() {
 
-        val listSchedules: MutableList<Schedules> = mutableListOf(Schedules(listDays, tvFirstH.text.toString(), tvEndH.text.toString()))
-        println("hola")
-
+        val listSchedules: MutableList<Schedules> =
+            mutableListOf(Schedules(listDays, tvFirstH.text.toString(), tvEndH.text.toString()))
         viewModelEvent.validateFormRegister(
             etNombreC.text.toString().lowercase(),
             userId,
@@ -610,9 +621,9 @@ class EventDetailFragment : FragmentBase() {
             etResponsable.text.toString().trim(),
             etEmail.text.toString().trim(),
             etNumberPhone.text.toString().trim(),
-            "Periferico sur",
-            "443443",
-            "445553",
+            etgetAddress.text.toString().trim(),
+            if (longitude == 0.00) "" else longitude.toString(),
+            if (latitude == 0.00) "" else latitude.toString(),
             if (switch1.isChecked) etMonto.length() else 0,
             etRequisitos.text.toString().lowercase(),
             if (switch2.isChecked) 1 else 0,

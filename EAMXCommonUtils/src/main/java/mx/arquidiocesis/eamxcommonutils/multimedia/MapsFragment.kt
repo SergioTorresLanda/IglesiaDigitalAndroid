@@ -1,8 +1,10 @@
 package mx.arquidiocesis.eamxcommonutils.multimedia
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +14,8 @@ import android.widget.RelativeLayout
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.common.api.GoogleApiClient
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -25,12 +29,15 @@ import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.base.FragmentDialogBase
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
 import mx.arquidiocesis.eamxcommonutils.databinding.FragmentMapsBinding
+import mx.arquidiocesis.eamxcommonutils.util.log
 import mx.arquidiocesis.eamxcommonutils.util.permission.UtilValidPermission
 
 const val PERMISSION_LOCATION = 10007
 
 class MapsFragment(
-    val listener: (rlatitude:Double,rlongitude:Double,raddress:String) -> Unit,
+    val latitude: Double = 0.0,
+    val longitude: Double = 0.0,
+    val listener: (rlatitude: Double, rlongitude: Double, raddress: String) -> Unit,
 ) : FragmentDialogBase() {
     lateinit var binding: FragmentMapsBinding
 
@@ -58,23 +65,30 @@ class MapsFragment(
     // Gestíon de acciones de google maps
     var maps = Maps(map, maker, true)
 
-    // Modelo de datos que serán devueltos
+    // Datos que serán devueltos
     var rlatitude: Double = 0.0
     var rlongitude: Double = 0.0
     var raddress: String = ""
 
+    lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
+        rlatitude = latitude
+        rlongitude = longitude
+        // Construct a FusedLocationProviderClient.
+        fusedLocationProviderClient =
+            LocationServices.getFusedLocationProviderClient(requireActivity())
         binding = FragmentMapsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
+    @SuppressLint("MissingPermission")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if(chechPermissions()) {
+        if (chechPermissions()) {
             // Se hace referencia al fragment para ser usadado con binding
             val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
             // Se genera el mapa
@@ -85,6 +99,7 @@ class MapsFragment(
             maps.buildGoogleApiClient(client, requireContext())
             //##binding.tvAddress.text = maps.addressMap.value.toString()
 
+            //Inicia el observador
             //Se define el pin
             val bitmapDraw = requireContext().let {
                 ContextCompat.getDrawable(
@@ -95,37 +110,68 @@ class MapsFragment(
             val smallMarker = Bitmap.createScaledBitmap(bitmapDraw.bitmap, 80, 100, false)
             val pin = BitmapDescriptorFactory.fromBitmap(smallMarker)
             // Observa que el mapa esta cargado correctamente
-            maps.map.observe(viewLifecycleOwner) {
-                //it.setOnMarkerClickListener(maps)
-                // Evento al presionar el mapa
-                it.setOnMapClickListener {
-                    maps.addMaker(it.latitude, it.longitude, false, pin)
-                    rlatitude = it.latitude
-                    rlongitude = it.longitude
-                }
-                // Evento al mover el mapa
-                it.setOnCameraChangeListener {
-                    maps.addMaker(it.target.latitude, it.target.longitude, false, pin)
-                    rlatitude = it.target.latitude
-                    rlongitude = it.target.longitude
+            //maps.map.observe(viewLifecycleOwner) {
+            var mover = false
+            map.observe(viewLifecycleOwner) {
+                map.value?.apply {
+                    // Evento al presionar el mapa
+                    setOnMapClickListener {
+                        maps.addMaker(it.latitude, it.longitude, false, pin)
+                        rlatitude = it.latitude
+                        rlongitude = it.longitude
+                    }
+                    // Evento al mover el mapa
+                    setOnCameraChangeListener {
+                        if (mover) {
+                            maps.addMaker(it.target.latitude, it.target.longitude, false, pin)
+                            rlatitude = it.target.latitude
+                            rlongitude = it.target.longitude
+                        }
+                        mover = true
+                    }
                 }
                 // Observa si la dirección tiene un cambio
                 maps.addressMap.observe(viewLifecycleOwner) {
                     binding.tvAddress.text = it
                     raddress = it
                 }
-                // Evento del botón para guardar ubicación
-                binding.bContinue.setOnClickListener {
-                    UtilAlert.Builder()
-                        .setTitle(getString(R.string.title_dialog_warning))
-                        .setMessage("Se ha seleccionado una dirección.")
-                        .setListener {
-                            listener(rlatitude, rlongitude, raddress)
-                            dismiss()
+
+                // Validar y obtener, localización actual
+                var lastKnownLocation: Location? = null
+                val locationResult = fusedLocationProviderClient.lastLocation
+                locationResult.addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        // Set the map's camera position to the current location of the device.
+                        lastKnownLocation = task.result
+                    } else {
+                        maps.map.value!!.isMyLocationEnabled = false
+                        map.value!!.isMyLocationEnabled = false
+                    }
+                    if (rlatitude != 0.0 && rlongitude != 0.0) {
+                        maps.addMaker(rlatitude, rlongitude, true, pin)
+                    } else {
+                        if (lastKnownLocation != null) {
+                            maps.addMaker(
+                                lastKnownLocation!!.latitude,
+                                lastKnownLocation!!.longitude,
+                                true,
+                                pin
+                            )
                         }
-                        .build()
-                        .show(childFragmentManager, tag)
+                    }
                 }
+            }
+            // Evento del botón para guardar ubicación
+            binding.bContinue.setOnClickListener {
+                UtilAlert.Builder()
+                    .setTitle(getString(R.string.title_dialog_warning))
+                    .setMessage("Se ha seleccionado una dirección.")
+                    .setListener {
+                        listener(rlatitude, rlongitude, raddress)
+                        dismiss()
+                    }
+                    .build()
+                    .show(childFragmentManager, tag)
             }
         } else {
             UtilAlert.Builder()
@@ -164,17 +210,6 @@ class MapsFragment(
             ), PERMISSION_LOCATION
         )
     }
-
-    /*private fun checkIfLocationOpened(): Boolean {
-        val provider: String = Settings.Secure.getString(
-            getContentResolver(),
-            Settings.Secure.LOCATION_PROVIDERS_ALLOWED
-        )
-        println("Provider contains=> $provider")
-        return if (provider.contains("gps") || provider.contains("network")) {
-            true
-        } else false
-    }*/
 
     override fun onStart() {
         super.onStart()
