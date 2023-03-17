@@ -26,6 +26,12 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
     var validateForm = MutableLiveData<HashMap<String, String>>()
     var showLoaderView = MutableLiveData<Boolean>()
 
+    //Get Event
+    val responseAllDin = repositoryEvent.allDiner
+
+    fun getFine(): Boolean {
+        return true
+    }
 
     /**
     Metodo ejecutado desde EventFragment
@@ -40,6 +46,11 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
         repositoryEvent.callServiceEvent(requestModel, observeEventResponse())
     }
 
+    fun requestAllDiner() {
+        GlobalScope.launch {
+            repositoryEvent.getAllDiner()
+        }
+    }
     private fun observeEventResponse() =
         Observer<EAMXGenericResponse<EventResponse, String, Event>> {
             responseGeneric.postValue(it)

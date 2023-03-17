@@ -15,9 +15,12 @@ import mx.arquidiocesis.eamxcommonutils.retrofit.managercall.ManagerCall
 import retrofit2.Call
 import mx.arquidiocesis.eamxevent.model.Event
 import mx.arquidiocesis.eamxevent.model.Day
+import mx.arquidiocesis.eamxevent.model.DinerResponse
 import mx.arquidiocesis.eamxevent.model.EventResponse
 import mx.arquidiocesis.eamxevent.retrofit.ApiInterface
 import mx.arquidiocesis.eamxevent.retrofit.WebConfig.HOST_EVENT
+import mx.arquidiocesis.eamxredsocialmodule.model.AllPostModel
+import mx.arquidiocesis.eamxredsocialmodule.model.ResponsePostModel
 
 class RepositoryEvent(val context: Context) : ManagerCall() {
 
@@ -27,6 +30,9 @@ class RepositoryEvent(val context: Context) : ManagerCall() {
     val errorResponse = MutableLiveData<String>()
     val updateMessage = MutableLiveData<String>()
     val registerResponse = MutableLiveData<String>()
+
+    //GET Event
+    val allDiner = MutableLiveData<DinerResponse>()
 
     private var retrofitInstance = RetrofitApp.Build<ApiInterface>()
         .setContext(context)
@@ -52,6 +58,23 @@ class RepositoryEvent(val context: Context) : ManagerCall() {
             GlobalScope.launch(Dispatchers.Main) {
                 if(response.sucess){
                     registerResponse.value = "Se ha dado de alta el comedor correctamente."
+                }else{
+                    errorResponse.value = "Verifica tus datos"
+                }
+            }
+        }
+    }
+    suspend fun getAllDiner() {
+        managerCallApi(
+            context = context,
+            call = {
+                retrofitInstance.setHost(HOST_EVENT).builder().instance().getDinerEventAsync().await()
+            }
+        ).let { response ->
+            GlobalScope.launch(Dispatchers.Main) {
+                println(response)
+                if(response.sucess){
+                    registerResponse.value = "Se han obtenido los comedores correctamente."
                 }else{
                     errorResponse.value = "Verifica tus datos"
                 }

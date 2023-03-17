@@ -71,7 +71,7 @@
                 android:lineSpacingExtra="8sp"
                 android:text="Crear una actividad"
                 android:textColor="#2769d2"
-                android:textSize="@dimen/size_20"
+                android:textSize="@dimen/size_22"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -96,9 +96,10 @@
                 android:layout_marginEnd="20dp"
                 android:fontFamily="sans-serif-medium"
                 android:lineSpacingExtra="4sp"
-                android:text="Zona"
+                android:layout_gravity="center"
+                android:text="Filtrar por zona"
                 android:textColor="@color/textview_title_color"
-                android:textSize="20sp"
+                android:textSize="22sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -122,6 +123,7 @@
 
         </LinearLayout>
 
+        <!--
         <LinearLayout
             android:id="@+id/lMes"
             android:layout_width="match_parent"
@@ -209,6 +211,22 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvZonaDetail" />
 
         </LinearLayout>
+        -->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvBusqueda"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="8dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lZone"
+            tools:listitem="@layout/item_event" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
