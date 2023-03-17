@@ -1,13 +1,11 @@
 package mx.arquidiocesis.eamxevent.ui
 
-import android.content.Intent
-import android.net.Uri
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_event_detail.*
 import mx.arquidiocesis.eamxcommonutils.application.AppMyConstants
@@ -16,20 +14,14 @@ import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.common.EAMXHome
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
 import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
+import mx.arquidiocesis.eamxcommonutils.util.log
 import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
-import mx.arquidiocesis.eamxcommonutils.util.urlValidator
-import mx.arquidiocesis.eamxevent.R
 import mx.arquidiocesis.eamxevent.databinding.FragmentEventBinding
 import mx.arquidiocesis.eamxevent.model.*
 import mx.arquidiocesis.eamxevent.model.enum.Delegations
 import mx.arquidiocesis.eamxevent.repository.RepositoryEvent
-import mx.arquidiocesis.eamxredsocialmodule.Repository.Repository
-import mx.arquidiocesis.eamxredsocialmodule.adapter.EAMXPublicationsAllAdapter
-import mx.arquidiocesis.eamxredsocialmodule.databinding.EamxRedSocialFragmentBinding
-import mx.arquidiocesis.eamxredsocialmodule.model.PostModel
-import mx.arquidiocesis.eamxredsocialmodule.news.detail.EAMXDetailFragment
-import mx.arquidiocesis.eamxredsocialmodule.viewmodel.RedSocialViewModel
 
+const val EDITAR = "EDITAR"
 class EventFragment : FragmentBase() {
 
     lateinit var binding: FragmentEventBinding
@@ -146,7 +138,25 @@ class EventFragment : FragmentBase() {
             DinerAllAdapter(requireContext(), viewmodel.getFine())
         adapter.items = arrayListOf(DinerResponse())
         setupRecyclerView()
+        click()
         viewmodel.requestAllDiner(0)
+    }
+
+    fun click() {
+        val interactuar = "interactuar con el contenido de la red social"
+        adapter.onItemClickListener = { item, Etiqueta ->
+            when (Etiqueta) {
+                EDITAR -> {
+                    "si entre editar".log()
+                   //7 model.value = item
+                    //showBottonSheeat()
+                }
+                "" -> {
+                        ("yane").log()
+
+                }
+            }
+        }
     }
 }
 

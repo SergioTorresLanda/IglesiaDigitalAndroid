@@ -7,7 +7,13 @@ import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
+import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
+import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
+import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
+import mx.arquidiocesis.eamxcommonutils.util.log
 import mx.arquidiocesis.eamxevent.databinding.ItemEventDetailBinding
+import mx.arquidiocesis.eamxevent.ui.EDITAR
+import mx.arquidiocesis.eamxredsocialmodule.model.PostModel
 import okhttp3.internal.notifyAll
 import java.util.regex.Pattern
 
@@ -19,6 +25,7 @@ class DinerAllAdapter(
 
     var items: ArrayList<DinerResponse> = ArrayList()
     //var dinerListFilter: ArrayList<DinerResponse> = ArrayList()
+    lateinit var onItemClickListener: (DinerResponse, String) -> Unit
 
 
     /*expresión regular*/
@@ -45,6 +52,11 @@ class DinerAllAdapter(
             binding.root
         ) {
         fun bind(item: DinerResponse) = with(binding) {
+            val userId = eamxcu_preferences.getData(
+                EAMXEnumUser.USER_ID.name,
+                EAMXTypeObject.INT_OBJECT
+            ) as Int
+
             if (item.fCCOMEDORID == null) {
                 tvVacio.visibility = View.VISIBLE
                 lNombreF.visibility = View.GONE
@@ -77,6 +89,13 @@ class DinerAllAdapter(
                 lTelF.visibility = View.VISIBLE
                 tvResponF.text = item.fCRESPONSABLE
                 lResponF.visibility = View.VISIBLE
+
+                if(userId.toString() == item.fIUSERID) {
+                    cwcEvent.setOnClickListener {
+                        onItemClickListener(item, EDITAR)
+                        "Evento presionado".log()
+                    }
+                }
             }
         }
     }

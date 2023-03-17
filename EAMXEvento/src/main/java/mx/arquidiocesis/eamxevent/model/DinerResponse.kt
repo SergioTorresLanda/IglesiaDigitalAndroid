@@ -25,6 +25,8 @@ data class DinerResponse(
    // val fCHORARIOS:  MutableList<Schedules>? = null,
     @SerializedName("FCREQUISITOS")
     val fCREQUISITOS: String? = null,
+    @SerializedName("fIUSERID")
+    val fIUSERID: String? = null,
     @SerializedName("FCSTATUS")
     val fCSTATUS: String? = null,
     @SerializedName("FCTELEFONO")
