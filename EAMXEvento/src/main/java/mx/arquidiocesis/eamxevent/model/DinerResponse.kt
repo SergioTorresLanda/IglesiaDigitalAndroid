@@ -2,6 +2,7 @@ package mx.arquidiocesis.eamxevent.model
 
 
 import com.google.gson.annotations.SerializedName
+import mx.arquidiocesis.eamxcommonutils.util.live.SingleLiveEvent
 
 data class DinerResponse(
     @SerializedName("FCCOBRO")
@@ -20,8 +21,8 @@ data class DinerResponse(
     val fCDONACOMS: String? = null,
     @SerializedName("FCDONANTES")
     val fCDONANTES: String? = null,
-    @SerializedName("FCHORARIOS")
-    val fCHORARIOS: String? = null,
+   // @SerializedName("FCHORARIOS")
+   // val fCHORARIOS:  MutableList<Schedules>? = null,
     @SerializedName("FCREQUISITOS")
     val fCREQUISITOS: String? = null,
     @SerializedName("FCSTATUS")

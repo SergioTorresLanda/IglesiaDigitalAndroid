@@ -2,14 +2,13 @@ package mx.arquidiocesis.eamxevent.model
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
-import mx.arquidiocesis.eamxcommonutils.util.EAMXFormatDate
-import mx.arquidiocesis.eamxcommonutils.util.buildTextSuccess
-import mx.arquidiocesis.eamxcommonutils.util.loadByUrl
-import mx.arquidiocesis.eamxevent.databinding.ItemEventBinding
+import mx.arquidiocesis.eamxevent.databinding.ItemEventDetailBinding
+import okhttp3.internal.notifyAll
 import java.util.regex.Pattern
 
 class DinerAllAdapter(
@@ -32,7 +31,7 @@ class DinerAllAdapter(
         viewType: Int
     ): DinerAllAdapter.NewsViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = ItemEventBinding.inflate(inflater, parent, false)
+        val binding = ItemEventDetailBinding.inflate(inflater, parent, false)
         return NewsViewHolder(binding)
     }
 
@@ -41,22 +40,45 @@ class DinerAllAdapter(
         holder.bind(cadenaModel)
     }
 
-    inner class NewsViewHolder(private val binding: ItemEventBinding) : RecyclerView.ViewHolder(
-        binding.root
-    ) {
-        fun bind(item :DinerResponse)
-            = with(binding) {
-            //var isMy = false
-            tvNombreF.text = item.fCCOMEDORID
-            tvCorreoF.text = item.fCCORREO
-            tvRequisF.text = item.fCREQUISITOS
-            tvHorarioF.text = item.fCHORARIOS
-            tvDireccionF.text = item.fCDIRECCION
-            tvCorreoF.text = item.fCCORREO
-            tvPrecioF.text = item.fCCOBRO
-            tvTelF.text = item.fCTELEFONO
+    inner class NewsViewHolder(private val binding: ItemEventDetailBinding) :
+        RecyclerView.ViewHolder(
+            binding.root
+        ) {
+        fun bind(item: DinerResponse) = with(binding) {
+            if (item.fCCOMEDORID == null) {
+                tvVacio.visibility = View.VISIBLE
+                lNombreF.visibility = View.GONE
+                lCorreoF.visibility = View.GONE
+                lRequisF.visibility = View.GONE
+                lDireccionF.visibility = View.GONE
+                lCorreoF.visibility = View.GONE
+                lPrecioF.visibility = View.GONE
+                lTelF.visibility = View.GONE
+                lResponF.visibility = View.GONE
+                lDiasF.visibility = View.GONE
+                lHorarioF.visibility = View.GONE
+            } else {
+                tvVacio.visibility = View.GONE
+                tvNombreF.text = item.fCNOMBRECOM
+                lNombreF.visibility = View.VISIBLE
+                tvCorreoF.text = item.fCCORREO
+                lCorreoF.visibility = View.VISIBLE
+                tvRequisF.text = item.fCREQUISITOS
+                lRequisF.visibility = View.VISIBLE
+                lDiasF.visibility = View.VISIBLE
+                lHorarioF.visibility = View.VISIBLE
+                tvDireccionF.text = item.fCDIRECCION
+                lDireccionF.visibility = View.VISIBLE
+                tvCorreoF.text = item.fCCORREO
+                lCorreoF.visibility = View.VISIBLE
+                tvPrecioF.text = item.fCCOBRO
+                lPrecioF.visibility = View.VISIBLE
+                tvTelF.text = item.fCTELEFONO
+                lTelF.visibility = View.VISIBLE
+                tvResponF.text = item.fCRESPONSABLE
+                lResponF.visibility = View.VISIBLE
+            }
         }
-
     }
 
     override fun getItemCount(): Int = items.size

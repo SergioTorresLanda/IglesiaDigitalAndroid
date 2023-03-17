@@ -3,6 +3,7 @@ package mx.arquidiocesis.eamxevent.model
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import mx.arquidiocesis.eamxcommonutils.api.core.request.EAMXGenericRequest
@@ -46,10 +47,18 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
         repositoryEvent.callServiceEvent(requestModel, observeEventResponse())
     }
 
-    fun requestAllDiner() {
-        GlobalScope.launch {
-            repositoryEvent.getAllDiner()
+    fun requestAllDiner(dinerId: Int) {
+        viewModelScope.launch {
+            val response = repositoryEvent.getAllDiner(dinerId)
+            if (response.sucess)
+                responseAllDin.postValue(response.data ?: listOf())
+            else
+                repositoryEvent.errorResponse.postValue(response.exception?.message)
         }
+
+        //GlobalScope.launch {
+         //   repositoryEvent.getAllDiner()
+        //}
     }
     private fun observeEventResponse() =
         Observer<EAMXGenericResponse<EventResponse, String, Event>> {
@@ -87,10 +96,12 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
         if (name.isEmpty())
             validateForm[Constants.KEY_NAME] = Constants.EMPTY_FIELD
 
-        val filter = schedule[0].days.filter { it.checked }
+        val filter = schedule[0].days?.filter { it.checked }
 
-        if (filter.size == 0)
-            validateForm[Constants.KEY_DAYS] = Constants.EMPTY_FIELD
+        if (filter != null) {
+            if (filter.size == 0)
+                validateForm[Constants.KEY_DAYS] = Constants.EMPTY_FIELD
+        }
         // if ((schedule[0].days.filter { it.checked == true }).size == 0)
 
         if (schedule[0].hour_start == "00:00")

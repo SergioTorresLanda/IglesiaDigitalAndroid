@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_event_detail.*
 import mx.arquidiocesis.eamxcommonutils.application.AppMyConstants
@@ -18,10 +20,8 @@ import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
 import mx.arquidiocesis.eamxcommonutils.util.urlValidator
 import mx.arquidiocesis.eamxevent.R
 import mx.arquidiocesis.eamxevent.databinding.FragmentEventBinding
-import mx.arquidiocesis.eamxevent.model.DinerAllAdapter
-import mx.arquidiocesis.eamxevent.model.DinerResponse
-import mx.arquidiocesis.eamxevent.model.Event
-import mx.arquidiocesis.eamxevent.model.ViewModelEvent
+import mx.arquidiocesis.eamxevent.model.*
+import mx.arquidiocesis.eamxevent.model.enum.Delegations
 import mx.arquidiocesis.eamxevent.repository.RepositoryEvent
 import mx.arquidiocesis.eamxredsocialmodule.Repository.Repository
 import mx.arquidiocesis.eamxredsocialmodule.adapter.EAMXPublicationsAllAdapter
@@ -35,6 +35,9 @@ class EventFragment : FragmentBase() {
     lateinit var binding: FragmentEventBinding
     lateinit var viewmodel: ViewModelEvent
     lateinit var adapter: DinerAllAdapter
+    private var zona: Int = 0
+    private var delegations: Array<Delegations> = Delegations.values()
+
     companion object {
         fun newInstance(callBack: EAMXHome): EventFragment {
             var fragment = EventFragment()
@@ -64,20 +67,28 @@ class EventFragment : FragmentBase() {
                 .build().nextWithReplace()
         }
         initObservers()
+        initButtons()
+
     }
 
     private fun initObservers() {
-
-        println("Hola get")
         getAllDiners()
-        viewmodel.responseAllDin.observe(viewLifecycleOwner){ item ->
-            item.let { i ->
-                adapter.items.addAll(listOf(item))
-                adapter.notifyDataSetChanged()
-            }
-            val prevSize = adapter.items.size
-            if (prevSize != 0) {
-                adapter.notifyItemRangeInserted(prevSize, adapter.items.count() - 1)
+        viewmodel.responseAllDin.observe(viewLifecycleOwner) { item ->
+            if (item.size > 0) {
+                if (item[0].fCCOMEDORID != null) {
+                    val comedores = if (zona == 0) item else item.filter { it.fIZONA == zona.toString() }
+                    if (comedores.size > 0) {
+                        adapter.items.clear()
+                        adapter.notifyDataSetChanged()
+
+                        adapter.items.addAll(comedores)
+                        adapter.notifyDataSetChanged()
+                        val prevSize = adapter.items.size
+                        if (prevSize != 0) {
+                            adapter.notifyItemRangeInserted(prevSize, adapter.items.count() - 1)
+                        }
+                    }
+                }
             }
         }
 
@@ -104,11 +115,38 @@ class EventFragment : FragmentBase() {
 
      */
 
+    fun initButtons() {
+        /*
+        val adaptador = ArrayAdapter.createFromResource(
+            requireContext(), R.array.delegations,
+            android.R.layout.simple_spinner_dropdown_item
+        )
+        spZone.adapter = adaptador
+
+         */
+        spZone.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View?,
+                position: Int,
+                id: Long,
+            ) {
+                zona = delegations[position].pos
+                getAllDiners()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                lblSeleccion.text = "Sin selección"
+            }
+        }
+    }
+
     fun getAllDiners() {
         adapter =
             DinerAllAdapter(requireContext(), viewmodel.getFine())
-        adapter.items = arrayListOf()
-        viewmodel.requestAllDiner()
+        adapter.items = arrayListOf(DinerResponse())
+        setupRecyclerView()
+        viewmodel.requestAllDiner(0)
     }
 }
 
