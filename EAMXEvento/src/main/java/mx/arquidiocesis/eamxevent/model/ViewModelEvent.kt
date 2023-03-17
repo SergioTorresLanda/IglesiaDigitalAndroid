@@ -80,7 +80,8 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
         volunteers: Int,
         donors: ArrayList<Int> = ArrayList(),
         zone_id: Int,
-        status: Int
+        status: Int,
+        id: Int? = 0
     ) {
         val userId =
             eamxcu_preferences.getData(EAMXEnumUser.USER_ID.name, EAMXTypeObject.INT_OBJECT) as Int
@@ -172,7 +173,11 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
             )
 
             GlobalScope.launch {
+                if (id == 0){
                 repositoryEvent.saveEventDiner(eventRegisterModel)
+                }else{
+                    id?.let { repositoryEvent.UpdateEventDiner(it,eventRegisterModel) }
+                }
             }
         }
     }

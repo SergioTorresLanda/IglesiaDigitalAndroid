@@ -45,6 +45,7 @@ class RepositoryEvent(val context: Context) : ManagerCall() {
         .setEnvironment(true)
         .setClass(ApiInterface::class.java)
         .builder().instance()
+
     fun callServiceEvent(
         requestModel: Event,
         observer: Observer<EAMXGenericResponse<EventResponse, String, Event>>
@@ -60,39 +61,37 @@ class RepositoryEvent(val context: Context) : ManagerCall() {
         managerCallApi(
             context = context,
             call = {
-                retrofitInstance.setHost(HOST).builder().instance().postUpdateEventAsync(event).await()
+                retrofitInstance.setHost(HOST).builder().instance().postCreateEventAsync(event)
+                    .await()
             }
         ).let { response ->
             GlobalScope.launch(Dispatchers.Main) {
-                if(response.sucess){
+                if (response.sucess) {
                     registerResponse.value = "Se ha dado de alta el comedor correctamente."
-                }else{
+                } else {
                     errorResponse.value = "Verifica tus datos"
                 }
             }
         }
     }
 
-    /*
-    suspend fun getAllDiner() {
+    suspend fun UpdateEventDiner(dinerId: Int, event: Event) {
         managerCallApi(
             context = context,
             call = {
-                retrofitInstance.setHost(HOST_EVENT).builder().instance().getDinerEventAsync().await()
+                retrofitInstance.setHost(HOST).builder().instance()
+                    .putUpdateEventAsync(dinerId, event).await()
             }
         ).let { response ->
             GlobalScope.launch(Dispatchers.Main) {
-                println(response)
-                if(response.sucess){
-                    registerResponse.value = "Se han obtenido los comedores correctamente."
-                }else{
+                if (response.sucess) {
+                    registerResponse.value = "Se ha dado de alta el comedor correctamente."
+                } else {
                     errorResponse.value = "Verifica tus datos"
                 }
             }
         }
     }
-
-     */
 
     suspend fun getAllDiner(dinerId: Int): ResponseData<List<DinerResponse>?> {
         return managerCallApi(
@@ -102,7 +101,7 @@ class RepositoryEvent(val context: Context) : ManagerCall() {
                     if (dinerId == 0)
                         getDinerEventAsync().await()
                     else
-                       getDinerEventAsync(dinerId).await()
+                        getDinerEventAsync(dinerId).await()
                 }
             },
             validation = Validation()
