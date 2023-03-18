@@ -38,7 +38,9 @@ import mx.arquidiocesis.eamxevent.repository.RepositoryEvent
 import mx.arquidiocesis.eamxevent.model.enum.Day as week
 import mx.arquidiocesis.eamxcommonutils.multimedia.MapsFragment
 import mx.arquidiocesis.eamxcommonutils.multimedia.PERMISSION_LOCATION
+import mx.arquidiocesis.eamxcommonutils.util.log
 import mx.arquidiocesis.eamxcommonutils.util.permission.UtilValidPermission
+import mx.arquidiocesis.eamxevent.adapter.DinerAllAdapter
 
 class EventDetailFragment : FragmentBase() {
 
@@ -49,6 +51,7 @@ class EventDetailFragment : FragmentBase() {
     private var fragment = DialogFragment()
     private var delegations: Array<Delegations> = Delegations.values()
     private var zona: Int = 0
+    private var diner_id: Int = 0
     var latitude: Double = 0.0
     var longitude: Double = 0.0
 
@@ -68,6 +71,8 @@ class EventDetailFragment : FragmentBase() {
         EAMXEnumUser.USER_PHONE.name,
         EAMXTypeObject.STRING_OBJECT
     ) as String
+
+    lateinit var viewmodel: ViewModelEvent
 
     companion object {
         fun newInstance(callBack: EAMXHome): EventDetailFragment {
@@ -89,7 +94,7 @@ class EventDetailFragment : FragmentBase() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        // Inflate the layout for this fragment
+        viewmodel = ViewModelEvent(RepositoryEvent(requireContext()))
         // Inflate thelayout for this fragment
         binding = FragmentEventDetailBinding.inflate(inflater, container, false)
         return binding.root
@@ -112,18 +117,100 @@ class EventDetailFragment : FragmentBase() {
         initView()
         initObservers()
 
+        requireArguments().let {
+            var id = it.getString("diner_id")
+            if (id != "") {
+                callBack.showToolbar(true, AppMyConstants.updateEvento)
+                id?.let { it1 ->
+                    diner_id = it1.toInt()
+                    getAllDiners(diner_id)
+                }
+            } else {
+                callBack.showToolbar(true, AppMyConstants.createEvento)
+            }
+        }
     }
 
     private fun initObservers() {
 
         etEmail.text = Editable.Factory.getInstance().newEditable(email)
         etEmail.isEnabled = false
+        viewmodel.responseAllDin.observe(viewLifecycleOwner) { item ->
+            hideLoader()
+            if (item.size > 0) {
+                etNombreC.setText(item[0].fCNOMBRECOM)
+                etgetAddress.setText(item[0].fCDIRECCION)
+                delegations.forEach {
+                    if (it.pos.toString() == item[0].fIZONA) {
+                        spZone.setSelection(it.ordinal)
+                        return@forEach
+                    }
+                }
+                if (!(item[0].fNLATITUD).isNullOrEmpty()) {
+                    latitude = item[0].fNLATITUD!!.toDouble()
+                }
+                if (!(item[0].fNLONGITUD).isNullOrEmpty()) {
+                    longitude = item[0].fNLONGITUD!!.toDouble()
+                }
+                listDays[0].checked = item[0].fCHORARIOS!![0].days!![0].checked
+                if (!listDays[0].checked) {
+                    binding.iDays.iDayDo.tvCDay.setTextColor(Color.BLACK)
+                } else {
+                    binding.iDays.iDayDo.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                }
+                listDays[1].checked = item[0].fCHORARIOS!![0].days!![1].checked
+                if (!listDays[1].checked) {
+                    binding.iDays.iDayLu.tvCDay.setTextColor(Color.BLACK)
+                } else {
+                    binding.iDays.iDayLu.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                }
+                listDays[2].checked = item[0].fCHORARIOS!![0].days!![2].checked
+                if (!listDays[2].checked) {
+                    binding.iDays.iDayMa.tvCDay.setTextColor(Color.BLACK)
+                } else {
+                    binding.iDays.iDayMa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                }
+                listDays[3].checked = item[0].fCHORARIOS!![0].days!![3].checked
+                if (!listDays[3].checked) {
+                    binding.iDays.iDayMi.tvCDay.setTextColor(Color.BLACK)
+                } else {
+                    binding.iDays.iDayMi.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                }
+                listDays[4].checked = item[0].fCHORARIOS!![0].days!![4].checked
+                if (!listDays[4].checked) {
+                    binding.iDays.iDayJu.tvCDay.setTextColor(Color.BLACK)
+                } else {
+                    binding.iDays.iDayJu.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                }
+                listDays[5].checked = item[0].fCHORARIOS!![0].days!![5].checked
+                if (!listDays[5].checked) {
+                    binding.iDays.iDayVi.tvCDay.setTextColor(Color.BLACK)
+                } else {
+                    binding.iDays.iDayVi.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                }
+                listDays[6].checked = item[0].fCHORARIOS!![0].days!![6].checked
+                if (!listDays[6].checked) {
+                    binding.iDays.iDaySa.tvCDay.setTextColor(Color.BLACK)
+                } else {
+                    binding.iDays.iDaySa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                }
+                switch1.isChecked = item[0].fCCOBRO != "0"
+                etMonto.setText(item[0].fCCOBRO)
 
-
+                val hora_first =item[0].fCHORARIOS!![0].hour_start!!.split(":")
+                FirstSchedule(hora_first[0].toInt(),hora_first[1].toInt())
+                val hora_end =item[0].fCHORARIOS!![0].hour_end!!.split(":")
+                EndSchedule(hora_end[0].toInt(),hora_end[1].toInt())
+                etResponsable.setText(item[0].fCRESPONSABLE)
+                etNumberPhone.setText(item[0].fCTELEFONO)
+                etRequisitos.setText(item[0].fCREQUISITOS)
+                switch2.isChecked = item[0].fCVOLUNTARIOS == "1"
+                switch3.isChecked = item[0].fCSTATUS == "1"
+            }
+        }
         viewModelEvent.showLoaderView.observe(viewLifecycleOwner) {
             showLoader()
         }
-
         viewModelEvent.validateForm.observe(viewLifecycleOwner) {
             if (it.containsKey(Constants.KEY_NAME)) {
                 UtilAlert.Builder()
@@ -132,7 +219,10 @@ class EventDetailFragment : FragmentBase() {
                     .setIsCancel(false)
                     .build().show(childFragmentManager, tag)
             }
-            if (it.containsKey(Constants.KEY_ADDRESS)||it.containsKey(Constants.KEY_LONGITUDE)||it.containsKey(Constants.KEY_LATITUDE)) {
+            if (it.containsKey(Constants.KEY_ADDRESS) || it.containsKey(Constants.KEY_LONGITUDE) || it.containsKey(
+                    Constants.KEY_LATITUDE
+                )
+            ) {
                 UtilAlert.Builder()
                     .setTitle(getString(R.string.title_dialog_error))
                     .setMessage(getString(R.string.txt_empty_location))
@@ -214,7 +304,6 @@ class EventDetailFragment : FragmentBase() {
             }
             hideLoader()
         }
-
         viewModelEvent.responseGeneric.observe(viewLifecycleOwner) { response ->
             when (response.statusRequest) {
                 EAMXStatusRequestEnum.LOADING -> {
@@ -266,11 +355,9 @@ class EventDetailFragment : FragmentBase() {
                 .build()
                 .show(childFragmentManager, TAG_LOADER)
         }
-
     }
 
     private fun initView() {
-        callBack.showToolbar(true, AppMyConstants.detailEvento)
 
         binding.iDays.iDayMa.tvCDay.setText("Lu")
         binding.iDays.iDayMa.tvCDay.setText("Ma")
@@ -284,7 +371,8 @@ class EventDetailFragment : FragmentBase() {
 
             etNombreC.hint = "Nombre del comedor"
             etResponsable.hint = "Tu nombre y apellido"
-            etgetAddress.hint = "Actualiza la ubicación de tu comedor en el mapa para obtener la dirección"
+            etgetAddress.hint =
+                "Actualiza la ubicación de tu comedor en el mapa para obtener la dirección"
             etNombreC.addTextChangedListener {
                 if (etNombreC.text.toString().isNotEmpty()) {
                     tilNombreC.error = null
@@ -490,9 +578,11 @@ class EventDetailFragment : FragmentBase() {
                 if (isChecked) {
                     switch3.thumbTintList =
                         getColorStateList(requireContext(), R.color.green_retirar)
+                    tvDisponible.setText("Disponible")
                 } else {
                     switch3.thumbTintList =
                         getColorStateList(requireContext(), R.color.hint_color)
+                    tvDisponible.setText("No Disponible")
                 }
             }
 
@@ -554,7 +644,7 @@ class EventDetailFragment : FragmentBase() {
 
     private fun FirstSchedule(hour: Int, minute: Int) {
         val hourCurrent = if (hour < 10) "0$hour" else hour
-        val minuteCurrent = minute
+        val minuteCurrent = if (minute < 10) "0$minute" else minute
         tvFirstH.setText("$hourCurrent:$minuteCurrent")
         hourFirst = "$hourCurrent:$minuteCurrent"
         tvFirstH.error = null
@@ -568,7 +658,7 @@ class EventDetailFragment : FragmentBase() {
 
     private fun EndSchedule(hour: Int, minute: Int) {
         val hourCurrent = if (hour < 10) "0$hour" else hour
-        val minuteCurrent = minute
+        val minuteCurrent = if (minute < 10) "0$minute" else minute
         tvEndH.setText("$hourCurrent:$minuteCurrent")
         hourEnd = "$hourCurrent:$minuteCurrent"
         tvEndH.error = null
@@ -624,13 +714,19 @@ class EventDetailFragment : FragmentBase() {
             etgetAddress.text.toString().trim(),
             if (longitude == 0.00) "" else longitude.toString(),
             if (latitude == 0.00) "" else latitude.toString(),
-            if (switch1.isChecked) etMonto.length() else 0,
+            (if (etMonto.text.toString() == "") "0" else etMonto.text.toString()),
             etRequisitos.text.toString().lowercase(),
             if (switch2.isChecked) 1 else 0,
             ArrayList(),
             zona,
             if (switch3.isChecked) 1 else 0,
+            diner_id
         )
+    }
+
+    fun getAllDiners(id: Int) {
+        showLoader()
+        viewmodel.requestAllDiner(id)
     }
 }
 

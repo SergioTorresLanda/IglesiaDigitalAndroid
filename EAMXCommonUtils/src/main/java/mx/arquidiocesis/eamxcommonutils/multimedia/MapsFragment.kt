@@ -115,11 +115,11 @@ class MapsFragment(
             map.observe(viewLifecycleOwner) {
                 map.value?.apply {
                     // Evento al presionar el mapa
-                    setOnMapClickListener {
+                    /*setOnMapClickListener {
                         maps.addMaker(it.latitude, it.longitude, false, pin)
                         rlatitude = it.latitude
                         rlongitude = it.longitude
-                    }
+                    }*/
                     // Evento al mover el mapa
                     setOnCameraChangeListener {
                         if (mover) {

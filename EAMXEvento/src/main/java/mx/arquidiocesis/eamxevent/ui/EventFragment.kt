@@ -1,6 +1,5 @@
 package mx.arquidiocesis.eamxevent.ui
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,16 +11,18 @@ import mx.arquidiocesis.eamxcommonutils.application.AppMyConstants
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.common.EAMXHome
+import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
-import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
-import mx.arquidiocesis.eamxcommonutils.util.log
+import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
 import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
+import mx.arquidiocesis.eamxevent.adapter.DinerAllAdapter
 import mx.arquidiocesis.eamxevent.databinding.FragmentEventBinding
 import mx.arquidiocesis.eamxevent.model.*
 import mx.arquidiocesis.eamxevent.model.enum.Delegations
 import mx.arquidiocesis.eamxevent.repository.RepositoryEvent
 
 const val EDITAR = "EDITAR"
+
 class EventFragment : FragmentBase() {
 
     lateinit var binding: FragmentEventBinding
@@ -29,6 +30,8 @@ class EventFragment : FragmentBase() {
     lateinit var adapter: DinerAllAdapter
     private var zona: Int = 0
     private var delegations: Array<Delegations> = Delegations.values()
+    private var init = true
+    private var diner_id = ""
 
     companion object {
         fun newInstance(callBack: EAMXHome): EventFragment {
@@ -40,7 +43,7 @@ class EventFragment : FragmentBase() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
         viewmodel = ViewModelEvent(RepositoryEvent(requireContext()))
@@ -50,25 +53,46 @@ class EventFragment : FragmentBase() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        callBack.showToolbar(true, AppMyConstants.evento)
+        init = true
         binding.tvNewActivity.setOnClickListener {
-            NavigationFragment.Builder()
-                .setActivity(requireActivity())
-                .setView(requireView().parent as ViewGroup)
-                .setFragment(EventDetailFragment.newInstance(callBack) as Fragment)
-                .build().nextWithReplace()
+            if (!init) {
+                NavigationFragment.Builder()
+                    .setActivity(requireActivity())
+                    .setView(requireView().parent as ViewGroup)
+                    .setFragment(EventDetailFragment.newInstance(callBack) as Fragment)
+                    .setBundle(Bundle().apply {
+                        putString("diner_id", diner_id)
+                    })
+                    .build().nextWithReplace()
+            }
         }
+        callBack.showToolbar(true, AppMyConstants.evento)
         initObservers()
+        //getAllDiners() //Ya no se ejecuta por que se activa en el spinner: spZone
         initButtons()
 
     }
 
     private fun initObservers() {
-        getAllDiners()
+        val userId = eamxcu_preferences.getData(
+            EAMXEnumUser.USER_ID.name,
+            EAMXTypeObject.INT_OBJECT
+        ) as Int
         viewmodel.responseAllDin.observe(viewLifecycleOwner) { item ->
             if (item.size > 0) {
                 if (item[0].fCCOMEDORID != null) {
-                    val comedores = if (zona == 0) item else item.filter { it.fIZONA == zona.toString() }
+                    if (init) { //Segunda vez
+                        item.forEach {
+                            if (it.fIUSERID == userId.toString()) {
+                                diner_id = it.fCCOMEDORID.toString()
+                                binding.tvNewActivity.setText(AppMyConstants.updateEvento)
+                                return@forEach
+                            }
+                        }
+                    }
+                    init = false
+                    val comedores =
+                        if (zona == 0) item else item.filter { it.fIZONA == zona.toString() }
                     if (comedores.size > 0) {
                         adapter.items.clear()
                         adapter.notifyDataSetChanged()
@@ -82,6 +106,11 @@ class EventFragment : FragmentBase() {
                     }
                 }
             }
+            if (adapter.items.size == 0) {
+                adapter.items.addAll(arrayListOf(DinerResponse()))
+                adapter.notifyDataSetChanged()
+            }
+            hideLoader()
         }
 
         viewmodel.errorResponse.observe(viewLifecycleOwner) {
@@ -108,14 +137,6 @@ class EventFragment : FragmentBase() {
      */
 
     fun initButtons() {
-        /*
-        val adaptador = ArrayAdapter.createFromResource(
-            requireContext(), R.array.delegations,
-            android.R.layout.simple_spinner_dropdown_item
-        )
-        spZone.adapter = adaptador
-
-         */
         spZone.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>,
@@ -134,26 +155,21 @@ class EventFragment : FragmentBase() {
     }
 
     fun getAllDiners() {
+        showLoader()
         adapter =
             DinerAllAdapter(requireContext(), viewmodel.getFine())
-        adapter.items = arrayListOf(DinerResponse())
+        adapter.items = arrayListOf()//arrayListOf(DinerResponse())
         setupRecyclerView()
         click()
         viewmodel.requestAllDiner(0)
     }
 
     fun click() {
-        val interactuar = "interactuar con el contenido de la red social"
         adapter.onItemClickListener = { item, Etiqueta ->
             when (Etiqueta) {
                 EDITAR -> {
-                    "si entre editar".log()
-                   //7 model.value = item
-                    //showBottonSheeat()
                 }
                 "" -> {
-                        ("yane").log()
-
                 }
             }
         }

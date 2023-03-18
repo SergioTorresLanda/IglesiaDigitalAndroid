@@ -26,7 +26,7 @@ data class Event(
     @SerializedName("latitud")
     val latitude: String? = null,
     @SerializedName("cobro")
-    val amount: Int? = null,
+    val amount: String? = "0",
     @SerializedName("requisitos")
     val requirements: String? = null,
     @SerializedName("voluntarios")

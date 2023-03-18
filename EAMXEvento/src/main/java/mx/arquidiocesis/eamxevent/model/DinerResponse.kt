@@ -21,11 +21,11 @@ data class DinerResponse(
     val fCDONACOMS: String? = null,
     @SerializedName("FCDONANTES")
     val fCDONANTES: String? = null,
-   // @SerializedName("FCHORARIOS")
-   // val fCHORARIOS:  MutableList<Schedules>? = null,
+    @SerializedName("FCHORARIOS")
+    val fCHORARIOS:  MutableList<Schedules>? = null,
     @SerializedName("FCREQUISITOS")
     val fCREQUISITOS: String? = null,
-    @SerializedName("fIUSERID")
+    @SerializedName("FIUSERID")
     val fIUSERID: String? = null,
     @SerializedName("FCSTATUS")
     val fCSTATUS: String? = null,
@@ -42,5 +42,5 @@ data class DinerResponse(
     @SerializedName("FNLATITUD")
     val fNLATITUD: String? = null,
     @SerializedName("FNLONGITUD")
-    val fNLONGITUD: String? = null
+    val fNLONGITUD: String? = null,
 )

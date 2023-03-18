@@ -6,8 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cwcEvent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true">
+        android:layout_height="wrap_content">
 
         <View
             android:id="@+id/viewTop"
@@ -204,7 +203,6 @@
                 android:layout_gravity="right"
                 android:fontFamily="sans-serif-medium"
                 android:lineSpacingExtra="4sp"
-                android:lines="1"
                 android:text="Lunes, Martes"
                 android:textColor="@color/textview_title_color"
                 android:textSize="16sp"
@@ -241,10 +239,10 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="20dp"
+                android:textIsSelectable="true"
                 android:layout_gravity="right"
                 android:fontFamily="sans-serif-medium"
                 android:lineSpacingExtra="4sp"
-                android:lines="1"
                 android:text="Periferico Sur"
                 android:textColor="@color/textview_title_color"
                 android:textSize="16sp"

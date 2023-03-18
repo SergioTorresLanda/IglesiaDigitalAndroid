@@ -769,7 +769,7 @@
                     android:gravity="left"
                     android:letterSpacing="0.03"
                     android:lineSpacingExtra="0sp"
-                    android:text="Disponible"
+                    android:text="No Disponible"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />

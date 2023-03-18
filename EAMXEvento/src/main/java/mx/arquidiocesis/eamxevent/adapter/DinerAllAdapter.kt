@@ -1,4 +1,4 @@
-package mx.arquidiocesis.eamxevent.model
+package mx.arquidiocesis.eamxevent.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,11 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
 import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
-import mx.arquidiocesis.eamxcommonutils.util.log
 import mx.arquidiocesis.eamxevent.databinding.ItemEventDetailBinding
+import mx.arquidiocesis.eamxevent.model.DinerResponse
 import mx.arquidiocesis.eamxevent.ui.EDITAR
-import mx.arquidiocesis.eamxredsocialmodule.model.PostModel
-import okhttp3.internal.notifyAll
 import java.util.regex.Pattern
 
 class DinerAllAdapter(
@@ -36,13 +34,13 @@ class DinerAllAdapter(
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): DinerAllAdapter.NewsViewHolder {
+    ): NewsViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemEventDetailBinding.inflate(inflater, parent, false)
         return NewsViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: DinerAllAdapter.NewsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         val cadenaModel = items[position]
         holder.bind(cadenaModel)
     }
@@ -78,7 +76,15 @@ class DinerAllAdapter(
                 tvRequisF.text = item.fCREQUISITOS
                 lRequisF.visibility = View.VISIBLE
                 lDiasF.visibility = View.VISIBLE
+                var dias = ""
+                item.fCHORARIOS!![0].days!!.forEach {
+                    if(it.checked){
+                        dias = dias + (if (dias=="") "" else ", ")+it.name
+                    }
+                }
+                tvDiasF.text = dias
                 lHorarioF.visibility = View.VISIBLE
+                tvHorarioF.text = item.fCHORARIOS!![0].hour_start+"-"+item.fCHORARIOS!![0].hour_end
                 tvDireccionF.text = item.fCDIRECCION
                 lDireccionF.visibility = View.VISIBLE
                 tvCorreoF.text = item.fCCORREO
@@ -89,11 +95,9 @@ class DinerAllAdapter(
                 lTelF.visibility = View.VISIBLE
                 tvResponF.text = item.fCRESPONSABLE
                 lResponF.visibility = View.VISIBLE
-
                 if(userId.toString() == item.fIUSERID) {
                     cwcEvent.setOnClickListener {
                         onItemClickListener(item, EDITAR)
-                        "Evento presionado".log()
                     }
                 }
             }

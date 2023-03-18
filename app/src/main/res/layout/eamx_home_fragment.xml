@@ -546,7 +546,7 @@
                             android:autoSizeTextType="uniform"
                             android:maxLines="2"
                             android:paddingEnd="@dimen/padding_10"
-                            android:text="Participa como organizador, asistente, voluntario y/o donante"
+                            android:text="Consulta nuestro calendario y ¡participa!"
                             android:textColor="@color/white"
                             android:textSize="@dimen/size_16"
                             app:layout_constraintBottom_toBottomOf="parent"

@@ -39,8 +39,10 @@ object AppMyConstants {
     const val PUBLICATION_WATCH_END_POINT = "publications/watch"
 
     /*Titulos para los toolbar de cada Fragment*/
-    const val evento = "Actividades y voluntariado"
+    const val evento = "Lista de comedores"
     const val detailEvento = "Alta de comedores"
+    const val createEvento = "Crear un comedor"
+    const val updateEvento = "Actualizar mi comedor"
     const val perfil = "Perfil"
     const val expanded = "Expanded"
     const val servicios = "Servicios"

@@ -75,7 +75,7 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
         address: String,
         longitude: String,
         latitude: String,
-        amount: Int,
+        amount: String,
         requeriments: String,
         volunteers: Int,
         donors: ArrayList<Int> = ArrayList(),
