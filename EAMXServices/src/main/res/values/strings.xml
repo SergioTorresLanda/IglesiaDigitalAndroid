@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Arquidiocesis</string>
     <string name="txt_services_hint_search_services">¿Qué servicio buscas?</string>
-    <string name="title_dialog_warning">Atención</string>
+    <string name="title_dialog_warning">¡Atención!</string>
     <string name="button_go_to_sos">S.O.S</string>
     <string name="button_go_to_call">Llamar</string>
     <string name="button_go_to_descargar">Descargar</string>

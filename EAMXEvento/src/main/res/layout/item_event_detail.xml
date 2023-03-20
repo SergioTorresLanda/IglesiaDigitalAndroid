@@ -41,33 +41,18 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             android:orientation="horizontal"
-            android:gravity="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBaseline_toBaselineOf="parent"
             app:layout_constraintTop_toTopOf="@+id/viewTop">
 
-            <TextView
-                android:id="@+id/tvlabelNombreF"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="20dp"
-                android:fontFamily="sans-serif-medium"
-                android:lineSpacingExtra="4sp"
-                android:lines="1"
-                android:text="Nombre"
-                android:textColor="@color/textview_title_color"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/lNombreF" />
 
             <TextView
                 android:id="@+id/tvNombreF"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="50dp"
                 android:layout_marginEnd="20dp"
                 android:layout_gravity="right"
                 android:fontFamily="sans-serif-medium"
@@ -75,8 +60,8 @@
                 android:lines="1"
                 android:text="Comedor"
                 android:textColor="@color/textview_title_color"
-                android:textSize="16sp"
-                android:textStyle="normal"
+                android:textSize="19sp"
+                android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
         </LinearLayout>
 
@@ -91,37 +76,61 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lNombreF">
 
-            <TextView
-                android:id="@+id/tvlabelPrecioF"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="20dp"
-                android:fontFamily="sans-serif-medium"
-                android:lineSpacingExtra="4sp"
-                android:lines="1"
-                android:text="Precio"
-                android:textColor="@color/textview_title_color"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/lPrecioF" />
+
+            <ImageView
+                android:id="@+id/ivPrecio"
+                android:layout_width="56dp"
+                android:layout_height="49dp"
+                android:layout_marginTop="0dp"
+                android:clickable="true"
+                android:contentDescription="calendar"
+                android:focusable="true"
+                android:src="@drawable/icons_color_96" />
 
             <TextView
-                android:id="@+id/tvPrecioF"
-                android:layout_width="match_parent"
+                android:id="@+id/labelPrecioF"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="20dp"
-                android:layout_gravity="right"
+                android:layout_marginTop="15dp"
                 android:fontFamily="sans-serif-medium"
                 android:lineSpacingExtra="4sp"
                 android:lines="1"
-                android:text="30"
+                android:text="Aportación de $"
                 android:textColor="@color/textview_title_color"
                 android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
+
+            <TextView
+                android:id="@+id/tvPrecioF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="sans-serif-medium"
+                android:lineSpacingExtra="4sp"
+                android:text="30"
+                android:textColor="@color/textview_title_color"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="@id/labelPrecioF"
+                app:layout_constraintTop_toBottomOf="@id/parent" />
+
+            <TextView
+                android:id="@+id/labelPesos"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="sans-serif-medium"
+                android:lineSpacingExtra="4sp"
+                android:text="pesos"
+                android:textColor="@color/textview_title_color"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                app:layout_constraintTop_toBottomOf="@id/parent" />
+
         </LinearLayout>
         <LinearLayout
             android:id="@+id/lHorarioF"
@@ -134,24 +143,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lPrecioF">
 
-            <TextView
-                android:id="@+id/tvlabelHorarioF"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="20dp"
-                android:fontFamily="sans-serif-medium"
-                android:lineSpacingExtra="4sp"
-                android:lines="1"
-                android:text="Horario"
-                android:textColor="@color/textview_title_color"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/lPrecioF" />
+            <ImageView
+                android:id="@+id/ivHorario"
+                android:layout_width="55dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="0dp"
+                android:clickable="true"
+                android:contentDescription="calendar"
+                android:focusable="true"
+                android:src="@drawable/ic_reloj" />
 
             <TextView
                 android:id="@+id/tvHorarioF"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
@@ -178,32 +182,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lHorarioF">
 
-            <TextView
-                android:id="@+id/tvlabelDiasF"
+            <ImageView
+                android:id="@+id/ivDias"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="0dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="20dp"
-                android:fontFamily="sans-serif-medium"
-                android:lineSpacingExtra="4sp"
-                android:lines="1"
-                android:text="Días"
-                android:textColor="@color/textview_title_color"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/lHorarioF" />
+                android:clickable="true"
+                android:contentDescription="calendar"
+                android:focusable="true"
+                android:src="@drawable/calendar" />
 
             <TextView
                 android:id="@+id/tvDiasF"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_gravity="right"
                 android:fontFamily="sans-serif-medium"
                 android:lineSpacingExtra="4sp"
-                android:text="Lunes, Martes"
+                android:text="Lunes y Martes"
                 android:textColor="@color/textview_title_color"
                 android:textSize="16sp"
                 android:textStyle="normal"
@@ -223,18 +223,17 @@
 
             <ImageView
                 android:id="@+id/ivAddress"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="34dp"
+                android:layout_height="match_parent"
                 android:layout_marginTop="0dp"
-                android:layout_weight="1"
-                android:clickable="true"
+                android:layout_marginStart="10dp"
                 android:contentDescription="calendar"
                 android:focusable="true"
-                android:src="@drawable/mapa_de_pin_64" />
+                android:src="@drawable/icono_igle" />
 
             <TextView
                 android:id="@+id/tvDireccionF"
-                android:layout_width="250dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
@@ -261,24 +260,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lDireccionF">
 
-            <TextView
-                android:id="@+id/tvlabelResponF"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="20dp"
-                android:fontFamily="sans-serif-medium"
-                android:lineSpacingExtra="4sp"
-                android:lines="1"
-                android:text="Responsable"
-                android:textColor="@color/textview_title_color"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/lHorarioF" />
+            <ImageView
+                android:id="@+id/ivResponsable"
+                android:layout_width="51dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="0dp"
+                android:clickable="true"
+                android:contentDescription="calendar"
+                android:focusable="true"
+                android:src="@drawable/icon_responsable" />
 
             <TextView
                 android:id="@+id/tvResponF"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
@@ -305,24 +299,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lResponF">
 
-            <TextView
-                android:id="@+id/tvlabelCorreoF"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="20dp"
-                android:fontFamily="sans-serif-medium"
-                android:lineSpacingExtra="4sp"
-                android:lines="1"
-                android:text="Correo"
-                android:textColor="@color/textview_title_color"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/lHorarioF" />
+            <ImageView
+                android:id="@+id/ivCorreo"
+                android:layout_width="51dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="0dp"
+                android:contentDescription="calendar"
+                android:focusable="true"
+                android:src="@drawable/card_email" />
 
             <TextView
                 android:id="@+id/tvCorreoF"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
@@ -350,24 +338,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lCorreoF">
 
-            <TextView
-                android:id="@+id/tvlabelTelF"
+            <ImageView
+                android:id="@+id/ivTelefono"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="20dp"
-                android:fontFamily="sans-serif-medium"
-                android:lineSpacingExtra="4sp"
-                android:lines="1"
-                android:text="Teléfono"
-                android:textColor="@color/textview_title_color"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/lHorarioF" />
+                android:layout_height="match_parent"
+                android:layout_marginTop="0dp"
+                android:clickable="true"
+                android:contentDescription="calendar"
+                android:focusable="true"
+                android:src="@drawable/tel_fono_48" />
 
             <TextView
                 android:id="@+id/tvTelF"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
@@ -396,18 +379,17 @@
 
             <ImageView
                 android:id="@+id/ivRequis"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
+                android:layout_width="49dp"
+                android:layout_height="match_parent"
                 android:layout_marginTop="0dp"
-                android:layout_weight="1"
                 android:clickable="true"
                 android:contentDescription="calendar"
                 android:focusable="true"
-                android:src="@drawable/informaci_n_50" />
+                android:src="@drawable/ic_icono_info" />
 
             <TextView
                 android:id="@+id/tvRequisF"
-                android:layout_width="250dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"

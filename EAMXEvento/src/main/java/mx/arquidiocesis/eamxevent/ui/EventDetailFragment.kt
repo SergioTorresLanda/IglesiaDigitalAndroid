@@ -41,6 +41,8 @@ import mx.arquidiocesis.eamxcommonutils.multimedia.PERMISSION_LOCATION
 import mx.arquidiocesis.eamxcommonutils.util.log
 import mx.arquidiocesis.eamxcommonutils.util.permission.UtilValidPermission
 import mx.arquidiocesis.eamxevent.adapter.DinerAllAdapter
+import java.util.*
+import kotlin.collections.ArrayList
 
 class EventDetailFragment : FragmentBase() {
 
@@ -325,7 +327,7 @@ class EventDetailFragment : FragmentBase() {
                 EAMXStatusRequestEnum.FAILURE -> {
                     hideLoader()
                     UtilAlert.Builder()
-                        .setTitle("Atención")
+                        .setTitle("¡Atención!")
                         .setMessage("Verifique sus datos e intentelo de nuevo.")
                         .setListener {
                             hideLoader()
@@ -701,21 +703,27 @@ class EventDetailFragment : FragmentBase() {
     }
 
     private fun eventRegister() {
+        lateinit var numberPhone: String
+        lateinit var phone: String
+        binding.apply {
+            numberPhone = etNumberPhone.text.toString().trim()
+            phone = "+52$numberPhone"
+        }
 
         val listSchedules: MutableList<Schedules> =
             mutableListOf(Schedules(listDays, tvFirstH.text.toString(), tvEndH.text.toString()))
         viewModelEvent.validateFormRegister(
-            etNombreC.text.toString().lowercase(),
+            etNombreC.text.toString().uppercase(Locale.getDefault()),
             userId,
             listSchedules,
-            etResponsable.text.toString().trim(),
+            etResponsable.text.toString().trim().uppercase(Locale.getDefault()),
             etEmail.text.toString().trim(),
-            etNumberPhone.text.toString().trim(),
+            phone,
             etgetAddress.text.toString().trim(),
             if (longitude == 0.00) "" else longitude.toString(),
             if (latitude == 0.00) "" else latitude.toString(),
             (if (etMonto.text.toString() == "") "0" else etMonto.text.toString()),
-            etRequisitos.text.toString().lowercase(),
+            etRequisitos.text.toString().uppercase(Locale.getDefault()),
             if (switch2.isChecked) 1 else 0,
             ArrayList(),
             zona,

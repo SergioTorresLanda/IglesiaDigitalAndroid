@@ -501,7 +501,7 @@
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:visibility="visible"
-                    app:cardBackgroundColor="@color/golden"
+                    app:cardBackgroundColor="#C0A474"
                     app:cardCornerRadius="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
