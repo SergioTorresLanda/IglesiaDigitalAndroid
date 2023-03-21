@@ -128,7 +128,7 @@ class EventDetailFragment : FragmentBase() {
                     getAllDiners(diner_id)
                 }
             } else {
-                callBack.showToolbar(true, AppMyConstants.createEvento)
+                callBack.showToolbar(true, AppMyConstants.detailEvento)
             }
         }
     }
@@ -136,18 +136,21 @@ class EventDetailFragment : FragmentBase() {
     private fun initObservers() {
 
         etEmail.text = Editable.Factory.getInstance().newEditable(email)
-        etEmail.isEnabled = false
+        etNumberPhone.text = Editable.Factory.getInstance().newEditable(phone)
+
         viewmodel.responseAllDin.observe(viewLifecycleOwner) { item ->
             hideLoader()
             if (item.size > 0) {
                 etNombreC.setText(item[0].fCNOMBRECOM)
                 etgetAddress.setText(item[0].fCDIRECCION)
+                /*
                 delegations.forEach {
                     if (it.pos.toString() == item[0].fIZONA) {
                         spZone.setSelection(it.ordinal)
                         return@forEach
                     }
                 }
+                 */
                 if (!(item[0].fNLATITUD).isNullOrEmpty()) {
                     latitude = item[0].fNLATITUD!!.toDouble()
                 }
@@ -196,7 +199,7 @@ class EventDetailFragment : FragmentBase() {
                 } else {
                     binding.iDays.iDaySa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
                 }
-                switch1.isChecked = item[0].fCCOBRO != "0"
+               // switch1.isChecked = item[0].fCCOBRO != "0"
                 etMonto.setText(item[0].fCCOBRO)
 
                 val hora_first =item[0].fCHORARIOS!![0].hour_start!!.split(":")
@@ -207,7 +210,7 @@ class EventDetailFragment : FragmentBase() {
                 etNumberPhone.setText(item[0].fCTELEFONO)
                 etRequisitos.setText(item[0].fCREQUISITOS)
                 switch2.isChecked = item[0].fCVOLUNTARIOS == "1"
-                switch3.isChecked = item[0].fCSTATUS == "1"
+               // switch3.isChecked = item[0].fCSTATUS == "1"
             }
         }
         viewModelEvent.showLoaderView.observe(viewLifecycleOwner) {
@@ -567,6 +570,8 @@ class EventDetailFragment : FragmentBase() {
                         getColorStateList(requireContext(), R.color.hint_color)
                 }
             }
+
+
             switch2.setOnCheckedChangeListener { buttonView, isChecked ->
                 if (isChecked) {
                     switch2.thumbTintList =
@@ -576,6 +581,7 @@ class EventDetailFragment : FragmentBase() {
                         getColorStateList(requireContext(), R.color.hint_color)
                 }
             }
+
             switch3.setOnCheckedChangeListener { buttonView, isChecked ->
                 if (isChecked) {
                     switch3.thumbTintList =
@@ -587,8 +593,7 @@ class EventDetailFragment : FragmentBase() {
                     tvDisponible.setText("No Disponible")
                 }
             }
-
-
+/*
             val adaptador = ArrayAdapter.createFromResource(
                 requireContext(), R.array.delegations,
                 android.R.layout.simple_spinner_dropdown_item
@@ -609,6 +614,8 @@ class EventDetailFragment : FragmentBase() {
                     lblSeleccion.text = "Sin selección"
                 }
             }
+
+ */
 
 
             btnGuardar.setOnClickListener { eventRegister() }
@@ -703,12 +710,15 @@ class EventDetailFragment : FragmentBase() {
     }
 
     private fun eventRegister() {
+        /*
         lateinit var numberPhone: String
         lateinit var phone: String
         binding.apply {
             numberPhone = etNumberPhone.text.toString().trim()
             phone = "+52$numberPhone"
         }
+
+         */
 
         val listSchedules: MutableList<Schedules> =
             mutableListOf(Schedules(listDays, tvFirstH.text.toString(), tvEndH.text.toString()))
@@ -726,9 +736,10 @@ class EventDetailFragment : FragmentBase() {
             etRequisitos.text.toString().uppercase(Locale.getDefault()),
             if (switch2.isChecked) 1 else 0,
             ArrayList(),
-            zona,
             if (switch3.isChecked) 1 else 0,
             diner_id
+            //zona,
+
         )
     }
 

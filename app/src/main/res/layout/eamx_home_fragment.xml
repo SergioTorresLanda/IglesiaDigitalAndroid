@@ -531,7 +531,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margin_5"
-                            android:text="Actividades"
+                            android:text="Actividades y voluntariado"
                             android:textColor="@color/white"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"

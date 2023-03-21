@@ -33,7 +33,7 @@
                     android:fontFamily="sans-serif-medium"
                     android:lineSpacingExtra="4sp"
                     android:lines="1"
-                    android:text="Nombre"
+                    android:text="Nombre del comedor"
                     android:textColor="@color/textview_title_color"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -73,6 +73,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="20dp"
+                android:visibility="gone"
                 android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lNombreC">
@@ -91,9 +92,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <!--
-                android:background="@drawable/style_spinner_selector"
-                -->
                 <Spinner
                     android:id="@+id/spZone"
                     android:layout_width="match_parent"
@@ -126,67 +124,32 @@
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tvAddress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="7dp"
-                android:fontFamily="sans-serif-medium"
-                android:lineSpacingExtra="4sp"
-                android:lines="1"
-                android:text="Dirección"
-                android:textColor="@color/textview_title_color"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/lZone" />
-
             <LinearLayout
                 android:id="@+id/labelAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvAddress">
+                app:layout_constraintTop_toBottomOf="@+id/lZone">
 
                 <TextView
                     android:id="@+id/tvlabelAdrress"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="10dp"
                     android:fontFamily="sans-serif-medium"
                     android:lineSpacingExtra="4sp"
                     android:lines="1"
-                    android:text=""
+                    android:text="Dirección"
                     android:textColor="@color/textview_title_color"
-                    android:textSize="17sp"
-                    android:textStyle="normal"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
                     app:layout_constraintTop_toBottomOf="@id/tvAddress" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_gravity="right"
-                    android:fontFamily="sans-serif-medium"
-                    android:lineSpacingExtra="4sp"
-                    android:lines="1"
-                    android:text="Actualizar"
-                    android:textColor="@color/textview_title_color"
-                    android:textSize="17sp"
-                    android:textStyle="normal"
-                    app:layout_constraintTop_toBottomOf="@id/iDays" />
-
             </LinearLayout>
-
-
 
             <LinearLayout
                 android:id="@+id/lAddress"
@@ -200,7 +163,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etgetAddress"
-                    android:layout_width="200dp"
+                    android:layout_width="240dp"
                     android:layout_height="wrap_content"
                     android:imeOptions="actionNext"
                     android:letterSpacing="0.01"
@@ -213,10 +176,10 @@
 
                 <ImageView
                     android:id="@+id/ivAddress"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="50dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_weight="1"
+
+                    android:layout_gravity="center_horizontal"
                     android:clickable="true"
                     android:contentDescription="calendar"
                     android:focusable="true"
@@ -225,11 +188,28 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tvAct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="270dp"
+                android:layout_marginTop="0dp"
+                android:fontFamily="sans-serif-medium"
+                android:lineSpacingExtra="4sp"
+                android:gravity="right"
+                android:lines="1"
+                android:text="Actualizar"
+                android:textColor="@color/textview_title_color"
+                android:textSize="17sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lAddress" />
+
+            <TextView
                 android:id="@+id/tvDays"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:fontFamily="sans-serif-medium"
                 android:lineSpacingExtra="4sp"
@@ -238,7 +218,7 @@
                 android:textColor="@color/textview_title_color"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/lAddress" />
+                app:layout_constraintTop_toBottomOf="@id/tvAct" />
 
             <include
                 android:id="@+id/iDays"
@@ -599,7 +579,7 @@
                     android:fontFamily="sans-serif-medium"
                     android:lineSpacingExtra="4sp"
                     android:lines="1"
-                    android:text="Define un monto"
+                    android:text="Precio"
                     android:textColor="@color/textview_title_color"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -677,7 +657,8 @@
                         android:letterSpacing="0.01"
                         android:lineSpacingExtra="10sp"
                         android:maxLength="250"
-                        android:singleLine="true"
+                        android:text="Presentarse puntual para garantizar el servicio. No asistir en estado de ebriedad o bajo la influencia de estupefacientes. Seguir las indicaciones de los administradores en todo momento. Actitud de respeto con el resto de los participantes."
+                        android:singleLine="false"
                         android:textColor="#99000000"
                         android:textSize="18sp"
                         android:textStyle="normal" />
@@ -719,7 +700,9 @@
                     android:textColor="#192a73"
                     android:textSize="18sp"
                     android:textStyle="bold"
+                    android:checked="true"
                     android:trackTint="#C3EC96"
+                    android:thumbTint="#80C913"
                     tools:ignore="UseSwitchCompatOrMaterialXml" />
             </LinearLayout>
 

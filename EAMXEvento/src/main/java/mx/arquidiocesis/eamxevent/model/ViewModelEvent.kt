@@ -79,15 +79,21 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
         requeriments: String,
         volunteers: Int,
         donors: ArrayList<Int> = ArrayList(),
-        zone_id: Int,
         status: Int,
         id: Int? = 0
+        //zone_id: Int,
+
     ) {
         val userId =
             eamxcu_preferences.getData(EAMXEnumUser.USER_ID.name, EAMXTypeObject.INT_OBJECT) as Int
         val email =
             eamxcu_preferences.getData(
                 EAMXEnumUser.USER_EMAIL.name,
+                EAMXTypeObject.STRING_OBJECT
+            ) as String
+        val phone =
+            eamxcu_preferences.getData(
+                EAMXEnumUser.USER_PHONE.name,
                 EAMXTypeObject.STRING_OBJECT
             ) as String
 
@@ -110,9 +116,11 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
 
         if (schedule[0].hour_end == "00:00")
             validateForm[Constants.KEY_HOUR_END] = Constants.EMPTY_FIELD
-
+/*
         if (zone_id == 0)
             validateForm[Constants.KEY_ZONE] = Constants.EMPTY_FIELD
+
+ */
 
         if (responsability.isEmpty())
             validateForm[Constants.KEY_RESPONSABILITY] = Constants.EMPTY_FIELD
@@ -168,7 +176,7 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
                 requirements = descriptionValidate,
                 volunteers = volunteers,
                 donors = donors,
-                zone_id = zone_id,
+                //zone_id = zone_id,
                 status = status
             )
 
