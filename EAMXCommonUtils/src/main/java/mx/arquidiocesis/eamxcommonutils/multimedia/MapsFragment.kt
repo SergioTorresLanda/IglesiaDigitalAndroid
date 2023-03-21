@@ -24,6 +24,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import mx.arquidiocesis.eamxcommonutils.Model.Municipalities
 import mx.arquidiocesis.eamxcommonutils.R
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.base.FragmentDialogBase
@@ -167,38 +168,10 @@ class MapsFragment(
             // Evento del botón para guardar ubicación
             binding.bContinue.setOnClickListener {
                 municipality = 0
-                if ("Álvaro Obregón".search(raddress)) {
-                    municipality = 10
-                } else if ("Azcapotzalco".search(raddress)) {
-                    municipality = 2
-                } else if ("Benito Juárez".search(raddress)) {
-                    municipality = 14
-                } else if ("Coyoacán".search(raddress)) {
-                    municipality = 3
-                } else if ("Cuajimalpa de Morelos".search(raddress)) {
-                    municipality = 4
-                } else if ("Cuauhtémoc".search(raddress)) {
-                    municipality = 15
-                } else if ("Gustavo A. Madero".search(raddress)) {
-                    municipality = 5
-                } else if ("Iztacalco".search(raddress)) {
-                    municipality = 6
-                } else if ("Iztapalapa".search(raddress)) {
-                    municipality = 7
-                } else if ("La Magdalena Contreras".search(raddress)) {
-                    municipality = 8
-                } else if ("Miguel Hidalgo".search(raddress)) {
-                    municipality = 16
-                } else if ("Milpa Alta".search(raddress)) {
-                    municipality = 9
-                } else if ("Tláhuac".search(raddress)) {
-                    municipality = 11
-                } else if ("Tlalpan".search(raddress)) {
-                    municipality = 12
-                } else if ("Venustiano Carranza".search(raddress)) {
-                    municipality = 17
-                } else if ("Xochimilco".search(raddress)) {
-                    municipality = 13
+                Municipalities.values().forEach {
+                    if (it.del.search(raddress)) {
+                        municipality = it.pos
+                    }
                 }
                 if (municipality == 0) {
                     UtilAlert.Builder()
