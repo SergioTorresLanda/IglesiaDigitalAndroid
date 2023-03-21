@@ -31,13 +31,11 @@ fun EAMXHomeFragment.initOnClickListener(signOut: EAMXSignOut) {
                 )
         }
         cvActividadesVoluntariado.setOnClickListener {
-            if (!msgGuest()) {
                 eamxBackHandler.changeFragment(
                     EventFragment.newInstance(callBack!!),
                     R.id.contentFragment,
                     EventFragment::class.java.simpleName
                 )
-            }
         }
 
         clRedSocial.setOnClickListener {
