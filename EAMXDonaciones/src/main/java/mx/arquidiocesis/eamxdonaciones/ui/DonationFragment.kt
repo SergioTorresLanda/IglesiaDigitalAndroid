@@ -146,7 +146,6 @@ class DonationFragment(val item: DonationModel) : FragmentBase() {
                 }
             val listMonto: ArrayList<String> = ArrayList()
             listMonto.add("Selecciona monto")
-            listMonto.add("$10.00")
             listMonto.add("$50.00")
             listMonto.add("$100.00")
             listMonto.add("$200.00")

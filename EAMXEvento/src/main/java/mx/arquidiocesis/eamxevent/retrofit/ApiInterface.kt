@@ -29,7 +29,7 @@ interface ApiInterface {
     @PUT(WebConfig.EVENT_DONOR_PATH)
     fun putUpdateDonorAsync(@Body event: Event) : Deferred<Response<EventResponse>>
 
-    @GET(WebConfig.EVENT_DINER)
+    @GET(WebConfig.EVENT_DONOR)
     fun getDonorAsync(): Deferred<Response<List<DinerResponse>>>
 
     @GET(WebConfig.EVENT_DONOR_HISTORY_PATH)
@@ -47,6 +47,6 @@ interface ApiInterface {
     fun getVolunteerAsync(): Deferred<Response<List<DinerResponse>>>
 
     @GET(WebConfig.EVENT_DINER_PATH)
-    fun getVolunteerDetailAsync(@Path("dinerId") dinerId: Int): Deferred<Response<List<DinerResponse>>>
+    fun getVolunteerHistoryAsync(@Path("dinerId") dinerId: Int): Deferred<Response<List<DinerResponse>>>
 
 }
