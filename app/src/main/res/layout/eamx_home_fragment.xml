@@ -517,11 +517,10 @@
                             android:id="@+id/iv_actividades_voluntariado"
                             android:layout_width="60dp"
                             android:layout_height="wrap_content"
-                            android:adjustViewBounds=
-                                "true"
+                            android:adjustViewBounds="true"
                             android:padding="12dp"
                             android:scaleType="fitXY"
-                            android:src="@drawable/ic_calendar"
+                            android:src="@drawable/icons_hora_96"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
