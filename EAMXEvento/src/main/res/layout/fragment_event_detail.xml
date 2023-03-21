@@ -73,8 +73,8 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="20dp"
-                android:visibility="gone"
                 android:orientation="vertical"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lNombreC">
 
@@ -157,7 +157,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/labelAddress">
 
@@ -174,42 +173,27 @@
                     android:textSize="18sp"
                     android:textStyle="normal" />
 
-                <ImageView
-                    android:id="@+id/ivAddress"
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-
-                    android:layout_gravity="center_horizontal"
-                    android:clickable="true"
-                    android:contentDescription="calendar"
-                    android:focusable="true"
-                    android:src="@drawable/ic_church_map" />
-
+                <TextView
+                    android:id="@+id/tvAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="0dp"
+                    android:drawableTop="@drawable/ic_church_map"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:text="Actualizar"
+                    android:textColor="@color/textview_title_color"
+                    android:textSize="17sp"
+                    android:textStyle="normal" />
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/tvAct"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="270dp"
-                android:layout_marginTop="0dp"
-                android:fontFamily="sans-serif-medium"
-                android:lineSpacingExtra="4sp"
-                android:gravity="right"
-                android:lines="1"
-                android:text="Actualizar"
-                android:textColor="@color/textview_title_color"
-                android:textSize="17sp"
-                android:textStyle="normal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/lAddress" />
 
             <TextView
                 android:id="@+id/tvDays"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:fontFamily="sans-serif-medium"
                 android:lineSpacingExtra="4sp"
@@ -218,7 +202,7 @@
                 android:textColor="@color/textview_title_color"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/tvAct" />
+                app:layout_constraintTop_toBottomOf="@id/lAddress" />
 
             <include
                 android:id="@+id/iDays"
@@ -227,7 +211,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                app:layout_constraintTop_toBottomOf="@+id/tvDays"/>
+                app:layout_constraintTop_toBottomOf="@+id/tvDays" />
 
             <TextView
                 android:id="@+id/tvHorarios"
@@ -288,7 +272,6 @@
                     app:layout_constraintTop_toBottomOf="@id/iDays" />
 
 
-
             </LinearLayout>
 
             <LinearLayout
@@ -308,15 +291,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_weight="1"
+                    android:background="#F5F5F5"
                     android:clickable="true"
                     android:focusable="true"
-                    android:gravity="center"
                     android:fontFamily="sans-serif-light"
+                    android:gravity="center"
                     android:lineSpacingExtra="2sp"
-                    android:background="#F5F5F5"
                     android:maxLength="10"
-                    android:text="00:00"
                     android:padding="10dp"
+                    android:text="00:00"
                     android:textColor="@color/textview_text_color"
                     android:textSize="15sp"
                     android:textStyle="normal" />
@@ -343,9 +326,9 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:fontFamily="sans-serif-light"
+                    android:gravity="center"
                     android:lineSpacingExtra="2sp"
                     android:padding="10dp"
-                    android:gravity="center"
                     android:text="00:00"
                     android:textColor="@color/textview_text_color"
                     android:textSize="15sp"
@@ -566,8 +549,8 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="20dp"
-                android:visibility="gone"
                 android:orientation="vertical"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lCostoR">
 
@@ -657,8 +640,8 @@
                         android:letterSpacing="0.01"
                         android:lineSpacingExtra="10sp"
                         android:maxLength="250"
-                        android:text="Presentarse puntual para garantizar el servicio. No asistir en estado de ebriedad o bajo la influencia de estupefacientes. Seguir las indicaciones de los administradores en todo momento. Actitud de respeto con el resto de los participantes."
                         android:singleLine="false"
+                        android:text="Presentarse puntual para garantizar el servicio. No asistir en estado de ebriedad o bajo la influencia de estupefacientes. Seguir las indicaciones de los administradores en todo momento. Actitud de respeto con el resto de los participantes."
                         android:textColor="#99000000"
                         android:textSize="18sp"
                         android:textStyle="normal" />
@@ -696,13 +679,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/margin_bottom_25"
+                    android:checked="true"
                     android:switchPadding="@dimen/global_margin_extra"
                     android:textColor="#192a73"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:checked="true"
-                    android:trackTint="#C3EC96"
                     android:thumbTint="#80C913"
+                    android:trackTint="#C3EC96"
                     tools:ignore="UseSwitchCompatOrMaterialXml" />
             </LinearLayout>
 
@@ -723,8 +706,8 @@
                     android:id="@+id/etEstatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="left"
                     android:fontFamily="sans-serif-medium"
+                    android:gravity="left"
                     android:letterSpacing="0.03"
                     android:lineSpacingExtra="0sp"
                     android:text="Estatus"
