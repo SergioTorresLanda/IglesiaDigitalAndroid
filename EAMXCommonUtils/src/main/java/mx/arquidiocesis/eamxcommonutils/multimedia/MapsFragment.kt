@@ -29,15 +29,17 @@ import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.base.FragmentDialogBase
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
 import mx.arquidiocesis.eamxcommonutils.databinding.FragmentMapsBinding
+import mx.arquidiocesis.eamxcommonutils.util.isUrlYoutube
 import mx.arquidiocesis.eamxcommonutils.util.log
 import mx.arquidiocesis.eamxcommonutils.util.permission.UtilValidPermission
+import mx.arquidiocesis.eamxcommonutils.util.search
 
 const val PERMISSION_LOCATION = 10007
 
 class MapsFragment(
     val latitude: Double = 0.0,
     val longitude: Double = 0.0,
-    val listener: (rlatitude: Double, rlongitude: Double, raddress: String) -> Unit,
+    val listener: (rlatitude: Double, rlongitude: Double, raddress: String, municipality: Int) -> Unit,
 ) : FragmentDialogBase() {
     lateinit var binding: FragmentMapsBinding
 
@@ -69,6 +71,7 @@ class MapsFragment(
     var rlatitude: Double = 0.0
     var rlongitude: Double = 0.0
     var raddress: String = ""
+    var municipality: Int = 0
 
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     override fun onCreateView(
@@ -163,22 +166,68 @@ class MapsFragment(
             }
             // Evento del botón para guardar ubicación
             binding.bContinue.setOnClickListener {
-                UtilAlert.Builder()
-                    .setTitle(getString(R.string.title_dialog_warning))
-                    .setMessage("Se ha seleccionado una dirección.")
-                    .setListener {
-                        listener(rlatitude, rlongitude, raddress)
-                        dismiss()
-                    }
-                    .build()
-                    .show(childFragmentManager, tag)
+                municipality = 0
+                if ("Álvaro Obregón".search(raddress)) {
+                    municipality = 10
+                } else if ("Azcapotzalco".search(raddress)) {
+                    municipality = 2
+                } else if ("Benito Juárez".search(raddress)) {
+                    municipality = 14
+                } else if ("Coyoacán".search(raddress)) {
+                    municipality = 3
+                } else if ("Cuajimalpa de Morelos".search(raddress)) {
+                    municipality = 4
+                } else if ("Cuauhtémoc".search(raddress)) {
+                    municipality = 15
+                } else if ("Gustavo A. Madero".search(raddress)) {
+                    municipality = 5
+                } else if ("Iztacalco".search(raddress)) {
+                    municipality = 6
+                } else if ("Iztapalapa".search(raddress)) {
+                    municipality = 7
+                } else if ("La Magdalena Contreras".search(raddress)) {
+                    municipality = 8
+                } else if ("Miguel Hidalgo".search(raddress)) {
+                    municipality = 16
+                } else if ("Milpa Alta".search(raddress)) {
+                    municipality = 9
+                } else if ("Tláhuac".search(raddress)) {
+                    municipality = 11
+                } else if ("Tlalpan".search(raddress)) {
+                    municipality = 12
+                } else if ("Venustiano Carranza".search(raddress)) {
+                    municipality = 17
+                } else if ("Xochimilco".search(raddress)) {
+                    municipality = 13
+                }
+                if (municipality == 0) {
+                    UtilAlert.Builder()
+                        .setTitle(getString(R.string.title_dialog_warning))
+                        .setMessage("Dirección no valida, debe de ser más precisa")
+                        .setListener {
+                            listener(rlatitude, rlongitude, raddress, municipality)
+                            dismiss()
+                        }
+                        .build()
+                        .show(childFragmentManager, tag)
+                } else {
+                    UtilAlert.Builder()
+                        .setTitle(getString(R.string.title_dialog_warning))
+                        .setMessage("Se ha seleccionado una dirección.")
+                        .setListener {
+                            listener(rlatitude, rlongitude, raddress, municipality)
+                            dismiss()
+                        }
+                        .build()
+                        .show(childFragmentManager, tag)
+                }
             }
         } else {
             UtilAlert.Builder()
                 .setTitle(getString(R.string.title_dialog_warning))
                 .setMessage("Debe de activar los permisos")
                 .setListener {
-                    listener(rlatitude, rlongitude, raddress)
+                    listener(rlatitude, rlongitude, raddress, municipality)
                     dismiss()
                 }
                 .build()

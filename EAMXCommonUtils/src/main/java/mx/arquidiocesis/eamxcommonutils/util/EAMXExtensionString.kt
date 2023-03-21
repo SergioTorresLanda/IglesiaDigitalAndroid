@@ -5,10 +5,8 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
 import android.net.Uri
-import android.os.Build
 import android.text.TextUtils
 import android.util.Base64
-import androidx.annotation.RequiresApi
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.target.CustomTarget
@@ -16,9 +14,6 @@ import com.bumptech.glide.request.transition.Transition
 import java.io.ByteArrayOutputStream
 import java.text.Normalizer
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -211,4 +206,15 @@ fun String.getRandomString(length: Int): String {
     return this + (1..length)
         .map { charset.random() }
         .joinToString("")
+}
+
+fun String.search(text:String):Boolean{
+    val palabras = this.split("\\s+".toRegex()).dropLastWhile { it.isEmpty() }
+        .toTypedArray()
+    for (palabra in palabras) {
+        if (text.contains(palabra!!)) {
+            return true
+        }
+    }
+    return false
 }
