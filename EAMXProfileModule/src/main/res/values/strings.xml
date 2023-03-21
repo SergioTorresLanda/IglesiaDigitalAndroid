@@ -82,7 +82,7 @@
     <string name="txt_profile_hint_church_search">¿En qué iglesia prestas el servicio?</string>
     <string name="profile">Perfil</string>
     <string name="txt_profile_hint_congregation_search">Congregación a la que perteneces</string>
-    <string name="title_dialog_warning">¡Atención!</string>
+    <string name="title_dialog_warning">Atención</string>
     <string name="only_numbers">1234567890</string>
     <string name="text_topics">Puedes agregar más de un interés</string>
 

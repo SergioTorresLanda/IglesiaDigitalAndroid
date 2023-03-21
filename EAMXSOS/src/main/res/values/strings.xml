@@ -24,7 +24,7 @@
     <string name="text_sub_title_sos">¿Cuál es tu emergencia?</string>
     <string name="text_button_sos">Confirmar</string>
     <string name="text_message_priesfult_empty">Debes seleccionar un servicio para continuar</string>
-    <string name="title_dialog_warning">¡Atención!</string>
+    <string name="title_dialog_warning">Atención</string>
     <string name="text_message_location_not_available">No fue posible obtener su localización.\nLo intentaremos nuevamente</string>
     <string name="text_title_request_sos_success">RECIBIMOS TU SOLICITUD</string>
     <string name="text_title_service_in_progress">SERVICIO EN PROCESO</string>

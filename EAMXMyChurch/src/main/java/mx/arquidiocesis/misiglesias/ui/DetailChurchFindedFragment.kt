@@ -134,7 +134,7 @@ class DetailChurchFindedFragment : FragmentBase() {
                 startActivity(mapIntent)
             }
             btnHeart.setOnClickListener {
-                if (!msgGuest("agregar una iglesia favorita")) {
+                if (!msgGuest("agregar esta iglesia como favorita")) {
                     if (isFav) {
                         detalleIglesiaViewModel.delFavoritas(userId, idIglesia)
                     } else {
@@ -147,12 +147,12 @@ class DetailChurchFindedFragment : FragmentBase() {
                 //  changeFragmentEdit()
             }
             btnComentarios.setOnClickListener {
-                if (!msgGuest("escribir una opinión a la iglesia")) {
+                if (!msgGuest("escribir una opinión de esta iglesia")) {
                     changeFragment()
                 }
             }
             btnActivarIglesia.setOnClickListener {
-                if (!msgGuest("agregar una iglesia principal")) {
+                if (!msgGuest("agregar esta iglesia como principal")) {
                     if (isPrincipal) {
                         detalleIglesiaViewModel.setFavoritas(churchDetaillModel, true)
                         showLoader()

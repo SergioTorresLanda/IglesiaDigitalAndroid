@@ -330,7 +330,7 @@ class EventDetailFragment : FragmentBase() {
                 EAMXStatusRequestEnum.FAILURE -> {
                     hideLoader()
                     UtilAlert.Builder()
-                        .setTitle("¡Atención!")
+                        .setTitle("Atención")
                         .setMessage("Verifique sus datos e intentelo de nuevo.")
                         .setListener {
                             hideLoader()

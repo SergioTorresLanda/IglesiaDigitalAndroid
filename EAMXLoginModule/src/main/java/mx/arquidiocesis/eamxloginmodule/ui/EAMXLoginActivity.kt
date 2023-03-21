@@ -164,7 +164,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                                     "+52${mBinding.etEmail.text}" else mBinding.etEmail.text.toString()
 
                                 UtilAlert.Builder()
-                                    .setTitle("¡Atención!")
+                                    .setTitle("Atención")
                                     .setMessage(getString(R.string.your_user_already_exists_confirm_to_login))
                                     .setTextButtonOk("Solicitar código")
                                     .setListener {
@@ -190,14 +190,14 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                             }
                             else -> {
                                 UtilAlert.Builder()
-                                    .setTitle("¡Atención!")
+                                    .setTitle("Atención")
                                     .setMessage(getString(R.string.friendly_message))
                                     .build().show(supportFragmentManager, "")
                             }
                         }
                     } else {
                         UtilAlert.Builder()
-                            .setTitle("¡Atención!")
+                            .setTitle("Atención")
                             .setMessage(getString(R.string.no_internet_connection))
                             .build().show(supportFragmentManager, "")
                     }
@@ -234,7 +234,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                 }
                 EAMXStatusValidation.INCORRECT -> {
                     UtilAlert.Builder()
-                        .setTitle("¡Atención!")
+                        .setTitle("Atención")
                         .setMessage(it.errorMessage)
                         .build().show(supportFragmentManager, "")
                 }
@@ -335,7 +335,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                 etPassword.setText("")
             }
             UtilAlert.Builder()
-                .setTitle("¡Atención!")
+                .setTitle("Atención")
                 .setMessage(getString(R.string.no_internet_connection))
                 .build().show(supportFragmentManager, "")
         }
