@@ -38,6 +38,7 @@ import mx.arquidiocesis.eamxevent.repository.RepositoryEvent
 import mx.arquidiocesis.eamxevent.model.enum.Day as week
 import mx.arquidiocesis.eamxcommonutils.multimedia.MapsFragment
 import mx.arquidiocesis.eamxcommonutils.multimedia.PERMISSION_LOCATION
+import mx.arquidiocesis.eamxcommonutils.util.isUrlArquidiocesisComunicado
 import mx.arquidiocesis.eamxcommonutils.util.log
 import mx.arquidiocesis.eamxcommonutils.util.permission.UtilValidPermission
 import mx.arquidiocesis.eamxevent.adapter.DinerAllAdapter
@@ -118,7 +119,8 @@ class EventDetailFragment : FragmentBase() {
 
         initView()
         initObservers()
-
+        etEmail.setText(email)
+        etNumberPhone.setText(phone.replace("+52",""))
         requireArguments().let {
             var id = it.getString("diner_id")
             if (id != "") {
@@ -134,10 +136,6 @@ class EventDetailFragment : FragmentBase() {
     }
 
     private fun initObservers() {
-
-        etEmail.text = Editable.Factory.getInstance().newEditable(email)
-        etNumberPhone.text = Editable.Factory.getInstance().newEditable(phone)
-
         viewmodel.responseAllDin.observe(viewLifecycleOwner) { item ->
             hideLoader()
             if (item.size > 0) {
@@ -197,7 +195,7 @@ class EventDetailFragment : FragmentBase() {
                 } else {
                     binding.iDays.iDaySa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
                 }
-                // switch1.isChecked = item[0].fCCOBRO != "0"
+                switch1.isChecked = item[0].fCCOBRO != "0"
                 etMonto.setText(item[0].fCCOBRO)
 
                 val hora_first = item[0].fCHORARIOS!![0].hour_start!!.split(":")
@@ -205,10 +203,10 @@ class EventDetailFragment : FragmentBase() {
                 val hora_end = item[0].fCHORARIOS!![0].hour_end!!.split(":")
                 EndSchedule(hora_end[0].toInt(), hora_end[1].toInt())
                 etResponsable.setText(item[0].fCRESPONSABLE)
-                etNumberPhone.setText(item[0].fCTELEFONO)
+                etNumberPhone.setText(item[0].fCTELEFONO!!.replace("+52",""))
                 etRequisitos.setText(item[0].fCREQUISITOS)
                 switch2.isChecked = item[0].fCVOLUNTARIOS == "1"
-                // switch3.isChecked = item[0].fCSTATUS == "1"
+                switch3.isChecked = item[0].fCSTATUS == "1"
             }
         }
         viewModelEvent.showLoaderView.observe(viewLifecycleOwner) {
@@ -698,16 +696,6 @@ class EventDetailFragment : FragmentBase() {
     }
 
     private fun eventRegister() {
-        /*
-        lateinit var numberPhone: String
-        lateinit var phone: String
-        binding.apply {
-            numberPhone = etNumberPhone.text.toString().trim()
-            phone = "+52$numberPhone"
-        }
-
-         */
-
         val listSchedules: MutableList<Schedules> =
             mutableListOf(Schedules(listDays, tvFirstH.text.toString(), tvEndH.text.toString()))
         viewModelEvent.validateFormRegister(
@@ -716,7 +704,7 @@ class EventDetailFragment : FragmentBase() {
             listSchedules,
             etResponsable.text.toString().trim().uppercase(Locale.getDefault()),
             etEmail.text.toString().trim(),
-            phone,
+            "+52${etNumberPhone.text.toString().trim()}",
             etgetAddress.text.toString().trim(),
             if (longitude == 0.00) "" else longitude.toString(),
             if (latitude == 0.00) "" else latitude.toString(),
