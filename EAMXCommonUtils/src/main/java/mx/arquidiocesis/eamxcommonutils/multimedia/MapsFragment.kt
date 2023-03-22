@@ -30,6 +30,7 @@ import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.base.FragmentDialogBase
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
 import mx.arquidiocesis.eamxcommonutils.databinding.FragmentMapsBinding
+import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
 import mx.arquidiocesis.eamxcommonutils.util.isUrlYoutube
 import mx.arquidiocesis.eamxcommonutils.util.log
 import mx.arquidiocesis.eamxcommonutils.util.permission.UtilValidPermission
@@ -92,6 +93,11 @@ class MapsFragment(
     @SuppressLint("MissingPermission")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.let {
+            EAMXFirebaseManager(it).setLogEvent("screen_view", Bundle().apply {
+                putString("screen_class", "CrearComedor_Mapa")
+            })
+        }
         if (chechPermissions()) {
             // Se hace referencia al fragment para ser usadado con binding
             val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?

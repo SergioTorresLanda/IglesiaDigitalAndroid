@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
+import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
 import android.widget.EditText
@@ -14,6 +15,7 @@ import mx.arquidiocesis.eamxcommonutils.common.EAMXBaseActivity
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnums
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
+import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
 import mx.arquidiocesis.eamxcommonutils.util.eamxLog
 import mx.arquidiocesis.eamxcommonutils.util.getViewModel
 import mx.arquidiocesis.eamxregistromodule.R
@@ -135,6 +137,9 @@ class EAMXConfirmCodeActivity : EAMXBaseActivity() {
 
 
     override fun initView() {
+        EAMXFirebaseManager(applicationContext).setLogEvent("screen_view", Bundle().apply {
+            putString("screen_class", "Login_CodigoConfirmacion")
+        })
         intent.extras?.let {
             it.apply {
                 username = getString(EAMXEnumUser.USER_EMAIL.name) ?: ""

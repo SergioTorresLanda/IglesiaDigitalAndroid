@@ -115,7 +115,6 @@ class Maps(
         } else {
             ""
         }
-        ("Mi adrrees" + result).log()
         addressMap.value = result
     }
 

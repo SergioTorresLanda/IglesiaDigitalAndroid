@@ -82,6 +82,11 @@ class EAMXPriestRegisterFragment : FragmentBase() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.let {
+            EAMXFirebaseManager(it).setLogEvent("screen_view", Bundle().apply {
+                putString("screen_class", "MiPerfil_RegistroSacerdote")
+            })
+        }
         initObservers()
         initListener()
         initServices()

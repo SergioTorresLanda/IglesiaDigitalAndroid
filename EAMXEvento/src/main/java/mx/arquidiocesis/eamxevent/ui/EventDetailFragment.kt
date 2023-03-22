@@ -27,8 +27,6 @@ import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.common.EAMXHome
 import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
-import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
-import mx.arquidiocesis.eamxcommonutils.util.getViewModel
 import mx.arquidiocesis.eamxevent.R
 import mx.arquidiocesis.eamxevent.constants.Constants
 import mx.arquidiocesis.eamxevent.databinding.FragmentEventDetailBinding
@@ -38,8 +36,7 @@ import mx.arquidiocesis.eamxevent.repository.RepositoryEvent
 import mx.arquidiocesis.eamxevent.model.enum.Day as week
 import mx.arquidiocesis.eamxcommonutils.multimedia.MapsFragment
 import mx.arquidiocesis.eamxcommonutils.multimedia.PERMISSION_LOCATION
-import mx.arquidiocesis.eamxcommonutils.util.isUrlArquidiocesisComunicado
-import mx.arquidiocesis.eamxcommonutils.util.log
+import mx.arquidiocesis.eamxcommonutils.util.*
 import mx.arquidiocesis.eamxcommonutils.util.permission.UtilValidPermission
 import mx.arquidiocesis.eamxevent.adapter.DinerAllAdapter
 import java.util.*
@@ -109,6 +106,11 @@ class EventDetailFragment : FragmentBase() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.let {
+            EAMXFirebaseManager(it).setLogEvent("screen_view", Bundle().apply {
+                putString("screen_class", "Actividades_CrearComedor")
+            })
+        }
         listDays.add(Day(false, week.Domingo.ordinal, week.Domingo.name))
         listDays.add(Day(false, week.Lunes.ordinal, week.Lunes.name))
         listDays.add(Day(false, week.Martes.ordinal, week.Martes.name))
