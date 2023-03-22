@@ -48,7 +48,6 @@ class EventDetailFragment : FragmentBase() {
     private var hourFirst = ""
     private var hourEnd = ""
     private val TAG_LOADER: String = "EventFragment"
-    private var fragment = DialogFragment()
     private var delegations: Array<Delegations> = Delegations.values()
     private var zona: Int = 0
     private var diner_id: Int = 0
@@ -292,50 +291,23 @@ class EventDetailFragment : FragmentBase() {
             }
             hideLoader()
         }
-        viewModelEvent.responseGeneric.observe(viewLifecycleOwner) { response ->
-            when (response.statusRequest) {
-                EAMXStatusRequestEnum.LOADING -> {
-                    showLoader()
+        viewModelEvent.saveResponse.observe(viewLifecycleOwner) {
+            hideLoader()
+            UtilAlert.Builder()
+                .setTitle("Éxito")
+                .setMessage(it)
+                .setListener {
+                    activity?.onBackPressedDispatcher?.onBackPressed()
                 }
-                EAMXStatusRequestEnum.SUCCESS -> {
-                    hideLoader()
-                    UtilAlert.Builder()
-                        .setTitle("Éxito")
-                        .setMessage("Se ha dado de alta el comedor correctamente.")
-                        .setListener {
-                            hideLoader()
-                        }
-                        .setIsCancel(false)
-                        .build()
-                        .show(childFragmentManager, TAG_LOADER)
-                    fragment.show(childFragmentManager, "LOADER")
-                }
-                EAMXStatusRequestEnum.FAILURE -> {
-                    hideLoader()
-                    UtilAlert.Builder()
-                        .setTitle("Atención")
-                        .setMessage("Verifique sus datos e intentelo de nuevo.")
-                        .setListener {
-                            hideLoader()
-                        }
-                        .setIsCancel(false)
-                        .build()
-                        .show(childFragmentManager, TAG_LOADER)
-                    fragment.show(childFragmentManager, "LOADER")
-                }
-                EAMXStatusRequestEnum.NONE -> {
-                    hideLoader()
-                }
-                else -> {}
-            }
+                .setIsCancel(false)
+                .build()
+                .show(childFragmentManager, TAG_LOADER)
         }
         viewModelEvent.errorResponse.observe(viewLifecycleOwner) {
             hideLoader()
             UtilAlert.Builder()
-                //setTitle(getString(R.string.title_dialog_warning))
-                //.setMessage("No es posible agregar el comedor.")
-                .setTitle("Éxito")
-                .setMessage("Se ha dado de alta el comedor correctamente.")
+                .setTitle(getString(R.string.title_dialog_warning))
+                .setMessage(it)
                 .setListener {
                     hideLoader()
                 }
@@ -615,6 +587,7 @@ class EventDetailFragment : FragmentBase() {
                 etgetAddress.setText(raddress)
                 latitude = rlatitude
                 longitude = rlongitude
+                println(latitude.toString() + "to" + longitude.toString())
                 delegations.forEach {
                     if (it.pos == municipality) {
                         spZone.setSelection(it.ordinal)
@@ -715,8 +688,8 @@ class EventDetailFragment : FragmentBase() {
             if (switch2.isChecked) 1 else 0,
             ArrayList(),
             if (switch3.isChecked) 1 else 0,
-            diner_id
-            //zona,
+            diner_id,
+            zona
 
         )
     }

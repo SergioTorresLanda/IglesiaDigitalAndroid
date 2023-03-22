@@ -25,12 +25,8 @@ import mx.arquidiocesis.eamxevent.retrofit.WebConfig.HOST
 
 class RepositoryEvent(val context: Context) : ManagerCall() {
 
-    val zonaResponse = MutableLiveData<String>()
-    val dayResponse = MutableLiveData<Day>()
-    val scheduleResponse = MutableLiveData<Day>()
     val errorResponse = MutableLiveData<String>()
-    val updateMessage = MutableLiveData<String>()
-    val registerResponse = MutableLiveData<String>()
+    val saveResponse = MutableLiveData<String>()
 
     //GET Event
     val allDiner = SingleLiveEvent<List<DinerResponse>>()
@@ -63,13 +59,15 @@ class RepositoryEvent(val context: Context) : ManagerCall() {
             call = {
                 retrofitInstance.setHost(HOST).builder().instance().postCreateEventAsync(event)
                     .await()
-            }
+            },
+            validation = Validation()
         ).let { response ->
             GlobalScope.launch(Dispatchers.Main) {
                 if (response.sucess) {
-                    registerResponse.value = "Se ha dado de alta el comedor correctamente."
+                    saveResponse.value = "Se ha dado de alta el comedor correctamente."
                 } else {
-                    errorResponse.value = "Verifica tus datos"
+                    errorResponse.value = response.exception?.message
+                        ?: "La creación del comedor no se pudo realizar."
                 }
             }
         }
@@ -81,13 +79,15 @@ class RepositoryEvent(val context: Context) : ManagerCall() {
             call = {
                 retrofitInstance.setHost(HOST).builder().instance()
                     .putUpdateEventAsync(dinerId, event).await()
-            }
+            },
+            validation = Validation()
         ).let { response ->
             GlobalScope.launch(Dispatchers.Main) {
                 if (response.sucess) {
-                    registerResponse.value = "Se ha dado de alta el comedor correctamente."
+                    saveResponse.value = "Se ha actualizado el comedor correctamente."
                 } else {
-                    errorResponse.value = "Verifica tus datos"
+                    errorResponse.value = response.exception?.message
+                        ?: "La actualización del comedor no se pudo realizar."
                 }
             }
         }
@@ -107,5 +107,4 @@ class RepositoryEvent(val context: Context) : ManagerCall() {
             validation = Validation()
         )
     }
-
 }

@@ -110,7 +110,6 @@ class Maps(
         )
 
         val result = if (addresses?.size == 1) {
-            addresses[0].getAddressLine(0).log()
             addresses[0].getAddressLine(0)
         } else {
             ""

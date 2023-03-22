@@ -21,9 +21,8 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
 
     val responseGeneric: EAMXGenericRequest<EAMXGenericResponse<EventResponse, String, Event>> =
         EAMXGenericRequest()
-    val zoneModel = repositoryEvent.zonaResponse
     val errorResponse = repositoryEvent.errorResponse
-    var registerResponse = repositoryEvent.registerResponse
+    val saveResponse = repositoryEvent.saveResponse
     var validateForm = MutableLiveData<HashMap<String, String>>()
     var showLoaderView = MutableLiveData<Boolean>()
 
@@ -57,9 +56,10 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
         }
 
         //GlobalScope.launch {
-         //   repositoryEvent.getAllDiner()
+        //   repositoryEvent.getAllDiner()
         //}
     }
+
     private fun observeEventResponse() =
         Observer<EAMXGenericResponse<EventResponse, String, Event>> {
             responseGeneric.postValue(it)
@@ -80,10 +80,10 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
         volunteers: Int,
         donors: ArrayList<Int> = ArrayList(),
         status: Int,
-        id: Int? = 0
-        //zone_id: Int,
+        id: Int? = 0,
+        zone_id: Int,
 
-    ) {
+        ) {
         val userId =
             eamxcu_preferences.getData(EAMXEnumUser.USER_ID.name, EAMXTypeObject.INT_OBJECT) as Int
         val email =
@@ -116,11 +116,10 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
 
         if (schedule[0].hour_end == "00:00")
             validateForm[Constants.KEY_HOUR_END] = Constants.EMPTY_FIELD
-/*
+
         if (zone_id == 0)
             validateForm[Constants.KEY_ZONE] = Constants.EMPTY_FIELD
 
- */
 
         if (responsability.isEmpty())
             validateForm[Constants.KEY_RESPONSABILITY] = Constants.EMPTY_FIELD
@@ -176,15 +175,14 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
                 requirements = descriptionValidate,
                 volunteers = volunteers,
                 donors = donors,
-                //zone_id = zone_id,
+                zone_id = zone_id,
                 status = status
             )
-
             GlobalScope.launch {
-                if (id == 0){
-                repositoryEvent.saveEventDiner(eventRegisterModel)
-                }else{
-                    id?.let { repositoryEvent.UpdateEventDiner(it,eventRegisterModel) }
+                if (id == 0) {
+                    repositoryEvent.saveEventDiner(eventRegisterModel)
+                } else {
+                    id?.let { repositoryEvent.UpdateEventDiner(it, eventRegisterModel) }
                 }
             }
         }

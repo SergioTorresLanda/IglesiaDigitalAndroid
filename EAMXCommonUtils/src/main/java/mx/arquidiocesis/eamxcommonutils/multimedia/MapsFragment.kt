@@ -131,15 +131,17 @@ class MapsFragment(
                         rlongitude = it.longitude
                     }*/
                     // Evento al mover el mapa
-                    setOnCameraChangeListener {
+                    setOnCameraIdleListener {
+                        val posTarget = it.cameraPosition.target
                         if (mover) {
-                            maps.addMaker(it.target.latitude, it.target.longitude, false, pin)
-                            rlatitude = it.target.latitude
-                            rlongitude = it.target.longitude
+                            maps.addMaker(posTarget.latitude, posTarget.longitude, false, pin)
+                            rlatitude = posTarget.latitude
+                            rlongitude = posTarget.longitude
                         }
                         mover = true
                     }
                 }
+
                 // Observa si la dirección tiene un cambio
                 maps.addressMap.observe(viewLifecycleOwner) {
                     binding.tvAddress.text = it
@@ -167,37 +169,44 @@ class MapsFragment(
                                 true,
                                 pin
                             )
+                            rlatitude = lastKnownLocation!!.latitude
+                            rlongitude = lastKnownLocation!!.longitude
                         }
                     }
                 }
             }
             // Evento del botón para guardar ubicación
             binding.bContinue.setOnClickListener {
-                municipality = 0
-                Municipalities.values().forEach {
-                    if (it.del.search(raddress)) {
-                        municipality = it.pos
+                if (rlatitude == 0.0 && rlongitude == 0.0) {
+                    UtilAlert.Builder()
+                        .setTitle(getString(R.string.title_dialog_warning))
+                        .setMessage("Se está cargando el mapa. Intentelo nuevamente.")
+                        .build()
+                        .show(childFragmentManager, tag)
+                }else {
+                    municipality = 2
+                    Municipalities.values().forEach {
+                        if (it.del.search(raddress)) {
+                            municipality = it.pos
+                        }
                     }
-                }
-                if (municipality == 0) {
-                    UtilAlert.Builder()
-                        .setTitle(getString(R.string.title_dialog_warning))
-                        .setMessage("Dirección no valida, debe de ser más precisa")
-                        .setListener {
-                            listener(rlatitude, rlongitude, raddress, municipality)
-                        }
-                        .build()
-                        .show(childFragmentManager, tag)
-                } else {
-                    UtilAlert.Builder()
-                        .setTitle(getString(R.string.title_dialog_warning))
-                        .setMessage("Se ha seleccionado una dirección.")
-                        .setListener {
-                            listener(rlatitude, rlongitude, raddress, municipality)
-                            dismiss()
-                        }
-                        .build()
-                        .show(childFragmentManager, tag)
+                    if (municipality == 0) {
+                        UtilAlert.Builder()
+                            .setTitle(getString(R.string.title_dialog_warning))
+                            .setMessage("Dirección no valida, debe de ser más precisa.")
+                            .build()
+                            .show(childFragmentManager, tag)
+                    } else {
+                        UtilAlert.Builder()
+                            .setTitle(getString(R.string.title_dialog_warning))
+                            .setMessage("Se ha seleccionado una dirección.")
+                            .setListener {
+                                listener(rlatitude, rlongitude, raddress, municipality)
+                                dismiss()
+                            }
+                            .build()
+                            .show(childFragmentManager, tag)
+                    }
                 }
             }
         } else {

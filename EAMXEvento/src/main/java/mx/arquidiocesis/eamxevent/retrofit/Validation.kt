@@ -6,7 +6,7 @@ import mx.arquidiocesis.eamxcommonutils.retrofit.model.exception.BackendExceptio
 import mx.arquidiocesis.eamxcommonutils.retrofit.model.inter.ValidationCode
 import retrofit2.Response
 
-class Validation <T> : ValidationCode<Response<T>> {
+class Validation<T> : ValidationCode<Response<T>> {
     val gson = Gson();
     override fun executeValidation(response: Response<T>) {
         when (response.code()) {
@@ -22,6 +22,9 @@ class Validation <T> : ValidationCode<Response<T>> {
                         throw BackendException("No fue posible encontrar los datos del usuario, intente más tarde.")
                     }
                 }
+            }
+            403 -> {
+                throw BackendException("No fue posible recibir una respuesta.")
             }
         }
     }
