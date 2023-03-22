@@ -77,13 +77,12 @@ class DinerAllAdapter(
                 tvRequisF.text = item.fCREQUISITOS
                 lRequisF.visibility = View.VISIBLE
                 lDiasF.visibility = View.VISIBLE
+                var days = item.fCHORARIOS!![0].days!!.filter { it.checked }
                 var dias = ""
-                var cont = 0
-                item.fCHORARIOS!![0].days!!.forEach {
-                    if (it.checked) {
-                        dias =
-                            dias + (if (dias == "") "" else (if (item.fCHORARIOS[0].days!!.size == cont) " y " else ", ")) + it.name
-                    }
+                var cont = 1
+                days.forEach {
+                    dias =
+                        dias + (if (dias == "") "" else (if (days.size == cont) " y " else ", ")) + it.name
                     cont++
                 }
                 tvDiasF.text = dias

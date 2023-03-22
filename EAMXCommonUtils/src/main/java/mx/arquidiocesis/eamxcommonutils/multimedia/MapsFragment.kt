@@ -108,7 +108,7 @@ class MapsFragment(
             val bitmapDraw = requireContext().let {
                 ContextCompat.getDrawable(
                     it,
-                    R.drawable.ic_map
+                    R.drawable.ic_church_map
                 )
             } as BitmapDrawable
             val smallMarker = Bitmap.createScaledBitmap(bitmapDraw.bitmap, 80, 100, false)

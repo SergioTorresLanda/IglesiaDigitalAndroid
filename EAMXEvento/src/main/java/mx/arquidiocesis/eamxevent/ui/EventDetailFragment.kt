@@ -143,14 +143,12 @@ class EventDetailFragment : FragmentBase() {
             if (item.size > 0) {
                 etNombreC.setText(item[0].fCNOMBRECOM)
                 etgetAddress.setText(item[0].fCDIRECCION)
-                /*
                 delegations.forEach {
                     if (it.pos.toString() == item[0].fIZONA) {
                         spZone.setSelection(it.ordinal)
                         return@forEach
                     }
                 }
-                 */
                 if (!(item[0].fNLATITUD).isNullOrEmpty()) {
                     latitude = item[0].fNLATITUD!!.toDouble()
                 }
@@ -199,18 +197,18 @@ class EventDetailFragment : FragmentBase() {
                 } else {
                     binding.iDays.iDaySa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
                 }
-               // switch1.isChecked = item[0].fCCOBRO != "0"
+                // switch1.isChecked = item[0].fCCOBRO != "0"
                 etMonto.setText(item[0].fCCOBRO)
 
-                val hora_first =item[0].fCHORARIOS!![0].hour_start!!.split(":")
-                FirstSchedule(hora_first[0].toInt(),hora_first[1].toInt())
-                val hora_end =item[0].fCHORARIOS!![0].hour_end!!.split(":")
-                EndSchedule(hora_end[0].toInt(),hora_end[1].toInt())
+                val hora_first = item[0].fCHORARIOS!![0].hour_start!!.split(":")
+                FirstSchedule(hora_first[0].toInt(), hora_first[1].toInt())
+                val hora_end = item[0].fCHORARIOS!![0].hour_end!!.split(":")
+                EndSchedule(hora_end[0].toInt(), hora_end[1].toInt())
                 etResponsable.setText(item[0].fCRESPONSABLE)
                 etNumberPhone.setText(item[0].fCTELEFONO)
                 etRequisitos.setText(item[0].fCREQUISITOS)
                 switch2.isChecked = item[0].fCVOLUNTARIOS == "1"
-               // switch3.isChecked = item[0].fCSTATUS == "1"
+                // switch3.isChecked = item[0].fCSTATUS == "1"
             }
         }
         viewModelEvent.showLoaderView.observe(viewLifecycleOwner) {
@@ -223,8 +221,7 @@ class EventDetailFragment : FragmentBase() {
                     .setMessage(getString(R.string.txt_empty_name))
                     .setIsCancel(false)
                     .build().show(childFragmentManager, tag)
-            }
-            if (it.containsKey(Constants.KEY_ADDRESS) || it.containsKey(Constants.KEY_LONGITUDE) || it.containsKey(
+            } else if (it.containsKey(Constants.KEY_ADDRESS) || it.containsKey(Constants.KEY_LONGITUDE) || it.containsKey(
                     Constants.KEY_LATITUDE
                 )
             ) {
@@ -233,57 +230,46 @@ class EventDetailFragment : FragmentBase() {
                     .setMessage(getString(R.string.txt_empty_location))
                     .setIsCancel(false)
                     .build().show(childFragmentManager, tag)
-            }
-
-            if (it.containsKey(Constants.KEY_DAYS)) {
+            } else if (it.containsKey(Constants.KEY_DAYS)) {
                 UtilAlert.Builder()
                     .setTitle(getString(R.string.title_dialog_error))
                     .setMessage(getString(R.string.txt_empty_day))
                     .setIsCancel(false)
                     .build().show(childFragmentManager, tag)
-            }
-
-            if (it.containsKey(Constants.KEY_RESPONSABILITY)) {
+            } else if (it.containsKey(Constants.KEY_RESPONSABILITY)) {
                 UtilAlert.Builder()
                     .setTitle(getString(R.string.title_dialog_error))
                     .setMessage(getString(R.string.txt_empty_responsability))
                     .setIsCancel(false)
                     .build().show(childFragmentManager, tag)
-            }
-
-            if (it.containsKey(Constants.KEY_HOUR_FIRST)) {
+            } else if (it.containsKey(Constants.KEY_HOUR_FIRST)) {
                 UtilAlert.Builder()
                     .setTitle(getString(R.string.title_dialog_error))
                     .setMessage(getString(R.string.txt_empty_hour_first))
                     .setIsCancel(false)
                     .build().show(childFragmentManager, tag)
-            }
-
-            if (it.containsKey(Constants.KEY_HOUR_END)) {
+            } else if (it.containsKey(Constants.KEY_HOUR_END)) {
                 UtilAlert.Builder()
                     .setTitle(getString(R.string.title_dialog_error))
                     .setMessage(getString(R.string.txt_empty_hour_end))
                     .setIsCancel(false)
                     .build().show(childFragmentManager, tag)
-            }
-            if (it.containsKey(Constants.KEY_PHONE)) {
+            } else if (it.containsKey(Constants.KEY_PHONE)) {
                 UtilAlert.Builder()
                     .setTitle(getString(R.string.title_dialog_error))
                     .setMessage(getString(R.string.txt_empty_phone))
                     .setIsCancel(false)
                     .build().show(childFragmentManager, tag)
-            }
-            if (it.containsKey(Constants.KEY_PHONE)) {
+            } else if (it.containsKey(Constants.KEY_PHONE)) {
                 UtilAlert.Builder()
                     .setTitle(getString(R.string.title_dialog_error))
                     .setMessage(getString(R.string.txt_invalid_phone))
                     .setIsCancel(false)
                     .build().show(childFragmentManager, tag)
-            }
-
-            if (it.containsKey(Constants.KEY_EMAIL))
+            } else if (it.containsKey(Constants.KEY_EMAIL)) {
                 if (it[Constants.KEY_EMAIL] == Constants.INVALID_EMAIL) {
-                    etEmail.error = getString(R.string.txt_invalidate_email)
+                    etEmail.error =
+                        getString(R.string.txt_invalidate_email)
                 } else {
                     UtilAlert.Builder()
                         .setTitle(getString(R.string.title_dialog_error))
@@ -291,16 +277,13 @@ class EventDetailFragment : FragmentBase() {
                         .setIsCancel(false)
                         .build().show(childFragmentManager, tag)
                 }
-
-            if (it.containsKey(Constants.KEY_REQUISIT)) {
+            } else if (it.containsKey(Constants.KEY_REQUISIT)) {
                 UtilAlert.Builder()
                     .setTitle(getString(R.string.title_dialog_error))
                     .setMessage(getString(R.string.txt_empty_requi))
                     .setIsCancel(false)
                     .build().show(childFragmentManager, tag)
-            }
-
-            if (it.containsKey(Constants.KEY_ZONE)) {
+            } else if (it.containsKey(Constants.KEY_ZONE)) {
                 UtilAlert.Builder()
                     .setTitle(getString(R.string.title_dialog_error))
                     .setMessage(getString(R.string.txt_empty_zone))
@@ -593,7 +576,7 @@ class EventDetailFragment : FragmentBase() {
                     tvDisponible.setText("No Disponible")
                 }
             }
-/*
+
             val adaptador = ArrayAdapter.createFromResource(
                 requireContext(), R.array.delegations,
                 android.R.layout.simple_spinner_dropdown_item
@@ -615,7 +598,6 @@ class EventDetailFragment : FragmentBase() {
                 }
             }
 
- */
 
 
             btnGuardar.setOnClickListener { eventRegister() }
@@ -629,10 +611,16 @@ class EventDetailFragment : FragmentBase() {
 
     fun showMap() {
         if (chechPermissions()) {
-            MapsFragment(latitude, longitude) { rlatitude, rlongitude, raddress ->
+            MapsFragment(latitude, longitude) { rlatitude, rlongitude, raddress, municipality ->
                 etgetAddress.setText(raddress)
                 latitude = rlatitude
                 longitude = rlongitude
+                delegations.forEach {
+                    if (it.pos == municipality) {
+                        spZone.setSelection(it.ordinal)
+                        return@forEach
+                    }
+                }
             }.show(childFragmentManager, TAG_LOADER)
         }
     }
