@@ -297,7 +297,6 @@ class IntentionScheduleHourFragment : FragmentBase() {
         binding.apply {
             val listMonto: ArrayList<String> = ArrayList()
             listMonto.add("Selecciona monto")
-            listMonto.add("$10.00")
             listMonto.add("$50.00")
             listMonto.add("$100.00")
             listMonto.add("$200.00")
@@ -325,7 +324,7 @@ class IntentionScheduleHourFragment : FragmentBase() {
                     .build()
                     .show(childFragmentManager, "")
                 return false
-            } else if (customSpinner.spMonto.selectedItemPosition == 9 && customSpinner.etMonto.text.toString()
+            } else if (customSpinner.spMonto.selectedItemPosition == 8 && customSpinner.etMonto.text.toString()
                     .isEmpty()
             ) {
                 UtilAlert.Builder()
@@ -336,13 +335,13 @@ class IntentionScheduleHourFragment : FragmentBase() {
                     .show(childFragmentManager, "")
                 return false
             }
-            if (customSpinner.spMonto.selectedItemPosition == 9) {
+            if (customSpinner.spMonto.selectedItemPosition == 8) {
                 try {
-                    if (customSpinner.etMonto.text.toString().toNumber() < 10.00) {
+                    if (customSpinner.etMonto.text.toString().toNumber() < 50.00) {
                         UtilAlert.Builder()
                             .setIsCancel(false)
                             .setTitle("Aviso")
-                            .setMessage("¡Gracias! Desafortunadamente no podemos recibir ofrendas menores a \$10.00 pesos.")
+                            .setMessage("¡Gracias! Desafortunadamente no podemos recibir ofrendas menores a \$50.00 pesos.")
                             .build()
                             .show(childFragmentManager, "")
                         return false
@@ -372,7 +371,7 @@ class IntentionScheduleHourFragment : FragmentBase() {
 
     //Armar url para generar cobro e encriptar datos
     fun setLink(): String {
-        val monto = if (binding.customSpinner.spMonto.selectedItemPosition == 9) {
+        val monto = if (binding.customSpinner.spMonto.selectedItemPosition == 8) {
             binding.customSpinner.etMonto.text.toString().toNumber()
         } else {
             binding.customSpinner.spMonto.selectedItem.toString().toNumber()
@@ -444,7 +443,7 @@ class IntentionScheduleHourFragment : FragmentBase() {
 
     private fun getAmount(): String? {
         if (validaMonto()) {
-            if (binding.customSpinner.spMonto.selectedItemPosition == 9 && binding.customSpinner.etMonto.text.toString()
+            if (binding.customSpinner.spMonto.selectedItemPosition == 8 && binding.customSpinner.etMonto.text.toString()
                     .isNotEmpty()
             ) {
                 amount = "$" + binding.customSpinner.etMonto.text.toString() + ".00"

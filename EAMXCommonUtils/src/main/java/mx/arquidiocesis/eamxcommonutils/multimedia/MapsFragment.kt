@@ -184,7 +184,7 @@ class MapsFragment(
                         .build()
                         .show(childFragmentManager, tag)
                 }else {
-                    municipality = 2
+                    municipality = 0
                     Municipalities.values().forEach {
                         if (it.del.search(raddress)) {
                             municipality = it.pos

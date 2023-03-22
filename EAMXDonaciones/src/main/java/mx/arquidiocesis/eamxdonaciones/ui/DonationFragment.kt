@@ -218,16 +218,16 @@ class DonationFragment(val item: DonationModel) : FragmentBase() {
             if (customSpinner.spMonto.selectedItemPosition <= 0) {
                 error("Seleccione un monto.")
                 return false
-            } else if (customSpinner.spMonto.selectedItemPosition == 9 && customSpinner.etMonto.text.toString()
+            } else if (customSpinner.spMonto.selectedItemPosition == 8 && customSpinner.etMonto.text.toString()
                     .isEmpty()
             ) {
                 error("Seleccione un monto.")
                 return false
             }
-            if (customSpinner.spMonto.selectedItemPosition == 9) {
+            if (customSpinner.spMonto.selectedItemPosition == 8) {
                 try {
-                    if (customSpinner.etMonto.text.toString().toNumber() < 10.00) {
-                        error("¡Gracias! Desafortunadamente no podemos recibir ofrendas menores a $10.00 pesos.")
+                    if (customSpinner.etMonto.text.toString().toNumber() < 50.00) {
+                        error("¡Gracias! Desafortunadamente no podemos recibir ofrendas menores a $50.00 pesos.")
                         return false
                     }
                     if (customSpinner.etMonto.text.toString().toNumber() > 10000.00) {
@@ -248,7 +248,7 @@ class DonationFragment(val item: DonationModel) : FragmentBase() {
     }
 
     fun setLink(): String {
-        val monto = if (customSpinner.spMonto.selectedItemPosition == 9) {
+        val monto = if (customSpinner.spMonto.selectedItemPosition == 8) {
             customSpinner.etMonto.text.toString().toNumber()
         } else {
             customSpinner.spMonto.selectedItem.toString().toNumber()
@@ -341,7 +341,7 @@ class DonationFragment(val item: DonationModel) : FragmentBase() {
 
     private fun getAmount(): String? {
         if (validaMonto()) {
-            if (binding.customSpinner.spMonto.selectedItemPosition == 9 && binding.customSpinner.etMonto.text.toString()
+            if (binding.customSpinner.spMonto.selectedItemPosition == 8 && binding.customSpinner.etMonto.text.toString()
                     .isNotEmpty()
             ) {
                 amount = "$" + binding.customSpinner.etMonto.text.toString() + ".00"
