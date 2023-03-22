@@ -121,7 +121,7 @@ class EventDetailFragment : FragmentBase() {
         initView()
         initObservers()
         etEmail.setText(email)
-        etNumberPhone.setText(phone.replace("+52",""))
+        etNumberPhone.setText(phone.replace("+52", ""))
         requireArguments().let {
             var id = it.getString("diner_id")
             if (id != "") {
@@ -204,7 +204,7 @@ class EventDetailFragment : FragmentBase() {
                 val hora_end = item[0].fCHORARIOS!![0].hour_end!!.split(":")
                 EndSchedule(hora_end[0].toInt(), hora_end[1].toInt())
                 etResponsable.setText(item[0].fCRESPONSABLE)
-                etNumberPhone.setText(item[0].fCTELEFONO!!.replace("+52",""))
+                etNumberPhone.setText(item[0].fCTELEFONO!!.replace("+52", ""))
                 etRequisitos.setText(item[0].fCREQUISITOS)
                 switch2.isChecked = item[0].fCVOLUNTARIOS == "1"
                 switch3.isChecked = item[0].fCSTATUS == "1"
@@ -229,6 +229,12 @@ class EventDetailFragment : FragmentBase() {
                     .setMessage(getString(R.string.txt_empty_location))
                     .setIsCancel(false)
                     .build().show(childFragmentManager, tag)
+            } else if (it.containsKey(Constants.KEY_ZONE)) {
+                UtilAlert.Builder()
+                    .setTitle(getString(R.string.title_dialog_error))
+                    .setMessage(getString(R.string.txt_empty_zone))
+                    .setIsCancel(false)
+                    .build().show(childFragmentManager, tag)
             } else if (it.containsKey(Constants.KEY_DAYS)) {
                 UtilAlert.Builder()
                     .setTitle(getString(R.string.title_dialog_error))
@@ -247,13 +253,13 @@ class EventDetailFragment : FragmentBase() {
                     .setMessage(getString(R.string.txt_empty_hour_end))
                     .setIsCancel(false)
                     .build().show(childFragmentManager, tag)
-            }else if (it.containsKey(Constants.KEY_RESPONSABILITY)) {
+            } else if (it.containsKey(Constants.KEY_RESPONSABILITY)) {
                 UtilAlert.Builder()
                     .setTitle(getString(R.string.title_dialog_error))
                     .setMessage(getString(R.string.txt_empty_responsability))
                     .setIsCancel(false)
                     .build().show(childFragmentManager, tag)
-            }else if (it.containsKey(Constants.KEY_EMAIL)) {
+            } else if (it.containsKey(Constants.KEY_EMAIL)) {
                 if (it[Constants.KEY_EMAIL] == Constants.INVALID_EMAIL) {
                     etEmail.error =
                         getString(R.string.txt_invalidate_email)
@@ -280,12 +286,6 @@ class EventDetailFragment : FragmentBase() {
                 UtilAlert.Builder()
                     .setTitle(getString(R.string.title_dialog_error))
                     .setMessage(getString(R.string.txt_empty_requi))
-                    .setIsCancel(false)
-                    .build().show(childFragmentManager, tag)
-            } else if (it.containsKey(Constants.KEY_ZONE)) {
-                UtilAlert.Builder()
-                    .setTitle(getString(R.string.title_dialog_error))
-                    .setMessage(getString(R.string.txt_empty_zone))
                     .setIsCancel(false)
                     .build().show(childFragmentManager, tag)
             }

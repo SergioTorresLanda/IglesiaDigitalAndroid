@@ -67,64 +67,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/lZone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="20dp"
-                android:orientation="vertical"
-                android:visibility="visible"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lNombreC">
-
-                <TextView
-                    android:id="@+id/tvZonaDetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:lineSpacingExtra="4sp"
-                    android:text="Zona"
-                    android:textColor="@color/textview_title_color"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <Spinner
-                    android:id="@+id/spZone"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/style_spinner_selector"
-                    android:fontFamily="sans-serif-light"
-                    android:letterSpacing="0.01"
-                    android:lineSpacingExtra="2sp"
-                    android:textColor="@color/edittext_text_hint_color"
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvZonaDetail" />
-
-                <TextView
-                    android:id="@+id/lblSeleccion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="10dp"
-                    android:layout_marginTop="7dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:lineSpacingExtra="4sp"
-                    android:lines="1"
-                    android:textColor="@color/red"
-                    android:textSize="15sp"
-                    android:textStyle="normal"
-                    app:layout_constraintTop_toBottomOf="@+id/spZone" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
                 android:id="@+id/labelAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -133,7 +75,7 @@
                 android:layout_marginEnd="20dp"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lZone">
+                app:layout_constraintTop_toBottomOf="@+id/lNombreC">
 
                 <TextView
                     android:id="@+id/tvlabelAdrress"
@@ -188,6 +130,64 @@
                     android:textStyle="normal" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/lZone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="vertical"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lAddress">
+
+                <TextView
+                    android:id="@+id/tvZonaDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:lineSpacingExtra="4sp"
+                    android:text="Zona"
+                    android:textColor="@color/textview_title_color"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Spinner
+                    android:id="@+id/spZone"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/style_spinner_selector"
+                    android:fontFamily="sans-serif-light"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="2sp"
+                    android:textColor="@color/edittext_text_hint_color"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvZonaDetail" />
+
+                <TextView
+                    android:id="@+id/lblSeleccion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="7dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:lineSpacingExtra="4sp"
+                    android:lines="1"
+                    android:textColor="@color/red"
+                    android:textSize="15sp"
+                    android:textStyle="normal"
+                    app:layout_constraintTop_toBottomOf="@+id/spZone" />
+
+
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/tvDays"
                 android:layout_width="match_parent"
@@ -202,7 +202,7 @@
                 android:textColor="@color/textview_title_color"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/lAddress" />
+                app:layout_constraintTop_toBottomOf="@id/lZone" />
 
             <include
                 android:id="@+id/iDays"
@@ -395,7 +395,7 @@
                         android:singleLine="true"
                         android:textColor="#99000000"
                         android:textSize="18sp"
-                        android:textStyle="normal" />
+                        android:textStyle="normal"/>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
@@ -577,7 +577,6 @@
                     app:endIconMode="custom"
                     app:errorIconDrawable="@drawable/ic_check_error"
                     app:expandedHintEnabled="false">
-
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etMonto"
                         android:layout_width="match_parent"
@@ -591,7 +590,8 @@
                         android:singleLine="true"
                         android:textColor="#99000000"
                         android:textSize="18sp"
-                        android:textStyle="normal" />
+                        android:textStyle="normal"
+                        android:drawableStart="@drawable/ic_cost"/>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
