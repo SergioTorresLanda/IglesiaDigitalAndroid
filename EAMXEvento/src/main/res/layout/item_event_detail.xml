@@ -397,7 +397,6 @@
                 android:layout_gravity="right"
                 android:fontFamily="sans-serif-medium"
                 android:lineSpacingExtra="4sp"
-                android:lines="1"
                 android:text="Presentarse puntual para garantizar el servicio. No asistir en estado de ebriedad o bajo la influencia de estupefacientes. Seguir las indicaciones de los administradores en todo momento. Actitud de respeto y cordialidad con el resto de los participantes."
                 android:textColor="@color/textview_title_color"
                 android:textSize="17sp"

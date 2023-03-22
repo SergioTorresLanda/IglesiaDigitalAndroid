@@ -235,12 +235,6 @@ class EventDetailFragment : FragmentBase() {
                     .setMessage(getString(R.string.txt_empty_day))
                     .setIsCancel(false)
                     .build().show(childFragmentManager, tag)
-            } else if (it.containsKey(Constants.KEY_RESPONSABILITY)) {
-                UtilAlert.Builder()
-                    .setTitle(getString(R.string.title_dialog_error))
-                    .setMessage(getString(R.string.txt_empty_responsability))
-                    .setIsCancel(false)
-                    .build().show(childFragmentManager, tag)
             } else if (it.containsKey(Constants.KEY_HOUR_FIRST)) {
                 UtilAlert.Builder()
                     .setTitle(getString(R.string.title_dialog_error))
@@ -253,6 +247,23 @@ class EventDetailFragment : FragmentBase() {
                     .setMessage(getString(R.string.txt_empty_hour_end))
                     .setIsCancel(false)
                     .build().show(childFragmentManager, tag)
+            }else if (it.containsKey(Constants.KEY_RESPONSABILITY)) {
+                UtilAlert.Builder()
+                    .setTitle(getString(R.string.title_dialog_error))
+                    .setMessage(getString(R.string.txt_empty_responsability))
+                    .setIsCancel(false)
+                    .build().show(childFragmentManager, tag)
+            }else if (it.containsKey(Constants.KEY_EMAIL)) {
+                if (it[Constants.KEY_EMAIL] == Constants.INVALID_EMAIL) {
+                    etEmail.error =
+                        getString(R.string.txt_invalidate_email)
+                } else {
+                    UtilAlert.Builder()
+                        .setTitle(getString(R.string.title_dialog_error))
+                        .setMessage(getString(R.string.txt_empty_email))
+                        .setIsCancel(false)
+                        .build().show(childFragmentManager, tag)
+                }
             } else if (it.containsKey(Constants.KEY_PHONE)) {
                 UtilAlert.Builder()
                     .setTitle(getString(R.string.title_dialog_error))
@@ -265,17 +276,6 @@ class EventDetailFragment : FragmentBase() {
                     .setMessage(getString(R.string.txt_invalid_phone))
                     .setIsCancel(false)
                     .build().show(childFragmentManager, tag)
-            } else if (it.containsKey(Constants.KEY_EMAIL)) {
-                if (it[Constants.KEY_EMAIL] == Constants.INVALID_EMAIL) {
-                    etEmail.error =
-                        getString(R.string.txt_invalidate_email)
-                } else {
-                    UtilAlert.Builder()
-                        .setTitle(getString(R.string.title_dialog_error))
-                        .setMessage(getString(R.string.txt_empty_email))
-                        .setIsCancel(false)
-                        .build().show(childFragmentManager, tag)
-                }
             } else if (it.containsKey(Constants.KEY_REQUISIT)) {
                 UtilAlert.Builder()
                     .setTitle(getString(R.string.title_dialog_error))
@@ -520,6 +520,7 @@ class EventDetailFragment : FragmentBase() {
                     switch1.thumbTintList =
                         getColorStateList(requireContext(), R.color.green_retirar)
                 } else {
+                    etMonto.setText("0")
                     lMonto.visibility = View.GONE
                     switch1.thumbTintList =
                         getColorStateList(requireContext(), R.color.hint_color)
@@ -673,18 +674,19 @@ class EventDetailFragment : FragmentBase() {
     private fun eventRegister() {
         val listSchedules: MutableList<Schedules> =
             mutableListOf(Schedules(listDays, tvFirstH.text.toString(), tvEndH.text.toString()))
+
         viewModelEvent.validateFormRegister(
-            etNombreC.text.toString().uppercase(Locale.getDefault()),
+            etNombreC.text.toString(),
             userId,
             listSchedules,
-            etResponsable.text.toString().trim().uppercase(Locale.getDefault()),
-            etEmail.text.toString().trim(),
+            etResponsable.text.toString().trim(),
+            etEmail.text.toString().trim().lowercase(),
             "+52${etNumberPhone.text.toString().trim()}",
             etgetAddress.text.toString().trim(),
             if (longitude == 0.00) "" else longitude.toString(),
             if (latitude == 0.00) "" else latitude.toString(),
             (if (etMonto.text.toString() == "") "0" else etMonto.text.toString()),
-            etRequisitos.text.toString().uppercase(Locale.getDefault()),
+            etRequisitos.text.toString(),
             if (switch2.isChecked) 1 else 0,
             ArrayList(),
             if (switch3.isChecked) 1 else 0,
