@@ -24,20 +24,23 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import mx.arquidiocesis.eamxcommonutils.Model.Municipalities
 import mx.arquidiocesis.eamxcommonutils.R
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.base.FragmentDialogBase
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
 import mx.arquidiocesis.eamxcommonutils.databinding.FragmentMapsBinding
+import mx.arquidiocesis.eamxcommonutils.util.isUrlYoutube
 import mx.arquidiocesis.eamxcommonutils.util.log
 import mx.arquidiocesis.eamxcommonutils.util.permission.UtilValidPermission
+import mx.arquidiocesis.eamxcommonutils.util.search
 
 const val PERMISSION_LOCATION = 10007
 
 class MapsFragment(
     val latitude: Double = 0.0,
     val longitude: Double = 0.0,
-    val listener: (rlatitude: Double, rlongitude: Double, raddress: String) -> Unit,
+    val listener: (rlatitude: Double, rlongitude: Double, raddress: String, municipality: Int) -> Unit,
 ) : FragmentDialogBase() {
     lateinit var binding: FragmentMapsBinding
 
@@ -69,6 +72,7 @@ class MapsFragment(
     var rlatitude: Double = 0.0
     var rlongitude: Double = 0.0
     var raddress: String = ""
+    var municipality: Int = 0
 
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     override fun onCreateView(
@@ -163,22 +167,40 @@ class MapsFragment(
             }
             // Evento del botón para guardar ubicación
             binding.bContinue.setOnClickListener {
-                UtilAlert.Builder()
-                    .setTitle(getString(R.string.title_dialog_warning))
-                    .setMessage("Se ha seleccionado una dirección.")
-                    .setListener {
-                        listener(rlatitude, rlongitude, raddress)
-                        dismiss()
+                municipality = 0
+                Municipalities.values().forEach {
+                    if (it.del.search(raddress)) {
+                        municipality = it.pos
                     }
-                    .build()
-                    .show(childFragmentManager, tag)
+                }
+                if (municipality == 0) {
+                    UtilAlert.Builder()
+                        .setTitle(getString(R.string.title_dialog_warning))
+                        .setMessage("Dirección no valida, debe de ser más precisa")
+                        .setListener {
+                            listener(rlatitude, rlongitude, raddress, municipality)
+                            dismiss()
+                        }
+                        .build()
+                        .show(childFragmentManager, tag)
+                } else {
+                    UtilAlert.Builder()
+                        .setTitle(getString(R.string.title_dialog_warning))
+                        .setMessage("Se ha seleccionado una dirección.")
+                        .setListener {
+                            listener(rlatitude, rlongitude, raddress, municipality)
+                            dismiss()
+                        }
+                        .build()
+                        .show(childFragmentManager, tag)
+                }
             }
         } else {
             UtilAlert.Builder()
                 .setTitle(getString(R.string.title_dialog_warning))
                 .setMessage("Debe de activar los permisos")
                 .setListener {
-                    listener(rlatitude, rlongitude, raddress)
+                    listener(rlatitude, rlongitude, raddress, municipality)
                     dismiss()
                 }
                 .build()

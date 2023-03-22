@@ -100,13 +100,6 @@ class MapFragment constructor(
             map.value?.clear()
             if (it.isNotEmpty()) {
                 val arrayString: MutableList<String> = mutableListOf()
-                if (busqueda) {
-                    moveMap(
-                        it[0].latitude.toDouble(),
-                        it[0].longitude.toDouble()
-                    )
-                    busqueda = false
-                }
                 it.forEach { igleciasModel ->
                     if (!igleciasModel.latitude.isNullOrEmpty() && !igleciasModel.longitude.isNullOrEmpty()) {
                         if (igleciasModel.latitude.toDouble() != 0.0 && igleciasModel.longitude.toDouble() != 0.0) {
@@ -146,10 +139,17 @@ class MapFragment constructor(
                                     requireContext()
                                 )
                             )
-                            if ((igleciasModel.name + igleciasModel.address).SinEspaciosSinAcentos() == binding.etBusarMap.text.toString()
+                            if ((igleciasModel.name +"\n"+ igleciasModel.address).SinEspaciosSinAcentos() == binding.etBusarMap.text.toString()
                                     .SinEspaciosSinAcentos()
                             ) {
                                 marker?.showInfoWindow()
+                                if (busqueda) {
+                                    moveMap(
+                                        it[0].latitude.toDouble(),
+                                        it[0].longitude.toDouble()
+                                    )
+                                    busqueda = false
+                                }
                             }
                         }
                     }
