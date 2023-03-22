@@ -18,10 +18,11 @@ import java.util.regex.Pattern
 class DinerAllAdapter(
     val context: Context,
     val isSuper: Boolean = false,
-    val isPrincipal: Boolean = true
+    val isPrincipal: Boolean = true,
 ) : RecyclerView.Adapter<DinerAllAdapter.NewsViewHolder>(), Filterable {
 
     var items: ArrayList<DinerResponse> = ArrayList()
+
     //var dinerListFilter: ArrayList<DinerResponse> = ArrayList()
     lateinit var onItemClickListener: (DinerResponse, String) -> Unit
 
@@ -33,7 +34,7 @@ class DinerAllAdapter(
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
-        viewType: Int
+        viewType: Int,
     ): NewsViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemEventDetailBinding.inflate(inflater, parent, false)
@@ -77,14 +78,18 @@ class DinerAllAdapter(
                 lRequisF.visibility = View.VISIBLE
                 lDiasF.visibility = View.VISIBLE
                 var dias = ""
+                var cont = 0
                 item.fCHORARIOS!![0].days!!.forEach {
-                    if(it.checked){
-                        dias = dias + (if (dias=="") "" else ", ")+it.name
+                    if (it.checked) {
+                        dias =
+                            dias + (if (dias == "") "" else (if (item.fCHORARIOS[0].days!!.size == cont) " y " else ", ")) + it.name
                     }
+                    cont++
                 }
                 tvDiasF.text = dias
                 lHorarioF.visibility = View.VISIBLE
-                tvHorarioF.text = item.fCHORARIOS!![0].hour_start+"-"+item.fCHORARIOS!![0].hour_end
+                tvHorarioF.text =
+                    item.fCHORARIOS!![0].hour_start + "-" + item.fCHORARIOS!![0].hour_end
                 tvDireccionF.text = item.fCDIRECCION
                 lDireccionF.visibility = View.VISIBLE
                 tvCorreoF.text = item.fCCORREO
@@ -95,7 +100,7 @@ class DinerAllAdapter(
                 lTelF.visibility = View.VISIBLE
                 tvResponF.text = item.fCRESPONSABLE
                 lResponF.visibility = View.VISIBLE
-                if(userId.toString() == item.fIUSERID) {
+                if (userId.toString() == item.fIUSERID) {
                     cwcEvent.setOnClickListener {
                         onItemClickListener(item, EDITAR)
                     }

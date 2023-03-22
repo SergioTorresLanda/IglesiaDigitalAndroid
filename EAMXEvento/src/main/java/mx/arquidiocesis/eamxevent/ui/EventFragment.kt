@@ -101,7 +101,7 @@ class EventFragment : FragmentBase() {
                     }
                     init = false
                     val comedores =
-                        if (zona == 0) item else item.filter { it.fIZONA == zona.toString() }
+                        if (zona == 0) item.filter { it.fCSTATUS != "0" } else item.filter { it.fIZONA == zona.toString() && it.fCSTATUS != "0" }
                     if (comedores.size > 0) {
                         adapter.items.clear()
                         adapter.notifyDataSetChanged()
