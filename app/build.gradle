@@ -67,7 +67,6 @@ dependencies {
     implementation project(path: ':EAMXCommonUtils')
     implementation project(path: ':EAMXSOS')
     implementation project(path: ':EAMXMaps')
-    implementation project(path: ':EAMXBiblioteca')
     implementation project(path: ':EAMXFormacion')
     implementation project(path: ':EAMXServices')
     implementation project(path: ':EAMXComunidades')
