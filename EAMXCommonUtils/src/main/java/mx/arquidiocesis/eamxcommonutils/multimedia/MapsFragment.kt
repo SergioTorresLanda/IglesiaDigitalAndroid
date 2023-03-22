@@ -24,7 +24,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import mx.arquidiocesis.eamxcommonutils.Model.Municipalities
+import mx.arquidiocesis.eamxcommonutils.model.Municipalities
 import mx.arquidiocesis.eamxcommonutils.R
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.base.FragmentDialogBase
@@ -179,7 +179,6 @@ class MapsFragment(
                         .setMessage("Dirección no valida, debe de ser más precisa")
                         .setListener {
                             listener(rlatitude, rlongitude, raddress, municipality)
-                            dismiss()
                         }
                         .build()
                         .show(childFragmentManager, tag)

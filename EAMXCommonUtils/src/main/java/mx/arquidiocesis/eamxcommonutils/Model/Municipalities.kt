@@ -1,4 +1,4 @@
-package mx.arquidiocesis.eamxcommonutils.Model
+package mx.arquidiocesis.eamxcommonutils.model
 
 enum class Municipalities(var pos: Int, var del: String) {
     Todas(0, "Todas"),
