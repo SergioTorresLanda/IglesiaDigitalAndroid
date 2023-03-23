@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.util.Patterns
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -117,11 +118,13 @@ class EventDetailFragment : FragmentBase() {
         listDays.add(Day(false, week.Jueves.ordinal, week.Jueves.name))
         listDays.add(Day(false, week.Viernes.ordinal, week.Viernes.name))
         listDays.add(Day(false, week.Sabado.ordinal, week.Sabado.name))
-
         initView()
         initObservers()
         etEmail.setText(email)
         etNumberPhone.setText(phone.replace("+52", ""))
+        switch1.isChecked = true
+        switch2.isChecked = true
+        switch3.isChecked = true
         requireArguments().let {
             var id = it.getString("diner_id")
             if (id != "") {
@@ -515,12 +518,12 @@ class EventDetailFragment : FragmentBase() {
             }
 
             switch1.setOnCheckedChangeListener { buttonView, isChecked ->
+                etMonto.setText("0")
                 if (isChecked) {
                     lMonto.visibility = View.VISIBLE
                     switch1.thumbTintList =
                         getColorStateList(requireContext(), R.color.green_retirar)
                 } else {
-                    etMonto.setText("0")
                     lMonto.visibility = View.GONE
                     switch1.thumbTintList =
                         getColorStateList(requireContext(), R.color.hint_color)
@@ -542,11 +545,25 @@ class EventDetailFragment : FragmentBase() {
                 if (isChecked) {
                     switch3.thumbTintList =
                         getColorStateList(requireContext(), R.color.green_retirar)
-                    tvDisponible.setText("Disponible")
+                    tvDisponible.setText("Activo")
                 } else {
                     switch3.thumbTintList =
                         getColorStateList(requireContext(), R.color.hint_color)
-                    tvDisponible.setText("No Disponible")
+                    tvDisponible.setText("Inactivo")
+                }
+            }
+
+            etRequisitos.setOnKeyListener { v, keyCode, event ->
+                when {
+                    //Check if the Enter Key was pressed up
+                    ((event.action == KeyEvent.ACTION_UP)) -> {
+                        //perform an action here e.g. a set in count
+                        var count = etRequisitos.text.toString().length
+                        tvRequisitosConteo.setText("$count/250")
+                        //return true
+                        return@setOnKeyListener true
+                    }
+                    else -> false
                 }
             }
 

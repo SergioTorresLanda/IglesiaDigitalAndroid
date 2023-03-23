@@ -538,7 +538,6 @@
                     android:textColor="#192a73"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:trackTint="#C3EC96"
                     tools:ignore="UseSwitchCompatOrMaterialXml" />
             </LinearLayout>
 
@@ -646,6 +645,16 @@
                         android:textSize="18sp"
                         android:textStyle="normal" />
                 </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    android:id="@+id/tvRequisitosConteo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_gravity="right"
+                    android:text="240/250"
+                    android:textColor="@color/textview_title_color"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -679,13 +688,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/margin_bottom_25"
-                    android:checked="true"
                     android:switchPadding="@dimen/global_margin_extra"
                     android:textColor="#192a73"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:thumbTint="#80C913"
-                    android:trackTint="#C3EC96"
                     tools:ignore="UseSwitchCompatOrMaterialXml" />
             </LinearLayout>
 
@@ -724,7 +730,6 @@
                     android:textColor="#192a73"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:trackTint="#C3EC96"
                     tools:ignore="UseSwitchCompatOrMaterialXml" />
 
                 <TextView
@@ -735,7 +740,7 @@
                     android:gravity="left"
                     android:letterSpacing="0.03"
                     android:lineSpacingExtra="0sp"
-                    android:text="No Disponible"
+                    android:text="Inactivo"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
