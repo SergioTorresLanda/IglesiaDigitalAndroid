@@ -31,11 +31,11 @@ fun EAMXHomeFragment.initOnClickListener(signOut: EAMXSignOut) {
                 )
         }
         cvActividadesVoluntariado.setOnClickListener {
-                eamxBackHandler.changeFragment(
-                    EventFragment.newInstance(callBack!!),
-                    R.id.contentFragment,
-                    EventFragment::class.java.simpleName
-                )
+            eamxBackHandler.changeFragment(
+                EventFragment.newInstance(callBack!!),
+                R.id.contentFragment,
+                EventFragment::class.java.simpleName
+            )
         }
 
         clRedSocial.setOnClickListener {
@@ -145,84 +145,19 @@ fun EAMXHomeFragment.visibleModulesByProfile() {
 
     mBinding.apply {
         when (profile) {
-            EAMXProfile.Devoted.rol -> {
-                cardLiveEvent.visibility = View.VISIBLE
-                clRedSocial.visibility = View.VISIBLE
-                clFormacion.visibility = View.VISIBLE //BIBLIOTECA EN LAS PBI
-                clMiIglesia.visibility = View.VISIBLE
-                clComunidades.visibility = View.VISIBLE
-                clOraciones.visibility = View.VISIBLE
-                clCadenas.visibility = View.VISIBLE
-                clServicios.visibility = View.VISIBLE
-                // btnApoyar.visibility = View.VISIBLE
-            }
-            EAMXProfile.DevotedAdmin.rol -> {
-                cardLiveEvent.visibility = View.VISIBLE
-                clRedSocial.visibility = View.VISIBLE
-                clFormacion.visibility = View.VISIBLE //BIBLIOTECA EN LAS PBI
-                clMiIglesia.visibility = View.VISIBLE
-                clComunidades.visibility = View.VISIBLE
-                clOraciones.visibility = View.VISIBLE
-                clCadenas.visibility = View.VISIBLE
-                clServicios.visibility = View.VISIBLE
-                //               btnApoyar.visibility = View.VISIBLE
-            }
-            EAMXProfile.Priest.rol -> {
-                cardLiveEvent.visibility = View.VISIBLE
-                clRedSocial.visibility = View.VISIBLE
-                clFormacion.visibility = View.VISIBLE //BIBLIOTECA EN LAS PBI
-                clMiIglesia.visibility = View.VISIBLE
-                clComunidades.visibility = View.VISIBLE
-                clOraciones.visibility = View.VISIBLE
-                clCadenas.visibility = View.VISIBLE
-                clServicios.visibility = View.VISIBLE
-                //btnApoyar.visibility = View.VISIBLE
-            }
-            EAMXProfile.PriestAdmin.rol -> {
-                cardLiveEvent.visibility = View.VISIBLE
-                clRedSocial.visibility = View.VISIBLE
-                clFormacion.visibility = View.VISIBLE //BIBLIOTECA EN LAS PBI
-                clMiIglesia.visibility = View.VISIBLE
-                clComunidades.visibility = View.VISIBLE
-                clOraciones.visibility = View.VISIBLE
-                clCadenas.visibility = View.VISIBLE
-                clServicios.visibility = View.VISIBLE
-                //btnApoyar.visibility = View.VISIBLE
-            }
-            EAMXProfile.DeanPriest.rol -> {
-                cardLiveEvent.visibility = View.VISIBLE
-                clRedSocial.visibility = View.VISIBLE
-                clFormacion.visibility = View.VISIBLE //BIBLIOTECA EN LAS PBI
-                clMiIglesia.visibility = View.VISIBLE
-                clComunidades.visibility = View.VISIBLE
-                clOraciones.visibility = View.VISIBLE
-                clCadenas.visibility = View.VISIBLE
-                clServicios.visibility = View.VISIBLE
-                //btnApoyar.visibility = View.VISIBLE
-            }
-            EAMXProfile.CommunityResponsible.rol -> {
-                cardLiveEvent.visibility = View.VISIBLE
-                clRedSocial.visibility = View.VISIBLE
-                clFormacion.visibility = View.VISIBLE //BIBLIOTECA EN LAS PBI
-                clMiIglesia.visibility = View.VISIBLE
-                clComunidades.visibility = View.VISIBLE
-                clOraciones.visibility = View.VISIBLE
-                clCadenas.visibility = View.VISIBLE
-                clServicios.visibility = View.VISIBLE
-                //btnApoyar.visibility = View.VISIBLE
-            }
-            EAMXProfile.CommunityAdmin.rol -> {
-                cardLiveEvent.visibility = View.VISIBLE
-                clRedSocial.visibility = View.VISIBLE
-                clFormacion.visibility = View.VISIBLE //BIBLIOTECA EN LAS PBI
-                clMiIglesia.visibility = View.VISIBLE
-                clComunidades.visibility = View.VISIBLE
-                clOraciones.visibility = View.VISIBLE
-                clCadenas.visibility = View.VISIBLE
-                clServicios.visibility = View.VISIBLE
-                //btnApoyar.visibility = View.VISIBLE
-            }
-            EAMXProfile.CommunityMember.rol -> {
+            EAMXProfile.Devoted.rol,
+            EAMXProfile.DevotedAdmin.rol,
+            EAMXProfile.Priest.rol,
+            EAMXProfile.PriestAdmin.rol,
+            EAMXProfile.DeanPriest.rol,
+            EAMXProfile.CommunityResponsible.rol,
+            EAMXProfile.CommunityAdmin.rol,
+            EAMXProfile.CommunityMember.rol,
+            EAMXProfile.VicariaClero.rol,
+            EAMXProfile.VicariaPastoral.rol,
+            EAMXProfile.VicariaVidaPastoral.rol,
+            EAMXProfile.GestorContenidos.rol,
+            -> {
                 cardLiveEvent.visibility = View.VISIBLE
                 clRedSocial.visibility = View.VISIBLE
                 clFormacion.visibility = View.VISIBLE //BIBLIOTECA EN LAS PBI
@@ -245,7 +180,5 @@ fun EAMXHomeFragment.setFullUserName() {
         EAMXEnumUser.USER_LAST_NAME.name,
         EAMXTypeObject.STRING_OBJECT
     ) as String
-
     callBack?.showToolbar(true, "$name $lastName ")
 }
-
