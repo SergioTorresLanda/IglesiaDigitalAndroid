@@ -634,7 +634,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:digits="@string/digits_only_letters"
-                        android:imeOptions="actionNext"
+                        android:imeOptions="actionDone"
                         android:inputType="textCapWords|textAutoCorrect|textPersonName"
                         android:letterSpacing="0.01"
                         android:lineSpacingExtra="10sp"

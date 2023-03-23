@@ -373,6 +373,8 @@ class EventDetailFragment : FragmentBase() {
             }
 
             etRequisitos.addTextChangedListener {
+                var count = etRequisitos.text.toString().length
+                tvRequisitosConteo.setText("$count/250")
                 if (etRequisitos.text.toString().isNotEmpty()) {
                     tilRequisitos.error = null
                     enableIconStart(tilRequisitos, true)
@@ -550,20 +552,6 @@ class EventDetailFragment : FragmentBase() {
                     switch3.thumbTintList =
                         getColorStateList(requireContext(), R.color.hint_color)
                     tvDisponible.setText("Inactivo")
-                }
-            }
-
-            etRequisitos.setOnKeyListener { v, keyCode, event ->
-                when {
-                    //Check if the Enter Key was pressed up
-                    ((event.action == KeyEvent.ACTION_UP)) -> {
-                        //perform an action here e.g. a set in count
-                        var count = etRequisitos.text.toString().length
-                        tvRequisitosConteo.setText("$count/250")
-                        //return true
-                        return@setOnKeyListener true
-                    }
-                    else -> false
                 }
             }
 
