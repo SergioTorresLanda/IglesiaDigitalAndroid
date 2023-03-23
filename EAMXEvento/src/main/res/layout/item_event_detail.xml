@@ -118,7 +118,7 @@
 
             <TextView
                 android:id="@+id/labelPesos"
-                android:layout_width="120dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="15dp"
@@ -233,13 +233,13 @@
 
             <TextView
                 android:id="@+id/tvDireccionF"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="13dp"
                 android:layout_marginEnd="20dp"
                 android:textIsSelectable="true"
-                android:layout_gravity="right"
+                android:layout_gravity="left"
                 android:fontFamily="sans-serif-medium"
                 android:lineSpacingExtra="4sp"
                 android:text="Periferico Sur"
@@ -389,12 +389,12 @@
 
             <TextView
                 android:id="@+id/tvRequisF"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="20dp"
-                android:layout_gravity="right"
+                android:layout_gravity="left"
                 android:fontFamily="sans-serif-medium"
                 android:lineSpacingExtra="4sp"
                 android:text="Presentarse puntual para garantizar el servicio. No asistir en estado de ebriedad o bajo la influencia de estupefacientes. Seguir las indicaciones de los administradores en todo momento. Actitud de respeto y cordialidad con el resto de los participantes."
