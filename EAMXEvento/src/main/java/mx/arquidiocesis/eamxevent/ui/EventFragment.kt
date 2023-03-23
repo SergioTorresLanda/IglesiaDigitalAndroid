@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.fragment_event.*
 import kotlinx.android.synthetic.main.fragment_event_detail.*
-import mx.arquidiocesis.eamxcommonutils.R
+import kotlinx.android.synthetic.main.fragment_event_detail.spZone
 import mx.arquidiocesis.eamxcommonutils.application.AppMyConstants
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
@@ -60,28 +61,8 @@ class EventFragment : FragmentBase() {
                 putString("screen_class", "Home_Actividades")
             })
         }
-        var guest = eamxcu_preferences.getData(
-            EAMXEnumUser.GUEST.name,
-            EAMXTypeObject.BOOLEAN_OBJECT
-        ) as Boolean
-        if (guest) {
-           binding.tvNewActivity.visibility = View.GONE
-        }
-
-        init = true
-        binding.tvNewActivity.setOnClickListener {
-            if (!init) {
-                NavigationFragment.Builder()
-                    .setActivity(requireActivity())
-                    .setView(requireView().parent as ViewGroup)
-                    .setFragment(EventDetailFragment.newInstance(callBack) as Fragment)
-                    .setBundle(Bundle().apply {
-                        putString("diner_id", diner_id)
-                    })
-                    .build().nextWithReplace()
-            }
-        }
         callBack.showToolbar(true, AppMyConstants.evento)
+        setupInit()
         initObservers()
         //getAllDiners() //Ya no se ejecuta por que se activa en el spinner: spZone
         initButtons()
@@ -100,7 +81,7 @@ class EventFragment : FragmentBase() {
                         item.forEach {
                             if (it.fIUSERID == userId.toString()) {
                                 diner_id = it.fCCOMEDORID.toString()
-                                binding.tvNewActivity.setText(AppMyConstants.updateEvento)
+                                tvNewEvent.setText(AppMyConstants.updateEvento)
                                 return@forEach
                             }
                         }
@@ -152,6 +133,18 @@ class EventFragment : FragmentBase() {
      */
 
     fun initButtons() {
+        tvNewEvent.setOnClickListener {
+            if (!init) {
+                NavigationFragment.Builder()
+                    .setActivity(requireActivity())
+                    .setView(requireView().parent as ViewGroup)
+                    .setFragment(EventDetailFragment.newInstance(callBack) as Fragment)
+                    .setBundle(Bundle().apply {
+                        putString("diner_id", diner_id)
+                    })
+                    .build().nextWithReplace()
+            }
+        }
         spZone.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>,
