@@ -143,74 +143,80 @@ class EventDetailFragment : FragmentBase() {
         viewmodel.responseAllDin.observe(viewLifecycleOwner) { item ->
             hideLoader()
             if (item.size > 0) {
-                etNombreC.setText(item[0].fCNOMBRECOM)
-                etgetAddress.setText(item[0].fCDIRECCION)
-                delegations.forEach {
-                    if (it.pos.toString() == item[0].fIZONA) {
-                        spZone.setSelection(it.ordinal)
+                item.forEach {
+                    if (!it.fIUSERID.isNullOrEmpty()){
+                        etNombreC.setText(it.fCNOMBRECOM)
+                        etgetAddress.setText(it.fCDIRECCION)
+                        delegations.forEach {it1->
+                            if (it1.pos.toString() == it.fIZONA) {
+                                spZone.setSelection(it1.ordinal)
+                                return@forEach
+                            }
+                        }
+                        if (!(it.fNLATITUD).isNullOrEmpty()) {
+                            latitude = it.fNLATITUD!!.toDouble()
+                        }
+                        if (!(it.fNLONGITUD).isNullOrEmpty()) {
+                            longitude = it.fNLONGITUD!!.toDouble()
+                        }
+                        listDays[0].checked = it.fCHORARIOS!![0].days!![0].checked
+                        if (!listDays[0].checked) {
+                            binding.iDays.iDayDo.tvCDay.setTextColor(Color.BLACK)
+                        } else {
+                            binding.iDays.iDayDo.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                        }
+                        listDays[1].checked = it.fCHORARIOS!![0].days!![1].checked
+                        if (!listDays[1].checked) {
+                            binding.iDays.iDayLu.tvCDay.setTextColor(Color.BLACK)
+                        } else {
+                            binding.iDays.iDayLu.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                        }
+                        listDays[2].checked = it.fCHORARIOS!![0].days!![2].checked
+                        if (!listDays[2].checked) {
+                            binding.iDays.iDayMa.tvCDay.setTextColor(Color.BLACK)
+                        } else {
+                            binding.iDays.iDayMa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                        }
+                        listDays[3].checked = it.fCHORARIOS!![0].days!![3].checked
+                        if (!listDays[3].checked) {
+                            binding.iDays.iDayMi.tvCDay.setTextColor(Color.BLACK)
+                        } else {
+                            binding.iDays.iDayMi.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                        }
+                        listDays[4].checked = it.fCHORARIOS!![0].days!![4].checked
+                        if (!listDays[4].checked) {
+                            binding.iDays.iDayJu.tvCDay.setTextColor(Color.BLACK)
+                        } else {
+                            binding.iDays.iDayJu.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                        }
+                        listDays[5].checked = it.fCHORARIOS!![0].days!![5].checked
+                        if (!listDays[5].checked) {
+                            binding.iDays.iDayVi.tvCDay.setTextColor(Color.BLACK)
+                        } else {
+                            binding.iDays.iDayVi.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                        }
+                        listDays[6].checked = it.fCHORARIOS!![0].days!![6].checked
+                        if (!listDays[6].checked) {
+                            binding.iDays.iDaySa.tvCDay.setTextColor(Color.BLACK)
+                        } else {
+                            binding.iDays.iDaySa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                        }
+                        switch1.isChecked = it.fCCOBRO != "0"
+                        etMonto.setText(it.fCCOBRO)
+
+                        val hora_first = it.fCHORARIOS!![0].hour_start!!.split(":")
+                        FirstSchedule(hora_first[0].toInt(), hora_first[1].toInt())
+                        val hora_end = it.fCHORARIOS!![0].hour_end!!.split(":")
+                        EndSchedule(hora_end[0].toInt(), hora_end[1].toInt())
+                        etResponsable.setText(it.fCRESPONSABLE)
+                        etNumberPhone.setText(it.fCTELEFONO!!.replace("+52", ""))
+                        etRequisitos.setText(it.fCREQUISITOS)
+                        switch2.isChecked = it.fCVOLUNTARIOS == "1"
+                        switch3.isChecked = it.fCSTATUS == "1"
                         return@forEach
                     }
                 }
-                if (!(item[0].fNLATITUD).isNullOrEmpty()) {
-                    latitude = item[0].fNLATITUD!!.toDouble()
-                }
-                if (!(item[0].fNLONGITUD).isNullOrEmpty()) {
-                    longitude = item[0].fNLONGITUD!!.toDouble()
-                }
-                listDays[0].checked = item[0].fCHORARIOS!![0].days!![0].checked
-                if (!listDays[0].checked) {
-                    binding.iDays.iDayDo.tvCDay.setTextColor(Color.BLACK)
-                } else {
-                    binding.iDays.iDayDo.tvCDay.setTextColor(Color.rgb(0, 191, 255))
-                }
-                listDays[1].checked = item[0].fCHORARIOS!![0].days!![1].checked
-                if (!listDays[1].checked) {
-                    binding.iDays.iDayLu.tvCDay.setTextColor(Color.BLACK)
-                } else {
-                    binding.iDays.iDayLu.tvCDay.setTextColor(Color.rgb(0, 191, 255))
-                }
-                listDays[2].checked = item[0].fCHORARIOS!![0].days!![2].checked
-                if (!listDays[2].checked) {
-                    binding.iDays.iDayMa.tvCDay.setTextColor(Color.BLACK)
-                } else {
-                    binding.iDays.iDayMa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
-                }
-                listDays[3].checked = item[0].fCHORARIOS!![0].days!![3].checked
-                if (!listDays[3].checked) {
-                    binding.iDays.iDayMi.tvCDay.setTextColor(Color.BLACK)
-                } else {
-                    binding.iDays.iDayMi.tvCDay.setTextColor(Color.rgb(0, 191, 255))
-                }
-                listDays[4].checked = item[0].fCHORARIOS!![0].days!![4].checked
-                if (!listDays[4].checked) {
-                    binding.iDays.iDayJu.tvCDay.setTextColor(Color.BLACK)
-                } else {
-                    binding.iDays.iDayJu.tvCDay.setTextColor(Color.rgb(0, 191, 255))
-                }
-                listDays[5].checked = item[0].fCHORARIOS!![0].days!![5].checked
-                if (!listDays[5].checked) {
-                    binding.iDays.iDayVi.tvCDay.setTextColor(Color.BLACK)
-                } else {
-                    binding.iDays.iDayVi.tvCDay.setTextColor(Color.rgb(0, 191, 255))
-                }
-                listDays[6].checked = item[0].fCHORARIOS!![0].days!![6].checked
-                if (!listDays[6].checked) {
-                    binding.iDays.iDaySa.tvCDay.setTextColor(Color.BLACK)
-                } else {
-                    binding.iDays.iDaySa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
-                }
-                switch1.isChecked = item[0].fCCOBRO != "0"
-                etMonto.setText(item[0].fCCOBRO)
 
-                val hora_first = item[0].fCHORARIOS!![0].hour_start!!.split(":")
-                FirstSchedule(hora_first[0].toInt(), hora_first[1].toInt())
-                val hora_end = item[0].fCHORARIOS!![0].hour_end!!.split(":")
-                EndSchedule(hora_end[0].toInt(), hora_end[1].toInt())
-                etResponsable.setText(item[0].fCRESPONSABLE)
-                etNumberPhone.setText(item[0].fCTELEFONO!!.replace("+52", ""))
-                etRequisitos.setText(item[0].fCREQUISITOS)
-                switch2.isChecked = item[0].fCVOLUNTARIOS == "1"
-                switch3.isChecked = item[0].fCSTATUS == "1"
             }
         }
         viewModelEvent.showLoaderView.observe(viewLifecycleOwner) {
@@ -575,8 +581,6 @@ class EventDetailFragment : FragmentBase() {
                     lblSeleccion.text = "Sin selección"
                 }
             }
-
-
 
             btnGuardar.setOnClickListener { eventRegister() }
             tvAddress.setOnClickListener { showMap() }

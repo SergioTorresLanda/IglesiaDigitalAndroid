@@ -35,6 +35,7 @@ class EventFragment : FragmentBase() {
     private var delegations: Array<Delegations> = Delegations.values()
     private var init = true
     private var diner_id = ""
+    private var userId = 0
 
     companion object {
         fun newInstance(callBack: EAMXHome): EventFragment {
@@ -62,6 +63,11 @@ class EventFragment : FragmentBase() {
             })
         }
         callBack.showToolbar(true, AppMyConstants.evento)
+        init = true
+        userId = eamxcu_preferences.getData(
+            EAMXEnumUser.USER_ID.name,
+            EAMXTypeObject.INT_OBJECT
+        ) as Int
         setupInit()
         initObservers()
         //getAllDiners() //Ya no se ejecuta por que se activa en el spinner: spZone
@@ -70,10 +76,6 @@ class EventFragment : FragmentBase() {
     }
 
     private fun initObservers() {
-        val userId = eamxcu_preferences.getData(
-            EAMXEnumUser.USER_ID.name,
-            EAMXTypeObject.INT_OBJECT
-        ) as Int
         viewmodel.responseAllDin.observe(viewLifecycleOwner) { item ->
             if (item.size > 0) {
                 if (item[0].fCCOMEDORID != null) {
