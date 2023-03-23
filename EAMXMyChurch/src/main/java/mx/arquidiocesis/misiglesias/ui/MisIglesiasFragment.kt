@@ -20,8 +20,10 @@ import mx.arquidiocesis.eamxcommonutils.application.AppMyConstants
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.common.EAMXHome
+import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
 import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
+import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
 import mx.arquidiocesis.eamxcommonutils.util.getViewModel
 import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
 import mx.arquidiocesis.eamxcommonutils.util.permission.UtilValidPermission
@@ -118,13 +120,17 @@ class MisIglesiasFragment : FragmentBase() {
             }
 
         }
-
-        this.dataView = arguments?.getParcelable(EAMXEnumUser.VIEW.name)!!
-        binding.item = this.dataView
-        showSkeleton(true)
-        initObservers()
-        myChurchViewModel.iglesiasList()
-        // myChurchViewModel.getiglesiasList()
+        if (!(eamxcu_preferences.getData(
+                EAMXEnumUser.GUEST.name,
+                EAMXTypeObject.BOOLEAN_OBJECT
+            ) as Boolean)){
+            this.dataView = arguments?.getParcelable(EAMXEnumUser.VIEW.name)!!
+            binding.item = this.dataView
+            showSkeleton(true)
+            initObservers()
+            myChurchViewModel.iglesiasList()
+            // myChurchViewModel.getiglesiasList()
+        }
     }
 
 
@@ -196,7 +202,6 @@ class MisIglesiasFragment : FragmentBase() {
             }
             showSkeleton(false)
         }
-
         myChurchViewModel.getIglesiasBusqueda.observe(viewLifecycleOwner) {
             it?.let {
                 adapterChurch = ChurchesFindedAdapter(it) {

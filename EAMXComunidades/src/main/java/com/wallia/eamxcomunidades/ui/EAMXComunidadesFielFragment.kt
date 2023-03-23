@@ -160,9 +160,14 @@ class EAMXComunidadesFielFragment : FragmentBase() {
             -> true
             else -> false
         }
-        viewModel.getMainCommunity()
-        initObservers()
-        showLoader()
+        if (!(eamxcu_preferences.getData(
+                EAMXEnumUser.GUEST.name,
+                EAMXTypeObject.BOOLEAN_OBJECT
+            ) as Boolean)) {
+            viewModel.getMainCommunity()
+            initObservers()
+            showLoader()
+        }
         binding.apply {
             svBusarComunidad.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
                 androidx.appcompat.widget.SearchView.OnQueryTextListener {
