@@ -1,9 +1,7 @@
 package mx.arquidiocesis.eamxevent.retrofit
 
 import kotlinx.coroutines.Deferred
-import mx.arquidiocesis.eamxevent.model.DinerResponse
-import mx.arquidiocesis.eamxevent.model.Event
-import mx.arquidiocesis.eamxevent.model.EventResponse
+import mx.arquidiocesis.eamxevent.model.*
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -27,29 +25,32 @@ interface ApiInterface {
     //Event_Donor
 
     @POST(WebConfig.EVENT_DONOR)
-    fun postCreateDonorAsync(@Body event: Event): Deferred<Response<EventResponse>>
+    fun postCreateDonorAsync(@Body donor: Donor): Deferred<Response<Void>>
 
     @PUT(WebConfig.EVENT_DONOR_PATH)
-    fun putUpdateDonorAsync(@Body event: Event): Deferred<Response<EventResponse>>
+    fun putUpdateDonorAsync(@Path("donadorId") donadorId: Int, @Body donor: Donor): Deferred<Response<Void>>
 
     @GET(WebConfig.EVENT_DONOR)
-    fun getDonorAsync(): Deferred<Response<List<DinerResponse>>>
+    fun getDonorAsync(): Deferred<Response<List<DonorResponse>>>
+
+    @GET(WebConfig.EVENT_DONOR_PATH)
+    fun getDonorAsync(@Path("donadorId") donadorId: Int): Deferred<Response<List<DonorResponse>>>
 
     @GET(WebConfig.EVENT_DONOR_HISTORY_PATH)
-    fun getDonorHistoryAsync(@Path("donorId") dinerId: Int): Deferred<Response<List<DinerResponse>>>
+    fun getDonorHistoryAsync(@Path("donadorId") donadorId: Int): Deferred<Response<List<DonorResponse>>>
 
     //Event_Volunteer
 
     @POST(WebConfig.EVENT_VOLUNTEER)
-    fun postCreateVolunteerAsync(@Body event: Event): Deferred<Response<EventResponse>>
+    fun postCreateVolunteerAsync(@Body volunteer: Volunteer): Deferred<Response<Void>>
 
     @PUT(WebConfig.EVENT_VOLUNTEER_PATH)
-    fun putUpdateVolunteerAsync(@Body event: Event): Deferred<Response<EventResponse>>
+    fun putUpdateVolunteerAsync(@Path("voluntarioId") voluntarioId: Int, @Body voluntario: Volunteer): Deferred<Response<Void>>
 
     @GET(WebConfig.EVENT_VOLUNTEER)
-    fun getVolunteerAsync(): Deferred<Response<List<DinerResponse>>>
+    fun getVolunteerAsync(): Deferred<Response<List<VolunteerResponse>>>
 
-    @GET(WebConfig.EVENT_DINER_PATH)
-    fun getVolunteerHistoryAsync(@Path("dinerId") dinerId: Int): Deferred<Response<List<DinerResponse>>>
+    @GET(WebConfig.EVENT_VOLUNTEER_PATH)
+    fun getVolunteerAsync(@Path("voluntarioId") voluntarioId: Int): Deferred<Response<List<VolunteerResponse>>>
 
 }

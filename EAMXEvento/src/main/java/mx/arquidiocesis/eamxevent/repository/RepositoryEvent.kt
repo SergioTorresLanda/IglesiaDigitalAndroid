@@ -14,11 +14,8 @@ import mx.arquidiocesis.eamxcommonutils.retrofit.build.RetrofitApp
 import mx.arquidiocesis.eamxcommonutils.retrofit.managercall.ManagerCall
 import mx.arquidiocesis.eamxcommonutils.retrofit.model.dataclass.ResponseData
 import mx.arquidiocesis.eamxcommonutils.util.live.SingleLiveEvent
+import mx.arquidiocesis.eamxevent.model.*
 import retrofit2.Call
-import mx.arquidiocesis.eamxevent.model.Event
-import mx.arquidiocesis.eamxevent.model.Day
-import mx.arquidiocesis.eamxevent.model.DinerResponse
-import mx.arquidiocesis.eamxevent.model.EventResponse
 import mx.arquidiocesis.eamxevent.retrofit.ApiInterface
 import mx.arquidiocesis.eamxevent.retrofit.Validation
 import mx.arquidiocesis.eamxevent.retrofit.WebConfig.HOST
@@ -30,6 +27,7 @@ class RepositoryEvent(val context: Context) : ManagerCall() {
 
     //GET Event
     val allDiner = SingleLiveEvent<List<DinerResponse>>()
+    val allDonor = SingleLiveEvent<List<DonorResponse>>()
 
     private var retrofitInstance = RetrofitApp.Build<ApiInterface>()
         .setContext(context)
@@ -102,6 +100,116 @@ class RepositoryEvent(val context: Context) : ManagerCall() {
                         getDinerEventAsync().await()
                     else
                         getDinerEventAsync(dinerId).await()
+                }
+            },
+            validation = Validation()
+        )
+    }
+
+    suspend fun saveDonor(donor: Donor) {
+        managerCallApi(
+            context = context,
+            call = {
+                retrofitInstance.setHost(HOST).builder().instance().postCreateDonorAsync(donor)
+                    .await()
+            },
+            validation = Validation()
+        ).let { response ->
+            GlobalScope.launch(Dispatchers.Main) {
+                if (response.sucess) {
+                    saveResponse.value = "Se ha dado de alta el donador correctamente."
+                } else {
+                    errorResponse.value = response.exception?.message
+                        ?: "La creación del donador no se pudo realizar."
+                }
+            }
+        }
+    }
+
+    suspend fun UpdateDonor(donorId: Int, donor: Donor) {
+        managerCallApi(
+            context = context,
+            call = {
+                retrofitInstance.setHost(HOST).builder().instance()
+                    .putUpdateDonorAsync(donorId, donor).await()
+            },
+            validation = Validation()
+        ).let { response ->
+            GlobalScope.launch(Dispatchers.Main) {
+                if (response.sucess) {
+                    saveResponse.value = "Se ha actualizado el donador correctamente."
+                } else {
+                    errorResponse.value = response.exception?.message
+                        ?: "La actualización del donador no se pudo realizar."
+                }
+            }
+        }
+    }
+
+    suspend fun getAllDonor(donorId: Int): ResponseData<List<DonorResponse>?> {
+        return managerCallApi(
+            context = context,
+            call = {
+                retrofitInstances.run {
+                    if (donorId == 0)
+                        getDonorAsync().await()
+                    else
+                        getDonorAsync(donorId).await()
+                }
+            },
+            validation = Validation()
+        )
+    }
+
+    suspend fun saveVolunteer(volunteer: Volunteer) {
+        managerCallApi(
+            context = context,
+            call = {
+                retrofitInstance.setHost(HOST).builder().instance().postCreateVolunteerAsync(volunteer)
+                    .await()
+            },
+            validation = Validation()
+        ).let { response ->
+            GlobalScope.launch(Dispatchers.Main) {
+                if (response.sucess) {
+                    saveResponse.value = "Se ha dado de alta el voluntario correctamente."
+                } else {
+                    errorResponse.value = response.exception?.message
+                        ?: "La creación del voluntario no se pudo realizar."
+                }
+            }
+        }
+    }
+
+    suspend fun UpdateVolunteer(voluntarioId: Int, voluntario: Volunteer) {
+        managerCallApi(
+            context = context,
+            call = {
+                retrofitInstance.setHost(HOST).builder().instance()
+                    .putUpdateVolunteerAsync(voluntarioId, voluntario).await()
+            },
+            validation = Validation()
+        ).let { response ->
+            GlobalScope.launch(Dispatchers.Main) {
+                if (response.sucess) {
+                    saveResponse.value = "Se ha actualizado el voluntario correctamente."
+                } else {
+                    errorResponse.value = response.exception?.message
+                        ?: "La actualización del voluntario no se pudo realizar."
+                }
+            }
+        }
+    }
+
+    suspend fun getAllVolunteer(voluntarioId: Int): ResponseData<List<VolunteerResponse>?> {
+        return managerCallApi(
+            context = context,
+            call = {
+                retrofitInstances.run {
+                    if (voluntarioId == 0)
+                        getVolunteerAsync().await()
+                    else
+                        getVolunteerAsync(voluntarioId).await()
                 }
             },
             validation = Validation()

@@ -1,16 +1,22 @@
 package mx.arquidiocesis.eamxredsocialmodule.ui
 
+import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import kotlinx.android.synthetic.main.eamx_red_social_fragment.*
+import kotlinx.android.synthetic.main.item_media_picker.view.*
+import kotlinx.android.synthetic.main.item_media_preview_social.view.*
+import kotlinx.android.synthetic.main.item_red_social.*
+import kotlinx.android.synthetic.main.item_red_social.view.*
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
@@ -24,17 +30,25 @@ import mx.arquidiocesis.eamxredsocialmodule.R
 import mx.arquidiocesis.eamxredsocialmodule.Repository.Repository
 import mx.arquidiocesis.eamxredsocialmodule.adapter.EAMXPublicationsAllAdapter
 import mx.arquidiocesis.eamxredsocialmodule.databinding.EamxRedSocialFragmentBinding
-import mx.arquidiocesis.eamxredsocialmodule.model.EAMXPublicationsAllRequest
-import mx.arquidiocesis.eamxredsocialmodule.model.PostModel
-import mx.arquidiocesis.eamxredsocialmodule.model.ResultModel
-import mx.arquidiocesis.eamxredsocialmodule.model.ResultMultiProfileModel
+import mx.arquidiocesis.eamxredsocialmodule.model.*
 import mx.arquidiocesis.eamxredsocialmodule.news.detail.EAMXDetailFragment
 import mx.arquidiocesis.eamxredsocialmodule.viewmodel.RedSocialViewModel
+import retrofit2.http.Url
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.IOException
+import java.net.MalformedURLException
+import java.net.URISyntaxException
+import java.net.URL
+
 
 const val EDITAR = "EDITAR"
 const val ELIMINAR = "ELIMINAR"
 const val COMENTARIO = "COMENTARIO"
 const val COMPARTIR = "COMPARTIR"
+const val TEXTO = "Texto"
+const val IMAGEN = "Imagen"
+const val VIDEO = "Video"
 const val LIKE = "LIKE"
 const val LIKED = "LIKED"
 const val PERFIL = "PERFIL"
@@ -359,6 +373,22 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, var id_user: Int) : Fragme
                         }
                     }
                 }
+                TEXTO -> {
+                    sharetext(item.content)
+                }
+                IMAGEN -> {
+                    // binding.rvPubliction.i_media_gallery.c_gallery.iv_thumbnail
+                    val img = item.multimedia.filter {
+                        it.format == "image"
+                    }
+                    shareimage(img)
+                }
+                VIDEO -> {
+                    val vid = item.multimedia.filter {
+                        it.format == "video/mp4"
+                    }
+                    sharevideo(vid)
+                }
                 SEGUIR -> {}
                 PERFIL -> {
                     if (!msgGuest("tener un perfil en nuestra red social")) {
@@ -379,6 +409,98 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, var id_user: Int) : Fragme
             }
         }
     }
+
+    private fun sharetext(text: String) {
+        val share = Intent(Intent.ACTION_SEND)
+        share.type = "text/*"
+        share.putExtra(Intent.EXTRA_TEXT, text)
+        startActivity(Intent.createChooser(share, "Compartir con"))
+    }
+
+    private fun shareimage(img: List<MultimediaModel>) {
+
+        val imageUris: ArrayList<Uri> = arrayListOf()
+        img.forEach {
+            /*
+            try {
+                val url = URL(it.url)
+                val image = BitmapFactory.decodeStream(url.openConnection().getInputStream())
+
+                println(image)
+                imageUris.add(getImageUri(requireContext(), image))
+            } catch (e: IOException) {
+                System.out.println(e)
+            }
+
+             */
+
+            val url = URL(it.url)
+            val uri = Uri.parse(url.toURI().toString())
+
+            //val bitmap = MediaStore.Images.Media.getBitmap(requireContext().contentResolver, uri)
+            //val bitmaps = Glide.with(requireContext()).asBitmap().load(uri).submit().get()//this is synchronous approach
+
+            var bitmap: Bitmap? = null
+            try {
+                bitmap =
+                    MediaStore.Images.Media.getBitmap(requireContext().contentResolver, uri)
+                imageUris.add(getImageUri(requireContext(), bitmap))
+                println(bitmap)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+/*
+            try {
+                val url = URL(it.url)
+                val uri = Uri.parse(url.toURI().toString())
+                imageUris.add(uri)
+                println(imageUris)
+            } catch (e1: MalformedURLException) {
+                e1.printStackTrace()
+            } catch (e: URISyntaxException) {
+                e.printStackTrace()
+            }
+
+ */
+        }
+
+        val shareIntent = Intent().apply {
+            action = Intent.ACTION_SEND_MULTIPLE
+            putParcelableArrayListExtra(Intent.EXTRA_STREAM, imageUris)
+            type = "image/*"
+        }
+        startActivity(Intent.createChooser(shareIntent, "Compartir con"))
+
+
+    }
+
+    private fun getImageUri(inContext: Context, inImage: Bitmap): Uri {
+        val bytes = ByteArrayOutputStream()
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        val path = MediaStore.Images.Media.insertImage(
+            inContext.contentResolver,
+            inImage,
+            "Title",
+            null
+        )
+        return Uri.parse(path)
+    }
+
+    private fun sharevideo(vid: List<MultimediaModel>) {
+        val vidUris: ArrayList<String> = arrayListOf()
+        vid.forEach {
+            vidUris.add(it.url)
+        }
+        val sb = StringBuilder()
+        sb.append(vidUris)
+        val res = sb.toString()
+
+        val share = Intent(Intent.ACTION_SEND)
+        share.type = "text/*"
+        share.putExtra(Intent.EXTRA_TEXT, res)
+        startActivity(Intent.createChooser(share, "Compartir con"))
+    }
+
 
     private fun showSkeleton(show: Boolean) {
         binding.apply {

@@ -26,4 +26,5 @@ android {
 dependencies {
     //Implementations
     implementation project(path: ':EAMXCommonUtils')
+    implementation("io.coil-kt:coil:2.2.2")
 }

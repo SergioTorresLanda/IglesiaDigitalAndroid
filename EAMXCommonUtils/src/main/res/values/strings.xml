@@ -82,6 +82,9 @@
     <string name="button_message_permissions_not_available">Otorgar permiso</string>
     <string name="editar">Editar</string>
     <string name="eliminar">Eliminar</string>
+    <string name="texto">Texto</string>
+    <string name="imagen">Imagen</string>
+    <string name="video">Video</string>
     <string name="seguir">Seguir</string>
     <string name="especifique_monto"><font size="15">Especifique el monto en pesos</font></string>
 

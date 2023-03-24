@@ -9,7 +9,7 @@ data class VolunteerResponse(
     @SerializedName("FCFECALTA")
     val fCFECALTA: String? = null,
     @SerializedName("FCMULTIUSER")
-    val fCMULTIUSER: ArrayList<String>? = ArrayList(),
+    val fCMULTIUSER: String? = null,
     @SerializedName("FCNOMBRECOM")
     val fCNOMBRECOM: String? = null,
     @SerializedName("FCRESPONSABLE")

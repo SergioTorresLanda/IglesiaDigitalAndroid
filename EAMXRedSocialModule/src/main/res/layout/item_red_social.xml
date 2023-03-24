@@ -99,9 +99,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:autoLink="web|all"
-            android:textColorLink="@color/blue_toast"
             android:focusable="true"
             android:fontFamily="@font/avenir_nextlt_pro_regular"
+            android:textColorLink="@color/blue_toast"
+            android:textIsSelectable="true"
             android:textSize="@dimen/size_12"
             app:layout_constraintEnd_toEndOf="@+id/ivOption"
             app:layout_constraintStart_toStartOf="@+id/cvPriest"
@@ -137,14 +138,15 @@
                 android:fontFamily="@font/avenir_nextlt_pro_regular"
                 android:text="0"
                 tools:ignore="MissingConstraints" />
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvLikeDado"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:drawableTint="@color/blue_terminos"
                 android:drawableLeft="@drawable/ic_hands"
                 android:drawablePadding="@dimen/size_10"
+                android:drawableTint="@color/blue_terminos"
                 android:fontFamily="@font/avenir_nextlt_pro_regular"
                 android:text="0"
                 android:visibility="gone"
@@ -165,18 +167,39 @@
             app:layout_constraintStart_toEndOf="@+id/clLike"
             app:layout_constraintTop_toTopOf="@+id/clLike" />
 
-        <TextView
-            android:id="@+id/tvShare"
-            android:layout_width="28dp"
-            android:layout_height="21dp"
-            android:layout_marginStart="16dp"
-            android:drawableLeft="@drawable/ic_share_red"
-            android:drawablePadding="@dimen/size_10"
-            android:fontFamily="@font/avenir_nextlt_pro_regular"
-            android:text="0"
-            android:visibility="gone"
+        <LinearLayout
+            android:id="@+id/btnShare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
             app:layout_constraintStart_toEndOf="@+id/tvComent"
-            app:layout_constraintTop_toTopOf="@+id/clLike" />
+            app:layout_constraintTop_toTopOf="@+id/clLike">
+
+            <TextView
+                android:id="@+id/tvShare"
+                android:layout_width="28dp"
+                android:layout_height="21dp"
+                android:layout_marginStart="16dp"
+                android:drawableLeft="@drawable/ic_share_red"
+                android:drawablePadding="@dimen/size_10"
+                android:fontFamily="@font/avenir_nextlt_pro_regular"
+                android:text="0"
+                android:visibility="visible"
+                app:layout_constraintStart_toEndOf="@+id/tvComent"
+                app:layout_constraintTop_toTopOf="@+id/clLike" />
+
+            <TextView
+                android:id="@+id/tvShareText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:drawablePadding="@dimen/size_10"
+                android:fontFamily="@font/avenir_nextlt_pro_regular"
+                android:text="Compartir"
+                android:visibility="visible"
+                app:layout_constraintStart_toEndOf="@+id/tvShare"
+                app:layout_constraintTop_toTopOf="@+id/clLike" />
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/ivAdd"
@@ -186,9 +209,7 @@
             android:layout_marginBottom="25dp"
             android:src="@drawable/ic_seguir"
             android:visibility="gone"
-            app:layout_constraintStart_toEndOf="@+id/tvShare"
+            app:layout_constraintStart_toEndOf="@+id/btnShare"
             app:layout_constraintTop_toTopOf="@+id/clLike" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </layout>

@@ -3,18 +3,20 @@ package mx.arquidiocesis.eamxevent.model
 import com.google.gson.annotations.SerializedName
 
 data class Volunteer(
+    @SerializedName("id")
+    val id: Int? = null,
     @SerializedName("correo")
-    val correo: String,
+    val correo: String? = null,
     @SerializedName("direccion")
-    val direccion: String,
+    val direccion: String? = null,
     @SerializedName("multiuser")
-    val multiuser: ArrayList<String> = ArrayList(),
-    @SerializedName("nombre_comedor")
-    val nombreComedor: String,
+    val multiuser: String? = null,
+    @SerializedName("comedor_id")
+    val comedor_id: String? = null,
     @SerializedName("nombre_voluntario")
-    val nombreVoluntario: String,
+    val nombre_voluntario: String? = null,
     @SerializedName("responsable")
-    val responsable: String,
+    val responsable: String? = null,
     @SerializedName("telefono")
-    val telefono: String
+    val telefono: String? = null
 )

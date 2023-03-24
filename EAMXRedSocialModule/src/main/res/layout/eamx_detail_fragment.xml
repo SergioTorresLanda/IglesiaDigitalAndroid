@@ -176,6 +176,7 @@
                                         android:id="@+id/txtNameChurch"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:textIsSelectable="true"
                                         android:autoLink="web|all"
                                         android:textColorLink="@color/blue_toast"
                                         android:layout_marginTop="@dimen/margin_5"

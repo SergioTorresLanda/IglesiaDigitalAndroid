@@ -2,16 +2,23 @@ package mx.arquidiocesis.eamxredsocialmodule.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.PopupMenu
-import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
+import androidx.core.view.get
+import androidx.core.view.isEmpty
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
+import kotlinx.android.synthetic.main.item_media_picker.view.*
+import kotlinx.android.synthetic.main.item_red_social.*
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
 import mx.arquidiocesis.eamxcommonutils.util.*
@@ -22,6 +29,7 @@ import mx.arquidiocesis.eamxredsocialmodule.model.MultimediaModel
 import mx.arquidiocesis.eamxredsocialmodule.model.PostModel
 import mx.arquidiocesis.eamxredsocialmodule.model.ResultMultiProfileModel
 import mx.arquidiocesis.eamxredsocialmodule.ui.*
+import java.io.ByteArrayOutputStream
 import java.util.regex.Pattern
 
 class EAMXPublicationsAllAdapter(
@@ -34,6 +42,7 @@ class EAMXPublicationsAllAdapter(
     var items: ArrayList<PostModel> = ArrayList()
 
     lateinit var onItemClickListener: (PostModel, String) -> Unit
+    private lateinit var contexto: Context
 
     /*expresión regular*/
     var URL_REGEX =
@@ -43,6 +52,7 @@ class EAMXPublicationsAllAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemRedSocialBinding.inflate(inflater, parent, false)
+        contexto = parent.context
         return NewsViewHolder(binding)
     }
 
@@ -115,7 +125,139 @@ class EAMXPublicationsAllAdapter(
                     true
                 })
                 popupMenu.show()
+            }
 
+            btnShare.setOnClickListener {
+                //TEXTO
+                if (item.content.isNotEmpty() && item.multimedia.filter { it.format == "image" }.size == 0 && item.multimedia.filter { it.format == "video/mp4" }.size == 0) {
+                    val popupShare: PopupMenu = PopupMenu(context, btnShare)
+                    popupShare.menuInflater.inflate(
+                        mx.arquidiocesis.eamxcommonutils.R.menu.share_text,
+                        popupShare.menu
+                    )
+                    popupShare.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener {
+                        when (it.itemId) {
+                            mx.arquidiocesis.eamxcommonutils.R.id.texto ->
+                                onItemClickListener(item, TEXTO)
+                        }
+                        true
+                    })
+                    popupShare.show()
+                }
+
+                //IMAGEN
+                if (item.content.isEmpty() && item.multimedia.filter { it.format == "image" }.size > 0 && item.multimedia.filter { it.format == "video/mp4" }.size == 0) {
+                    val popupShare: PopupMenu = PopupMenu(context, btnShare)
+                    popupShare.menuInflater.inflate(
+                        mx.arquidiocesis.eamxcommonutils.R.menu.share_img,
+                        popupShare.menu
+                    )
+                    popupShare.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener {
+                        when (it.itemId) {
+                            mx.arquidiocesis.eamxcommonutils.R.id.imagen ->
+                                onItemClickListener(item, IMAGEN)
+                        }
+                        true
+                    })
+                    popupShare.show()
+                }
+
+                //VIDEO
+                if (!item.content.isEmpty() && item.multimedia.filter { it.format == "image" }.size == 0 && item.multimedia.filter { it.format == "video/mp4" }.size > 0) {
+                    val popupShare: PopupMenu = PopupMenu(context, btnShare)
+                    popupShare.menuInflater.inflate(
+                        mx.arquidiocesis.eamxcommonutils.R.menu.share_vid,
+                        popupShare.menu
+                    )
+                    popupShare.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener {
+                        when (it.itemId) {
+                            mx.arquidiocesis.eamxcommonutils.R.id.video ->
+                                onItemClickListener(item, VIDEO)
+                        }
+                        true
+                    })
+                    popupShare.show()
+                }
+
+                //TEXTO E IMAGEN
+                if (item.content.isNotEmpty() && item.multimedia.filter { it.format == "image" }.size > 0 && item.multimedia.filter { it.format == "video/mp4" }.size == 0) {
+                    val popupShareI: PopupMenu = PopupMenu(context, btnShare)
+                    popupShareI.menuInflater.inflate(
+                        mx.arquidiocesis.eamxcommonutils.R.menu.share_txt_img,
+                        popupShareI.menu
+                    )
+                    popupShareI.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener {
+                        when (it.itemId) {
+                            mx.arquidiocesis.eamxcommonutils.R.id.texto ->
+                                onItemClickListener(item, TEXTO)
+                            mx.arquidiocesis.eamxcommonutils.R.id.imagen ->
+                                onItemClickListener(item, IMAGEN)
+                        }
+                        true
+                    })
+                    popupShareI.show()
+                }
+
+                //TEXTO Y VIDEO
+                if (item.content.isNotEmpty() && item.multimedia.filter { it.format == "image" }.size == 0 && item.multimedia.filter { it.format == "video/mp4" }.size > 0) {
+                    val popupShare: PopupMenu = PopupMenu(context, btnShare)
+                    popupShare.menuInflater.inflate(
+                        mx.arquidiocesis.eamxcommonutils.R.menu.share_txt_vid,
+                        popupShare.menu
+                    )
+                    popupShare.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener {
+                        when (it.itemId) {
+                            mx.arquidiocesis.eamxcommonutils.R.id.texto ->
+                                onItemClickListener(item, TEXTO)
+                            mx.arquidiocesis.eamxcommonutils.R.id.video ->
+                                onItemClickListener(item, VIDEO)
+                        }
+                        true
+                    })
+                    popupShare.show()
+                }
+
+                //IMAGEN Y VIDEO
+                if (item.content.isEmpty() && item.multimedia.filter { it.format == "image" }.size > 0 && item.multimedia.filter { it.format == "video/mp4" }.size > 0) {
+                    val popupShare: PopupMenu = PopupMenu(context, btnShare)
+                    popupShare.menuInflater.inflate(
+                        mx.arquidiocesis.eamxcommonutils.R.menu.share_img_vid,
+                        popupShare.menu
+                    )
+                    popupShare.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener {
+                        when (it.itemId) {
+                            mx.arquidiocesis.eamxcommonutils.R.id.imagen ->
+                                onItemClickListener(item, IMAGEN)
+                            mx.arquidiocesis.eamxcommonutils.R.id.video ->
+                                onItemClickListener(item, VIDEO)
+                        }
+                        true
+                    })
+                    popupShare.show()
+                }
+
+                //TODOS
+                if (item.content.isNotEmpty() && item.multimedia.filter { it.format == "image" }
+                        .size > 0 && item.multimedia.filter { it.format == "video/mp4" }
+                        .size > 0) {
+                    val popupShare: PopupMenu = PopupMenu(context, btnShare)
+                    popupShare.menuInflater.inflate(
+                        mx.arquidiocesis.eamxcommonutils.R.menu.share_review,
+                        popupShare.menu
+                    )
+                    popupShare.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener {
+                        when (it.itemId) {
+                            mx.arquidiocesis.eamxcommonutils.R.id.texto ->
+                                onItemClickListener(item, TEXTO)
+                            mx.arquidiocesis.eamxcommonutils.R.id.imagen ->
+                                onItemClickListener(item, IMAGEN)
+                            mx.arquidiocesis.eamxcommonutils.R.id.video ->
+                                onItemClickListener(item, VIDEO)
+                        }
+                        true
+                    })
+                    popupShare.show()
+                }
             }
             tvLike.visibility = View.VISIBLE
             tvLikeDado.visibility = View.GONE
@@ -135,10 +277,12 @@ class EAMXPublicationsAllAdapter(
             tvComent.setOnClickListener {
                 onItemClickListener(item, COMENTARIO)
             }
+            /*
             tvShare.setOnClickListener {
-                onItemClickListener(item, COMPARTIR)
-
+                    onItemClickListener(item, COMPARTIR)
             }
+
+             */
             iMediaGallery.cGallery.visibility(item.multimedia.isNotEmpty())
             if (isPrincipal) {
                 iMediaGallery.cGallery.setOnClickListener {
@@ -188,6 +332,22 @@ class EAMXPublicationsAllAdapter(
             }
         }
     }
+
+    private fun obt () {
+
+    }
+    private fun getImageUri(inContext: Context, inImage: Bitmap): Uri {
+        val bytes = ByteArrayOutputStream()
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        val path = MediaStore.Images.Media.insertImage(
+            inContext.contentResolver,
+            inImage,
+            "Title",
+            null
+        )
+        return Uri.parse(path)
+    }
+
 
     override fun getItemCount(): Int = items.size
 

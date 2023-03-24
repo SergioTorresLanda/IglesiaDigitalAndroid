@@ -3,23 +3,23 @@ import com.google.gson.annotations.SerializedName
 
 data class DonorResponse(
     @SerializedName("FCBANCARIOS")
-    val fCBANCARIOS: String,
+    val fCBANCARIOS: String? = null,
     @SerializedName("FCCOMENTARIOS")
-    val fCCOMENTARIOS: String,
+    val fCCOMENTARIOS: String? = null,
     @SerializedName("FCCORREO")
-    val fCCORREO: String,
+    val fCCORREO: String? = null,
     @SerializedName("FCFECALTA")
-    val fCFECALTA: String,
+    val fCFECALTA: String? = null,
     @SerializedName("FCNOMBRE")
-    val fCNOMBRE: String,
+    val fCNOMBRE: String? = null,
     @SerializedName("FCTELEFONO")
-    val fCTELEFONO: String,
+    val fCTELEFONO: String? = null,
     @SerializedName("FCTIPODONA")
-    val fCTIPODONA: String,
+    val fCTIPODONA: String? = null,
     @SerializedName("FICOMEDORID")
-    val fICOMEDORID: String,
+    val fICOMEDORID: String? = null,
     @SerializedName("FIDONANTEID")
-    val fIDONANTEID: String,
+    val fIDONANTEID: String? = null,
     @SerializedName("FIUSERID")
-    val fIUSERID: String
+    val fIUSERID: String? = null
 )
