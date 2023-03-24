@@ -33,6 +33,16 @@
         <item>Venustiano Carranza</item>
         <item>Xochimilco</item>
     </string-array>
+    <string-array name="participations">
+        <item>Seleccionar</item>
+        <item>Voluntario</item>
+        <item>Donante</item>
+        <item>Solicitante</item>
+    </string-array>
+    <string-array name="typedonations">
+        <item>Seleccionar</item>
+        <item>En Especie</item>
+    </string-array>
     <string name="txt_empty_name">El nombre del comedor no puede quedar vacío.</string> 1
     <string name="txt_empty_location">Actualiza la ubicación de tu comedor.</string> 1
     <string name="txt_empty_day">Activa por lo menos un día a la semana en el que preste sevicio tu comedor.</string> 1

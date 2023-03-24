@@ -78,24 +78,23 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clTipo1"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
             android:layout_marginBottom="8dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/clTipo2"
             app:layout_constraintEnd_toEndOf="@+id/clContent"
-            app:layout_constraintHeight_percent=".25"
             app:layout_constraintStart_toStartOf="@+id/clContent">
 
             <TextView
                 android:id="@+id/tvOmmit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="32dp"
                 android:lineSpacingExtra="2sp"
                 android:text="Omitir"
                 android:textColor="#1c75bc"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="@+id/ivNext"
                 app:layout_constraintStart_toStartOf="parent"
@@ -103,12 +102,11 @@
 
             <ImageView
                 android:id="@+id/ivNext"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="16dp"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintWidth_percent=".2"
                 app:srcCompat="@drawable/next" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -132,7 +130,7 @@
                 android:padding="8dp"
                 android:text="Continuar"
                 android:textColor="#1c75bc"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

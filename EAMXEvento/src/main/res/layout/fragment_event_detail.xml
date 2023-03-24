@@ -109,7 +109,7 @@
                     android:imeOptions="actionNext"
                     android:letterSpacing="0.01"
                     android:lineSpacingExtra="10sp"
-                    android:maxLength="500"
+                    android:maxLength="250"
                     android:singleLine="false"
                     android:textColor="#99000000"
                     android:textSize="18sp"
@@ -119,11 +119,11 @@
                     android:id="@+id/tvAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginStart="0dp"
-                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="10dp"
                     android:drawableTop="@drawable/ic_church_map"
                     android:fontFamily="sans-serif-medium"
-                    android:gravity="center"
                     android:text="Actualizar"
                     android:textColor="@color/textview_title_color"
                     android:textSize="17sp"
@@ -395,7 +395,7 @@
                         android:singleLine="true"
                         android:textColor="#99000000"
                         android:textSize="18sp"
-                        android:textStyle="normal"/>
+                        android:textStyle="normal" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
@@ -538,7 +538,6 @@
                     android:textColor="#192a73"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:trackTint="#C3EC96"
                     tools:ignore="UseSwitchCompatOrMaterialXml" />
             </LinearLayout>
 
@@ -577,11 +576,13 @@
                     app:endIconMode="custom"
                     app:errorIconDrawable="@drawable/ic_check_error"
                     app:expandedHintEnabled="false">
+
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etMonto"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:digits="@string/digits_only_number_phone"
+                        android:drawableStart="@drawable/ic_cost"
                         android:imeOptions="actionDone"
                         android:inputType="phone"
                         android:letterSpacing="0.01"
@@ -590,8 +591,7 @@
                         android:singleLine="true"
                         android:textColor="#99000000"
                         android:textSize="18sp"
-                        android:textStyle="normal"
-                        android:drawableStart="@drawable/ic_cost"/>
+                        android:textStyle="normal" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
@@ -635,7 +635,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:digits="@string/digits_only_letters"
-                        android:imeOptions="actionNext"
+                        android:imeOptions="actionDone"
                         android:inputType="textCapWords|textAutoCorrect|textPersonName"
                         android:letterSpacing="0.01"
                         android:lineSpacingExtra="10sp"
@@ -646,6 +646,17 @@
                         android:textSize="18sp"
                         android:textStyle="normal" />
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tvRequisitosConteo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="240/250"
+                    android:textColor="@color/textview_title_color"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -679,13 +690,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/margin_bottom_25"
-                    android:checked="true"
                     android:switchPadding="@dimen/global_margin_extra"
                     android:textColor="#192a73"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:thumbTint="#80C913"
-                    android:trackTint="#C3EC96"
                     tools:ignore="UseSwitchCompatOrMaterialXml" />
             </LinearLayout>
 
@@ -724,7 +732,6 @@
                     android:textColor="#192a73"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:trackTint="#C3EC96"
                     tools:ignore="UseSwitchCompatOrMaterialXml" />
 
                 <TextView
@@ -735,7 +742,7 @@
                     android:gravity="left"
                     android:letterSpacing="0.03"
                     android:lineSpacingExtra="0sp"
-                    android:text="No Disponible"
+                    android:text="Inactivo"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
