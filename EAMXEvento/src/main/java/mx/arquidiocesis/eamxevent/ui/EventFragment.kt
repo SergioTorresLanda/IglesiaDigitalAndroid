@@ -79,7 +79,7 @@ class EventFragment : FragmentBase() {
             EAMXEnumUser.USER_ID.name,
             EAMXTypeObject.INT_OBJECT
         ) as Int
-        setupInit()
+        setupInit(msgGuest(isMsg = false))
         initObservers()
         //getAllDiners() //Ya no se ejecuta por que se activa en el spinner: spZone
         initButtons()

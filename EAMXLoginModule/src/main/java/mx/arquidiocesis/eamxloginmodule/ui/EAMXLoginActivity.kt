@@ -75,12 +75,9 @@ class EAMXLoginActivity : EAMXBaseActivity() {
     override fun initDependency() {}
 
     override fun initObservers() {
-//        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-//        window.statusBarColor = resources.getColor(R.color.white)
-
         viewModelProfile.responseUserDetail.observe(this) { dataUser ->
             hideProgressBarCustom()
-            "FINALIZO GETDETAIL ${isGUEST()}".log()
+            "FINALIZO GETDETAIL ${msgGuest(isMsg = false)}".log()
             eamxcu_preferences.apply {
                 dataUser.data.User.let { data ->
                     saveData(EAMXEnumUser.USER_ID.name, data.id)
@@ -100,8 +97,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
             }
             setResult(Activity.RESULT_OK, intent.putExtra(EAMXEnums.CONFIRMATED.name, true))
             finish()
-        };
-
+        }
         viewModel.responseGeneric.observe(this) { response ->
             when (response.statusRequest) {
                 EAMXStatusRequestEnum.LOADING -> {
@@ -109,7 +105,6 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                 }
                 EAMXStatusRequestEnum.SUCCESS -> {
                     "INICIO GETDETAIL".log()
-
                     eamxcu_preferences.apply {
                         if (!bio) {
                             val number = getData(
@@ -122,7 +117,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                             ) as String
                             val actUse = etEmail.text.toString()
                             if (number != actUse || email != actUse) {
-                                var guest = isGUEST()
+                                var guest = msgGuest(isMsg = false)
                                 removeFile()
                                 saveData(
                                     EAMXEnumUser.USER_PASSWORD.name,
@@ -139,7 +134,6 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                             saveData(EAMXEnumUser.TOKEN_REFRESH_CUSTOMER.name, it.RefreshToken)
                         }
                     }
-
                     viewModelProfile.getUserDetail()
                 }
                 EAMXStatusRequestEnum.FAILURE -> {
@@ -159,10 +153,8 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                             EAMXErrorResponseEnum.USER_IS_NOT_CONFIRMED.messageError,
                             EAMXErrorResponseEnum.USER_IS_NOT_CONFIRMED_QA.messageError,
                             -> {
-
                                 val userValue = if (mBinding.etEmail.text.toString().isDigitsOnly())
                                     "+52${mBinding.etEmail.text}" else mBinding.etEmail.text.toString()
-
                                 UtilAlert.Builder()
                                     .setTitle("Atención")
                                     .setMessage(getString(R.string.your_user_already_exists_confirm_to_login))
@@ -185,8 +177,6 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                                         }
                                     }
                                     .build().show(supportFragmentManager, "")
-
-
                             }
                             else -> {
                                 UtilAlert.Builder()
@@ -201,7 +191,6 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                             .setMessage(getString(R.string.no_internet_connection))
                             .build().show(supportFragmentManager, "")
                     }
-
                 }
                 EAMXStatusRequestEnum.NONE -> {
                     hideProgressBarCustom()
@@ -213,7 +202,6 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                 setResult(Activity.RESULT_CANCELED)
                 val email = it.data?.getStringExtra(EAMXEnumUser.USER_EMAIL.name)
                 mBinding.etEmail.setText(email)
-//                finish()
             } else {
                 it.data?.let { intent ->
                     setResult(Activity.RESULT_OK, intent)
@@ -229,7 +217,6 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                     } else {
                         it.request
                     }
-
                     viewModel.requestSignIn(requestOk)
                 }
                 EAMXStatusValidation.INCORRECT -> {
@@ -256,7 +243,6 @@ class EAMXLoginActivity : EAMXBaseActivity() {
             showLogin()
         }
         btnContinuarSinRegistro.setOnClickListener {
-            eamxcu_preferences.saveData(EAMXEnumUser.GUEST.name, true)
             ingrsoGUEST()
         }
         mBinding.apply {
@@ -271,7 +257,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                 highlightButton(btnRegistrar)
             } else {
                 highlightButton(btnLogin)
-                if(!isGUEST()){
+                if (!msgGuest(isMsg = false)) {
                     tvBiometric.visibility = View.VISIBLE
                 }
                 hideLogin()
@@ -298,39 +284,33 @@ class EAMXLoginActivity : EAMXBaseActivity() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        ingrsoGUEST()
-    }
-
     private fun ingrsoGUEST() {
-        if (isGUEST()) {
-            // Access a Cloud Firestore instance from your Activity
-            val db = Firebase.firestore
-            db.collection(ConstansApp.usrDummy())
-                .whereEqualTo("activo", true)
-                .get()
-                .addOnSuccessListener { result ->
-                    for (document in result) {
-                        ("${document.id} => ${document.data["usuario"]}").log()
-                        mBinding.apply {
-                            etEmail.setText(document.data["usuario"].toString())
-                            etPassword.setText(document.data["contrasena"].toString())
-                            ingresar()
-                        }
+        eamxcu_preferences.saveData(EAMXEnumUser.GUEST.name, true)
+        // Access a Cloud Firestore instance from your Activity
+        val db = Firebase.firestore
+        db.collection(ConstansApp.usrDummy())
+            .whereEqualTo("activo", true)
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    ("${document.id} => ${document.data["usuario"]}").log()
+                    mBinding.apply {
+                        etEmail.setText(document.data["usuario"].toString())
+                        etPassword.setText(document.data["contrasena"].toString())
+                        ingresar()
                     }
                 }
-                .addOnFailureListener { exception ->
-                    ("Error getting documents." + exception).log()
-                }
-        }
+            }
+            .addOnFailureListener { exception ->
+                ("Error getting documents." + exception).log()
+            }
     }
 
     private fun ingresar() {
         if (EAMXInternetAvailability.isNetworkAvailable(this@EAMXLoginActivity)) {
             requestSignUp()
         } else {
-            if(isGUEST()){
+            if (msgGuest(isMsg = false)) {
                 etEmail.setText("")
                 etPassword.setText("")
             }
@@ -368,7 +348,6 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                     ).show()
                     tvBiometric.visibility = View.GONE
                 }
-
                 override fun onAuthenticationSucceeded(
                     result: BiometricPrompt.AuthenticationResult,
                 ) {
@@ -387,9 +366,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                         EAMXUserLoginRequest(number, pass),
                         arraylistValidations
                     )
-
                 }
-
                 override fun onAuthenticationFailed() {
                     super.onAuthenticationFailed()
                     Toast.makeText(
@@ -431,7 +408,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
             EAMXEnumUser.USER_PASSWORD.toString(),
             EAMXTypeObject.STRING_OBJECT
         ) as String
-        val guest = isGUEST()
+        val guest = msgGuest(isMsg = false)
         if (pass.isEmpty()) {
         } else {
             if (!guest) {
@@ -441,7 +418,6 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                 }
             }
         }
-
         mBinding.apply {
             textView5.visibility = View.VISIBLE
             textView15.visibility = View.VISIBLE
@@ -481,7 +457,6 @@ class EAMXLoginActivity : EAMXBaseActivity() {
         hideLogin()
         if (doubleBackToExitPressedOnce) {
             super.onBackPressed()
-            eamxcu_preferences.saveData(EAMXEnumUser.GUEST.name, true)
             return
         }
         this.doubleBackToExitPressedOnce = true
@@ -489,17 +464,5 @@ class EAMXLoginActivity : EAMXBaseActivity() {
         Handler(Looper.getMainLooper()).postDelayed(Runnable {
             doubleBackToExitPressedOnce = false
         }, 2000)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        eamxcu_preferences.saveData(EAMXEnumUser.GUEST.name, !noInvitado)
-    }
-
-    private fun isGUEST(): Boolean {
-        return eamxcu_preferences.getData(
-            EAMXEnumUser.GUEST.name,
-            EAMXTypeObject.BOOLEAN_OBJECT
-        ) as Boolean
     }
 }

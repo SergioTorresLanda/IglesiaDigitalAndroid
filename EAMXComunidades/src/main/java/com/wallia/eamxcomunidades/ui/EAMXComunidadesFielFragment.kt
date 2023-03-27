@@ -5,7 +5,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -160,10 +159,7 @@ class EAMXComunidadesFielFragment : FragmentBase() {
             -> true
             else -> false
         }
-        if (!(eamxcu_preferences.getData(
-                EAMXEnumUser.GUEST.name,
-                EAMXTypeObject.BOOLEAN_OBJECT
-            ) as Boolean)) {
+        if (!msgGuest(isMsg = false)) {
             viewModel.getMainCommunity()
             initObservers()
             showLoader()
@@ -375,5 +371,4 @@ class EAMXComunidadesFielFragment : FragmentBase() {
             .setAllowStack(false)
             .build().nextWithReplace()
     }
-
 }

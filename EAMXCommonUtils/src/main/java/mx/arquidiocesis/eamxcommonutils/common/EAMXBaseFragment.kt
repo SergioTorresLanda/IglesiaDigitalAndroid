@@ -95,17 +95,12 @@ abstract class EAMXBaseFragment : Fragment() {
                 .setDimAmount(0.6f)
         }
         if (hud != null) {
-
-//            if(lottieView != null)
-//                lottieView?.playAnimation()
-
             hud?.setCancellable(isCancelable)
             if (isCancelable) {
                 hud?.setCancellable {
                     hideProgressBarCustom()
                 }
             }
-
             hud?.show()
         }
     }
@@ -156,16 +151,18 @@ abstract class EAMXBaseFragment : Fragment() {
         fun onBackPress(): Boolean
     }
 
-    fun msgGuest(msg: String = "poder acceder a este módulo"): Boolean {
+    fun msgGuest(msg: String = "poder acceder a este módulo", isMsg:Boolean = true): Boolean {
         var guest = eamxcu_preferences.getData(
             EAMXEnumUser.GUEST.name,
             EAMXTypeObject.BOOLEAN_OBJECT
         ) as Boolean
-        if (guest) {
-            UtilAlert.Builder()
-                .setTitle(getString(R.string.title_dialog_warning))
-                .setMessage("Regístrate o inicia sesión para ${msg}.")
-                .build().show(childFragmentManager, "")
+        if (isMsg) {
+            if (guest) {
+                UtilAlert.Builder()
+                    .setTitle(getString(R.string.title_dialog_warning))
+                    .setMessage("Regístrate o inicia sesión para ${msg}.")
+                    .build().show(childFragmentManager, "")
+            }
         }
         return guest
     }

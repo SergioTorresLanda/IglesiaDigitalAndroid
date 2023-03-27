@@ -98,10 +98,6 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, var id_user: Int) : Fragme
     }
 
     fun initObservers() {
-        var guest = eamxcu_preferences.getData(
-            EAMXEnumUser.GUEST.name,
-            EAMXTypeObject.BOOLEAN_OBJECT
-        ) as Boolean
         viewmodel.responseAllPost.observe(viewLifecycleOwner) { item ->
             item?.let { i ->
                 i.result?.let { r ->
@@ -113,9 +109,8 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, var id_user: Int) : Fragme
                                     it.format = "image"
                             }
                         }
-                        //adapter.items.addAll(resultModel.posts)
                         adapter.items.addAll(
-                            if (guest) {
+                            if (msgGuest(isMsg = false)) {
                                 resultModel.posts.filter { it.author.id != id_user }
                             } else if (isPrincipal) {
                                 resultModel.posts
@@ -284,11 +279,7 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, var id_user: Int) : Fragme
                     search()
                 }
             }
-            var guest = eamxcu_preferences.getData(
-                EAMXEnumUser.GUEST.name,
-                EAMXTypeObject.BOOLEAN_OBJECT
-            ) as Boolean
-            if (!guest) {
+            if (!msgGuest(isMsg = false)) {
                 ImagenProfile().loadImageProfile(ivUser, requireContext())
             }
             swrRefresh.setColorSchemeResources(R.color.primaryColor)

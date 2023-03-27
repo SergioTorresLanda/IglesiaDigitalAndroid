@@ -15,11 +15,7 @@ import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
 import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
 import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
 
-fun EventFragment.setupInit(){
-    var guest = eamxcu_preferences.getData(
-        EAMXEnumUser.GUEST.name,
-        EAMXTypeObject.BOOLEAN_OBJECT
-    ) as Boolean
+fun EventFragment.setupInit(guest:Boolean){
     val profile = eamxcu_preferences.getData(
         EAMXEnumUser.USER_PROFILE.name,
         EAMXTypeObject.STRING_OBJECT

@@ -1,7 +1,5 @@
 package mx.arquidiocesis.eamxcommonutils.base
 
-import android.os.Bundle
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import mx.arquidiocesis.eamxcommonutils.R
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
@@ -10,12 +8,11 @@ import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
 import mx.arquidiocesis.eamxcommonutils.customui.loader.UtilLoader
 import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
-import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
 
 open class FragmentBase : Fragment(), EAMXHome {
 
     private val loader by lazy { UtilLoader() }
-    lateinit var callBack: EAMXHome
+    protected lateinit var callBack: EAMXHome
 
     protected fun showLoader(tag: String = "") {
         if (!loader.isAdded) {
@@ -49,16 +46,18 @@ open class FragmentBase : Fragment(), EAMXHome {
         onActionClickListener: () -> Unit
     ) {}
 
-    protected fun msgGuest(msg: String = "poder acceder a este módulo"): Boolean {
+    protected fun msgGuest(msg: String = "poder acceder a este módulo", isMsg:Boolean = true): Boolean {
         var guest = eamxcu_preferences.getData(
             EAMXEnumUser.GUEST.name,
             EAMXTypeObject.BOOLEAN_OBJECT
         ) as Boolean
-        if (guest) {
-            UtilAlert.Builder()
-                .setTitle(getString(R.string.title_dialog_warning))
-                .setMessage("Regístrate o inicia sesión para ${msg}.")
-                .build().show(childFragmentManager, "")
+        if (isMsg) {
+            if (guest) {
+                UtilAlert.Builder()
+                    .setTitle(getString(R.string.title_dialog_warning))
+                    .setMessage("Regístrate o inicia sesión para ${msg}.")
+                    .build().show(childFragmentManager, "")
+            }
         }
         return guest
     }

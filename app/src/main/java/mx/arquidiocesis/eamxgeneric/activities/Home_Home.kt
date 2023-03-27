@@ -87,10 +87,7 @@ class Home_Home : EAMXBaseActivity(),
             EAMXEnumUser.USER_ROLE.name,
             EAMXTypeObject.STRING_OBJECT
         ) as String
-        guest = eamxcu_preferences.getData(
-            EAMXEnumUser.GUEST.name,
-            EAMXTypeObject.BOOLEAN_OBJECT
-        ) as Boolean
+        guest = msgGuest(isMsg = false)
         tokenSaved =
             eamxcu_preferences.getData("TOKENSAVED", EAMXTypeObject.BOOLEAN_OBJECT) as Boolean
         userId =
@@ -122,25 +119,6 @@ class Home_Home : EAMXBaseActivity(),
             eamxcu_preferences.saveData("TOKENFIREBASE", "")
         }
         tokenViewModel.errorResponse.observe(this) {}
-        /*MyFirebaseMessagingService.notification.observe(this) {
-            val sosFragment = SOSProfileFragment.newInstance(this)
-
-            NotificationFragment(it.notification?.title!!, it.notification?.body!!) {
-                if ((it as String) == "REFUSED") {
-                    changeFragmentValidateBackStack(
-                        sosFragment,
-                        R.id.contentFragment,
-                        SOSProfileFragment::class.java.simpleName
-                    )
-                } else {
-                    changeFragmentValidateBackStack(
-                        sosFragment,
-                        R.id.contentFragment,
-                        SOSProfileFragment::class.java.simpleName
-                    )
-                }
-            }.show(supportFragmentManager, null)
-        }*/
     }
 
     override fun initView() {
@@ -588,14 +566,6 @@ class Home_Home : EAMXBaseActivity(),
 
     override fun signOut(closeSession: Boolean) {
         toast("Sesión cerrada")
-        if (eamxcu_preferences.getData(
-                EAMXEnumUser.SESSION.name,
-                EAMXTypeObject.BOOLEAN_OBJECT
-            ) as Boolean
-        ) {
-            eamxcu_preferences.saveData(EAMXEnumUser.USER_PASSWORD.name, "")
-        }
-        eamxcu_preferences.saveData(EAMXEnumUser.GUEST.name, false)
         tokenViewModel.deleteToken(
             eamxcu_preferences.getData(
                 "TOKENFIREBASE",
@@ -607,8 +577,6 @@ class Home_Home : EAMXBaseActivity(),
         val intent = Intent(this, EAMXSplashActivity::class.java)
         eamxcu_preferences.saveData(EAMXEnumUser.SESSION.name, false)
         eamxcu_preferences.saveData(EAMXEnumUser.USER_ROLE.name, "")
-        //eamxcu_preferences.removeFile()
-
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
         finish()
@@ -663,7 +631,6 @@ class Home_Home : EAMXBaseActivity(),
             "FROMSOS",
             EAMXTypeObject.BOOLEAN_OBJECT
         ) as Boolean
-//        var fragmentOraciones = supportFragmentManager.findFragmentById(R.id.conten)
         when (fragmentTag) {
             !is EAMXHomeFragment -> {
                 if ((fragmentTagRedSocial is EAMXCreateFragment && showDialogDescarte()) && isMenu) {
@@ -719,12 +686,6 @@ class Home_Home : EAMXBaseActivity(),
             }
             else -> {
                 mBinding.apply {
-                    /*if (framePrincipalLocal.visibility == View.VISIBLE) {
-                        clViewGenmeral.visibility = View.VISIBLE
-                        framePrincipalLocal.visibility = View.GONE
-                    } else {
-                        finish()
-                    }*/
                 }
             }
         }

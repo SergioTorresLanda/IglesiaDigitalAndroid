@@ -31,7 +31,6 @@ import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
 import mx.arquidiocesis.eamxcommonutils.customui.alert.ProgressDialog
 import mx.arquidiocesis.eamxcommonutils.util.EAMXCUMySharedPreferences
 import mx.arquidiocesis.eamxcommonutils.util.eamxLog
-//import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
 import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
 import mx.arquidiocesis.eamxcommonutils.util.log
 import mx.arquidiocesis.eamxgeneric.BuildConfig
@@ -39,7 +38,6 @@ import mx.arquidiocesis.eamxgeneric.R
 import mx.arquidiocesis.eamxgeneric.config.RemoteConfigFirebase
 import mx.arquidiocesis.eamxgeneric.databinding.EamxSplashActivityBinding
 import mx.arquidiocesis.eamxloginmodule.ui.EAMXLoginActivity
-
 
 open class EAMXSplashActivity : AppCompatActivity(), InstallStateUpdatedListener {
 
@@ -68,7 +66,6 @@ open class EAMXSplashActivity : AppCompatActivity(), InstallStateUpdatedListener
         )
         mBinding = EamxSplashActivityBinding.inflate(layoutInflater)
         EAMXCUMySharedPreferences(this)
-        //setContentView(mBinding.root)
         initSecondaryFirebaseInstance()
         checkUpdateApp()
     }
@@ -108,14 +105,6 @@ open class EAMXSplashActivity : AppCompatActivity(), InstallStateUpdatedListener
                 EAMXTypeObject.BOOLEAN_OBJECT
             ) as Boolean)
         ) {
-            val userId = eamxcu_preferences.getData(
-                EAMXEnumUser.USER_EMAIL.name,
-                EAMXTypeObject.STRING_OBJECT
-            ) as String
-            userId.trim()
-            if (userId.isEmpty()) {
-                eamxcu_preferences.saveData(EAMXEnumUser.GUEST.name, true)
-            }
             showLoggin()
         } else if (eamxcu_preferences.getData(
                 EAMXEnumUser.SKIP.name,
@@ -238,6 +227,4 @@ open class EAMXSplashActivity : AppCompatActivity(), InstallStateUpdatedListener
             }
         }
     }
-
-
 }

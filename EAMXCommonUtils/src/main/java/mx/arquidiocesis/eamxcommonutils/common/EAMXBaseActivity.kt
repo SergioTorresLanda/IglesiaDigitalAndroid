@@ -1,6 +1,5 @@
 package mx.arquidiocesis.eamxcommonutils.common
 
-import android.content.ClipData
 import android.content.Context
 import android.content.res.Configuration
 import android.graphics.Color
@@ -12,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.commit
 import com.airbnb.lottie.LottieAnimationView
 import com.kaopiz.kprogresshud.KProgressHUD
 import kotlinx.coroutines.Dispatchers
@@ -253,20 +251,6 @@ abstract class EAMXBaseActivity : AppCompatActivity(), EAMXBackHandler {
                 .commitAllowingStateLoss()
     }
 
-    /*override fun changeFragment(fragmentEAMX: EAMXBaseFragment, containerId: Int, TAG: String?) {
-        val transaction = supportFragmentManager.beginTransaction()
-        if (fragmentEAMX.isAdded){
-            transaction
-                .hide(currentFragment)
-                .show(fragmentEAMX)
-        } else {
-            transaction
-                .hide(currentFragment)
-                .add(containerId, fragmentEAMX, TAG)
-        }
-        transaction.commit()
-    }*/
-
     override fun addFragmentValidateBackStack(fragmentEAMX: Fragment, containerId: Int, TAG: String?, transition: Int?) {
         if (!TAG.isNullOrEmpty()) {
             if(transition != null){
@@ -398,16 +382,18 @@ abstract class EAMXBaseActivity : AppCompatActivity(), EAMXBackHandler {
         baseContext.resources.updateConfiguration(configuration, metrics)
     }
 
-    protected fun msgGuest(msg: String = "poder acceder a este módulo"): Boolean {
+    protected fun msgGuest(msg: String = "poder acceder a este módulo", isMsg:Boolean = true): Boolean {
         var guest = eamxcu_preferences.getData(
             EAMXEnumUser.GUEST.name,
             EAMXTypeObject.BOOLEAN_OBJECT
         ) as Boolean
-        if (guest) {
-            UtilAlert.Builder()
-                .setTitle(getString(R.string.title_dialog_warning))
-                .setMessage("Regístrate o inicia sesión para ${msg}.")
-                .build().show(supportFragmentManager, "")
+        if (isMsg) {
+            if (guest) {
+                UtilAlert.Builder()
+                    .setTitle(getString(R.string.title_dialog_warning))
+                    .setMessage("Regístrate o inicia sesión para ${msg}.")
+                    .build().show(supportFragmentManager, "")
+            }
         }
         return guest
     }

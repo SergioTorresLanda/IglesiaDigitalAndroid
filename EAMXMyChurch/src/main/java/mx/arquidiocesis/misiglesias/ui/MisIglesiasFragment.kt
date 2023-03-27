@@ -79,7 +79,6 @@ class MisIglesiasFragment : FragmentBase() {
             })
         }
         callBack.showToolbar(true, AppMyConstants.miIglesia)
-
         binding.apply {
             rvSearchChurches.layoutManager = LinearLayoutManager(
                 requireContext(),
@@ -120,16 +119,12 @@ class MisIglesiasFragment : FragmentBase() {
             }
 
         }
-        if (!(eamxcu_preferences.getData(
-                EAMXEnumUser.GUEST.name,
-                EAMXTypeObject.BOOLEAN_OBJECT
-            ) as Boolean)){
+        if (!msgGuest(isMsg = false)){
             this.dataView = arguments?.getParcelable(EAMXEnumUser.VIEW.name)!!
             binding.item = this.dataView
             showSkeleton(true)
             initObservers()
             myChurchViewModel.iglesiasList()
-            // myChurchViewModel.getiglesiasList()
         }
     }
 
@@ -145,7 +140,6 @@ class MisIglesiasFragment : FragmentBase() {
                 tvChangePrincipal.visibility = View.VISIBLE
                 binding.clPrincipal.iPrincipal.apply {
                     tvTitulo.text = item.name
-
                     if (item.image_url != null) {
                         Glide.with(requireContext())
                             .load(Uri.parse(item.image_url))
@@ -165,9 +159,7 @@ class MisIglesiasFragment : FragmentBase() {
 
                         }
                     }
-
                 }
-
                 cvPrincipalOrAssigned.setOnClickListener {
                     isPrincipal = true
                     changeFragment(itemInfoChurch.assigned?.id)
@@ -261,7 +253,6 @@ class MisIglesiasFragment : FragmentBase() {
             .setBundle(bundle)
             .setAllowStack(true)
             .build().nextWithReplace()
-
     }
 
     private fun changeMapFragment(id: Int) {
@@ -287,7 +278,6 @@ class MisIglesiasFragment : FragmentBase() {
         if (UtilValidPermission().allPermissionsAreAgree(grantResults)) {
             when (requestCode) {
                 PERMISSION_LOCATION -> {
-
                 }
             }
         } else {
@@ -328,6 +318,5 @@ class MisIglesiasFragment : FragmentBase() {
                 .setAllowStack(true)
                 .build().nextWithReplace()
         }
-
     }
 }

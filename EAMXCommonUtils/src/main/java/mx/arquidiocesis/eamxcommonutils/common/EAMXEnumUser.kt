@@ -39,6 +39,5 @@ enum class EAMXEnumUser {
     TOKEN_CUSTOMER,
     TOKEN_REFRESH_CUSTOMER,
     USER_PASSWORD,
-    TYPE_LOGIN,
     GUEST
 }
