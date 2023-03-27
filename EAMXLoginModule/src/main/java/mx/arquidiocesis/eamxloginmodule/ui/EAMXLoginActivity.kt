@@ -459,9 +459,6 @@ class EAMXLoginActivity : EAMXBaseActivity() {
         hideLogin()
         if (doubleBackToExitPressedOnce) {
             super.onBackPressed()
-            if (msgGuest(isMsg = false)) {
-                eamxcu_preferences.removeFile()
-            }
             return
         }
         this.doubleBackToExitPressedOnce = true
@@ -480,6 +477,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
             ) as Boolean)
         ) {
             eamxcu_preferences.removeFile()
+            return
         }
     }
 }
