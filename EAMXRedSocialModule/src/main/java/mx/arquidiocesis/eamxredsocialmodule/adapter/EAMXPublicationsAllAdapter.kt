@@ -180,7 +180,8 @@ class EAMXPublicationsAllAdapter(
                 }
 
                 //TEXTO E IMAGEN
-                if (item.content.isNotEmpty() && item.multimedia.filter { it.format == "image" }.size > 0 && item.multimedia.filter { it.format == "video/mp4" }.size == 0) {
+                if (item.content.isNotEmpty() && item.multimedia.filter { it.format == "image" }
+                        .isNotEmpty() && item.multimedia.filter { it.format == "video/mp4" }.isEmpty()) {
                     val popupShareI: PopupMenu = PopupMenu(context, btnShare)
                     popupShareI.menuInflater.inflate(
                         mx.arquidiocesis.eamxcommonutils.R.menu.share_txt_img,
@@ -199,7 +200,9 @@ class EAMXPublicationsAllAdapter(
                 }
 
                 //TEXTO Y VIDEO
-                if (item.content.isNotEmpty() && item.multimedia.filter { it.format == "image" }.size == 0 && item.multimedia.filter { it.format == "video/mp4" }.size > 0) {
+                if (item.content.isNotEmpty() && item.multimedia.filter { it.format == "image" }
+                        .isEmpty() && item.multimedia.filter { it.format == "video/mp4" }
+                        .isNotEmpty()) {
                     val popupShare: PopupMenu = PopupMenu(context, btnShare)
                     popupShare.menuInflater.inflate(
                         mx.arquidiocesis.eamxcommonutils.R.menu.share_txt_vid,
@@ -218,7 +221,9 @@ class EAMXPublicationsAllAdapter(
                 }
 
                 //IMAGEN Y VIDEO
-                if (item.content.isEmpty() && item.multimedia.filter { it.format == "image" }.size > 0 && item.multimedia.filter { it.format == "video/mp4" }.size > 0) {
+                if (item.content.isEmpty() && item.multimedia.filter { it.format == "image" }
+                        .isNotEmpty() && item.multimedia.filter { it.format == "video/mp4" }
+                        .isNotEmpty()) {
                     val popupShare: PopupMenu = PopupMenu(context, btnShare)
                     popupShare.menuInflater.inflate(
                         mx.arquidiocesis.eamxcommonutils.R.menu.share_img_vid,

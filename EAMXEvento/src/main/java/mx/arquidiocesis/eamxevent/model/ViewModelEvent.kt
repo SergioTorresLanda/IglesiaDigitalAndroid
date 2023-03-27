@@ -28,6 +28,7 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
 
     //Get Event
     val responseAllDin = repositoryEvent.allDiner
+    val responseAllDon = repositoryEvent.allDonor
 
     fun getFine(): Boolean {
         return true
@@ -183,6 +184,155 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
                     repositoryEvent.saveEventDiner(eventRegisterModel)
                 } else {
                     id?.let { repositoryEvent.UpdateEventDiner(it, eventRegisterModel) }
+                }
+            }
+        }
+    }
+
+    fun validateFormRegisterDonor(
+        name: String,
+        comment: String,
+        comedor : Int,
+        email : String,
+        phone: String,
+        bancarios : String,
+        tipo_don : String,
+        id: Int? = 0
+        ) {
+        val userId =
+            eamxcu_preferences.getData(EAMXEnumUser.USER_ID.name, EAMXTypeObject.INT_OBJECT) as Int
+        val email =
+            eamxcu_preferences.getData(
+                EAMXEnumUser.USER_EMAIL.name,
+                EAMXTypeObject.STRING_OBJECT
+            ) as String
+        val phone =
+            eamxcu_preferences.getData(
+                EAMXEnumUser.USER_PHONE.name,
+                EAMXTypeObject.STRING_OBJECT
+            ) as String
+
+        val validateForm: HashMap<String, String> = HashMap()
+        var descriptionValidate = ""
+
+        if (name.isEmpty())
+            validateForm[Constants.KEY_NAME] = Constants.EMPTY_FIELD
+
+        if (tipo_don.isEmpty())
+            validateForm[Constants.KEY_TYPEDON] = Constants.EMPTY_FIELD
+
+        if (email.isEmpty()) {
+            validateForm[Constants.KEY_EMAIL] = Constants.EMPTY_FIELD
+        } else {
+            if (!Constants.EMAIL_ADDRESS.matcher(email).matches())
+                validateForm[Constants.KEY_EMAIL] = Constants.INVALID_EMAIL
+        }
+
+        if (phone.isEmpty())
+            validateForm[Constants.KEY_PHONE] = Constants.EMPTY_FIELD
+
+        if (phone.length < 10)
+            validateForm[Constants.KEY_PHONE] = Constants.INVALID_PHONE
+
+        if (comment.isEmpty()) {
+            descriptionValidate =
+                "Ayuda"
+        } else {
+            descriptionValidate = comment
+        }
+
+        validateForm.toString().log()
+        // if (validateForm.size > 0) {
+        if (validateForm.size > 0) {
+            this.validateForm.value = validateForm
+        } else {
+
+            this.showLoaderView.value = true
+
+            val eventRegisterModel = Donor(
+                nombre = name,
+                user_id = userId,
+                bancarios = bancarios,
+                correo = email,
+                telefono = phone,
+                comedor_id = comedor,
+                comentarios = descriptionValidate,
+                tipo_don = tipo_don
+            )
+            GlobalScope.launch {
+                if (id == 0) {
+                    repositoryEvent.saveDonor(eventRegisterModel)
+                } else {
+                    id?.let { repositoryEvent.UpdateDonor(it, eventRegisterModel) }
+                }
+            }
+        }
+    }
+
+    fun validateFormRegisterVolunteer(
+        name: String,
+        responsable: String,
+        comedor : String,
+        email : String,
+        phone: String,
+        direccion : String,
+        multiusuario : ArrayList<String>,
+        id: Int? = 0
+    ) {
+        val userId =
+            eamxcu_preferences.getData(EAMXEnumUser.USER_ID.name, EAMXTypeObject.INT_OBJECT) as Int
+        val email =
+            eamxcu_preferences.getData(
+                EAMXEnumUser.USER_EMAIL.name,
+                EAMXTypeObject.STRING_OBJECT
+            ) as String
+        val phone =
+            eamxcu_preferences.getData(
+                EAMXEnumUser.USER_PHONE.name,
+                EAMXTypeObject.STRING_OBJECT
+            ) as String
+
+        val validateForm: HashMap<String, String> = HashMap()
+        var descriptionValidate = ""
+
+        if (name.isEmpty())
+            validateForm[Constants.KEY_NAME] = Constants.EMPTY_FIELD
+
+        if (email.isEmpty()) {
+            validateForm[Constants.KEY_EMAIL] = Constants.EMPTY_FIELD
+        } else {
+            if (!Constants.EMAIL_ADDRESS.matcher(email).matches())
+                validateForm[Constants.KEY_EMAIL] = Constants.INVALID_EMAIL
+        }
+
+        if (phone.isEmpty())
+            validateForm[Constants.KEY_PHONE] = Constants.EMPTY_FIELD
+
+        if (phone.length < 10)
+            validateForm[Constants.KEY_PHONE] = Constants.INVALID_PHONE
+
+        validateForm.toString().log()
+        // if (validateForm.size > 0) {
+        if (validateForm.size > 0) {
+            this.validateForm.value = validateForm
+        } else {
+
+            this.showLoaderView.value = true
+
+            val eventRegisterModel = Volunteer(
+                nombre_voluntario = name,
+                user_id = userId,
+                direccion = direccion,
+                correo = email,
+                telefono = phone,
+                comedor_id = comedor,
+                multiuser = ArrayList()
+            )
+            GlobalScope.launch {
+                if (id == 0) {
+                    repositoryEvent.saveVolunteer(eventRegisterModel)
+                } else {
+                    id?.let { repositoryEvent.UpdateVolunteer(it, eventRegisterModel) }
                 }
             }
         }

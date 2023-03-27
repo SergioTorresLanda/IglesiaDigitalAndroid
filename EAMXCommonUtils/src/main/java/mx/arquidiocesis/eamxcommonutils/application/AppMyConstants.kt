@@ -43,6 +43,7 @@ object AppMyConstants {
     const val detailEvento = "Alta de comedores"
     const val createEvento = "Crear un comedor"
     const val updateEvento = "Actualizar mi comedor"
+    const val createDonador = "Crear donador"
     const val perfil = "Perfil"
     const val expanded = "Expanded"
     const val servicios = "Servicios"

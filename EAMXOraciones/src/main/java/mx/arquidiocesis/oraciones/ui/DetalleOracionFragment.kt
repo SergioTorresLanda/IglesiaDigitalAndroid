@@ -82,7 +82,6 @@ class DetalleOracionFragment : FragmentBase() {
                 val image: Bitmap = binding.ivDetalleOracion.getDrawingCache()
                 val share = Intent(Intent.ACTION_SEND)
                 share.type = "image/*"
-                println("hols")
                 println(image)
                 share.putExtra(Intent.EXTRA_STREAM, getImageUri(requireActivity(), image))
                 startActivity(Intent.createChooser(share, "Compartir con"))

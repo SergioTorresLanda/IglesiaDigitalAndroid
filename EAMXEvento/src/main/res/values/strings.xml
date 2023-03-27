@@ -34,25 +34,35 @@
         <item>Xochimilco</item>
     </string-array>
     <string-array name="participations">
-        <item>Seleccionar</item>
-        <item>Voluntario</item>
-        <item>Donante</item>
-        <item>Solicitante</item>
+        <item>Donantes</item>
+        <item>Voluntarios</item>
+        <item>Solicitantes</item>
     </string-array>
     <string-array name="typedonations">
         <item>Seleccionar</item>
         <item>En Especie</item>
     </string-array>
-    <string name="txt_empty_name">El nombre del comedor no puede quedar vacío.</string> 1
-    <string name="txt_empty_location">Actualiza la ubicación de tu comedor.</string> 1
-    <string name="txt_empty_day">Activa por lo menos un día a la semana en el que preste sevicio tu comedor.</string> 1
-    <string name="txt_empty_hour_first">Selecciona un horario de apertura.</string> 1
-    <string name="txt_empty_hour_end">Selecciona un horario de cierre.</string> 1
-    <string name="txt_empty_responsability">El nombre del responsable no puede quedar vacío.</string> 1
-    <string name="txt_empty_email">El campo del correo no puede quedar vacío.</string> 1
+    <string name="txt_empty_name">El nombre del comedor no puede quedar vacío.</string>
+    1
+    <string name="txt_empty_location">Actualiza la ubicación de tu comedor.</string>
+    1
+    <string name="txt_empty_day">Activa por lo menos un día a la semana en el que preste sevicio tu comedor.</string>
+    1
+    <string name="txt_empty_hour_first">Selecciona un horario de apertura.</string>
+    1
+    <string name="txt_empty_hour_end">Selecciona un horario de cierre.</string>
+    1
+    <string name="txt_empty_responsability">El nombre del responsable no puede quedar vacío.</string>
+    1
+    <string name="txt_empty_email">El campo del correo no puede quedar vacío.</string>
+    1
     <string name="txt_empty_phone">El campo de teléfono no puede quedar vacío.</string>
     <string name="txt_invalid_phone">El campo de teléfono debe contener 10 dígitos.</string>
     <string name="txt_empty_requi">El campo de requisitos no puede quedar vacío.</string>
     <string name="txt_empty_zone">El campo de zona no puede quedar vacío.</string>
+
+    <string name="txt_empty_nameD">El nombre del donador no puede quedar vacío.</string>
+    <string name="txt_empty_type">El tipo de donación no puede quedar vacío.</string>
+
 
 </resources>

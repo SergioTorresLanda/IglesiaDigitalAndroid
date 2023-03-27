@@ -1,22 +1,36 @@
 package mx.arquidiocesis.eamxredsocialmodule.ui
 
+import com.bumptech.glide.Glide
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.annotation.RequiresApi
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.BitmapDrawableResource
+import com.bumptech.glide.request.target.SimpleTarget
+import com.bumptech.glide.request.transition.Transition
+import com.squareup.picasso.Picasso.LoadedFrom
 import kotlinx.android.synthetic.main.eamx_red_social_fragment.*
-import kotlinx.android.synthetic.main.item_media_picker.view.*
 import kotlinx.android.synthetic.main.item_media_preview_social.view.*
-import kotlinx.android.synthetic.main.item_red_social.*
 import kotlinx.android.synthetic.main.item_red_social.view.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
@@ -33,13 +47,11 @@ import mx.arquidiocesis.eamxredsocialmodule.databinding.EamxRedSocialFragmentBin
 import mx.arquidiocesis.eamxredsocialmodule.model.*
 import mx.arquidiocesis.eamxredsocialmodule.news.detail.EAMXDetailFragment
 import mx.arquidiocesis.eamxredsocialmodule.viewmodel.RedSocialViewModel
-import retrofit2.http.Url
-import java.io.ByteArrayOutputStream
-import java.io.File
-import java.io.IOException
+import java.io.*
 import java.net.MalformedURLException
 import java.net.URISyntaxException
 import java.net.URL
+import java.time.LocalDateTime
 
 
 const val EDITAR = "EDITAR"
@@ -418,69 +430,103 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, var id_user: Int) : Fragme
     }
 
     private fun shareimage(img: List<MultimediaModel>) {
-
-        val imageUris: ArrayList<Uri> = arrayListOf()
+        val imageUrls: ArrayList<String> = arrayListOf()
         img.forEach {
-            /*
-            try {
-                val url = URL(it.url)
-                val image = BitmapFactory.decodeStream(url.openConnection().getInputStream())
-
-                println(image)
-                imageUris.add(getImageUri(requireContext(), image))
-            } catch (e: IOException) {
-                System.out.println(e)
-            }
-
-             */
-
-            val url = URL(it.url)
-            val uri = Uri.parse(url.toURI().toString())
-
-            //val bitmap = MediaStore.Images.Media.getBitmap(requireContext().contentResolver, uri)
-            //val bitmaps = Glide.with(requireContext()).asBitmap().load(uri).submit().get()//this is synchronous approach
-
-            var bitmap: Bitmap? = null
-            try {
-                bitmap =
-                    MediaStore.Images.Media.getBitmap(requireContext().contentResolver, uri)
-                imageUris.add(getImageUri(requireContext(), bitmap))
-                println(bitmap)
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-/*
-            try {
-                val url = URL(it.url)
-                val uri = Uri.parse(url.toURI().toString())
-                imageUris.add(uri)
-                println(imageUris)
-            } catch (e1: MalformedURLException) {
-                e1.printStackTrace()
-            } catch (e: URISyntaxException) {
-                e.printStackTrace()
-            }
-
- */
+            imageUrls.add(it.url)
         }
+        val imageUris = imageUrls.map { Uri.parse(it) }
 
-        val shareIntent = Intent().apply {
-            action = Intent.ACTION_SEND_MULTIPLE
-            putParcelableArrayListExtra(Intent.EXTRA_STREAM, imageUris)
-            type = "image/*"
+// Crea un ArrayList para almacenar los objetos Bitmap de las miniaturas de las imágenes
+        val thumbnailBitmaps = ArrayList<Bitmap>()
+
+// Carga las miniaturas de las imágenes utilizando Glide
+        for (imageUrl in imageUrls) {
+            Glide.with(this)
+                .asBitmap()
+                .load(imageUrl)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .into(object : SimpleTarget<Bitmap>() {
+                    @RequiresApi(Build.VERSION_CODES.O)
+                    override fun onResourceReady(
+                        resource: Bitmap,
+                        transition: Transition<in Bitmap>?
+                    ) {
+                        thumbnailBitmaps.add(resource)
+                        if (thumbnailBitmaps.size == imageUrls.size) {
+                            // Si se han cargado todas las miniaturas, crea un Intent para compartir
+                            createShareIntent(imageUris, thumbnailBitmaps)
+                        }
+                    }
+                })
         }
-        startActivity(Intent.createChooser(shareIntent, "Compartir con"))
-
-
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun createShareIntent(imageUris: List<Uri>, thumbnailBitmaps: List<Bitmap>) {
+        // Crea un Intent con la acción ACTION_SEND_MULTIPLE y establece el tipo de contenido a "image/*"
+        val shareIntent = Intent(Intent.ACTION_SEND_MULTIPLE).apply {
+            type = "image/*"
+            //putParcelableArrayListExtra(Intent.EXTRA_STREAM, ArrayList(imageUris))
+        }
+
+
+        // Agrega las miniaturas de las imágenes como extras en el Intent
+        val thumbnailUris = ArrayList<Uri>()
+        for (thumbnailBitmap in thumbnailBitmaps) {
+            val thumbnailUri = getImageUri(requireContext(), thumbnailBitmap)
+            thumbnailUris.add(thumbnailUri)
+        }
+
+
+        shareIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, thumbnailUris)
+
+        startActivity(Intent.createChooser(shareIntent, "Compartir imágenes por WhatsApp"))
+
+
+        for (image in thumbnailBitmaps) {
+            image.recycle()
+        }
+    }
+
+    private fun saveImageAndGetUri(image: Bitmap): Uri? {
+        val imagesFolder = File(
+            Environment.getExternalStorageDirectory(), "NombreDeTuCarpeta"
+        )
+
+        if (!imagesFolder.exists()) {
+            imagesFolder.mkdirs()
+        }
+
+        val fileName = "Imagen_${System.currentTimeMillis()}.jpg"
+        val file = File(imagesFolder, fileName)
+
+        try {
+            val stream: OutputStream = FileOutputStream(file)
+            image.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+            stream.flush()
+            stream.close()
+        } catch (e: IOException) {
+            Log.d("TAG", "IOException while trying to write file for sharing: " + e.message)
+            return null
+        }
+
+        return FileProvider.getUriForFile(
+            requireContext(),
+            "${requireContext().applicationContext.packageName}.provider",
+            file
+        )
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun getImageUri(inContext: Context, inImage: Bitmap): Uri {
+        val datetime = LocalDateTime.now()
         val bytes = ByteArrayOutputStream()
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        //inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
         val path = MediaStore.Images.Media.insertImage(
             inContext.contentResolver,
             inImage,
-            "Title",
+            "Title_${datetime.hour}_${datetime.minute}_${datetime.second}",
             null
         )
         return Uri.parse(path)

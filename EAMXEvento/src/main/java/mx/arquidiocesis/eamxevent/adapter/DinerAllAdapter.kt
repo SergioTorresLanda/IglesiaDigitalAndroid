@@ -1,28 +1,40 @@
 package mx.arquidiocesis.eamxevent.adapter
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
+import com.google.protobuf.Empty
+import kotlinx.android.synthetic.main.item_event_detail.view.*
+import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
+import mx.arquidiocesis.eamxcommonutils.common.EAMXBaseFragment
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
 import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
+import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
+import mx.arquidiocesis.eamxevent.R
 import mx.arquidiocesis.eamxevent.databinding.ItemEventDetailBinding
 import mx.arquidiocesis.eamxevent.model.DinerResponse
+import mx.arquidiocesis.eamxevent.model.enum.Participation
+import mx.arquidiocesis.eamxevent.ui.DONAR
 import mx.arquidiocesis.eamxevent.ui.EDITAR
+import mx.arquidiocesis.eamxevent.ui.EventDonorFragment
+import mx.arquidiocesis.eamxevent.ui.PARTICIPAR
 import java.util.regex.Pattern
 
 class DinerAllAdapter(
     val context: Context,
-    val isSuper: Boolean = false,
-    val isPrincipal: Boolean = true,
-) : RecyclerView.Adapter<DinerAllAdapter.NewsViewHolder>(), Filterable {
+    val participation: Int = 0
+) : RecyclerView.Adapter<DinerAllAdapter.NewsViewHolder>(), Filterable{
 
     var items: ArrayList<DinerResponse> = ArrayList()
-
     //var dinerListFilter: ArrayList<DinerResponse> = ArrayList()
     lateinit var onItemClickListener: (DinerResponse, String) -> Unit
 
@@ -104,6 +116,23 @@ class DinerAllAdapter(
                         onItemClickListener(item, EDITAR)
                     }
                 }
+                var accion = ""
+                when(participation){
+                    0 -> {
+                        accion = DONAR
+                    }
+                    1 -> {
+                        accion = PARTICIPAR
+                        btnOpciones.setText("Participar")
+                    }
+                    2 -> {
+                        btnOpciones.visibility = View.GONE
+                    }
+                }
+                if (accion.isNotEmpty())
+                    btnOpciones.setOnClickListener {
+                        onItemClickListener(item, accion)
+                    }
             }
         }
     }

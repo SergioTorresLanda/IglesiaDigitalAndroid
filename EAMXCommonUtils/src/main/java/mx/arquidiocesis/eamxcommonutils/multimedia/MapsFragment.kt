@@ -196,7 +196,12 @@ class MapsFragment(
                             .setMessage("Dirección no valida, debe de ser más precisa.")
                             .build()
                             .show(childFragmentManager, tag)
-                    } else {
+                    }
+
+                    else {
+                        listener(rlatitude, rlongitude, raddress, municipality)
+                        dismiss()
+                        /*
                         UtilAlert.Builder()
                             .setTitle(getString(R.string.title_dialog_warning))
                             .setMessage("Se ha seleccionado una dirección.")
@@ -206,6 +211,7 @@ class MapsFragment(
                             }
                             .build()
                             .show(childFragmentManager, tag)
+                         */
                     }
                 }
             }

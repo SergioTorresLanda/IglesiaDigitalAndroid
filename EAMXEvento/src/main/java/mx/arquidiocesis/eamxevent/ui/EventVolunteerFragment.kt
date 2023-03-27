@@ -1,23 +1,27 @@
 package mx.arquidiocesis.eamxevent.ui
 
-import android.Manifest
 import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Patterns
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.core.content.ContextCompat.*
+import androidx.core.content.ContextCompat
 import androidx.core.view.isEmpty
 import androidx.core.widget.addTextChangedListener
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.fragment_event_detail.*
+import kotlinx.android.synthetic.main.fragment_event_detail.etResponsable
 import kotlinx.android.synthetic.main.fragment_event_donor.*
+import kotlinx.android.synthetic.main.fragment_event_donor.btnGuardar
 import kotlinx.android.synthetic.main.fragment_event_donor.etEmail
 import kotlinx.android.synthetic.main.fragment_event_donor.etNumberPhone
+import kotlinx.android.synthetic.main.fragment_event_donor.tilEmail
+import kotlinx.android.synthetic.main.fragment_event_donor.tilNumberPhone
+import kotlinx.android.synthetic.main.fragment_event_volunteer.*
 import mx.arquidiocesis.eamxcommonutils.application.AppMyConstants
 import mx.arquidiocesis.eamxcommonutils.application.validation.EAMXFieldValidation
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
@@ -25,21 +29,23 @@ import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.common.EAMXHome
 import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
+import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
+import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
+import mx.arquidiocesis.eamxcommonutils.util.getViewModel
 import mx.arquidiocesis.eamxevent.R
 import mx.arquidiocesis.eamxevent.constants.Constants
-import mx.arquidiocesis.eamxevent.model.*
-import mx.arquidiocesis.eamxevent.repository.RepositoryEvent
-import mx.arquidiocesis.eamxcommonutils.util.*
 import mx.arquidiocesis.eamxevent.databinding.FragmentEventDonorBinding
-import mx.arquidiocesis.eamxevent.model.enum.Delegations
+import mx.arquidiocesis.eamxevent.databinding.FragmentEventVolunteerBinding
+import mx.arquidiocesis.eamxevent.model.ViewModelEvent
 import mx.arquidiocesis.eamxevent.model.enum.Type_donation
+import mx.arquidiocesis.eamxevent.repository.RepositoryEvent
 
-class EventDonorFragment : FragmentBase() {
-    lateinit var binding: FragmentEventDonorBinding
+class EventVolunteerFragment : FragmentBase() {
+
+    lateinit var binding: FragmentEventVolunteerBinding
     private val TAG_LOADER: String = "EventFragment"
     private var diner_id: Int = 0
-    private var donacion: String = ""
-    private var type_don: Array<Type_donation> = Type_donation.values()
+
     val email = eamxcu_preferences.getData(
         EAMXEnumUser.USER_EMAIL.name,
         EAMXTypeObject.STRING_OBJECT
@@ -55,8 +61,8 @@ class EventDonorFragment : FragmentBase() {
     lateinit var viewmodel: ViewModelEvent
 
     companion object {
-        fun newInstance(callBack: EAMXHome): EventDonorFragment {
-            val fragment = EventDonorFragment()
+        fun newInstance(callBack: EAMXHome): EventVolunteerFragment {
+            val fragment = EventVolunteerFragment()
             fragment.callBack = callBack
             return fragment
         }
@@ -76,7 +82,7 @@ class EventDonorFragment : FragmentBase() {
     ): View? {
         viewmodel = ViewModelEvent(RepositoryEvent(requireContext()))
         // Inflate thelayout for this fragment
-        binding = FragmentEventDonorBinding.inflate(inflater, container, false)
+        binding = FragmentEventVolunteerBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -84,19 +90,23 @@ class EventDonorFragment : FragmentBase() {
         super.onViewCreated(view, savedInstanceState)
         activity?.let {
             EAMXFirebaseManager(it).setLogEvent("screen_view", Bundle().apply {
-                putString("screen_class", "Actividades_Donar")
+                putString("screen_class", "Actividades_Voluntario")
             })
         }
-        callBack.showToolbar(true, AppMyConstants.createDonador)
         initView()
         initObservers()
-        etEmail.setText(email)
-        etNumberPhone.setText(phone.replace("+52", ""))
+        etEmailV.setText(email)
+        etNumberPhoneV.setText(phone.replace("+52", ""))
         requireArguments().let {
             var id = it.getString("diner_id")
-            id?.let { it1 ->
-                diner_id = it1.toInt()
-                //getAllDiners(diner_id)
+            if (id != "") {
+                callBack.showToolbar(true, AppMyConstants.updateEvento)
+                id?.let { it1 ->
+                    diner_id = it1.toInt()
+                    getAllDiners(diner_id)
+                }
+            } else {
+                callBack.showToolbar(true, AppMyConstants.detailEvento)
             }
         }
     }
@@ -107,21 +117,13 @@ class EventDonorFragment : FragmentBase() {
             if (item.size > 0) {
                 item.forEach {
                     if (!it.fIUSERID.isNullOrEmpty()) {
-                        etNombreC.setText(it.fCNOMBRE)
-                        etEmail.setText(it.fCCORREO)
-                        type_don.forEach { it1 ->
-                            if (it1.pos.toString() == it.fCTIPODONA) {
-                                spZone.setSelection(it1.ordinal)
-                                return@forEach
-                            }
-                            etComentarios.setText(it.fCCOMENTARIOS)
-                            etNumberPhone.setText(it.fCTELEFONO!!.replace("+52", ""))
+                        etNombreV.setText(it.fCNOMBRE)
+                        etEmailV.setText(it.fCCORREO)
+                            etNumberPhoneV.setText(it.fCTELEFONO!!.replace("+52", ""))
                             return@forEach
                         }
                     }
                 }
-
-            }
         }
         viewModelEvent.showLoaderView.observe(viewLifecycleOwner) {
             showLoader()
@@ -193,39 +195,30 @@ class EventDonorFragment : FragmentBase() {
 
     private fun initView() {
         binding.apply {
-            etNombreD.hint = "Nombre del donador"
-            etComentarios.hint = "Escribe tus comentarios"
+            etNombreV.hint = "Nombre del voluntario"
 
-            etNombreD.addTextChangedListener {
-                if (etNombreD.text.toString().isNotEmpty()) {
-                    tilNombreD.error = null
-                    enableIconStart(tilNombreD, true)
+            etNombreV.addTextChangedListener {
+                if (etNombreV.text.toString().isNotEmpty()) {
+                    tilNombreV.error = null
+                    enableIconStart(tilNombreV, true)
                 } else {
-                    tilNombreD.error = getString(R.string.enter_diner_name)
-                    enableIconStart(tilNombreD, null)
+                    tilNombreV.error = getString(R.string.enter_diner_name)
+                    enableIconStart(tilNombreV, null)
                 }
             }
 
-            etComentarios.addTextChangedListener {
-                // var count = etComentarios.text.toString().length
-                //tvRequisitosConteo.setText("$count/250")
-                if (etComentarios.text.toString().isNotEmpty()) {
-                    tilRequisitos.error = getString(R.string.enter_your_req)
-                    enableIconStart(tilRequisitos, null)
-                }
-            }
-            etNumberPhone.addTextChangedListener {
-                val validatePhone = etNumberPhone.text.toString().validNumberPhoneContent()
+            etNumberPhoneV.addTextChangedListener {
+                val validatePhone = etNumberPhoneV.text.toString().validNumberPhoneContent()
                 enableIconStart(
                     tilNumberPhone,
                     validatePhone
                 )
-                if (etNumberPhone.text.toString().isEmpty()) {
+                if (etNumberPhoneV.text.toString().isEmpty()) {
                     enableIconStart(tilNumberPhone, null)
                     tilNumberPhone.isEmpty()
                     tilNumberPhone.error = getString(R.string.min_phone)
                 } else {
-                    if (EAMXFieldValidation.validateNumberPhone(etNumberPhone.text.toString()) && EAMXFieldValidation.validateNumberLength(
+                    if (EAMXFieldValidation.validateNumberPhone(etNumberPhoneV.text.toString()) && EAMXFieldValidation.validateNumberLength(
                             etNumberPhone.text.toString()
                         )
                     ) {
@@ -240,7 +233,7 @@ class EventDonorFragment : FragmentBase() {
                 }
             }
 
-            etEmail.addTextChangedListener {
+            etEmailV.addTextChangedListener {
                 val text = it?.toString()
                 text?.let { emailTxt ->
                     enableIconStart(tilEmail, Patterns.EMAIL_ADDRESS.matcher(emailTxt).matches())
@@ -257,32 +250,9 @@ class EventDonorFragment : FragmentBase() {
 
     private fun initButtons() {
         binding.apply {
-            val adaptador = ArrayAdapter.createFromResource(
-                requireContext(), R.array.typedonations,
-                android.R.layout.simple_spinner_dropdown_item
-            )
 
-            spTipoDonacion.adapter = adaptador
-            spTipoDonacion.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parent: AdapterView<*>,
-                    view: View?,
-                    position: Int,
-                    id: Long,
-                ) {
-                    donacion =
-                        spTipoDonacion.getItemAtPosition(spTipoDonacion.selectedItemPosition) as String
-                    println(donacion)
 
-                    //donacion = textoSeleccionado
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>) {
-                    lblSeleccion.text = "Sin selección"
-                }
-            }
-
-            btnGuardar.setOnClickListener { donorRegister() }
+            btnGuardar.setOnClickListener { volunteerRegister() }
         }
     }
 
@@ -295,10 +265,10 @@ class EventDonorFragment : FragmentBase() {
         when (success) {
             true -> {
                 input.endIconDrawable =
-                    getDrawable(requireContext(), R.drawable.ic_baseline_check_24)
+                    ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_check_24)
                 input.setEndIconTintList(
                     ColorStateList.valueOf(
-                        getColor(
+                        ContextCompat.getColor(
                             requireContext(),
                             R.color.success
                         )
@@ -306,10 +276,11 @@ class EventDonorFragment : FragmentBase() {
                 )
             }
             false -> {
-                input.endIconDrawable = getDrawable(requireContext(), R.drawable.ic_check_error)
+                input.endIconDrawable =
+                    ContextCompat.getDrawable(requireContext(), R.drawable.ic_check_error)
                 input.setEndIconTintList(
                     ColorStateList.valueOf(
-                        getColor(
+                        ContextCompat.getColor(
                             requireContext(),
                             R.color.error
                         )
@@ -322,15 +293,15 @@ class EventDonorFragment : FragmentBase() {
         }
     }
 
-    private fun donorRegister() {
-        viewModelEvent.validateFormRegisterDonor(
-            etNombreD.text.toString(),
-            etComentarios.text.toString(),
-            diner_id,
-            etEmail.text.toString(),
-            etNumberPhone.text.toString(),
-            "datos bancarios",
-            donacion
+    private fun volunteerRegister() {
+        viewModelEvent.validateFormRegisterVolunteer(
+            etNombreV.text.toString(),
+            etResponsableV.text.toString(),
+            "21",
+            etEmailV.text.toString(),
+            etNumberPhoneV.text.toString(),
+            etgetAddressV.text.toString(),
+            arrayListOf(),
         )
     }
 

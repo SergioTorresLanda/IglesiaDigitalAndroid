@@ -29,6 +29,11 @@ object Constants {
     const val KEY_STATUS = "KEY_STATUS"
     const val KEY_USER_ID = "KEY_USER_ID"
 
+    //DONANTES
+    const val KEY_COMMENT = "KEY_ZONE"
+    const val KEY_BANK = "KEY_DONANTE"
+    const val KEY_TYPEDON = "KEY_VOLUNTIES"
+
     val EMAIL_ADDRESS: Pattern = Pattern.compile(
         "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
                 "\\@" +

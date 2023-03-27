@@ -18,4 +18,10 @@ object WebConfig {
     const val EVENT_VOLUNTEER = "act-voluntariado/voluntario"
     const val EVENT_VOLUNTEER_PATH = "act-voluntariado/voluntario/{voluntarioId}"
 
+    //Obtener donadores por comedor
+    const val GET_DONOR_BY_DINER = "act-voluntariado/comedores/:comedor_id?participantes=DONADORES"
+
+    //Obtener voluntarios por comedor
+    const val GET_VOLUNTEER_BY_DINER = "act-voluntariado/comedores/:comedor_id?participantes=VOLUNTARIOS"
+
 }

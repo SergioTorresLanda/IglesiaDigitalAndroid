@@ -5,10 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import kotlinx.android.synthetic.main.fragment_event.*
 import kotlinx.android.synthetic.main.fragment_event_detail.*
 import kotlinx.android.synthetic.main.fragment_event_detail.spZone
+import kotlinx.android.synthetic.main.item_event_detail.*
+import kotlinx.android.synthetic.main.item_event_detail.view.*
 import mx.arquidiocesis.eamxcommonutils.application.AppMyConstants
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
@@ -18,20 +23,26 @@ import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
 import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
 import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
 import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
+import mx.arquidiocesis.eamxevent.R
 import mx.arquidiocesis.eamxevent.adapter.DinerAllAdapter
 import mx.arquidiocesis.eamxevent.databinding.FragmentEventBinding
 import mx.arquidiocesis.eamxevent.model.*
 import mx.arquidiocesis.eamxevent.model.enum.Delegations
+import mx.arquidiocesis.eamxevent.model.enum.Participation
 import mx.arquidiocesis.eamxevent.repository.RepositoryEvent
 
-const val EDITAR = "EDITAR"
 
+const val EDITAR = "EDITAR"
+const val DONAR = "DONAR"
+const val PARTICIPAR = "PARTICIPAR"
 class EventFragment : FragmentBase() {
 
     lateinit var binding: FragmentEventBinding
     lateinit var viewmodel: ViewModelEvent
     lateinit var adapter: DinerAllAdapter
     private var zona: Int = 0
+    private var type: Int = 0
+    private var participation: Array<Participation> = Participation.values()
     private var delegations: Array<Delegations> = Delegations.values()
     private var init = true
     private var diner_id = ""
@@ -89,8 +100,26 @@ class EventFragment : FragmentBase() {
                         }
                     }
                     init = false
-                    val comedores =
-                        if (zona == 0) item.filter { it.fCSTATUS != "0" } else item.filter { it.fIZONA == zona.toString() && it.fCSTATUS != "0" }
+
+                    val comedores = item.filter {
+                        when (type) {
+                            1 -> {
+                                it.fCVOLUNTARIOS == "1" && it.fCSTATUS == "1"
+                            }
+                            else -> {
+                                it.fCSTATUS == "1"
+                            }
+                        }
+                                &&
+                                when (zona) {
+                                    0 -> {
+                                        it.fCSTATUS == "1"
+                                    }
+                                    else -> {
+                                        it.fIZONA == zona.toString() && it.fCSTATUS == "1"
+                                    }
+                                }
+                    }
                     if (comedores.size > 0) {
                         adapter.items.clear()
                         adapter.notifyDataSetChanged()
@@ -147,6 +176,18 @@ class EventFragment : FragmentBase() {
                     .build().nextWithReplace()
             }
         }
+        tvNewDon.setOnClickListener {
+            if (!init) {
+                NavigationFragment.Builder()
+                    .setActivity(requireActivity())
+                    .setView(requireView().parent as ViewGroup)
+                    .setFragment(EventDonorFragment.newInstance(callBack) as Fragment)
+                    .setBundle(Bundle().apply {
+                        putString("diner_id", diner_id)
+                    })
+                    .build().nextWithReplace()
+            }
+        }
         spZone.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>,
@@ -162,12 +203,34 @@ class EventFragment : FragmentBase() {
                 lblSeleccion.text = "Sin selección"
             }
         }
+
+        val adaptador = ArrayAdapter.createFromResource(
+            requireContext(), R.array.participations,
+            android.R.layout.simple_spinner_dropdown_item
+        )
+
+        spParticipacion.adapter = adaptador
+        spParticipacion.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View?,
+                position: Int,
+                id: Long,
+            ) {
+                type = participation[position].pos
+                println(type)
+                getAllDiners()
+            }
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                lblSeleccion.text = "Sin selección"
+            }
+        }
     }
 
     fun getAllDiners() {
         showLoader()
         adapter =
-            DinerAllAdapter(requireContext(), viewmodel.getFine())
+            DinerAllAdapter(requireContext(), type)
         adapter.items = arrayListOf()//arrayListOf(DinerResponse())
         setupRecyclerView()
         click()
@@ -178,6 +241,26 @@ class EventFragment : FragmentBase() {
         adapter.onItemClickListener = { item, Etiqueta ->
             when (Etiqueta) {
                 EDITAR -> {
+                }
+                DONAR -> {
+                    NavigationFragment.Builder()
+                        .setActivity(requireActivity())
+                        .setView(requireView().parent as ViewGroup)
+                        .setFragment(EventDonorFragment.newInstance(callBack) as Fragment)
+                        .setBundle(Bundle().apply {
+                            putString("diner_id", item.fCCOMEDORID)
+                        })
+                        .build().nextWithReplace()
+                }
+                PARTICIPAR ->{
+                    NavigationFragment.Builder()
+                        .setActivity(requireActivity())
+                        .setView(requireView().parent as ViewGroup)
+                        .setFragment(EventVolunteerFragment.newInstance(callBack) as Fragment)
+                        .setBundle(Bundle().apply {
+                            putString("diner_id", item.fCCOMEDORID)
+                        })
+                        .build().nextWithReplace()
                 }
                 "" -> {
                 }

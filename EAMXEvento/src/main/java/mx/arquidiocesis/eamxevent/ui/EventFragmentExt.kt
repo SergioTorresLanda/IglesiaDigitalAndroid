@@ -1,14 +1,19 @@
 package mx.arquidiocesis.eamxevent.ui
 
+import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_event.*
+import kotlinx.android.synthetic.main.item_event_detail.*
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.common.EAMXProfile
 import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
 import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
+import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
 
 fun EventFragment.setupInit(){
     var guest = eamxcu_preferences.getData(
