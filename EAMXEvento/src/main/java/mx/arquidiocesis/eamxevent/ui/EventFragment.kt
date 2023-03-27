@@ -176,18 +176,6 @@ class EventFragment : FragmentBase() {
                     .build().nextWithReplace()
             }
         }
-        tvNewDon.setOnClickListener {
-            if (!init) {
-                NavigationFragment.Builder()
-                    .setActivity(requireActivity())
-                    .setView(requireView().parent as ViewGroup)
-                    .setFragment(EventDonorFragment.newInstance(callBack) as Fragment)
-                    .setBundle(Bundle().apply {
-                        putString("diner_id", diner_id)
-                    })
-                    .build().nextWithReplace()
-            }
-        }
         spZone.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>,
@@ -258,7 +246,7 @@ class EventFragment : FragmentBase() {
                         .setView(requireView().parent as ViewGroup)
                         .setFragment(EventVolunteerFragment.newInstance(callBack) as Fragment)
                         .setBundle(Bundle().apply {
-                            putString("diner_id", item.fCCOMEDORID)
+                            putString("id_diner", item.fCCOMEDORID)
                         })
                         .build().nextWithReplace()
                 }

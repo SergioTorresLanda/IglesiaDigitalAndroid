@@ -3,24 +3,14 @@ package mx.arquidiocesis.eamxevent.ui
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Patterns
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import androidx.core.content.ContextCompat
 import androidx.core.view.isEmpty
 import androidx.core.widget.addTextChangedListener
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.fragment_event_detail.*
-import kotlinx.android.synthetic.main.fragment_event_detail.etResponsable
-import kotlinx.android.synthetic.main.fragment_event_donor.*
-import kotlinx.android.synthetic.main.fragment_event_donor.btnGuardar
-import kotlinx.android.synthetic.main.fragment_event_donor.etEmail
-import kotlinx.android.synthetic.main.fragment_event_donor.etNumberPhone
-import kotlinx.android.synthetic.main.fragment_event_donor.tilEmail
-import kotlinx.android.synthetic.main.fragment_event_donor.tilNumberPhone
 import kotlinx.android.synthetic.main.fragment_event_volunteer.*
 import mx.arquidiocesis.eamxcommonutils.application.AppMyConstants
 import mx.arquidiocesis.eamxcommonutils.application.validation.EAMXFieldValidation
@@ -34,17 +24,15 @@ import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
 import mx.arquidiocesis.eamxcommonutils.util.getViewModel
 import mx.arquidiocesis.eamxevent.R
 import mx.arquidiocesis.eamxevent.constants.Constants
-import mx.arquidiocesis.eamxevent.databinding.FragmentEventDonorBinding
 import mx.arquidiocesis.eamxevent.databinding.FragmentEventVolunteerBinding
 import mx.arquidiocesis.eamxevent.model.ViewModelEvent
-import mx.arquidiocesis.eamxevent.model.enum.Type_donation
 import mx.arquidiocesis.eamxevent.repository.RepositoryEvent
 
 class EventVolunteerFragment : FragmentBase() {
 
     lateinit var binding: FragmentEventVolunteerBinding
     private val TAG_LOADER: String = "EventFragment"
-    private var diner_id: Int = 0
+    private var id_diner: Int = 0
 
     val email = eamxcu_preferences.getData(
         EAMXEnumUser.USER_EMAIL.name,
@@ -93,20 +81,17 @@ class EventVolunteerFragment : FragmentBase() {
                 putString("screen_class", "Actividades_Voluntario")
             })
         }
+        callBack.showToolbar(true, AppMyConstants.createVoluntario)
         initView()
         initObservers()
         etEmailV.setText(email)
-        etNumberPhoneV.setText(phone.replace("+52", ""))
+        etPhonev.setText(phone.replace("+52", ""))
         requireArguments().let {
-            var id = it.getString("diner_id")
-            if (id != "") {
-                callBack.showToolbar(true, AppMyConstants.updateEvento)
-                id?.let { it1 ->
-                    diner_id = it1.toInt()
-                    getAllDiners(diner_id)
-                }
-            } else {
-                callBack.showToolbar(true, AppMyConstants.detailEvento)
+            var id = it.getString("id_diner")
+            id?.let { it1 ->
+                id_diner = it1.toInt()
+                println(id_diner)
+                //getAllDiners(diner_id)
             }
         }
     }
@@ -117,9 +102,9 @@ class EventVolunteerFragment : FragmentBase() {
             if (item.size > 0) {
                 item.forEach {
                     if (!it.fIUSERID.isNullOrEmpty()) {
-                        etNombreV.setText(it.fCNOMBRE)
+                        etNombreVoluntario.setText(it.fCNOMBRE)
                         etEmailV.setText(it.fCCORREO)
-                            etNumberPhoneV.setText(it.fCTELEFONO!!.replace("+52", ""))
+                            etPhonev.setText(it.fCTELEFONO!!.replace("+52", ""))
                             return@forEach
                         }
                     }
@@ -195,40 +180,40 @@ class EventVolunteerFragment : FragmentBase() {
 
     private fun initView() {
         binding.apply {
-            etNombreV.hint = "Nombre del voluntario"
+            etNombreVoluntario.hint = "Nombre del voluntario"
 
-            etNombreV.addTextChangedListener {
-                if (etNombreV.text.toString().isNotEmpty()) {
-                    tilNombreV.error = null
-                    enableIconStart(tilNombreV, true)
+            etNombreVoluntario.addTextChangedListener {
+                if (etNombreVoluntario.text.toString().isNotEmpty()) {
+                    tilNombreVoluntario.error = null
+                    enableIconStart(tilNombreVoluntario, true)
                 } else {
-                    tilNombreV.error = getString(R.string.enter_diner_name)
-                    enableIconStart(tilNombreV, null)
+                    tilNombreVoluntario.error = getString(R.string.enter_diner_name)
+                    enableIconStart(tilNombreVoluntario, null)
                 }
             }
 
-            etNumberPhoneV.addTextChangedListener {
-                val validatePhone = etNumberPhoneV.text.toString().validNumberPhoneContent()
+            etPhonev.addTextChangedListener {
+                val validatePhone = etPhonev.text.toString().validNumberPhoneContent()
                 enableIconStart(
-                    tilNumberPhone,
+                    tilPhonev,
                     validatePhone
                 )
-                if (etNumberPhoneV.text.toString().isEmpty()) {
-                    enableIconStart(tilNumberPhone, null)
-                    tilNumberPhone.isEmpty()
-                    tilNumberPhone.error = getString(R.string.min_phone)
+                if (etPhonev.text.toString().isEmpty()) {
+                    enableIconStart(tilPhonev, null)
+                    tilPhonev.isEmpty()
+                    tilPhonev.error = getString(R.string.min_phone)
                 } else {
-                    if (EAMXFieldValidation.validateNumberPhone(etNumberPhoneV.text.toString()) && EAMXFieldValidation.validateNumberLength(
-                            etNumberPhone.text.toString()
+                    if (EAMXFieldValidation.validateNumberPhone(etPhonev.text.toString()) && EAMXFieldValidation.validateNumberLength(
+                            etPhonev.text.toString()
                         )
                     ) {
-                        tilNumberPhone.error = null
+                        tilPhonev.error = null
                     }
-                    if (!EAMXFieldValidation.validateNumberPhone(etNumberPhone.text.toString())) {
-                        tilNumberPhone.error = getString(R.string.wrong_phone_number)
+                    if (!EAMXFieldValidation.validateNumberPhone(etPhonev.text.toString())) {
+                        tilPhonev.error = getString(R.string.wrong_phone_number)
                     }
-                    if (!EAMXFieldValidation.validateNumberLength(etNumberPhone.text.toString())) {
-                        tilNumberPhone.error = getString(R.string.min_phone)
+                    if (!EAMXFieldValidation.validateNumberLength(etPhonev.text.toString())) {
+                        tilPhonev.error = getString(R.string.min_phone)
                     }
                 }
             }
@@ -295,13 +280,13 @@ class EventVolunteerFragment : FragmentBase() {
 
     private fun volunteerRegister() {
         viewModelEvent.validateFormRegisterVolunteer(
-            etNombreV.text.toString(),
-            etResponsableV.text.toString(),
-            "21",
+            etNombreVoluntario.text.toString(),
+            etResponsableVoluntario.text.toString(),
+            id_diner.toString(),
             etEmailV.text.toString(),
-            etNumberPhoneV.text.toString(),
-            etgetAddressV.text.toString(),
-            arrayListOf(),
+            etPhonev.text.toString(),
+            etgetAddressVoluntario.text.toString(),
+            arrayListOf()
         )
     }
 
