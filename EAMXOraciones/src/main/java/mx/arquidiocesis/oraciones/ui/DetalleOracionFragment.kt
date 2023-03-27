@@ -4,11 +4,13 @@ import android.content.*
 import android.graphics.Bitmap
 import android.net.Uri
 import android.net.Uri.parse
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import com.bumptech.glide.Glide
 import com.arquidiocesis.oraciones.databinding.FragmentDetalleOracionBinding
 import com.bumptech.glide.request.RequestOptions
@@ -21,6 +23,7 @@ import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
 import mx.arquidiocesis.oraciones.repository.Repository
 import mx.arquidiocesis.oraciones.viewmodel.OracionDetallesViewModel
 import java.io.ByteArrayOutputStream
+import java.time.LocalDateTime
 
 class DetalleOracionFragment : FragmentBase() {
 
@@ -46,6 +49,7 @@ class DetalleOracionFragment : FragmentBase() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.let {
@@ -68,6 +72,7 @@ class DetalleOracionFragment : FragmentBase() {
         initObservers()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun initObservers() {
 
         oracionDetalleViewModel.response.observe(viewLifecycleOwner) { oracionModel ->
@@ -82,7 +87,6 @@ class DetalleOracionFragment : FragmentBase() {
                 val image: Bitmap = binding.ivDetalleOracion.getDrawingCache()
                 val share = Intent(Intent.ACTION_SEND)
                 share.type = "image/*"
-                println(image)
                 share.putExtra(Intent.EXTRA_STREAM, getImageUri(requireActivity(), image))
                 startActivity(Intent.createChooser(share, "Compartir con"))
             }
@@ -102,13 +106,15 @@ class DetalleOracionFragment : FragmentBase() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun getImageUri(inContext: Context, inImage: Bitmap): Uri? {
+        val datetime = LocalDateTime.now()
         val bytes = ByteArrayOutputStream()
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
         val path = MediaStore.Images.Media.insertImage(
             inContext.contentResolver,
             inImage,
-            "Title",
+            "Oracion_${datetime.hour}_${datetime.minute}_${datetime.second}",
             null
         )
         return parse(path)

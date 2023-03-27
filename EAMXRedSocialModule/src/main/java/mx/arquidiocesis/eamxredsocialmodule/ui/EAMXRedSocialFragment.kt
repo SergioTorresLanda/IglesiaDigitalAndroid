@@ -105,7 +105,7 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, var id_user: Int) : Fragme
                     if (!resultModel.posts.isNullOrEmpty()) {
                         resultModel.posts.forEach {
                             it.multimedia.forEach {
-                                if (it.format == "jpeg" || it.format == "jpg")
+                                if (it.format == "jpeg" || it.format == "jpg" || it.format == "image/jpeg" || it.format == "image/jpg" )
                                     it.format = "image"
                             }
                         }
@@ -430,6 +430,7 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, var id_user: Int) : Fragme
 // Crea un ArrayList para almacenar los objetos Bitmap de las miniaturas de las imágenes
         val thumbnailBitmaps = ArrayList<Bitmap>()
 
+        showLoader()
 // Carga las miniaturas de las imágenes utilizando Glide
         for (imageUrl in imageUrls) {
             Glide.with(this)
@@ -469,44 +470,14 @@ class EAMXRedSocialFragment(val isPrincipal: Boolean, var id_user: Int) : Fragme
             thumbnailUris.add(thumbnailUri)
         }
 
-
         shareIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, thumbnailUris)
-
-        startActivity(Intent.createChooser(shareIntent, "Compartir imágenes por WhatsApp"))
+        hideLoader()
+        startActivity(Intent.createChooser(shareIntent, "Compartir con"))
 
 
         for (image in thumbnailBitmaps) {
             image.recycle()
         }
-    }
-
-    private fun saveImageAndGetUri(image: Bitmap): Uri? {
-        val imagesFolder = File(
-            Environment.getExternalStorageDirectory(), "NombreDeTuCarpeta"
-        )
-
-        if (!imagesFolder.exists()) {
-            imagesFolder.mkdirs()
-        }
-
-        val fileName = "Imagen_${System.currentTimeMillis()}.jpg"
-        val file = File(imagesFolder, fileName)
-
-        try {
-            val stream: OutputStream = FileOutputStream(file)
-            image.compress(Bitmap.CompressFormat.JPEG, 100, stream)
-            stream.flush()
-            stream.close()
-        } catch (e: IOException) {
-            Log.d("TAG", "IOException while trying to write file for sharing: " + e.message)
-            return null
-        }
-
-        return FileProvider.getUriForFile(
-            requireContext(),
-            "${requireContext().applicationContext.packageName}.provider",
-            file
-        )
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

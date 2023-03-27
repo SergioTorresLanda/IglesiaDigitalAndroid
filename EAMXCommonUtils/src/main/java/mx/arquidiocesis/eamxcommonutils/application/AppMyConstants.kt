@@ -1,6 +1,5 @@
 package mx.arquidiocesis.eamxcommonutils.application
 
-import mx.arquidiocesis.eamxcommonutils.BuildConfig
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumsEndPoint
 import java.util.*
 
@@ -43,7 +42,8 @@ object AppMyConstants {
     const val detailEvento = "Alta de comedores"
     const val createEvento = "Crear un comedor"
     const val updateEvento = "Actualizar mi comedor"
-    const val createDonador = "Crear donador"
+    const val createDonador = "Alta de donador"
+    const val createVoluntario = "Alta de voluntario"
     const val perfil = "Perfil"
     const val expanded = "Expanded"
     const val servicios = "Servicios"
