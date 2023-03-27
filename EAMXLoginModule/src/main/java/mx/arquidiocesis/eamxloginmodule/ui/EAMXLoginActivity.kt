@@ -51,7 +51,6 @@ class EAMXLoginActivity : EAMXBaseActivity() {
     private lateinit var biometricPrompt: BiometricPrompt
     private lateinit var promptInfo: BiometricPrompt.PromptInfo
     private var bio = false
-    private var noInvitado = false
     private var doubleBackToExitPressedOnce = false
     override fun getLayout() = R.layout.eamxl_login_activity
 
@@ -117,13 +116,16 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                             ) as String
                             val actUse = etEmail.text.toString()
                             if (number != actUse || email != actUse) {
-                                var guest = msgGuest(isMsg = false)
+                                var guest_aut = getData(
+                                    EAMXEnumUser.GUEST_AUTH.name,
+                                    EAMXTypeObject.BOOLEAN_OBJECT
+                                ) as Boolean
                                 removeFile()
                                 saveData(
                                     EAMXEnumUser.USER_PASSWORD.name,
                                     etPassword.text.toString()
                                 )
-                                saveData(EAMXEnumUser.GUEST.name, guest)
+                                saveData(EAMXEnumUser.GUEST.name, guest_aut)
                             }
                         }
                         response.successData?.UserAttributes?.apply {
@@ -243,7 +245,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
             showLogin()
         }
         btnContinuarSinRegistro.setOnClickListener {
-            ingrsoGUEST()
+            ingresoGUEST()
         }
         mBinding.apply {
             mBinding.etEmail.setText("")
@@ -257,14 +259,11 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                 highlightButton(btnRegistrar)
             } else {
                 highlightButton(btnLogin)
-                if (!msgGuest(isMsg = false)) {
-                    tvBiometric.visibility = View.VISIBLE
-                }
+                tvBiometric.visibility = if (!msgGuest(isMsg = false)) View.VISIBLE else View.GONE
                 hideLogin()
             }
             btnIngresar.setOnClickListener {
-                tvBiometric.visibility = View.VISIBLE
-                noInvitado = true
+                tvBiometric.visibility = if (!msgGuest(isMsg = false)) View.VISIBLE else View.GONE
                 ingresar()
                 EAMXFirebaseManager(applicationContext).setLogEvent("screen_view", Bundle().apply {
                     putString("screen_class", "Login_Login")
@@ -284,8 +283,8 @@ class EAMXLoginActivity : EAMXBaseActivity() {
         }
     }
 
-    private fun ingrsoGUEST() {
-        eamxcu_preferences.saveData(EAMXEnumUser.GUEST.name, true)
+    private fun ingresoGUEST() {
+        eamxcu_preferences.saveData(EAMXEnumUser.GUEST_AUTH.name, true)
         // Access a Cloud Firestore instance from your Activity
         val db = Firebase.firestore
         db.collection(ConstansApp.usrDummy())
@@ -348,6 +347,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                     ).show()
                     tvBiometric.visibility = View.GONE
                 }
+
                 override fun onAuthenticationSucceeded(
                     result: BiometricPrompt.AuthenticationResult,
                 ) {
@@ -367,6 +367,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                         arraylistValidations
                     )
                 }
+
                 override fun onAuthenticationFailed() {
                     super.onAuthenticationFailed()
                     Toast.makeText(
@@ -404,18 +405,16 @@ class EAMXLoginActivity : EAMXBaseActivity() {
     }
 
     fun showLogin() {
+        eamxcu_preferences.saveData(EAMXEnumUser.GUEST_AUTH.name, false)
         val pass = eamxcu_preferences.getData(
             EAMXEnumUser.USER_PASSWORD.toString(),
             EAMXTypeObject.STRING_OBJECT
         ) as String
         val guest = msgGuest(isMsg = false)
-        if (pass.isEmpty()) {
-        } else {
-            if (!guest) {
-                biometric()
-                tvBiometric.setOnClickListener {
-                    biometricPrompt.authenticate(promptInfo)
-                }
+        if (pass.isNotEmpty() && !guest) {
+            biometric()
+            tvBiometric.setOnClickListener {
+                biometricPrompt.authenticate(promptInfo)
             }
         }
         mBinding.apply {
@@ -435,14 +434,8 @@ class EAMXLoginActivity : EAMXBaseActivity() {
             btnContinuarSinRegistro.visibility = View.GONE
             textView5.setText(R.string.sign_in_login)
             textView15.setText(R.string.nice_to_see_you_again)
-            tvBiometric.visibility = View.VISIBLE
-        }
-        if (pass.isEmpty()) {
-            mBinding.tvBiometric.visibility = View.GONE
-        } else {
-            if (!guest) {
-                tvBiometric.visibility = View.VISIBLE
-            }
+            tvBiometric.visibility =
+                if (pass.isEmpty()) View.GONE else if (!guest) View.VISIBLE else View.GONE
         }
     }
 
