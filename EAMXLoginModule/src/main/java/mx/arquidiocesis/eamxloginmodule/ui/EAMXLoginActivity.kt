@@ -196,6 +196,15 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                 }
                 EAMXStatusRequestEnum.NONE -> {
                     hideProgressBarCustom()
+                    if (eamxcu_preferences.getData(
+                            EAMXEnumUser.GUEST_AUTH.name,
+                            EAMXTypeObject.BOOLEAN_OBJECT
+                        ) as Boolean
+                    ) {
+                        mBinding.etEmail.setText("")
+                        mBinding.etPassword.setText("")
+                        eamxcu_preferences.saveData(EAMXEnumUser.GUEST_AUTH.name, false)
+                    }
                 }
             }
         }
@@ -250,13 +259,13 @@ class EAMXLoginActivity : EAMXBaseActivity() {
         mBinding.apply {
             mBinding.etEmail.setText("")
             mBinding.etPassword.setText("")
-            val pass = eamxcu_preferences.getData(
-                EAMXEnumUser.USER_PASSWORD.toString(),
-                EAMXTypeObject.STRING_OBJECT
-            ) as String
-            pass.trim()
-            if (pass.isEmpty()) {
-                highlightButton(btnRegistrar)
+            if ((eamxcu_preferences.getData(
+                    EAMXEnumUser.USER_PASSWORD.toString(),
+                    EAMXTypeObject.STRING_OBJECT
+                ) as String).trim().isEmpty()
+            ) {
+                //highlightButton(btnRegistrar)
+                ingresoGUEST()
             } else {
                 highlightButton(btnLogin)
                 tvBiometric.visibility = if (!msgGuest(isMsg = false)) View.VISIBLE else View.GONE
@@ -450,6 +459,9 @@ class EAMXLoginActivity : EAMXBaseActivity() {
         hideLogin()
         if (doubleBackToExitPressedOnce) {
             super.onBackPressed()
+            if (msgGuest(isMsg = false)) {
+                eamxcu_preferences.removeFile()
+            }
             return
         }
         this.doubleBackToExitPressedOnce = true
@@ -457,5 +469,16 @@ class EAMXLoginActivity : EAMXBaseActivity() {
         Handler(Looper.getMainLooper()).postDelayed(Runnable {
             doubleBackToExitPressedOnce = false
         }, 2000)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        if (msgGuest(isMsg = false) && !(eamxcu_preferences.getData(
+                EAMXEnumUser.SESSION.name,
+                EAMXTypeObject.BOOLEAN_OBJECT
+            ) as Boolean)
+        ) {
+            eamxcu_preferences.removeFile()
+        }
     }
 }
