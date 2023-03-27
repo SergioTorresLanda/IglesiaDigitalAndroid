@@ -473,7 +473,8 @@ class EAMXLoginActivity : EAMXBaseActivity() {
 
     override fun onStop() {
         super.onStop()
-        if (msgGuest(isMsg = false) && !(eamxcu_preferences.getData(
+        //msgGuest(isMsg = false) &&
+        if (!(eamxcu_preferences.getData(
                 EAMXEnumUser.SESSION.name,
                 EAMXTypeObject.BOOLEAN_OBJECT
             ) as Boolean)
