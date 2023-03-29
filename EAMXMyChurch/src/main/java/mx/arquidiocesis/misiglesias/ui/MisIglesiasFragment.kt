@@ -25,6 +25,7 @@ import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
 import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
 import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
 import mx.arquidiocesis.eamxcommonutils.util.getViewModel
+import mx.arquidiocesis.eamxcommonutils.util.loadByUrlIntDrawableerror
 import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
 import mx.arquidiocesis.eamxcommonutils.util.permission.UtilValidPermission
 import mx.arquidiocesis.eamxmaps.ui.MapFragment
@@ -140,13 +141,7 @@ class MisIglesiasFragment : FragmentBase() {
                 tvChangePrincipal.visibility = View.VISIBLE
                 binding.clPrincipal.iPrincipal.apply {
                     tvTitulo.text = item.name
-                    if (item.image_url != null) {
-                        Glide.with(requireContext())
-                            .load(Uri.parse(item.image_url))
-                            .into(ivChurch)
-                    } else {
-                        ivChurch.setImageDrawable(context?.getDrawable(R.drawable.emptychurch))
-                    }
+                    ivChurch.loadByUrlIntDrawableerror(item.image_url.toString(),R.drawable.emptychurch)
                     if (!item.schedules.isNullOrEmpty()) {
                         tvHorarioss.text = ""
                         item.schedules.forEach {

@@ -185,15 +185,7 @@ class DetailChurchFindedFragment : FragmentBase() {
             churchDetaillModel = it
             detalleIglesiaViewModel.favoritasList()
             binding.apply {
-                if (it.image_url.isNullOrEmpty()) {
-                    Glide.with(requireContext())
-                        .load(R.drawable.defaultimage)
-                        .into(binding.ivChurch)
-                } else {
-                    Glide.with(requireContext())
-                        .load(Uri.parse(it.image_url))
-                        .into(binding.ivChurch)
-                }
+                ivChurch.loadByUrlIntDrawableerror(it.image_url.toString(),R.drawable.emptychurch)
                 tvNombreIglesia.text = it.name
                 nombre = it.name.toString()
                 tvDescripcionIglesia.text = it.description
@@ -211,13 +203,13 @@ class DetailChurchFindedFragment : FragmentBase() {
                 if (!it.schedules.isNullOrEmpty()) {
                     lnlHora.visibility = View.VISIBLE
                     val item = it.schedules!!.first()
-                    tvHT.text = "Horario de templo:"
+                    tvHT.text = "Horario de templo: "
                     tvHorarioTemplo.text =
-                        "${PublicFunctions().obtenerDias(item.days)} de ${item.hour_start} a ${item.hour_end} \n"
+                        "${PublicFunctions().obtenerDias(item.days)} de\n ${item.hour_start} a ${item.hour_end} \n"
 
                 } else {
                     lnlHora.visibility = View.VISIBLE
-                    tvHT.text = "Horario de templo:"
+                    tvHT.text = "Horario de templo: "
                     tvHorarioTemplo.text =
                         "No disponible"
 
@@ -649,7 +641,7 @@ class DetailChurchFindedFragment : FragmentBase() {
                     if (it.status == true) {
                         var count = i
                         for (i in i..count) {
-                            horas += "${list[i].hours.start_hour} a ${list[i].hours.end_hour}\n"
+                            horas += "${if((list[i].hours.start_hour).isNullOrEmpty()) "" else list[i].hours.start_hour} a ${if((list[i].hours.end_hour).isNullOrEmpty()) "" else list[i].hours.end_hour}\n"
                         }
                     }
 

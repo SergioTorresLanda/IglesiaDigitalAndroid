@@ -150,8 +150,8 @@ Cuenta con un impresionante vitral de Victor Vasarely."
                             android:text="Bosques de la Reforma 486, Bosques de  las Lomas, Miguel Hidalgo, 11700,  Ciudad de México, CDMX"
                             android:textColor="#363636"
                             android:textSize="12sp"
-                            android:visibility="gone"
                             android:textStyle="normal"
+                            android:visibility="gone"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tvResponsable" />
@@ -161,8 +161,8 @@ Cuenta con un impresionante vitral de Victor Vasarely."
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:visibility="gone"
                             android:padding="8dp"
+                            android:visibility="gone"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tvDireccionIglesia">
 
@@ -171,66 +171,78 @@ Cuenta con un impresionante vitral de Victor Vasarely."
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="8dp"
-                                android:layout_marginTop="8dp"
+                                android:layout_marginTop="6dp"
                                 android:drawableLeft="@drawable/ic_calendario"
                                 android:textColor="#363636"
                                 android:textSize="12sp"
                                 android:textStyle="normal" />
 
                             <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="14dp"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/tvHT"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="8dp"
-                                    android:textColor="#363636"
-                                    android:textSize="12sp"
-                                    android:textStyle="normal"
-                                    tools:text="Horario de templo:" />
-
-                                <TextView
-                                    android:id="@+id/tvHS"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
-                                    android:textColor="#363636"
-                                    android:textSize="12sp"
-                                    android:textStyle="normal"
-                                    tools:text="Horarios de oficina:" />
-                            </LinearLayout>
-                            <LinearLayout
+                                android:id="@+id/lnlHora_"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
-                                <TextView
-                                    android:id="@+id/tvHorarioTemplo"
+
+                                <LinearLayout
+                                    android:id="@+id/ll_horario_templo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="14dp"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/tvHT"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
+                                        android:textColor="#363636"
+                                        android:textSize="12sp"
+                                        android:textStyle="normal"
+                                        tools:text="Horario de templo: " />
+
+                                    <TextView
+                                        android:id="@+id/tvHorarioTemplo"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
+                                        android:lineSpacingExtra="3sp"
+                                        android:textColor="#363636"
+                                        android:textSize="12sp"
+                                        android:textStyle="normal"
+                                        tools:text="00:00 a 00:00" />
+                                    <!--
+                                        app:layout_constraintStart_toEndOf="@+id/tvH"
+                                        app:layout_constraintTop_toBottomOf="@+id/tvDireccionIglesia"-->
+                                </LinearLayout>
+
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:lineSpacingExtra="3sp"
-                                    android:layout_marginHorizontal="5dp"
-                                    android:layout_marginTop="8dp"
-                                    android:textColor="#363636"
-                                    android:textSize="12sp"
-                                    android:textStyle="normal"
-                                    app:layout_constraintStart_toEndOf="@+id/tvH"
-                                    app:layout_constraintTop_toBottomOf="@+id/tvDireccionIglesia"
-                                    tools:text="00:00 a 00:00" />
-                                <TextView
-                                    android:id="@+id/tvHorario"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:lineSpacingExtra="3sp"
-                                    android:layout_marginHorizontal="5dp"
-                                    android:layout_marginTop="5dp"
-                                    android:textColor="#363636"
-                                    android:textSize="12sp"
-                                    android:textStyle="normal"
-                                    tools:text="Lunes:\n 00:00 a 00:00" />
+                                    android:layout_marginLeft="14dp"
+                                    android:orientation="horizontal"
+                                    app:layout_constraintTop_toBottomOf="@+id/ll_horario_templo">
+
+                                    <TextView
+                                        android:id="@+id/tvHS"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="2dp"
+                                        android:textColor="#363636"
+                                        android:textSize="12sp"
+                                        android:textStyle="normal"
+                                        tools:text="Horarios de oficina: " />
+
+                                    <TextView
+                                        android:id="@+id/tvHorario"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="2dp"
+                                        android:lineSpacingExtra="3sp"
+                                        android:textColor="#363636"
+                                        android:textSize="12sp"
+                                        android:textStyle="normal"
+                                        tools:text="00:00 a 00:00" />
+                                </LinearLayout>
                             </LinearLayout>
                         </LinearLayout>
 
@@ -284,10 +296,10 @@ Cuenta con un impresionante vitral de Victor Vasarely."
                             android:layout_marginEnd="16dp"
                             android:layout_marginBottom="32dp"
                             android:background="@drawable/ic_btn_fondo"
-                            android:textSize="@dimen/size_12"
                             android:text="¡Llévame!"
                             android:textAppearance="@style/TextAppearance.AppCompat"
                             android:textColor="@color/edittext_background_color"
+                            android:textSize="@dimen/size_12"
                             app:cornerRadius="16dp"
                             app:elevation="16dp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -373,6 +385,7 @@ Cuenta con un impresionante vitral de Victor Vasarely."
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tvTwiter"
                             tools:text="\ufeff@miiglesia" />
+
                         <TextView
                             android:id="@+id/tvInstagram"
                             android:layout_width="0dp"
@@ -392,6 +405,7 @@ Cuenta con un impresionante vitral de Victor Vasarely."
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tvFacebook"
                             tools:text="\ufeff@miiglesia" />
+
                         <TextView
                             android:id="@+id/tvStreaming"
                             android:layout_width="0dp"
@@ -496,10 +510,10 @@ Cuenta con un impresionante vitral de Victor Vasarely."
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:isIndicator="true"
                     android:scaleX=".8"
                     android:scaleY=".8"
                     android:theme="@style/RatingBar"
-                    android:isIndicator="true"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvComentarios" />
 
@@ -538,8 +552,8 @@ Cuenta con un impresionante vitral de Victor Vasarely."
                     android:background="@drawable/ic_btn_fondo"
                     android:text="Escribir una opinión"
                     android:textAppearance="@style/TextAppearance.AppCompat"
-                    android:textSize="@dimen/size_10"
                     android:textColor="@color/edittext_background_color"
+                    android:textSize="@dimen/size_10"
                     app:cornerRadius="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/tvComentarios"
