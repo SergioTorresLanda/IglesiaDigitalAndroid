@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.fragment.app.Fragment
 import com.upax.formacion.R
 import com.upax.formacion.databinding.FragmentFormacionNewBinding
 import mx.arquidiocesis.eamxcommonutils.application.AppMyConstants
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.common.EAMXHome
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
+import mx.arquidiocesis.eamxcommonutils.multimedia.EAMXPdfFragment
 import mx.arquidiocesis.eamxcommonutils.util.getViewModel
 import mx.arquidiocesis.eamxcommonutils.util.openYoutubeApi
 import mx.arquidiocesis.eamxcommonutils.util.visibility
@@ -22,6 +24,7 @@ import mx.upax.formacion.model.FeaturedModel
 import mx.upax.formacion.repository.Repository
 import mx.upax.formacion.viewModel.FormationViewModel
 import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
+import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
 
 const val PDF = "FILE"
 const val YOUTUBE = "VIDEO"
@@ -175,15 +178,31 @@ class FormationFragment: FragmentBase() {
 
     private fun executeIntentWeb(item: BaseModel) {
         viewModel.updateViewInItem(item.id)
-        val fragment = OpenDataFragment.newInstance(callBack)
-        fragment.apply {
-            arguments = Bundle().apply {
-                putString(item.type, item.url)
+        if ((item.url).toString().endsWith(".pdf")){
+            changeFragment(EAMXPdfFragment(), Bundle().apply {
+                putString("pdf", item.url)
+            })
+        } else {
+            val fragment = OpenDataFragment.newInstance(callBack)
+            fragment.apply {
+                arguments = Bundle().apply {
+                    putString(item.type, item.url)
+                }
             }
+            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+            transaction.add((requireView().parent as ViewGroup).id, fragment)
+            transaction.addToBackStack(TAG)
+            transaction.commit()
         }
-        val transaction = requireActivity().supportFragmentManager.beginTransaction()
-        transaction.add((requireView().parent as ViewGroup).id, fragment)
-        transaction.addToBackStack(TAG)
-        transaction.commit()
+    }
+
+    private fun changeFragment(fragment: Fragment, bundle: Bundle) {
+        NavigationFragment.Builder()
+            .setActivity(requireActivity())
+            .setView(requireView().parent as ViewGroup)
+            .setBundle(bundle)
+            .setFragment(fragment)
+            .setAllowStack(true)
+            .build().nextWithReplace()
     }
 }
