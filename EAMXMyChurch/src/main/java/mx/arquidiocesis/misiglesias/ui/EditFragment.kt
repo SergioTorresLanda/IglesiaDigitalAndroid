@@ -16,6 +16,7 @@ import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.common.EAMXHome
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
 import mx.arquidiocesis.eamxcommonutils.util.getViewModel
+import mx.arquidiocesis.eamxcommonutils.util.loadByUrlIntDrawableerror
 import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
 import mx.arquidiocesis.eamxcommonutils.util.review.ReviewFragment
 import mx.arquidiocesis.misiglesias.R
@@ -170,6 +171,8 @@ class EditFragment(val church: ChurchDetaillModel) : FragmentBase() {
 
     fun iniEdit(churchDetaillModel: ChurchDetaillModel) {
         binding.apply {
+            ivChurch.loadByUrlIntDrawableerror(churchDetaillModel.image_url.toString(),R.drawable.emptychurch)
+/*
             if (churchDetaillModel.image_url.isNullOrEmpty()) {
                 Glide.with(requireContext())
                     .load(R.drawable.defaultimage)
@@ -178,7 +181,7 @@ class EditFragment(val church: ChurchDetaillModel) : FragmentBase() {
                 Glide.with(requireContext())
                     .load(Uri.parse(churchDetaillModel.image_url))
                     .into(binding.ivChurch)
-            }
+            }*/
 
             tvNombreIglesia.text = churchDetaillModel.name
             tvDescripcionIglesia.text = churchDetaillModel.description
