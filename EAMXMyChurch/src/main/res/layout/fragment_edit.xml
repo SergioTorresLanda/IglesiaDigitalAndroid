@@ -13,7 +13,7 @@
             <ImageView
                 android:id="@+id/ivChurch"
                 android:layout_width="0dp"
-                android:layout_height="260dp"
+                android:layout_height="200dp"
                 android:scaleType="fitXY"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -85,15 +85,15 @@ class EAMXHomeFragment : EAMXBaseFragment() {
     }
 
     override fun initView(view: View) {
+        //Consulta de contenido en carruseles
+        getTopics()
+        //Para ver Si existen transmisiones
+        viewModelLive.getExistsLiveVideos()
         setFullUserName()
         initOnClickListener(this.signOut!!)
         visibleModulesByProfile()
         //Consultar de datos del usuario
         viewModelProfile.getUserDetailAndSaveProfile(true)
-        //Para ver Si existen transmisiones
-        viewModelLive.getExistsLiveVideos()
-        //Consulta de contenido en carruseles
-        getTopics()
     }
 
     //Instancia de objeto
@@ -122,6 +122,7 @@ class EAMXHomeFragment : EAMXBaseFragment() {
             tokenViewModel.dataHomeReleaseResponse.observe(this) { response1 ->
                 existNews = !response1.isNullOrEmpty()
                 if (existNews && existSaint) {
+                    LDHRR
                     if (response1.size == 2) {
                         LDHRR.postValue(
                             listOf(
@@ -213,7 +214,7 @@ class EAMXHomeFragment : EAMXBaseFragment() {
                             bundle.putString("audio", suggestion.article_url)
                             bundle.putString("titulo", suggestion.title)
                             changeFragment(EAMXPlayerFragment(), bundle)
-                        } else if (suggestion.type == PDF || suggestion.type == FILE) {
+                        } else if (suggestion.type == PDF || suggestion.type == FILE || (suggestion.article_url).toString().endsWith(".pdf")) {
                             //IR a fragment: "pdf" : suggestion.article_url
                             bundle.putString("pdf", suggestion.article_url)
                             changeFragment(EAMXPdfFragment(), bundle)

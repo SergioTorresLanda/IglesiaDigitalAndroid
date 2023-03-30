@@ -16,6 +16,7 @@ import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.common.EAMXHome
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
 import mx.arquidiocesis.eamxcommonutils.util.getViewModel
+import mx.arquidiocesis.eamxcommonutils.util.loadByUrlIntDrawableerror
 import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
 import mx.arquidiocesis.eamxcommonutils.util.review.ReviewFragment
 import mx.arquidiocesis.misiglesias.R
@@ -170,16 +171,7 @@ class EditFragment(val church: ChurchDetaillModel) : FragmentBase() {
 
     fun iniEdit(churchDetaillModel: ChurchDetaillModel) {
         binding.apply {
-            if (churchDetaillModel.image_url.isNullOrEmpty()) {
-                Glide.with(requireContext())
-                    .load(R.drawable.defaultimage)
-                    .into(binding.ivChurch)
-            } else {
-                Glide.with(requireContext())
-                    .load(Uri.parse(churchDetaillModel.image_url))
-                    .into(binding.ivChurch)
-            }
-
+            ivChurch.loadByUrlIntDrawableerror(churchDetaillModel.image_url.toString(),R.drawable.emptychurch)
             tvNombreIglesia.text = churchDetaillModel.name
             tvDescripcionIglesia.text = churchDetaillModel.description
             if (!churchDetaillModel.principal?.name.isNullOrEmpty()) {
@@ -194,8 +186,6 @@ class EditFragment(val church: ChurchDetaillModel) : FragmentBase() {
                 val item = churchDetaillModel.schedules!!.first()
                 tvHorario.text =
                     "Horario del templo: ${PublicFunctions().obtenerDias(item.days)} de ${item.hour_start} a ${item.hour_end} \n"
-
-
             }
             if (!churchDetaillModel.attention.isNullOrEmpty()) {
                 val item = churchDetaillModel.attention!!.first()

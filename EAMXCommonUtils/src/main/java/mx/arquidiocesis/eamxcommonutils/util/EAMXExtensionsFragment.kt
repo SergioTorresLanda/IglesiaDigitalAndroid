@@ -92,7 +92,8 @@ private fun userCanAccessModule(module : String) : Boolean {
                 EAMXProfile.Priest.rol,
                 EAMXProfile.PriestAdmin.rol,
                 EAMXProfile.DevotedAdmin.rol,
-                EAMXProfile.DeanPriest.rol -> true
+                EAMXProfile.DeanPriest.rol,
+                EAMXProfile.VicariaClero.rol -> true
                 else -> false
             }
         }

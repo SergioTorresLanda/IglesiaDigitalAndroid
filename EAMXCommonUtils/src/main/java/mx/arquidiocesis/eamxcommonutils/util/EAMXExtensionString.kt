@@ -56,7 +56,12 @@ fun String.extraIdUrlVideoYoutube(): String {
     return if (matcher.find()) {
         matcher.group()
     } else {
-        ""
+        val array_str = this.split("/")
+        if (array_str.size>0){
+            array_str[array_str.lastIndex]
+        } else {
+            ""
+        }
     }
 }
 
