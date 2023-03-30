@@ -392,7 +392,7 @@ class EventVolunteerDetailFragment : FragmentBase() {
             }
 
             btnGuardarVoluntario.setOnClickListener { volunteerRegister() }
-            btnCancelVoluntario.setOnClickListener{activity?.onBackPressedDispatcher?.onBackPressed() }
+            //btnCancelVoluntario.setOnClickListener{activity?.onBackPressedDispatcher?.onBackPressed() }
             tvAddressVoluntario.setOnClickListener { showMap() }
         }
     }

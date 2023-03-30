@@ -312,7 +312,7 @@ class EventDonorDetailFragment : FragmentBase() {
             }
 
             btnGuardar.setOnClickListener { donorRegister() }
-            btnCancel.setOnClickListener { activity?.onBackPressedDispatcher?.onBackPressed() }
+            //btnCancel.setOnClickListener { activity?.onBackPressedDispatcher?.onBackPressed() }
         }
     }
 
