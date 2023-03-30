@@ -185,7 +185,7 @@
 
                 <ImageView
                     android:id="@+id/ivInformacion"
-                    android:layout_width="49dp"
+                    android:layout_width="44dp"
                     android:layout_height="match_parent"
                     android:layout_marginTop="0dp"
                     android:layout_marginBottom="7dp"
