@@ -15,7 +15,7 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:id="@+id/lNombreC"
+                android:id="@+id/llBotones"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -24,6 +24,41 @@
                 android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="MissingConstraints">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnDonadores"
+                    style="@style/StylebtnParticipacion"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/border_radius"
+                    android:gravity="center"
+                    android:text="Donares"
+                    android:textAppearance="@style/TextAppearance.AppCompat" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnVoluntarios"
+                    style="@style/StylebtnParticipacion"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/border_radius"
+                    android:gravity="center"
+                    android:text="Voluntarios"
+                    android:textAppearance="@style/TextAppearance.AppCompat" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lNombreC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llBotones">
 
                 <TextView
                     android:id="@+id/tvNombreC"
@@ -38,7 +73,6 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintTop_toBottomOf="parent" />
-
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilNombreC"
