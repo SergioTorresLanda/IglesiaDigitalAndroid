@@ -15,11 +15,10 @@ import android.widget.ArrayAdapter
 import androidx.core.content.ContextCompat.*
 import androidx.core.view.isEmpty
 import androidx.core.widget.addTextChangedListener
-import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_event_detail.*
-import mx.arquidiocesis.eamxcommonutils.api.core.status.EAMXStatusRequestEnum
 import mx.arquidiocesis.eamxcommonutils.application.AppMyConstants
 import mx.arquidiocesis.eamxcommonutils.application.validation.EAMXFieldValidation
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
@@ -38,6 +37,7 @@ import mx.arquidiocesis.eamxevent.model.enum.Day as week
 import mx.arquidiocesis.eamxcommonutils.multimedia.MapsFragment
 import mx.arquidiocesis.eamxcommonutils.multimedia.PERMISSION_LOCATION
 import mx.arquidiocesis.eamxcommonutils.util.*
+import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
 import mx.arquidiocesis.eamxcommonutils.util.permission.UtilValidPermission
 import mx.arquidiocesis.eamxevent.adapter.DinerAllAdapter
 import java.util.*
@@ -144,10 +144,10 @@ class EventDetailFragment : FragmentBase() {
             hideLoader()
             if (item.size > 0) {
                 item.forEach {
-                    if (!it.fIUSERID.isNullOrEmpty()){
+                    if (!it.fIUSERID.isNullOrEmpty()) {
                         etNombreC.setText(it.fCNOMBRECOM)
                         etgetAddress.setText(it.fCDIRECCION)
-                        delegations.forEach {it1->
+                        delegations.forEach { it1 ->
                             if (it1.pos.toString() == it.fIZONA) {
                                 spZone.setSelection(it1.ordinal)
                                 return@forEach
@@ -213,6 +213,7 @@ class EventDetailFragment : FragmentBase() {
                         etRequisitos.setText(it.fCREQUISITOS)
                         switch2.isChecked = it.fCVOLUNTARIOS == "1"
                         switch3.isChecked = it.fCSTATUS == "1"
+                        llBotones.visibility = View.VISIBLE
                         return@forEach
                     }
                 }
@@ -581,7 +582,26 @@ class EventDetailFragment : FragmentBase() {
                     lblSeleccion.text = "Sin selección"
                 }
             }
-
+            btnDonadores.setOnClickListener {
+                NavigationFragment.Builder()
+                    .setActivity(requireActivity())
+                    .setView(requireView().parent as ViewGroup)
+                    .setFragment(EventDonorFragment.newInstance(callBack) as Fragment)
+                    .setBundle(Bundle().apply {
+                        putInt("diner_id", diner_id)
+                    })
+                    .build().nextWithReplace()
+            }
+            btnVoluntarios.setOnClickListener {
+                NavigationFragment.Builder()
+                    .setActivity(requireActivity())
+                    .setView(requireView().parent as ViewGroup)
+                    .setFragment(EventVolunteerFragment.newInstance(callBack) as Fragment)
+                    .setBundle(Bundle().apply {
+                        putInt("diner_id", diner_id)
+                    })
+                    .build().nextWithReplace()
+            }
             btnGuardar.setOnClickListener { eventRegister() }
             tvAddress.setOnClickListener { showMap() }
             tvFirstH.setOnClickListener { showTimePickerFirst() }
