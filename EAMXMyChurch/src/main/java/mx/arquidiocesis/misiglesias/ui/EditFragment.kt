@@ -47,6 +47,7 @@ class EditFragment(val church: ChurchDetaillModel) : FragmentBase() {
     var model = MutableLiveData<ChurchDetaillModel>()
     private var latitude = ""
     private var longitude = ""
+    var inicio = true
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -136,39 +137,39 @@ class EditFragment(val church: ChurchDetaillModel) : FragmentBase() {
             btnComentarios.setOnClickListener {
                 changeFragment()
             }
-            btnGuardar.setOnClickListener {
-                model.value?.let { m ->
-                    m.principal?.let { p ->
-                        showLoader()
-                        if(validaRedes(m)){
-                            viewModel.editIglesias(model.value!!)
-                        }else{
-                            error("La url de la red social no es correcta")
-                            val mBottomSheetFragment = BottomSheetEdit(viewModel, model)
-                            mBottomSheetFragment.show(
-                                requireActivity().supportFragmentManager,
-                                "BottomSheetEdit"
-                            )
-                        }
-                    } ?: run {
-                        error("Deve de asignar un padre")
-                        val mBottomSheetFragment = BottomSheetEdit(viewModel, model)
-                        mBottomSheetFragment.show(
-                            requireActivity().supportFragmentManager,
-                            "BottomSheetEdit"
-                        )
-                    }
-
-                } ?: run {
-                    error("Error al obtener la información")
-                }
-
-            }
+            btnGuardar.setOnClickListener {guardar()}
         }
 
 
     }
 
+    fun guardar(){
+        model.value?.let { m ->
+            m.principal?.let { p ->
+                showLoader()
+                if(validaRedes(m)){
+                    viewModel.editIglesias(model.value!!)
+                }else{
+                    error("La url de la red social no es correcta")
+                    val mBottomSheetFragment = BottomSheetEdit(viewModel, model)
+                    mBottomSheetFragment.show(
+                        requireActivity().supportFragmentManager,
+                        "BottomSheetEdit"
+                    )
+                }
+            } ?: run {
+                error("Deve de asignar un padre")
+                val mBottomSheetFragment = BottomSheetEdit(viewModel, model)
+                mBottomSheetFragment.show(
+                    requireActivity().supportFragmentManager,
+                    "BottomSheetEdit"
+                )
+            }
+
+        } ?: run {
+            error("Error al obtener la información")
+        }
+    }
     fun iniEdit(churchDetaillModel: ChurchDetaillModel) {
         binding.apply {
             ivChurch.loadByUrlIntDrawableerror(churchDetaillModel.image_url.toString(),R.drawable.emptychurch)
@@ -287,6 +288,10 @@ class EditFragment(val church: ChurchDetaillModel) : FragmentBase() {
                 btnComentarios.visibility = View.GONE
             }
         }
+        if(!inicio){
+            guardar()
+        }
+        inicio = false
     }
 
     fun initObservers() {
@@ -297,7 +302,7 @@ class EditFragment(val church: ChurchDetaillModel) : FragmentBase() {
             hideLoader()
             if (it == 200) {
                 agregada("Se guardo la iglesia correctamente")
-                requireActivity().onBackPressed()
+                //requireActivity().onBackPressed()
             } else {
                 error("Error al guardar la iglesia")
             }

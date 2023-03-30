@@ -62,7 +62,7 @@
                 android:gravity="center"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
-                android:text="Listo"
+                android:text="Guardar"
                 android:textColor="@color/edittext_background_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
