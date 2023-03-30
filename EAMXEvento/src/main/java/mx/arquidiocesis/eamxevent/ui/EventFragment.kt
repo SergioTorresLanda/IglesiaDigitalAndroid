@@ -228,7 +228,7 @@ class EventFragment : FragmentBase() {
                 EDITAR -> {
                 }
                 DONAR -> {
-                    if (!msgGuest("realizar una donación.")) {
+                    if (!msgGuest("realizar una donación")) {
                         NavigationFragment.Builder()
                             .setActivity(requireActivity())
                             .setView(requireView().parent as ViewGroup)

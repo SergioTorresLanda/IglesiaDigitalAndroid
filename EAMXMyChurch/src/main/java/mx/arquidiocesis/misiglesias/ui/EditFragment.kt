@@ -301,7 +301,7 @@ class EditFragment(val church: ChurchDetaillModel) : FragmentBase() {
         viewModel.response.observe(viewLifecycleOwner) {
             hideLoader()
             if (it == 200) {
-                agregada("Se guardo la iglesia correctamente")
+                agregada("Datos guardados correctamente.")
                 //requireActivity().onBackPressed()
             } else {
                 error("Error al guardar la iglesia")
@@ -368,7 +368,13 @@ class EditFragment(val church: ChurchDetaillModel) : FragmentBase() {
     }
 
     fun agregada(mensaje: String) {
-        Toast.makeText(requireContext(), mensaje, Toast.LENGTH_SHORT).show()
+        UtilAlert
+            .Builder()
+            .setTitle("Éxito")
+            .setMessage(mensaje)
+            .build()
+            .show(childFragmentManager, "")
+        //Toast.makeText(requireContext(), mensaje, Toast.LENGTH_SHORT).show()
     }
 
     fun error(mensaje: String) {

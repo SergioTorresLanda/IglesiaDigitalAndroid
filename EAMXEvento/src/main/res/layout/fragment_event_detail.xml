@@ -35,7 +35,7 @@
                     android:layout_marginTop="15dp"
                     android:background="@drawable/border_radius"
                     android:gravity="center"
-                    android:text="Donares"
+                    android:text="Donadores"
                     android:textAppearance="@style/TextAppearance.AppCompat" />
 
                 <androidx.appcompat.widget.AppCompatButton

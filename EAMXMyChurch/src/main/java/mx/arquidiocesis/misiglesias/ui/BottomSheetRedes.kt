@@ -185,7 +185,6 @@ open class BottomSheetRedes(var church: MutableLiveData<ChurchDetaillModel>) :
 
     fun agregada() {
         binding.iRed.spItemSpi.setSelection(0)
-
-        Toast.makeText(requireContext(), "Red agregada", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(requireContext(), "Red agregada", Toast.LENGTH_SHORT).show()
     }
 }

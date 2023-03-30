@@ -43,12 +43,12 @@
         <item>Xochimilco</item>
     </string-array>
     <string-array name="participations">
-        <item>Donantes</item>
-        <item>Voluntarios</item>
-        <item>Solicitantes</item>
+        <item>Donante</item>
+        <item>Voluntario</item>
+        <item>Solicitante</item>
     </string-array>
     <string-array name="typedonations">
-        <item>En Especie</item>
+        <item>En especie</item>
     </string-array>
     <string name="txt_empty_name">El nombre del comedor no puede quedar vacío.</string>
     1
