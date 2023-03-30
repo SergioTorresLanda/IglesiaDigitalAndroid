@@ -336,7 +336,7 @@ open class BottomSheetEdit(
                         .show(childFragmentManager, tag)
                 }
             }
-
+            hidenLoader()
         })
         viewModel.reponsePrients.observe(viewLifecycleOwner, Observer {
             listP = it
