@@ -228,26 +228,30 @@ class EventFragment : FragmentBase() {
                 EDITAR -> {
                 }
                 DONAR -> {
-                    NavigationFragment.Builder()
-                        .setActivity(requireActivity())
-                        .setView(requireView().parent as ViewGroup)
-                        .setFragment(EventDonorDetailFragment.newInstance(callBack) as Fragment)
-                        .setBundle(Bundle().apply {
-                            putString("diner_id", item.fCCOMEDORID)
-                        })
-                        .build().nextWithReplace()
+                    if (!msgGuest("realizar una donación.")) {
+                        NavigationFragment.Builder()
+                            .setActivity(requireActivity())
+                            .setView(requireView().parent as ViewGroup)
+                            .setFragment(EventDonorDetailFragment.newInstance(callBack) as Fragment)
+                            .setBundle(Bundle().apply {
+                                putString("diner_id", item.fCCOMEDORID)
+                            })
+                            .build().nextWithReplace()
+                    }
                 }
-                PARTICIPAR ->{
-                    NavigationFragment.Builder()
-                        .setActivity(requireActivity())
-                        .setView(requireView().parent as ViewGroup)
-                        .setFragment(EventVolunteerDetailFragment.newInstance(callBack) as Fragment)
-                        .setBundle(Bundle().apply {
-                            putString("diner_id", item.fCCOMEDORID)
-                            putString("responsable_name", item.fCRESPONSABLE)
-                            putString("direccion", item.fCDIRECCION)
-                        })
-                        .build().nextWithReplace()
+                PARTICIPAR -> {
+                    if (!msgGuest("participar")) {
+                        NavigationFragment.Builder()
+                            .setActivity(requireActivity())
+                            .setView(requireView().parent as ViewGroup)
+                            .setFragment(EventVolunteerDetailFragment.newInstance(callBack) as Fragment)
+                            .setBundle(Bundle().apply {
+                                putString("diner_id", item.fCCOMEDORID)
+                                putString("responsable_name", item.fCRESPONSABLE)
+                                putString("direccion", item.fCDIRECCION)
+                            })
+                            .build().nextWithReplace()
+                    }
                 }
                 "" -> {
                 }
