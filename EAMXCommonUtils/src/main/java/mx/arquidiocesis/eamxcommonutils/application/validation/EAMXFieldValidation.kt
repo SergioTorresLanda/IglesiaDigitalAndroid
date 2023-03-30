@@ -3,6 +3,7 @@ package mx.arquidiocesis.eamxcommonutils.application.validation
 import android.util.Log
 import android.util.Patterns
 import com.google.android.material.textfield.TextInputLayout
+import java.util.regex.Pattern
 
 class EAMXFieldValidation {
     companion object {
@@ -19,8 +20,30 @@ class EAMXFieldValidation {
                     !number.equals("9999999999")
         }
 
+        fun validateNumberPhoneCD(number: String): Boolean {
+            return  !number.equals("0000000000") &&
+                    !number.equals("1111111111") &&
+                    !number.equals("2222222222") &&
+                    !number.equals("3333333333") &&
+                    !number.equals("4444444444") &&
+                    !number.equals("5555555555") &&
+                    !number.equals("6666666666") &&
+                    !number.equals("7777777777") &&
+                    !number.equals("8888888888") &&
+                    !number.equals("9999999999")
+        }
+        fun acceptPhoneNumberInput(input: CharSequence): Boolean {
+            val pattern = Pattern.compile("[+]*")
+            val matcher = pattern.matcher(input)
+            return matcher.matches()
+        }
+
         fun validateNumberLength(number: String): Boolean {
             return number.length == 10
+        }
+
+        fun validateNumberLengthCD(number: String): Boolean {
+            return number.length == 13
         }
 
         fun passValidation(

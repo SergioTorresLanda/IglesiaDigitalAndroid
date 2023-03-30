@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cwcEvent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/viewTop"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#002166"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvVacio"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/textview_title_color"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            android:gravity="center"
+            android:text="No se encontraron comedores activos con la selección actual."
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBaseline_toBaselineOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/viewTop"
+            />
+
+
+        <LinearLayout
+            android:id="@+id/lNombreInvitado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBaseline_toBaselineOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/viewTop">
+
+
+            <TextView
+                android:id="@+id/tvNombreInvitado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="7dp"
+                android:fontFamily="sans-serif-medium"
+                android:lineSpacingExtra="4sp"
+                android:text="Nombre completo"
+                android:textColor="@color/textview_title_color"
+                android:textSize="19sp"
+                android:textStyle="normal"
+                android:layout_weight="1"
+                app:layout_constraintTop_toBottomOf="@id/parent" />
+
+            <ImageView
+                android:id="@+id/btnEliminar"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="right"
+                android:gravity="end"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="6dp"
+                android:backgroundTint="#00FFFFFF"
+                android:src="@drawable/icons_cancelar_96"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lTelInvitado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lNombreInvitado">
+
+            <ImageView
+                android:id="@+id/ivTelefonoInvitad"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="0dp"
+                android:clickable="true"
+                android:contentDescription="calendar"
+                android:focusable="true"
+                android:src="@drawable/tel_fono_48" />
+
+            <TextView
+                android:id="@+id/tvTelInvitado"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_gravity="right"
+                android:maxLength="13"
+                android:fontFamily="sans-serif-medium"
+                android:lineSpacingExtra="4sp"
+                android:lines="1"
+                android:text="+527641015871"
+                android:textColor="@color/textview_title_color"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                app:layout_constraintTop_toBottomOf="@id/parent" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

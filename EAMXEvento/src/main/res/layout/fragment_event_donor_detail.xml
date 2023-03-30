@@ -8,14 +8,14 @@
         android:layout_height="match_parent"
         android:fillViewport="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context=".ui.EventVolunteerFragment">
+        tools:context=".ui.EventDonorDetailFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:id="@+id/lNombreVoluntario"
+                android:id="@+id/lNombreD"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -26,14 +26,14 @@
                 tools:ignore="MissingConstraints">
 
                 <TextView
-                    android:id="@+id/tvNombreVoluntario"
+                    android:id="@+id/tvNombreD"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:fontFamily="sans-serif-medium"
                     android:lineSpacingExtra="4sp"
                     android:lines="1"
-                    android:text="Nombre del voluntario"
+                    android:text="Nombre del donador"
                     android:textColor="@color/textview_title_color"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -41,7 +41,7 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilNombreVoluntario"
+                    android:id="@+id/tilNombreD"
                     style="@style/StyleEdtGeneric"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
                     app:expandedHintEnabled="false">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etNombreVoluntario"
+                        android:id="@+id/etNombreD"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:digits="@string/digits_only_letters"
@@ -67,72 +67,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/labelAddressVoluntario"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:orientation="horizontal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lNombreVoluntario">
-
-                <TextView
-                    android:id="@+id/tvlabelAddressVoluntario"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:lineSpacingExtra="4sp"
-                    android:lines="1"
-                    android:text="Dirección"
-                    android:textColor="@color/textview_title_color"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintTop_toBottomOf="@id/tvAddress" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/lAddressVoluntario"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/labelAddressVoluntario">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etgetAddressVoluntario"
-                    android:layout_width="240dp"
-                    android:layout_height="wrap_content"
-                    android:imeOptions="actionNext"
-                    android:letterSpacing="0.01"
-                    android:lineSpacingExtra="10sp"
-                    android:maxLength="250"
-                    android:singleLine="false"
-                    android:textColor="#99000000"
-                    android:textSize="18sp"
-                    android:textStyle="normal" />
-
-                <TextView
-                    android:id="@+id/tvAddressVoluntario"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginBottom="10dp"
-                    android:drawableTop="@drawable/ic_church_map"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="Actualizar"
-                    android:textColor="@color/textview_title_color"
-                    android:textSize="17sp"
-                    android:textStyle="normal" />
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/lResponsableVoluntario"
+                android:id="@+id/lComentarios"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -140,17 +75,17 @@
                 android:layout_marginEnd="20dp"
                 android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lAddressVoluntario">
+                app:layout_constraintTop_toBottomOf="@+id/lNombreD">
 
                 <TextView
-                    android:id="@+id/tvResponsableVoluntario"
+                    android:id="@+id/labelComentarios"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="7dp"
                     android:fontFamily="sans-serif-medium"
                     android:lineSpacingExtra="4sp"
                     android:lines="1"
-                    android:text="Responsable del comedor"
+                    android:text="Comentarios"
                     android:textColor="@color/textview_title_color"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -158,7 +93,7 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilResponsableVoluntario"
+                    android:id="@+id/tilComentarios"
                     style="@style/StyleEdtGeneric"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -166,25 +101,95 @@
                     app:errorIconDrawable="@drawable/ic_check_error"
                     app:expandedHintEnabled="false">
 
+                    <!--  android:background="@drawable/edittext_border" -->
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etResponsableVoluntario"
+                        android:id="@+id/etComentarios"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="100dp"
                         android:digits="@string/digits_only_letters"
-                        android:imeOptions="actionNext"
+                        android:imeOptions="actionDone"
                         android:inputType="textCapWords|textAutoCorrect|textPersonName"
                         android:letterSpacing="0.01"
                         android:lineSpacingExtra="10sp"
-                        android:maxLength="1500"
-                        android:singleLine="true"
+                        android:maxLength="250"
+                        android:singleLine="false"
                         android:textColor="#99000000"
                         android:textSize="18sp"
-                        android:textStyle="normal" />
+                        android:textStyle="normal"
+                        app:boxBackgroundColor="@color/transparent"
+                        app:boxBackgroundMode="outline"
+                        app:boxStrokeColor="#002166"/>
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tvComentariosConteo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="0/250"
+                    android:textColor="@color/textview_title_color"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/lEmail"
+                android:id="@+id/lTipoDonacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="vertical"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lComentarios">
+
+                <TextView
+                    android:id="@+id/tvTipoDonacion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:lineSpacingExtra="4sp"
+                    android:text="Tipo de donación"
+                    android:textColor="@color/textview_title_color"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Spinner
+                    android:id="@+id/spTipoDonacion"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/style_spinner_selector"
+                    android:entries="@array/typedonations"
+                    android:fontFamily="sans-serif-light"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="2sp"
+                    android:textColor="@color/edittext_text_hint_color"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/lbTipoDonacion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="7dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:lineSpacingExtra="4sp"
+                    android:lines="1"
+                    android:textColor="@color/red"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lEmailDonador"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -192,10 +197,10 @@
                 android:layout_marginEnd="20dp"
                 android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lResponsableVoluntario">
+                app:layout_constraintTop_toBottomOf="@+id/lTipoDonacion">
 
                 <TextView
-                    android:id="@+id/tvEmail"
+                    android:id="@+id/tvEmailDonador"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="7dp"
@@ -210,7 +215,7 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilEmail"
+                    android:id="@+id/tilEmailDonador"
                     style="@style/StyleEdtGeneric"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -219,7 +224,7 @@
                     app:expandedHintEnabled="false">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etEmailV"
+                        android:id="@+id/etEmailDonador"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:digits="@string/digits_only_letters"
@@ -236,7 +241,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/lPhone"
+                android:id="@+id/lPhoneDonador"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -244,10 +249,10 @@
                 android:layout_marginEnd="20dp"
                 android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lEmail">
+                app:layout_constraintTop_toBottomOf="@+id/lEmailDonador">
 
                 <TextView
-                    android:id="@+id/labelPhone"
+                    android:id="@+id/labelPhoneDonador"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="7dp"
@@ -260,7 +265,7 @@
                     android:textStyle="bold" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilPhonev"
+                    android:id="@+id/tilPhoneDonador"
                     style="@style/StyleEdtGeneric"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -270,112 +275,19 @@
                     app:expandedHintEnabled="false">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etPhonev"
+                        android:id="@+id/etPhoneDonador"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:digits="@string/digits_only_number_phone"
                         android:imeOptions="actionDone"
-                        android:inputType="phone"
                         android:letterSpacing="0.01"
                         android:lineSpacingExtra="10sp"
-                        android:maxLength="10"
+                        android:maxLength="13"
                         android:singleLine="true"
                         android:textColor="#99000000"
+                        android:inputType="phone"
                         android:textSize="18sp"
                         android:textStyle="normal" />
 
-                </com.google.android.material.textfield.TextInputLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/lCostoR"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:gravity="left"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lPhone">
-
-                <TextView
-                    android:id="@+id/tvlabelMonto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:lineSpacingExtra="4sp"
-                    android:lines="1"
-                    android:text="MultiUser"
-                    android:textColor="@color/textview_title_color"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <Switch
-                    android:id="@+id/switch1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/margin_bottom_25"
-                    android:switchPadding="@dimen/global_margin_extra"
-                    android:textColor="#192a73"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    tools:ignore="UseSwitchCompatOrMaterialXml" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/lMonto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="20dp"
-                android:orientation="vertical"
-                android:visibility="gone"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lCostoR">
-
-                <TextView
-                    android:id="@+id/tvMonto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:lineSpacingExtra="4sp"
-                    android:lines="1"
-                    android:text="Precio"
-                    android:textColor="@color/textview_title_color"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintTop_toBottomOf="parent" />
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilMonto"
-                    style="@style/StyleEdtGeneric"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:endIconMode="custom"
-                    app:errorIconDrawable="@drawable/ic_check_error"
-                    app:expandedHintEnabled="false">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etMonto"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:digits="@string/digits_only_number_phone"
-                        android:drawableStart="@drawable/ic_cost"
-                        android:imeOptions="actionDone"
-                        android:inputType="phone"
-                        android:letterSpacing="0.01"
-                        android:lineSpacingExtra="10sp"
-                        android:maxLength="10"
-                        android:singleLine="true"
-                        android:textColor="#99000000"
-                        android:textSize="18sp"
-                        android:textStyle="normal" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
@@ -390,7 +302,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lMonto">
+                app:layout_constraintTop_toBottomOf="@+id/lPhoneDonador">
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnCancel"

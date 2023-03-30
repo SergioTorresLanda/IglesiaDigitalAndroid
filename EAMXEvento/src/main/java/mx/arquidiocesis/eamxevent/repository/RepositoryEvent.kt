@@ -28,6 +28,8 @@ class RepositoryEvent(val context: Context) : ManagerCall() {
     //GET Event
     val allDiner = SingleLiveEvent<List<DinerResponse>>()
     val allDonor = SingleLiveEvent<List<DonorResponse>>()
+    val allVolunteer = SingleLiveEvent<List<VolunteerResponse>>()
+    val allGuest = SingleLiveEvent<List<GuestModel>>()
 
     private var retrofitInstance = RetrofitApp.Build<ApiInterface>()
         .setContext(context)
@@ -161,6 +163,18 @@ class RepositoryEvent(val context: Context) : ManagerCall() {
         )
     }
 
+    suspend fun getDonorbyDiner(dinerId: Int, type: String): ResponseData<List<DonorResponse>?> {
+        return managerCallApi(
+            context = context,
+            call = {
+                retrofitInstances.run {
+                    getDonorbyDiner(dinerId, type).await()
+                }
+            },
+            validation = Validation()
+        )
+    }
+
     suspend fun saveVolunteer(volunteer: Volunteer) {
         managerCallApi(
             context = context,
@@ -210,6 +224,18 @@ class RepositoryEvent(val context: Context) : ManagerCall() {
                         getVolunteerAsync().await()
                     else
                         getVolunteerAsync(voluntarioId).await()
+                }
+            },
+            validation = Validation()
+        )
+    }
+
+    suspend fun getVolunteerbyDiner(dinerId: Int, type: String): ResponseData<List<VolunteerResponse>?> {
+        return managerCallApi(
+            context = context,
+            call = {
+                retrofitInstances.run {
+                    getVolunteerbyDiner(dinerId, type).await()
                 }
             },
             validation = Validation()

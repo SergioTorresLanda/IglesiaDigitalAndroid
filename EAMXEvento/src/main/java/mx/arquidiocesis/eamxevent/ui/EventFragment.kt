@@ -6,14 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Button
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import kotlinx.android.synthetic.main.fragment_event.*
 import kotlinx.android.synthetic.main.fragment_event_detail.*
+import kotlinx.android.synthetic.main.fragment_event_detail.btnGuardar
 import kotlinx.android.synthetic.main.fragment_event_detail.spZone
-import kotlinx.android.synthetic.main.item_event_detail.*
-import kotlinx.android.synthetic.main.item_event_detail.view.*
 import mx.arquidiocesis.eamxcommonutils.application.AppMyConstants
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
@@ -35,6 +32,7 @@ import mx.arquidiocesis.eamxevent.repository.RepositoryEvent
 const val EDITAR = "EDITAR"
 const val DONAR = "DONAR"
 const val PARTICIPAR = "PARTICIPAR"
+
 class EventFragment : FragmentBase() {
 
     lateinit var binding: FragmentEventBinding
@@ -100,7 +98,6 @@ class EventFragment : FragmentBase() {
                         }
                     }
                     init = false
-
                     val comedores = item.filter {
                         when (type) {
                             1 -> {
@@ -234,7 +231,7 @@ class EventFragment : FragmentBase() {
                     NavigationFragment.Builder()
                         .setActivity(requireActivity())
                         .setView(requireView().parent as ViewGroup)
-                        .setFragment(EventDonorFragment.newInstance(callBack) as Fragment)
+                        .setFragment(EventDonorDetailFragment.newInstance(callBack) as Fragment)
                         .setBundle(Bundle().apply {
                             putString("diner_id", item.fCCOMEDORID)
                         })
@@ -244,9 +241,11 @@ class EventFragment : FragmentBase() {
                     NavigationFragment.Builder()
                         .setActivity(requireActivity())
                         .setView(requireView().parent as ViewGroup)
-                        .setFragment(EventVolunteerFragment.newInstance(callBack) as Fragment)
+                        .setFragment(EventVolunteerDetailFragment.newInstance(callBack) as Fragment)
                         .setBundle(Bundle().apply {
-                            putString("id_diner", item.fCCOMEDORID)
+                            putString("diner_id", item.fCCOMEDORID)
+                            putString("responsable_name", item.fCRESPONSABLE)
+                            putString("direccion", item.fCDIRECCION)
                         })
                         .build().nextWithReplace()
                 }

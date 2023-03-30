@@ -53,4 +53,10 @@ interface ApiInterface {
     @GET(WebConfig.EVENT_VOLUNTEER_PATH)
     fun getVolunteerAsync(@Path("voluntarioId") voluntarioId: Int): Deferred<Response<List<VolunteerResponse>>>
 
+    @GET(WebConfig.GET_TYPE_PARTICIPATION_BY_DINER)
+    fun getDonorbyDiner(@Path("dinerId") dinerId: Int, @Query("participantes") type: String): Deferred<Response<List<DonorResponse>>>
+
+    @GET(WebConfig.GET_TYPE_PARTICIPATION_BY_DINER)
+    fun getVolunteerbyDiner(@Path("dinerId") dinerId: Int, @Query("participantes") type: String): Deferred<Response<List<VolunteerResponse>>>
+
 }

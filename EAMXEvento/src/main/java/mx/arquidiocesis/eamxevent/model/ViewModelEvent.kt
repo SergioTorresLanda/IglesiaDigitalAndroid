@@ -29,6 +29,7 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
     //Get Event
     val responseAllDin = repositoryEvent.allDiner
     val responseAllDon = repositoryEvent.allDonor
+    val responseAllVol = repositoryEvent.allVolunteer
 
     fun getFine(): Boolean {
         return true
@@ -55,10 +56,26 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
             else
                 repositoryEvent.errorResponse.postValue(response.exception?.message)
         }
+    }
 
-        //GlobalScope.launch {
-        //   repositoryEvent.getAllDiner()
-        //}
+    fun requestAllDonorbyDiner(dinerId: Int, type: String) {
+        viewModelScope.launch {
+            val response = repositoryEvent.getDonorbyDiner(dinerId, type)
+            if (response.sucess)
+                responseAllDon.postValue(response.data ?: listOf())
+            else
+                repositoryEvent.errorResponse.postValue(response.exception?.message)
+        }
+    }
+
+    fun requestAllVolunteerbyDiner(dinerId: Int, type: String) {
+        viewModelScope.launch {
+            val response = repositoryEvent.getVolunteerbyDiner(dinerId, type)
+            if (response.sucess)
+                responseAllVol.postValue(response.data ?: listOf())
+            else
+                repositoryEvent.errorResponse.postValue(response.exception?.message)
+        }
     }
 
     private fun observeEventResponse() =
@@ -193,8 +210,8 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
         name: String,
         comment: String,
         comedor : Int,
-        email : String,
-        phone: String,
+        correo : String,
+        telefono: String,
         bancarios : String,
         tipo_don : String,
         id: Int? = 0
@@ -221,6 +238,7 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
         if (tipo_don.isEmpty())
             validateForm[Constants.KEY_TYPEDON] = Constants.EMPTY_FIELD
 
+        /*
         if (email.isEmpty()) {
             validateForm[Constants.KEY_EMAIL] = Constants.EMPTY_FIELD
         } else {
@@ -228,18 +246,18 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
                 validateForm[Constants.KEY_EMAIL] = Constants.INVALID_EMAIL
         }
 
-        if (phone.isEmpty())
+
+         */
+        if (telefono.isEmpty()) {
             validateForm[Constants.KEY_PHONE] = Constants.EMPTY_FIELD
 
-        if (phone.length < 10)
+        }else if (telefono.length < 13) {
             validateForm[Constants.KEY_PHONE] = Constants.INVALID_PHONE
-
-        if (comment.isEmpty()) {
-            descriptionValidate =
-                "Ayuda"
-        } else {
-            descriptionValidate = comment
         }
+
+        if (comment.isEmpty())
+            validateForm[Constants.KEY_COMMENT] = Constants.EMPTY_FIELD
+
 
         validateForm.toString().log()
         // if (validateForm.size > 0) {
@@ -253,10 +271,10 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
                 nombre = name,
                 user_id = userId,
                 bancarios = bancarios,
-                correo = email,
-                telefono = phone,
+                correo = correo,
+                telefono = telefono,
                 comedor_id = comedor,
-                comentarios = descriptionValidate,
+                comentarios = comment,
                 tipo_don = tipo_don
             )
             GlobalScope.launch {
@@ -270,13 +288,13 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
     }
 
     fun validateFormRegisterVolunteer(
-        name: String,
         responsable: String,
-        comedor : String,
-        email : String,
-        phone: String,
         direccion : String,
-        multiusuario : ArrayList<String>,
+        comedor : String,
+        name: String,
+        telefono: String,
+        multiusuario : MutableList<GuestModel>,
+        correo : String,
         id: Int? = 0
     ) {
         val userId =
@@ -293,23 +311,23 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
             ) as String
 
         val validateForm: HashMap<String, String> = HashMap()
-        var descriptionValidate = ""
 
         if (name.isEmpty())
             validateForm[Constants.KEY_NAME] = Constants.EMPTY_FIELD
 
-        if (email.isEmpty()) {
+        if (correo.isEmpty()) {
             validateForm[Constants.KEY_EMAIL] = Constants.EMPTY_FIELD
         } else {
             if (!Constants.EMAIL_ADDRESS.matcher(email).matches())
                 validateForm[Constants.KEY_EMAIL] = Constants.INVALID_EMAIL
         }
 
-        if (phone.isEmpty())
+        if (telefono.isEmpty()) {
             validateForm[Constants.KEY_PHONE] = Constants.EMPTY_FIELD
 
-        if (phone.length < 10)
+        }else if (telefono.length < 13) {
             validateForm[Constants.KEY_PHONE] = Constants.INVALID_PHONE
+        }
 
         validateForm.toString().log()
         // if (validateForm.size > 0) {
@@ -319,20 +337,21 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
 
             this.showLoaderView.value = true
 
-            val eventRegisterModel = Volunteer(
-                nombre_voluntario = name,
-                user_id = userId,
+            val eventRegisterModelVolunteer = Volunteer(
+                user_id= userId,
+                responsable = responsable,
                 direccion = direccion,
-                correo = email,
-                telefono = phone,
                 comedor_id = comedor,
-                multiuser = ArrayList()
+                nombre_voluntario = name,
+                telefono = telefono,
+                multiuser = multiusuario,
+                correo = correo
             )
             GlobalScope.launch {
                 if (id == 0) {
-                    repositoryEvent.saveVolunteer(eventRegisterModel)
+                    repositoryEvent.saveVolunteer(eventRegisterModelVolunteer)
                 } else {
-                    id?.let { repositoryEvent.UpdateVolunteer(it, eventRegisterModel) }
+                    id?.let{repositoryEvent.UpdateVolunteer(it, eventRegisterModelVolunteer) }
                 }
             }
         }
