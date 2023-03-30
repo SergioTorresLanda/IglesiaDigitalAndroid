@@ -27,7 +27,7 @@ import mx.arquidiocesis.eamxevent.model.VolunteerResponse
 import mx.arquidiocesis.eamxevent.model.enum.Participation
 import mx.arquidiocesis.eamxevent.ui.DONAR
 import mx.arquidiocesis.eamxevent.ui.EDITAR
-import mx.arquidiocesis.eamxevent.ui.EventDonorFragment
+import mx.arquidiocesis.eamxevent.ui.EventDonorDetailFragment
 import mx.arquidiocesis.eamxevent.ui.PARTICIPAR
 import java.util.regex.Pattern
 
