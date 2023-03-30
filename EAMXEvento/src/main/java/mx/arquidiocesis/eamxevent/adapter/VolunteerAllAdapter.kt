@@ -42,7 +42,7 @@ class VolunteerAllAdapter(
                 tvVacioParticipants.visibility = View.VISIBLE
                 tvVacioParticipants.text = "No se encontraron voluntarios."
             } else {
-                tvNombre.text = item.fCNOMBRECOM
+                tvNombre.text = item.fCRESPONSABLE
                 tvCorreo.text = item.fCCORREO
                 tvTelefono.text = item.fCTELEFONO
                 var str = ""
