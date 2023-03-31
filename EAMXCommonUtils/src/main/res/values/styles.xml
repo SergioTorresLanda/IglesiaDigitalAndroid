@@ -440,11 +440,23 @@
     <style name="MyCalendarDatePickerDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
         <item name="android:datePickerStyle">@style/CalendarDatePicker</item>
         <item name="android:background">?attr/colorBackgroundFloating</item>
-
     </style>
-
     <style name="CalendarDatePicker" parent="@android:style/Widget.Material.DatePicker">
         <item name="android:calendarViewShown">false</item>
         <item name="android:datePickerMode">spinner</item>
+    </style>
+
+    <style name="TimePicker" parent="@style/ThemeOverlay.MaterialComponents.TimePicker">
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorSurface">@color/colorGray</item>
+        <item name="colorOnSurface">@color/grayLight</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnSecondary">@color/colorAccent</item>
+        <item name="chipStyle">@style/chipStyle</item>
+        <item name="materialClockStyle">@style/StyleBtnAceptar</item>
+        <item name="imageButtonStyle">@style/Widget.MaterialComponents.TimePicker.Button</item>
+    </style>
+    <style name="chipStyle" parent="Widget.MaterialComponents.TimePicker.Display">
+        <item name="android:textColor">@color/blue_toast</item>
     </style>
 </resources>

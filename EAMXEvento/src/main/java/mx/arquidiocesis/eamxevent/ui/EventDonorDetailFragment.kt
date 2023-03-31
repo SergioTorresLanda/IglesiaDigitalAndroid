@@ -91,7 +91,7 @@ class EventDonorDetailFragment : FragmentBase() {
         initView()
         initObservers()
         etEmailDonador.setText(email)
-        etPhoneDonador.setText(phone)
+        etPhoneDonador.setText(phone.replace("+52", ""))
         requireArguments().let {
             var id = it.getString("diner_id")
             id?.let { it1 ->
@@ -120,7 +120,7 @@ class EventDonorDetailFragment : FragmentBase() {
                                 }
                             }
                             etEmailDonador.setText(it.fCCORREO)
-                            etPhoneDonador.setText(it.fCTELEFONO)
+                            etPhoneDonador.setText(it.fCTELEFONO!!.replace("+52", ""))
                             btnGuardar.setText("Actualizar")
                             return@forEach
                         }
@@ -157,7 +157,7 @@ class EventDonorDetailFragment : FragmentBase() {
                         .setMessage(getString(R.string.txt_empty_phone))
                         .setIsCancel(false)
                         .build().show(childFragmentManager, tag)
-                } else if (it[Constants.KEY_PHONE] == Constants.INVALID_PHONE){
+                } else if (it[Constants.KEY_PHONE] == Constants.INVALID_PHONE) {
                     UtilAlert.Builder()
                         .setTitle(getString(R.string.title_dialog_error))
                         .setMessage(getString(R.string.txt_invalid_phone_don))
@@ -228,9 +228,9 @@ class EventDonorDetailFragment : FragmentBase() {
                 if (etPhoneDonador.text.toString().isEmpty()) {
                     enableIconStart(tilPhoneDonador, null)
                     tilPhoneDonador.isEmpty()
-                    tilPhoneDonador.error = getString(R.string.min_phone_don)
+                    tilPhoneDonador.error = getString(R.string.min_phone)
                 } else {
-                    if (EAMXFieldValidation.validateNumberPhone(etPhoneDonador.text.toString()) && EAMXFieldValidation.validateNumberLengthCD(
+                    if (EAMXFieldValidation.validateNumberPhone(etPhoneDonador.text.toString()) && EAMXFieldValidation.validateNumberLength(
                             etPhoneDonador.text.toString()
                         )
                     ) {
@@ -239,8 +239,8 @@ class EventDonorDetailFragment : FragmentBase() {
                     if (!EAMXFieldValidation.validateNumberPhone(etPhoneDonador.text.toString())) {
                         tilPhoneDonador.error = getString(R.string.wrong_phone_number)
                     }
-                    if (!EAMXFieldValidation.validateNumberLengthCD(etPhoneDonador.text.toString())) {
-                        tilPhoneDonador.error = getString(R.string.min_phone_don)
+                    if (!EAMXFieldValidation.validateNumberLength(etPhoneDonador.text.toString())) {
+                        tilPhoneDonador.error = getString(R.string.min_phone)
                     }
                 }
             }
@@ -289,7 +289,7 @@ class EventDonorDetailFragment : FragmentBase() {
                 }
             }
 
-            val allowedChars = "0123456789+"
+            val allowedChars = "0123456789"
             etPhoneDonador.setOnKeyListener { _, keyCode, event ->
                 if (keyCode == KeyEvent.KEYCODE_PLUS && event.action == KeyEvent.ACTION_UP) {
                     val currentText = etPhoneDonador.text.toString()
@@ -320,7 +320,7 @@ class EventDonorDetailFragment : FragmentBase() {
     private fun String.validNumberPhone() =
         EAMXFieldValidation.validateNumberPhone(this) &&
                 this.isNotEmpty() &&
-                EAMXFieldValidation.validateNumberLengthCD(this)
+                EAMXFieldValidation.validateNumberLength(this)
 
     fun enableIconStart(input: TextInputLayout, success: Boolean?) {
         when (success) {
@@ -358,8 +358,8 @@ class EventDonorDetailFragment : FragmentBase() {
             etNombreD.text.toString(),
             etComentarios.text.toString(),
             diner_id,
-            etEmailDonador.text.toString(),
-            etPhoneDonador.text.toString(),
+            etEmailDonador.text.toString().replace(" ","").lowercase(),
+            etPhoneDonador.text.toString().replace(" ",""),
             "datos bancarios",
             donacion,
             donor_id

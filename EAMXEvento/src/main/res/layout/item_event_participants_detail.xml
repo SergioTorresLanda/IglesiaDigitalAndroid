@@ -6,7 +6,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cwcEventParticipants"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp">
 
         <View
             android:id="@+id/viewTop"
@@ -19,6 +21,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/tvVacioParticipants"
             android:layout_width="match_parent"
@@ -33,6 +36,7 @@
             app:layout_constraintBaseline_toBaselineOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/viewTop" />
+
         <LinearLayout
             android:id="@+id/contenido"
             android:layout_width="wrap_content"
@@ -59,25 +63,20 @@
                 android:id="@+id/lNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginTop="12dp"
                 android:orientation="horizontal"
                 app:layout_constraintBaseline_toBaselineOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/viewTop">
 
-
                 <TextView
                     android:id="@+id/tvNombre"
-                    android:layout_width="wrap_content"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="7dp"
-                    android:layout_weight="1"
+                    android:layout_gravity="center"
                     android:fontFamily="sans-serif-medium"
                     android:lineSpacingExtra="4sp"
-                    android:text="Nombre"
+                    android:text="Comedor"
                     android:textColor="@color/textview_title_color"
                     android:textSize="19sp"
                     android:textStyle="bold"
@@ -86,8 +85,8 @@
                 <Switch
                     android:id="@+id/switch_activo"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/margin_bottom_25"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
                     android:switchPadding="@dimen/global_margin_extra"
                     android:textColor="#192a73"
                     android:textSize="18sp"
@@ -99,30 +98,26 @@
                 android:id="@+id/lCorreo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginTop="15dp"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lNombre">
 
                 <ImageView
                     android:id="@+id/ivCorreo"
-                    android:layout_width="51dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="0dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
                     android:contentDescription="calendar"
                     android:focusable="true"
                     android:src="@drawable/card_email" />
 
                 <TextView
                     android:id="@+id/tvCorreo"
-                    android:layout_width="300dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
+                    android:layout_gravity="center"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="20dp"
                     android:fontFamily="sans-serif-medium"
                     android:lineSpacingExtra="4sp"
                     android:lines="1"
@@ -137,18 +132,16 @@
                 android:id="@+id/lTelefono"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginTop="15dp"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lCorreo">
 
                 <ImageView
                     android:id="@+id/ivTelefono"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="0dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
                     android:clickable="true"
                     android:contentDescription="calendar"
                     android:focusable="true"
@@ -156,12 +149,10 @@
 
                 <TextView
                     android:id="@+id/tvTelefono"
-                    android:layout_width="300dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
+                    android:layout_gravity="center"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="20dp"
                     android:fontFamily="sans-serif-medium"
                     android:lineSpacingExtra="4sp"
                     android:lines="1"
@@ -176,19 +167,19 @@
                 android:id="@+id/lInformacion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="7dp"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lTelefono">
 
                 <ImageView
                     android:id="@+id/ivInformacion"
-                    android:layout_width="44dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginBottom="7dp"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="10dp"
                     android:clickable="true"
                     android:contentDescription="calendar"
                     android:focusable="true"
@@ -198,10 +189,10 @@
                     android:id="@+id/tvLabelInformacion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
+                    android:layout_gravity="center"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="7dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="10dp"
                     android:fontFamily="sans-serif-medium"
                     android:lineSpacingExtra="4sp"
                     android:text="Invitados:"
@@ -215,11 +206,10 @@
                     android:id="@+id/tvInformacion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
+                    android:layout_gravity="center"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="7dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="10dp"
                     android:fontFamily="sans-serif-medium"
                     android:lineSpacingExtra="4sp"
                     android:text="Presentarse puntual para garantizar el servicio. No asistir en estado de ebriedad o bajo la influencia de estupefacientes. Seguir las indicaciones de los administradores en todo momento. Actitud de respeto y cordialidad con el resto de los participantes."
@@ -234,11 +224,10 @@
             android:id="@+id/viewBottom"
             android:layout_width="match_parent"
             android:layout_height="7dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginTop="17dp"
             android:background="#B1B2B5"
             android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/cwcEventParticipants"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

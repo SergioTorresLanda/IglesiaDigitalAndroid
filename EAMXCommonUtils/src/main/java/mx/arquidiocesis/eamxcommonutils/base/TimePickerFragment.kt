@@ -33,7 +33,7 @@ class TimePickerFragment(
         val c = Calendar.getInstance()
         val hour = c.get(Calendar.HOUR_OF_DAY)
         val minute = c.get(Calendar.MINUTE)
-        val dialog = TimePickerDialog(context, R.style.MyCalendarDatePickerDialog,this, hour, minute, true)
+        val dialog = TimePickerDialog(context, R.style.TimePicker,this, hour, minute, true)
         dialog.setButton(TimePickerDialog.BUTTON_POSITIVE, "Aceptar", dialog)
         dialog.setButton(TimePickerDialog.BUTTON_NEGATIVE, "Cancelar", dialog)
 

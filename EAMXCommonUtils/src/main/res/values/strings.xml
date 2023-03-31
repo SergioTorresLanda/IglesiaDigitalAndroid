@@ -63,7 +63,9 @@
     <string name="eaxm_other_banks_fragment_cvv_card">CVV</string>
     <string name="spend_to_donate">Cantidad</string>
     <string name="digits_only_number_amount">0123456789.</string>
+    <string name="digits_only_email">qwertyuiopasdfghjklñzxcvbnm QWERTYUIOPASDFGHJKLÑZXCVBNMáóíéúÁÉÍÓÚ @_-. 0123456789</string>
     <string name="digits_only_letters">qwertyuiopasdfghjklñzxcvbnm QWERTYUIOPASDFGHJKLÑZXCVBNMáóíéúÁÉÍÓÚ </string>
+    <string name="digits_only_letters_caracters">qwertyuiopasdfghjklñzxcvbnm QWERTYUIOPASDFGHJKLÑZXCVBNMáóíéúÁÉÍÓÚ 0123456789 -¿?!¡()+*./,</string>
     <string name="digits_only_number_card">0123456789-</string>
     <string name="digits_only_number_date">1234567890/</string>
     <string name="digits_only_number">1234567890</string>

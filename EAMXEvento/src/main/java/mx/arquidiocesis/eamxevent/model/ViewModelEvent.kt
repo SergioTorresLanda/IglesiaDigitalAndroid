@@ -209,13 +209,13 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
     fun validateFormRegisterDonor(
         name: String,
         comment: String,
-        comedor : Int,
-        correo : String,
+        comedor: Int,
+        correo: String,
         telefono: String,
-        bancarios : String,
-        tipo_don : String,
-        id: Int? = 0
-        ) {
+        bancarios: String,
+        tipo_don: String,
+        id: Int? = 0,
+    ) {
         val userId =
             eamxcu_preferences.getData(EAMXEnumUser.USER_ID.name, EAMXTypeObject.INT_OBJECT) as Int
         val email =
@@ -251,7 +251,7 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
         if (telefono.isEmpty()) {
             validateForm[Constants.KEY_PHONE] = Constants.EMPTY_FIELD
 
-        }else if (telefono.length < 13) {
+        } else if (telefono.length < 10) {
             validateForm[Constants.KEY_PHONE] = Constants.INVALID_PHONE
         }
 
@@ -272,7 +272,7 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
                 user_id = userId,
                 bancarios = bancarios,
                 correo = correo,
-                telefono = telefono,
+                telefono = "+52${telefono}",
                 comedor_id = comedor,
                 comentarios = comment,
                 tipo_don = tipo_don
@@ -289,13 +289,13 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
 
     fun validateFormRegisterVolunteer(
         responsable: String,
-        direccion : String,
-        comedor : String,
+        direccion: String,
+        comedor: String,
         name: String,
         telefono: String,
-        multiusuario : MutableList<GuestModel>,
-        correo : String,
-        id: Int? = 0
+        multiusuario: MutableList<GuestModel>,
+        correo: String,
+        id: Int? = 0,
     ) {
         val userId =
             eamxcu_preferences.getData(EAMXEnumUser.USER_ID.name, EAMXTypeObject.INT_OBJECT) as Int
@@ -325,7 +325,7 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
         if (telefono.isEmpty()) {
             validateForm[Constants.KEY_PHONE] = Constants.EMPTY_FIELD
 
-        }else if (telefono.length < 13) {
+        } else if (telefono.length < 10) {
             validateForm[Constants.KEY_PHONE] = Constants.INVALID_PHONE
         }
 
@@ -338,12 +338,12 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
             this.showLoaderView.value = true
 
             val eventRegisterModelVolunteer = Volunteer(
-                user_id= userId,
+                user_id = userId,
                 responsable = responsable,
                 direccion = direccion,
                 comedor_id = comedor,
                 nombre_voluntario = name,
-                telefono = telefono,
+                telefono = "+52${telefono}",
                 multiuser = multiusuario,
                 correo = correo
             )
@@ -351,7 +351,7 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
                 if (id == 0) {
                     repositoryEvent.saveVolunteer(eventRegisterModelVolunteer)
                 } else {
-                    id?.let{repositoryEvent.UpdateVolunteer(it, eventRegisterModelVolunteer) }
+                    id?.let { repositoryEvent.UpdateVolunteer(it, eventRegisterModelVolunteer) }
                 }
             }
         }

@@ -49,7 +49,7 @@ class EventVolunteerDetailFragment : FragmentBase() {
     private var init = true
     private lateinit var guest: GuestModel
     private var responsable_name: String = ""
-    private var direccionComedor : String = ""
+    private var direccionComedor: String = ""
     var latitude: Double = 0.0
     var longitude: Double = 0.0
     private var volunteer_id: Int = 0
@@ -105,8 +105,7 @@ class EventVolunteerDetailFragment : FragmentBase() {
         initView()
         initObservers()
         etEmailV.setText(email)
-        etPhonev.setText(phone)
-        //etPhonev.setText(phone.replace("+52", ""))
+        etPhonev.setText(phone.replace("+52", ""))
         requireArguments().let {
             var id = it.getString("diner_id")
             id?.let { it1 ->
@@ -116,15 +115,13 @@ class EventVolunteerDetailFragment : FragmentBase() {
                 //getAllDiners(diner_id)
             }
             var responsable = it.getString("responsable_name")
-            responsable?.let {
-                it2 ->
+            responsable?.let { it2 ->
                 responsable_name = it2.toString()
                 println(responsable_name)
                 //etResponsableVoluntario.setText(responsable_name)
             }
             var direccion = it.getString("direccion")
-            direccion?.let {
-                    it2 ->
+            direccion?.let { it2 ->
                 direccionComedor = it2.toString()
                 println(direccionComedor)
                 //etResponsableVoluntario.setText(responsable_name)
@@ -147,7 +144,7 @@ class EventVolunteerDetailFragment : FragmentBase() {
                             volunteer_id = it.fIVOLUNTARIOID!!.toInt()
                             etNombreVoluntario.setText(it.fCVOLUNTARIO)
                             etEmailV.setText(it.fCCORREO)
-                            etPhonev.setText(it.fCTELEFONO)
+                            etPhonev.setText(it.fCTELEFONO!!.replace("+52", ""))
                             it.fCMULTIUSER!!.forEach {
                                 guestAdapter.addItem(it)
                             }
@@ -177,18 +174,18 @@ class EventVolunteerDetailFragment : FragmentBase() {
                     .setIsCancel(false)
                     .build().show(childFragmentManager, tag)
             } else if (it.containsKey(Constants.KEY_PHONE)) {
-                if(it[Constants.KEY_PHONE] == Constants.EMPTY_FIELD){
+                if (it[Constants.KEY_PHONE] == Constants.EMPTY_FIELD) {
                     UtilAlert.Builder()
                         .setTitle(getString(R.string.title_dialog_error))
                         .setMessage(getString(R.string.txt_empty_phone))
                         .setIsCancel(false)
                         .build().show(childFragmentManager, tag)
-                }else if(it[Constants.KEY_PHONE] == Constants.INVALID_PHONE) {
-                        UtilAlert.Builder()
-                            .setTitle(getString(R.string.title_dialog_error))
-                            .setMessage(getString(R.string.txt_invalid_phone_don))
-                            .setIsCancel(false)
-                            .build().show(childFragmentManager, tag)
+                } else if (it[Constants.KEY_PHONE] == Constants.INVALID_PHONE) {
+                    UtilAlert.Builder()
+                        .setTitle(getString(R.string.title_dialog_error))
+                        .setMessage(getString(R.string.txt_invalid_phone))
+                        .setIsCancel(false)
+                        .build().show(childFragmentManager, tag)
                 }
             }
             hideLoader()
@@ -222,7 +219,8 @@ class EventVolunteerDetailFragment : FragmentBase() {
     private fun initView() {
         binding.apply {
             etNombreVoluntario.hint = "Nombre y apellidos"
-            etgetAddressVoluntario.hint = "Actualiza tu ubicación en el mapa para obtener la dirección."
+            etgetAddressVoluntario.hint =
+                "Actualiza tu ubicación en el mapa para obtener la dirección."
 
             etNombreVoluntario.addTextChangedListener {
                 if (etNombreVoluntario.text.toString().isNotEmpty()) {
@@ -253,17 +251,18 @@ class EventVolunteerDetailFragment : FragmentBase() {
                 if (etPhonev.text.toString().isEmpty()) {
                     enableIconStart(tilPhonev, null)
                     tilPhonev.isEmpty()
-                    tilPhonev.error = getString(R.string.min_phone_don)
+                    tilPhonev.error = getString(R.string.min_phone)
                 } else {
                     if (EAMXFieldValidation.validateNumberPhone(etPhonev.text.toString())
-                        && EAMXFieldValidation.validateNumberLengthCD(etPhonev.text.toString())) {
+                        && EAMXFieldValidation.validateNumberLength(etPhonev.text.toString())
+                    ) {
                         tilPhonev.error = null
                     }
                     if (!EAMXFieldValidation.validateNumberPhone(etPhonev.text.toString())) {
                         tilPhonev.error = getString(R.string.wrong_phone_number)
                     }
-                    if (!EAMXFieldValidation.validateNumberLengthCD(etPhonev.text.toString())) {
-                        tilPhonev.error = getString(R.string.min_phone_don)
+                    if (!EAMXFieldValidation.validateNumberLength(etPhonev.text.toString())) {
+                        tilPhonev.error = getString(R.string.min_phone)
                     }
                 }
             }
@@ -289,17 +288,18 @@ class EventVolunteerDetailFragment : FragmentBase() {
                 if (etPhoneInvitado.text.toString().isEmpty()) {
                     enableIconStart(tilPhoneInvitado, null)
                     tilPhoneInvitado.isEmpty()
-                    tilPhoneInvitado.error = getString(R.string.min_phone_don)
+                    tilPhoneInvitado.error = getString(R.string.min_phone)
                 } else {
-                    if (EAMXFieldValidation.validateNumberPhoneCD(etPhoneInvitado.text.toString())
-                        && EAMXFieldValidation.validateNumberLengthCD(etPhoneInvitado.text.toString())) {
+                    if (EAMXFieldValidation.validateNumberPhone(etPhoneInvitado.text.toString())
+                        && EAMXFieldValidation.validateNumberLength(etPhoneInvitado.text.toString())
+                    ) {
                         tilPhoneInvitado.error = null
                     }
-                    if (!EAMXFieldValidation.validateNumberPhoneCD(etPhoneInvitado.text.toString())) {
+                    if (!EAMXFieldValidation.validateNumberPhone(etPhoneInvitado.text.toString())) {
                         tilPhoneInvitado.error = getString(R.string.wrong_phone_number)
                     }
-                    if (!EAMXFieldValidation.validateNumberLengthCD(etPhoneInvitado.text.toString())) {
-                        tilPhoneInvitado.error = getString(R.string.min_phone_don)
+                    if (!EAMXFieldValidation.validateNumberLength(etPhoneInvitado.text.toString())) {
+                        tilPhoneInvitado.error = getString(R.string.min_phone)
                     }
                 }
             }
@@ -318,37 +318,42 @@ class EventVolunteerDetailFragment : FragmentBase() {
 
     private fun initButtons() {
         binding.apply {
-           btnAgregar.setOnClickListener {
-               if (etInvitado.text.toString().isEmpty()){
-                   UtilAlert.Builder()
-                       .setTitle(getString(R.string.title_dialog_error))
-                       .setMessage(getString(R.string.txt_empty_nameI))
-                       .setIsCancel(false)
-                       .build().show(childFragmentManager, tag)
-                   return@setOnClickListener
-               }else if(etPhoneInvitado.text.toString().isEmpty()){
-                   UtilAlert.Builder()
-                       .setTitle(getString(R.string.title_dialog_error))
-                       .setMessage(getString(R.string.txt_empty_phoneI))
-                       .setIsCancel(false)
-                       .build().show(childFragmentManager, tag)
-                   return@setOnClickListener
-               }else if(!EAMXFieldValidation.validateNumberLengthCD(etPhoneInvitado.text.toString())){
-                   UtilAlert.Builder()
-                       .setTitle(getString(R.string.title_dialog_error))
-                       .setMessage(getString(R.string.txt_invalid_phone_don))
-                       .setIsCancel(false)
-                       .build().show(childFragmentManager, tag)
-                  return@setOnClickListener
-               }
-                   guestAdapter.addItem(GuestModel(etInvitado.text.toString(), etPhoneInvitado.text.toString()))
-                   etInvitado.setText("")
-                   tilInvitado.error = null
-                   etPhoneInvitado.setText("")
-                   etPhoneInvitado.error = null
-           }
+            btnAgregar.setOnClickListener {
+                if (etInvitado.text.toString().isEmpty()) {
+                    UtilAlert.Builder()
+                        .setTitle(getString(R.string.title_dialog_error))
+                        .setMessage(getString(R.string.txt_empty_nameI))
+                        .setIsCancel(false)
+                        .build().show(childFragmentManager, tag)
+                    return@setOnClickListener
+                } else if (etPhoneInvitado.text.toString().isEmpty()) {
+                    UtilAlert.Builder()
+                        .setTitle(getString(R.string.title_dialog_error))
+                        .setMessage(getString(R.string.txt_empty_phoneI))
+                        .setIsCancel(false)
+                        .build().show(childFragmentManager, tag)
+                    return@setOnClickListener
+                } else if (!EAMXFieldValidation.validateNumberLength(etPhoneInvitado.text.toString())) {
+                    UtilAlert.Builder()
+                        .setTitle(getString(R.string.title_dialog_error))
+                        .setMessage(getString(R.string.txt_invalid_phone))
+                        .setIsCancel(false)
+                        .build().show(childFragmentManager, tag)
+                    return@setOnClickListener
+                }
+                guestAdapter.addItem(
+                    GuestModel(
+                        etInvitado.text.toString(),
+                        "+52${etPhoneInvitado.text.toString()}"
+                    )
+                )
+                etInvitado.setText("")
+                tilInvitado.error = null
+                etPhoneInvitado.setText("")
+                etPhoneInvitado.error = null
+            }
 
-            val allowedChars = "0123456789+"
+            val allowedChars = "0123456789"
             etPhonev.setOnKeyListener { _, keyCode, event ->
                 if (keyCode == KeyEvent.KEYCODE_PLUS && event.action == KeyEvent.ACTION_UP) {
                     val currentText = etPhonev.text.toString()
@@ -396,6 +401,7 @@ class EventVolunteerDetailFragment : FragmentBase() {
             tvAddressVoluntario.setOnClickListener { showMap() }
         }
     }
+
     fun showMap() {
         if (chechPermissions()) {
             MapsFragment { rlatitude, rlongitude, raddress, municipality ->
@@ -403,6 +409,7 @@ class EventVolunteerDetailFragment : FragmentBase() {
             }.show(childFragmentManager, TAG_LOADER)
         }
     }
+
     private fun chechPermissions(): Boolean {
         return UtilValidPermission().validListPermissionsAndBuildRequest(
             this@EventVolunteerDetailFragment, arrayListOf(
@@ -410,10 +417,11 @@ class EventVolunteerDetailFragment : FragmentBase() {
             ), PERMISSION_LOCATION
         )
     }
+
     private fun String.validNumberPhoneVoluntario() =
         EAMXFieldValidation.validateNumberPhone(this) &&
                 this.isNotEmpty() &&
-                EAMXFieldValidation.validateNumberLengthCD(this)
+                EAMXFieldValidation.validateNumberLength(this)
 
     fun enableIconStart(input: TextInputLayout, success: Boolean?) {
         when (success) {
@@ -454,9 +462,9 @@ class EventVolunteerDetailFragment : FragmentBase() {
             direccionComedor,
             diner_id.toString(),
             etNombreVoluntario.text.toString(),
-            etPhonev.text.toString().trim(),
+            etPhonev.text.toString().replace(" ",""),
             guestAdapter.guestList,
-            etEmailV.text.toString().trim().lowercase(),
+            etEmailV.text.toString().replace(" ","").lowercase(),
             volunteer_id
         )
     }
