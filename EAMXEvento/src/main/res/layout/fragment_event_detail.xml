@@ -56,6 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="20dp"
                 android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="parent"
@@ -63,16 +64,8 @@
 
                 <TextView
                     android:id="@+id/tvNombreC"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:lineSpacingExtra="4sp"
-                    android:lines="1"
+                    style="@style/tv_label_secondary"
                     android:text="Nombre del comedor"
-                    android:textColor="@color/textview_title_color"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
                     app:layout_constraintTop_toBottomOf="parent" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -106,7 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="20dp"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
@@ -114,16 +107,8 @@
 
                 <TextView
                     android:id="@+id/tvlabelAdrress"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:lineSpacingExtra="4sp"
-                    android:lines="1"
+                    style="@style/tv_label_secondary"
                     android:text="Dirección"
-                    android:textColor="@color/textview_title_color"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
                     app:layout_constraintTop_toBottomOf="@id/tvAddress" />
 
             </LinearLayout>
@@ -179,15 +164,8 @@
 
                 <TextView
                     android:id="@+id/tvZonaDetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:lineSpacingExtra="4sp"
+                    style="@style/tv_label_secondary"
                     android:text="Zona"
-                    android:textColor="@color/textview_title_color"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -228,7 +206,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="20dp"
                 android:fontFamily="sans-serif-medium"
                 android:lineSpacingExtra="4sp"
@@ -253,7 +231,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="20dp"
                 android:fontFamily="sans-serif-medium"
                 android:lineSpacingExtra="4sp"
@@ -395,16 +373,8 @@
 
                 <TextView
                     android:id="@+id/tvResponsable"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:lineSpacingExtra="4sp"
-                    android:lines="1"
+                    style="@style/tv_label_secondary"
                     android:text="Responsable"
-                    android:textColor="@color/textview_title_color"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
                     app:layout_constraintTop_toBottomOf="parent" />
 
 
@@ -447,16 +417,8 @@
 
                 <TextView
                     android:id="@+id/tvEmail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:lineSpacingExtra="4sp"
-                    android:lines="1"
+                    style="@style/tv_label_secondary"
                     android:text="Correo"
-                    android:textColor="@color/textview_title_color"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
                     app:layout_constraintTop_toBottomOf="@+id/cwcDays" />
 
 
@@ -499,16 +461,8 @@
 
                 <TextView
                     android:id="@+id/labelPhone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:lineSpacingExtra="4sp"
-                    android:lines="1"
-                    android:text="Teléfono"
-                    android:textColor="@color/textview_title_color"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    style="@style/tv_label_secondary"
+                    android:text="Teléfono"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilNumberPhone"
@@ -543,7 +497,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="20dp"
                 android:gravity="left"
                 android:orientation="horizontal"
@@ -590,16 +544,8 @@
 
                 <TextView
                     android:id="@+id/tvMonto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:lineSpacingExtra="4sp"
-                    android:lines="1"
+                    style="@style/tv_label_secondary"
                     android:text="Precio"
-                    android:textColor="@color/textview_title_color"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
                     app:layout_constraintTop_toBottomOf="parent" />
 
 
@@ -643,16 +589,8 @@
 
                 <TextView
                     android:id="@+id/tvRequisitos"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:lineSpacingExtra="4sp"
-                    android:lines="1"
+                    style="@style/tv_label_secondary"
                     android:text="Requisitos"
-                    android:textColor="@color/textview_title_color"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
                     app:layout_constraintTop_toBottomOf="parent" />
 
 
@@ -699,7 +637,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="20dp"
                 android:gravity="left"
                 android:orientation="horizontal"
@@ -737,7 +675,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="20dp"
                 android:gravity="left"
                 android:orientation="horizontal"
@@ -788,7 +726,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="20dp"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal"
