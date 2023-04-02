@@ -7,16 +7,12 @@
         android:id="@+id/cwcEvent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp">
+        android:layout_marginStart="@dimen/margin_15"
+        android:layout_marginEnd="@dimen/margin_15">
 
         <View
             android:id="@+id/viewTop"
-            android:layout_width="match_parent"
-            android:layout_height="7dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:background="#B1B2B5"
+            style="@style/v_row_item"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -24,14 +20,8 @@
 
         <TextView
             android:id="@+id/tvVacio"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
+            style="@style/tv_row_vacio_item"
             android:text="No se encontraron comedores activos con la selección actual."
-            android:textColor="@color/textview_title_color"
-            android:textSize="20sp"
-            android:textStyle="bold"
             android:visibility="gone"
             app:layout_constraintBaseline_toBaselineOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,37 +29,22 @@
 
         <LinearLayout
             android:id="@+id/lNombreF"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:orientation="horizontal"
+            style="@style/ll_title_item"
             app:layout_constraintBaseline_toBaselineOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/viewTop">
 
-
             <TextView
                 android:id="@+id/tvNombreF"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif-medium"
-                android:lineSpacingExtra="4sp"
+                style="@style/tv_title_item"
+                android:layout_weight=".9"
                 android:text="Comedor"
-                android:textColor="@color/textview_title_color"
-                android:textSize="19sp"
-                android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnOpciones"
-                style="@style/StylebtnParticipacion"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:background="@drawable/border_radius"
-                android:gravity="end"
+                style="@style/btn_item_material"
+                android:layout_weight=".0001"
                 android:text="Donar"
                 android:textAppearance="@style/TextAppearance.AppCompat" />
 
@@ -77,320 +52,181 @@
 
         <LinearLayout
             android:id="@+id/lPrecioF"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal"
+            style="@style/ll_row_item"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lNombreF">
 
-
             <ImageView
                 android:id="@+id/ivPrecio"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_gravity="center"
-                android:clickable="true"
-                android:contentDescription="calendar"
-                android:focusable="true"
+                style="@style/im_icon_item"
                 android:src="@drawable/icons_color_96" />
 
             <TextView
                 android:id="@+id/labelPrecioF"
+                style="@style/tv_paragraph_item"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:fontFamily="sans-serif-medium"
-                android:lineSpacingExtra="4sp"
                 android:lines="1"
                 android:text="Aportación de $"
-                android:textColor="@color/textview_title_color"
-                android:textSize="16sp"
-                android:textStyle="normal"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
 
             <TextView
                 android:id="@+id/tvPrecioF"
+                style="@style/tv_paragraph_item"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="sans-serif-medium"
-                android:lineSpacingExtra="4sp"
+                android:layout_marginStart="0dp"
+                android:lines="1"
                 android:text="30"
-                android:textColor="@color/textview_title_color"
-                android:textSize="16sp"
-                android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="@id/labelPrecioF"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
 
             <TextView
                 android:id="@+id/labelPesos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="sans-serif-medium"
-                android:lineSpacingExtra="4sp"
+                style="@style/tv_paragraph_item"
+                android:layout_marginStart="0dp"
+                android:lines="1"
                 android:text=" pesos"
-                android:textColor="@color/textview_title_color"
-                android:textSize="16sp"
-                android:textStyle="normal"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/lHorarioF"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal"
+            style="@style/ll_row_item"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lPrecioF">
 
             <ImageView
                 android:id="@+id/ivHorario"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_gravity="center"
-                android:clickable="true"
-                android:contentDescription="calendar"
-                android:focusable="true"
+                style="@style/im_icon_item"
                 android:src="@drawable/ic_reloj" />
 
             <TextView
                 android:id="@+id/tvHorarioF"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:fontFamily="sans-serif-medium"
-                android:lineSpacingExtra="4sp"
-                android:lines="1"
+                style="@style/tv_paragraph_item"
                 android:text="00:00 - 00:00"
-                android:textColor="@color/textview_title_color"
-                android:textSize="16sp"
-                android:textStyle="normal"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/lDiasF"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal"
+            style="@style/ll_row_item"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lHorarioF">
 
             <ImageView
                 android:id="@+id/ivDias"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_gravity="center"
-                android:clickable="true"
-                android:contentDescription="calendar"
-                android:focusable="true"
+                style="@style/im_icon_item"
                 android:src="@drawable/calendar" />
 
             <TextView
                 android:id="@+id/tvDiasF"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:fontFamily="sans-serif-medium"
-                android:lineSpacingExtra="4sp"
+                style="@style/tv_paragraph_item"
                 android:text="Lunes y Martes"
-                android:textColor="@color/textview_title_color"
-                android:textSize="16sp"
-                android:textStyle="normal"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/lDireccionF"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal"
+            style="@style/ll_row_item"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lDiasF">
 
             <ImageView
                 android:id="@+id/ivAddress"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_gravity="center"
-                android:contentDescription="calendar"
-                android:focusable="true"
+                style="@style/im_icon_item"
                 android:src="@drawable/icono_igle" />
 
             <TextView
                 android:id="@+id/tvDireccionF"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:fontFamily="sans-serif-medium"
-                android:lineSpacingExtra="4sp"
+                style="@style/tv_paragraph_item"
                 android:text="Periferico Sur"
-                android:textColor="@color/textview_title_color"
-                android:textIsSelectable="true"
-                android:textSize="16sp"
-                android:textStyle="normal"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/lResponF"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal"
+            style="@style/ll_row_item"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lDireccionF">
 
             <ImageView
                 android:id="@+id/ivResponsable"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_gravity="center"
-                android:clickable="true"
-                android:contentDescription="calendar"
-                android:focusable="true"
+                style="@style/im_icon_item"
                 android:src="@drawable/icon_responsable" />
 
             <TextView
                 android:id="@+id/tvResponF"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:fontFamily="sans-serif-medium"
-                android:lineSpacingExtra="4sp"
-                android:lines="1"
+                style="@style/tv_paragraph_item"
                 android:text="Juan Olvera"
-                android:textColor="@color/textview_title_color"
-                android:textSize="16sp"
-                android:textStyle="normal"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/lCorreoF"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal"
+            style="@style/ll_row_item"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lResponF">
 
             <ImageView
                 android:id="@+id/ivCorreo"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_gravity="center"
-                android:contentDescription="calendar"
-                android:focusable="true"
+                style="@style/im_icon_item"
                 android:src="@drawable/card_email" />
 
             <TextView
                 android:id="@+id/tvCorreoF"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:fontFamily="sans-serif-medium"
-                android:lineSpacingExtra="4sp"
-                android:lines="1"
+                style="@style/tv_paragraph_item"
                 android:text="email@gmial.com"
-                android:textColor="@color/textview_title_color"
-                android:textSize="16sp"
-                android:textStyle="normal"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/lTelF"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal"
+            style="@style/ll_row_item"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lCorreoF">
 
             <ImageView
                 android:id="@+id/ivTelefono"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_gravity="center"
-                android:clickable="true"
+                style="@style/im_icon_item"
                 android:contentDescription="calendar"
-                android:focusable="true"
                 android:src="@drawable/tel_fono_48" />
 
             <TextView
                 android:id="@+id/tvTelF"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:fontFamily="sans-serif-medium"
-                android:lineSpacingExtra="4sp"
-                android:lines="1"
+                style="@style/tv_paragraph_item"
                 android:text="+527641015871"
-                android:textColor="@color/textview_title_color"
-                android:textSize="16sp"
-                android:textStyle="normal"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/lRequisF"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            style="@style/ll_row_item"
             android:layout_marginBottom="7dp"
-            android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lTelF">
 
             <ImageView
                 android:id="@+id/ivRequis"
+                style="@style/im_icon_item"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
-                android:layout_gravity="center"
                 android:layout_marginTop="3dp"
                 android:layout_marginBottom="10dp"
-                android:clickable="true"
-                android:contentDescription="calendar"
-                android:focusable="true"
                 android:src="@drawable/ic_icono_info" />
 
             <TextView
                 android:id="@+id/tvRequisF"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
+                style="@style/tv_paragraph_item"
                 android:layout_marginTop="3dp"
                 android:layout_marginBottom="10dp"
-                android:fontFamily="sans-serif-medium"
-                android:lineSpacingExtra="4sp"
                 android:text="Presentarse puntual para garantizar el servicio. No asistir en estado de ebriedad o bajo la influencia de estupefacientes. Seguir las indicaciones de los administradores en todo momento. Actitud de respeto y cordialidad con el resto de los participantes."
-                android:textColor="@color/textview_title_color"
-                android:textSize="17sp"
-                android:textStyle="normal"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
         </LinearLayout>
 
         <View
             android:id="@+id/viewBottom"
-            android:layout_width="match_parent"
-            android:layout_height="7dp"
+            style="@style/v_row_item"
             android:layout_marginTop="17dp"
-            android:background="#B1B2B5"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@id/lRequisF"
             app:layout_constraintEnd_toEndOf="parent"

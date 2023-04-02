@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cwcEventParticipants"
+        android:id="@+id/cwcEvent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp">
+        android:layout_marginStart="@dimen/margin_15"
+        android:layout_marginEnd="@dimen/margin_15">
 
         <View
             android:id="@+id/viewTop"
@@ -22,16 +22,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
         <TextView
             android:id="@+id/tvVacioParticipants"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:text="No se encontraron participantes."
-            android:textColor="@color/textview_title_color"
-            android:textSize="20sp"
-            android:textStyle="bold"
+            style="@style/tv_row_vacio_item"
+            android:text="No se encontraron comedores activos con la selección actual."
             android:visibility="gone"
             app:layout_constraintBaseline_toBaselineOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,14 +41,8 @@
 
             <TextView
                 android:id="@+id/tvVacio"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:text="No se encontraron comedores activos con la selección actual."
-                android:textColor="@color/textview_title_color"
-                android:textSize="20sp"
-                android:textStyle="bold"
+                style="@style/tv_row_vacio_item"
+                android:text="No se encontraron resultados."
                 android:visibility="gone"
                 app:layout_constraintBaseline_toBaselineOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -61,32 +50,26 @@
 
             <LinearLayout
                 android:id="@+id/lNombre"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:orientation="horizontal"
+                style="@style/ll_title_item"
                 app:layout_constraintBaseline_toBaselineOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/viewTop">
 
                 <TextView
                     android:id="@+id/tvNombre"
+                    style="@style/tv_title_item"
                     android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="sans-serif-medium"
-                    android:lineSpacingExtra="4sp"
+                    android:layout_weight=".9"
                     android:text="Comedor"
-                    android:textColor="@color/textview_title_color"
-                    android:textSize="19sp"
-                    android:textStyle="bold"
                     app:layout_constraintTop_toBottomOf="@id/parent" />
 
                 <Switch
                     android:id="@+id/switch_activo"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="@dimen/height_40"
                     android:layout_gravity="center"
+                    android:layout_weight=".0001"
+                    android:gravity="center"
                     android:switchPadding="@dimen/global_margin_extra"
                     android:textColor="#192a73"
                     android:textSize="18sp"
@@ -96,138 +79,83 @@
 
             <LinearLayout
                 android:id="@+id/lCorreo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal"
+                style="@style/ll_row_item"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lNombre">
 
                 <ImageView
                     android:id="@+id/ivCorreo"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="center"
-                    android:contentDescription="calendar"
-                    android:focusable="true"
+                    style="@style/im_icon_item"
                     android:src="@drawable/card_email" />
 
                 <TextView
                     android:id="@+id/tvCorreo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:lineSpacingExtra="4sp"
-                    android:lines="1"
+                    style="@style/tv_paragraph_item"
                     android:text="email@gmial.com"
-                    android:textColor="@color/textview_title_color"
-                    android:textSize="16sp"
-                    android:textStyle="normal"
                     app:layout_constraintTop_toBottomOf="@id/parent" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/lTelefono"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal"
+                style="@style/ll_row_item"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lCorreo">
 
                 <ImageView
                     android:id="@+id/ivTelefono"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="center"
-                    android:clickable="true"
-                    android:contentDescription="calendar"
-                    android:focusable="true"
+                    style="@style/im_icon_item"
                     android:src="@drawable/tel_fono_48" />
 
                 <TextView
                     android:id="@+id/tvTelefono"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:lineSpacingExtra="4sp"
-                    android:lines="1"
+                    style="@style/tv_paragraph_item"
                     android:text="+527641015871"
-                    android:textColor="@color/textview_title_color"
-                    android:textSize="16sp"
-                    android:textStyle="normal"
                     app:layout_constraintTop_toBottomOf="@id/parent" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/lInformacion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                style="@style/ll_row_item"
                 android:layout_marginBottom="7dp"
-                android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lTelefono">
 
                 <ImageView
                     android:id="@+id/ivInformacion"
+                    style="@style/im_icon_item"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
-                    android:layout_gravity="center"
                     android:layout_marginTop="3dp"
                     android:layout_marginBottom="10dp"
-                    android:clickable="true"
-                    android:contentDescription="calendar"
-                    android:focusable="true"
                     android:src="@drawable/ic_icono_info" />
 
                 <TextView
                     android:id="@+id/tvLabelInformacion"
+                    style="@style/tv_paragraph_item"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
                     android:layout_marginTop="3dp"
                     android:layout_marginBottom="10dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:lineSpacingExtra="4sp"
                     android:text="Invitados:"
-                    android:textColor="@color/textview_title_color"
-                    android:textSize="17sp"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/open_sans_bold"
                     android:visibility="visible"
                     app:layout_constraintTop_toBottomOf="@id/parent" />
 
                 <TextView
                     android:id="@+id/tvInformacion"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
+                    style="@style/tv_paragraph_item"
                     android:layout_marginTop="3dp"
                     android:layout_marginBottom="10dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:lineSpacingExtra="4sp"
                     android:text="Presentarse puntual para garantizar el servicio. No asistir en estado de ebriedad o bajo la influencia de estupefacientes. Seguir las indicaciones de los administradores en todo momento. Actitud de respeto y cordialidad con el resto de los participantes."
-                    android:textColor="@color/textview_title_color"
-                    android:textSize="17sp"
-                    android:textStyle="normal"
                     app:layout_constraintTop_toBottomOf="@id/parent" />
             </LinearLayout>
         </LinearLayout>
 
         <View
             android:id="@+id/viewBottom"
-            android:layout_width="match_parent"
-            android:layout_height="7dp"
+            style="@style/v_row_item"
             android:layout_marginTop="17dp"
-            android:background="#B1B2B5"
             android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="@id/cwcEventParticipants"
+            app:layout_constraintBottom_toBottomOf="@id/contenido"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

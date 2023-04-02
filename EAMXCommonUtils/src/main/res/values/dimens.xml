@@ -26,10 +26,18 @@
 
     <dimen name="padding_5">5dp</dimen>
     <dimen name="padding_10">10dp</dimen>
-    <dimen name="height_12">12dp</dimen>
     <dimen name="padding_16">16dp</dimen>
     <dimen name="padding_20">20dp</dimen>
-
+    <!-- Height -->
+    <dimen name="height_7">7dp</dimen>
+    <dimen name="height_12">12dp</dimen>
+    <dimen name="height_25">25dp</dimen>
+    <dimen name="height_40">40dp</dimen>
+    <dimen name="height_250">250dp</dimen>
+    <!--Width-->
+    <dimen name="width_25">25dp</dimen>
+    <!-- Size -->
+    <dimen name="size_1">2sp</dimen>
     <dimen name="size_10">10sp</dimen>
     <dimen name="size_12">12sp</dimen>
     <dimen name="size_14">14sp</dimen>
@@ -40,9 +48,11 @@
     <dimen name="size_20">20sp</dimen>
     <dimen name="size_22">22sp</dimen>
     <dimen name="size_24">24sp</dimen>
+    <!-- Margin -->
     <dimen name="margin_top_15">15dp</dimen>
     <dimen name="margin_top_10">10dp</dimen>
     <dimen name="margin_10">10dp</dimen>
+    <dimen name="margin_12">12dp</dimen>
     <dimen name="margin_top_30">30dp</dimen>
     <dimen name="margin_top_40">40dp</dimen>
     <dimen name="width_fields_code_50">50dp</dimen>

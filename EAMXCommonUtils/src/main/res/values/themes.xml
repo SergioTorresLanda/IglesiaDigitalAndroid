@@ -1,4 +1,69 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- ITEM -->
+    <style name="v_row_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/height_7</item>
+        <item name="android:background">#B1B2B5</item>
+    </style>
+    <style name="tv_row_vacio_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/height_250</item>
+        <item name="android:layout_marginTop">@dimen/margin_10</item>
+        <item name="android:gravity">center</item>
+        <item name="android:fontFamily">@font/open_sans_bold</item>
+        <item name="android:textSize">@dimen/size_20</item>
+        <item name="android:textColor">@color/primaryColor</item>
+    </style>
+    <style name="ll_title_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/margin_12</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+    <style name="tv_title_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">left</item>
+        <item name="android:fontFamily">@font/open_sans_bold</item>
+        <item name="android:textSize">@dimen/size_20</item>
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:lineSpacingExtra">@dimen/size_1</item>
+    </style>
+    <style name="btn_item_material" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/height_40</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/border_radius</item>
+        <item name="fontFamily">@font/open_sans_bold</item>
+        <item name="android:textSize">@dimen/size_20</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="ll_row_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/margin_15</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+    <style name="im_icon_item">
+        <item name="android:layout_width">@dimen/width_25</item>
+        <item name="android:layout_height">@dimen/height_25</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+    <style name="tv_paragraph_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginStart">@dimen/margin_10</item>
+        <item name="android:fontFamily">@font/open_sans_regular</item>
+        <item name="android:textSize">@dimen/size_16</item>
+        <item name="android:textColor">@color/secondaryColor</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingExtra">@dimen/size_1</item>
+    </style>
+    <!-- ITEM -->
+
     <style name="StyleBtnFlotante" parent="Widget.MaterialComponents.Button">
         <item name="android:backgroundTint">@color/btn_background_accept</item>
         <item name="cornerRadius">@dimen/radius_20</item>
