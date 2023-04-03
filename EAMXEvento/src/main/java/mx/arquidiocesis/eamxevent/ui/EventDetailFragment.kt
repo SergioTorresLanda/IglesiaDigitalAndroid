@@ -605,9 +605,7 @@ class EventDetailFragment : FragmentBase() {
             btnGuardar.setOnClickListener { eventRegister() }
             tvAddress.setOnClickListener { showMap() }
             tvFirstH.setOnClickListener { showTimePickerFirst() }
-            ivFirstH.setOnClickListener { showTimePickerFirst() }
             tvEndH.setOnClickListener { showTimePickerEnd() }
-            ivEndH.setOnClickListener { showTimePickerEnd() }
         }
     }
 
