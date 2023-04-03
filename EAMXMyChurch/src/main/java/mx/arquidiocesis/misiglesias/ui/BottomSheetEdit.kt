@@ -316,6 +316,7 @@ open class BottomSheetEdit(
             viewModel.getLocation()
             initObservers()
         }
+        hidenLoader()
     }
 
     fun initObservers() {
