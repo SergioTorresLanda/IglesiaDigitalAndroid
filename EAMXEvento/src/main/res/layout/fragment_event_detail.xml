@@ -12,408 +12,241 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp">
 
             <LinearLayout
                 android:id="@+id/llBotones"
-                android:visibility="gone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="20dp"
-                android:orientation="vertical"
-                app:layout_constraintStart_toStartOf="parent"
+                style="@style/ll_fill_btns"
+                android:visibility="visible"
                 tools:ignore="MissingConstraints">
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnDonadores"
-                    style="@style/StylebtnParticipacion"
-                    android:layout_width="200dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="15dp"
-                    android:background="@drawable/border_radius"
-                    android:gravity="center"
-                    android:text="Donadores"
-                    android:textAppearance="@style/TextAppearance.AppCompat" />
+                    style="@style/btn_primary"
+                    android:layout_width="match_parent"
+                    android:text="Donadores" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnVoluntarios"
-                    style="@style/StylebtnParticipacion"
-                    android:layout_width="200dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="15dp"
-                    android:background="@drawable/border_radius"
-                    android:gravity="center"
-                    android:text="Voluntarios"
-                    android:textAppearance="@style/TextAppearance.AppCompat" />
+                    style="@style/btn_primary"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:text="Voluntarios" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/lNombreC"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="20dp"
-                android:orientation="vertical"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/llBotones">
+                style="@style/ll_row_secondary"
+                app:layout_constraintTop_toBottomOf="@+id/llBotones"
+                tools:ignore="MissingConstraints">
 
                 <TextView
                     android:id="@+id/tvNombreC"
                     style="@style/tv_label_secondary"
-                    android:text="Nombre del comedor"
-                    app:layout_constraintTop_toBottomOf="parent" />
+                    android:text="Nombre del comedor" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilNombreC"
-                    style="@style/StyleEdtGeneric"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:endIconMode="custom"
-                    app:errorIconDrawable="@drawable/ic_check_error"
-                    app:expandedHintEnabled="false">
+                    style="@style/til_material_secondary">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etNombreC"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        style="@style/tiet_material_secondary"
                         android:digits="@string/digits_only_letters"
                         android:imeOptions="actionNext"
                         android:inputType="textCapWords|textAutoCorrect|textPersonName"
-                        android:letterSpacing="0.01"
-                        android:lineSpacingExtra="10sp"
                         android:maxLength="1500"
-                        android:singleLine="true"
-                        android:textColor="#99000000"
-                        android:textSize="18sp"
-                        android:textStyle="normal" />
+                        android:singleLine="true" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/labelAddress"
+                android:id="@+id/lldireccion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="20dp"
                 android:orientation="horizontal"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lNombreC">
 
-                <TextView
-                    android:id="@+id/tvlabelAdrress"
-                    style="@style/tv_label_secondary"
-                    android:text="Dirección"
-                    app:layout_constraintTop_toBottomOf="@id/tvAddress" />
+                <LinearLayout
+                    style="@style/ll_row_secondary"
+                    android:layout_weight="1"
+                    tools:ignore="MissingConstraints">
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/tvlabelAdrress"
+                        style="@style/tv_label_secondary"
+                        android:text="Dirección" />
 
-            <LinearLayout
-                android:id="@+id/lAddress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/labelAddress">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilNombreCs"
+                        style="@style/til_material_secondary">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etgetAddress"
-                    android:layout_width="240dp"
-                    android:layout_height="wrap_content"
-                    android:imeOptions="actionNext"
-                    android:letterSpacing="0.01"
-                    android:lineSpacingExtra="10sp"
-                    android:maxLength="250"
-                    android:singleLine="false"
-                    android:textColor="#99000000"
-                    android:textSize="18sp"
-                    android:textStyle="normal" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etgetAddress"
+                            style="@style/tiet_material_secondary"
+                            android:imeOptions="actionNext"
+                            android:maxLength="250"
+                            android:singleLine="false" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tvAddress"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginBottom="10dp"
-                    android:drawableTop="@drawable/ic_church_map"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="Actualizar"
-                    android:textColor="@color/textview_title_color"
-                    android:textSize="17sp"
-                    android:textStyle="normal" />
+                <LinearLayout
+                    style="@style/ll_row_secondary"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <TextView style="@style/tv_label_secondary" />
+
+                    <TextView
+                        android:id="@+id/tvAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableTop="@drawable/ic_church_map"
+                        android:fontFamily="@font/open_sans_semi_bold"
+                        android:text="Actualizar"
+                        android:textColor="@color/primaryColor"
+                        android:textSize="@dimen/size_18" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/lZone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="20dp"
-                android:orientation="vertical"
-                android:visibility="visible"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lAddress">
+                style="@style/ll_row_secondary"
+                app:layout_constraintTop_toBottomOf="@+id/lldireccion"
+                tools:ignore="MissingConstraints">
 
                 <TextView
                     android:id="@+id/tvZonaDetail"
                     style="@style/tv_label_secondary"
-                    android:text="Zona"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:text="Zona" />
 
                 <Spinner
                     android:id="@+id/spZone"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/style_spinner_selector"
-                    android:fontFamily="sans-serif-light"
-                    android:letterSpacing="0.01"
-                    android:lineSpacingExtra="2sp"
-                    android:textColor="@color/edittext_text_hint_color"
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    style="@style/spinner"
                     app:layout_constraintTop_toBottomOf="@+id/tvZonaDetail" />
 
                 <TextView
                     android:id="@+id/lblSeleccion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="10dp"
-                    android:layout_marginTop="7dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:lineSpacingExtra="4sp"
-                    android:lines="1"
-                    android:textColor="@color/red"
-                    android:textSize="15sp"
-                    android:textStyle="normal"
-                    app:layout_constraintTop_toBottomOf="@+id/spZone" />
-
-
+                    style="@style/spinner_selection" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tvDays"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="20dp"
-                android:fontFamily="sans-serif-medium"
-                android:lineSpacingExtra="4sp"
-                android:lines="1"
-                android:text="Días disponibles"
-                android:textColor="@color/textview_title_color"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/lZone" />
+            <LinearLayout
+                android:id="@+id/lDays"
+                style="@style/ll_row_secondary"
+                app:layout_constraintTop_toBottomOf="@+id/lZone"
+                tools:ignore="MissingConstraints">
 
-            <include
-                android:id="@+id/iDays"
-                layout="@layout/item_include_days"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                app:layout_constraintTop_toBottomOf="@+id/tvDays" />
+                <TextView
+                    android:id="@+id/tvDays"
+                    style="@style/tv_label_secondary"
+                    android:text="Días disponibles"
+                    app:layout_constraintTop_toBottomOf="@id/lZone" />
 
-            <TextView
-                android:id="@+id/tvHorarios"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="20dp"
-                android:fontFamily="sans-serif-medium"
-                android:lineSpacingExtra="4sp"
-                android:lines="1"
-                android:text="Horarios"
-                android:textColor="@color/textview_title_color"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/iDays" />
+                <include
+                    android:id="@+id/iDays"
+                    layout="@layout/item_include_days"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDays" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/labelHorarios"
+                style="@style/ll_row_secondary"
+                app:layout_constraintTop_toBottomOf="@+id/lDays"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvHorarios"
+                    style="@style/tv_label_secondary"
+                    android:text="Horarios" />
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/llabelHorarios"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginTop="@dimen/margin_2"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvHorarios">
+                app:layout_constraintTop_toBottomOf="@+id/labelHorarios">
 
                 <TextView
-                    android:id="@+id/tvlabelFirstH"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="20dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:lineSpacingExtra="4sp"
-                    android:lines="1"
+                    style="@style/tv_label_secondary"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:text="Horario de apertura"
-                    android:textColor="@color/textview_title_color"
-                    android:textSize="17sp"
-                    android:textStyle="normal"
-                    app:layout_constraintTop_toBottomOf="@id/iDays" />
+                    android:textSize="@dimen/size_16" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="20dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:lineSpacingExtra="4sp"
-                    android:lines="1"
+                    style="@style/tv_label_secondary"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:text="Horario de cierre"
-                    android:textColor="@color/textview_title_color"
-                    android:textSize="17sp"
-                    android:textStyle="normal"
-                    app:layout_constraintTop_toBottomOf="@id/iDays" />
-
-
+                    android:textSize="@dimen/size_16" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/lHorario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/llabelHorarios">
 
                 <TextView
                     android:id="@+id/tvFirstH"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_weight="1"
-                    android:background="#F5F5F5"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:fontFamily="sans-serif-light"
-                    android:gravity="center"
-                    android:lineSpacingExtra="2sp"
-                    android:maxLength="10"
-                    android:padding="10dp"
-                    android:text="00:00"
-                    android:textColor="@color/textview_text_color"
-                    android:textSize="15sp"
-                    android:textStyle="normal" />
-
-                <ImageView
-                    android:id="@+id/ivFirstH"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:contentDescription="calendar"
-                    android:focusable="true"
-                    android:src="@drawable/ic_reloj" />
+                    style="@style/tv_time_secondary"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/tvEndH"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/tv_time_secondary"
+                    android:layout_width="0dp"
                     android:layout_marginStart="5dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_weight="1"
-                    android:background="#F5F5F5"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:fontFamily="sans-serif-light"
-                    android:gravity="center"
-                    android:lineSpacingExtra="2sp"
-                    android:padding="10dp"
-                    android:text="00:00"
-                    android:textColor="@color/textview_text_color"
-                    android:textSize="15sp"
-                    android:textStyle="normal" />
-
-                <ImageView
-                    android:id="@+id/ivEndH"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:contentDescription="calendar"
-                    android:focusable="true"
-                    android:src="@drawable/ic_reloj" />
-
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/lResponsable"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="20dp"
-                android:orientation="vertical"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lHorario">
+                style="@style/ll_row_secondary"
+                app:layout_constraintTop_toBottomOf="@+id/lHorario"
+                tools:ignore="MissingConstraints">
 
                 <TextView
                     android:id="@+id/tvResponsable"
                     style="@style/tv_label_secondary"
-                    android:text="Responsable"
-                    app:layout_constraintTop_toBottomOf="parent" />
-
+                    android:text="Responsable" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilResponsable"
-                    style="@style/StyleEdtGeneric"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:endIconMode="custom"
-                    app:errorIconDrawable="@drawable/ic_check_error"
-                    app:expandedHintEnabled="false">
+                    style="@style/til_material_secondary">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etResponsable"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        style="@style/tiet_material_secondary"
                         android:digits="@string/digits_only_letters"
                         android:imeOptions="actionNext"
                         android:inputType="textCapWords|textAutoCorrect|textPersonName"
-                        android:letterSpacing="0.01"
-                        android:lineSpacingExtra="10sp"
                         android:maxLength="1500"
-                        android:singleLine="true"
-                        android:textColor="#99000000"
-                        android:textSize="18sp"
-                        android:textStyle="normal" />
+                        android:singleLine="true" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/lEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="20dp"
-                android:orientation="vertical"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lResponsable">
+                style="@style/ll_row_secondary"
+                app:layout_constraintTop_toBottomOf="@+id/lResponsable"
+                tools:ignore="MissingConstraints">
 
                 <TextView
                     android:id="@+id/tvEmail"
@@ -421,203 +254,120 @@
                     android:text="Correo"
                     app:layout_constraintTop_toBottomOf="@+id/cwcDays" />
 
-
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilEmail"
-                    style="@style/StyleEdtGeneric"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:endIconMode="custom"
-                    app:errorIconDrawable="@drawable/ic_check_error"
-                    app:expandedHintEnabled="false">
+                    style="@style/til_material_secondary">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etEmail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        style="@style/tiet_material_secondary"
                         android:digits="@string/digits_only_email"
                         android:imeOptions="actionNext"
                         android:inputType="textCapWords|textAutoCorrect|textPersonName"
-                        android:letterSpacing="0.01"
-                        android:lineSpacingExtra="10sp"
                         android:maxLength="50"
-                        android:singleLine="true"
-                        android:textColor="#99000000"
-                        android:textSize="18sp"
-                        android:textStyle="normal" />
+                        android:singleLine="true" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/lPhone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="20dp"
-                android:orientation="vertical"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lEmail">
+                style="@style/ll_row_secondary"
+                app:layout_constraintTop_toBottomOf="@+id/lEmail"
+                tools:ignore="MissingConstraints">
 
                 <TextView
                     android:id="@+id/labelPhone"
                     style="@style/tv_label_secondary"
-                    android:text="Teléfono"/>
+                    android:text="Teléfono" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilNumberPhone"
-                    style="@style/StyleEdtGeneric"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="1dp"
-                    app:endIconMode="custom"
-                    app:errorIconDrawable="@drawable/ic_check_error"
-                    app:expandedHintEnabled="false">
+                    style="@style/til_material_secondary">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etNumberPhone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        style="@style/tiet_material_secondary"
                         android:digits="@string/digits_only_number_phone"
                         android:imeOptions="actionDone"
                         android:inputType="phone"
-                        android:letterSpacing="0.01"
-                        android:lineSpacingExtra="10sp"
                         android:maxLength="10"
-                        android:singleLine="true"
-                        android:textColor="#99000000"
-                        android:textSize="18sp"
-                        android:textStyle="normal" />
-
+                        android:singleLine="true" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/lCostoR"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="20dp"
-                android:gravity="left"
+                style="@style/ll_row_secondary"
                 android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lPhone">
+                app:layout_constraintTop_toBottomOf="@+id/lPhone"
+                tools:ignore="MissingConstraints">
 
                 <TextView
                     android:id="@+id/tvlabelMonto"
+                    style="@style/tv_label_secondary"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:lineSpacingExtra="4sp"
-                    android:lines="1"
-                    android:text="Costo de recuperación"
-                    android:textColor="@color/textview_title_color"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:layout_weight="1"
+                    android:text="Costo de recuperación" />
 
                 <Switch
                     android:id="@+id/switch1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/margin_bottom_25"
-                    android:switchPadding="@dimen/global_margin_extra"
-                    android:textColor="#192a73"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:layout_weight="1"
                     tools:ignore="UseSwitchCompatOrMaterialXml" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/lMonto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="20dp"
-                android:orientation="vertical"
+                style="@style/ll_row_secondary"
                 android:visibility="gone"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lCostoR">
+                app:layout_constraintTop_toBottomOf="@+id/lCostoR"
+                tools:ignore="MissingConstraints">
 
                 <TextView
                     android:id="@+id/tvMonto"
                     style="@style/tv_label_secondary"
-                    android:text="Precio"
-                    app:layout_constraintTop_toBottomOf="parent" />
-
+                    android:text="Precio" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilMonto"
-                    style="@style/StyleEdtGeneric"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:endIconMode="custom"
-                    app:errorIconDrawable="@drawable/ic_check_error"
-                    app:expandedHintEnabled="false">
+                    style="@style/til_material_secondary">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etMonto"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        style="@style/tiet_material_secondary"
                         android:digits="@string/digits_only_number_phone"
                         android:drawableStart="@drawable/ic_cost"
                         android:imeOptions="actionDone"
                         android:inputType="phone"
-                        android:letterSpacing="0.01"
-                        android:lineSpacingExtra="10sp"
                         android:maxLength="10"
-                        android:singleLine="true"
-                        android:textColor="#99000000"
-                        android:textSize="18sp"
-                        android:textStyle="normal" />
+                        android:singleLine="true" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/lRequisitos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="20dp"
-                android:orientation="vertical"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lMonto">
+                style="@style/ll_row_secondary"
+                app:layout_constraintTop_toBottomOf="@+id/lMonto"
+                tools:ignore="MissingConstraints">
 
                 <TextView
                     android:id="@+id/tvRequisitos"
                     style="@style/tv_label_secondary"
-                    android:text="Requisitos"
-                    app:layout_constraintTop_toBottomOf="parent" />
-
+                    android:text="Requisitos" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilRequisitos"
-                    style="@style/StyleEdtGeneric"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:endIconMode="custom"
-                    app:errorIconDrawable="@drawable/ic_check_error"
-                    app:expandedHintEnabled="false">
+                    style="@style/til_material_secondary">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etRequisitos"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        style="@style/tiet_material_secondary"
                         android:digits="@string/digits_only_letters_caracters"
                         android:imeOptions="actionDone"
                         android:inputType="textAutoCorrect|textPersonName"
-                        android:letterSpacing="0.01"
-                        android:lineSpacingExtra="10sp"
                         android:maxLength="250"
-                        android:singleLine="false"
-                        android:text="Presentarse puntual para garantizar el servicio. No asistir en estado de ebriedad o bajo la influencia de estupefacientes. Seguir las indicaciones de los administradores en todo momento. Actitud de respeto con el resto de los participantes."
-                        android:textColor="#99000000"
-                        android:textSize="18sp"
-                        android:textStyle="normal" />
+                        android:text="Presentarse puntual para garantizar el servicio. No asistir en estado de ebriedad o bajo la influencia de estupefacientes. Seguir las indicaciones de los administradores en todo momento. Actitud de respeto con el resto de los participantes." />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -625,86 +375,54 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:fontFamily="sans-serif-medium"
+                    android:fontFamily="@font/open_sans_bold"
                     android:text="240/250"
-                    android:textColor="@color/textview_title_color"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textColor="@color/primaryColor"
+                    android:textSize="@dimen/size_16" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/lVoluntarios"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="20dp"
-                android:gravity="left"
+                style="@style/ll_row_secondary"
                 android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lRequisitos">
+                app:layout_constraintTop_toBottomOf="@+id/lRequisitos"
+                tools:ignore="MissingConstraints">
 
                 <TextView
                     android:id="@+id/tvVoluntarios"
+                    style="@style/tv_label_secondary"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:lineSpacingExtra="4sp"
-                    android:lines="1"
-                    android:text="¿Requiere voluntarios?"
-                    android:textColor="@color/textview_title_color"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:layout_weight="1"
+                    android:text="¿Requiere voluntarios?" />
 
                 <Switch
                     android:id="@+id/switch2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/margin_bottom_25"
-                    android:switchPadding="@dimen/global_margin_extra"
-                    android:textColor="#192a73"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:layout_weight="1"
                     tools:ignore="UseSwitchCompatOrMaterialXml" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/lEstatus"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="20dp"
-                android:gravity="left"
+                style="@style/ll_row_secondary"
                 android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lVoluntarios">
+                app:layout_constraintTop_toBottomOf="@+id/lVoluntarios"
+                tools:ignore="MissingConstraints">
 
                 <TextView
                     android:id="@+id/etEstatus"
+                    style="@style/tv_label_secondary"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-medium"
-                    android:gravity="left"
-                    android:letterSpacing="0.03"
-                    android:lineSpacingExtra="0sp"
-                    android:text="Estatus"
-                    android:textColor="@color/textview_title_color"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:layout_weight="1"
+                    android:text="Estatus" />
 
                 <Switch
                     android:id="@+id/switch3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/margin_bottom_25"
-                    android:switchPadding="@dimen/global_margin_extra"
-                    android:textColor="#192a73"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:layout_marginHorizontal="@dimen/margin_25"
+                    android:layout_weight="1"
                     tools:ignore="UseSwitchCompatOrMaterialXml" />
 
                 <TextView
@@ -712,62 +430,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:gravity="left"
-                    android:letterSpacing="0.03"
-                    android:lineSpacingExtra="0sp"
+                    android:fontFamily="@font/open_sans_bold"
                     android:text="Inactivo"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/size_16" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/lbtnGuardar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="20dp"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lEstatus">
+                style="@style/ll_fill_btns"
+                android:layout_marginTop="@dimen/margin_24"
+                app:layout_constraintTop_toBottomOf="@+id/lEstatus"
+                tools:ignore="MissingConstraints">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnCancel"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/background_button_cancel"
-                    android:gravity="center"
-                    android:text="Cancelar"
-                    android:textAllCaps="false"
-                    android:textColor="@color/btn_background_accept"
-                    android:visibility="gone"
-                    app:cornerRadius="@dimen/size_corner_general_button"
-                    app:strokeColor="@color/btn_background_accept"
-                    app:strokeWidth="2dp" />
-
-                <!--
-                android:gravity="center"
-                android:layout_weight="1"
-                -->
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnGuardar"
-                    style="@style/StyleBtnGuardar"
-                    android:layout_width="200dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="15dp"
-                    android:background="@drawable/background_button_accept"
-                    android:gravity="center"
+                    style="@style/btn_primary"
+                    android:layout_width="match_parent"
                     android:text="Guardar" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

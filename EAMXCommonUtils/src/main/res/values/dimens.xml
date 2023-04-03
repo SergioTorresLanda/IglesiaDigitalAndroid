@@ -12,7 +12,6 @@
 
     <dimen name="corner_radious_20">20dp</dimen>
     <dimen name="margi_top_3">3dp</dimen>
-    <dimen name="margin_5">5dp</dimen>
     <dimen name="margin_end_7">7dp</dimen>
     <dimen name="margin_15">15dp</dimen>
     <dimen name="margin_16">16dp</dimen>
@@ -49,10 +48,14 @@
     <dimen name="size_22">22sp</dimen>
     <dimen name="size_24">24sp</dimen>
     <!-- Margin -->
-    <dimen name="margin_top_15">15dp</dimen>
-    <dimen name="margin_top_10">10dp</dimen>
+    <dimen name="margin_2">2dp</dimen>
+    <dimen name="margin_5">5dp</dimen>
     <dimen name="margin_10">10dp</dimen>
     <dimen name="margin_12">12dp</dimen>
+    <dimen name="margin_24">24dp</dimen>
+    <dimen name="margin_25">25dp</dimen>
+    <dimen name="margin_top_15">15dp</dimen>
+    <dimen name="margin_top_10">10dp</dimen>
     <dimen name="margin_top_30">30dp</dimen>
     <dimen name="margin_top_40">40dp</dimen>
     <dimen name="width_fields_code_50">50dp</dimen>

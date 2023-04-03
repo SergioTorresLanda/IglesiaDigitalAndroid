@@ -10,6 +10,7 @@ import mx.arquidiocesis.eamxcommonutils.application.AppMyConstants
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.common.EAMXHome
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
+import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
 import mx.arquidiocesis.eamxcommonutils.util.getViewModel
 import mx.arquidiocesis.eamxevent.R
 import mx.arquidiocesis.eamxevent.adapter.DonorAllAdapter
@@ -57,6 +58,11 @@ class EventDonorFragment : FragmentBase() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.let {
+            EAMXFirebaseManager(it).setLogEvent("screen_view", Bundle().apply {
+                putString("screen_class", "CrearComedor_ListaDonadores")
+            })
+        }
         callBack.showToolbar(true, AppMyConstants.donadores)
         adapter = DonorAllAdapter(requireContext(), list, binding.rvEventDonor)
         binding.rvEventDonor.layoutManager =

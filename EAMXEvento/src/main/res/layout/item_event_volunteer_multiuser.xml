@@ -58,6 +58,8 @@
                 android:layout_marginTop="7dp"
                 android:fontFamily="sans-serif-medium"
                 android:lineSpacingExtra="4sp"
+                android:autoSizeTextType="uniform"
+                android:maxLines="1"
                 android:text="Nombre completo"
                 android:textColor="@color/textview_title_color"
                 android:textSize="19sp"
@@ -83,41 +85,21 @@
 
         <LinearLayout
             android:id="@+id/lTelInvitado"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
+            style="@style/ll_row_item"
+            android:layout_marginStart="5dp"
             android:layout_marginEnd="10dp"
-            android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lNombreInvitado">
 
             <ImageView
                 android:id="@+id/ivTelefonoInvitad"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginTop="0dp"
-                android:clickable="true"
-                android:contentDescription="calendar"
-                android:focusable="true"
+                style="@style/im_icon_item"
                 android:src="@drawable/tel_fono_48" />
 
             <TextView
                 android:id="@+id/tvTelInvitado"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="20dp"
-                android:layout_gravity="right"
-                android:maxLength="13"
-                android:fontFamily="sans-serif-medium"
-                android:lineSpacingExtra="4sp"
-                android:lines="1"
+                style="@style/tv_paragraph_item"
                 android:text="+527641015871"
-                android:textColor="@color/textview_title_color"
-                android:textSize="16sp"
-                android:textStyle="normal"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
         </LinearLayout>
 
