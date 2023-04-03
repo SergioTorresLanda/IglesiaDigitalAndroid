@@ -11,6 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.fragment_my_churches.*
 import kotlinx.android.synthetic.main.fragment_my_churches.llSkeleton
 import kotlinx.android.synthetic.main.fragment_my_churches.view.*
@@ -21,6 +23,7 @@ import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.common.EAMXHome
 import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
+import mx.arquidiocesis.eamxcommonutils.common.ModuleAdminEnabled
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
 import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
 import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
@@ -37,6 +40,7 @@ import mx.arquidiocesis.misiglesias.databinding.FragmentMyChurchesBinding
 import mx.arquidiocesis.misiglesias.model.DataForView
 import mx.arquidiocesis.misiglesias.repository.Repository
 import mx.arquidiocesis.misiglesias.viewmodel.MisIgleciasViewModel
+import java.lang.reflect.Type
 
 const val PERMISSION_LOCATION = 10007
 
@@ -129,12 +133,32 @@ class MisIglesiasFragment : FragmentBase() {
         }
     }
 
+    private fun isChurchAvailableForEdit(churchId: Int): Boolean {
+        val list = eamxcu_preferences.getData(
+            EAMXEnumUser.USER_CHURCH_ALLOW_EDIT.name,
+            EAMXTypeObject.STRING_OBJECT
+        ).toString()
+        if (list.isEmpty()) {
+            return false
+        }
+        return try {
+            val collectionType: Type =
+                object : TypeToken<Collection<ModuleAdminEnabled?>?>() {}.type
+            val dataList: Collection<ModuleAdminEnabled> = Gson().fromJson(list, collectionType)
+            return dataList.firstOrNull { item -> item.id == churchId } != null
+        } catch (ex: Exception) {
+            false
+        }
+    }
 
     private fun initObservers() {
         myChurchViewModel.allChurchList.observe(viewLifecycleOwner) { itemInfoChurch ->
             //TODO se quita el efecto esqueleton
             showSkeleton(false)
             if (itemInfoChurch?.assigned != null) {
+                if(isChurchAvailableForEdit(itemInfoChurch.assigned.id)){
+                    tvPrincipal.text = "Adscrito a"
+                }
                 val item = itemInfoChurch.assigned
                 cvPrincipalOrAssigned.visibility = View.VISIBLE
                 cvEmptyChurchPrincipal.visibility = View.INVISIBLE
