@@ -546,7 +546,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/margin_5"
                             android:autoSizeTextType="uniform"
-                            android:maxLines="2"
+                            android:maxLines="1"
                             android:paddingEnd="@dimen/padding_10"
                             android:text="Consulta nuestro calendario y ¡participa!"
                             android:textColor="@color/white"

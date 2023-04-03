@@ -311,6 +311,9 @@ class DetailChurchFindedFragment : FragmentBase() {
                 }
                 if (redes) {
                     cvRedes.visibility = View.VISIBLE
+                    tvTitleWeb!!.visibility = View.VISIBLE
+                } else {
+                    tvTitleWeb!!.visibility = View.GONE
                 }
                 /*if (!it.stream.isNullOrEmpty()) {
                     cvEventosEnvivo.visibility = View.VISIBLE
