@@ -10,6 +10,7 @@ import mx.arquidiocesis.eamxcommonutils.application.AppMyConstants
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.common.EAMXHome
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
+import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
 import mx.arquidiocesis.eamxcommonutils.util.getViewModel
 import mx.arquidiocesis.eamxevent.R
 import mx.arquidiocesis.eamxevent.adapter.VolunteerAllAdapter
@@ -56,6 +57,11 @@ class EventVolunteerFragment : FragmentBase() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.let {
+            EAMXFirebaseManager(it).setLogEvent("screen_view", Bundle().apply {
+                putString("screen_class", "CrearDonador_ListaVoluntarios")
+            })
+        }
         callBack.showToolbar(true, AppMyConstants.voluntarios)
         adapter = VolunteerAllAdapter(requireContext(), list, binding.rvEventVolunteer)
         binding.rvEventVolunteer.layoutManager =

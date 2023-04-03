@@ -98,7 +98,7 @@ class EventVolunteerDetailFragment : FragmentBase() {
         super.onViewCreated(view, savedInstanceState)
         activity?.let {
             EAMXFirebaseManager(it).setLogEvent("screen_view", Bundle().apply {
-                putString("screen_class", "Actividades_Voluntario")
+                putString("screen_class", "Actividades_CrearVoluntario")
             })
         }
         callBack.showToolbar(true, AppMyConstants.createVoluntario)

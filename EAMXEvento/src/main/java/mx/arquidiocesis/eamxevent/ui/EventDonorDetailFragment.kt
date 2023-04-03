@@ -84,7 +84,7 @@ class EventDonorDetailFragment : FragmentBase() {
         super.onViewCreated(view, savedInstanceState)
         activity?.let {
             EAMXFirebaseManager(it).setLogEvent("screen_view", Bundle().apply {
-                putString("screen_class", "Actividades_Donar")
+                putString("screen_class", "Actividades_CrearDonador")
             })
         }
         callBack.showToolbar(true, AppMyConstants.createDonador)
