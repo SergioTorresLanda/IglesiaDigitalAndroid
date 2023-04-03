@@ -150,7 +150,6 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                         "${response.errorData.toString() == EAMXErrorResponseEnum.USER_IS_NOT_CONFIRMED.messageError}"
                     )
                     if (EAMXInternetAvailability.isNetworkAvailable(this@EAMXLoginActivity)) {
-
                         when (response.errorData) {
                             EAMXErrorResponseEnum.USER_IS_NOT_CONFIRMED.messageError,
                             EAMXErrorResponseEnum.USER_IS_NOT_CONFIRMED_QA.messageError,
@@ -183,14 +182,14 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                             else -> {
                                 UtilAlert.Builder()
                                     .setTitle("Atención")
-                                    .setMessage(getString(R.string.friendly_message))
+                                    .setMessage(response.errorData.toString())
                                     .build().show(supportFragmentManager, "")
                             }
                         }
                     } else {
                         UtilAlert.Builder()
                             .setTitle("Atención")
-                            .setMessage(getString(R.string.password_invalid))
+                            .setMessage(getString(R.string.no_internet_connection))
                             .build().show(supportFragmentManager, "")
                     }
                 }
