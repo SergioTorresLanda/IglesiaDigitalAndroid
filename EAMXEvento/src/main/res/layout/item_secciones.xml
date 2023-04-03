@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Horizontal scrollView  -->
+    <HorizontalScrollView
+        android:id="@+id/hsSeccion"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
+        <!-- using linear layout to store multiple view
+             inside a Horizontal Scroll View -->
+        <LinearLayout
+            android:id="@+id/ListSeccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/white">
+
+            <!-- multiple button views to show a
+                  scrollable horizontal list -->
+            <Button
+                android:id="@+id/btnComedores"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:text="Comedores"
+                android:padding="4dp"
+                style="@style/list_label_catalog"
+                android:drawableTop="@drawable/comedor_48"
+                android:layout_margin="10dp"
+                android:backgroundTint="@color/white" />
+
+
+            <Button
+                android:id="@+id/btnDespensas"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:padding="4dp"
+                style="@style/list_label_catalog"
+                android:drawableTop="@drawable/cesto_48"
+                android:layout_margin="10dp"
+                android:backgroundTint="@color/white"
+                android:text="Despensas" />
+
+            <Button
+                android:id="@+id/btnCasas"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:padding="4dp"
+                android:layout_margin="10dp"
+                style="@style/list_label_catalog"
+                android:drawableTop="@drawable/trabajador_de_caminos_48"
+                android:backgroundTint="@color/white"
+                android:text="Construcción de casas" />
+
+            <Button
+                android:id="@+id/btnMisiones"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:padding="4dp"
+                android:backgroundTint="@color/white"
+                android:drawableTop="@drawable/santa_biblia_48"
+                android:layout_margin="10dp"
+                android:text="Misiones"
+                style="@style/list_label_catalog"/>
+
+            <Button
+                android:id="@+id/btnEducacion"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:padding="4dp"
+                android:layout_margin="10dp"
+                style="@style/list_label_catalog"
+                android:drawableTop="@drawable/lectura_48"
+                android:backgroundTint="@color/white"
+                android:text="Educación" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tlSeccion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:visibility="gone"
+        android:textSize="@dimen/size_18"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hsSeccion"
+        app:tabMode="fixed"
+        app:tabTextAppearance="@style/Titulo">
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vpOptions"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tlSeccion" />
+</androidx.constraintlayout.widget.ConstraintLayout>

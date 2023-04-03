@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.DespensasFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/lInicial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/margin_15"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tvComedores"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tab"
+                    android:fontFamily="@font/spro_text_regular"
+                    android:paddingBottom="@dimen/margin_top_15"
+                    android:text="Comedores"
+                    android:textColor="#192a73"
+                    android:textSize="@dimen/size_20"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvDespensas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_top_40"
+                    android:fontFamily="@font/spro_text_regular"
+                    android:text="Despensas"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/size_20" />
+            </LinearLayout>
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_contenido_despensas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_20"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="@dimen/margin_20"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lInicial">
+
+            <LinearLayout
+                android:id="@+id/cwc_add_des"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_20"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="parent">
+
+                <TextView
+                    android:id="@+id/tvNewDespensa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableRight="@drawable/ic_add"
+                    android:drawablePadding="8dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="8sp"
+                    android:text="Crear una despensa"
+                    android:textColor="#1C75BB"
+                    android:textSize="@dimen/size_20"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llParticipacionDes"
+                style="@style/ll_row_primary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cwc_add_des">
+
+                <TextView
+                    android:id="@+id/tvParticipacionDes"
+                    style="@style/tv_label_primary"
+                    android:text="¿Cómo quieres participar?"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Spinner
+                    android:id="@+id/spParticipacionDes"
+                    style="@style/spinner"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvZonaDetailDes" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lZoneDes"
+                style="@style/ll_row_primary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llParticipacionDes">
+
+                <TextView
+                    android:id="@+id/tvZonaDetailDes"
+                    style="@style/tv_label_primary"
+                    android:text="Filtrar por zona"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Spinner
+                    android:id="@+id/spZoneDes"
+                    style="@style/spinner"
+                    android:entries="@array/delegations"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvZonaDetailDes" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/viewTopDes"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/margin_20"
+                android:background="#002166"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lZoneDes" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvDespensas"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="3dp"
+            android:clickable="false"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_contenido_despensas"
+            tools:listitem="@layout/item_event_detail" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

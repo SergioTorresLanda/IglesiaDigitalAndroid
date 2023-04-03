@@ -20,6 +20,13 @@
         <item name="android:textSize">@dimen/size_20</item>
         <item name="android:textColor">@color/primaryColor</item>
     </style>
+    <style name="list_label_catalog">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/open_sans_bold</item>
+        <item name="android:textSize">@dimen/size_15</item>
+        <item name="android:textColor">@color/primaryColor</item>
+    </style>
     <style name="spinner">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/height_40</item>
