@@ -81,8 +81,9 @@ class MapsFragment(
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        rlatitude = latitude
-        rlongitude = longitude
+        //Cuando se edita la ubicación
+        //rlatitude = latitude
+        //rlongitude = longitude
         // Construct a FusedLocationProviderClient.
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireActivity())

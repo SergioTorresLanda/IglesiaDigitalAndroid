@@ -62,52 +62,59 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/labelAddress"
-                style="@style/ll_row_secondary"
-                app:layout_constraintTop_toBottomOf="@+id/lNombreC"
-                tools:ignore="MissingConstraints">
-
-                <TextView
-                    android:id="@+id/tvlabelAdrress"
-                    style="@style/tv_label_secondary"
-                    android:text="Dirección"
-                    app:layout_constraintTop_toBottomOf="@id/tvAddress" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/lAddress"
+                android:id="@+id/lldireccion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/labelAddress">
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/lNombreC">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etgetAddress"
-                    style="@style/tiet_material_secondary"
-                    android:layout_width="240dp"
-                    android:imeOptions="actionNext"
-                    android:maxLength="250"
-                    android:singleLine="false" />
+                <LinearLayout
+                    style="@style/ll_row_secondary"
+                    android:layout_weight="1"
+                    tools:ignore="MissingConstraints">
 
-                <TextView
-                    android:id="@+id/tvAddress"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginBottom="10dp"
-                    android:drawableTop="@drawable/ic_church_map"
-                    android:fontFamily="@font/open_sans_semi_bold"
-                    android:text="Actualizar"
-                    android:textColor="@color/primaryColor"
-                    android:textSize="@dimen/size_18"
-                    android:textStyle="normal" />
+                    <TextView
+                        android:id="@+id/tvlabelAdrress"
+                        style="@style/tv_label_secondary"
+                        android:text="Dirección" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilNombreCs"
+                        style="@style/til_material_secondary">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etgetAddress"
+                            style="@style/tiet_material_secondary"
+                            android:imeOptions="actionNext"
+                            android:maxLength="250"
+                            android:singleLine="false" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ll_row_secondary"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <TextView style="@style/tv_label_secondary" />
+
+                    <TextView
+                        android:id="@+id/tvAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableTop="@drawable/ic_church_map"
+                        android:fontFamily="@font/open_sans_semi_bold"
+                        android:text="Actualizar"
+                        android:textColor="@color/primaryColor"
+                        android:textSize="@dimen/size_18" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/lZone"
                 style="@style/ll_row_secondary"
-                app:layout_constraintTop_toBottomOf="@+id/lAddress"
+                app:layout_constraintTop_toBottomOf="@+id/lldireccion"
                 tools:ignore="MissingConstraints">
 
                 <TextView
@@ -170,6 +177,7 @@
                     style="@style/tv_label_secondary"
                     android:layout_width="0dp"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:text="Horario de apertura"
                     android:textSize="@dimen/size_16" />
 
@@ -177,6 +185,7 @@
                     style="@style/tv_label_secondary"
                     android:layout_width="0dp"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:text="Horario de cierre"
                     android:textSize="@dimen/size_16" />
             </LinearLayout>
