@@ -190,7 +190,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
                     } else {
                         UtilAlert.Builder()
                             .setTitle("Atención")
-                            .setMessage(getString(R.string.no_internet_connection))
+                            .setMessage(getString(R.string.password_invalid))
                             .build().show(supportFragmentManager, "")
                     }
                 }
