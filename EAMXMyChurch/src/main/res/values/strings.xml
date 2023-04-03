@@ -20,11 +20,11 @@
     <string name="twitter">Twitter</string>
     <string name="facebook">Facebook</string>
     <string name="instagram">Instragram</string>
-    <string name="web">Página web</string>
+    <string name="web">Página web/Redes sociales</string>
     <string name="transmision">Transmisiones en vivo</string>
     <string name="name_church_principal">Mi iglesia principal</string>
     <string name="my_favorites_church">Mis iglesias favoritas</string>
-    <string name="misas">Misas</string>
+    <string name="misas">Horarios de misa</string>
 
 
 </resources>
