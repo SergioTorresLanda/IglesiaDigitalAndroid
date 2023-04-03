@@ -59,9 +59,9 @@ class HorarioAdapter(
             //binding.tvServicio.text = service.type.name
             binding.tvDia.visibility = View.GONE
 
-            binding.tvHorario.text = PublicFunctions().obtenerDias(item.days)
+            binding.tvServicio.text = PublicFunctions().obtenerDias(item.days)
             if(!item.hour_start.isNullOrEmpty()){
-                binding.tvServicio.text = "${item.hour_start}  "
+                binding.tvHorario.text = "${item.hour_start}  "
             }
            /* if(!item.hour_end.isNullOrEmpty()){
                 binding.tvHorario.text = "${binding.tvHorario.text} ${item.hour_end} "
