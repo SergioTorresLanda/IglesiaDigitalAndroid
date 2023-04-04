@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".ui.EventPantriesDetailFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp">
+
+            <LinearLayout
+                android:id="@+id/llBotonPantries"
+                style="@style/ll_fill_btns"
+                android:visibility="visible"
+                tools:ignore="MissingConstraints">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnDonorPantries"
+                    style="@style/btn_primary"
+                    android:layout_width="match_parent"
+                    android:text="Donadores" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnVolunteerPantries"
+                    style="@style/btn_primary"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:text="Voluntarios" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lResponPantries"
+                style="@style/ll_row_secondary"
+                app:layout_constraintTop_toBottomOf="@+id/llBotonPantries"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvResponPantries"
+                    style="@style/tv_label_secondary"
+                    android:text="Responsable" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilResponPantries"
+                    style="@style/til_material_secondary">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etResponantries"
+                        style="@style/tiet_material_secondary"
+                        android:digits="@string/digits_only_letters"
+                        android:imeOptions="actionNext"
+                        android:inputType="textCapWords|textAutoCorrect|textPersonName"
+                        android:maxLength="1500"
+                        android:singleLine="true" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lEmailPantries"
+                style="@style/ll_row_secondary"
+                app:layout_constraintTop_toBottomOf="@+id/lResponPantries"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvEmailPantries"
+                    style="@style/tv_label_secondary"
+                    android:text="Correo"
+                    app:layout_constraintTop_toBottomOf="@+id/lResponPantries" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilEmailPantries"
+                    style="@style/til_material_secondary">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etEmailPantries"
+                        style="@style/tiet_material_secondary"
+                        android:digits="@string/digits_only_email"
+                        android:imeOptions="actionNext"
+                        android:inputType="textCapWords|textAutoCorrect|textPersonName"
+                        android:maxLength="50"
+                        android:singleLine="true" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lPhonePantries"
+                style="@style/ll_row_secondary"
+                app:layout_constraintTop_toBottomOf="@+id/lEmailPantries"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/labelPhonePantries"
+                    style="@style/tv_label_secondary"
+                    android:text="Teléfono" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilPhonePantries"
+                    style="@style/til_material_secondary">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etPhonePantries"
+                        style="@style/tiet_material_secondary"
+                        android:digits="@string/digits_only_number_phone"
+                        android:imeOptions="actionDone"
+                        android:inputType="phone"
+                        android:maxLength="10"
+                        android:singleLine="true" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llAddressPantries"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/lPhonePantries">
+
+                <LinearLayout
+                    style="@style/ll_row_secondary"
+                    android:layout_weight="1"
+                    tools:ignore="MissingConstraints">
+
+                    <TextView
+                        android:id="@+id/tvlabelAdrressPantries"
+                        style="@style/tv_label_secondary"
+                        android:text="Dirección" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilAddressPantries"
+                        style="@style/til_material_secondary">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etgetAddressPantries"
+                            style="@style/tiet_material_secondary"
+                            android:imeOptions="actionNext"
+                            android:maxLength="250"
+                            android:singleLine="false" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ll_row_secondary"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <TextView style="@style/tv_label_secondary" />
+
+                    <TextView
+                        android:id="@+id/tvAddressPantries"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableTop="@drawable/ic_church_map"
+                        android:fontFamily="@font/open_sans_semi_bold"
+                        android:text="Actualizar"
+                        android:textColor="@color/primaryColor"
+                        android:textSize="@dimen/size_18" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lZonePantries"
+                style="@style/ll_row_secondary"
+                app:layout_constraintTop_toBottomOf="@+id/llAddressPantries"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvZoneDetailPantries"
+                    style="@style/tv_label_secondary"
+                    android:text="Zona" />
+
+                <Spinner
+                    android:id="@+id/spZonePantries"
+                    style="@style/spinner"
+                    app:layout_constraintTop_toBottomOf="@+id/tvZoneDetailPantries" />
+
+                <TextView
+                    android:id="@+id/lblSeleccionPantries"
+                    style="@style/spinner_selection" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lDescriptionPantries"
+                style="@style/ll_row_secondary"
+                app:layout_constraintTop_toBottomOf="@+id/lZonePantries"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvDescriptionPantries"
+                    style="@style/tv_label_secondary"
+                    android:text="Descripción" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilDescriptionPantries"
+                    style="@style/til_material_secondary">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etDescriptionPantries"
+                        style="@style/tiet_material_secondary"
+                        android:digits="@string/digits_only_letters_caracters"
+                        android:imeOptions="actionDone"
+                        android:inputType="textAutoCorrect|textPersonName"
+                        android:maxLength="250"
+                        android:text="" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tvDescriptionConteoPantries"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:text="0/250"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="@dimen/size_16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lDonorPantries"
+                style="@style/ll_row_secondary"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/lDescriptionPantries"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvDonorPantries"
+                    style="@style/tv_label_secondary"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:text="¿Requiere donador?" />
+
+                <Switch
+                    android:id="@+id/switchDonorPantries"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lRequisPantries"
+                style="@style/ll_row_secondary"
+                app:layout_constraintTop_toBottomOf="@+id/lDonorPantries"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvRequisPantries"
+                    style="@style/tv_label_secondary"
+                    android:text="Requisitos de donador" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilRequisPantries"
+                    style="@style/til_material_secondary">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etRequisPantries"
+                        style="@style/tiet_material_secondary"
+                        android:digits="@string/digits_only_letters_caracters"
+                        android:imeOptions="actionDone"
+                        android:inputType="textAutoCorrect|textPersonName"
+                        android:maxLength="250"
+                        android:text="" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tvRequisConteoPantries"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:text="0/250"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="@dimen/size_16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lReceptionPantries"
+                style="@style/ll_row_secondary"
+                app:layout_constraintTop_toBottomOf="@+id/lRequisPantries"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvReceptionPantries"
+                    style="@style/tv_label_secondary"
+                    android:text="Recepción de despensas" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/labelDateReception"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lReceptionPantries">
+
+                <TextView
+                    style="@style/tv_label_secondary"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:gravity="left"
+                    android:text="Fecha inicio"
+                    android:textSize="@dimen/size_16" />
+
+                <TextView
+                    style="@style/tv_label_secondary"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:gravity="left"
+                    android:text="Fecha fin"
+                    android:textSize="@dimen/size_16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llDateReception"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/labelDateReception">
+
+                <TextView
+                    android:id="@+id/tvFirstDate"
+                    style="@style/tv_date_secondary"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tvEndDate"
+                    style="@style/tv_date_secondary"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/labelDaysReception"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_2"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llDateReception">
+
+                <TextView
+                    android:id="@+id/tvDaysReception"
+                    style="@style/tv_label_secondary"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left"
+                    android:text="Dias"
+                    android:textSize="@dimen/size_16" />
+
+                <include
+                    android:id="@+id/iDaysReception"
+                    layout="@layout/item_include_days"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDaysReception" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/labelTimeReception"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/labelDaysReception">
+
+                <TextView
+                    style="@style/tv_label_secondary"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:gravity="left"
+                    android:text="Hora inicio"
+                    android:textSize="@dimen/size_16" />
+
+                <TextView
+                    style="@style/tv_label_secondary"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:gravity="left"
+                    android:text="Hora fin"
+                    android:textSize="@dimen/size_16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llTimeReception"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/labelTimeReception">
+
+                <TextView
+                    android:id="@+id/tvFirstTimeReception"
+                    style="@style/tv_time_secondary"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tvEndTimeReception"
+                    style="@style/tv_time_secondary"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

@@ -6,13 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.databinding.adapters.ViewBindingAdapter.OnViewAttachedToWindow
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_event.*
 import kotlinx.android.synthetic.main.fragment_event_detail.*
-import kotlinx.android.synthetic.main.fragment_event_detail.btnGuardar
 import kotlinx.android.synthetic.main.fragment_event_detail.spZone
 import kotlinx.android.synthetic.main.item_secciones.*
 import mx.arquidiocesis.eamxcommonutils.application.AppMyConstants
@@ -26,13 +22,11 @@ import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
 import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
 import mx.arquidiocesis.eamxevent.R
 import mx.arquidiocesis.eamxevent.adapter.DinerAllAdapter
-import mx.arquidiocesis.eamxevent.adapter.ViewPagerMenuAdapter
 import mx.arquidiocesis.eamxevent.databinding.FragmentEventBinding
 import mx.arquidiocesis.eamxevent.model.*
 import mx.arquidiocesis.eamxevent.model.enum.Delegations
 import mx.arquidiocesis.eamxevent.model.enum.Participation
 import mx.arquidiocesis.eamxevent.repository.RepositoryEvent
-import mx.arquidiocesis.eamxredsocialmodule.adapter.ViewPagerRedAdapter
 
 
 const val EDITAR = "EDITAR"
@@ -216,6 +210,13 @@ class EventFragment : FragmentBase() {
             override fun onNothingSelected(parent: AdapterView<*>) {
                 lblSeleccion.text = "Sin selección"
             }
+        }
+        btnDespensas.setOnClickListener {
+                NavigationFragment.Builder()
+                    .setActivity(requireActivity())
+                    .setView(requireView().parent as ViewGroup)
+                    .setFragment(EventPantriesDetailFragment.newInstance(callBack) as Fragment)
+                    .build().nextWithReplace()
         }
     }
 

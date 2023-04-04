@@ -331,7 +331,7 @@ Cuenta con un impresionante vitral de Victor Vasarely."
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     app:cardCornerRadius="14dp"
                     app:cardElevation="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -340,7 +340,8 @@ Cuenta con un impresionante vitral de Victor Vasarely."
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="8dp">
 
                         <TextView
                             android:id="@+id/tvWeb"
