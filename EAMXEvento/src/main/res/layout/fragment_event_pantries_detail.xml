@@ -36,9 +36,32 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/lEstatusPantries"
+                android:layout_marginStart="150dp"
+                style="@style/ll_row_secondary_switch"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/llBotonPantries"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvEstatusPantries"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/tv_label_secondary"
+                    android:text="Habilitado" />
+
+                <Switch
+                    android:id="@+id/switchPantries"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_25"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/lResponPantries"
                 style="@style/ll_row_secondary"
-                app:layout_constraintTop_toBottomOf="@+id/llBotonPantries"
+                app:layout_constraintTop_toBottomOf="@+id/lEstatusPantries"
                 tools:ignore="MissingConstraints">
 
                 <TextView
@@ -51,7 +74,7 @@
                     style="@style/til_material_secondary">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etResponantries"
+                        android:id="@+id/etResponPantries"
                         style="@style/tiet_material_secondary"
                         android:digits="@string/digits_only_letters"
                         android:imeOptions="actionNext"
@@ -329,7 +352,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/labelDateReception">
 
                 <TextView
-                    android:id="@+id/tvFirstDate"
+                    android:id="@+id/tvFirstDateReception"
                     style="@style/tv_date_secondary"
                     android:layout_width="0dp"
                     android:layout_marginStart="5dp"
@@ -337,7 +360,7 @@
                     android:layout_weight="1" />
 
                 <TextView
-                    android:id="@+id/tvEndDate"
+                    android:id="@+id/tvEndDateReception"
                     style="@style/tv_date_secondary"
                     android:layout_width="0dp"
                     android:layout_marginStart="5dp"
@@ -424,6 +447,558 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
                     android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lArmadoPantries"
+                style="@style/ll_row_secondary"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/llTimeReception"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvArmadoPantries"
+                    style="@style/tv_label_secondary"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:text="¿Requiere armado?" />
+
+                <Switch
+                    android:id="@+id/switchArmadoPantries"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llArmadoPantries"
+                style="@style/ll_row_secondary"
+                app:layout_constraintTop_toBottomOf="@+id/lArmadoPantries"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvArmado"
+                    style="@style/tv_label_secondary"
+                    android:text="Armado de despensas" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/labelDateArmado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llArmadoPantries">
+
+                <TextView
+                    style="@style/tv_label_secondary"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:gravity="left"
+                    android:text="Fecha inicio"
+                    android:textSize="@dimen/size_16" />
+
+                <TextView
+                    style="@style/tv_label_secondary"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:gravity="left"
+                    android:text="Fecha fin"
+                    android:textSize="@dimen/size_16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llDateArmado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/labelDateArmado">
+
+                <TextView
+                    android:id="@+id/tvFirstDateArmado"
+                    style="@style/tv_date_secondary"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tvEndDateArmado"
+                    style="@style/tv_date_secondary"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/labelDaysArmado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_2"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llDateArmado">
+
+                <TextView
+                    android:id="@+id/tvDaysArmado"
+                    style="@style/tv_label_secondary"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left"
+                    android:text="Dias"
+                    android:textSize="@dimen/size_16" />
+
+                <include
+                    android:id="@+id/iDaysArmado"
+                    layout="@layout/item_include_days"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDaysReception" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/labelTimeArmado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/labelDaysArmado">
+
+                <TextView
+                    style="@style/tv_label_secondary"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:gravity="left"
+                    android:text="Hora inicio"
+                    android:textSize="@dimen/size_16" />
+
+                <TextView
+                    style="@style/tv_label_secondary"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:gravity="left"
+                    android:text="Hora fin"
+                    android:textSize="@dimen/size_16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llTimeArmado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/labelTimeArmado">
+
+                <TextView
+                    android:id="@+id/tvFirstTimeArmado"
+                    style="@style/tv_time_secondary"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tvEndTimeArmado"
+                    style="@style/tv_time_secondary"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <!--
+            <LinearLayout
+                android:id="@+id/lDistributionPantries"
+                style="@style/ll_row_secondary"
+                app:layout_constraintTop_toBottomOf="@+id/llTimeArmado"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvDistributionPantries"
+                    style="@style/tv_label_secondary"
+                    android:text="Distribución de despensas" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/labelDateDistribution"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lDistributionPantries">
+
+                <TextView
+                    style="@style/tv_label_secondary"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:gravity="left"
+                    android:text="Fecha inicio"
+                    android:textSize="@dimen/size_16" />
+
+                <TextView
+                    style="@style/tv_label_secondary"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:gravity="left"
+                    android:text="Fecha fin"
+                    android:textSize="@dimen/size_16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llDateDistribution"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/labelDateDistribution">
+
+                <TextView
+                    android:id="@+id/tvFirstDateDistribution"
+                    style="@style/tv_date_secondary"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tvEndDateDistribution"
+                    style="@style/tv_date_secondary"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/labelDaysDistribution"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_2"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llDateDistribution">
+
+                <TextView
+                    android:id="@+id/tvDaysDistribution"
+                    style="@style/tv_label_secondary"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left"
+                    android:text="Dias"
+                    android:textSize="@dimen/size_16" />
+
+                <include
+                    android:id="@+id/iDaysDistribution"
+                    layout="@layout/item_include_days"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDaysDistribution" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/labelTimeDistribution"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/labelDaysDistribution">
+
+                <TextView
+                    style="@style/tv_label_secondary"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:gravity="left"
+                    android:text="Hora inicio"
+                    android:textSize="@dimen/size_16" />
+
+                <TextView
+                    style="@style/tv_label_secondary"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:gravity="left"
+                    android:text="Hora fin"
+                    android:textSize="@dimen/size_16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llTimeDistribution"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/labelTimeDistribution">
+
+                <TextView
+                    android:id="@+id/tvFirstTimeDistribution"
+                    style="@style/tv_time_secondary"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tvEndTimeDistribution"
+                    style="@style/tv_time_secondary"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+            -->
+
+            <LinearLayout
+                android:id="@+id/lDeliveryPantries"
+                style="@style/ll_row_secondary"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/llTimeArmado"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvDeliveryPantries"
+                    style="@style/tv_label_secondary"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:text="¿Requiere entrega?" />
+
+                <Switch
+                    android:id="@+id/switchDeliveryPantries"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llDeliveryPantries"
+                style="@style/ll_row_secondary"
+                app:layout_constraintTop_toBottomOf="@+id/lDeliveryPantries"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvDelivery"
+                    style="@style/tv_label_secondary"
+                    android:text="Entrega de despensas" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/labelDateDelivery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llDeliveryPantries">
+
+                <TextView
+                    style="@style/tv_label_secondary"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:gravity="left"
+                    android:text="Fecha inicio"
+                    android:textSize="@dimen/size_16" />
+
+                <TextView
+                    style="@style/tv_label_secondary"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:gravity="left"
+                    android:text="Fecha fin"
+                    android:textSize="@dimen/size_16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llDateDelivery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/labelDateDelivery">
+
+                <TextView
+                    android:id="@+id/tvFirstDateDelivery"
+                    style="@style/tv_date_secondary"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tvEndDateDelivery"
+                    style="@style/tv_date_secondary"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/labelDaysDelivery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_2"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llDateDelivery">
+
+                <TextView
+                    android:id="@+id/tvDaysDelivery"
+                    style="@style/tv_label_secondary"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left"
+                    android:text="Dias"
+                    android:textSize="@dimen/size_16" />
+
+                <include
+                    android:id="@+id/iDaysDelivery"
+                    layout="@layout/item_include_days"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDaysDelivery" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/labelTimeDelivery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/labelDaysDelivery">
+
+                <TextView
+                    style="@style/tv_label_secondary"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:gravity="left"
+                    android:text="Hora inicio"
+                    android:textSize="@dimen/size_16" />
+
+                <TextView
+                    style="@style/tv_label_secondary"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:gravity="left"
+                    android:text="Hora fin"
+                    android:textSize="@dimen/size_16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llTimeDelivery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/labelTimeDelivery">
+
+                <TextView
+                    android:id="@+id/tvFirstTimeDelivery"
+                    style="@style/tv_time_secondary"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tvEndTimeDelivery"
+                    style="@style/tv_time_secondary"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llAddressDelivery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/llTimeDelivery">
+
+                <LinearLayout
+                    style="@style/ll_row_secondary"
+                    android:layout_weight="1"
+                    tools:ignore="MissingConstraints">
+
+                    <TextView
+                        android:id="@+id/tvlabelAdrressDelivery"
+                        style="@style/tv_label_secondary"
+                        android:text="Dirección de entrega" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilAddressDelivery"
+                        style="@style/til_material_secondary">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etgetAddressDelivery"
+                            style="@style/tiet_material_secondary"
+                            android:imeOptions="actionNext"
+                            android:maxLength="250"
+                            android:singleLine="false" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ll_row_secondary"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <TextView style="@style/tv_label_secondary" />
+
+                    <TextView
+                        android:id="@+id/tvAddressDelivery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableTop="@drawable/ic_church_map"
+                        android:fontFamily="@font/open_sans_semi_bold"
+                        android:text="Actualizar"
+                        android:textColor="@color/primaryColor"
+                        android:textSize="@dimen/size_18" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lbtnGuardarPantries"
+                style="@style/ll_fill_btns"
+                android:layout_marginTop="@dimen/margin_24"
+                app:layout_constraintTop_toBottomOf="@+id/llAddressDelivery"
+                tools:ignore="MissingConstraints">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnGuardarDelivery"
+                    style="@style/btn_primary"
+                    android:layout_width="match_parent"
+                    android:text="Guardar" />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
