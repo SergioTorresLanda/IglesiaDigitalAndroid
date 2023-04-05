@@ -27,6 +27,7 @@ class RepositoryEvent(val context: Context) : ManagerCall() {
 
     //GET Event
     val allDiner = SingleLiveEvent<List<DinerResponse>>()
+    val allPantry = SingleLiveEvent<List<Pantry>>()
     val allDonor = SingleLiveEvent<List<DonorResponse>>()
     val allVolunteer = SingleLiveEvent<List<VolunteerResponse>>()
     val allGuest = SingleLiveEvent<List<GuestModel>>()
@@ -102,6 +103,61 @@ class RepositoryEvent(val context: Context) : ManagerCall() {
                         getDinerEventAsync().await()
                     else
                         getDinerEventAsync(dinerId).await()
+                }
+            },
+            validation = Validation()
+        )
+    }
+
+    suspend fun saveEventPantry(event: Pantry) {
+        managerCallApi(
+            context = context,
+            call = {
+                retrofitInstance.setHost(HOST).builder().instance().postCreateEventPantryAsync(event)
+                    .await()
+            },
+            validation = Validation()
+        ).let { response ->
+            GlobalScope.launch(Dispatchers.Main) {
+                if (response.sucess) {
+                    saveResponse.value = "Se ha dado de alta la despensa correctamente."
+                } else {
+                    errorResponse.value = response.exception?.message
+                        ?: "La creación de la despensa no se pudo realizar."
+                }
+            }
+        }
+    }
+
+    suspend fun UpdateEventPantry(pantryId: Int, event: Pantry) {
+        managerCallApi(
+            context = context,
+            call = {
+                retrofitInstance.setHost(HOST).builder().instance()
+                    .putUpdateEventPantryAsync(pantryId, event).await()
+            },
+            validation = Validation()
+        ).let { response ->
+            GlobalScope.launch(Dispatchers.Main) {
+                if (response.sucess) {
+                    saveResponse.value = "Se ha actualizado la despensa correctamente."
+                } else {
+                    errorResponse.value = response.exception?.message
+                        ?: "La actualización de la despensa no se pudo realizar."
+                }
+            }
+        }
+    }
+
+    suspend fun getAllPantry(pantryId: Int): ResponseData<List<Pantry>?> {
+        return managerCallApi(
+            context = context,
+            call = {
+                retrofitInstances.run {
+                    if (pantryId == 0)
+                        getPantriesEventAsync().await()
+                    else
+                        getPantryEventAsync(pantryId).await()
                 }
             },
             validation = Validation()

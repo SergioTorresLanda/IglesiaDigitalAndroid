@@ -13,7 +13,7 @@ interface ApiInterface {
     @PUT(WebConfig.EVENT_DINER_PATH)
     fun putUpdateEventAsync(
         @Path("dinerId") dinerId: Int,
-        @Body event: Event
+        @Body event: Event,
     ): Deferred<Response<Void>>
 
     @GET(WebConfig.EVENT_DINER)
@@ -22,13 +22,33 @@ interface ApiInterface {
     @GET(WebConfig.EVENT_DINER_PATH)
     fun getDinerEventAsync(@Path("dinerId") dinerId: Int): Deferred<Response<List<DinerResponse>>>
 
+    //Event_Pantry
+    @POST(WebConfig.EVENT_PANTRY)
+    fun postCreateEventPantryAsync(@Body event: Pantry): Deferred<Response<Void>>
+
+    @PUT(WebConfig.EVENT_PANTRY_PATH)
+    fun putUpdateEventPantryAsync(
+        @Path("pantryId") pantryId: Int,
+        @Body event: Pantry,
+    ): Deferred<Response<Void>>
+
+    @GET(WebConfig.EVENT_PANTRY)
+    fun getPantriesEventAsync(): Deferred<Response<List<Pantry>>>
+
+    @GET(WebConfig.EVENT_PANTRY_PATH)
+    fun getPantryEventAsync(@Path("pantryId") pantryId: Int): Deferred<Response<List<Pantry>>>
+
+
     //Event_Donor
 
     @POST(WebConfig.EVENT_DONOR)
     fun postCreateDonorAsync(@Body donor: Donor): Deferred<Response<Void>>
 
     @PUT(WebConfig.EVENT_DONOR_PATH)
-    fun putUpdateDonorAsync(@Path("donadorId") donadorId: Int, @Body donor: Donor): Deferred<Response<Void>>
+    fun putUpdateDonorAsync(
+        @Path("donadorId") donadorId: Int,
+        @Body donor: Donor,
+    ): Deferred<Response<Void>>
 
     @GET(WebConfig.EVENT_DONOR)
     fun getDonorAsync(): Deferred<Response<List<DonorResponse>>>
@@ -45,7 +65,10 @@ interface ApiInterface {
     fun postCreateVolunteerAsync(@Body volunteer: Volunteer): Deferred<Response<Void>>
 
     @PUT(WebConfig.EVENT_VOLUNTEER_PATH)
-    fun putUpdateVolunteerAsync(@Path("voluntarioId") voluntarioId: Int, @Body voluntario: Volunteer): Deferred<Response<Void>>
+    fun putUpdateVolunteerAsync(
+        @Path("voluntarioId") voluntarioId: Int,
+        @Body voluntario: Volunteer,
+    ): Deferred<Response<Void>>
 
     @GET(WebConfig.EVENT_VOLUNTEER)
     fun getVolunteerAsync(): Deferred<Response<List<VolunteerResponse>>>
@@ -54,9 +77,15 @@ interface ApiInterface {
     fun getVolunteerAsync(@Path("voluntarioId") voluntarioId: Int): Deferred<Response<List<VolunteerResponse>>>
 
     @GET(WebConfig.GET_TYPE_PARTICIPATION_BY_DINER)
-    fun getDonorbyDiner(@Path("dinerId") dinerId: Int, @Query("participantes") type: String): Deferred<Response<List<DonorResponse>>>
+    fun getDonorbyDiner(
+        @Path("dinerId") dinerId: Int,
+        @Query("participantes") type: String,
+    ): Deferred<Response<List<DonorResponse>>>
 
     @GET(WebConfig.GET_TYPE_PARTICIPATION_BY_DINER)
-    fun getVolunteerbyDiner(@Path("dinerId") dinerId: Int, @Query("participantes") type: String): Deferred<Response<List<VolunteerResponse>>>
+    fun getVolunteerbyDiner(
+        @Path("dinerId") dinerId: Int,
+        @Query("participantes") type: String,
+    ): Deferred<Response<List<VolunteerResponse>>>
 
 }
