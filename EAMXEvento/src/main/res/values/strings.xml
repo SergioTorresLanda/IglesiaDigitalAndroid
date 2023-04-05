@@ -5,6 +5,7 @@
     <string name="digits_only_number_phone">+/0123456789</string>
 
     <string name="enter_your_req">Ingresa los requisitos</string>
+    <string name="enter_your_des">Ingresa la descripción</string>
     <string name="enter_your_name">Ingresa el nombre del responsable</string>
     <string name="enter_diner_name">Ingresa el nombre del comedor</string>
     <string name="enter_diner_fh">Ingresa un horario de apertura</string>
