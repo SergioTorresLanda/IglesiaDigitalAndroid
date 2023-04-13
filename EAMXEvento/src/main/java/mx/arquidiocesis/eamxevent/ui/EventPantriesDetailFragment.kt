@@ -683,4 +683,6 @@ class EventPantriesDetailFragment : FragmentBase() {
             }
         }
     }
+    private fun pantryRegister() {
+    }
 }
