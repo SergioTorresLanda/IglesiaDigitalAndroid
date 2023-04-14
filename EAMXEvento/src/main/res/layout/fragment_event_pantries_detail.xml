@@ -37,7 +37,7 @@
 
             <LinearLayout
                 android:id="@+id/lEstatusPantries"
-                android:layout_marginStart="150dp"
+                android:layout_marginStart="145dp"
                 style="@style/ll_row_secondary_switch"
                 android:orientation="horizontal"
                 app:layout_constraintTop_toBottomOf="@+id/llBotonPantries"
@@ -152,7 +152,7 @@
                     <TextView
                         android:id="@+id/tvlabelAdrressPantries"
                         style="@style/tv_label_secondary"
-                        android:text="Dirección" />
+                        android:text="Dirección de recepción y armado"/>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/tilAddressPantries"
@@ -995,7 +995,7 @@
                 tools:ignore="MissingConstraints">
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnGuardarDelivery"
+                    android:id="@+id/btnGuardarPantry"
                     style="@style/btn_primary"
                     android:layout_width="match_parent"
                     android:text="Guardar" />

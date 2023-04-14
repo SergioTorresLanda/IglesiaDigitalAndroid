@@ -173,6 +173,13 @@ class EventFragment : FragmentBase() {
                     .build().nextWithReplace()
             }
         }
+        btnDespensas.setOnClickListener {
+            NavigationFragment.Builder()
+                .setActivity(requireActivity())
+                .setView(requireView().parent as ViewGroup)
+                .setFragment(EventPantriesFragment.newInstance(callBack) as Fragment)
+                .build().nextWithReplace()
+        }
         spZone.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>,
@@ -210,13 +217,6 @@ class EventFragment : FragmentBase() {
             override fun onNothingSelected(parent: AdapterView<*>) {
                 lblSeleccion.text = "Sin selección"
             }
-        }
-        btnDespensas.setOnClickListener {
-                NavigationFragment.Builder()
-                    .setActivity(requireActivity())
-                    .setView(requireView().parent as ViewGroup)
-                    .setFragment(EventPantriesDetailFragment.newInstance(callBack) as Fragment)
-                    .build().nextWithReplace()
         }
     }
 

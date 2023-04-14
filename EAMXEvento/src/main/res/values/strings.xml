@@ -80,4 +80,19 @@
     <string name="txt_empty_phoneI">El teléfono del invitado no puede quedar vacío.</string>
     <string name="txt_empty_respo">El nombre del responsable de comedor no puede quedar vacío.</string>
 
+    <string name="txt_empty_pantry">Actualiza la ubicación de tu despensa.</string>
+    <string name="txt_empty_pantry_delivery">Actualiza la ubicación de entrega de tu despensa.</string>
+    <string name="txt_empty_dayReceived">Activa por lo menos un día a la semana en el que se reciban despensas.</string>
+    <string name="txt_empty_dayArmed">Activa por lo menos un día a la semana en el que se armen despensas.</string>
+    <string name="txt_empty_dayDelivery">Activa por lo menos un día a la semana en el que se entreguen despensas.</string>
+    <string name="txt_empty_hour_first_received">Selecciona un horario de apertura para recibir despensas.</string>
+    <string name="txt_empty_hour_end_received">Selecciona un horario de cierre para recibir despensas.</string>
+    <string name="txt_empty_hour_first_armed">Selecciona un horario de apertura para armar despensas.</string>
+    <string name="txt_empty_hour_end_armed">Selecciona un horario de cierre para armar despensas.</string>
+    <string name="txt_empty_hour_first_delivery">Selecciona un horario de apertura para entrega de despensas.</string>
+    <string name="txt_empty_hour_end_delivery">Selecciona un horario de cierre para entrega de despensas.</string>
+    <string name="txt_empty_received">Completa el proceso de recepción de despensas.</string>
+    <string name="txt_empty_armed">Completa el proceso de armado de despensas.</string>
+    <string name="txt_empty_delivery">Completa el proceso de entrega de despensas.</string>
+
 </resources>

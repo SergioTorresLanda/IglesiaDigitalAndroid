@@ -38,11 +38,11 @@ open class Pantry(
     @SerializedName("fecha_entrega") //Sin uso
     val distributed : String? = null,
     @SerializedName("fecha_recibido") //Recibido
-    val received: Process? = null,
+    val received: MutableList<Process>? = ArrayList(),
     @SerializedName("fecha_armado") //Armado
-    val armed: Process? = null,
+    val armed: MutableList<Process>? = ArrayList(),
     @SerializedName("fecha_repartido") //Entrega
-    val delivery: Process? = null,
+    val delivery: MutableList<Process>? = ArrayList(),
     @SerializedName("req_descripcion")
     val description_requirements: String? = null,
     @SerializedName("direccion_entrega")

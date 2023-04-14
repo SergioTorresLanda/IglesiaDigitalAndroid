@@ -31,6 +31,22 @@ fun EventFragment.setupInit(guest:Boolean){
     }
 }
 
+fun EventPantriesFragment.setupInit(guest:Boolean){
+    val profile = eamxcu_preferences.getData(
+        EAMXEnumUser.USER_PROFILE.name,
+        EAMXTypeObject.STRING_OBJECT
+    ) as String
+    if (guest) {
+        tvNewEvent.visibility = View.GONE
+    }
+    when (profile) {
+        EAMXProfile.Devoted.rol, EAMXProfile.Priest.rol
+        -> {
+            tvNewEvent.visibility = View.GONE
+        }
+    }
+}
+
 fun EventFragment.setupRecyclerView() {
     rvEvents.adapter = adapter
     rvEvents.layoutManager = LinearLayoutManager(context)

@@ -39,6 +39,7 @@ object AppMyConstants {
 
     /*Titulos para los toolbar de cada Fragment*/
     const val evento = "Lista de comedores"
+    const val eventoDespensas = "Lista de despensas"
     const val donadores = "Lista de donadores"
     const val voluntarios = "Lista de voluntarios"
     const val detailEvento = "Alta de comedores"

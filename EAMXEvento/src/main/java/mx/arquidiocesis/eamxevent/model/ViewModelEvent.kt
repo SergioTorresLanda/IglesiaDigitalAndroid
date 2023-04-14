@@ -228,13 +228,14 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
         longitude: Float,
         latitude: Float,
         zone_id: Int,
-        status: Int = 0, //Not validate, ¿no existe?
-        required_armed: Int = 0, //Not validate if is 0
-        required_delivery: Int = 0, //Not validate if is 0
-        required_donor: Int = 0, //Not validate if is 0
-        received: Process, //
-        armed: Process,
-        delivery: Process,
+        status: Int, //Not validate, ¿no existe?
+        required_armed: Int, //Not validate if is 0
+        required_delivery: Int, //Not validate if is 0
+        required_donor: Int, //Not validate if is 0
+        distributed: String?,
+        received: MutableList<Process>, //
+        armed: MutableList<Process>,
+        delivery: MutableList<Process>,
         description_requirements: String,
         address_delivery: String,
         requirements_donor: String,
@@ -245,8 +246,9 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
         val validateForm: HashMap<String, String> = HashMap()
 
         //Responsable
-        if (responsability.isEmpty())
+        if (responsability.isEmpty()) {
             validateForm[Constants.KEY_RESPONSABILITY] = Constants.EMPTY_FIELD
+        }
 
         //Contacto
         if (email.isEmpty()) {
@@ -255,13 +257,12 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
             if (!Constants.EMAIL_ADDRESS.matcher(email).matches())
                 validateForm[Constants.KEY_EMAIL] = Constants.INVALID_EMAIL
         }
-
-        if (phone.isEmpty())
+        if (phone.isEmpty()) {
             validateForm[Constants.KEY_PHONE] = Constants.EMPTY_FIELD
-
-        if (phone.length < 10)
+        }
+        if (phone.length < 10) {
             validateForm[Constants.KEY_PHONE] = Constants.INVALID_PHONE
-
+        }
         if (address.isEmpty())
             validateForm[Constants.KEY_ADDRESS] = Constants.EMPTY_FIELD
 
@@ -271,100 +272,105 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
         if (latitude < 0)
             validateForm[Constants.KEY_LATITUDE] = Constants.EMPTY_FIELD
 
-        if (zone_id == 0)
+        if (zone_id == 0) {
             validateForm[Constants.KEY_ZONE] = Constants.EMPTY_FIELD
-
+        }
         //Procesos
-        if (received == Process())
-            validateForm[Constants.KEY_RECEIVED] = Constants.EMPTY_FIELD
-            //Horarios
-            if (schedule[0].hour_start == "00:00")
-                validateForm[Constants.KEY_HOUR_FIRST_RECEIVED] = Constants.EMPTY_FIELD
-            if (schedule[0].hour_end == "00:00")
-                validateForm[Constants.KEY_HOUR_END_RECEIVED] = Constants.EMPTY_FIELD
-            val filter_0 = schedule[0].days?.filter { it.checked }
-            if (filter_0 != null)
-                if (filter_0.size == 0)
-                    validateForm[Constants.KEY_DAYS_RECEIVED] = Constants.EMPTY_FIELD
+        //if (received == Process())
+        if (received.isEmpty())
+          validateForm[Constants.KEY_RECEIVED] = Constants.EMPTY_FIELD
+        //Horarios
+        if (schedule[0].hour_start == "00:00")
+            validateForm[Constants.KEY_HOUR_FIRST_RECEIVED] = Constants.EMPTY_FIELD
+        if (schedule[0].hour_end == "00:00")
+            validateForm[Constants.KEY_HOUR_END_RECEIVED] = Constants.EMPTY_FIELD
+        val filter_0 = schedule[0].days?.filter { it.checked }
+        if (filter_0 != null)
+            if (filter_0.size == 0)
+                validateForm[Constants.KEY_DAYS_RECEIVED] = Constants.EMPTY_FIELD
 
-        if (required_armed == 1)
-            if (armed == Process())
+        if (required_armed == 1) {
+            //if (armed == Process())
+            if (armed.isEmpty())
                 validateForm[Constants.KEY_ARMED] = Constants.EMPTY_FIELD
-                //Horarios
-                if (schedule[1].hour_start == "00:00")
-                    validateForm[Constants.KEY_HOUR_FIRST_ARMED] = Constants.EMPTY_FIELD
-                if (schedule[1].hour_end == "00:00")
-                    validateForm[Constants.KEY_HOUR_END_ARMED] = Constants.EMPTY_FIELD
-                val filter_1 = schedule[1].days?.filter { it.checked }
-                if (filter_1 != null)
-                    if (filter_1.size == 0)
-                        validateForm[Constants.KEY_DAYS_ARMED] = Constants.EMPTY_FIELD
-        if (required_delivery == 1)
-            if (delivery == Process())
+            //Horarios
+            if (schedule[1].hour_start == "00:00")
+                validateForm[Constants.KEY_HOUR_FIRST_ARMED] = Constants.EMPTY_FIELD
+            if (schedule[1].hour_end == "00:00")
+                validateForm[Constants.KEY_HOUR_END_ARMED] = Constants.EMPTY_FIELD
+            val filter_1 = schedule[1].days?.filter { it.checked }
+            if (filter_1 != null)
+                if (filter_1.size == 0)
+                    validateForm[Constants.KEY_DAYS_ARMED] = Constants.EMPTY_FIELD
+        }
+        if (required_delivery == 1) {
+            //if (delivery == Process())
+            if (delivery.isEmpty())
                 validateForm[Constants.KEY_DELIVERY] = Constants.EMPTY_FIELD
-                //Horarios
-                if (schedule[2].hour_start == "00:00")
-                    validateForm[Constants.KEY_HOUR_FIRST_DELIVERY] = Constants.EMPTY_FIELD
-                if (schedule[2].hour_end == "00:00")
-                    validateForm[Constants.KEY_HOUR_END_DELIVERY] = Constants.EMPTY_FIELD
-                val filter_2 = schedule[2].days?.filter { it.checked }
-                if (filter_2 != null)
-                    if (filter_2.size == 0)
-                        validateForm[Constants.KEY_DAYS_DELIVERY] = Constants.EMPTY_FIELD
+            //Horarios
+            if (schedule[2].hour_start == "00:00")
+                validateForm[Constants.KEY_HOUR_FIRST_DELIVERY] = Constants.EMPTY_FIELD
+            if (schedule[2].hour_end == "00:00")
+                validateForm[Constants.KEY_HOUR_END_DELIVERY] = Constants.EMPTY_FIELD
+            val filter_2 = schedule[2].days?.filter { it.checked }
+            if (filter_2 != null)
+                if (filter_2.size == 0)
+                    validateForm[Constants.KEY_DAYS_DELIVERY] = Constants.EMPTY_FIELD
+        }
+            //If is donor
+            if (required_donor == 1)
+                if (requirements_donor.isEmpty())
+                    validateForm[Constants.KEY_REQUISIT] = Constants.EMPTY_FIELD
 
-        //If is donor
-        if (required_donor == 1)
-            if (requirements_donor.isEmpty())
-                validateForm[Constants.KEY_REQUISIT] = Constants.EMPTY_FIELD
-
-        //If is delivery
-        if (required_delivery == 1)
-            if (address.isEmpty())
-                validateForm[Constants.KEY_ADDRESS_DELIVERY] = Constants.EMPTY_FIELD
+            //If is delivery
+            if (required_delivery == 1)
+                if (address.isEmpty())
+                    validateForm[Constants.KEY_ADDRESS_DELIVERY] = Constants.EMPTY_FIELD
             if (longitude_delivery < 0)
                 validateForm[Constants.KEY_LONGITUDE_DELIVERY] = Constants.EMPTY_FIELD
             if (latitude_delivery < 0)
                 validateForm[Constants.KEY_LATITUDE_DELIVERY] = Constants.EMPTY_FIELD
 
-        if (validateForm.size > 0) {
-            this.validateForm.value = validateForm
-        } else {
-            this.showLoaderView.value = true
-            val eventRegisterModel = Pantry(
-                user_id = eamxcu_preferences.getData(
-                    EAMXEnumUser.USER_ID.name,
-                    EAMXTypeObject.INT_OBJECT
-                ) as Int,
-                schedule = schedule,
-                responsability = responsability,
-                email = email,
-                phone = "+52${phone}",
-                address = address,
-                longitude = longitude,
-                latitude = latitude,
-                zone_id = zone_id,
-                status = status,
-                required_armed = required_armed,
-                required_delivery = required_delivery,
-                required_donor = required_donor,
-                received = received,
-                armed = if (required_armed != 1) Process() else armed,
-                delivery = if (required_delivery != 1) Process() else delivery,
-                description_requirements = description_requirements,
-                address_delivery = address_delivery,
-                requirements_donor = requirements_donor,
-                longitude_delivery = longitude_delivery,
-                latitude_delivery = latitude_delivery,
-            )
-            GlobalScope.launch {
-                if (id == 0) {
-                    repositoryEvent.saveEventPantry(eventRegisterModel)
-                } else {
-                    repositoryEvent.UpdateEventPantry(id, eventRegisterModel)
+            if (validateForm.size > 0) {
+                this.validateForm.value = validateForm
+            } else {
+                this.showLoaderView.value = true
+                val eventRegisterModel = Pantry(
+                    user_id = eamxcu_preferences.getData(
+                        EAMXEnumUser.USER_ID.name,
+                        EAMXTypeObject.INT_OBJECT
+                    ) as Int,
+                    schedule = schedule,
+                    responsability = responsability,
+                    email = email,
+                    phone = "+52${phone}",
+                    address = address,
+                    longitude = longitude,
+                    latitude = latitude,
+                    zone_id = zone_id,
+                    status = status,
+                    required_armed = required_armed,
+                    required_delivery = required_delivery,
+                    required_donor = required_donor,
+                    distributed = distributed,
+                    received = received,
+                    armed = if (required_armed != 1) mutableListOf() else armed,
+                    delivery = if (required_delivery != 1) mutableListOf() else delivery,
+                    description_requirements = description_requirements,
+                    address_delivery = address_delivery,
+                    requirements_donor = requirements_donor,
+                    longitude_delivery = longitude_delivery,
+                    latitude_delivery = latitude_delivery,
+                )
+                GlobalScope.launch {
+                    if (id == 0) {
+                        repositoryEvent.saveEventPantry(eventRegisterModel)
+                    } else {
+                        repositoryEvent.UpdateEventPantry(id, eventRegisterModel)
+                    }
                 }
             }
         }
-    }
 
     fun validateFormRegisterDonor(
         name: String,
