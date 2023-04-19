@@ -162,7 +162,7 @@ class EventFragment : FragmentBase() {
 
     fun initButtons() {
         tvNewEvent.setOnClickListener {
-            if (!init) {
+            //if (!init) {
                 NavigationFragment.Builder()
                     .setActivity(requireActivity())
                     .setView(requireView().parent as ViewGroup)
@@ -171,15 +171,16 @@ class EventFragment : FragmentBase() {
                         putString("diner_id", diner_id)
                     })
                     .build().nextWithReplace()
-            }
+            //}
         }
-        btnDespensas.setOnClickListener {
+        btnDespensasEvento.setOnClickListener {
             NavigationFragment.Builder()
                 .setActivity(requireActivity())
                 .setView(requireView().parent as ViewGroup)
                 .setFragment(EventPantriesFragment.newInstance(callBack) as Fragment)
                 .build().nextWithReplace()
         }
+
         spZone.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>,

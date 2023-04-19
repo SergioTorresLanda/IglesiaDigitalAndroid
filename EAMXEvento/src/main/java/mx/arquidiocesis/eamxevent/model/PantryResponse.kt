@@ -26,13 +26,13 @@ data class PantryResponse(
     @SerializedName("horarios")
     val horarios: MutableList<Schedules>? = null,
     @SerializedName("latitud")
-    val latitud: Float? = null,
+    val latitud: String? = null,
     @SerializedName("latitud_entrega")
-    val latitudEntrega: Float? = null,
+    val latitudEntrega: String? = null,
     @SerializedName("longitud")
-    val longitud: Float? = null,
+    val longitud: String? = null,
     @SerializedName("longitud_entrega")
-    val longitudEntrega: Float? = null,
+    val longitudEntrega: String? = null,
     @SerializedName("req_armado")
     val reqArmado: Int? = null,
     @SerializedName("req_descripcion")

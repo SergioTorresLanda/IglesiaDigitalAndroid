@@ -9,7 +9,7 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
-            android:id="@+id/lInicial"
+            android:id="@+id/lInicialDespensa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:ignore="MissingConstraints">
@@ -20,7 +20,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/margin_15"
                 android:orientation="horizontal"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <TextView
                     android:id="@+id/tvComedores"
@@ -30,10 +30,10 @@
                     android:fontFamily="@font/spro_text_regular"
                     android:paddingBottom="@dimen/margin_top_15"
                     android:text="Comedores"
+                    android:visibility="gone"
                     android:textColor="#192a73"
                     android:textSize="@dimen/size_20"
                     android:textStyle="bold" />
-
                 <TextView
                     android:id="@+id/tvDespensas"
                     android:layout_width="wrap_content"
@@ -41,14 +41,40 @@
                     android:layout_marginStart="@dimen/margin_top_40"
                     android:fontFamily="@font/spro_text_regular"
                     android:text="Despensas"
+                    android:visibility="gone"
                     android:textColor="@color/gray"
                     android:textSize="@dimen/size_20" />
+
+                <Button
+                    android:id="@+id/btnComedoresActDespensa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:text="Comedores"
+                    android:padding="4dp"
+                    style="@style/list_label_catalog"
+                    android:drawableTop="@drawable/comedor_48"
+                    android:layout_margin="10dp"
+                    android:backgroundTint="@color/white" />
+
+                <Button
+                    android:id="@+id/btnDespensasActDespensa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:padding="4dp"
+                    style="@style/list_label_catalog"
+                    android:drawableTop="@drawable/cesto_48"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/tab"
+                    android:backgroundTint="@color/white"
+                    android:text="Despensas" />
+
             </LinearLayout>
         </RelativeLayout>
 
         <include
             android:id="@+id/iSecciones"
             layout="@layout/item_secciones"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -64,7 +90,7 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iSecciones">
+            app:layout_constraintTop_toBottomOf="@id/lInicialDespensa">
 
             <LinearLayout
                 android:id="@+id/cwc_add_des"
@@ -96,6 +122,7 @@
             <LinearLayout
                 android:id="@+id/llParticipacionDes"
                 style="@style/ll_row_primary"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cwc_add_des">
 
@@ -161,7 +188,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ll_contenido_despensas"
-            tools:listitem="@layout/item_event_detail" />
+            tools:listitem="@layout/item_event_detail_pantry" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_event.*
+import kotlinx.android.synthetic.main.fragment_event_pantries.*
 import kotlinx.android.synthetic.main.item_event_detail.*
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.common.EAMXProfile
@@ -37,12 +38,12 @@ fun EventPantriesFragment.setupInit(guest:Boolean){
         EAMXTypeObject.STRING_OBJECT
     ) as String
     if (guest) {
-        tvNewEvent.visibility = View.GONE
+        tvNewDespensa.visibility = View.GONE
     }
     when (profile) {
         EAMXProfile.Devoted.rol, EAMXProfile.Priest.rol
         -> {
-            tvNewEvent.visibility = View.GONE
+            tvNewDespensa.visibility = View.GONE
         }
     }
 }
@@ -51,6 +52,17 @@ fun EventFragment.setupRecyclerView() {
     rvEvents.adapter = adapter
     rvEvents.layoutManager = LinearLayoutManager(context)
     rvEvents.itemAnimator = DefaultItemAnimator()
+    val scrollListener = object : RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+        }
+    }
+}
+
+fun EventPantriesFragment.setupRecyclerView() {
+    rvDespensas.adapter = adapterPantry
+    rvDespensas.layoutManager = LinearLayoutManager(context)
+    rvDespensas.itemAnimator = DefaultItemAnimator()
     val scrollListener = object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)

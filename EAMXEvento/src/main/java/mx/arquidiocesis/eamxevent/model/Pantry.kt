@@ -18,16 +18,16 @@ open class Pantry(
     @SerializedName("direccion")
     val address: String? = null,
     @SerializedName("longitud")
-    val longitude: Float? = null,
+    val longitude: String? = null,
     @SerializedName("latitud")
-    val latitude: Float? = null,
+    val latitude: String? = null,
     @SerializedName("voluntarios") //Sin uso
     val volunteers: String? = null,
     @SerializedName("donadores") //Sin uso
     val donors: String? = "[]",
     @SerializedName("zona")
     val zone_id: Int? = null,
-    @SerializedName("status")
+    @SerializedName("estatus")
     val status: Int? = 0,
     @SerializedName("req_armado")
     val required_armed: Int? = 0,
@@ -38,11 +38,11 @@ open class Pantry(
     @SerializedName("fecha_entrega") //Sin uso
     val distributed : String? = null,
     @SerializedName("fecha_recibido") //Recibido
-    val received: MutableList<Process>? = ArrayList(),
+    val received: Process? = null,
     @SerializedName("fecha_armado") //Armado
-    val armed: MutableList<Process>? = ArrayList(),
+    val armed: Process? = null,
     @SerializedName("fecha_repartido") //Entrega
-    val delivery: MutableList<Process>? = ArrayList(),
+    val delivery: Process? = null,
     @SerializedName("req_descripcion")
     val description_requirements: String? = null,
     @SerializedName("direccion_entrega")
@@ -50,7 +50,7 @@ open class Pantry(
     @SerializedName("requisito_donador")
     val requirements_donor: String? = null,
     @SerializedName("longitud_entrega")
-    val longitude_delivery: Float? = null,
+    val longitude_delivery: String? = null,
     @SerializedName("latitud_entrega")
-    val latitude_delivery: Float? = null,
+    val latitude_delivery: String? = null,
 )

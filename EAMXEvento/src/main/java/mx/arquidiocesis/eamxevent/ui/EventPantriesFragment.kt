@@ -17,12 +17,17 @@ import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.common.EAMXHome
 import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
+import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
 import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
 import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
 import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
 import mx.arquidiocesis.eamxevent.R
 import mx.arquidiocesis.eamxevent.adapter.DinerAllAdapter
+import mx.arquidiocesis.eamxevent.adapter.PantryAllAdapter
 import mx.arquidiocesis.eamxevent.databinding.FragmentEventPantriesBinding
+import mx.arquidiocesis.eamxevent.model.DinerResponse
+import mx.arquidiocesis.eamxevent.model.Pantry
+import mx.arquidiocesis.eamxevent.model.PantryResponse
 import mx.arquidiocesis.eamxevent.model.ViewModelEvent
 import mx.arquidiocesis.eamxevent.model.enum.Delegations
 import mx.arquidiocesis.eamxevent.model.enum.Participation
@@ -34,13 +39,13 @@ class EventPantriesFragment : FragmentBase() {
 
     lateinit var binding: FragmentEventPantriesBinding
     lateinit var viewmodel: ViewModelEvent
-    lateinit var adapterPantry: DinerAllAdapter
+    lateinit var adapterPantry: PantryAllAdapter
     private var zona: Int = 0
     private var type: Int = 0
     private var participation: Array<Participation> = Participation.values()
     private var delegations: Array<Delegations> = Delegations.values()
     private var init = true
-    private var diner_id = ""
+    private var pantry_id = ""
     private var userId = 0
 
     companion object {
@@ -80,22 +85,71 @@ class EventPantriesFragment : FragmentBase() {
         initButtons()
     }
     private fun initObservers(){
+        viewmodel.responseAllPan.observe(viewLifecycleOwner) { item ->
+            if (item.size > 0) {
+                if (item[0].id != null) {
+                    /*
+                    if (init) { //Segunda vez
+                        item.forEach {
+                            if (it.user_id == userId) {
+                                pantry_id = it.id.toString()
+                                tvNewDespensa.setText(AppMyConstants.updatePantry)
+                                return@forEach
+                            }
+                        }
+                    }
+
+                     */
+                    init = false
+                    val despensas = item.filter {
+                        if (zona == 0) it.status == 1 else it.zone_id == zona && it.status == 1
+                    }
+
+                    if (despensas.size > 0) {
+                        adapterPantry.items.clear()
+                        adapterPantry.notifyDataSetChanged()
+
+                        adapterPantry.items.addAll(despensas)
+                        adapterPantry.notifyDataSetChanged()
+                        val prevSize = adapterPantry.items.size
+                        if (prevSize != 0) {
+                            adapterPantry.notifyItemRangeInserted(prevSize, adapterPantry.items.count() - 1)
+                        }
+                    }
+                }
+            }
+            if (adapterPantry.items.size == 0) {
+                adapterPantry.items.addAll(arrayListOf(Pantry()))
+                adapterPantry.notifyDataSetChanged()
+            }
+            hideLoader()
+        }
+
+        viewmodel.errorResponse.observe(viewLifecycleOwner) {
+            //showSkeleton(false)
+            UtilAlert
+                .Builder()
+                .setTitle("Aviso")
+                .setMessage(it)
+                .build()
+                .show(childFragmentManager, "")
+        }
 
     }
     private fun initButtons(){
         tvNewDespensa.setOnClickListener {
-            //if (!init) {
+           //if (!init) {
                 NavigationFragment.Builder()
                     .setActivity(requireActivity())
                     .setView(requireView().parent as ViewGroup)
                     .setFragment(EventPantriesDetailFragment.newInstance(callBack) as Fragment)
                     .setBundle(Bundle().apply {
-                        putString("diner_id", diner_id)
+                        putString("pantry_id", pantry_id)
                     })
                     .build().nextWithReplace()
             //}
         }
-        btnComedores.setOnClickListener {
+        btnComedoresActDespensa.setOnClickListener {
             NavigationFragment.Builder()
                 .setActivity(requireActivity())
                 .setView(requireView().parent as ViewGroup)
@@ -110,7 +164,8 @@ class EventPantriesFragment : FragmentBase() {
                 id: Long,
             ) {
                 zona = delegations[position].pos
-                //getAllDiners()
+                println(zona)
+                getAllPantries()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -145,11 +200,11 @@ class EventPantriesFragment : FragmentBase() {
     fun getAllPantries() {
         showLoader()
         adapterPantry =
-            DinerAllAdapter(requireContext(), type)
-        adapterPantry.items = arrayListOf()//arrayListOf(DinerResponse())
-        //setupRecyclerView()
+            PantryAllAdapter(requireContext(), type)
+        adapterPantry.items = arrayListOf()
+        setupRecyclerView()
         //click()
-        viewmodel.requestAllDiner(0)
+        viewmodel.requestAllPantry(0)
     }
 
 

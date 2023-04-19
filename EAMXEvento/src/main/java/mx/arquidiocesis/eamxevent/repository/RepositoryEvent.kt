@@ -120,10 +120,10 @@ class RepositoryEvent(val context: Context) : ManagerCall() {
         ).let { response ->
             GlobalScope.launch(Dispatchers.Main) {
                 if (response.sucess) {
-                    saveResponse.value = "Se ha dado de alta la despensa correctamente."
+                    saveResponse.value = "Se ha dado de alta la actividad de despensas correctamente."
                 } else {
                     errorResponse.value = response.exception?.message
-                        ?: "La creación de la despensa no se pudo realizar."
+                        ?: "La creación de la actividad de despensa no se pudo realizar."
                 }
             }
         }

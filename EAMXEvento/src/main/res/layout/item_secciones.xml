@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
             android:background="@color/white">
 
             <!-- multiple button views to show a
@@ -31,7 +32,6 @@
                 android:drawableTop="@drawable/comedor_48"
                 android:layout_margin="10dp"
                 android:backgroundTint="@color/white" />
-
 
             <Button
                 android:id="@+id/btnDespensas"
@@ -50,6 +50,7 @@
                 android:layout_height="100dp"
                 android:padding="4dp"
                 android:layout_margin="10dp"
+                android:visibility="gone"
                 style="@style/list_label_catalog"
                 android:drawableTop="@drawable/trabajador_de_caminos_48"
                 android:backgroundTint="@color/white"
@@ -64,6 +65,7 @@
                 android:drawableTop="@drawable/santa_biblia_48"
                 android:layout_margin="10dp"
                 android:text="Misiones"
+                android:visibility="gone"
                 style="@style/list_label_catalog"/>
 
             <Button
@@ -71,6 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
                 android:padding="4dp"
+                android:visibility="gone"
                 android:layout_margin="10dp"
                 style="@style/list_label_catalog"
                 android:drawableTop="@drawable/lectura_48"

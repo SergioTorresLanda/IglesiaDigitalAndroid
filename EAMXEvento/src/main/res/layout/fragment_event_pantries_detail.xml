@@ -18,7 +18,7 @@
             <LinearLayout
                 android:id="@+id/llBotonPantries"
                 style="@style/ll_fill_btns"
-                android:visibility="visible"
+                android:visibility="gone"
                 tools:ignore="MissingConstraints">
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -37,16 +37,24 @@
 
             <LinearLayout
                 android:id="@+id/lEstatusPantries"
-                android:layout_marginStart="145dp"
-                style="@style/ll_row_secondary_switch"
+                style="@style/ll_row_secondary_switch_status"
                 android:orientation="horizontal"
+                android:layout_marginStart="100dp"
                 app:layout_constraintTop_toBottomOf="@+id/llBotonPantries"
                 tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvEstatusGeneralPantry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/tv_label_secondary"
+                    android:text="Estatus" />
 
                 <TextView
                     android:id="@+id/tvEstatusPantries"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     style="@style/tv_label_secondary"
                     android:text="Habilitado" />
 
@@ -56,12 +64,43 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/margin_25"
                     tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lStatusPantries"
+                style="@style/ll_row_secondary_switch_status"
+                android:orientation="horizontal"
+                android:layout_marginStart="150dp"
+                app:layout_constraintTop_toBottomOf="@+id/lEstatusPantries"
+                tools:ignore="MissingConstraints">
+            <TextView
+                android:id="@+id/lInactivo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:fontFamily="@font/open_sans_bold"
+                android:text="Inactivo"
+                android:textColor="@color/primaryColor"
+                android:textSize="@dimen/size_16" />
+
+                <TextView
+                    android:id="@+id/lActivo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginHorizontal="25dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:text="Activo"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="@dimen/size_16" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/lResponPantries"
                 style="@style/ll_row_secondary"
-                app:layout_constraintTop_toBottomOf="@+id/lEstatusPantries"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@+id/lStatusPantries"
                 tools:ignore="MissingConstraints">
 
                 <TextView
@@ -87,6 +126,7 @@
             <LinearLayout
                 android:id="@+id/lEmailPantries"
                 style="@style/ll_row_secondary"
+                android:visibility="visible"
                 app:layout_constraintTop_toBottomOf="@+id/lResponPantries"
                 tools:ignore="MissingConstraints">
 
@@ -114,6 +154,7 @@
             <LinearLayout
                 android:id="@+id/lPhonePantries"
                 style="@style/ll_row_secondary"
+                android:visibility="visible"
                 app:layout_constraintTop_toBottomOf="@+id/lEmailPantries"
                 tools:ignore="MissingConstraints">
 
@@ -139,6 +180,7 @@
 
             <LinearLayout
                 android:id="@+id/llAddressPantries"
+                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -169,11 +211,13 @@
 
                 <LinearLayout
                     style="@style/ll_row_secondary"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:gravity="center"
                     app:layout_constraintStart_toStartOf="parent">
 
-                    <TextView style="@style/tv_label_secondary" />
+                    <TextView
+                        android:layout_marginTop="80dp"
+                        style="@style/tv_label_secondary" />
 
                     <TextView
                         android:id="@+id/tvAddressPantries"
@@ -190,6 +234,7 @@
             <LinearLayout
                 android:id="@+id/lZonePantries"
                 style="@style/ll_row_secondary"
+                android:visibility="visible"
                 app:layout_constraintTop_toBottomOf="@+id/llAddressPantries"
                 tools:ignore="MissingConstraints">
 
@@ -211,6 +256,7 @@
             <LinearLayout
                 android:id="@+id/lDescriptionPantries"
                 style="@style/ll_row_secondary"
+                android:visibility="visible"
                 app:layout_constraintTop_toBottomOf="@+id/lZonePantries"
                 tools:ignore="MissingConstraints">
 
@@ -247,6 +293,7 @@
             <LinearLayout
                 android:id="@+id/lDonorPantries"
                 style="@style/ll_row_secondary"
+                android:visibility="visible"
                 android:orientation="horizontal"
                 app:layout_constraintTop_toBottomOf="@+id/lDescriptionPantries"
                 tools:ignore="MissingConstraints">
@@ -269,13 +316,14 @@
             <LinearLayout
                 android:id="@+id/lRequisPantries"
                 style="@style/ll_row_secondary"
+                android:visibility="visible"
                 app:layout_constraintTop_toBottomOf="@+id/lDonorPantries"
                 tools:ignore="MissingConstraints">
 
                 <TextView
                     android:id="@+id/tvRequisPantries"
                     style="@style/tv_label_secondary"
-                    android:text="Requisitos de donador" />
+                    android:text="Requisitos del donador" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilRequisPantries"
@@ -305,6 +353,7 @@
             <LinearLayout
                 android:id="@+id/lReceptionPantries"
                 style="@style/ll_row_secondary"
+                android:visibility="visible"
                 app:layout_constraintTop_toBottomOf="@+id/lRequisPantries"
                 tools:ignore="MissingConstraints">
 
@@ -318,6 +367,7 @@
                 android:id="@+id/labelDateReception"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="visible"
                 android:layout_marginTop="@dimen/margin_10"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
@@ -329,7 +379,7 @@
                     android:layout_weight="1"
                     android:layout_marginStart="15dp"
                     android:gravity="left"
-                    android:text="Fecha inicio"
+                    android:text="Fecha de inicio"
                     android:textSize="@dimen/size_16" />
 
                 <TextView
@@ -338,7 +388,7 @@
                     android:layout_weight="1"
                     android:layout_marginStart="15dp"
                     android:gravity="left"
-                    android:text="Fecha fin"
+                    android:text="Fecha de cierre"
                     android:textSize="@dimen/size_16" />
             </LinearLayout>
 
@@ -346,6 +396,7 @@
                 android:id="@+id/llDateReception"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="visible"
                 android:layout_marginTop="5dp"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
@@ -355,17 +406,32 @@
                     android:id="@+id/tvFirstDateReception"
                     style="@style/tv_date_secondary"
                     android:layout_width="0dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
+                    android:layout_weight="2" />
+<!--
+                <TextView
+                    android:id="@+id/tvFIconReceive"
+                    style="@style/tv_date_secondary_icDate"
+                    android:layout_width="1dp"
                     android:layout_weight="1" />
-
+-->
                 <TextView
                     android:id="@+id/tvEndDateReception"
                     style="@style/tv_date_secondary"
                     android:layout_width="0dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="2" />
+<!--
+                <TextView
+                    android:id="@+id/tvEIconReceive"
+                    style="@style/tv_date_secondary_icDate"
+                    android:layout_weight="1"
+                    android:layout_marginTop="0dp"/>
+-->
             </LinearLayout>
 
             <LinearLayout
@@ -373,6 +439,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_2"
+                android:visibility="visible"
                 android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/llDateReception">
@@ -384,7 +451,7 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="5dp"
                     android:gravity="left"
-                    android:text="Dias"
+                    android:text="Días de recepción"
                     android:textSize="@dimen/size_16" />
 
                 <include
@@ -400,6 +467,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_10"
+                android:visibility="visible"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/labelDaysReception">
@@ -410,7 +478,7 @@
                     android:layout_weight="1"
                     android:layout_marginStart="15dp"
                     android:gravity="left"
-                    android:text="Hora inicio"
+                    android:text="Horario de apertura"
                     android:textSize="@dimen/size_16" />
 
                 <TextView
@@ -419,7 +487,7 @@
                     android:layout_weight="1"
                     android:layout_marginStart="15dp"
                     android:gravity="left"
-                    android:text="Hora fin"
+                    android:text="Horario de cierre"
                     android:textSize="@dimen/size_16" />
             </LinearLayout>
 
@@ -428,6 +496,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:visibility="visible"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/labelTimeReception">
@@ -453,6 +522,7 @@
                 android:id="@+id/lArmadoPantries"
                 style="@style/ll_row_secondary"
                 android:orientation="horizontal"
+                android:visibility="visible"
                 app:layout_constraintTop_toBottomOf="@+id/llTimeReception"
                 tools:ignore="MissingConstraints">
 
@@ -474,6 +544,7 @@
             <LinearLayout
                 android:id="@+id/llArmadoPantries"
                 style="@style/ll_row_secondary"
+                android:visibility="visible"
                 app:layout_constraintTop_toBottomOf="@+id/lArmadoPantries"
                 tools:ignore="MissingConstraints">
 
@@ -487,6 +558,7 @@
                 android:id="@+id/labelDateArmado"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="visible"
                 android:layout_marginTop="@dimen/margin_10"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
@@ -498,7 +570,7 @@
                     android:layout_weight="1"
                     android:layout_marginStart="15dp"
                     android:gravity="left"
-                    android:text="Fecha inicio"
+                    android:text="Fecha de inicio"
                     android:textSize="@dimen/size_16" />
 
                 <TextView
@@ -507,7 +579,7 @@
                     android:layout_weight="1"
                     android:layout_marginStart="15dp"
                     android:gravity="left"
-                    android:text="Fecha fin"
+                    android:text="Fecha de cierre"
                     android:textSize="@dimen/size_16" />
             </LinearLayout>
 
@@ -517,6 +589,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:orientation="horizontal"
+                android:visibility="visible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/labelDateArmado">
 
@@ -524,17 +597,32 @@
                     android:id="@+id/tvFirstDateArmado"
                     style="@style/tv_date_secondary"
                     android:layout_width="0dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
+                    android:layout_weight="2"/>
+<!--
+                <TextView
+                    android:id="@+id/tvFIconArmed"
+                    style="@style/tv_date_secondary_icDate"
+                    android:layout_width="1dp"
                     android:layout_weight="1" />
-
+-->
                 <TextView
                     android:id="@+id/tvEndDateArmado"
                     style="@style/tv_date_secondary"
                     android:layout_width="0dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
+                    android:layout_weight="2" />
+<!--
+                <TextView
+                    android:id="@+id/tvEIconArmed"
+                    style="@style/tv_date_secondary_icDate"
+                    android:layout_width="1dp"
                     android:layout_weight="1" />
+                    -->
             </LinearLayout>
 
             <LinearLayout
@@ -543,6 +631,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_2"
                 android:orientation="vertical"
+                android:visibility="visible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/llDateArmado">
 
@@ -553,7 +642,7 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="5dp"
                     android:gravity="left"
-                    android:text="Dias"
+                    android:text="Días de armado"
                     android:textSize="@dimen/size_16" />
 
                 <include
@@ -570,6 +659,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_10"
                 android:orientation="horizontal"
+                android:visibility="visible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/labelDaysArmado">
 
@@ -579,7 +669,7 @@
                     android:layout_weight="1"
                     android:layout_marginStart="15dp"
                     android:gravity="left"
-                    android:text="Hora inicio"
+                    android:text="Horario de apertura"
                     android:textSize="@dimen/size_16" />
 
                 <TextView
@@ -588,7 +678,7 @@
                     android:layout_weight="1"
                     android:layout_marginStart="15dp"
                     android:gravity="left"
-                    android:text="Hora fin"
+                    android:text="Horario de cierre"
                     android:textSize="@dimen/size_16" />
             </LinearLayout>
 
@@ -598,6 +688,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:orientation="horizontal"
+                android:visibility="visible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/labelTimeArmado">
 
@@ -619,159 +710,11 @@
 
             </LinearLayout>
 
-            <!--
-            <LinearLayout
-                android:id="@+id/lDistributionPantries"
-                style="@style/ll_row_secondary"
-                app:layout_constraintTop_toBottomOf="@+id/llTimeArmado"
-                tools:ignore="MissingConstraints">
-
-                <TextView
-                    android:id="@+id/tvDistributionPantries"
-                    style="@style/tv_label_secondary"
-                    android:text="Distribución de despensas" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/labelDateDistribution"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_10"
-                android:orientation="horizontal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lDistributionPantries">
-
-                <TextView
-                    style="@style/tv_label_secondary"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_marginStart="15dp"
-                    android:gravity="left"
-                    android:text="Fecha inicio"
-                    android:textSize="@dimen/size_16" />
-
-                <TextView
-                    style="@style/tv_label_secondary"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_marginStart="15dp"
-                    android:gravity="left"
-                    android:text="Fecha fin"
-                    android:textSize="@dimen/size_16" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llDateDistribution"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/labelDateDistribution">
-
-                <TextView
-                    android:id="@+id/tvFirstDateDistribution"
-                    style="@style/tv_date_secondary"
-                    android:layout_width="0dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:id="@+id/tvEndDateDistribution"
-                    style="@style/tv_date_secondary"
-                    android:layout_width="0dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_weight="1" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/labelDaysDistribution"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_2"
-                android:orientation="vertical"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/llDateDistribution">
-
-                <TextView
-                    android:id="@+id/tvDaysDistribution"
-                    style="@style/tv_label_secondary"
-                    android:layout_weight="1"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="5dp"
-                    android:gravity="left"
-                    android:text="Dias"
-                    android:textSize="@dimen/size_16" />
-
-                <include
-                    android:id="@+id/iDaysDistribution"
-                    layout="@layout/item_include_days"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@+id/tvDaysDistribution" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/labelTimeDistribution"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_10"
-                android:orientation="horizontal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/labelDaysDistribution">
-
-                <TextView
-                    style="@style/tv_label_secondary"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_marginStart="15dp"
-                    android:gravity="left"
-                    android:text="Hora inicio"
-                    android:textSize="@dimen/size_16" />
-
-                <TextView
-                    style="@style/tv_label_secondary"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_marginStart="15dp"
-                    android:gravity="left"
-                    android:text="Hora fin"
-                    android:textSize="@dimen/size_16" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llTimeDistribution"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/labelTimeDistribution">
-
-                <TextView
-                    android:id="@+id/tvFirstTimeDistribution"
-                    style="@style/tv_time_secondary"
-                    android:layout_width="0dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:id="@+id/tvEndTimeDistribution"
-                    style="@style/tv_time_secondary"
-                    android:layout_width="0dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_weight="1" />
-            </LinearLayout>
-            -->
-
             <LinearLayout
                 android:id="@+id/lDeliveryPantries"
                 style="@style/ll_row_secondary"
                 android:orientation="horizontal"
+                android:visibility="visible"
                 app:layout_constraintTop_toBottomOf="@+id/llTimeArmado"
                 tools:ignore="MissingConstraints">
 
@@ -793,6 +736,7 @@
             <LinearLayout
                 android:id="@+id/llDeliveryPantries"
                 style="@style/ll_row_secondary"
+                android:visibility="visible"
                 app:layout_constraintTop_toBottomOf="@+id/lDeliveryPantries"
                 tools:ignore="MissingConstraints">
 
@@ -806,6 +750,7 @@
                 android:id="@+id/labelDateDelivery"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_marginTop="@dimen/margin_10"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
@@ -817,7 +762,7 @@
                     android:layout_weight="1"
                     android:layout_marginStart="15dp"
                     android:gravity="left"
-                    android:text="Fecha inicio"
+                    android:text="Fecha de inicio"
                     android:textSize="@dimen/size_16" />
 
                 <TextView
@@ -826,7 +771,7 @@
                     android:layout_weight="1"
                     android:layout_marginStart="15dp"
                     android:gravity="left"
-                    android:text="Fecha fin"
+                    android:text="Fecha de cierre"
                     android:textSize="@dimen/size_16" />
             </LinearLayout>
 
@@ -835,6 +780,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:visibility="visible"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/labelDateDelivery">
@@ -843,17 +789,32 @@
                     android:id="@+id/tvFirstDateDelivery"
                     style="@style/tv_date_secondary"
                     android:layout_width="0dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
+                    android:layout_weight="2" />
+<!--
+                <TextView
+                    android:id="@+id/tvFIconDelivery"
+                    style="@style/tv_date_secondary_icDate"
+                    android:layout_width="1dp"
                     android:layout_weight="1" />
-
+-->
                 <TextView
                     android:id="@+id/tvEndDateDelivery"
                     style="@style/tv_date_secondary"
                     android:layout_width="0dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
+                    android:layout_weight="2" />
+<!--
+                <TextView
+                    android:id="@+id/tvEIconDelivery"
+                    style="@style/tv_date_secondary_icDate"
+                    android:layout_width="1dp"
                     android:layout_weight="1" />
+                    -->
             </LinearLayout>
 
             <LinearLayout
@@ -872,7 +833,7 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="5dp"
                     android:gravity="left"
-                    android:text="Dias"
+                    android:text="Días de entrega"
                     android:textSize="@dimen/size_16" />
 
                 <include
@@ -898,7 +859,7 @@
                     android:layout_weight="1"
                     android:layout_marginStart="15dp"
                     android:gravity="left"
-                    android:text="Hora inicio"
+                    android:text="Horario de apertura"
                     android:textSize="@dimen/size_16" />
 
                 <TextView
@@ -907,7 +868,7 @@
                     android:layout_weight="1"
                     android:layout_marginStart="15dp"
                     android:gravity="left"
-                    android:text="Hora fin"
+                    android:text="Horario de cierre"
                     android:textSize="@dimen/size_16" />
             </LinearLayout>
 
@@ -969,11 +930,13 @@
 
                 <LinearLayout
                     style="@style/ll_row_secondary"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:gravity="center"
                     app:layout_constraintStart_toStartOf="parent">
 
-                    <TextView style="@style/tv_label_secondary" />
+                    <TextView
+                        style="@style/tv_label_secondary"
+                        android:layout_marginTop="70dp"/>
 
                     <TextView
                         android:id="@+id/tvAddressDelivery"

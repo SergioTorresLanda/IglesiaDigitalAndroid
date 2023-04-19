@@ -5,19 +5,19 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Patterns
-import mx.arquidiocesis.eamxevent.model.enum.Day as week
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.view.isEmpty
 import androidx.core.widget.addTextChangedListener
+import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.fragment_event_detail.*
 import kotlinx.android.synthetic.main.fragment_event_pantries_detail.*
-import mx.arquidiocesis.eamxcommonutils.application.AppMyConstants
 import mx.arquidiocesis.eamxcommonutils.application.validation.EAMXFieldValidation
 import mx.arquidiocesis.eamxcommonutils.base.DatePickerFragment
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
@@ -34,26 +34,24 @@ import mx.arquidiocesis.eamxcommonutils.util.getViewModel
 import mx.arquidiocesis.eamxcommonutils.util.permission.UtilValidPermission
 import mx.arquidiocesis.eamxevent.R
 import mx.arquidiocesis.eamxevent.constants.Constants
-import mx.arquidiocesis.eamxevent.model.Process
 import mx.arquidiocesis.eamxevent.databinding.FragmentEventPantriesDetailBinding
+import mx.arquidiocesis.eamxevent.model.*
 import mx.arquidiocesis.eamxevent.model.Day
-import mx.arquidiocesis.eamxevent.model.Schedules
-import mx.arquidiocesis.eamxevent.model.ViewModelEvent
 import mx.arquidiocesis.eamxevent.model.enum.Delegations
 import mx.arquidiocesis.eamxevent.repository.RepositoryEvent
+import mx.arquidiocesis.eamxevent.model.enum.Day as week
 
+
+@Suppress("CAST_NEVER_SUCCEEDS")
 class EventPantriesDetailFragment : FragmentBase() {
 
-    val userId = eamxcu_preferences.getData(
-        EAMXEnumUser.USER_ID.name,
-        EAMXTypeObject.INT_OBJECT
-    ) as Int
     var listDaysArmed: MutableList<Day> = mutableListOf()
     var listDaysReceived: MutableList<Day> = mutableListOf()
     var listDaysDelivery: MutableList<Day> = mutableListOf()
     lateinit var binding: FragmentEventPantriesDetailBinding
     private var delegations: Array<Delegations> = Delegations.values()
     private var zona: Int = 0
+    private var descriptionMap: String = ""
     private var latitud: Double = 0.0
     private var longitud: Double = 0.0
     private var latitud_entrega: Double = 0.0
@@ -63,7 +61,26 @@ class EventPantriesDetailFragment : FragmentBase() {
     private var hourEnd = ""
     private var dateFirst = ""
     private var dateEnd = ""
+    private var pantry_id: Int = 0
+    val email = eamxcu_preferences.getData(
+        EAMXEnumUser.USER_EMAIL.name,
+        EAMXTypeObject.STRING_OBJECT
+    ) as String
 
+    val name = eamxcu_preferences.getData(
+        EAMXEnumUser.USER_NAME.name,
+        EAMXTypeObject.STRING_OBJECT
+    ) as String
+
+    val userId = eamxcu_preferences.getData(
+        EAMXEnumUser.USER_ID.name,
+        EAMXTypeObject.INT_OBJECT
+    ) as Int
+
+    val phone = eamxcu_preferences.getData(
+        EAMXEnumUser.USER_PHONE.name,
+        EAMXTypeObject.STRING_OBJECT
+    ) as String
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -93,7 +110,6 @@ class EventPantriesDetailFragment : FragmentBase() {
                 putString("screen_class", "Actividades_CrearDespensa")
             })
         }
-        callBack.showToolbar(true, AppMyConstants.detailPantries)
         listDaysArmed.add(Day(false, week.Domingo.ordinal, week.Domingo.day))
         listDaysArmed.add(Day(false, week.Lunes.ordinal, week.Lunes.day))
         listDaysArmed.add(Day(false, week.Martes.ordinal, week.Martes.day))
@@ -117,16 +133,234 @@ class EventPantriesDetailFragment : FragmentBase() {
         listDaysDelivery.add(Day(false, week.Jueves.ordinal, week.Jueves.day))
         listDaysDelivery.add(Day(false, week.Viernes.ordinal, week.Viernes.day))
         listDaysDelivery.add(Day(false, week.Sabado.ordinal, week.Sabado.day))
-
+        initView()
+        initObservers()
         binding.switchPantries.isChecked = true
         binding.switchDonorPantries.isChecked = true
         binding.switchArmadoPantries.isChecked = true
         binding.switchDeliveryPantries.isChecked = true
-        initObservers()
-        initView()
+        etEmailPantries.setText(email)
+        etPhonePantries.setText(phone.replace("+52", ""))
+        etResponPantries.setText(name)
+        /*
+        requireArguments().let {
+            var id = it.getString("pantry_id")
+            if (id != "") {
+                callBack.showToolbar(true, AppMyConstants.updatePantry)
+                id?.let { it1 ->
+                    pantry_id = it1.toInt()
+                    getAllPantries(pantry_id)
+                }
+            } else {
+                callBack.showToolbar(true, AppMyConstants.detailPantries)
+            }
+        }
+
+         */
     }
 
     private fun initObservers(){
+        viewModelEvent.responseAllPan.observe(viewLifecycleOwner) { item ->
+            hideLoader()
+            if (item.size > 0) {
+                item.forEach {
+                    if (!it.user_id.toString().isNullOrEmpty()) {
+                        etResponPantries.setText(it.responsability)
+                        etEmailPantries.setText(it.email)
+                        etPhonePantries.setText(it.phone!!.replace("+52", ""))
+                        etgetAddressPantries.setText(it.address)
+                        delegations.forEach { it1 ->
+                            if (it1.pos.toString() == it.zone_id.toString()) {
+                                spZonePantries.setSelection(it1.ordinal)
+                                return@forEach
+                            }
+                        }
+                        if (!(it.latitude).isNullOrEmpty()) {
+                            latitud = it.latitude!!.toDouble()
+                        }
+                        if (!(it.longitude).isNullOrEmpty()) {
+                            longitud = it.longitude!!.toDouble()
+                        }
+                        if (!(it.latitude_delivery).isNullOrEmpty()) {
+                            latitud_entrega = it.latitude_delivery!!.toDouble()
+                        }
+                        if (!(it.longitude_delivery).isNullOrEmpty()) {
+                            longitud_entrega = it.longitude_delivery!!.toDouble()
+                        }
+                        //Proceso recepción
+                        listDaysReceived[0].checked = it.schedule!![0].days!![0].checked
+                        if (!listDaysReceived[0].checked) {
+                            binding.iDaysReception.iDayDo.tvCDay.setTextColor(Color.BLACK)
+                        } else {
+                            binding.iDaysReception.iDayDo.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                        }
+                        listDaysReceived[1].checked = it.schedule!![0].days!![1].checked
+                        if (!listDaysReceived[1].checked) {
+                            binding.iDaysReception.iDayLu.tvCDay.setTextColor(Color.BLACK)
+                        } else {
+                            binding.iDaysReception.iDayLu.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                        }
+                        listDaysReceived[2].checked = it.schedule!![0].days!![2].checked
+                        if (!listDaysReceived[2].checked) {
+                            binding.iDaysReception.iDayMa.tvCDay.setTextColor(Color.BLACK)
+                        } else {
+                            binding.iDaysReception.iDayMa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                        }
+                        listDaysReceived[3].checked = it.schedule!![0].days!![3].checked
+                        if (!listDaysReceived[3].checked) {
+                            binding.iDaysReception.iDayMi.tvCDay.setTextColor(Color.BLACK)
+                        } else {
+                            binding.iDaysReception.iDayMi.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                        }
+                        listDaysReceived[4].checked = it.schedule!![0].days!![4].checked
+                        if (!listDaysReceived[4].checked) {
+                            binding.iDaysReception.iDayJu.tvCDay.setTextColor(Color.BLACK)
+                        } else {
+                            binding.iDaysReception.iDayJu.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                        }
+                        listDaysReceived[5].checked = it.schedule!![0].days!![5].checked
+                        if (!listDaysReceived[5].checked) {
+                            binding.iDaysReception.iDayVi.tvCDay.setTextColor(Color.BLACK)
+                        } else {
+                            binding.iDaysReception.iDayVi.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                        }
+                        listDaysReceived[6].checked = it.schedule!![0].days!![6].checked
+                        if (!listDaysReceived[6].checked) {
+                            binding.iDaysReception.iDaySa.tvCDay.setTextColor(Color.BLACK)
+                        } else {
+                            binding.iDaysReception.iDaySa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                        }
+                        //Proceso armado
+                        listDaysArmed[0].checked = it.schedule!![1].days!![0].checked
+                        if (!listDaysArmed[0].checked) {
+                            binding.iDaysArmado.iDayDo.tvCDay.setTextColor(Color.BLACK)
+                        } else {
+                            binding.iDaysArmado.iDayDo.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                        }
+                        listDaysArmed[1].checked = it.schedule!![1].days!![1].checked
+                        if (!listDaysArmed[1].checked) {
+                            binding.iDaysArmado.iDayLu.tvCDay.setTextColor(Color.BLACK)
+                        } else {
+                            binding.iDaysArmado.iDayLu.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                        }
+                        listDaysArmed[2].checked = it.schedule!![1].days!![2].checked
+                        if (!listDaysArmed[2].checked) {
+                            binding.iDaysArmado.iDayMa.tvCDay.setTextColor(Color.BLACK)
+                        } else {
+                            binding.iDaysArmado.iDayMa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                        }
+                        listDaysArmed[3].checked = it.schedule!![1].days!![3].checked
+                        if (!listDaysArmed[3].checked) {
+                            binding.iDaysArmado.iDayMi.tvCDay.setTextColor(Color.BLACK)
+                        } else {
+                            binding.iDaysArmado.iDayMi.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                        }
+                        listDaysArmed[4].checked = it.schedule!![1].days!![4].checked
+                        if (!listDaysArmed[4].checked) {
+                            binding.iDaysArmado.iDayJu.tvCDay.setTextColor(Color.BLACK)
+                        } else {
+                            binding.iDaysArmado.iDayJu.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                        }
+                        listDaysArmed[5].checked = it.schedule!![1].days!![5].checked
+                        if (!listDaysArmed[5].checked) {
+                            binding.iDaysArmado.iDayVi.tvCDay.setTextColor(Color.BLACK)
+                        } else {
+                            binding.iDaysArmado.iDayVi.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                        }
+                        listDaysArmed[6].checked = it.schedule!![1].days!![6].checked
+                        if (!listDaysArmed[6].checked) {
+                            binding.iDaysArmado.iDaySa.tvCDay.setTextColor(Color.BLACK)
+                        } else {
+                            binding.iDaysArmado.iDaySa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                        }
+                        //Proceso entrega
+                        listDaysDelivery[0].checked = it.schedule!![2].days!![0].checked
+                        if (!listDaysDelivery[0].checked) {
+                            binding.iDaysDelivery.iDayDo.tvCDay.setTextColor(Color.BLACK)
+                        } else {
+                            binding.iDaysDelivery.iDayDo.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                        }
+                        listDaysDelivery[1].checked = it.schedule!![2].days!![1].checked
+                        if (!listDaysDelivery[1].checked) {
+                            binding.iDaysDelivery.iDayLu.tvCDay.setTextColor(Color.BLACK)
+                        } else {
+                            binding.iDaysDelivery.iDayLu.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                        }
+                        listDaysDelivery[2].checked = it.schedule!![2].days!![2].checked
+                        if (!listDaysDelivery[2].checked) {
+                            binding.iDaysDelivery.iDayMa.tvCDay.setTextColor(Color.BLACK)
+                        } else {
+                            binding.iDaysDelivery.iDayMa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                        }
+                        listDaysDelivery[3].checked = it.schedule!![2].days!![3].checked
+                        if (!listDaysDelivery[3].checked) {
+                            binding.iDaysDelivery.iDayMi.tvCDay.setTextColor(Color.BLACK)
+                        } else {
+                            binding.iDaysDelivery.iDayMi.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                        }
+                        listDaysDelivery[4].checked = it.schedule!![2].days!![4].checked
+                        if (!listDaysDelivery[4].checked) {
+                            binding.iDaysDelivery.iDayJu.tvCDay.setTextColor(Color.BLACK)
+                        } else {
+                            binding.iDaysDelivery.iDayJu.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                        }
+                        listDaysDelivery[5].checked = it.schedule!![2].days!![5].checked
+                        if (!listDaysDelivery[5].checked) {
+                            binding.iDaysDelivery.iDayVi.tvCDay.setTextColor(Color.BLACK)
+                        } else {
+                            binding.iDaysDelivery.iDayVi.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                        }
+                        listDaysDelivery[6].checked = it.schedule!![2].days!![6].checked
+                        if (!listDaysDelivery[6].checked) {
+                            binding.iDaysDelivery.iDaySa.tvCDay.setTextColor(Color.BLACK)
+                        } else {
+                            binding.iDaysDelivery.iDaySa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                        }
+                        switchDonorPantries.isChecked = it.required_donor != 0
+                        etRequisPantries.setText(it.requirements_donor)
+                        switchDeliveryPantries.isChecked = it.required_delivery == 1
+                        switchPantries.isChecked = it.status == 1
+                        switchArmadoPantries.isChecked = it.required_armed == 1
+                        etgetAddressDelivery.setText(it.address_delivery)
+
+                        //Horas
+                        val hora_first_receive = it.schedule!![0].hour_start!!.split(":")
+                        FirstScheduleReception(hora_first_receive[0].toInt(), hora_first_receive[1].toInt())
+                        val hora_end_receive = it.schedule!![0].hour_end!!.split(":")
+                        EndScheduleReception(hora_end_receive[0].toInt(), hora_end_receive[1].toInt())
+
+                        val hora_first_armed = it.schedule!![1].hour_start!!.split(":")
+                        FirstScheduleArmado(hora_first_armed[0].toInt(), hora_first_armed[1].toInt())
+                        val hora_end_armed = it.schedule!![1].hour_end!!.split(":")
+                        EndScheduleArmado(hora_end_armed[0].toInt(), hora_end_armed[1].toInt())
+
+                        val hora_first_delivery = it.schedule!![2].hour_start!!.split(":")
+                        FirstScheduleDelivery(hora_first_delivery[0].toInt(), hora_first_delivery[1].toInt())
+                        val hora_end_delivery = it.schedule!![2].hour_end!!.split(":")
+                        EndScheduleDelivery(hora_end_delivery[0].toInt(), hora_end_delivery[1].toInt())
+
+                        //Fechas
+                        val date_first_receive = it.received!!.date_start!!.split("/")
+                        onDateFirstReception(date_first_receive[0].toInt(), date_first_receive[1].toInt(), date_first_receive[2].toInt())
+                        val date_end_receive = it.received!!.date_end!!.split("/")
+                        onDateEndReception(date_end_receive[0].toInt(), date_end_receive[1].toInt(),date_end_receive[2].toInt())
+
+                        val date_first_armed = it.armed!!.date_start!!.split("/")
+                        onDateFirstArmado(date_first_armed[0].toInt(), date_first_armed[1].toInt(), date_first_armed[2].toInt())
+                        val date_end_armed = it.armed!!.date_end!!.split("/")
+                        onDateEndArmado(date_end_armed[0].toInt(), date_end_armed[1].toInt(),date_end_armed[2].toInt())
+
+                        val date_first_delivery = it.delivery!!.date_start!!.split("/")
+                        onDateFirstDelivery(date_first_delivery[0].toInt(), date_first_delivery[1].toInt(), date_first_delivery[2].toInt())
+                        val date_end_delivery = it.delivery!!.date_end!!.split("/")
+                        onDateEndDelivery(date_end_delivery[0].toInt(), date_end_delivery[1].toInt(),date_end_delivery[2].toInt())
+
+                        return@forEach
+                    }
+                }
+
+            }
+        }
         viewModelEvent.showLoaderView.observe(viewLifecycleOwner) {
             showLoader()
         }
@@ -137,7 +371,9 @@ class EventPantriesDetailFragment : FragmentBase() {
                     .setMessage(getString(R.string.txt_empty_responsability))
                     .setIsCancel(false)
                     .build().show(childFragmentManager, tag)
-            } else if (it.containsKey(Constants.KEY_EMAIL)) {
+            } else
+                /*
+                if (it.containsKey(Constants.KEY_EMAIL)) {
                 if (it[Constants.KEY_EMAIL] == Constants.INVALID_EMAIL) {
                     etEmail.error =
                         getString(R.string.txt_invalidate_email)
@@ -148,7 +384,10 @@ class EventPantriesDetailFragment : FragmentBase() {
                         .setIsCancel(false)
                         .build().show(childFragmentManager, tag)
                 }
-            } else if (it.containsKey(Constants.KEY_PHONE)) {
+            } else
+
+                 */
+            if (it.containsKey(Constants.KEY_PHONE)) {
                 UtilAlert.Builder()
                     .setTitle(getString(R.string.title_dialog_error))
                     .setMessage(getString(R.string.txt_empty_phone))
@@ -175,6 +414,7 @@ class EventPantriesDetailFragment : FragmentBase() {
                     .setMessage(getString(R.string.txt_empty_zone))
                     .setIsCancel(false)
                     .build().show(childFragmentManager, tag)
+                /*
             //Proceso recepción
             } else if (it.containsKey(Constants.KEY_RECEIVED)) {
                 UtilAlert.Builder()
@@ -260,6 +500,8 @@ class EventPantriesDetailFragment : FragmentBase() {
                     .setMessage(getString(R.string.txt_empty_pantry_delivery))
                     .setIsCancel(false)
                     .build().show(childFragmentManager, tag)
+
+                 */
                 hideLoader()
             }
         }
@@ -318,9 +560,9 @@ class EventPantriesDetailFragment : FragmentBase() {
 
             etResponPantries.hint = "Nombre y apellidos"
             etgetAddressPantries.hint =
-                "Actualiza la ubicación en el mapa para obtener la dirección."
+                "Actualiza la ubicación de tu recepción de despensas en el mapa para obtener la dirección."
             etgetAddressDelivery.hint =
-                "Actualiza la ubicación en el mapa para obtener la dirección."
+                "Actualiza la ubicación de tu entrega de despensas en el mapa para obtener la dirección."
 
             etResponPantries.addTextChangedListener {
                 if (etResponPantries.text.toString().isNotEmpty()) {
@@ -583,10 +825,23 @@ class EventPantriesDetailFragment : FragmentBase() {
             //Switch: requiere donador
             switchDonorPantries.setOnCheckedChangeListener { buttonView, isChecked ->
                 if (isChecked) {
+                    lRequisPantries.visibility = View.VISIBLE
+                    lReceptionPantries.visibility = View.VISIBLE
+                    labelDateReception.visibility = View.VISIBLE
+                    llDateReception.visibility = View.VISIBLE
+                    labelDaysReception.visibility = View.VISIBLE
+                    labelTimeReception.visibility = View.VISIBLE
+                    llTimeReception.visibility = View.VISIBLE
                     switchDonorPantries.thumbTintList =
                         ContextCompat.getColorStateList(requireContext(), R.color.green_retirar)
                 } else {
                     lRequisPantries.visibility = View.GONE
+                    lReceptionPantries.visibility = View.GONE
+                    labelDateReception.visibility = View.GONE
+                    llDateReception.visibility = View.GONE
+                    labelDaysReception.visibility = View.GONE
+                    labelTimeReception.visibility = View.GONE
+                    llTimeReception.visibility = View.GONE
                     switchDonorPantries.thumbTintList =
                         ContextCompat.getColorStateList(requireContext(), R.color.hint_color)
                 }
@@ -594,6 +849,12 @@ class EventPantriesDetailFragment : FragmentBase() {
             //Switch: requiere armado de despensa
             switchArmadoPantries.setOnCheckedChangeListener { buttonView, isChecked ->
                 if (isChecked) {
+                    llArmadoPantries.visibility = View.VISIBLE
+                    labelDateArmado.visibility = View.VISIBLE
+                    llDateArmado.visibility = View.VISIBLE
+                    labelDaysArmado.visibility = View.VISIBLE
+                    labelTimeArmado.visibility = View.VISIBLE
+                    llTimeArmado.visibility = View.VISIBLE
                     switchArmadoPantries.thumbTintList =
                         ContextCompat.getColorStateList(requireContext(), R.color.green_retirar)
                 } else {
@@ -610,6 +871,13 @@ class EventPantriesDetailFragment : FragmentBase() {
             //Switch: requiere entrega de despensa
             switchDeliveryPantries.setOnCheckedChangeListener { buttonView, isChecked ->
                 if (isChecked) {
+                    llDeliveryPantries.visibility = View.VISIBLE
+                    labelDateDelivery.visibility = View.VISIBLE
+                    llDateDelivery.visibility = View.VISIBLE
+                    labelDaysDelivery.visibility = View.VISIBLE
+                    labelTimeDelivery.visibility = View.VISIBLE
+                    llTimeDelivery.visibility = View.VISIBLE
+                    llAddressDelivery.visibility = View.VISIBLE
                     switchDeliveryPantries.thumbTintList =
                         ContextCompat.getColorStateList(requireContext(), R.color.green_retirar)
                 } else {
@@ -770,7 +1038,7 @@ class EventPantriesDetailFragment : FragmentBase() {
         tvEndTimeDelivery.error = null
     }
     private fun showDateFirstReception() {
-        val datePicker =
+        val datePicker=
             DatePickerFragment { day, month, year -> onDateFirstReception(day, month, year) }
         datePicker.show(parentFragmentManager, "datePicker")
     }
@@ -885,15 +1153,15 @@ class EventPantriesDetailFragment : FragmentBase() {
     private fun pantryRegister() {
         val listSchedules: MutableList<Schedules> =
             mutableListOf(Schedules(listDaysReceived, tvFirstTimeReception.text.toString(), tvEndTimeReception.text.toString()),
-                Schedules(listDaysArmed, tvFirstTimeReception.text.toString(), tvEndTimeReception.text.toString()),
-                Schedules(listDaysDelivery, tvFirstTimeReception.text.toString(), tvEndTimeReception.text.toString())
+                Schedules(listDaysArmed, tvFirstTimeArmado.text.toString(), tvEndTimeArmado.text.toString()),
+                Schedules(listDaysDelivery, tvFirstTimeDelivery.text.toString(), tvEndTimeDelivery.text.toString())
             )
-        val listReceived: MutableList<Process> =
-            mutableListOf(Process(tvFirstDateReception.text.toString(), tvEndDateReception.text.toString(), tvFirstTimeReception.text.toString(), tvEndTimeReception.text.toString()))
-        val listArmed: MutableList<Process> =
-            mutableListOf(Process(tvFirstDateArmado.text.toString(), tvEndDateArmado.text.toString(), tvFirstTimeArmado.text.toString(), tvEndTimeArmado.text.toString()))
-        val listDelivery: MutableList<Process> =
-            mutableListOf(Process(tvFirstDateDelivery.text.toString(), tvEndDateDelivery.text.toString(), tvFirstTimeDelivery.text.toString(), tvEndTimeDelivery.text.toString()))
+        val listReceived = Process(tvFirstDateReception.text.toString(), tvEndDateReception.text.toString(), tvFirstTimeReception.text.toString(), tvEndTimeReception.text.toString())
+                //MutableList<Process> = mutableListOf(Process(tvFirstDateReception.text.toString(), tvEndDateReception.text.toString(), tvFirstTimeReception.text.toString(), tvEndTimeReception.text.toString()))
+        val listArmed = Process(tvFirstDateArmado.text.toString(), tvEndDateArmado.text.toString(), tvFirstTimeArmado.text.toString(), tvEndTimeArmado.text.toString())
+                //MutableList<Process> = mutableListOf(Process(tvFirstDateArmado.text.toString(), tvEndDateArmado.text.toString(), tvFirstTimeArmado.text.toString(), tvEndTimeArmado.text.toString()))
+        val listDelivery = Process(tvFirstDateDelivery.text.toString(), tvEndDateDelivery.text.toString(), tvFirstTimeDelivery.text.toString(), tvEndTimeDelivery.text.toString())
+                //MutableList<Process> = mutableListOf(Process(tvFirstDateDelivery.text.toString(), tvEndDateDelivery.text.toString(), tvFirstTimeDelivery.text.toString(), tvEndTimeDelivery.text.toString()))
 
         viewModelEvent.validateFormRegisterPantry(
             listSchedules,
@@ -901,25 +1169,26 @@ class EventPantriesDetailFragment : FragmentBase() {
             etEmailPantries.text.toString().replace(" ","").lowercase(),
             etPhonePantries.text.toString().trim(),
             etgetAddressPantries.text.toString().trim(),
-            if (longitud == 0.00) 0.00F else longitud.toFloat(),
-            if (latitud == 0.00) 0.00F else latitud.toFloat(),
+            if (longitud == 0.00) "0.00" else longitud.toString(),
+            if (latitud == 0.00) "0.00" else latitud.toString(),
             zona,
             if (switchPantries.isChecked) 1 else 0,
             if (switchArmadoPantries.isChecked) 1 else 0,
             if (switchDeliveryPantries.isChecked) 1 else 0,
             if (switchDonorPantries.isChecked) 1 else 0,
             null,
-            //received process
             listReceived,
-            //armed process
             listArmed,
-            //delivery process
             listDelivery,
-            etDescriptionPantries.text.toString(),
+            etDescriptionPantries.text.toString().trim(),
             etgetAddressDelivery.text.toString().trim(),
-            etRequisPantries.text.toString(),
-            if (longitud_entrega == 0.00) 0.00F else longitud_entrega.toFloat(),
-            if (latitud_entrega == 0.00) 0.00F else latitud_entrega.toFloat()
+            (if (etRequisPantries.text.toString() == "") "" else etRequisPantries.text.toString()),
+            if (longitud_entrega == 0.00) "0.00" else longitud_entrega.toString(),
+            if (latitud_entrega == 0.00) "0.00" else latitud_entrega.toString()
         )
+    }
+    fun getAllPantries(id: Int) {
+        showLoader()
+        viewModelEvent.requestAllPantry(id)
     }
 }

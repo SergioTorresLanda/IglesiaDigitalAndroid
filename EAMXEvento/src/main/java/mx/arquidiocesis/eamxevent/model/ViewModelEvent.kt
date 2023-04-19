@@ -60,7 +60,7 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
     }
 
     //Get by id and get all
-    fun requestAllPantry(pantryId: Int = 0) {
+    fun requestAllPantry(pantryId: Int) {
         viewModelScope.launch {
             val response = repositoryEvent.getAllPantry(pantryId)
             if (response.sucess)
@@ -225,22 +225,22 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
         email: String,
         phone: String, //¿No existe?
         address: String,
-        longitude: Float,
-        latitude: Float,
+        longitude: String,
+        latitude: String,
         zone_id: Int,
         status: Int, //Not validate, ¿no existe?
         required_armed: Int, //Not validate if is 0
         required_delivery: Int, //Not validate if is 0
         required_donor: Int, //Not validate if is 0
         distributed: String?,
-        received: MutableList<Process>, //
-        armed: MutableList<Process>,
-        delivery: MutableList<Process>,
+        received: Process, //
+        armed: Process,
+        delivery: Process,
         description_requirements: String,
         address_delivery: String,
         requirements_donor: String,
-        longitude_delivery: Float,
-        latitude_delivery: Float,
+        longitude_delivery: String,
+        latitude_delivery: String,
         id: Int = 0, //Solo para update
     ) {
         val validateForm: HashMap<String, String> = HashMap()
@@ -257,27 +257,27 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
             if (!Constants.EMAIL_ADDRESS.matcher(email).matches())
                 validateForm[Constants.KEY_EMAIL] = Constants.INVALID_EMAIL
         }
-        if (phone.isEmpty()) {
+        if (phone.isEmpty())
             validateForm[Constants.KEY_PHONE] = Constants.EMPTY_FIELD
-        }
-        if (phone.length < 10) {
+
+        if (phone.length < 10)
             validateForm[Constants.KEY_PHONE] = Constants.INVALID_PHONE
-        }
+
         if (address.isEmpty())
             validateForm[Constants.KEY_ADDRESS] = Constants.EMPTY_FIELD
 
-        if (longitude < 0)
+        if (longitude.isEmpty())
             validateForm[Constants.KEY_LONGITUDE] = Constants.EMPTY_FIELD
 
-        if (latitude < 0)
+        if (latitude.isEmpty())
             validateForm[Constants.KEY_LATITUDE] = Constants.EMPTY_FIELD
 
         if (zone_id == 0) {
             validateForm[Constants.KEY_ZONE] = Constants.EMPTY_FIELD
         }
         //Procesos
-        //if (received == Process())
-        if (received.isEmpty())
+        if (received == Process())
+        //if (received.isEmpty())
           validateForm[Constants.KEY_RECEIVED] = Constants.EMPTY_FIELD
         //Horarios
         if (schedule[0].hour_start == "00:00")
@@ -290,8 +290,8 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
                 validateForm[Constants.KEY_DAYS_RECEIVED] = Constants.EMPTY_FIELD
 
         if (required_armed == 1) {
-            //if (armed == Process())
-            if (armed.isEmpty())
+            if (armed == Process())
+            //if (armed.isEmpty())
                 validateForm[Constants.KEY_ARMED] = Constants.EMPTY_FIELD
             //Horarios
             if (schedule[1].hour_start == "00:00")
@@ -304,8 +304,8 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
                     validateForm[Constants.KEY_DAYS_ARMED] = Constants.EMPTY_FIELD
         }
         if (required_delivery == 1) {
-            //if (delivery == Process())
-            if (delivery.isEmpty())
+            if (delivery == Process())
+            //if (delivery.isEmpty())
                 validateForm[Constants.KEY_DELIVERY] = Constants.EMPTY_FIELD
             //Horarios
             if (schedule[2].hour_start == "00:00")
@@ -326,9 +326,9 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
             if (required_delivery == 1)
                 if (address.isEmpty())
                     validateForm[Constants.KEY_ADDRESS_DELIVERY] = Constants.EMPTY_FIELD
-            if (longitude_delivery < 0)
+            if (longitude_delivery.isEmpty())
                 validateForm[Constants.KEY_LONGITUDE_DELIVERY] = Constants.EMPTY_FIELD
-            if (latitude_delivery < 0)
+            if (latitude_delivery.isEmpty())
                 validateForm[Constants.KEY_LATITUDE_DELIVERY] = Constants.EMPTY_FIELD
 
             if (validateForm.size > 0) {
@@ -354,8 +354,8 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
                     required_donor = required_donor,
                     distributed = distributed,
                     received = received,
-                    armed = if (required_armed != 1) mutableListOf() else armed,
-                    delivery = if (required_delivery != 1) mutableListOf() else delivery,
+                    armed = if (required_armed != 1) Process() else armed,
+                    delivery = if (required_delivery != 1) Process() else delivery,
                     description_requirements = description_requirements,
                     address_delivery = address_delivery,
                     requirements_donor = requirements_donor,

@@ -29,6 +29,13 @@
         <item name="android:layout_marginTop">@dimen/margin_24</item>
         <item name="layout_constraintStart_toStartOf">parent</item>
     </style>
+    <style name="ll_row_secondary_switch_status">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/margin_10</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
     <style name="tv_label_secondary">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -65,7 +72,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
-        <item name="android:background">#F5F5F5</item>
+        <item name="android:background">@color/white</item>
         <item name="android:clickable">true</item>
         <item name="android:drawableTint">#AF9B6F</item>
         <item name="android:drawableRight">@drawable/ic_reloj</item>
@@ -77,21 +84,31 @@
         <item name="android:textStyle">normal</item>
         <item name="android:padding">@dimen/margin_10</item>
     </style>
+    <!--<item name="android:drawableRight">@drawable/ic_schedule</item>-->
     <style name="tv_date_secondary">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
-        <item name="android:background">#F5F5F5</item>
+        <item name="android:background">@color/white</item>
         <item name="android:clickable">true</item>
         <item name="android:drawableTint">#AF9B6F</item>
-        <item name="android:drawableRight">@drawable/ic_schedule</item>
         <item name="android:focusable">true</item>
         <item name="android:text">dd/mm/aaaa</item>
         <item name="android:textColor">#99000000</item>
         <item name="android:textSize">@dimen/size_15</item>
         <item name="fontFamily">@font/open_sans_regular</item>
         <item name="android:textStyle">normal</item>
+        <item name="android:drawableRight">@drawable/ic_schedule</item>
         <item name="android:padding">@dimen/margin_10</item>
+    </style>
+    <style name="tv_date_secondary_icDate">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:clickable">true</item>
+        <item name="android:drawableStart">@drawable/ic_schedule</item>
+        <item name="android:focusable">true</item>
+        <item name="android:padding">5dp</item>
     </style>
     <style name="list_label_catalog">
         <item name="android:layout_width">match_parent</item>
@@ -173,7 +190,7 @@
     </style>
     <style name="btn_primary" parent="Widget.MaterialComponents.Button">
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">@dimen/height_40</item>
+        <item name="android:layout_height">50dp</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:gravity">center</item>
         <item name="android:backgroundTint">@color/primaryColor</item>
