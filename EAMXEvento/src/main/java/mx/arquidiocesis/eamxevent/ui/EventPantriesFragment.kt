@@ -7,11 +7,8 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.fragment_event.*
-import kotlinx.android.synthetic.main.fragment_event.spZone
 import kotlinx.android.synthetic.main.fragment_event_detail.*
 import kotlinx.android.synthetic.main.fragment_event_pantries.*
-import kotlinx.android.synthetic.main.item_secciones.*
 import mx.arquidiocesis.eamxcommonutils.application.AppMyConstants
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
@@ -22,19 +19,14 @@ import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
 import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
 import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
 import mx.arquidiocesis.eamxevent.R
-import mx.arquidiocesis.eamxevent.adapter.DinerAllAdapter
 import mx.arquidiocesis.eamxevent.adapter.PantryAllAdapter
 import mx.arquidiocesis.eamxevent.databinding.FragmentEventPantriesBinding
-import mx.arquidiocesis.eamxevent.model.DinerResponse
 import mx.arquidiocesis.eamxevent.model.Pantry
-import mx.arquidiocesis.eamxevent.model.PantryResponse
 import mx.arquidiocesis.eamxevent.model.ViewModelEvent
 import mx.arquidiocesis.eamxevent.model.enum.Delegations
 import mx.arquidiocesis.eamxevent.model.enum.Participation
 import mx.arquidiocesis.eamxevent.repository.RepositoryEvent
-const val EDITARDESPENSA = "EDITAR"
-const val DONARDESPENSA = "DONAR"
-const val PARTICIPARDESPENSA = "PARTICIPAR"
+
 class EventPantriesFragment : FragmentBase() {
 
     lateinit var binding: FragmentEventPantriesBinding
@@ -81,14 +73,13 @@ class EventPantriesFragment : FragmentBase() {
         ) as Int
         setupInit(msgGuest(isMsg = false))
         initObservers()
-        //getAllDiners() //Ya no se ejecuta por que se activa en el spinner: spZone
         initButtons()
     }
-    private fun initObservers(){
+
+    private fun initObservers() {
         viewmodel.responseAllPan.observe(viewLifecycleOwner) { item ->
             if (item.size > 0) {
                 if (item[0].id != null) {
-                    /*
                     if (init) { //Segunda vez
                         item.forEach {
                             if (it.user_id == userId) {
@@ -98,13 +89,10 @@ class EventPantriesFragment : FragmentBase() {
                             }
                         }
                     }
-
-                     */
                     init = false
                     val despensas = item.filter {
                         if (zona == 0) it.status == 1 else it.zone_id == zona && it.status == 1
                     }
-
                     if (despensas.size > 0) {
                         adapterPantry.items.clear()
                         adapterPantry.notifyDataSetChanged()
@@ -113,7 +101,10 @@ class EventPantriesFragment : FragmentBase() {
                         adapterPantry.notifyDataSetChanged()
                         val prevSize = adapterPantry.items.size
                         if (prevSize != 0) {
-                            adapterPantry.notifyItemRangeInserted(prevSize, adapterPantry.items.count() - 1)
+                            adapterPantry.notifyItemRangeInserted(
+                                prevSize,
+                                adapterPantry.items.count() - 1
+                            )
                         }
                     }
                 }
@@ -136,9 +127,10 @@ class EventPantriesFragment : FragmentBase() {
         }
 
     }
-    private fun initButtons(){
+
+    private fun initButtons() {
         tvNewDespensa.setOnClickListener {
-           //if (!init) {
+            if (!init) {
                 NavigationFragment.Builder()
                     .setActivity(requireActivity())
                     .setView(requireView().parent as ViewGroup)
@@ -147,7 +139,7 @@ class EventPantriesFragment : FragmentBase() {
                         putString("pantry_id", pantry_id)
                     })
                     .build().nextWithReplace()
-            //}
+            }
         }
         btnComedoresActDespensa.setOnClickListener {
             NavigationFragment.Builder()
@@ -188,7 +180,6 @@ class EventPantriesFragment : FragmentBase() {
             ) {
                 type = participation[position].pos
                 println(type)
-                //getAllPantries()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {

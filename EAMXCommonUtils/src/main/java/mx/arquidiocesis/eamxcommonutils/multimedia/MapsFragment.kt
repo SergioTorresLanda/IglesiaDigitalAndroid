@@ -41,6 +41,7 @@ const val PERMISSION_LOCATION = 10007
 class MapsFragment(
     val latitude: Double = 0.0,
     val longitude: Double = 0.0,
+    val description: String = "",
     val listener: (rlatitude: Double, rlongitude: Double, raddress: String, municipality: Int) -> Unit,
 ) : FragmentDialogBase() {
     lateinit var binding: FragmentMapsBinding
@@ -99,6 +100,7 @@ class MapsFragment(
                 putString("screen_class", "CrearComedor_Mapa")
             })
         }
+        binding.tvDescripcion.setText("Ubica el pin en donde "+ description)
         if (chechPermissions()) {
             // Se hace referencia al fragment para ser usadado con binding
             val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?

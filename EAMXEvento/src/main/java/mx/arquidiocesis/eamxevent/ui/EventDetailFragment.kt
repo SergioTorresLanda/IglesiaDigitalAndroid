@@ -611,7 +611,7 @@ class EventDetailFragment : FragmentBase() {
 
     fun showMap() {
         if (chechPermissions()) {
-            MapsFragment(latitude, longitude) { rlatitude, rlongitude, raddress, municipality ->
+            MapsFragment(latitude, longitude, "estará ubicado tu comedor.") { rlatitude, rlongitude, raddress, municipality ->
                 etgetAddress.setText(raddress)
                 latitude = rlatitude
                 longitude = rlongitude

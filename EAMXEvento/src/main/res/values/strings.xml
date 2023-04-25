@@ -15,7 +15,7 @@
     <string name="not_create_event">Verifica tus datos.</string>
     <string name="create_event">Se ha dado de alta el comedor correctamente.</string>
     <string name="txt_empty">Campo obligatorio</string>
-    <string name="txt_invalidate_email">Formato de correo electronico incorrecto</string>
+    <string name="txt_invalidate_email">Ingresa un correo válido.</string>
 
     <string name="enter_your_com">Ingresa los comentarios</string>
     <string name="enter_your_don">Ingresa el nombre del donador</string>
@@ -43,6 +43,27 @@
         <item>Venustiano Carranza</item>
         <item>Xochimilco</item>
     </string-array>
+
+    <string-array name="delegations_pantry">
+        <item>--Seleccionar--</item>
+        <item>Álvaro Obregón</item>
+        <item>Azcapotzalco</item>
+        <item>Benito Juárez</item>
+        <item>Coyoacán</item>
+        <item>Cuajimalpa de Morelos</item>
+        <item>Cuauhtémoc</item>
+        <item>Gustavo A. Madero</item>
+        <item>Iztacalco</item>
+        <item>Iztapalapa</item>
+        <item>Magdalena Contreras</item>
+        <item>Miguel Hidalgo</item>
+        <item>Milpa Alta</item>
+        <item>Tláhuac</item>
+        <item>Tlalpan</item>
+        <item>Venustiano Carranza</item>
+        <item>Xochimilco</item>
+    </string-array>
+
     <string-array name="participations">
         <item>Donante</item>
         <item>Voluntario</item>
@@ -52,47 +73,55 @@
         <item>En especie</item>
     </string-array>
     <string name="txt_empty_name">El nombre del comedor no puede quedar vacío.</string>
-    1
     <string name="txt_empty_location">Actualiza la ubicación de tu comedor.</string>
-    1
     <string name="txt_empty_day">Activa por lo menos un día a la semana en el que preste sevicio tu comedor.</string>
-    1
     <string name="txt_empty_hour_first">Selecciona un horario de apertura.</string>
-    1
     <string name="txt_empty_hour_end">Selecciona un horario de cierre.</string>
-    1
     <string name="txt_empty_responsability">El nombre del responsable no puede quedar vacío.</string>
-    1
-    <string name="txt_empty_email">El campo del correo no puede quedar vacío.</string>
-    1
+    <string name="txt_empty_email">El campo de correo no puede quedar vacío.</string>
+
     <string name="txt_empty_phone">El campo de teléfono no puede quedar vacío.</string>
     <string name="txt_invalid_phone">El campo de teléfono debe contener 10 dígitos.</string>
     <string name="txt_empty_requi">El campo de requisitos no puede quedar vacío.</string>
     <string name="txt_empty_zone">El campo de zona no puede quedar vacío.</string>
+    <string name="txt_empty_zone_pantry">Selecciona la zona (alcaldía) para la recepción/armado de despensas.</string>
 
     <string name="txt_empty_nameD">El nombre del donador no puede quedar vacío.</string>
     <string name="txt_empty_com">El campo de comentarios no puede quedar vacío.</string>
     <string name="txt_empty_type">Selecciona el tipo de donación.</string>
-    <string name="txt_invalid_phone_don">El campo de teléfono debe contener 13 caracteres, comenzando con +52.</string>
+    <string name="txt_invalid_phone_don">El campo de teléfono debe contener 10 caracteres.</string>
 
     <string name="txt_empty_nameV">El nombre del voluntario no puede quedar vacío.</string>
     <string name="txt_empty_nameI">El nombre del invitado no puede quedar vacío.</string>
     <string name="txt_empty_phoneI">El teléfono del invitado no puede quedar vacío.</string>
     <string name="txt_empty_respo">El nombre del responsable de comedor no puede quedar vacío.</string>
 
-    <string name="txt_empty_pantry">Actualiza la ubicación de tu despensa.</string>
-    <string name="txt_empty_pantry_delivery">Actualiza la ubicación de entrega de tu despensa.</string>
-    <string name="txt_empty_dayReceived">Activa por lo menos un día a la semana en el que se reciban despensas.</string>
-    <string name="txt_empty_dayArmed">Activa por lo menos un día a la semana en el que se armen despensas.</string>
-    <string name="txt_empty_dayDelivery">Activa por lo menos un día a la semana en el que se entreguen despensas.</string>
-    <string name="txt_empty_hour_first_received">Selecciona un horario de apertura para recibir despensas.</string>
-    <string name="txt_empty_hour_end_received">Selecciona un horario de cierre para recibir despensas.</string>
-    <string name="txt_empty_hour_first_armed">Selecciona un horario de apertura para armar despensas.</string>
-    <string name="txt_empty_hour_end_armed">Selecciona un horario de cierre para armar despensas.</string>
-    <string name="txt_empty_hour_first_delivery">Selecciona un horario de apertura para entrega de despensas.</string>
-    <string name="txt_empty_hour_end_delivery">Selecciona un horario de cierre para entrega de despensas.</string>
+    <string name="txt_empty_pantry">Actualiza la ubicación de recepción de despensas.</string>
+    <string name="txt_empty_pantry_delivery">Actualiza la ubicación de entrega de despensas o desactiva la opción \"Requiere entrega\".</string>
+
+    <string name="txt_empty_dayReceived">Activa por lo menos un día a la semana para recepción de despensas o desactiva la opción \"Requiere donador\".</string>
+    <string name="txt_empty_dayArmed">Activa por lo menos un día a la semana para armado de despensas o desactiva la opción \"Requiere armado\".</string>
+    <string name="txt_empty_dayDelivery">Activa por lo menos un día a la semana para entrega de despensas o desactiva la opción \"Requiere entrega\".</string>
+
+    <string name="txt_empty_hour_first_received">Selecciona un horario de apertura para recepción de despensas o desactiva la opción \"Requiere donador\".</string>
+    <string name="txt_empty_hour_end_received">Selecciona un horario de cierre para recepción de despensas o desactiva la opción \"Requiere donador\".</string>
+
+    <string name="txt_empty_date_first_received">Selecciona una fecha de inicio para recepción de despensas o desactiva la opción \"Requiere donador\".</string>
+    <string name="txt_empty_date_end_received">Selecciona una fecha de cierre para recepción de despensas o desactiva la opción \"Requiere donador\".</string>
+
+    <string name="txt_empty_hour_first_armed">Selecciona un horario de apertura para armado de despensas o desactiva la opción \"Requiere armado\".</string>
+    <string name="txt_empty_hour_end_armed">Selecciona un horario de cierre para armado de despensas o desactiva la opción \"Requiere armado\".</string>
+
+    <string name="txt_empty_date_first_armed">Selecciona una fecha de inicio para armado de despensas o desactiva la opción \"Requiere armado\".</string>
+    <string name="txt_empty_date_end_armed">Selecciona una fecha de cierre para armado de despensas o desactiva la opción \"Requiere armado\".</string>
+
+    <string name="txt_empty_hour_first_delivery">Selecciona un horario de apertura para entrega de despensas o desactiva la opción \"Requiere entrega\".</string>
+    <string name="txt_empty_hour_end_delivery">Selecciona un horario de cierre para entrega de despensas o desactiva la opción \"Requiere entrega\".</string>
+
+    <string name="txt_empty_date_first_delivery">Selecciona una fecha de inicio para entrega de despensas o desactiva la opción \"Requiere entrega\".</string>
+    <string name="txt_empty_date_end_delivery">Selecciona una fecha de cierre para entrega de despensas o desactiva la opción \"Requiere entrega\".</string>
+
     <string name="txt_empty_received">Completa el proceso de recepción de despensas.</string>
     <string name="txt_empty_armed">Completa el proceso de armado de despensas.</string>
     <string name="txt_empty_delivery">Completa el proceso de entrega de despensas.</string>
-
 </resources>

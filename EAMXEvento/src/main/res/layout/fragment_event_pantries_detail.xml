@@ -410,13 +410,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
                     android:layout_weight="2" />
-<!--
-                <TextView
-                    android:id="@+id/tvFIconReceive"
-                    style="@style/tv_date_secondary_icDate"
-                    android:layout_width="1dp"
-                    android:layout_weight="1" />
--->
+
                 <TextView
                     android:id="@+id/tvEndDateReception"
                     style="@style/tv_date_secondary"
@@ -425,13 +419,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
                     android:layout_weight="2" />
-<!--
-                <TextView
-                    android:id="@+id/tvEIconReceive"
-                    style="@style/tv_date_secondary_icDate"
-                    android:layout_weight="1"
-                    android:layout_marginTop="0dp"/>
--->
+
             </LinearLayout>
 
             <LinearLayout
@@ -601,13 +589,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
                     android:layout_weight="2"/>
-<!--
-                <TextView
-                    android:id="@+id/tvFIconArmed"
-                    style="@style/tv_date_secondary_icDate"
-                    android:layout_width="1dp"
-                    android:layout_weight="1" />
--->
+
                 <TextView
                     android:id="@+id/tvEndDateArmado"
                     style="@style/tv_date_secondary"
@@ -616,13 +598,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
                     android:layout_weight="2" />
-<!--
-                <TextView
-                    android:id="@+id/tvEIconArmed"
-                    style="@style/tv_date_secondary_icDate"
-                    android:layout_width="1dp"
-                    android:layout_weight="1" />
-                    -->
+
             </LinearLayout>
 
             <LinearLayout
@@ -793,13 +769,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
                     android:layout_weight="2" />
-<!--
-                <TextView
-                    android:id="@+id/tvFIconDelivery"
-                    style="@style/tv_date_secondary_icDate"
-                    android:layout_width="1dp"
-                    android:layout_weight="1" />
--->
+
                 <TextView
                     android:id="@+id/tvEndDateDelivery"
                     style="@style/tv_date_secondary"
@@ -808,13 +778,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
                     android:layout_weight="2" />
-<!--
-                <TextView
-                    android:id="@+id/tvEIconDelivery"
-                    style="@style/tv_date_secondary_icDate"
-                    android:layout_width="1dp"
-                    android:layout_weight="1" />
-                    -->
+
             </LinearLayout>
 
             <LinearLayout

@@ -162,7 +162,7 @@ class EventFragment : FragmentBase() {
 
     fun initButtons() {
         tvNewEvent.setOnClickListener {
-            //if (!init) {
+            if (!init) {
                 NavigationFragment.Builder()
                     .setActivity(requireActivity())
                     .setView(requireView().parent as ViewGroup)
@@ -171,7 +171,7 @@ class EventFragment : FragmentBase() {
                         putString("diner_id", diner_id)
                     })
                     .build().nextWithReplace()
-            //}
+            }
         }
         btnDespensasEvento.setOnClickListener {
             NavigationFragment.Builder()

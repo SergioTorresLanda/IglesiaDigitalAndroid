@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cwcEvent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_15"
@@ -20,38 +19,12 @@
         <TextView
             android:id="@+id/tvVacio"
             style="@style/tv_row_vacio_item"
-            android:text="No se encontraron comedores activos con la selección actual."
+            android:text="No se encontraron despensas activas con la selección actual."
             android:visibility="gone"
             app:layout_constraintBaseline_toBaselineOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/viewTop" />
-        <!--
-                <LinearLayout
-                    android:id="@+id/lNombreF"
-                    style="@style/ll_title_item"
-                    app:layout_constraintBaseline_toBaselineOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/viewTop">
 
-                    <TextView
-                        android:id="@+id/tvResponsablePantry"
-                        style="@style/tv_title_item"
-                        android:layout_weight=".9"
-                        android:autoSizeTextType="uniform"
-                        android:maxLines="1"
-                        android:layout_marginEnd="@dimen/margin_10"
-                        android:text="Responsable comedor"
-                        app:layout_constraintTop_toBottomOf="@id/parent" />
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnOpciones"
-                        style="@style/btn_item_material"
-                        android:layout_weight=".0001"
-                        android:text="Donar"
-                        android:textAppearance="@style/TextAppearance.AppCompat" />
-
-                </LinearLayout>
-        -->
         <LinearLayout
             android:id="@+id/lResponsabilityPantry"
             style="@style/ll_row_item"
@@ -65,8 +38,18 @@
                 android:src="@drawable/icon_responsable" />
 
             <TextView
+                android:id="@+id/labelResponsabilityPantry"
+                style="@style/tv_paragraph_item"
+                android:layout_width="wrap_content"
+                android:lines="1"
+                android:text="Responsable:"
+                app:layout_constraintTop_toBottomOf="@id/parent" />
+
+            <TextView
                 android:id="@+id/tvResponsabilityPantry"
                 style="@style/tv_paragraph_item"
+                android:layout_marginStart="4dp"
+                android:lines="1"
                 android:text="Juan Olvera"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
         </LinearLayout>
@@ -116,15 +99,22 @@
             <ImageView
                 android:id="@+id/ivAddressPantry"
                 style="@style/im_icon_item"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="10dp"
                 android:src="@drawable/icono_igle" />
 
             <TextView
                 android:id="@+id/tvAddressPantry"
                 style="@style/tv_paragraph_item"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="10dp"
                 android:text="Periferico Sur"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
         </LinearLayout>
-
+<!--
         <LinearLayout
             android:id="@+id/lZonePantry"
             style="@style/ll_row_item"
@@ -142,13 +132,13 @@
                 android:text="Zona 2"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
         </LinearLayout>
-
+-->
         <LinearLayout
             android:id="@+id/lDescriptionPantry"
             style="@style/ll_row_item"
             android:layout_marginBottom="7dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lZonePantry">
+            app:layout_constraintTop_toBottomOf="@+id/lAddressPantry">
 
             <ImageView
                 android:id="@+id/ivDescriptionPantry"
@@ -169,11 +159,24 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/lScheduleReceivedPantry"
+            style="@style/ll_row_item"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lDescriptionPantry">
+
+            <TextView
+                android:id="@+id/tvScheduleReceivedPantry"
+                style="@style/tv_paragraph_item"
+                android:text="Se requiere donación de:"
+                app:layout_constraintTop_toBottomOf="@id/parent" />
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/lReqDonorPantry"
             style="@style/ll_row_item"
             android:layout_marginBottom="7dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lDescriptionPantry">
+            app:layout_constraintTop_toBottomOf="@+id/lScheduleReceivedPantry">
 
             <ImageView
                 android:id="@+id/ivReqDonorPantry"
@@ -192,75 +195,43 @@
                 android:text="Requisitos de donador"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
         </LinearLayout>
-<!--
+
         <LinearLayout
-            android:id="@+id/lPrecioF"
-            style="@style/ll_row_item"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lDescriptionPantry">
-
-            <ImageView
-                android:id="@+id/ivPrecio"
-                style="@style/im_icon_item"
-                android:src="@drawable/icons_color_96" />
-
-            <TextView
-                android:id="@+id/labelPrecioF"
-                style="@style/tv_paragraph_item"
-                android:layout_width="wrap_content"
-                android:lines="1"
-                android:text="Aportación de $"
-                app:layout_constraintTop_toBottomOf="@id/parent" />
-
-            <TextView
-                android:id="@+id/tvPrecioF"
-                style="@style/tv_paragraph_item"
-                android:layout_width="wrap_content"
-                android:layout_marginStart="0dp"
-                android:lines="1"
-                android:text="30"
-                app:layout_constraintStart_toStartOf="@id/labelPrecioF"
-                app:layout_constraintTop_toBottomOf="@id/parent" />
-
-            <TextView
-                android:id="@+id/labelPesos"
-                style="@style/tv_paragraph_item"
-                android:layout_marginStart="0dp"
-                android:lines="1"
-                android:text=" pesos"
-                app:layout_constraintTop_toBottomOf="@id/parent" />
-
-        </LinearLayout>
--->
-        <LinearLayout
-            android:id="@+id/lScheduleReceivedPantry"
+            android:id="@+id/llDaysReceivePantry"
             style="@style/ll_row_item"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lReqDonorPantry">
 
             <TextView
-                android:id="@+id/tvScheduleReceivedPantry"
+                android:id="@+id/tvDaysReceivePantry"
                 style="@style/tv_paragraph_item"
-                android:text="Recepción de despensas"
+                android:text="Durante los días:"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/lDateReceived"
             style="@style/ll_row_item"
+            android:layout_marginBottom="7dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lScheduleReceivedPantry">
+            app:layout_constraintTop_toBottomOf="@+id/llDaysReceivePantry">
 
             <ImageView
                 android:id="@+id/ivDateReceived"
                 style="@style/im_icon_item"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="10dp"
                 android:src="@drawable/calendar" />
 
             <TextView
-                android:id="@+id/tvDateReceived"
+                android:id="@+id/tvSchedulesReceived"
                 style="@style/tv_paragraph_item"
-                android:text="02/10/2023 - 05/10/2023"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:text="02"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -272,30 +243,17 @@
             <ImageView
                 android:id="@+id/ivScheduleReceived"
                 style="@style/im_icon_item"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="10dp"
                 android:src="@drawable/ic_reloj" />
 
             <TextView
                 android:id="@+id/tvScheduleReceived"
                 style="@style/tv_paragraph_item"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
                 android:text="00:00 - 00:00"
-                app:layout_constraintTop_toBottomOf="@id/parent" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lDaysReceived"
-            style="@style/ll_row_item"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lScheduleReceived">
-
-            <ImageView
-                android:id="@+id/ivDaysReceived"
-                style="@style/im_icon_item"
-                android:src="@drawable/calendar" />
-
-            <TextView
-                android:id="@+id/tvDaysReceived"
-                style="@style/tv_paragraph_item"
-                android:text="Lunes y Martes"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
         </LinearLayout>
 
@@ -303,31 +261,38 @@
             android:id="@+id/lScheduleArmedPantry"
             style="@style/ll_row_item"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lDaysReceived">
+            app:layout_constraintTop_toBottomOf="@+id/lScheduleReceived">
 
             <TextView
                 android:id="@+id/tvScheduleArmedPantry"
                 style="@style/tv_paragraph_item"
-                android:text="Armado de despensas"
+                android:text="Se requiere apoyo con el armado de las despensas durante los días:"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/lDateArmed"
             style="@style/ll_row_item"
+            android:layout_marginBottom="7dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lScheduleArmedPantry">
 
             <ImageView
                 android:id="@+id/ivDateArmed"
                 style="@style/im_icon_item"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="10dp"
                 android:src="@drawable/calendar" />
 
             <TextView
-                android:id="@+id/tvDateArmed"
+                android:id="@+id/tvSchedulesArmed"
                 style="@style/tv_paragraph_item"
-                android:text="02/10/2023 - 05/10/2023"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:text="02"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -339,30 +304,17 @@
             <ImageView
                 android:id="@+id/ivScheduleArmed"
                 style="@style/im_icon_item"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="10dp"
                 android:src="@drawable/ic_reloj" />
 
             <TextView
                 android:id="@+id/tvScheduleArmed"
                 style="@style/tv_paragraph_item"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
                 android:text="00:00 - 00:00"
-                app:layout_constraintTop_toBottomOf="@id/parent" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lDaysArmed"
-            style="@style/ll_row_item"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lScheduleArmed">
-
-            <ImageView
-                android:id="@+id/ivDaysArmed"
-                style="@style/im_icon_item"
-                android:src="@drawable/calendar" />
-
-            <TextView
-                android:id="@+id/tvDaysArmed"
-                style="@style/tv_paragraph_item"
-                android:text="Lunes y Martes"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
         </LinearLayout>
 
@@ -370,31 +322,38 @@
             android:id="@+id/lScheduleDeliveryPantry"
             style="@style/ll_row_item"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lDaysArmed">
+            app:layout_constraintTop_toBottomOf="@+id/lScheduleArmed">
 
             <TextView
                 android:id="@+id/tvScheduleDeliveryPantry"
                 style="@style/tv_paragraph_item"
-                android:text="Entrega de despensas"
+                android:text="Se requiere apoyo con la entrega de las despensas durante los días:"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/lDateDelivery"
             style="@style/ll_row_item"
+            android:layout_marginBottom="7dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lScheduleDeliveryPantry">
 
             <ImageView
                 android:id="@+id/ivDateDelivery"
                 style="@style/im_icon_item"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="10dp"
                 android:src="@drawable/calendar" />
 
             <TextView
-                android:id="@+id/tvDateDelivery"
+                android:id="@+id/tvSchedulesDelivery"
                 style="@style/tv_paragraph_item"
-                android:text="02/10/2023 - 05/10/2023"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:text="03"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -406,47 +365,43 @@
             <ImageView
                 android:id="@+id/ivScheduleDelivery"
                 style="@style/im_icon_item"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="10dp"
                 android:src="@drawable/ic_reloj" />
 
             <TextView
                 android:id="@+id/tvScheduleDelivery"
                 style="@style/tv_paragraph_item"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
                 android:text="00:00 - 00:00"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
-        </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/lDaysDelivery"
-            style="@style/ll_row_item"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lScheduleDelivery">
-
-            <ImageView
-                android:id="@+id/ivDaysDelivery"
-                style="@style/im_icon_item"
-                android:src="@drawable/calendar" />
-
-            <TextView
-                android:id="@+id/tvDaysDelivery"
-                style="@style/tv_paragraph_item"
-                android:text="Lunes y Martes"
-                app:layout_constraintTop_toBottomOf="@id/parent" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/lAddressDelivery"
             style="@style/ll_row_item"
+            android:layout_marginBottom="7dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lDaysDelivery">
+            app:layout_constraintTop_toBottomOf="@+id/lScheduleDelivery">
 
             <ImageView
                 android:id="@+id/ivAddressDelivery"
                 style="@style/im_icon_item"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="10dp"
                 android:src="@drawable/icono_igle" />
 
             <TextView
                 android:id="@+id/tvAddressDelivery"
                 style="@style/tv_paragraph_item"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="10dp"
                 android:text="Periferico Sur"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
         </LinearLayout>
