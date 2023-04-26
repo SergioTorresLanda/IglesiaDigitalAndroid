@@ -225,8 +225,8 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
         email: String,
         phone: String, //¿No existe?
         address: String,
-        longitude: String,
-        latitude: String,
+        longitude: Float,
+        latitude: Float,
         zone_id: Int,
         status: Int, //Not validate, ¿no existe?
         required_armed: Int, //Not validate if is 0
@@ -239,8 +239,8 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
         requerimiento_descripcion: String,
         address_delivery: String,
         requirements_donor: String,
-        longitude_delivery: String,
-        latitude_delivery: String,
+        longitude_delivery: Float,
+        latitude_delivery: Float,
         id: Int? = 0//Solo para update
     ) {
         val validateForm: HashMap<String, String> = HashMap()
@@ -266,10 +266,10 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
         if (address.isEmpty())
             validateForm[Constants.KEY_ADDRESS] = Constants.EMPTY_FIELD
 
-        if (longitude.isEmpty())
+        if (longitude.isNaN())
             validateForm[Constants.KEY_LONGITUDE] = Constants.EMPTY_FIELD
 
-        if (latitude.isEmpty())
+        if (latitude.isNaN())
             validateForm[Constants.KEY_LATITUDE] = Constants.EMPTY_FIELD
 
         if (zone_id == 0) {
@@ -332,9 +332,9 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
             //Dirección entrega
             if (address_delivery.isEmpty())
                 validateForm[Constants.KEY_ADDRESS_DELIVERY] = Constants.EMPTY_FIELD
-            if (longitude_delivery.isEmpty())
+            if (longitude_delivery.isNaN())
                 validateForm[Constants.KEY_LONGITUDE_DELIVERY] = Constants.EMPTY_FIELD
-            if (latitude_delivery.isEmpty())
+            if (latitude_delivery.isNaN())
                 validateForm[Constants.KEY_LATITUDE_DELIVERY] = Constants.EMPTY_FIELD
         }
 

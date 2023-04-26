@@ -96,7 +96,6 @@ class PantryAllAdapter(
                             diasRecepcion + (if (diasRecepcion == "") "" else (if (daysReception.size == contReception) " y " else ", ")) + it.name
                         contReception++
                     }
-                    val monthReceived = item.received!!.date_start!![3].toString() + item.received!!.date_start!![4].toString()
                     tvSchedulesReceived.text =
                         "Del " + item.received!!.date_start.toString() +
                                 " al " + item.received.date_end.toString() + ". Los días: " + diasRecepcion

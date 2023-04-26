@@ -19,7 +19,7 @@
     <style name="ll_row_secondary">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">@dimen/margin_24</item>
+        <item name="android:layout_marginTop">5dp</item>
         <item name="android:orientation">vertical</item>
         <item name="layout_constraintStart_toStartOf">parent</item>
     </style>
@@ -39,8 +39,16 @@
     <style name="tv_label_secondary">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:fontFamily">@font/open_sans_bold</item>
-        <item name="android:textSize">@dimen/size_20</item>
+        <item name="android:fontFamily">@font/spro_text_regular</item>
+        <item name="android:textSize">@dimen/size_18</item>
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="layout_constraintTop_toBottomOf">parent</item>
+    </style>
+    <style name="tv_label_secondary_sub">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/spro_text_regular</item>
+        <item name="android:textSize">@dimen/size_16</item>
         <item name="android:textColor">@color/primaryColor</item>
         <item name="layout_constraintTop_toBottomOf">parent</item>
     </style>
@@ -63,8 +71,8 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:letterSpacing">0.01</item>
         <item name="android:lineSpacingExtra">10sp</item>
-        <item name="android:textColor">#99000000</item>
-        <item name="android:textSize">@dimen/size_18</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/size_14</item>
         <item name="fontFamily">@font/open_sans_regular</item>
         <item name="android:textStyle">normal</item>
     </style>
@@ -79,7 +87,7 @@
         <item name="android:focusable">true</item>
         <item name="android:text">00:00</item>
         <item name="android:textColor">#99000000</item>
-        <item name="android:textSize">@dimen/size_15</item>
+        <item name="android:textSize">@dimen/size_18</item>
         <item name="fontFamily">@font/open_sans_regular</item>
         <item name="android:textStyle">normal</item>
         <item name="android:padding">@dimen/margin_10</item>
@@ -95,10 +103,10 @@
         <item name="android:focusable">true</item>
         <item name="android:text">dd/mm/aaaa</item>
         <item name="android:textColor">#99000000</item>
-        <item name="android:textSize">@dimen/size_15</item>
+        <item name="android:textSize">@dimen/size_16</item>
         <item name="fontFamily">@font/open_sans_regular</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:drawableRight">@drawable/ic_schedule</item>
+        <item name="android:drawableEnd">@drawable/calendar_small</item>
         <item name="android:padding">@dimen/margin_10</item>
     </style>
     <style name="tv_date_secondary_icDate">
@@ -113,8 +121,8 @@
     <style name="list_label_catalog">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:fontFamily">@font/open_sans_bold</item>
-        <item name="android:textSize">@dimen/size_14</item>
+        <item name="android:fontFamily">@font/open_sans_semi_bold</item>
+        <item name="android:textSize">@dimen/size_17</item>
         <item name="android:textColor">@color/primaryColor</item>
     </style>
     <style name="spinner">
@@ -165,7 +173,7 @@
         <item name="android:layout_gravity">center</item>
         <item name="android:gravity">left</item>
         <item name="android:fontFamily">@font/open_sans_semi_bold</item>
-        <item name="android:textSize">@dimen/size_20</item>
+        <item name="android:textSize">@dimen/size_16</item>
         <item name="android:textColor">@color/primaryColor</item>
         <item name="android:lineSpacingExtra">@dimen/size_1</item>
     </style>
@@ -204,19 +212,19 @@
     <style name="ll_row_item">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">@dimen/margin_15</item>
+        <item name="android:layout_marginTop">@dimen/margin_10</item>
         <item name="android:orientation">horizontal</item>
     </style>
     <style name="im_icon_item">
-        <item name="android:layout_width">@dimen/width_25</item>
-        <item name="android:layout_height">@dimen/height_25</item>
+        <item name="android:layout_width">28dp</item>
+        <item name="android:layout_height">28dp</item>
         <item name="android:layout_gravity">center</item>
     </style>
     <style name="tv_paragraph_item">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:layout_marginStart">@dimen/margin_10</item>
+        <item name="android:layout_marginStart">@dimen/margin_5</item>
         <item name="android:fontFamily">@font/open_sans_semi_bold</item>
         <item name="android:textSize">@dimen/size_14</item>
         <item name="android:textColor">@color/secondaryColor</item>

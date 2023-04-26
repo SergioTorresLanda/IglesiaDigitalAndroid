@@ -80,6 +80,7 @@ class EventPantriesFragment : FragmentBase() {
         viewmodel.responseAllPan.observe(viewLifecycleOwner) { item ->
             if (item.size > 0) {
                 if (item[0].id != null) {
+
                     if (init) { //Segunda vez
                         item.forEach {
                             if (it.user_id == userId) {
@@ -89,6 +90,7 @@ class EventPantriesFragment : FragmentBase() {
                             }
                         }
                     }
+
                     init = false
                     val despensas = item.filter {
                         if (zona == 0) it.status == 1 else it.zone_id == zona && it.status == 1

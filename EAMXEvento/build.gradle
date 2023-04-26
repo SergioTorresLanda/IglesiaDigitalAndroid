@@ -32,4 +32,5 @@ dependencies {
     implementation project(path: ':EAMXRedSocialModule')
     implementation project(path: ':EAMXMyChurch')
     implementation project(path: ':EAMXDonaciones')
+    implementation project(path: ':EAMXSOS')
 }

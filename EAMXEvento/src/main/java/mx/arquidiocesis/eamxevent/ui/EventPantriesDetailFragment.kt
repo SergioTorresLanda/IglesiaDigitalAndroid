@@ -50,7 +50,6 @@ class EventPantriesDetailFragment : FragmentBase() {
     private var delegations: Array<Delegations> = Delegations.values()
     private var delegations_pantry: Array<Delegations_Pantry> = Delegations_Pantry.values()
     private var zona: Int = 0
-    private var descriptionMap: String = ""
     private var latitud: Double = 0.0
     private var longitud: Double = 0.0
     private var latitud_entrega: Double = 0.0
@@ -160,6 +159,7 @@ class EventPantriesDetailFragment : FragmentBase() {
         labelTimeDelivery.visibility = View.GONE
         llTimeDelivery.visibility = View.GONE
         llAddressDelivery.visibility = View.GONE
+
         //Seteo inicial de datos
         etEmailPantries.setText(email)
         etPhonePantries.setText(phone.replace("+52", ""))
@@ -199,17 +199,19 @@ class EventPantriesDetailFragment : FragmentBase() {
                                 return@forEach
                             }
                         }
-                        if (!(it.latitude).isNullOrEmpty()) {
-                            latitud = it.latitude.toDouble()
+                        println("hola")
+                        println(it.description_pantry)
+                        if ((it.latitude) != null) {
+                            latitud = it.latitude!!.toDouble()
                         }
-                        if (!(it.longitude).isNullOrEmpty()) {
-                            longitud = it.longitude.toDouble()
+                        if ((it.longitude) != null) {
+                            longitud = it.longitude!!.toDouble()
                         }
-                        if (!(it.latitude_delivery).isNullOrEmpty()) {
-                            latitud_entrega = it.latitude_delivery.toDouble()
+                        if ((it.latitude_delivery) != null) {
+                            latitud_entrega = it.latitude_delivery!!.toDouble()
                         }
-                        if (!(it.longitude_delivery).isNullOrEmpty()) {
-                            longitud_entrega = it.longitude_delivery.toDouble()
+                        if ((it.longitude_delivery)!= null) {
+                            longitud_entrega = it.longitude_delivery!!.toDouble()
                         }
                         //Proceso recepción
                         listDaysReceived[0].checked = it.schedule!![0].days!![0].checked
@@ -680,6 +682,9 @@ class EventPantriesDetailFragment : FragmentBase() {
 
     private fun initView() {
 
+        //val leyenda = "Estatus de la despensa."
+        //TooltipCompat.setTooltipText(ivDescriptionDonor, leyenda)
+
         binding.iDaysReception.iDayMa.tvCDay.setText("Lu")
         binding.iDaysReception.iDayMa.tvCDay.setText("Ma")
         binding.iDaysReception.iDayMi.tvCDay.setText("Mi")
@@ -952,16 +957,15 @@ class EventPantriesDetailFragment : FragmentBase() {
                 if (isChecked) {
                     switchPantries.thumbTintList =
                         ContextCompat.getColorStateList(requireContext(), R.color.green_retirar)
-                    tvEstatusPantries.setText("Habilitado")
                 } else {
                     switchPantries.thumbTintList =
                         ContextCompat.getColorStateList(requireContext(), R.color.hint_color)
-                    tvEstatusPantries.setText("Inhabilitado")
                 }
             }
             //Switch: requiere donador
             switchDonorPantries.setOnCheckedChangeListener { buttonView, isChecked ->
                 if (isChecked) {
+                    cardReceived.visibility = View.VISIBLE
                     lRequisPantries.visibility = View.VISIBLE
                     lReceptionPantries.visibility = View.VISIBLE
                     labelDateReception.visibility = View.VISIBLE
@@ -972,6 +976,7 @@ class EventPantriesDetailFragment : FragmentBase() {
                     switchDonorPantries.thumbTintList =
                         ContextCompat.getColorStateList(requireContext(), R.color.green_retirar)
                 } else {
+                    cardReceived.visibility = View.GONE
                     etRequisPantries.setText("")
                     tvFirstDateReception.setText("dd/mm/aaaa")
                     tvEndDateReception.setText("dd/mm/aaaa")
@@ -998,6 +1003,7 @@ class EventPantriesDetailFragment : FragmentBase() {
             //Switch: requiere armado de despensa
             switchArmadoPantries.setOnCheckedChangeListener { buttonView, isChecked ->
                 if (isChecked) {
+                    cardArmed.visibility = View.VISIBLE
                     llArmadoPantries.visibility = View.VISIBLE
                     labelDateArmado.visibility = View.VISIBLE
                     llDateArmado.visibility = View.VISIBLE
@@ -1007,6 +1013,7 @@ class EventPantriesDetailFragment : FragmentBase() {
                     switchArmadoPantries.thumbTintList =
                         ContextCompat.getColorStateList(requireContext(), R.color.green_retirar)
                 } else {
+                    cardArmed.visibility = View.GONE
                     tvFirstDateArmado.setText("dd/mm/aaaa")
                     tvEndDateArmado.setText("dd/mm/aaaa")
                     iDaysArmado.iDayDo.tvCDay.setTextColor(Color.BLACK)
@@ -1031,6 +1038,7 @@ class EventPantriesDetailFragment : FragmentBase() {
             //Switch: requiere entrega de despensa
             switchDeliveryPantries.setOnCheckedChangeListener { buttonView, isChecked ->
                 if (isChecked) {
+                    cardDelivery.visibility = View.VISIBLE
                     llDeliveryPantries.visibility = View.VISIBLE
                     labelDateDelivery.visibility = View.VISIBLE
                     llDateDelivery.visibility = View.VISIBLE
@@ -1041,6 +1049,7 @@ class EventPantriesDetailFragment : FragmentBase() {
                     switchDeliveryPantries.thumbTintList =
                         ContextCompat.getColorStateList(requireContext(), R.color.green_retirar)
                 } else {
+                    cardDelivery.visibility = View.GONE
                     tvFirstDateDelivery.setText("dd/mm/aaaa")
                     tvEndDateDelivery.setText("dd/mm/aaaa")
                     iDaysDelivery.iDayDo.tvCDay.setTextColor(Color.BLACK)
@@ -1403,8 +1412,8 @@ class EventPantriesDetailFragment : FragmentBase() {
             etEmailPantries.text.toString().replace(" ", "").lowercase(),
             etPhonePantries.text.toString().trim(),
             etgetAddressPantries.text.toString().trim(),
-            if (longitud == 0.00) "0.00" else longitud.toString(),
-            if (latitud == 0.00) "0.00" else latitud.toString(),
+            (if (longitud == 0.00) 0.0 else longitud).toFloat(),
+            (if (latitud == 0.00) 0.0 else latitud).toFloat(),
             zona,
             if (switchPantries.isChecked) 1 else 0,
             if (switchArmadoPantries.isChecked) 1 else 0,
@@ -1417,8 +1426,8 @@ class EventPantriesDetailFragment : FragmentBase() {
             etDescriptionPantries.text.toString().trim(),
             etgetAddressDelivery.text.toString().trim(),
             (if (etRequisPantries.text.toString() == "") "" else etRequisPantries.text.toString()),
-            if (longitud_entrega == 0.00) "0.00" else longitud_entrega.toString(),
-            if (latitud_entrega == 0.00) "0.00" else latitud_entrega.toString(),
+            (if (longitud_entrega == 0.00) 0.00 else longitud_entrega).toFloat(),
+            (if (latitud_entrega == 0.00) 0.00 else latitud_entrega).toFloat(),
             pantry_id
         )
     }

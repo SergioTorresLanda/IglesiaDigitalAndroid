@@ -32,14 +32,11 @@
             app:layout_constraintBaseline_toBaselineOf="parent"
             app:layout_constraintTop_toTopOf="@+id/viewTop">
 
-            <ImageView
-                android:id="@+id/ivResponsabilityPantry"
-                style="@style/im_icon_item"
-                android:src="@drawable/icon_responsable" />
 
             <TextView
                 android:id="@+id/labelResponsabilityPantry"
-                style="@style/tv_paragraph_item"
+                style="@style/tv_title_item"
+                android:layout_marginStart="25dp"
                 android:layout_width="wrap_content"
                 android:lines="1"
                 android:text="Responsable:"
@@ -47,7 +44,7 @@
 
             <TextView
                 android:id="@+id/tvResponsabilityPantry"
-                style="@style/tv_paragraph_item"
+                style="@style/tv_title_item"
                 android:layout_marginStart="4dp"
                 android:lines="1"
                 android:text="Juan Olvera"
@@ -99,40 +96,18 @@
             <ImageView
                 android:id="@+id/ivAddressPantry"
                 style="@style/im_icon_item"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginTop="3dp"
-                android:layout_marginBottom="10dp"
                 android:src="@drawable/icono_igle" />
 
             <TextView
                 android:id="@+id/tvAddressPantry"
                 style="@style/tv_paragraph_item"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="10dp"
                 android:text="Periferico Sur"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
         </LinearLayout>
-<!--
-        <LinearLayout
-            android:id="@+id/lZonePantry"
-            style="@style/ll_row_item"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lAddressPantry">
 
-            <ImageView
-                android:id="@+id/ivZonePantry"
-                style="@style/im_icon_item"
-                android:src="@drawable/icono_igle" />
-
-            <TextView
-                android:id="@+id/tvZonePantry"
-                style="@style/tv_paragraph_item"
-                android:text="Zona 2"
-                app:layout_constraintTop_toBottomOf="@id/parent" />
-        </LinearLayout>
--->
         <LinearLayout
             android:id="@+id/lDescriptionPantry"
             style="@style/ll_row_item"
@@ -143,17 +118,12 @@
             <ImageView
                 android:id="@+id/ivDescriptionPantry"
                 style="@style/im_icon_item"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
                 android:layout_marginTop="3dp"
-                android:layout_marginBottom="10dp"
                 android:src="@drawable/ic_icono_info" />
 
             <TextView
                 android:id="@+id/tvDescriptionPantry"
                 style="@style/tv_paragraph_item"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="10dp"
                 android:text="Descripcion"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
         </LinearLayout>
@@ -166,7 +136,8 @@
 
             <TextView
                 android:id="@+id/tvScheduleReceivedPantry"
-                style="@style/tv_paragraph_item"
+                style="@style/tv_title_item"
+                android:layout_marginStart="25dp"
                 android:text="Se requiere donación de:"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
         </LinearLayout>
@@ -181,18 +152,12 @@
             <ImageView
                 android:id="@+id/ivReqDonorPantry"
                 style="@style/im_icon_item"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="10dp"
-                android:src="@drawable/ic_icono_info" />
+                android:src="@drawable/icon_req" />
 
             <TextView
                 android:id="@+id/tvReqDonorPantry"
                 style="@style/tv_paragraph_item"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="10dp"
-                android:text="Requisitos de donador"
+                android:text="Requisitos de donación"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
         </LinearLayout>
 
@@ -204,7 +169,8 @@
 
             <TextView
                 android:id="@+id/tvDaysReceivePantry"
-                style="@style/tv_paragraph_item"
+                style="@style/tv_title_item"
+                android:layout_marginStart="25dp"
                 android:text="Durante los días:"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
         </LinearLayout>
@@ -226,7 +192,6 @@
             <TextView
                 android:id="@+id/tvSchedulesReceived"
                 style="@style/tv_paragraph_item"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
                 android:text="02"
@@ -250,7 +215,6 @@
             <TextView
                 android:id="@+id/tvScheduleReceived"
                 style="@style/tv_paragraph_item"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
                 android:text="00:00 - 00:00"
@@ -265,7 +229,8 @@
 
             <TextView
                 android:id="@+id/tvScheduleArmedPantry"
-                style="@style/tv_paragraph_item"
+                style="@style/tv_title_item"
+                android:layout_marginStart="25dp"
                 android:text="Se requiere apoyo con el armado de las despensas durante los días:"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
         </LinearLayout>
@@ -287,7 +252,6 @@
             <TextView
                 android:id="@+id/tvSchedulesArmed"
                 style="@style/tv_paragraph_item"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
                 android:text="02"
@@ -311,7 +275,6 @@
             <TextView
                 android:id="@+id/tvScheduleArmed"
                 style="@style/tv_paragraph_item"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
                 android:text="00:00 - 00:00"
@@ -326,7 +289,8 @@
 
             <TextView
                 android:id="@+id/tvScheduleDeliveryPantry"
-                style="@style/tv_paragraph_item"
+                style="@style/tv_title_item"
+                android:layout_marginStart="25dp"
                 android:text="Se requiere apoyo con la entrega de las despensas durante los días:"
                 app:layout_constraintTop_toBottomOf="@id/parent" />
         </LinearLayout>
@@ -348,7 +312,6 @@
             <TextView
                 android:id="@+id/tvSchedulesDelivery"
                 style="@style/tv_paragraph_item"
-                android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
                 android:text="03"
@@ -372,7 +335,6 @@
             <TextView
                 android:id="@+id/tvScheduleDelivery"
                 style="@style/tv_paragraph_item"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
                 android:text="00:00 - 00:00"
@@ -399,7 +361,6 @@
             <TextView
                 android:id="@+id/tvAddressDelivery"
                 style="@style/tv_paragraph_item"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="3dp"
                 android:layout_marginBottom="10dp"
                 android:text="Periferico Sur"

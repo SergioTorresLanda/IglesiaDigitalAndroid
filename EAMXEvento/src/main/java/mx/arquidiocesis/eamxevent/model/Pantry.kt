@@ -18,9 +18,9 @@ open class Pantry(
     @SerializedName("direccion")
     val address: String? = null,
     @SerializedName("longitud")
-    val longitude: String? = null,
+    val longitude: Float? = null,
     @SerializedName("latitud")
-    val latitude: String? = null,
+    val latitude: Float? = null,
     @SerializedName("zona")
     val zone_id: Int? = null,
     @SerializedName("estatus")
@@ -44,7 +44,7 @@ open class Pantry(
     @SerializedName("requisitos_donacion")
     val donation_requirements: String? = null,
     @SerializedName("longitud_entrega")
-    val longitude_delivery: String? = null,
+    val longitude_delivery: Float? = null,
     @SerializedName("latitud_entrega")
-    val latitude_delivery: String? = null,
+    val latitude_delivery: Float? = null,
 )

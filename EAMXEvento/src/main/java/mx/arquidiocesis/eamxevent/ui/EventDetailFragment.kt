@@ -554,11 +554,9 @@ class EventDetailFragment : FragmentBase() {
                 if (isChecked) {
                     switch3.thumbTintList =
                         getColorStateList(requireContext(), R.color.green_retirar)
-                    tvDisponible.setText("Activo")
                 } else {
                     switch3.thumbTintList =
                         getColorStateList(requireContext(), R.color.hint_color)
-                    tvDisponible.setText("Inactivo")
                 }
             }
 
