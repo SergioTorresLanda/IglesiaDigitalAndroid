@@ -39,7 +39,7 @@
                     android:lines="2"
                     android:text="Ubica el pin en donde estará ubicado tu comedor."
                     android:textColor="@color/white"
-                    android:textSize="@dimen/size_24" />
+                    android:textSize="@dimen/size_18" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 

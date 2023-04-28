@@ -127,13 +127,6 @@ class MapsFragment(
             var mover = false
             map.observe(viewLifecycleOwner) {
                 map.value?.apply {
-                    // Evento al presionar el mapa
-                    /*setOnMapClickListener {
-                        maps.addMaker(it.latitude, it.longitude, false, pin)
-                        rlatitude = it.latitude
-                        rlongitude = it.longitude
-                    }*/
-                    // Evento al mover el mapa
                     setOnCameraIdleListener {
                         val posTarget = it.cameraPosition.target
                         if (mover) {

@@ -199,8 +199,6 @@ class EventPantriesDetailFragment : FragmentBase() {
                                 return@forEach
                             }
                         }
-                        println("hola")
-                        println(it.description_pantry)
                         if ((it.latitude) != null) {
                             latitud = it.latitude!!.toDouble()
                         }
@@ -415,13 +413,13 @@ class EventPantriesDetailFragment : FragmentBase() {
                             val date_first_receive = it.received.date_start!!.split("/")
                             onDateFirstReception(
                                 date_first_receive[0].toInt(),
-                                date_first_receive[1].toInt(),
+                                date_first_receive[1].toInt() - 1,
                                 date_first_receive[2].toInt()
                             )
                             val date_end_receive = it.received.date_end!!.split("/")
                             onDateEndReception(
                                 date_end_receive[0].toInt(),
-                                date_end_receive[1].toInt(),
+                                date_end_receive[1].toInt() - 1,
                                 date_end_receive[2].toInt()
                             )
                             val hora_first_receive = it.received.hour_start!!.split(":")
@@ -445,13 +443,13 @@ class EventPantriesDetailFragment : FragmentBase() {
                             val date_first_armed = it.armed.date_start!!.split("/")
                             onDateFirstArmado(
                                 date_first_armed[0].toInt(),
-                                date_first_armed[1].toInt(),
+                                date_first_armed[1].toInt() - 1,
                                 date_first_armed[2].toInt()
                             )
                             val date_end_armed = it.armed.date_end!!.split("/")
                             onDateEndArmado(
                                 date_end_armed[0].toInt(),
-                                date_end_armed[1].toInt(),
+                                date_end_armed[1].toInt() - 1,
                                 date_end_armed[2].toInt()
                             )
                             val hora_first_armed = it.armed.hour_start!!.split(":")
@@ -475,13 +473,13 @@ class EventPantriesDetailFragment : FragmentBase() {
                             val date_first_delivery = it.delivery.date_start!!.split("/")
                             onDateFirstDelivery(
                                 date_first_delivery[0].toInt(),
-                                date_first_delivery[1].toInt(),
+                                date_first_delivery[1].toInt() - 1,
                                 date_first_delivery[2].toInt()
                             )
                             val date_end_delivery = it.delivery.date_end!!.split("/")
                             onDateEndDelivery(
                                 date_end_delivery[0].toInt(),
-                                date_end_delivery[1].toInt(),
+                                date_end_delivery[1].toInt() - 1,
                                 date_end_delivery[2].toInt()
                             )
                             val hora_first_delivery = it.delivery.hour_start!!.split(":")
@@ -1086,7 +1084,6 @@ class EventPantriesDetailFragment : FragmentBase() {
                     id: Long,
                 ) {
                     zona = delegations_pantry[position].pos
-                    println(zona)
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
