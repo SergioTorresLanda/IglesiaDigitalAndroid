@@ -70,6 +70,16 @@ class EventPantriesDetailFragment : FragmentBase() {
         EAMXTypeObject.STRING_OBJECT
     ) as String
 
+    val middleName = eamxcu_preferences.getData(
+    EAMXEnumUser.USER_MIDDLE_NAME.name,
+    EAMXTypeObject.STRING_OBJECT
+    ) as String
+
+    val last_name = eamxcu_preferences.getData(
+    EAMXEnumUser.USER_LAST_NAME.name,
+    EAMXTypeObject.STRING_OBJECT
+    ) as String
+
     val userId = eamxcu_preferences.getData(
         EAMXEnumUser.USER_ID.name,
         EAMXTypeObject.INT_OBJECT
@@ -163,7 +173,7 @@ class EventPantriesDetailFragment : FragmentBase() {
         //Seteo inicial de datos
         etEmailPantries.setText(email)
         etPhonePantries.setText(phone.replace("+52", ""))
-        etResponPantries.setText(name)
+        etResponPantries.setText(name + " " + middleName + " " + last_name)
         requireArguments().let {
             var id = it.getString("pantry_id")
             if (id != "") {
