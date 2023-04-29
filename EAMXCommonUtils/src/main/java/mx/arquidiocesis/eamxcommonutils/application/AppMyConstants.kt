@@ -38,7 +38,7 @@ object AppMyConstants {
     const val PUBLICATION_WATCH_END_POINT = "publications/watch"
 
     /*Titulos para los toolbar de cada Fragment*/
-    const val evento = "Lista de comedores"
+    const val evento = "Actividades y voluntariado"
     const val eventoDespensas = "Lista de despensas"
     const val donadores = "Lista de donadores"
     const val voluntarios = "Lista de voluntarios"
@@ -46,7 +46,7 @@ object AppMyConstants {
     const val detailPantries = "Alta de despensas"
     const val createEvento = "Crear un comedor"
     const val updateEvento = "Actualizar comedor"
-    const val updatePantry = "Actualizar despensa"
+    const val updatePantry = "Actualizar mi despensa"
     const val updateDonor = "Actualizar donación"
     const val createDonador = "Alta de donador"
     const val createVoluntario = "Alta de voluntario"

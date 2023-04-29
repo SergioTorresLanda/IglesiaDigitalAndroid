@@ -118,12 +118,14 @@
         <item name="android:focusable">true</item>
         <item name="android:padding">5dp</item>
     </style>
-    <style name="list_label_catalog">
+    <style name="list_label_catalog" parent="Widget.AppCompat.Button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/open_sans_semi_bold</item>
         <item name="android:textSize">@dimen/size_17</item>
         <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:elevation">0dp</item>
     </style>
     <style name="spinner">
         <item name="android:layout_width">match_parent</item>

@@ -66,7 +66,7 @@ class PantryAllAdapter(
                 lEmailPantry.visibility = View.VISIBLE
                 tvEmailPantry.text = item.email
                 lPhonePantry.visibility = View.VISIBLE
-                tvPhonePantry.text = item.phone
+                tvPhonePantry.text = item.phone!!.replace("+52", "")
                 lAddressPantry.visibility = View.VISIBLE
                 tvAddressPantry.text = item.address
                 if (item.description_pantry == "None") {

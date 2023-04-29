@@ -65,7 +65,7 @@ class EventPantriesFragment : FragmentBase() {
                 putString("screen_class", "Home_ActividadesDespensas")
             })
         }
-        callBack.showToolbar(true, AppMyConstants.eventoDespensas)
+        callBack.showToolbar(true, AppMyConstants.evento)
         init = true
         userId = eamxcu_preferences.getData(
             EAMXEnumUser.USER_ID.name,
