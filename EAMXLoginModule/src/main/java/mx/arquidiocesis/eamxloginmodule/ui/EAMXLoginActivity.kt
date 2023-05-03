@@ -297,8 +297,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
         val db = Firebase.firestore
         db.collection(ConstansApp.usrDummy())
             .whereEqualTo("activo", true)
-            .get()
-            .addOnSuccessListener { result ->
+            .get().addOnSuccessListener { result ->
                 for (document in result) {
                     ("${document.id} => ${document.data["usuario"]}").log()
                     mBinding.apply {

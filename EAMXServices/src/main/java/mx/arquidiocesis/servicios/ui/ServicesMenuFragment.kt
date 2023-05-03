@@ -5,11 +5,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import mx.arquidiocesis.eamxcommonutils.application.AppMyConstants
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
 import mx.arquidiocesis.eamxcommonutils.common.EAMXHome
 import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
+import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
 import mx.arquidiocesis.servicios.adapter.ServiceAdapter
 import mx.arquidiocesis.servicios.databinding.FragmentServicesMenuBinding
 import mx.arquidiocesis.servicios.model.ServiceMenuMainModel
@@ -48,9 +50,6 @@ class ServicesMenuFragment : FragmentBase() {
 
     private fun initView() {
         listServicesMain.clear()
-
-
-
         listServicesMain.add(
             ServiceMenuMainModel(
                 id = 1,
@@ -59,15 +58,6 @@ class ServicesMenuFragment : FragmentBase() {
                 img = "Intentions"
             )
         )
-
-        /*listServicesMain.add(
-            ServiceMenuMainModel(
-                id = 2,
-                title = "Intenciones comunidades",
-                img = "IntentionsCom"
-            )
-        )*/
-
         listServicesMain.add(
             ServiceMenuMainModel(
                 id = 3,
@@ -76,7 +66,6 @@ class ServicesMenuFragment : FragmentBase() {
                 img = "OtherServices"
             )
         )
-
         listServicesMain.add(
             ServiceMenuMainModel(
                 id = 0,
@@ -95,6 +84,7 @@ class ServicesMenuFragment : FragmentBase() {
     }
 
     private fun selectItem(id: Int) {
+        println("selectedITEM :: "+id)
         when (id) {
             0 -> {
                 val transaction = requireActivity().supportFragmentManager.beginTransaction()
@@ -103,7 +93,7 @@ class ServicesMenuFragment : FragmentBase() {
                     .addToBackStack(tag).commit()
             }
             1 -> {
-                if (!msgGuest("solicitar una intención")) {
+                if (!msgGuest("solicitar una intención.")) {
                     val transaction = requireActivity().supportFragmentManager.beginTransaction()
                     val fragment = MyChurchesMentionFragment()
                     transaction.replace((requireView().parent as ViewGroup).id, fragment)
@@ -117,7 +107,7 @@ class ServicesMenuFragment : FragmentBase() {
                     .addToBackStack(tag).commit()
             }
             3 -> {
-                if (!msgGuest("solicitar otros servicios")) {
+                if (!msgGuest("solicitar otros servicios.")) {
                     val transaction = requireActivity().supportFragmentManager.beginTransaction()
                     val fragment = ServicesOtherFragment()
                     transaction.replace((requireView().parent as ViewGroup).id, fragment)

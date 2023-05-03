@@ -41,12 +41,14 @@ class ServiceAdminMainFragment : FragmentBase() {
         binding.apply {
 
             cvIntentionsChurch.setOnClickListener {
-                NavigationFragment.Builder()
+                if (!msgGuest("solicitar una intención")) {
+                    NavigationFragment.Builder()
                     .setActivity(requireActivity())
                     .setView(requireView().parent as ViewGroup)
                     .setFragment(ServicesAdminIntentionsChurchFragment.newInstance(callBack))
                     .setAllowStack(true)
                     .build().nextWithReplace()
+                }
             }
 
             cvIntentionsCommunity.visibility = View.GONE
@@ -60,21 +62,25 @@ class ServiceAdminMainFragment : FragmentBase() {
             }
 
             cvServices.setOnClickListener {
-                NavigationFragment.Builder()
+                if (!msgGuest("solicitar otros servicios")) {
+                    NavigationFragment.Builder()
                     .setActivity(requireActivity())
                     .setView(requireView().parent as ViewGroup)
                     .setFragment(ServiceAdminTabFragment.newInstance(callBack))
                     .setAllowStack(true)
                     .build().nextWithReplace()
+                }
             }
 
             cvSacraments.setOnClickListener {
-                NavigationFragment.Builder()
+                if (!msgGuest("solicitar sacramentos")) {
+                    NavigationFragment.Builder()
                     .setActivity(requireActivity())
                     .setView(requireView().parent as ViewGroup)
                     .setFragment(SacramentsFragment.newInstance(callBack))
                     .setAllowStack(true)
                     .build().nextWithReplace()
+                }
             }
         }
     }

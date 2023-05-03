@@ -54,7 +54,5 @@ class ServiceAdapter(
                 listener(service)
             }
         }
-
-
     }
 }
