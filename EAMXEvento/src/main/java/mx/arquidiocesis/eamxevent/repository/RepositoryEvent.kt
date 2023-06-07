@@ -28,6 +28,7 @@ class RepositoryEvent(val context: Context) : ManagerCall() {
     //GET Event
     val allDiner = SingleLiveEvent<List<DinerResponse>>()
     val allPantry = SingleLiveEvent<List<Pantry>>()
+    val allOther = SingleLiveEvent<List<OtherEvent>>()
     val allDonor = SingleLiveEvent<List<DonorResponse>>()
     val allVolunteer = SingleLiveEvent<List<VolunteerResponse>>()
     val allGuest = SingleLiveEvent<List<GuestModel>>()
@@ -56,12 +57,10 @@ class RepositoryEvent(val context: Context) : ManagerCall() {
 
     suspend fun saveEventDiner(event: Event) {
         managerCallApi(
-            context = context,
-            call = {
+            context = context, call = {
                 retrofitInstance.setHost(HOST).builder().instance().postCreateEventAsync(event)
                     .await()
-            },
-            validation = Validation()
+            }, validation = Validation()
         ).let { response ->
             GlobalScope.launch(Dispatchers.Main) {
                 if (response.sucess) {
@@ -74,14 +73,29 @@ class RepositoryEvent(val context: Context) : ManagerCall() {
         }
     }
 
+    suspend fun saveEventOther(event: OtherEvent) {
+        managerCallApi(
+            context = context, call = {
+                retrofitInstance.setHost(HOST).builder().instance().postCreateOtherAsync(event)
+                    .await()
+            }, validation = Validation()
+        ).let { response ->
+            GlobalScope.launch(Dispatchers.Main) {
+                if (response.sucess) {
+                    saveResponse.value = "Se ha dado de alta la actividad correctamente."
+                } else {
+                    errorResponse.value = response.exception?.message
+                        ?: "No se ha dado de alta la actividad correctamente."
+                }
+            }
+        }
+    }
+
     suspend fun UpdateEventDiner(dinerId: Int, event: Event) {
         managerCallApi(
-            context = context,
-            call = {
-                retrofitInstance.setHost(HOST).builder().instance()
-                    .putUpdateEventAsync(dinerId, event).await()
-            },
-            validation = Validation()
+            context = context, call = {
+                retrofitInstance.setHost(HOST).builder().instance().putUpdateEventAsync(dinerId, event).await()
+            }, validation = Validation()
         ).let { response ->
             GlobalScope.launch(Dispatchers.Main) {
                 if (response.sucess) {
@@ -89,6 +103,23 @@ class RepositoryEvent(val context: Context) : ManagerCall() {
                 } else {
                     errorResponse.value = response.exception?.message
                         ?: "La actualización del comedor no se pudo realizar."
+                }
+            }
+        }
+    }
+
+    suspend fun updateEventOther(otherId: Int, event: OtherEvent) {
+        managerCallApi(
+            context = context, call = {
+                retrofitInstance.setHost(HOST).builder().instance().putUpdateOtherAsync(otherId, event).await()
+            }, validation = Validation()
+        ).let { response ->
+            GlobalScope.launch(Dispatchers.Main) {
+                if (response.sucess) {
+                    saveResponse.value = "Se ha actualizado la actividad correctamente."
+                } else {
+                    errorResponse.value = response.exception?.message
+                        ?: "No se ha actualizado la actividad correctamente."
                 }
             }
         }
@@ -158,6 +189,21 @@ class RepositoryEvent(val context: Context) : ManagerCall() {
                         getPantriesEventAsync().await()
                     else
                         getPantryEventAsync(pantryId).await()
+                }
+            },
+            validation = Validation()
+        )
+    }
+
+    suspend fun getAllOther(otherId: Int): ResponseData<List<OtherEvent>?> {
+        return managerCallApi(
+            context = context,
+            call = {
+                retrofitInstances.run {
+                    if (otherId == 0)
+                        getOthersEventAsync().await()
+                    else
+                        getOtherEventAsync(otherId).await()
                 }
             },
             validation = Validation()

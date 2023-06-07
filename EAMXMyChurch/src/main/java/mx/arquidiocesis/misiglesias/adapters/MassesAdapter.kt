@@ -49,9 +49,6 @@ class MassesAdapter(
                 .load(Uri.parse(masse.imageUrl))
                 .apply(RequestOptions().override(250, 320).centerCrop())
                 .into(view.ivMisas)
-            val locationIglesia = Location("location")
-
-
             view.tvKilometros.text = "${masse.distance} km"
             view.tvHorarioss.text =  "${masse.schedules} hrs"
             view.cvMisas.setOnClickListener {

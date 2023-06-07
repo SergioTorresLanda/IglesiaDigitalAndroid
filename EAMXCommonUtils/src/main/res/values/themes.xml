@@ -198,6 +198,13 @@
         <item name="layout_constraintStart_toStartOf">parent</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
     </style>
+    <style name="ll_fill_btns2">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
+    </style>
     <style name="btn_primary" parent="Widget.MaterialComponents.Button">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">50dp</item>

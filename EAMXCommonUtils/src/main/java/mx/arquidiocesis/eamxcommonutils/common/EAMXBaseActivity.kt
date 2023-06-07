@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
@@ -383,7 +384,7 @@ abstract class EAMXBaseActivity : AppCompatActivity(), EAMXBackHandler {
     }
 
     protected fun msgGuest(msg: String = "poder acceder a este módulo", isMsg:Boolean = true): Boolean {
-        var guest = eamxcu_preferences.getData(
+        val guest = eamxcu_preferences.getData(
             EAMXEnumUser.GUEST.name,
             EAMXTypeObject.BOOLEAN_OBJECT
         ) as Boolean
@@ -392,6 +393,17 @@ abstract class EAMXBaseActivity : AppCompatActivity(), EAMXBackHandler {
                 UtilAlert.Builder()
                     .setTitle(getString(R.string.title_dialog_warning))
                     .setMessage("Regístrate o inicia sesión para ${msg}.")
+                    .setTextButtonCancel("Ahora no").setTextButtonOk("Ir al registro")
+                    .setListener { action ->
+                        when (action) {
+                            UtilAlert.ACTION_ACCEPT -> {
+                                Log.e("ZOROASTRO","SE VA A LOGIN Y DE BUENAS")
+                                (this as EAMXSignOut).signOut(true)
+                            }
+                            UtilAlert.ACTION_CANCEL -> {
+                            }
+                        }
+                    }
                     .build().show(supportFragmentManager, "")
             }
         }

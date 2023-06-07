@@ -155,9 +155,7 @@ class UtilAlert private constructor(
                 dismiss()
                 listener(ACTION_CLOSE)
             }
-
  */
-
             if(title == null && titleCustom == null) {
                 tvTitleMultiSelection.visibility = View.GONE
             }else{

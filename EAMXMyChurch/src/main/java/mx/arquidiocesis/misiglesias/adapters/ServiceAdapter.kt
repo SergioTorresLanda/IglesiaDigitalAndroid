@@ -61,11 +61,12 @@ class ServiceAdapter(
                 val item = service.schedules.first()
                 binding.tvDia.text = PublicFunctions().obtenerDias(item.days)
                 if (!item.hour_start.isNullOrEmpty()) {
-                    binding.tvHorario.text = "${item.hour_start}  "
+                    binding.tvHorario.text = "${item.hour_start}"
+                    if (!item.hour_end.isNullOrEmpty()) {
+                        binding.tvHorario.text = "${item.hour_start} a ${item.hour_end}"
+                    }
                 }
-               /* if (!item.hour_end.isNullOrEmpty()) {
-                    binding.tvHorario.text = "${binding.tvHorario.text} ${item.hour_end} "
-                }*/
+
             }
             service.geared_toward.isNullOrEmpty().let {
                 if (!it) {
@@ -78,7 +79,7 @@ class ServiceAdapter(
                 }
             }
             binding.tvDes.text = service.description
-            binding.tvDir.text = service.geared_toward
+            binding.tvDir.text = "Dirigido a: ${service.geared_toward}"
             if (edit) {
                 binding.ivRemove.visibility = View.VISIBLE
             }

@@ -68,6 +68,17 @@
                     android:backgroundTint="@color/white"
                     android:text="Despensas" />
 
+                <Button
+                    android:id="@+id/btnOtrosEvento"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    style="@style/list_label_catalog"
+                    android:drawableTop="@drawable/hands48"
+                    android:layout_margin="10dp"
+                    android:backgroundTint="@color/white"
+                    android:text="Otros" />
+
             </LinearLayout>
         </RelativeLayout>
         <!--

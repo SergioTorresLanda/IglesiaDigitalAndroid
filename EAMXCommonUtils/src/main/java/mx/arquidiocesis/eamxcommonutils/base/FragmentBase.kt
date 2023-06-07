@@ -1,13 +1,18 @@
 package mx.arquidiocesis.eamxcommonutils.base
 
+import android.content.Intent
+import android.util.Log
 import androidx.fragment.app.Fragment
 import mx.arquidiocesis.eamxcommonutils.R
 import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.common.EAMXHome
+import mx.arquidiocesis.eamxcommonutils.common.EAMXSignOut
 import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
 import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
 import mx.arquidiocesis.eamxcommonutils.customui.loader.UtilLoader
 import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
+import mx.arquidiocesis.eamxcommonutils.util.getViewModel
+import mx.arquidiocesis.eamxcommonutils.util.toast
 
 open class FragmentBase : Fragment(), EAMXHome {
 
@@ -47,7 +52,7 @@ open class FragmentBase : Fragment(), EAMXHome {
     ) {}
 
     protected fun msgGuest(msg: String = "poder acceder a este módulo", isMsg:Boolean = true): Boolean {
-        var guest = eamxcu_preferences.getData(
+        val guest = eamxcu_preferences.getData(
             EAMXEnumUser.GUEST.name,
             EAMXTypeObject.BOOLEAN_OBJECT
         ) as Boolean
@@ -56,9 +61,22 @@ open class FragmentBase : Fragment(), EAMXHome {
                 UtilAlert.Builder()
                     .setTitle(getString(R.string.title_dialog_warning))
                     .setMessage("Regístrate o inicia sesión para ${msg}.")
+                    .setTextButtonCancel("Ahora no").setTextButtonOk("Ir al registro")
+                    .setListener { action ->
+                        when (action) {
+                            UtilAlert.ACTION_ACCEPT -> {
+                                Log.e("ZOROASTRO","SE VA A LOGIN Y DE BUENAS")
+                                (requireActivity() as EAMXSignOut).signOut(true)
+                            }
+                            UtilAlert.ACTION_CANCEL -> {
+                            }
+                        }
+                    }
                     .build().show(childFragmentManager, "")
             }
         }
         return guest
     }
+
 }
+

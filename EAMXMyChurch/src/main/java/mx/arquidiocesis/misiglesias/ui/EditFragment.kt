@@ -3,6 +3,7 @@ package mx.arquidiocesis.misiglesias.ui
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
@@ -62,6 +63,8 @@ class EditFragment(val church: ChurchDetaillModel) : FragmentBase() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.e("Edit Fragment", "onViewCreated")
+
         if (church.id != null) {
             idIglesia = church.id
             model.value = church
@@ -150,15 +153,16 @@ class EditFragment(val church: ChurchDetaillModel) : FragmentBase() {
                 if(validaRedes(m)){
                     viewModel.editIglesias(model.value!!)
                 }else{
-                    error("La url de la red social no es correcta")
-                    val mBottomSheetFragment = BottomSheetEdit(viewModel, model)
-                    mBottomSheetFragment.show(
-                        requireActivity().supportFragmentManager,
-                        "BottomSheetEdit"
-                    )
+                    viewModel.editIglesias(model.value!!)
+                    //error("La url de la red social no es correcta")
+                    //val mBottomSheetFragment = BottomSheetEdit(viewModel, model)
+                    //mBottomSheetFragment.show(
+                    //requireActivity().supportFragmentManager,
+                    //"BottomSheetEdit"
+                    //)
                 }
             } ?: run {
-                error("Deve de asignar un padre")
+                error("Debe de asignar un padre")
                 val mBottomSheetFragment = BottomSheetEdit(viewModel, model)
                 mBottomSheetFragment.show(
                     requireActivity().supportFragmentManager,

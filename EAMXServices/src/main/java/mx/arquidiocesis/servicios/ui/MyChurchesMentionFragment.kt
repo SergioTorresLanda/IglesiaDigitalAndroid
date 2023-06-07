@@ -34,7 +34,7 @@ class MyChurchesMentionFragment : FragmentBase() {
         }
     }
     private var esSacerdote = ""
-private var instalacionNombre=""
+    private var instalacionNombre=""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,18 +52,11 @@ private var instalacionNombre=""
                 EAMXEnumUser.USER_PROFILE.name,
                 EAMXTypeObject.STRING_OBJECT
             ) as String
-        var userId = eamxcu_preferences.getData(
-            EAMXEnumUser.USER_ID.name,
-            EAMXTypeObject.INT_OBJECT
-        ) as Int
-
+        val userId = eamxcu_preferences.getData(EAMXEnumUser.USER_ID.name, EAMXTypeObject.INT_OBJECT) as Int
         initObservers()
         showLoader()
 
         (requireActivity() as EAMXHome).showToolbar(true, AppMyConstants.solicitarIntencion)
-
-       // if (userId == 0)
-         //   userId = 313
 
         binding.apply {
             etBusarIglesia.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
@@ -110,7 +103,6 @@ private var instalacionNombre=""
                     instalacionNombre =it.name
                     scheduleMention(it.id)
                 }
-
             }
             hideLoader()
         }

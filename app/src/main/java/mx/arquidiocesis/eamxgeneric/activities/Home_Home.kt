@@ -58,6 +58,7 @@ class Home_Home : EAMXBaseActivity(),
             TokenViewModel(MainRepository2(context = applicationContext))
         }
     }
+
     lateinit var mBinding: ActivityMainBinding
     lateinit var showDialogDescarte: () -> Boolean
     lateinit var tokenStr: String

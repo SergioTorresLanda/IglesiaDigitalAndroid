@@ -1,7 +1,5 @@
 package mx.arquidiocesis.misiglesias.adapters
 
-
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +8,7 @@ import mx.arquidiocesis.misiglesias.databinding.ItemServiceScheduleBinding
 import mx.arquidiocesis.misiglesias.model.HoraryModelItem
 import mx.arquidiocesis.misiglesias.utils.PublicFunctions
 
-
+//Horarios de misa edicion.
 class HorarioAdapter(
     val edit:Boolean=false,
     var schedules: MutableList<HoraryModelItem>,
@@ -56,12 +54,13 @@ class HorarioAdapter(
             item: HoraryModelItem,
             adapter: HorarioAdapter
         ) {
-            //binding.tvServicio.text = service.type.name
-            binding.tvDia.visibility = View.GONE
-
+            //binding.tvDia.visibility = View.GONE
+            binding.tvHorario.visibility = View.VISIBLE
+            binding.tvHorario.text = " "
             binding.tvServicio.text = PublicFunctions().obtenerDias(item.days)
+            binding.tvServicio.textSize = 16F
             if(!item.hour_start.isNullOrEmpty()){
-                binding.tvHorario.text = "${item.hour_start}  "
+                binding.tvDia.text = "${item.hour_start}"
             }
            /* if(!item.hour_end.isNullOrEmpty()){
                 binding.tvHorario.text = "${binding.tvHorario.text} ${item.hour_end} "

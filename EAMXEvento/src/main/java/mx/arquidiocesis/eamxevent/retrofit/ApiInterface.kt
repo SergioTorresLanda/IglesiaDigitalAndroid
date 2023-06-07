@@ -10,10 +10,19 @@ interface ApiInterface {
     @POST(WebConfig.EVENT_DINER)
     fun postCreateEventAsync(@Body event: Event): Deferred<Response<Void>>
 
+    @POST(WebConfig.EVENT_OTHER)
+    fun postCreateOtherAsync(@Body event: OtherEvent): Deferred<Response<Void>>
+
     @PUT(WebConfig.EVENT_DINER_PATH)
     fun putUpdateEventAsync(
         @Path("dinerId") dinerId: Int,
         @Body event: Event,
+    ): Deferred<Response<Void>>
+
+    @PUT(WebConfig.EVENT_OTHER_PATH)
+    fun putUpdateOtherAsync(
+        @Path("otherId") otherId: Int,
+        @Body event: OtherEvent,
     ): Deferred<Response<Void>>
 
     @GET(WebConfig.EVENT_DINER)
@@ -38,6 +47,11 @@ interface ApiInterface {
     @GET(WebConfig.EVENT_PANTRY_PATH)
     fun getPantryEventAsync(@Path("pantryId") pantryId: Int): Deferred<Response<List<Pantry>>>
 
+    @GET(WebConfig.EVENT_OTHER)
+    fun getOthersEventAsync(): Deferred<Response<List<OtherEvent>>>
+
+    @GET(WebConfig.EVENT_OTHER_PATH)
+    fun getOtherEventAsync(@Path("otherId") otherId: Int): Deferred<Response<List<OtherEvent>>>
 
     //Event_Donor
 

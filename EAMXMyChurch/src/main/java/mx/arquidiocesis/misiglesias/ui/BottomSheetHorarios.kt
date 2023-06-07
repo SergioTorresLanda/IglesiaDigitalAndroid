@@ -49,7 +49,6 @@ open class BottomSheetHorarios(
         horaryModelItem = HoraryModelItem(PublicFunctions().getDays(), "00:00", "00:00")
         iniciar()
         initObservers()
-
     }
 
     private fun iniciar() {
@@ -74,7 +73,6 @@ open class BottomSheetHorarios(
                     viewModel.getCatalogServicios()
 
                 }
-
                 iDir.apply {
                     tvItemTitulo.text = "Dirigido a*"
 
@@ -98,7 +96,6 @@ open class BottomSheetHorarios(
                 etDias.setOnClickListener {
                     getDays(dias)
                 }
-
                 ivCalendario.setOnClickListener {
                     getDays(dias)
                 }
@@ -115,14 +112,19 @@ open class BottomSheetHorarios(
                     etDias.setText(PublicFunctions().obtenerDias(it))
                 }
                 hora.observe(viewLifecycleOwner) {
-                    if (first) {
+                    if (IsMasse) {
                         horaryModelItem.hour_start = it
-                        getHora(hora)
-                        first = false
-                    } else {
-                        horaryModelItem.hour_end = it
-                        etHoras.setText("${horaryModelItem.hour_start} a ${horaryModelItem.hour_end} hrs")
-
+                        etHoras.setText("${horaryModelItem.hour_start} hrs.")
+                    }else{
+                        if (first) {
+                            horaryModelItem.hour_start = it
+                            etHoras.setText("${horaryModelItem.hour_start} hrs.")
+                            getHora(hora)
+                            first = false
+                        } else {
+                            horaryModelItem.hour_end = it
+                            etHoras.setText("${horaryModelItem.hour_start} a ${horaryModelItem.hour_end} hrs")
+                        }
                     }
                 }
             }
@@ -165,8 +167,6 @@ open class BottomSheetHorarios(
         viewModel.catalogoServiciosResponse.observe(viewLifecycleOwner) {
             binding.apply {
                 val list: ArrayList<String> = ArrayList()
-
-
                 list.add("Selecciona un servicio")
                 it.forEach {
                     list.add(it.name)
@@ -188,26 +188,16 @@ open class BottomSheetHorarios(
                             val item = it.get(position-1)
                             type = TypeModel(item.id, item.name)
                         }
-
                     }
 
                     override fun onNothingSelected(parent: AdapterView<*>?) {
-
                     }
                 })
-
-
             }
-
         }
         viewModel.errorResponse.observe(viewLifecycleOwner) {
             //hideLoader()
-            UtilAlert
-                .Builder()
-                .setTitle("Aviso")
-                .setMessage(it)
-                .build()
-                .show(childFragmentManager, "")
+            UtilAlert.Builder().setTitle("Aviso").setMessage(it).build().show(childFragmentManager, "")
         }
     }
     fun add():Boolean{
@@ -235,18 +225,14 @@ open class BottomSheetHorarios(
         return valido
     }
     fun agregada(mensaje: String) {
-
         Toast.makeText(requireContext(),mensaje, Toast.LENGTH_SHORT).show()
     }
 
     fun getDays(dias: MutableLiveData<MutableList<Day>>) {
-
         PublicFunctions().selectDayRange(requireContext(), dias)
-
     }
 
     fun getHora(hora: MutableLiveData<String>) {
-
         PublicFunctions().selectFirstHour(requireContext(), hora)
     }
 

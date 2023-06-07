@@ -29,6 +29,7 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
     //Get Event
     val responseAllDin = repositoryEvent.allDiner
     val responseAllPan = repositoryEvent.allPantry
+    val responseAllOther = repositoryEvent.allOther
     val responseAllDon = repositoryEvent.allDonor
     val responseAllVol = repositoryEvent.allVolunteer
 
@@ -70,6 +71,16 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
         }
     }
 
+    fun requestAllOther(otherId: Int) {
+        viewModelScope.launch {
+            val response = repositoryEvent.getAllOther(otherId)
+            if (response.sucess)
+                responseAllOther.postValue(response.data ?: listOf())
+            else
+                repositoryEvent.errorResponse.postValue(response.exception?.message)
+        }
+    }
+
     fun requestAllDonorbyDiner(dinerId: Int, type: String) {
         viewModelScope.launch {
             val response = repositoryEvent.getDonorbyDiner(dinerId, type)
@@ -96,36 +107,13 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
         }
 
     fun validateFormRegister(
-        name: String,
-        user_id: Int,
-        schedule: MutableList<Schedules>,
-        responsability: String,
-        email: String,
-        phone: String,
-        address: String,
-        longitude: String,
-        latitude: String,
-        amount: String,
-        requeriments: String,
-        volunteers: Int,
-        donors: ArrayList<Int> = ArrayList(),
-        status: Int,
-        id: Int? = 0,
-        zone_id: Int,
-
+        name: String, user_id: Int, schedule: MutableList<Schedules>, responsability: String, email: String,
+        phone: String, address: String, longitude: String, latitude: String, amount: String, requeriments: String,
+        volunteers: Int, donors: ArrayList<Int> = ArrayList(), status: Int, id: Int? = 0, zone_id: Int,
         ) {
-        val userId =
-            eamxcu_preferences.getData(EAMXEnumUser.USER_ID.name, EAMXTypeObject.INT_OBJECT) as Int
-        val email =
-            eamxcu_preferences.getData(
-                EAMXEnumUser.USER_EMAIL.name,
-                EAMXTypeObject.STRING_OBJECT
-            ) as String
-        val phone =
-            eamxcu_preferences.getData(
-                EAMXEnumUser.USER_PHONE.name,
-                EAMXTypeObject.STRING_OBJECT
-            ) as String
+        val userId = eamxcu_preferences.getData(EAMXEnumUser.USER_ID.name, EAMXTypeObject.INT_OBJECT) as Int
+        val email = eamxcu_preferences.getData(EAMXEnumUser.USER_EMAIL.name, EAMXTypeObject.STRING_OBJECT) as String
+        val phone = eamxcu_preferences.getData(EAMXEnumUser.USER_PHONE.name, EAMXTypeObject.STRING_OBJECT) as String
 
         val validateForm: HashMap<String, String> = HashMap()
         var descriptionValidate = ""
@@ -140,7 +128,6 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
                 validateForm[Constants.KEY_DAYS] = Constants.EMPTY_FIELD
         }
         // if ((schedule[0].days.filter { it.checked == true }).size == 0)
-
         if (schedule[0].hour_start == "00:00")
             validateForm[Constants.KEY_HOUR_FIRST] = Constants.EMPTY_FIELD
 
@@ -149,7 +136,6 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
 
         if (zone_id == 0)
             validateForm[Constants.KEY_ZONE] = Constants.EMPTY_FIELD
-
 
         if (responsability.isEmpty())
             validateForm[Constants.KEY_RESPONSABILITY] = Constants.EMPTY_FIELD
@@ -176,15 +162,13 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
         if (latitude.isEmpty())
             validateForm[Constants.KEY_LATITUDE] = Constants.EMPTY_FIELD
 
-        if (requeriments.isEmpty()) {
-            descriptionValidate =
-                "Presentarse puntual para garantizar el servicio. No asistir en estado de ebriedad o bajo la influencia de estupefacientes. Seguir las indicaciones de los administradores en todo momento. Actitud de respeto y cordialidad con el resto de los participantes."
+        descriptionValidate = if (requeriments.isEmpty()) {
+            "Presentarse puntual para garantizar el servicio. No asistir en estado de ebriedad o bajo la influencia de estupefacientes. Seguir las indicaciones de los administradores en todo momento. Actitud de respeto y cordialidad con el resto de los participantes."
         } else {
-            descriptionValidate = requeriments
+            requeriments
         }
 
         validateForm.toString().log()
-        // if (validateForm.size > 0) {
         if (validateForm.size > 0) {
             this.validateForm.value = validateForm
         } else {
@@ -373,6 +357,49 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
                     repositoryEvent.saveEventPantry(eventRegisterModel)
                 } else {
                     id?.let {repositoryEvent.UpdateEventPantry(it, eventRegisterModel) }
+                }
+            }
+        }
+    }
+
+    fun validateFormRegisterOther(activity:OtherEvent) {
+        val validateForm: HashMap<String, String> = HashMap()
+        var descriptionValidate = ""
+
+        val filter = activity.horarios!![0].days?.filter { it.checked }
+
+        if (filter != null) {
+            if (filter.isEmpty())
+                validateForm[Constants.KEY_DAYS] = Constants.EMPTY_FIELD
+        }
+
+        if (activity.horarios!![0].hour_start == "00:00")
+            validateForm[Constants.KEY_HOUR_FIRST] = Constants.EMPTY_FIELD
+
+        if (activity.horarios!![0].hour_end == "00:00")
+            validateForm[Constants.KEY_HOUR_END] = Constants.EMPTY_FIELD
+
+        if (activity.responsable=="")
+            validateForm[Constants.KEY_RESPONSABILITY] = Constants.EMPTY_FIELD
+
+        if (activity.direccion=="")
+            validateForm[Constants.KEY_ADDRESS] = Constants.EMPTY_FIELD
+
+        //if (activity.descripcion=="")
+            //validateForm[Constants.KEY_ADDRESS] = Constants.EMPTY_FIELD
+
+        validateForm.toString().log()
+        if (validateForm.size > 0) {
+            this.validateForm.value = validateForm
+        } else {
+
+            this.showLoaderView.value = true
+
+            GlobalScope.launch {
+                if (activity.eventoId == 0) {
+                    repositoryEvent.saveEventOther(activity)
+                } else {
+                    activity.eventoId?.let { repositoryEvent.updateEventOther(it, activity) }
                 }
             }
         }

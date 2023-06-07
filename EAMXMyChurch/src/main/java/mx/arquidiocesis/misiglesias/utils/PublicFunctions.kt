@@ -31,15 +31,10 @@ class PublicFunctions {
 
         picker.show((context as AppCompatActivity).supportFragmentManager, "tag");
 
-
         picker.addOnPositiveButtonClickListener {
-
             horarios.value = "${input(picker.hour)}:${input(picker.minute)}"
-
-
         }
         picker.addOnDismissListener {
-
         }
 
     }
@@ -80,7 +75,6 @@ class PublicFunctions {
             Day(false, 5, "Viernes"),
             Day(false, 6, "Sábado")
         )
-
     }
 
     fun getUserId(): Int {
@@ -102,7 +96,6 @@ class PublicFunctions {
         } else {
             return entero + 1.0f
         }
-
     }
 
     fun obtenerDias(dias: List<Day>): String {
@@ -240,7 +233,7 @@ class PublicFunctions {
 
     fun selectDayRange(context: Context, days: MutableLiveData<MutableList<Day>>) {
         val builder = AlertDialog.Builder(context)
-        builder.setTitle("Selecciona los dias")
+        builder.setTitle("Selecciona los días")
         var dias = mutableListOf<String>()
         var checkLits = mutableListOf<Boolean>()
         days.value!!.forEach {

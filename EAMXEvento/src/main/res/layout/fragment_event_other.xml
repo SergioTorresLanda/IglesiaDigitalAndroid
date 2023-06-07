@@ -2,14 +2,14 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.EventPantriesFragment">
+    tools:context=".ui.EventOtherFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <RelativeLayout
-            android:id="@+id/lInicialDespensa"
+            android:id="@+id/lInicialOther"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:ignore="MissingConstraints">
@@ -21,29 +21,6 @@
                 android:layout_marginTop="@dimen/margin_5"
                 android:orientation="horizontal"
                 android:visibility="visible">
-
-                <TextView
-                    android:id="@+id/tvComedores"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/tab"
-                    android:fontFamily="@font/spro_text_regular"
-                    android:paddingBottom="@dimen/margin_top_15"
-                    android:text="Comedores"
-                    android:visibility="gone"
-                    android:textColor="#192a73"
-                    android:textSize="@dimen/size_20"
-                    android:textStyle="bold" />
-                <TextView
-                    android:id="@+id/tvDespensas"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_top_40"
-                    android:fontFamily="@font/spro_text_regular"
-                    android:text="Despensas"
-                    android:visibility="gone"
-                    android:textColor="@color/gray"
-                    android:textSize="@dimen/size_20" />
 
                 <Button
                     android:id="@+id/btnComedoresActDespensa"
@@ -92,7 +69,7 @@
             android:layout_marginEnd="20dp" />
 
         <LinearLayout
-            android:id="@+id/ll_contenido_despensas"
+            android:id="@+id/ll_contenido_other"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_20"
@@ -101,10 +78,10 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/lInicialDespensa">
+            app:layout_constraintTop_toBottomOf="@id/lInicialOther">
 
             <LinearLayout
-                android:id="@+id/cwc_add_des"
+                android:id="@+id/cwc_add_other"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_10"
@@ -114,7 +91,7 @@
                 app:layout_constraintTop_toBottomOf="parent">
 
                 <TextView
-                    android:id="@+id/tvNewDespensa"
+                    android:id="@+id/tvNewOther"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -123,7 +100,7 @@
                     android:fontFamily="@font/open_sans_bold"
                     android:letterSpacing="0.01"
                     android:lineSpacingExtra="8sp"
-                    android:text="Crear despensa"
+                    android:text="Crear actividad"
                     android:textColor="#1C75BB"
                     android:textSize="@dimen/size_20"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -131,7 +108,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/llParticipacionDes"
+                android:id="@+id/llParticipacion"
                 style="@style/ll_row_primary"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
@@ -154,20 +131,20 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/lZoneDes"
+                android:id="@+id/lTipo"
                 style="@style/ll_row_primary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/llParticipacionDes">
 
                 <TextView
-                    android:id="@+id/tvZonaDetailDes"
+                    android:id="@+id/tvTipo"
                     style="@style/tv_label_primary"
-                    android:text="Filtrar por zona"
+                    android:text="¿Cómo quieres participar?"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Spinner
-                    android:id="@+id/spZoneDes"
+                    android:id="@+id/spTipo"
                     style="@style/spinner"
                     android:entries="@array/delegations"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -176,7 +153,7 @@
             </LinearLayout>
 
             <View
-                android:id="@+id/viewTopDes"
+                android:id="@+id/viewTop"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="@dimen/margin_20"
@@ -189,7 +166,7 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvDespensas"
+            android:id="@+id/rvOtros"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="3dp"
@@ -198,8 +175,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ll_contenido_despensas"
-            tools:listitem="@layout/item_event_detail_pantry" />
+            app:layout_constraintTop_toBottomOf="@+id/ll_contenido_other"
+            tools:listitem="@layout/item_event_other" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

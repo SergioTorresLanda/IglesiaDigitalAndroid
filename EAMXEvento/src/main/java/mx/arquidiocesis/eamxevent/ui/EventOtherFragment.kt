@@ -8,6 +8,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_event_detail.*
+import kotlinx.android.synthetic.main.fragment_event_other.tvNewOther
 import kotlinx.android.synthetic.main.fragment_event_pantries.*
 import mx.arquidiocesis.eamxcommonutils.application.AppMyConstants
 import mx.arquidiocesis.eamxcommonutils.base.FragmentBase
@@ -19,30 +20,30 @@ import mx.arquidiocesis.eamxcommonutils.util.EAMXFirebaseManager
 import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
 import mx.arquidiocesis.eamxcommonutils.util.navigation.NavigationFragment
 import mx.arquidiocesis.eamxevent.R
+import mx.arquidiocesis.eamxevent.adapter.OtherAllAdapter
 import mx.arquidiocesis.eamxevent.adapter.PantryAllAdapter
+import mx.arquidiocesis.eamxevent.databinding.FragmentEventOtherBinding
 import mx.arquidiocesis.eamxevent.databinding.FragmentEventPantriesBinding
+import mx.arquidiocesis.eamxevent.model.OtherEvent
 import mx.arquidiocesis.eamxevent.model.Pantry
 import mx.arquidiocesis.eamxevent.model.ViewModelEvent
-import mx.arquidiocesis.eamxevent.model.enum.Delegations
 import mx.arquidiocesis.eamxevent.model.enum.Participation
 import mx.arquidiocesis.eamxevent.repository.RepositoryEvent
 
-class EventPantriesFragment : FragmentBase() {
+class EventOtherFragment : FragmentBase() {
 
-    lateinit var binding: FragmentEventPantriesBinding
+    lateinit var binding: FragmentEventOtherBinding
     lateinit var viewmodel: ViewModelEvent
-    lateinit var adapterPantry: PantryAllAdapter
-    private var zona: Int = 0
+    lateinit var adapterOther: OtherAllAdapter
     private var type: Int = 0
     private var participation: Array<Participation> = Participation.values()
-    private var delegations: Array<Delegations> = Delegations.values()
     private var init = true
-    private var pantry_id = ""
+    private var event_id = ""
     private var userId = 0
 
     companion object {
-        fun newInstance(callBack: EAMXHome): EventPantriesFragment {
-            var fragment = EventPantriesFragment()
+        fun newInstance(callBack: EAMXHome): EventOtherFragment {
+            var fragment = EventOtherFragment()
             fragment.callBack = callBack
             return fragment
         }
@@ -54,7 +55,7 @@ class EventPantriesFragment : FragmentBase() {
     ): View? {
         // Inflate the layout for this fragment
         viewmodel = ViewModelEvent(RepositoryEvent(requireContext()))
-        binding = FragmentEventPantriesBinding.inflate(inflater, container, false)
+        binding = FragmentEventOtherBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -62,7 +63,7 @@ class EventPantriesFragment : FragmentBase() {
         super.onViewCreated(view, savedInstanceState)
         activity?.let {
             EAMXFirebaseManager(it).setLogEvent("screen_view", Bundle().apply {
-                putString("screen_class", "Home_ActividadesDespensas")
+                putString("screen_class", "Home_ActividadesOther")
             })
         }
         callBack.showToolbar(true, AppMyConstants.evento)
@@ -77,43 +78,41 @@ class EventPantriesFragment : FragmentBase() {
     }
 
     private fun initObservers() {
-        viewmodel.responseAllPan.observe(viewLifecycleOwner) { item ->
+        viewmodel.responseAllOther.observe(viewLifecycleOwner) { item ->
             if (item.isNotEmpty()) {
-                if (item[0].id != null) {
-
-                    if (init) { //Segunda vez
+                if (item[0].eventoId != null) {
+                    if (init) {
                         item.forEach {
-                            if (it.user_id == userId) {
-                                pantry_id = it.id.toString()
-                                tvNewDespensa.text = AppMyConstants.updatePantry
+                            if (it.userId == userId) {
+                                event_id = it.eventoId.toString()
+                                tvNewOther.text = AppMyConstants.updateOther
                                 return@forEach
                             }
                         }
                     }
 
                     init = false
-                    val despensas = item.filter {
-                        if (zona == 0) it.status == 1 else it.zone_id == zona && it.status == 1
+                    val other = item.filter {
+                        it.status == 1
                     }
-                    if (despensas.size > 0) {
-                        adapterPantry.items.clear()
-                        adapterPantry.notifyDataSetChanged()
-
-                        adapterPantry.items.addAll(despensas)
-                        adapterPantry.notifyDataSetChanged()
-                        val prevSize = adapterPantry.items.size
+                    if (other.isNotEmpty()) {
+                        adapterOther.items.clear()
+                        adapterOther.notifyDataSetChanged()
+                        adapterOther.items.addAll(other)
+                        adapterOther.notifyDataSetChanged()
+                        val prevSize = adapterOther.items.size
                         if (prevSize != 0) {
-                            adapterPantry.notifyItemRangeInserted(
+                            adapterOther.notifyItemRangeInserted(
                                 prevSize,
-                                adapterPantry.items.count() - 1
+                                adapterOther.items.count() - 1
                             )
                         }
                     }
                 }
             }
-            if (adapterPantry.items.size == 0) {
-                adapterPantry.items.addAll(arrayListOf(Pantry()))
-                adapterPantry.notifyDataSetChanged()
+            if (adapterOther.items.size == 0) {
+                adapterOther.items.addAll(arrayListOf(OtherEvent()))
+                adapterOther.notifyDataSetChanged()
             }
             hideLoader()
         }
@@ -131,14 +130,14 @@ class EventPantriesFragment : FragmentBase() {
     }
 
     private fun initButtons() {
-        tvNewDespensa.setOnClickListener {
+        tvNewOther.setOnClickListener {
             if (!init) {
                 NavigationFragment.Builder()
                     .setActivity(requireActivity())
                     .setView(requireView().parent as ViewGroup)
-                    .setFragment(EventPantriesDetailFragment.newInstance(callBack) as Fragment)
+                    .setFragment(EventOtherDetailFragment.newInstance(callBack) as Fragment)
                     .setBundle(Bundle().apply {
-                        putString("pantry_id", pantry_id)
+                        putString("event_id", event_id)
                     })
                     .build().nextWithReplace()
             }
@@ -157,9 +156,9 @@ class EventPantriesFragment : FragmentBase() {
                 position: Int,
                 id: Long,
             ) {
-                zona = delegations[position].pos
-                println(zona)
-                getAllPantries()
+                //zona = delegations[position].pos
+                //println(zona)
+                getAllOthers()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -190,15 +189,12 @@ class EventPantriesFragment : FragmentBase() {
         }
     }
 
-    fun getAllPantries() {
+    fun getAllOthers() {
         showLoader()
-        adapterPantry =
-            PantryAllAdapter(requireContext(), type)
-        adapterPantry.items = arrayListOf()
+        adapterOther =
+            OtherAllAdapter(requireContext(), type)
+        adapterOther.items = arrayListOf()
         setupRecyclerView()
-        //click()
-        viewmodel.requestAllPantry(0)
+        viewmodel.requestAllOther(0)
     }
-
-
 }

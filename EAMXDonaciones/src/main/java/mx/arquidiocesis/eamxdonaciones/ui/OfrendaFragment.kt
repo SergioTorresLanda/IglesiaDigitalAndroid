@@ -44,7 +44,7 @@ class OfrendaFragment : FragmentBase() {
                 putString("screen_class", "Home_MiOfrenda")
             })
         }
-        var adapter = OfrendaViewPagerAdapter(this)
+        val adapter = OfrendaViewPagerAdapter(this)
         binding.vpOfrenda.isUserInputEnabled = false;
         binding.vpOfrenda.adapter = adapter
         TabLayoutMediator(binding.tlOfrenda, binding.vpOfrenda) { tab, position ->

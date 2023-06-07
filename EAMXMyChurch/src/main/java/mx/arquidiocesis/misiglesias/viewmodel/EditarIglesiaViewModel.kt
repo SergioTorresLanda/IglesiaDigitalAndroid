@@ -43,7 +43,6 @@ class EditarIglesiaViewModel(private val repository: Repository) : ViewModel() {
             jsonRegistry.addProperty("stream", item.stream)
         }else{
             jsonRegistry.remove("stream")
-
         }
         if(!item.website.isNullOrEmpty()){
             jsonRegistry.addProperty("website", item.website)

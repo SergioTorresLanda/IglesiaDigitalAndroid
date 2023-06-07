@@ -41,12 +41,7 @@ class CustomMontoSpinner : LinearLayout {
                 override fun onNothingSelected(parent: AdapterView<*>?) {
                 }
 
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long,
-                ) {
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long, ) {
                     if (position + 1 == adapterSpinnerMonto.count) {
                         llMonto.visibility = View.VISIBLE
                         etMonto.addTextChangedListener(object : TextWatcher {
@@ -81,20 +76,10 @@ class CustomMontoSpinner : LinearLayout {
                                 etMonto.addTextChangedListener(this)
                             }
 
-                            override fun beforeTextChanged(
-                                s: CharSequence?,
-                                start: Int,
-                                count: Int,
-                                after: Int
-                            ) {
+                            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                             }
 
-                            override fun onTextChanged(
-                                s: CharSequence?,
-                                start: Int,
-                                before: Int,
-                                count: Int
-                            ) {
+                            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                             }
                         })
 

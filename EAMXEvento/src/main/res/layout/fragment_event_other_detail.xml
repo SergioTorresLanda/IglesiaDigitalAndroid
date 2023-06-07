@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".ui.EventDetailFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp">
+
+            <LinearLayout
+                android:id="@+id/llBotones"
+                android:layout_width="wrap_content"
+                style="@style/ll_fill_btns"
+                android:visibility="visible"
+                tools:ignore="MissingConstraints">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnParticipantes"
+                    style="@style/btn_primary"
+                    android:layout_width="wrap_content"
+                    android:text="  Lista de participantes  " />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lEstatus"
+                style="@style/ll_row_secondary"
+                android:orientation="horizontal"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginTop="25dp"
+                app:layout_constraintTop_toBottomOf="@+id/llBotones"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/etEstatus"
+                    android:layout_width="0dp"
+                    android:layout_weight ="1"
+                    style="@style/tv_label_secondary"
+                    android:layout_height="wrap_content"
+                    android:text="Estatus" />
+                <LinearLayout
+                    android:id="@+id/x"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:layout_height="wrap_content">
+                <Switch
+                    android:id="@+id/switchStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
+                <LinearLayout
+                    android:id="@+id/lStatusDiner"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    app:layout_goneMarginTop="5dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/lInactivo"
+                        android:layout_width="0dp"
+                        android:layout_weight ="1.3"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/open_sans_semi_bold"
+                        android:text="Inactivo  "
+                        android:textColor="@color/primaryColor"
+                        android:textSize="@dimen/size_12" />
+
+                    <TextView
+                        android:id="@+id/lActivo"
+                        android:layout_width="0dp"
+                        android:layout_weight ="1"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/open_sans_semi_bold"
+                        android:text="Activo"
+                        android:textColor="@color/primaryColor"
+                        android:textSize="@dimen/size_12" />
+                </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lTipo"
+                style="@style/ll_row_secondary"
+                android:layout_marginTop="25dp"
+                app:layout_constraintTop_toBottomOf="@+id/lEstatus"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvTipoC"
+                    style="@style/tv_label_secondary"
+                    android:text="Tipo de actividad" />
+
+                <Spinner
+                    android:id="@+id/spTipoOther"
+                    style="@style/spinner"
+                 />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lNombreC"
+                style="@style/ll_row_secondary"
+                android:layout_marginTop="25dp"
+                app:layout_constraintTop_toBottomOf="@+id/lTipo"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvNombreC"
+                    style="@style/tv_label_secondary"
+                    android:text="Nombre de la actividad" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilNombreC"
+                    style="@style/til_material_secondary">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etNombreC"
+                        style="@style/tiet_material_secondary"
+                        android:digits="@string/digits_only_letters"
+                        android:imeOptions="actionNext"
+                        android:inputType="textCapWords|textAutoCorrect|textPersonName"
+                        android:maxLength="1500"
+                        android:singleLine="true" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lldireccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/lNombreC">
+
+                <LinearLayout
+                    style="@style/ll_row_secondary"
+                    android:layout_weight="1"
+                    tools:ignore="MissingConstraints">
+
+                    <TextView
+                        android:id="@+id/tvlabelAdrress"
+                        style="@style/tv_label_secondary"
+                        android:text="Dirección" />
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etgetAddressPantries"
+                        style="@style/tiet_material_secondary"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:padding="5dp"
+                        android:background="@drawable/border"
+                        android:imeOptions="actionNext"
+                        android:maxLength="250"
+                        android:singleLine="false" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ll_row_secondary"
+                    android:layout_weight="2"
+                    android:gravity="center">
+
+                    <TextView style="@style/tv_label_secondary" />
+
+                    <TextView
+                        android:id="@+id/tvAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableTop="@drawable/ic_church_map"
+                        android:fontFamily="@font/open_sans_semi_bold"
+                        android:text="Actualizar"
+                        android:textColor="@color/primaryColor"
+                        android:textSize="@dimen/size_16" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lDays"
+                style="@style/ll_row_secondary"
+                app:layout_constraintTop_toBottomOf="@+id/lldireccion"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvDays"
+                    style="@style/tv_label_secondary"
+                    android:text="Días disponibles"
+                    app:layout_constraintTop_toBottomOf="@id/lZone" />
+
+                <include
+                    android:id="@+id/iDays"
+                    layout="@layout/item_include_days"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDays" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etEmail"
+                    style="@style/tiet_material_secondary"
+                    android:digits="@string/digits_only_email"
+                    android:imeOptions="actionNext"
+                    android:inputType="textCapWords|textAutoCorrect|textPersonName"
+                    android:maxLength="50"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/labelHorarios"
+                style="@style/ll_row_secondary"
+                app:layout_constraintTop_toBottomOf="@+id/lDays"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvHorarios"
+                    style="@style/tv_label_secondary"
+                    android:text="Horarios" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llabelHorarios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_2"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/labelHorarios">
+
+                <TextView
+                    style="@style/tv_label_secondary"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Horario de apertura"
+                    android:textSize="@dimen/size_16" />
+
+                <TextView
+                    style="@style/tv_label_secondary"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Horario de cierre"
+                    android:textSize="@dimen/size_16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lHorario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llabelHorarios">
+
+                <TextView
+                    android:id="@+id/tvFirstH"
+                    style="@style/tv_time_secondary"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tvEndH"
+                    style="@style/tv_time_secondary"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lResponsable"
+                style="@style/ll_row_secondary"
+                app:layout_constraintTop_toBottomOf="@+id/lHorario"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvResponsable"
+                    style="@style/tv_label_secondary"
+                    android:text="Responsable" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilResponsable"
+                    style="@style/til_material_secondary">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etResponsable"
+                        style="@style/tiet_material_secondary"
+                        android:digits="@string/digits_only_letters"
+                        android:imeOptions="actionNext"
+                        android:inputType="textCapWords|textAutoCorrect|textPersonName"
+                        android:maxLength="1500"
+                        android:singleLine="true" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lEmail"
+                style="@style/ll_row_secondary"
+                app:layout_constraintTop_toBottomOf="@+id/lResponsable"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvEmail"
+                    style="@style/tv_label_secondary"
+                    android:text="Correo"
+                    app:layout_constraintTop_toBottomOf="@+id/cwcDays" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilEmail"
+                    style="@style/til_material_secondary">
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lPhone"
+                style="@style/ll_row_secondary"
+                app:layout_constraintTop_toBottomOf="@+id/lEmail"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/labelPhone"
+                    style="@style/tv_label_secondary"
+                    android:text="Teléfono" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilNumberPhone"
+                    style="@style/til_material_secondary">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etNumberPhone"
+                        style="@style/tiet_material_secondary"
+                        android:digits="@string/digits_only_number_phone"
+                        android:imeOptions="actionDone"
+                        android:inputType="phone"
+                        android:maxLength="10"
+                        android:singleLine="true" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lCostoR"
+                style="@style/ll_row_secondary"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/lPhone"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvlabelMonto"
+                    style="@style/tv_label_secondary"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="Costo de recuperación" />
+
+                <Switch
+                    android:id="@+id/switchCobro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="50dp"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lMonto"
+                style="@style/ll_row_secondary"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/lCostoR"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvMonto"
+                    style="@style/tv_label_secondary"
+                    android:text="Precio: $" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilMonto"
+                    style="@style/til_material_secondary">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etMonto"
+                        style="@style/tiet_material_secondary"
+                        android:digits="@string/digits_only_number_phone"
+                        android:drawableStart="@drawable/ic_cost"
+                        android:imeOptions="actionDone"
+                        android:inputType="phone"
+                        android:maxLength="4"
+                        android:singleLine="true" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lDescripcion"
+                style="@style/ll_row_secondary"
+                app:layout_constraintTop_toBottomOf="@+id/lMonto"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvDescripcion"
+                    style="@style/tv_label_secondary"
+                    android:text="Descripcion de la actividad" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/descripcionLbl"
+                    style="@style/tiet_material_secondary"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:padding="5dp"
+                    android:background="@drawable/border"
+                    android:imeOptions="actionNext"
+                    android:maxLength="250"
+                    android:singleLine="false" />
+                <TextView
+                    android:id="@+id/tvDescripcionConteo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:text="0/500"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="@dimen/size_12" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lPublico"
+                style="@style/ll_row_secondary"
+                app:layout_constraintTop_toBottomOf="@+id/lDescripcion"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvPublico"
+                    style="@style/tv_label_secondary"
+                    android:text="Público al que va dirigido" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/publicoLbl"
+                    style="@style/tiet_material_secondary"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:padding="5dp"
+                    android:background="@drawable/border"
+                    android:imeOptions="actionNext"
+                    android:maxLength="250"
+                    android:singleLine="false" />
+                <TextView
+                    android:id="@+id/tvPublicoConteo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:text="0/500"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="@dimen/size_12" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/lDonativos"
+                style="@style/ll_row_secondary"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/lPublico"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvDonativos"
+                    style="@style/tv_label_secondary"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="¿Requiere donativos?" />
+
+                <Switch
+                    android:id="@+id/switchDons"
+                    android:layout_width="wrap_content"
+                    android:layout_marginEnd="50dp"
+                    android:layout_height="wrap_content"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llDonativos"
+                style="@style/ll_row_secondary"
+                app:layout_constraintTop_toBottomOf="@+id/lDonativos"
+                tools:ignore="MissingConstraints">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/donativosLbl"
+                    style="@style/tiet_material_secondary"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:padding="5dp"
+                    android:background="@drawable/border"
+                    android:imeOptions="actionNext"
+                    android:maxLength="250"
+                    android:singleLine="false" />
+                <TextView
+                    android:id="@+id/tvDonsConteo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:text="0/500"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="@dimen/size_12" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/lVoluntarios"
+                style="@style/ll_row_secondary"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/llDonativos"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvVoluntarios"
+                    style="@style/tv_label_secondary"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="¿Requiere voluntarios?" />
+
+                <Switch
+                    android:id="@+id/switchVols"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="50dp"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llVoluntarios"
+                style="@style/ll_row_secondary"
+                app:layout_constraintTop_toBottomOf="@+id/lVoluntarios"
+                tools:ignore="MissingConstraints">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/voluntariosLbl"
+                    style="@style/tiet_material_secondary"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:padding="5dp"
+                    android:background="@drawable/border"
+                    android:imeOptions="actionNext"
+                    android:maxLength="250"
+                    android:singleLine="false" />
+                <TextView
+                    android:id="@+id/tvVolunsConteo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:text="0/500"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="@dimen/size_12" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/lbtnGuardar"
+                style="@style/ll_fill_btns"
+                android:layout_marginTop="@dimen/margin_24"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/llVoluntarios"
+                tools:ignore="MissingConstraints">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnGuardar"
+                    style="@style/btn_primary"
+                    android:layout_width="match_parent"
+                    android:text="Guardar" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

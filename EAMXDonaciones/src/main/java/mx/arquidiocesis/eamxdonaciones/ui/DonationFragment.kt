@@ -85,7 +85,6 @@ class DonationFragment(val item: DonationModel) : FragmentBase() {
                 }
             }
 
-
             btnPublicar.setOnClickListener {
                 if (rbSi.isChecked && addBinding) {
                     if (fragment.valida()) {
@@ -94,12 +93,9 @@ class DonationFragment(val item: DonationModel) : FragmentBase() {
                     }
                 } else {
                     if (validaMonto()) {
-                        //chargeFragment(setLink())
                         changeFragment(setLink())
                     }
-
                 }
-
             }
             btnCancel.setOnClickListener {
                 requireActivity().onBackPressed()
@@ -218,8 +214,7 @@ class DonationFragment(val item: DonationModel) : FragmentBase() {
             if (customSpinner.spMonto.selectedItemPosition <= 0) {
                 error("Seleccione un monto.")
                 return false
-            } else if (customSpinner.spMonto.selectedItemPosition == 8 && customSpinner.etMonto.text.toString()
-                    .isEmpty()
+            } else if (customSpinner.spMonto.selectedItemPosition == 8 && customSpinner.etMonto.text.toString().isEmpty()
             ) {
                 error("Seleccione un monto.")
                 return false
@@ -341,12 +336,12 @@ class DonationFragment(val item: DonationModel) : FragmentBase() {
 
     private fun getAmount(): String? {
         if (validaMonto()) {
-            if (binding.customSpinner.spMonto.selectedItemPosition == 8 && binding.customSpinner.etMonto.text.toString()
-                    .isNotEmpty()
-            ) {
-                amount = "$" + binding.customSpinner.etMonto.text.toString() + ".00"
-            } else {
-                amount = binding.customSpinner.spMonto.selectedItem.toString()
+            amount = if (binding.customSpinner.spMonto.selectedItemPosition == 8
+                && binding.customSpinner.etMonto.text.toString().isNotEmpty()
+            ){
+                "$" + binding.customSpinner.etMonto.text.toString() + ".00"
+            }else{
+                binding.customSpinner.spMonto.selectedItem.toString()
             }
         }
         return amount

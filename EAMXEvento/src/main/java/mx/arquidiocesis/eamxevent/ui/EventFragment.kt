@@ -181,6 +181,14 @@ class EventFragment : FragmentBase() {
                 .build().nextWithReplace()
         }
 
+        btnOtrosEvento.setOnClickListener {
+            NavigationFragment.Builder()
+                .setActivity(requireActivity())
+                .setView(requireView().parent as ViewGroup)
+                .setFragment(EventOtherFragment.newInstance(callBack) as Fragment)
+                .build().nextWithReplace()
+        }
+
         spZone.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>,

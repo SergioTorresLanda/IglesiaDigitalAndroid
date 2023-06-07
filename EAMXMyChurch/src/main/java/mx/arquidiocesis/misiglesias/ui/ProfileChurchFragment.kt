@@ -1,6 +1,7 @@
 package mx.arquidiocesis.misiglesias.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,13 +38,12 @@ class ProfileChurchFragment : FragmentBase() {
         callBack.showToolbar(true, AppMyConstants.miIglesia)
 
         val dataView = loadDataView();
-
         val fragment = MisIglesiasFragment.newInstance(requireActivity() as EAMXHome)
         val bundle = Bundle().apply {
             putParcelable(EAMXEnumUser.VIEW.name, dataView)
         }
         fragment.arguments = bundle
-
+        Log.e("ProfileChurchFragment", "onViewCreated")
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frameProfile, fragment)
         transaction.disallowAddToBackStack()
@@ -58,7 +58,6 @@ class ProfileChurchFragment : FragmentBase() {
     private fun loadDataView() : DataForView {
 
         val userIsAdmin = userAllowAccessAsAdmin(EAMXEnumUser.USER_PERMISSION_CHURCH.name)
-
         val userId = eamxcu_preferences.getData(
             EAMXEnumUser.USER_ID.name,
             EAMXTypeObject.INT_OBJECT) as Int

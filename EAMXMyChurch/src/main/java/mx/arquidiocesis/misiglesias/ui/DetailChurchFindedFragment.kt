@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -83,6 +84,8 @@ class DetailChurchFindedFragment : FragmentBase() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.e("DetailChurchFinded", "onViewCreated")
+
         activity?.let {
             EAMXFirebaseManager(it).setLogEvent("screen_view", Bundle().apply {
                 putString("screen_class", "MiIglesia_InfoIglesia")
@@ -201,14 +204,14 @@ class DetailChurchFindedFragment : FragmentBase() {
                     tvDireccionIglesia.text = it.address
                 }
                 if (!it.schedules.isNullOrEmpty()) {
-                    lnlHora.visibility = View.VISIBLE
+                    lnlHora!!.visibility = View.VISIBLE
                     val item = it.schedules!!.first()
                     tvHT.text = "Horario de templo: "
                     tvHorarioTemplo.text =
                         "${PublicFunctions().obtenerDias(item.days)} de\n ${item.hour_start} a ${item.hour_end} \n"
 
                 } else {
-                    lnlHora.visibility = View.VISIBLE
+                    lnlHora!!.visibility = View.VISIBLE
                     tvHT.text = "Horario de templo: "
                     tvHorarioTemplo.text =
                         "No disponible"

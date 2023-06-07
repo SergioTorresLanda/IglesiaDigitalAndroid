@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cwcEvent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_15"
+        android:layout_marginEnd="@dimen/margin_15">
+
+        <View
+            android:id="@+id/viewTop"
+            style="@style/v_row_item"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvVacio"
+            style="@style/tv_row_vacio_item"
+            android:text="No se encontraron actividades en curso."
+            android:visibility="gone"
+            app:layout_constraintBaseline_toBaselineOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/viewTop" />
+
+        <LinearLayout
+            android:id="@+id/lNombreF"
+            style="@style/ll_title_item"
+            app:layout_constraintBaseline_toBaselineOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/viewTop">
+
+            <TextView
+                android:id="@+id/tvTipoF"
+                style="@style/tv_title_item"
+                android:layout_weight=".9"
+                android:autoSizeTextType="uniform"
+                android:maxLines="1"
+                android:layout_marginEnd="@dimen/margin_10"
+                android:text="Tipo de actividad"
+                app:layout_constraintTop_toBottomOf="@id/parent" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnOpciones"
+                style="@style/btn_item_material"
+                android:layout_weight=".0001"
+                android:text="Donar"
+                android:textAppearance="@style/TextAppearance.AppCompat" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvNombre"
+            style="@style/tv_title_item"
+            android:layout_weight=".9"
+            android:autoSizeTextType="uniform"
+            android:maxLines="1"
+            android:layout_marginEnd="@dimen/margin_10"
+            android:layout_marginStart="10dp"
+            android:text="Nombre de la actividad"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lNombreF" />
+
+        <LinearLayout
+            android:id="@+id/lDireccionF"
+            style="@style/ll_row_item"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNombre">
+
+            <ImageView
+                android:id="@+id/ivAddress"
+                style="@style/im_icon_item"
+                android:src="@drawable/icono_igle" />
+
+            <TextView
+                android:id="@+id/tvDireccionF"
+                style="@style/tv_paragraph_item"
+                android:text="Periferico Sur"
+                app:layout_constraintTop_toBottomOf="parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lPrecioF"
+            style="@style/ll_row_item"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lDireccionF">
+
+            <ImageView
+                android:id="@+id/ivPrecio"
+                style="@style/im_icon_item"
+                android:src="@drawable/icons_color_96" />
+
+            <TextView
+                android:id="@+id/labelPrecioF"
+                style="@style/tv_paragraph_item"
+                android:layout_width="wrap_content"
+                android:lines="1"
+                android:text="Aportación de $"
+                app:layout_constraintTop_toBottomOf="@id/parent" />
+
+            <TextView
+                android:id="@+id/tvPrecioF"
+                style="@style/tv_paragraph_item"
+                android:layout_width="wrap_content"
+                android:layout_marginStart="0dp"
+                android:lines="1"
+                android:text="30"
+                app:layout_constraintStart_toStartOf="@id/labelPrecioF"
+                app:layout_constraintTop_toBottomOf="@id/parent" />
+
+            <TextView
+                android:id="@+id/labelPesos"
+                style="@style/tv_paragraph_item"
+                android:layout_marginStart="0dp"
+                android:lines="1"
+                android:text=" pesos"
+                app:layout_constraintTop_toBottomOf="@id/parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lHorarioF"
+            style="@style/ll_row_item"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lPrecioF">
+
+            <ImageView
+                android:id="@+id/ivHorario"
+                style="@style/im_icon_item"
+                android:src="@drawable/ic_reloj" />
+
+            <TextView
+                android:id="@+id/tvHorarioF"
+                style="@style/tv_paragraph_item"
+                android:text="00:00 - 00:00"
+                app:layout_constraintTop_toBottomOf="@id/parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lDiasF"
+            style="@style/ll_row_item"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lHorarioF">
+
+            <ImageView
+                android:id="@+id/ivDias"
+                style="@style/im_icon_item"
+                android:src="@drawable/calendar" />
+
+            <TextView
+                android:id="@+id/tvDiasF"
+                style="@style/tv_paragraph_item"
+                android:text="Lunes y Martes"
+                app:layout_constraintTop_toBottomOf="@id/parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lResponF"
+            style="@style/ll_row_item"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lDiasF">
+
+            <ImageView
+                android:id="@+id/ivResponsable"
+                style="@style/im_icon_item"
+                android:src="@drawable/icon_responsable" />
+
+            <TextView
+                android:id="@+id/tvResponF"
+                style="@style/tv_paragraph_item"
+                android:text="Juan Olvera"
+                app:layout_constraintTop_toBottomOf="@id/parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lCorreoF"
+            style="@style/ll_row_item"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lResponF">
+
+            <ImageView
+                android:id="@+id/ivCorreo"
+                style="@style/im_icon_item"
+                android:src="@drawable/card_email" />
+
+            <TextView
+                android:id="@+id/tvCorreoF"
+                style="@style/tv_paragraph_item"
+                android:text="email@gmial.com"
+                app:layout_constraintTop_toBottomOf="@id/parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lTelF"
+            style="@style/ll_row_item"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lCorreoF">
+
+            <ImageView
+                android:id="@+id/ivTelefono"
+                style="@style/im_icon_item"
+                android:contentDescription="calendar"
+                android:src="@drawable/tel_fono_48" />
+
+            <TextView
+                android:id="@+id/tvTelF"
+                style="@style/tv_paragraph_item"
+                android:text="+527641015871"
+                app:layout_constraintTop_toBottomOf="@id/parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lDescF"
+            style="@style/ll_row_item"
+            android:layout_marginBottom="7dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lTelF">
+
+            <ImageView
+                android:id="@+id/ivRequis"
+                style="@style/im_icon_item"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/ic_icono_info" />
+
+            <TextView
+                android:id="@+id/tvRequisF"
+                style="@style/tv_paragraph_item"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="10dp"
+                android:text="Descripción amplia de la actividad.."
+                app:layout_constraintTop_toBottomOf="@id/parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lPublicF"
+            style="@style/ll_row_item"
+            android:layout_marginBottom="7dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lDescF">
+
+            <ImageView
+                android:id="@+id/ivPublic"
+                style="@style/im_icon_item"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/ic_icono_info" />
+
+            <TextView
+                android:id="@+id/tvPublicF"
+                style="@style/tv_paragraph_item"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="10dp"
+                android:text="Público al que va dirigido."
+                app:layout_constraintTop_toBottomOf="@id/parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lDonsF"
+            style="@style/ll_row_item"
+            android:layout_marginBottom="7dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lPublicF">
+
+            <ImageView
+                android:id="@+id/ivDons"
+                style="@style/im_icon_item"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/ic_icono_info" />
+
+            <TextView
+                android:id="@+id/tvDonsF"
+                style="@style/tv_paragraph_item"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="10dp"
+                android:text="Información para los donadores."
+                app:layout_constraintTop_toBottomOf="@id/parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lVolsF"
+            style="@style/ll_row_item"
+            android:layout_marginBottom="7dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lDonsF">
+
+            <ImageView
+                android:id="@+id/ivVols"
+                style="@style/im_icon_item"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/ic_icono_info" />
+
+            <TextView
+                android:id="@+id/tvVolsF"
+                style="@style/tv_paragraph_item"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="10dp"
+                android:text="Información para los voluntarios."
+                app:layout_constraintTop_toBottomOf="@id/parent" />
+        </LinearLayout>
+        <View
+            android:id="@+id/viewBottom"
+            style="@style/v_row_item"
+            android:layout_marginTop="17dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@id/lVolsF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

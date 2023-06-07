@@ -56,8 +56,7 @@
                 app:layout_constraintStart_toEndOf="@+id/ivMisas"
                 app:layout_constraintTop_toBottomOf="@+id/tvTitulo"
                 app:layout_constraintWidth_percent=".27"
-                tools:text="9:30 hrs, 10:30 hrs,
-12:00 hrs, 13:00 hrs " />
+                tools:text="9:30 hrs, 10:30 hrs, 12:00 hrs, 13:00 hrs " />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvKilometros"

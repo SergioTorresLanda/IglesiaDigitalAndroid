@@ -1,6 +1,7 @@
 package mx.arquidiocesis.eamxcommonutils.common
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -161,6 +162,17 @@ abstract class EAMXBaseFragment : Fragment() {
                 UtilAlert.Builder()
                     .setTitle(getString(R.string.title_dialog_warning))
                     .setMessage("Regístrate o inicia sesión para ${msg}.")
+                    .setTextButtonCancel("Ahora no").setTextButtonOk("Ir al registro")
+                    .setListener { action ->
+                        when (action) {
+                            UtilAlert.ACTION_ACCEPT -> {
+                                Log.e("ZOROASTRO","SE VA A LOGIN Y DE BUENAS")
+                                (requireActivity() as EAMXSignOut).signOut(true)
+                            }
+                            UtilAlert.ACTION_CANCEL -> {
+                            }
+                        }
+                    }
                     .build().show(childFragmentManager, "")
             }
         }

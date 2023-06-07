@@ -1,5 +1,5 @@
 package mx.arquidiocesis.misiglesias.adapters
-
+//Este es el adapter de la primera tabla de horarios de misa (no edit)
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
