@@ -224,149 +224,184 @@ class EventPantriesDetailFragment : FragmentBase() {
                         //Proceso recepción
                         listDaysReceived[0].checked = it.schedule!![0].days!![0].checked
                         if (!listDaysReceived[0].checked) {
-                            binding.iDaysReception.iDayDo.tvCDay.setTextColor(Color.BLACK)
+                            binding.iDaysReception.iDayDo.tvCDay.setTextColor(Color.GRAY)
+                            binding.iDaysReception.iDayDo.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                         } else {
-                            binding.iDaysReception.iDayDo.tvCDay.setTextColor(
-                                Color.rgb(
-                                    0,
-                                    191,
-                                    255
-                                )
-                            )
+                            binding.iDaysReception.iDayDo.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                            binding.iDaysReception.iDayDo.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                         }
                         listDaysReceived[1].checked = it.schedule[0].days!![1].checked
                         if (!listDaysReceived[1].checked) {
-                            binding.iDaysReception.iDayLu.tvCDay.setTextColor(Color.BLACK)
+                            binding.iDaysReception.iDayLu.tvCDay.setTextColor(Color.GRAY)
+                            binding.iDaysReception.iDayLu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                         } else {
-                            binding.iDaysReception.iDayLu.tvCDay.setTextColor(
-                                Color.rgb(0, 191, 255)
-                            )
+                            binding.iDaysReception.iDayLu.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                            binding.iDaysReception.iDayLu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                         }
                         listDaysReceived[2].checked = it.schedule[0].days!![2].checked
                         if (!listDaysReceived[2].checked) {
-                            binding.iDaysReception.iDayMa.tvCDay.setTextColor(Color.BLACK)
+                            binding.iDaysReception.iDayMa.tvCDay.setTextColor(Color.GRAY)
+                            binding.iDaysReception.iDayMa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                         } else {
-                            binding.iDaysReception.iDayMa.tvCDay.setTextColor(
-                                Color.rgb(0, 191, 255)
-                            )
+                            binding.iDaysReception.iDayMa.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                            binding.iDaysReception.iDayMa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                         }
                         listDaysReceived[3].checked = it.schedule[0].days!![3].checked
                         if (!listDaysReceived[3].checked) {
-                            binding.iDaysReception.iDayMi.tvCDay.setTextColor(Color.BLACK)
+                            binding.iDaysReception.iDayMi.tvCDay.setTextColor(Color.GRAY)
+                            binding.iDaysReception.iDayMi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                         } else {
-                            binding.iDaysReception.iDayMi.tvCDay.setTextColor(
-                                Color.rgb(0, 191, 255)
-                            )
+                            binding.iDaysReception.iDayMi.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                            binding.iDaysReception.iDayMi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                         }
                         listDaysReceived[4].checked = it.schedule[0].days!![4].checked
                         if (!listDaysReceived[4].checked) {
-                            binding.iDaysReception.iDayJu.tvCDay.setTextColor(Color.BLACK)
+                            binding.iDaysReception.iDayJu.tvCDay.setTextColor(Color.GRAY)
+                            binding.iDaysReception.iDayJu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                         } else {
-                            binding.iDaysReception.iDayJu.tvCDay.setTextColor(
-                                Color.rgb(0, 191, 255)
-                            )
+                            binding.iDaysReception.iDayJu.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                            binding.iDaysReception.iDayJu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                         }
                         listDaysReceived[5].checked = it.schedule[0].days!![5].checked
                         if (!listDaysReceived[5].checked) {
-                            binding.iDaysReception.iDayVi.tvCDay.setTextColor(Color.BLACK)
+                            binding.iDaysReception.iDayVi.tvCDay.setTextColor(Color.GRAY)
+                            binding.iDaysReception.iDayVi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                         } else {
-                            binding.iDaysReception.iDayVi.tvCDay.setTextColor(
-                                Color.rgb(0, 191, 255)
-                            )
+                            binding.iDaysReception.iDayVi.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                            binding.iDaysReception.iDayVi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
+
                         }
                         listDaysReceived[6].checked = it.schedule[0].days!![6].checked
                         if (!listDaysReceived[6].checked) {
-                            binding.iDaysReception.iDaySa.tvCDay.setTextColor(Color.BLACK)
+                            binding.iDaysReception.iDaySa.tvCDay.setTextColor(Color.GRAY)
+                            binding.iDaysReception.iDaySa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                         } else {
-                            binding.iDaysReception.iDaySa.tvCDay.setTextColor(
-                                Color.rgb(0, 191, 255)
-                            )
+                            binding.iDaysReception.iDaySa.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                            binding.iDaysReception.iDaySa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
+
                         }
                         //Proceso armado
                         listDaysArmed[0].checked = it.schedule[1].days!![0].checked
                         if (!listDaysArmed[0].checked) {
-                            binding.iDaysArmado.iDayDo.tvCDay.setTextColor(Color.BLACK)
+                            binding.iDaysArmado.iDayDo.tvCDay.setTextColor(Color.GRAY)
+                            binding.iDaysArmado.iDayDo.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                         } else {
-                            binding.iDaysArmado.iDayDo.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                            binding.iDaysArmado.iDayDo.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                            binding.iDaysArmado.iDayDo.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
+
                         }
                         listDaysArmed[1].checked = it.schedule[1].days!![1].checked
                         if (!listDaysArmed[1].checked) {
-                            binding.iDaysArmado.iDayLu.tvCDay.setTextColor(Color.BLACK)
+                            binding.iDaysArmado.iDayLu.tvCDay.setTextColor(Color.GRAY)
+                            binding.iDaysArmado.iDayLu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                         } else {
-                            binding.iDaysArmado.iDayLu.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                            binding.iDaysArmado.iDayLu.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                            binding.iDaysArmado.iDayLu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                         }
                         listDaysArmed[2].checked = it.schedule[1].days!![2].checked
                         if (!listDaysArmed[2].checked) {
-                            binding.iDaysArmado.iDayMa.tvCDay.setTextColor(Color.BLACK)
+                            binding.iDaysArmado.iDayMa.tvCDay.setTextColor(Color.GRAY)
+                            binding.iDaysArmado.iDayMa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                         } else {
-                            binding.iDaysArmado.iDayMa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                            binding.iDaysArmado.iDayMa.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                            binding.iDaysArmado.iDayMa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
+
                         }
                         listDaysArmed[3].checked = it.schedule[1].days!![3].checked
                         if (!listDaysArmed[3].checked) {
-                            binding.iDaysArmado.iDayMi.tvCDay.setTextColor(Color.BLACK)
+                            binding.iDaysArmado.iDayMi.tvCDay.setTextColor(Color.GRAY)
+                            binding.iDaysArmado.iDayMi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                         } else {
-                            binding.iDaysArmado.iDayMi.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                            binding.iDaysArmado.iDayMi.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                            binding.iDaysArmado.iDayMi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
+
                         }
                         listDaysArmed[4].checked = it.schedule[1].days!![4].checked
                         if (!listDaysArmed[4].checked) {
-                            binding.iDaysArmado.iDayJu.tvCDay.setTextColor(Color.BLACK)
+                            binding.iDaysArmado.iDayJu.tvCDay.setTextColor(Color.GRAY)
+                            binding.iDaysArmado.iDayJu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                         } else {
-                            binding.iDaysArmado.iDayJu.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                            binding.iDaysArmado.iDayJu.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                            binding.iDaysArmado.iDayJu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
+
                         }
                         listDaysArmed[5].checked = it.schedule[1].days!![5].checked
                         if (!listDaysArmed[5].checked) {
-                            binding.iDaysArmado.iDayVi.tvCDay.setTextColor(Color.BLACK)
+                            binding.iDaysArmado.iDayVi.tvCDay.setTextColor(Color.GRAY)
+                            binding.iDaysArmado.iDayVi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                         } else {
-                            binding.iDaysArmado.iDayVi.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                            binding.iDaysArmado.iDayVi.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                            binding.iDaysArmado.iDayVi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
+
                         }
                         listDaysArmed[6].checked = it.schedule[1].days!![6].checked
                         if (!listDaysArmed[6].checked) {
-                            binding.iDaysArmado.iDaySa.tvCDay.setTextColor(Color.BLACK)
+                            binding.iDaysArmado.iDaySa.tvCDay.setTextColor(Color.GRAY)
+                            binding.iDaysArmado.iDaySa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                         } else {
-                            binding.iDaysArmado.iDaySa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                            binding.iDaysArmado.iDaySa.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                            binding.iDaysArmado.iDaySa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
+
                         }
                         //Proceso entrega
                         listDaysDelivery[0].checked = it.schedule[2].days!![0].checked
                         if (!listDaysDelivery[0].checked) {
-                            binding.iDaysDelivery.iDayDo.tvCDay.setTextColor(Color.BLACK)
+                            binding.iDaysDelivery.iDayDo.tvCDay.setTextColor(Color.GRAY)
+                            binding.iDaysDelivery.iDayDo.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                         } else {
-                            binding.iDaysDelivery.iDayDo.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                            binding.iDaysDelivery.iDayDo.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                            binding.iDaysDelivery.iDayDo.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                         }
                         listDaysDelivery[1].checked = it.schedule[2].days!![1].checked
                         if (!listDaysDelivery[1].checked) {
-                            binding.iDaysDelivery.iDayLu.tvCDay.setTextColor(Color.BLACK)
+                            binding.iDaysDelivery.iDayLu.tvCDay.setTextColor(Color.GRAY)
+                            binding.iDaysDelivery.iDayLu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                         } else {
-                            binding.iDaysDelivery.iDayLu.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                            binding.iDaysDelivery.iDayLu.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                            binding.iDaysDelivery.iDayLu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                         }
                         listDaysDelivery[2].checked = it.schedule[2].days!![2].checked
                         if (!listDaysDelivery[2].checked) {
-                            binding.iDaysDelivery.iDayMa.tvCDay.setTextColor(Color.BLACK)
+                            binding.iDaysDelivery.iDayMa.tvCDay.setTextColor(Color.GRAY)
+                            binding.iDaysDelivery.iDayMa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                         } else {
-                            binding.iDaysDelivery.iDayMa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                            binding.iDaysDelivery.iDayMa.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                            binding.iDaysDelivery.iDayMa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                         }
                         listDaysDelivery[3].checked = it.schedule[2].days!![3].checked
                         if (!listDaysDelivery[3].checked) {
-                            binding.iDaysDelivery.iDayMi.tvCDay.setTextColor(Color.BLACK)
+                            binding.iDaysDelivery.iDayMi.tvCDay.setTextColor(Color.GRAY)
+                            binding.iDaysDelivery.iDayMi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                         } else {
-                            binding.iDaysDelivery.iDayMi.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                            binding.iDaysDelivery.iDayMi.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                            binding.iDaysDelivery.iDayMi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
+
                         }
                         listDaysDelivery[4].checked = it.schedule[2].days!![4].checked
                         if (!listDaysDelivery[4].checked) {
-                            binding.iDaysDelivery.iDayJu.tvCDay.setTextColor(Color.BLACK)
+                            binding.iDaysDelivery.iDayJu.tvCDay.setTextColor(Color.GRAY)
+                            binding.iDaysDelivery.iDayJu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                         } else {
-                            binding.iDaysDelivery.iDayJu.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                            binding.iDaysDelivery.iDayJu.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                            binding.iDaysDelivery.iDayJu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
+
                         }
                         listDaysDelivery[5].checked = it.schedule[2].days!![5].checked
                         if (!listDaysDelivery[5].checked) {
-                            binding.iDaysDelivery.iDayVi.tvCDay.setTextColor(Color.BLACK)
+                            binding.iDaysDelivery.iDayVi.tvCDay.setTextColor(Color.GRAY)
+                            binding.iDaysDelivery.iDayVi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                         } else {
-                            binding.iDaysDelivery.iDayVi.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                            binding.iDaysDelivery.iDayVi.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                            binding.iDaysDelivery.iDayVi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
+
                         }
                         listDaysDelivery[6].checked = it.schedule[2].days!![6].checked
                         if (!listDaysDelivery[6].checked) {
-                            binding.iDaysDelivery.iDaySa.tvCDay.setTextColor(Color.BLACK)
+                            binding.iDaysDelivery.iDaySa.tvCDay.setTextColor(Color.GRAY)
+                            binding.iDaysDelivery.iDaySa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                         } else {
-                            binding.iDaysDelivery.iDaySa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                            binding.iDaysDelivery.iDaySa.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                            binding.iDaysDelivery.iDaySa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                         }
 
                         //Switch donador
@@ -689,10 +724,8 @@ class EventPantriesDetailFragment : FragmentBase() {
     }
 
     private fun initView() {
-
         //val leyenda = "Estatus de la despensa."
         //TooltipCompat.setTooltipText(ivDescriptionDonor, leyenda)
-
         binding.iDaysReception.iDayMa.tvCDay.setText("Lu")
         binding.iDaysReception.iDayMa.tvCDay.setText("Ma")
         binding.iDaysReception.iDayMi.tvCDay.setText("Mi")
@@ -774,11 +807,11 @@ class EventPantriesDetailFragment : FragmentBase() {
                 }
             }
             etDescriptionPantries.addTextChangedListener {
-                var count = etDescriptionPantries.text.toString().length
+                val count = etDescriptionPantries.text.toString().length
                 tvDescriptionConteoPantries.setText("$count/250")
             }
             etRequisPantries.addTextChangedListener {
-                var count = etRequisPantries.text.toString().length
+                val count = etRequisPantries.text.toString().length
                 tvRequisConteoPantries.setText("$count/250")
             }
         }
@@ -793,171 +826,213 @@ class EventPantriesDetailFragment : FragmentBase() {
             iDaysReception.iDayDo.tvCDay.setOnClickListener {
                 listDaysReceived[0].checked = !listDaysReceived[0].checked
                 if (!listDaysReceived[0].checked) {
-                    iDaysReception.iDayDo.tvCDay.setTextColor(Color.BLACK)
+                    iDaysReception.iDayDo.tvCDay.setTextColor(Color.GRAY)
+                    iDaysReception.iDayDo.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                 } else {
-                    iDaysReception.iDayDo.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                    iDaysReception.iDayDo.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                    iDaysReception.iDayDo.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                 }
             }
             iDaysReception.iDayLu.tvCDay.setOnClickListener {
                 listDaysReceived[1].checked = !listDaysReceived[1].checked
                 if (!listDaysReceived[1].checked) {
-                    iDaysReception.iDayLu.tvCDay.setTextColor(Color.BLACK)
+                    iDaysReception.iDayLu.tvCDay.setTextColor(Color.GRAY)
+                    iDaysReception.iDayLu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                 } else {
-                    iDaysReception.iDayLu.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                    iDaysReception.iDayLu.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                    iDaysReception.iDayLu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                 }
             }
             iDaysReception.iDayMa.tvCDay.setOnClickListener {
                 listDaysReceived[2].checked = !listDaysReceived[2].checked
                 if (!listDaysReceived[2].checked) {
-                    iDaysReception.iDayMa.tvCDay.setTextColor(Color.BLACK)
+                    iDaysReception.iDayMa.tvCDay.setTextColor(Color.GRAY)
+                    iDaysReception.iDayMa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                 } else {
-                    iDaysReception.iDayMa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                    iDaysReception.iDayMa.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                    iDaysReception.iDayMa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                 }
             }
             iDaysReception.iDayMi.tvCDay.setOnClickListener {
                 listDaysReceived[3].checked = !listDaysReceived[3].checked
                 if (!listDaysReceived[3].checked) {
-                    iDaysReception.iDayMi.tvCDay.setTextColor(Color.BLACK)
+                    iDaysReception.iDayMi.tvCDay.setTextColor(Color.GRAY)
+                    iDaysReception.iDayMi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                 } else {
-                    iDaysReception.iDayMi.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                    iDaysReception.iDayMi.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                    iDaysReception.iDayMi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                 }
             }
             iDaysReception.iDayJu.tvCDay.setOnClickListener {
                 listDaysReceived[4].checked = !listDaysReceived[4].checked
                 if (!listDaysReceived[4].checked) {
-                    iDaysReception.iDayJu.tvCDay.setTextColor(Color.BLACK)
+                    iDaysReception.iDayJu.tvCDay.setTextColor(Color.GRAY)
+                    iDaysReception.iDayJu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                 } else {
-                    iDaysReception.iDayJu.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                    iDaysReception.iDayJu.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                    iDaysReception.iDayJu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                 }
             }
             iDaysReception.iDayVi.tvCDay.setOnClickListener {
                 listDaysReceived[5].checked = !listDaysReceived[5].checked
                 if (!listDaysReceived[5].checked) {
-                    iDaysReception.iDayVi.tvCDay.setTextColor(Color.BLACK)
+                    iDaysReception.iDayVi.tvCDay.setTextColor(Color.GRAY)
+                    iDaysReception.iDayVi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                 } else {
-                    iDaysReception.iDayVi.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                    iDaysReception.iDayVi.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                    iDaysReception.iDayVi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                 }
             }
             iDaysReception.iDaySa.tvCDay.setOnClickListener {
                 listDaysReceived[6].checked = !listDaysReceived[6].checked
                 if (!listDaysReceived[6].checked) {
-                    iDaysReception.iDaySa.tvCDay.setTextColor(Color.BLACK)
+                    iDaysReception.iDaySa.tvCDay.setTextColor(Color.GRAY)
+                    iDaysReception.iDaySa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                 } else {
-                    iDaysReception.iDaySa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                    iDaysReception.iDaySa.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                    iDaysReception.iDaySa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                 }
             }
             //Días armado de despensas
             iDaysArmado.iDayDo.tvCDay.setOnClickListener {
                 listDaysArmed[0].checked = !listDaysArmed[0].checked
                 if (!listDaysArmed[0].checked) {
-                    iDaysArmado.iDayDo.tvCDay.setTextColor(Color.BLACK)
+                    iDaysArmado.iDayDo.tvCDay.setTextColor(Color.GRAY)
+                    iDaysArmado.iDayDo.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                 } else {
-                    iDaysArmado.iDayDo.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                    iDaysArmado.iDayDo.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                    iDaysArmado.iDayDo.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                 }
             }
             iDaysArmado.iDayLu.tvCDay.setOnClickListener {
                 listDaysArmed[1].checked = !listDaysArmed[1].checked
                 if (!listDaysArmed[1].checked) {
-                    iDaysArmado.iDayLu.tvCDay.setTextColor(Color.BLACK)
+                    iDaysArmado.iDayLu.tvCDay.setTextColor(Color.GRAY)
+                    iDaysArmado.iDayLu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                 } else {
-                    iDaysArmado.iDayLu.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                    iDaysArmado.iDayLu.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                    iDaysArmado.iDayLu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                 }
             }
             iDaysArmado.iDayMa.tvCDay.setOnClickListener {
                 listDaysArmed[2].checked = !listDaysArmed[2].checked
                 if (!listDaysArmed[2].checked) {
-                    iDaysArmado.iDayMa.tvCDay.setTextColor(Color.BLACK)
+                    iDaysArmado.iDayMa.tvCDay.setTextColor(Color.GRAY)
+                    iDaysArmado.iDayMa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                 } else {
-                    iDaysArmado.iDayMa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                    iDaysArmado.iDayMa.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                    iDaysArmado.iDayMa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                 }
             }
             iDaysArmado.iDayMi.tvCDay.setOnClickListener {
                 listDaysArmed[3].checked = !listDaysArmed[3].checked
                 if (!listDaysArmed[3].checked) {
-                    iDaysArmado.iDayMi.tvCDay.setTextColor(Color.BLACK)
+                    iDaysArmado.iDayMi.tvCDay.setTextColor(Color.GRAY)
+                    iDaysArmado.iDayMi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                 } else {
-                    iDaysArmado.iDayMi.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                    iDaysArmado.iDayMi.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                    iDaysArmado.iDayMi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                 }
             }
             iDaysArmado.iDayJu.tvCDay.setOnClickListener {
                 listDaysArmed[4].checked = !listDaysArmed[4].checked
                 if (!listDaysArmed[4].checked) {
-                    iDaysArmado.iDayJu.tvCDay.setTextColor(Color.BLACK)
+                    iDaysArmado.iDayJu.tvCDay.setTextColor(Color.GRAY)
+                    iDaysArmado.iDayJu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                 } else {
-                    iDaysArmado.iDayJu.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                    iDaysArmado.iDayJu.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                    iDaysArmado.iDayJu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                 }
             }
             iDaysArmado.iDayVi.tvCDay.setOnClickListener {
                 listDaysArmed[5].checked = !listDaysArmed[5].checked
                 if (!listDaysArmed[5].checked) {
-                    iDaysArmado.iDayVi.tvCDay.setTextColor(Color.BLACK)
+                    iDaysArmado.iDayVi.tvCDay.setTextColor(Color.GRAY)
+                    iDaysArmado.iDayVi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                 } else {
-                    iDaysArmado.iDayVi.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                    iDaysArmado.iDayVi.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                    iDaysArmado.iDayVi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                 }
             }
             iDaysArmado.iDaySa.tvCDay.setOnClickListener {
                 listDaysArmed[6].checked = !listDaysArmed[6].checked
                 if (!listDaysArmed[6].checked) {
-                    iDaysArmado.iDaySa.tvCDay.setTextColor(Color.BLACK)
+                    iDaysArmado.iDaySa.tvCDay.setTextColor(Color.GRAY)
+                    iDaysArmado.iDaySa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                 } else {
-                    iDaysArmado.iDaySa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                    iDaysArmado.iDaySa.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                    iDaysArmado.iDaySa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                 }
             }
             //Días entrega de despensas
             iDaysDelivery.iDayDo.tvCDay.setOnClickListener {
                 listDaysDelivery[0].checked = !listDaysDelivery[0].checked
                 if (!listDaysDelivery[0].checked) {
-                    iDaysDelivery.iDayDo.tvCDay.setTextColor(Color.BLACK)
+                    iDaysDelivery.iDayDo.tvCDay.setTextColor(Color.GRAY)
+                    iDaysDelivery.iDayDo.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                 } else {
-                    iDaysDelivery.iDayDo.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                    iDaysDelivery.iDayDo.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                    iDaysDelivery.iDayDo.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                 }
             }
             iDaysDelivery.iDayLu.tvCDay.setOnClickListener {
                 listDaysDelivery[1].checked = !listDaysDelivery[1].checked
                 if (!listDaysDelivery[1].checked) {
-                    iDaysDelivery.iDayLu.tvCDay.setTextColor(Color.BLACK)
+                    iDaysDelivery.iDayLu.tvCDay.setTextColor(Color.GRAY)
+                    iDaysDelivery.iDayLu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                 } else {
-                    iDaysDelivery.iDayLu.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                    iDaysDelivery.iDayLu.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                    iDaysDelivery.iDayLu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                 }
             }
             iDaysDelivery.iDayMa.tvCDay.setOnClickListener {
                 listDaysDelivery[2].checked = !listDaysDelivery[2].checked
                 if (!listDaysDelivery[2].checked) {
-                    iDaysDelivery.iDayMa.tvCDay.setTextColor(Color.BLACK)
+                    iDaysDelivery.iDayMa.tvCDay.setTextColor(Color.GRAY)
+                    iDaysDelivery.iDayMa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                 } else {
-                    iDaysDelivery.iDayMa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                    iDaysDelivery.iDayMa.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                    iDaysDelivery.iDayMa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                 }
             }
             iDaysDelivery.iDayMi.tvCDay.setOnClickListener {
                 listDaysDelivery[3].checked = !listDaysDelivery[3].checked
                 if (!listDaysDelivery[3].checked) {
-                    iDaysDelivery.iDayMi.tvCDay.setTextColor(Color.BLACK)
+                    iDaysDelivery.iDayMi.tvCDay.setTextColor(Color.GRAY)
+                    iDaysDelivery.iDayMi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                 } else {
-                    iDaysDelivery.iDayMi.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                    iDaysDelivery.iDayMi.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                    iDaysDelivery.iDayMi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                 }
             }
             iDaysDelivery.iDayJu.tvCDay.setOnClickListener {
                 listDaysDelivery[4].checked = !listDaysDelivery[4].checked
                 if (!listDaysDelivery[4].checked) {
-                    iDaysDelivery.iDayJu.tvCDay.setTextColor(Color.BLACK)
+                    iDaysDelivery.iDayJu.tvCDay.setTextColor(Color.GRAY)
+                    iDaysDelivery.iDayJu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                 } else {
-                    iDaysDelivery.iDayJu.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                    iDaysDelivery.iDayJu.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                    iDaysDelivery.iDayJu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                 }
             }
             iDaysDelivery.iDayVi.tvCDay.setOnClickListener {
                 listDaysDelivery[5].checked = !listDaysDelivery[5].checked
                 if (!listDaysDelivery[5].checked) {
-                    iDaysDelivery.iDayVi.tvCDay.setTextColor(Color.BLACK)
+                    iDaysDelivery.iDayVi.tvCDay.setTextColor(Color.GRAY)
+                    iDaysDelivery.iDayVi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                 } else {
-                    iDaysDelivery.iDayVi.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                    iDaysDelivery.iDayVi.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                    iDaysDelivery.iDayVi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                 }
             }
             iDaysDelivery.iDaySa.tvCDay.setOnClickListener {
                 listDaysDelivery[6].checked = !listDaysDelivery[6].checked
                 if (!listDaysDelivery[6].checked) {
-                    iDaysDelivery.iDaySa.tvCDay.setTextColor(Color.BLACK)
+                    iDaysDelivery.iDaySa.tvCDay.setTextColor(Color.GRAY)
+                    iDaysDelivery.iDaySa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                 } else {
-                    iDaysDelivery.iDaySa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                    iDaysDelivery.iDaySa.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                    iDaysDelivery.iDaySa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                 }
             }
             //Switch: estatus de despensa

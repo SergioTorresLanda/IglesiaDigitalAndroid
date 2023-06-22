@@ -11,7 +11,7 @@
     <string name="txt_sos_title_input_name">Nombre (s)</string>
     <string name="txt_sos_title_input_telephone_number">Número de celular</string>
     <string name="txt_sos_btn_acept">Aceptar</string>
-    <string name="txt_sos_title_notification">Información de Iglesia cercana</string>
+    <string name="txt_sos_title_notification">Emergencias cercanas</string>
     <string name="txt_sos_notification_status_progress">En progreso</string>
     <string name="txt_sos_notification_status_accepted">Aceptado</string>
     <string name="txt_sos_notification_status_rejected">Rechazado</string>

@@ -94,7 +94,7 @@
             <ImageView
                 android:id="@+id/ivTelefonoInvitad"
                 style="@style/im_icon_item"
-                android:src="@drawable/tel_fono_48" />
+                android:src="@drawable/telxx" />
 
             <TextView
                 android:id="@+id/tvTelInvitado"

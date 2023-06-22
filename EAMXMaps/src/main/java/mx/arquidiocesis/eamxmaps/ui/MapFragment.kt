@@ -139,8 +139,10 @@ class MapFragment constructor(
                                     requireContext()
                                 )
                             )
-                            if ((igleciasModel.name +"\n"+ igleciasModel.address).SinEspaciosSinAcentos() == binding.etBusarMap.text.toString()
-                                    .SinEspaciosSinAcentos()
+
+                            if (binding.etBusarMap.text != null){
+                            if ((igleciasModel.name +"\n"+ igleciasModel.address).SinEspaciosSinAcentos() ==
+                                binding.etBusarMap.text.toString().SinEspaciosSinAcentos()
                             ) {
                                 marker?.showInfoWindow()
                                 if (busqueda) {
@@ -150,6 +152,7 @@ class MapFragment constructor(
                                     )
                                     busqueda = false
                                 }
+                            }
                             }
                         }
                     }

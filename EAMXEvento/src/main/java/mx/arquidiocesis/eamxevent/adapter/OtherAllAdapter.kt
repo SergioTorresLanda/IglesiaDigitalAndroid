@@ -11,7 +11,10 @@ import mx.arquidiocesis.eamxcommonutils.common.EAMXEnumUser
 import mx.arquidiocesis.eamxcommonutils.common.EAMXTypeObject
 import mx.arquidiocesis.eamxcommonutils.util.eamxcu_preferences
 import mx.arquidiocesis.eamxevent.databinding.ItemEventDetailBinding
+import mx.arquidiocesis.eamxevent.databinding.ItemEventOtherBinding
 import mx.arquidiocesis.eamxevent.model.OtherEvent
+import mx.arquidiocesis.eamxevent.model.enum.TypeActivity
+import mx.arquidiocesis.eamxevent.ui.AYUDAR
 import mx.arquidiocesis.eamxevent.ui.DONAR
 import mx.arquidiocesis.eamxevent.ui.EDITAR
 import mx.arquidiocesis.eamxevent.ui.PARTICIPAR
@@ -31,12 +34,9 @@ class OtherAllAdapter(
         "^((((https?|ftps?|gopher|telnet|nntp)://)|(mailto:|news:))" + "(%{2}|[-()_.!~*';/?:@&=+$, A-Za-z0-9])+)" + "([).!';/?:, ][[:blank:]])?$"
     var URL_PATTERN = Pattern.compile(URL_REGEX)
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int,
-    ): NewsViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = ItemEventDetailBinding.inflate(inflater, parent, false)
+        val binding = ItemEventOtherBinding.inflate(inflater, parent, false)
         return NewsViewHolder(binding)
     }
 
@@ -45,21 +45,18 @@ class OtherAllAdapter(
         holder.bind(cadenaModel)
     }
 
-    inner class NewsViewHolder(private val binding: ItemEventDetailBinding) :
-        RecyclerView.ViewHolder(
-            binding.root
-        ) {
+    inner class NewsViewHolder(private val binding: ItemEventOtherBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(item: OtherEvent) = with(binding) {
-            val userId = eamxcu_preferences.getData(
-                EAMXEnumUser.USER_ID.name,
-                EAMXTypeObject.INT_OBJECT
-            ) as Int
+            val userId = eamxcu_preferences.getData(EAMXEnumUser.USER_ID.name, EAMXTypeObject.INT_OBJECT) as Int
+            val types: Array<TypeActivity> = TypeActivity.values()
 
             if (item.eventoId == null) {
                 tvVacio.visibility = View.VISIBLE
+                tvNombre.visibility = View.GONE
                 lNombreF.visibility = View.GONE
                 lCorreoF.visibility = View.GONE
-                lRequisF.visibility = View.GONE
+                lDescF.visibility = View.GONE
                 lDireccionF.visibility = View.GONE
                 lCorreoF.visibility = View.GONE
                 lPrecioF.visibility = View.GONE
@@ -67,57 +64,80 @@ class OtherAllAdapter(
                 lResponF.visibility = View.GONE
                 lDiasF.visibility = View.GONE
                 lHorarioF.visibility = View.GONE
+                lPublicF.visibility = View.GONE
+                lDonsF.visibility = View.GONE
+                lVolsF.visibility = View.GONE
+                viewBottom.visibility =View.GONE
+
             } else {
                 tvVacio.visibility = View.GONE
-                tvNombreF.text = item.nombre
                 lNombreF.visibility = View.VISIBLE
-                tvCorreoF.text = item.correo
+                tvNombre.visibility = View.VISIBLE
                 lCorreoF.visibility = View.VISIBLE
-                tvRequisF.text = item.descripcion
-                lRequisF.visibility = View.VISIBLE
+                lDescF.visibility = View.VISIBLE
                 lDiasF.visibility = View.VISIBLE
-                val days = item.horarios!![0].days!!.filter { it.checked }
+                lPrecioF.visibility = View.VISIBLE
+                lHorarioF.visibility = View.VISIBLE
+                lTelF.visibility = View.VISIBLE
+                lDireccionF.visibility = View.VISIBLE
+                lResponF.visibility = View.VISIBLE
+                lPublicF.visibility = View.VISIBLE
+                lDonsF.visibility = View.VISIBLE
+                lVolsF.visibility = View.VISIBLE
+                viewBottom.visibility =View.VISIBLE
+
+                tvTipoF.text= types[item.tipoEvento!!].type
+                tvNombre.text = item.nombre
+                tvPrecioF.text = item.cobro.toString()
+                tvHorarioF.text = "De "+item.horarios!![0].hour_start + " a " + item.horarios!![0].hour_end + " hrs."
+                tvTelF.text = item.telefono
+                tvCorreoF.text = item.correo
+                tvResponF.text = item.responsable
+
+                val days = item.horarios[0].days!!.filter { it.checked }
                 var dias = ""
                 var cont = 1
                 days.forEach {
-                    dias =
-                        dias + (if (dias == "") "" else (if (days.size == cont) " y " else ", ")) + it.name
+                    dias = dias + (if (dias == "") "" else (if (days.size == cont) " y " else ", ")) + it.name
                     cont++
                 }
                 tvDiasF.text = dias
-                lHorarioF.visibility = View.VISIBLE
-                tvHorarioF.text = item.horarios!![0].hour_start + "-" + item.horarios!![0].hour_end
                 tvDireccionF.text = item.direccion
-                lDireccionF.visibility = View.VISIBLE
-
-                tvPrecioF.text = item.cobro.toString()
-                lPrecioF.visibility = View.VISIBLE
-                tvTelF.text = item.telefono
-                lTelF.visibility = View.VISIBLE
-                tvResponF.text = item.responsable
-                lResponF.visibility = View.VISIBLE
+                tvRequisF.text = item.descripcion
+                tvPublicF.text = item.publico
+                tvDonsF.text = item.donantesTxt
+                tvVolsF.text = item.voluntariosTxt
+                var accion = ""
                 if (userId == item.userId) {
-                    cwcEvent.setOnClickListener {
+                    btnOpciones.visibility = View.GONE
+                    cwxEvent.setOnClickListener {
                         onItemClickListener(item, EDITAR)
                     }
+                }else{
+                    btnOpciones.visibility = View.VISIBLE
+                    when(participation){
+                        1 -> {
+                            accion = DONAR
+                            btnOpciones.text = "Donar"
+                        }
+                        2 -> {
+                            accion = AYUDAR
+                            btnOpciones.text = "Ayudar"
+                        }
+                        3 -> {
+                            accion = PARTICIPAR
+                            btnOpciones.text = "Participar"
+                        }else ->{
+                            btnOpciones.visibility = View.GONE
+                            accion = ""
+                        }
+                    }
+                    if (accion.isNotEmpty())
+                        btnOpciones.setOnClickListener {
+                            onItemClickListener(item, accion)
+                        }
                 }
-                var accion = ""
-                when(participation){
-                    0 -> {
-                        accion = DONAR
-                    }
-                    1 -> {
-                        accion = PARTICIPAR
-                        btnOpciones.setText("Participar")
-                    }
-                    2 -> {
-                        btnOpciones.visibility = View.GONE
-                    }
-                }
-                if (accion.isNotEmpty())
-                    btnOpciones.setOnClickListener {
-                        onItemClickListener(item, accion)
-                    }
+
             }
         }
     }
@@ -127,6 +147,5 @@ class OtherAllAdapter(
     override fun getFilter(): Filter {
         TODO("Not yet implemented")
     }
-
 
 }

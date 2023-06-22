@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.EventDonorFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvEventDonor"
         android:layout_width="match_parent"
@@ -16,5 +15,4 @@
         android:clickable="false"
         android:visibility="visible"
         tools:listitem="@layout/item_event_participants_detail" />
-
 </FrameLayout>

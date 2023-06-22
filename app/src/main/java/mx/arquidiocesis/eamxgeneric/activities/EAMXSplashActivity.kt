@@ -208,8 +208,10 @@ open class EAMXSplashActivity : AppCompatActivity(), InstallStateUpdatedListener
         when (p0.installStatus) {
             InstallStatus.DOWNLOADING -> {
                 progresDialog.show(supportFragmentManager)
+                if (p0.totalBytesToDownload.toInt() != 0){
                 eamxLog("P: ${p0.bytesDownloaded}, T: ${p0.totalBytesToDownload}, K: ${(p0.bytesDownloaded * 100 / p0.totalBytesToDownload)}")
                 progresDialog.setProgress((p0.bytesDownloaded * 100 / p0.totalBytesToDownload).toInt())
+                }
             }
             InstallStatus.DOWNLOADED -> {
                 if (supportFragmentManager.findFragmentByTag(progresDialog::class.simpleName) != null) {

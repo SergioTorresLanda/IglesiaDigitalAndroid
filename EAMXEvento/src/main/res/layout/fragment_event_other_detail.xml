@@ -16,12 +16,11 @@
             android:layout_margin="20dp">
 
             <LinearLayout
-                android:id="@+id/llBotones"
+                android:id="@+id/llBotonesOther"
                 android:layout_width="wrap_content"
                 style="@style/ll_fill_btns"
                 android:visibility="visible"
                 tools:ignore="MissingConstraints">
-
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnParticipantes"
                     style="@style/btn_primary"
@@ -37,7 +36,7 @@
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
                 android:layout_marginTop="25dp"
-                app:layout_constraintTop_toBottomOf="@+id/llBotones"
+                app:layout_constraintTop_toBottomOf="@+id/llBotonesOther"
                 tools:ignore="MissingConstraints">
 
                 <TextView
@@ -93,7 +92,7 @@
             <LinearLayout
                 android:id="@+id/lTipo"
                 style="@style/ll_row_secondary"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="20dp"
                 app:layout_constraintTop_toBottomOf="@+id/lEstatus"
                 tools:ignore="MissingConstraints">
 
@@ -112,7 +111,7 @@
             <LinearLayout
                 android:id="@+id/lNombreC"
                 style="@style/ll_row_secondary"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="20dp"
                 app:layout_constraintTop_toBottomOf="@+id/lTipo"
                 tools:ignore="MissingConstraints">
 
@@ -141,10 +140,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="20dp"
                 app:layout_constraintTop_toBottomOf="@+id/lNombreC">
 
                 <LinearLayout
                     style="@style/ll_row_secondary"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     tools:ignore="MissingConstraints">
 
@@ -154,7 +155,7 @@
                         android:text="Dirección" />
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etgetAddressPantries"
+                        android:id="@+id/etgetAddressOther"
                         style="@style/tiet_material_secondary"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
@@ -167,13 +168,17 @@
 
                 <LinearLayout
                     style="@style/ll_row_secondary"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
+                    android:layout_gravity="center"
+                    android:layout_height="match_parent"
                     android:gravity="center">
-
-                    <TextView style="@style/tv_label_secondary" />
-
+                    <TextView
+                        android:id="@+id/tvx"
+                        style="@style/tv_label_secondary"
+                        android:text="" />
                     <TextView
                         android:id="@+id/tvAddress"
+                        android:layout_gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableTop="@drawable/ic_church_map"
@@ -186,6 +191,7 @@
 
             <LinearLayout
                 android:id="@+id/lDays"
+                android:layout_marginTop="20dp"
                 style="@style/ll_row_secondary"
                 app:layout_constraintTop_toBottomOf="@+id/lldireccion"
                 tools:ignore="MissingConstraints">
@@ -203,19 +209,12 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@+id/tvDays" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etEmail"
-                    style="@style/tiet_material_secondary"
-                    android:digits="@string/digits_only_email"
-                    android:imeOptions="actionNext"
-                    android:inputType="textCapWords|textAutoCorrect|textPersonName"
-                    android:maxLength="50"
-                    android:singleLine="true" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/labelHorarios"
                 style="@style/ll_row_secondary"
+                android:layout_marginTop="20dp"
                 app:layout_constraintTop_toBottomOf="@+id/lDays"
                 tools:ignore="MissingConstraints">
 
@@ -239,7 +238,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Horario de apertura"
+                    android:text="Apertura"
                     android:textSize="@dimen/size_16" />
 
                 <TextView
@@ -247,7 +246,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Horario de cierre"
+                    android:text="Cierre"
                     android:textSize="@dimen/size_16" />
             </LinearLayout>
 
@@ -280,6 +279,7 @@
             <LinearLayout
                 android:id="@+id/lResponsable"
                 style="@style/ll_row_secondary"
+                android:layout_marginTop="20dp"
                 app:layout_constraintTop_toBottomOf="@+id/lHorario"
                 tools:ignore="MissingConstraints">
 
@@ -288,19 +288,16 @@
                     style="@style/tv_label_secondary"
                     android:text="Responsable" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilResponsable"
-                    style="@style/til_material_secondary">
-
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etResponsable"
+                        android:layout_height="30dp"
                         style="@style/tiet_material_secondary"
                         android:digits="@string/digits_only_letters"
                         android:imeOptions="actionNext"
+                        android:background="@color/grayLevelOne"
                         android:inputType="textCapWords|textAutoCorrect|textPersonName"
                         android:maxLength="1500"
                         android:singleLine="true" />
-                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -315,11 +312,16 @@
                     android:text="Correo"
                     app:layout_constraintTop_toBottomOf="@+id/cwcDays" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilEmail"
-                    style="@style/til_material_secondary">
-
-                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etEmail"
+                    android:layout_height="30dp"
+                    android:background="@color/grayLevelOne"
+                    style="@style/tiet_material_secondary"
+                    android:digits="@string/digits_only_letters"
+                    android:imeOptions="actionNext"
+                    android:inputType="textCapWords|textAutoCorrect|textPersonName"
+                    android:maxLength="1500"
+                    android:singleLine="true" />
             </LinearLayout>
 
             <LinearLayout
@@ -333,24 +335,22 @@
                     style="@style/tv_label_secondary"
                     android:text="Teléfono" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilNumberPhone"
-                    style="@style/til_material_secondary">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etNumberPhone"
-                        style="@style/tiet_material_secondary"
-                        android:digits="@string/digits_only_number_phone"
-                        android:imeOptions="actionDone"
-                        android:inputType="phone"
-                        android:maxLength="10"
-                        android:singleLine="true" />
-                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etNumberPhone"
+                    android:layout_height="30dp"
+                    android:background="@color/grayLevelOne"
+                    style="@style/tiet_material_secondary"
+                    android:digits="@string/digits_only_number_phone"
+                    android:imeOptions="actionDone"
+                    android:inputType="phone"
+                    android:maxLength="10"
+                    android:singleLine="true" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/lCostoR"
                 style="@style/ll_row_secondary"
+                android:layout_marginTop="20dp"
                 android:orientation="horizontal"
                 app:layout_constraintTop_toBottomOf="@+id/lPhone"
                 tools:ignore="MissingConstraints">
@@ -373,34 +373,33 @@
             <LinearLayout
                 android:id="@+id/lMonto"
                 style="@style/ll_row_secondary"
+                android:orientation="horizontal"
                 android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@+id/lCostoR"
                 tools:ignore="MissingConstraints">
 
                 <TextView
                     android:id="@+id/tvMonto"
+                    android:layout_width="wrap_content"
                     style="@style/tv_label_secondary"
                     android:text="Precio: $" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilMonto"
-                    style="@style/til_material_secondary">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etMonto"
-                        style="@style/tiet_material_secondary"
-                        android:digits="@string/digits_only_number_phone"
-                        android:drawableStart="@drawable/ic_cost"
-                        android:imeOptions="actionDone"
-                        android:inputType="phone"
-                        android:maxLength="4"
-                        android:singleLine="true" />
-                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etMonto"
+                    style="@style/tiet_material_secondary"
+                    android:digits="@string/digits_only_number_phone"
+                    android:imeOptions="actionDone"
+                    android:inputType="phone"
+                    android:text="0"
+                    android:textSize="18sp"
+                    android:maxLength="4"
+                    android:singleLine="true" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/lDescripcion"
                 style="@style/ll_row_secondary"
+                android:layout_marginTop="20dp"
                 app:layout_constraintTop_toBottomOf="@+id/lMonto"
                 tools:ignore="MissingConstraints">
 
@@ -415,6 +414,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:padding="5dp"
+                    android:text="Descripción amplia de la actividad. Todos los informes y detalles que escapen a la información capturada en este formulario."
                     android:background="@drawable/border"
                     android:imeOptions="actionNext"
                     android:maxLength="250"
@@ -447,6 +447,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:padding="5dp"
+                    android:text="Información del público al que va dirigida la actividad y más información relevante propia de la actividad."
                     android:background="@drawable/border"
                     android:imeOptions="actionNext"
                     android:maxLength="250"
@@ -484,6 +485,7 @@
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/llDonativos"
+                android:visibility="gone"
                 style="@style/ll_row_secondary"
                 app:layout_constraintTop_toBottomOf="@+id/lDonativos"
                 tools:ignore="MissingConstraints">
@@ -494,6 +496,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:padding="5dp"
+                    android:text="Información relevante sobre los donativos que se requieren para la actividad. Qué y cómo donar."
                     android:background="@drawable/border"
                     android:imeOptions="actionNext"
                     android:maxLength="250"
@@ -531,6 +534,7 @@
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/llVoluntarios"
+                android:visibility="gone"
                 style="@style/ll_row_secondary"
                 app:layout_constraintTop_toBottomOf="@+id/lVoluntarios"
                 tools:ignore="MissingConstraints">
@@ -540,6 +544,7 @@
                     style="@style/tiet_material_secondary"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
+                    android:text="Información relevante sobre las actividades a desempeñar por los voluntarios. Requisitos y descripción del voluntariado."
                     android:padding="5dp"
                     android:background="@drawable/border"
                     android:imeOptions="actionNext"

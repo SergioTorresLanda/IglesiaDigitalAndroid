@@ -126,7 +126,7 @@ class EventDetailFragment : FragmentBase() {
         switch2.isChecked = true
         switch3.isChecked = true
         requireArguments().let {
-            var id = it.getString("diner_id")
+            val id = it.getString("diner_id")
             if (id != "") {
                 callBack.showToolbar(true, AppMyConstants.updateEvento)
                 id?.let { it1 ->
@@ -161,45 +161,59 @@ class EventDetailFragment : FragmentBase() {
                         }
                         listDays[0].checked = it.fCHORARIOS!![0].days!![0].checked
                         if (!listDays[0].checked) {
-                            binding.iDays.iDayDo.tvCDay.setTextColor(Color.BLACK)
+                            binding.iDays.iDayDo.tvCDay.setTextColor(Color.GRAY)
+                            binding.iDays.iDayDo.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                         } else {
-                            binding.iDays.iDayDo.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                            binding.iDays.iDayDo.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                            binding.iDays.iDayDo.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                         }
                         listDays[1].checked = it.fCHORARIOS!![0].days!![1].checked
                         if (!listDays[1].checked) {
-                            binding.iDays.iDayLu.tvCDay.setTextColor(Color.BLACK)
+                            binding.iDays.iDayLu.tvCDay.setTextColor(Color.GRAY)
+                            binding.iDays.iDayLu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                         } else {
-                            binding.iDays.iDayLu.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                            binding.iDays.iDayLu.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                            binding.iDays.iDayLu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                         }
                         listDays[2].checked = it.fCHORARIOS!![0].days!![2].checked
                         if (!listDays[2].checked) {
-                            binding.iDays.iDayMa.tvCDay.setTextColor(Color.BLACK)
+                            binding.iDays.iDayMa.tvCDay.setTextColor(Color.GRAY)
+                            binding.iDays.iDayMa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                         } else {
-                            binding.iDays.iDayMa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                            binding.iDays.iDayMa.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                            binding.iDays.iDayMa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                         }
                         listDays[3].checked = it.fCHORARIOS!![0].days!![3].checked
                         if (!listDays[3].checked) {
-                            binding.iDays.iDayMi.tvCDay.setTextColor(Color.BLACK)
+                            binding.iDays.iDayMi.tvCDay.setTextColor(Color.GRAY)
+                            binding.iDays.iDayMi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                         } else {
-                            binding.iDays.iDayMi.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                            binding.iDays.iDayMi.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                            binding.iDays.iDayMi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                         }
                         listDays[4].checked = it.fCHORARIOS!![0].days!![4].checked
                         if (!listDays[4].checked) {
-                            binding.iDays.iDayJu.tvCDay.setTextColor(Color.BLACK)
+                            binding.iDays.iDayJu.tvCDay.setTextColor(Color.GRAY)
+                            binding.iDays.iDayJu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                         } else {
-                            binding.iDays.iDayJu.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                            binding.iDays.iDayJu.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                            binding.iDays.iDayJu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                         }
                         listDays[5].checked = it.fCHORARIOS!![0].days!![5].checked
                         if (!listDays[5].checked) {
-                            binding.iDays.iDayVi.tvCDay.setTextColor(Color.BLACK)
+                            binding.iDays.iDayVi.tvCDay.setTextColor(Color.GRAY)
+                            binding.iDays.iDayVi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                         } else {
-                            binding.iDays.iDayVi.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                            binding.iDays.iDayVi.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                            binding.iDays.iDayVi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                         }
                         listDays[6].checked = it.fCHORARIOS!![0].days!![6].checked
                         if (!listDays[6].checked) {
-                            binding.iDays.iDaySa.tvCDay.setTextColor(Color.BLACK)
+                            binding.iDays.iDaySa.tvCDay.setTextColor(Color.GRAY)
+                            binding.iDays.iDaySa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                         } else {
-                            binding.iDays.iDaySa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
+                            binding.iDays.iDaySa.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                            binding.iDays.iDaySa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                         }
                         switch1.isChecked = it.fCCOBRO != "0"
                         etMonto.setText(it.fCCOBRO)
@@ -439,90 +453,76 @@ class EventDetailFragment : FragmentBase() {
             iDays.iDayDo.tvCDay.setOnClickListener {
                 listDays[0].checked = !listDays[0].checked
                 if (!listDays[0].checked) {
-                    binding.iDays.iDayDo.tvCDay.setTextColor(Color.BLACK)
-                    val gson = Gson()
-                    val jsonString = gson.toJson(listDays)
+                    binding.iDays.iDayDo.tvCDay.setTextColor(Color.GRAY)
+                    binding.iDays.iDayDo.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                 } else {
-                    binding.iDays.iDayDo.tvCDay.setTextColor(Color.rgb(0, 191, 255))
-                    val gson = Gson()
-                    val jsonString = gson.toJson(listDays)
+                    binding.iDays.iDayDo.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                    binding.iDays.iDayDo.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                 }
             }
 
             iDays.iDayLu.tvCDay.setOnClickListener {
                 listDays[1].checked = !listDays[1].checked
                 if (!listDays[1].checked) {
-                    binding.iDays.iDayLu.tvCDay.setTextColor(Color.BLACK)
-                    val gson = Gson()
-                    val jsonString = gson.toJson(listDays)
+                    binding.iDays.iDayLu.tvCDay.setTextColor(Color.GRAY)
+                    binding.iDays.iDayLu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                 } else {
-                    binding.iDays.iDayLu.tvCDay.setTextColor(Color.rgb(0, 191, 255))
-                    val gson = Gson()
-                    val jsonString = gson.toJson(listDays)
+                    binding.iDays.iDayLu.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                    binding.iDays.iDayLu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                 }
             }
 
             iDays.iDayMa.tvCDay.setOnClickListener {
                 listDays[2].checked = !listDays[2].checked
                 if (!listDays[2].checked) {
-                    binding.iDays.iDayMa.tvCDay.setTextColor(Color.BLACK)
-                    val gson = Gson()
-                    val jsonString = gson.toJson(listDays)
+                    binding.iDays.iDayMa.tvCDay.setTextColor(Color.GRAY)
+                    binding.iDays.iDayMa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                 } else {
-                    binding.iDays.iDayMa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
-                    val gson = Gson()
-                    val jsonString = gson.toJson(listDays)
+                    binding.iDays.iDayMa.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                    binding.iDays.iDayMa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                 }
             }
             iDays.iDayMi.tvCDay.setOnClickListener {
                 listDays[3].checked = !listDays[3].checked
                 if (!listDays[3].checked) {
-                    binding.iDays.iDayMi.tvCDay.setTextColor(Color.BLACK)
-                    val gson = Gson()
-                    val jsonString = gson.toJson(listDays)
+                    binding.iDays.iDayMi.tvCDay.setTextColor(Color.GRAY)
+                    binding.iDays.iDayMi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                 } else {
-                    binding.iDays.iDayMi.tvCDay.setTextColor(Color.rgb(0, 191, 255))
-                    val gson = Gson()
-                    val jsonString = gson.toJson(listDays)
+                    binding.iDays.iDayMi.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                    binding.iDays.iDayMi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                 }
             }
 
             iDays.iDayJu.tvCDay.setOnClickListener {
                 listDays[4].checked = !listDays[4].checked
                 if (!listDays[4].checked) {
-                    binding.iDays.iDayJu.tvCDay.setTextColor(Color.BLACK)
-                    val gson = Gson()
-                    val jsonString = gson.toJson(listDays)
+                    binding.iDays.iDayJu.tvCDay.setTextColor(Color.GRAY)
+                    binding.iDays.iDayJu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                 } else {
-                    binding.iDays.iDayJu.tvCDay.setTextColor(Color.rgb(0, 191, 255))
-                    val gson = Gson()
-                    val jsonString = gson.toJson(listDays)
+                    binding.iDays.iDayJu.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                    binding.iDays.iDayJu.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                 }
             }
 
             iDays.iDayVi.tvCDay.setOnClickListener {
                 listDays[5].checked = !listDays[5].checked
                 if (!listDays[5].checked) {
-                    binding.iDays.iDayVi.tvCDay.setTextColor(Color.BLACK)
-                    val gson = Gson()
-                    val jsonString = gson.toJson(listDays)
+                    binding.iDays.iDayVi.tvCDay.setTextColor(Color.GRAY)
+                    binding.iDays.iDayVi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                 } else {
-                    binding.iDays.iDayVi.tvCDay.setTextColor(Color.rgb(0, 191, 255))
-                    val gson = Gson()
-                    val jsonString = gson.toJson(listDays)
+                    binding.iDays.iDayVi.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                    binding.iDays.iDayVi.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                 }
             }
 
             iDays.iDaySa.tvCDay.setOnClickListener {
                 listDays[6].checked = !listDays[6].checked
                 if (!listDays[6].checked) {
-                    binding.iDays.iDaySa.tvCDay.setTextColor(Color.BLACK)
-                    val gson = Gson()
-                    val jsonString = gson.toJson(listDays)
+                    binding.iDays.iDaySa.tvCDay.setTextColor(Color.GRAY)
+                    binding.iDays.iDaySa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.GRAY)
                 } else {
-                    binding.iDays.iDaySa.tvCDay.setTextColor(Color.rgb(0, 191, 255))
-                    val gson = Gson()
-                    val jsonString = gson.toJson(listDays)
+                    binding.iDays.iDaySa.tvCDay.setTextColor(Color.rgb(0, 117, 227))
+                    binding.iDays.iDaySa.tvCDay.setShadowLayer(5F, 3F, 3F, Color.rgb(0, 117, 227))
                 }
             }
 

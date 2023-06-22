@@ -230,11 +230,7 @@ class DetailChurchFindedFragment : FragmentBase() {
                     tvHorario.text = ""
                     if (!cargar(horariosDomingo, it, 0).isNullOrEmpty()) {
                         tvHorario.text =
-                            tvHorario.text.toString() + "Domingo :\n" + cargar(
-                                horariosDomingo,
-                                it,
-                                0
-                            )
+                            tvHorario.text.toString() + "Domingo :\n" + cargar(horariosDomingo, it, 0)
                     }
                     if (!cargar(horariosLunes, it, 1).isNullOrEmpty()) {
                         tvHorario.text =
@@ -247,11 +243,8 @@ class DetailChurchFindedFragment : FragmentBase() {
                     }
 
                     if (!cargar(horariosMiercoles, it, 3).isNullOrEmpty()) {
-                        tvHorario.text = tvHorario.text.toString() + "Miércoles :\n" + cargar(
-                            horariosMiercoles,
-                            it,
-                            3
-                        )
+                        tvHorario.text =
+                            tvHorario.text.toString() + "Miércoles :\n" + cargar(horariosMiercoles, it, 3)
                     }
                     if (!cargar(horariosJueves, it, 4).isNullOrEmpty()) {
                         tvHorario.text =
@@ -259,19 +252,11 @@ class DetailChurchFindedFragment : FragmentBase() {
                     }
                     if (!cargar(horariosViernes, it, 5).isNullOrEmpty()) {
                         tvHorario.text =
-                            tvHorario.text.toString() + "Viernes :\n" + cargar(
-                                horariosViernes,
-                                it,
-                                5
-                            )
+                            tvHorario.text.toString() + "Viernes :\n" + cargar(horariosViernes, it, 5)
                     }
                     if (!cargar(horariosSabado, it, 6).isNullOrEmpty()) {
                         tvHorario.text =
-                            binding.tvHorario.text.toString() + "Sábado :\n" + cargar(
-                                horariosSabado,
-                                it,
-                                6
-                            )
+                            binding.tvHorario.text.toString() + "Sábado :\n" + cargar(horariosSabado, it, 6)
                     }
                 } else {
                     lnlHora.visibility = View.VISIBLE
@@ -316,12 +301,7 @@ class DetailChurchFindedFragment : FragmentBase() {
                     cvRedes.visibility = View.VISIBLE
                     tvTitleWeb!!.visibility = View.VISIBLE
                 }
-                /*if (!it.stream.isNullOrEmpty()) {
-                    cvEventosEnvivo.visibility = View.VISIBLE
-                    cvEventosEnvivo.setOnClickListener {
 
-                    }
-                }*/
                 if (!it.rating.isNullOrEmpty()) {
                     star = PublicFunctions().redondearStar(it.rating!!.toFloat())
                     rbIglesia.rating = star
@@ -336,13 +316,7 @@ class DetailChurchFindedFragment : FragmentBase() {
                             false
                         )
                         adapter = MassAdapter(getMasses(it.masses!!), false, binding.rvHorarios)
-                        /*adapter = HorarioAdapter(
-                            requireContext(),
-                            getMasses(it.masses!!),
-                            //it.masses as MutableList<HoraryModelItem>,
-                            rvHorarios
-                        ) {
-                        }*/
+
                     }
                 }
                 if (!it.services.isNullOrEmpty()) {

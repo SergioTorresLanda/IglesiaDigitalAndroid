@@ -32,6 +32,8 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
     val responseAllOther = repositoryEvent.allOther
     val responseAllDon = repositoryEvent.allDonor
     val responseAllVol = repositoryEvent.allVolunteer
+    val responseAllActors = repositoryEvent.allActors
+
 
     fun getFine(): Boolean {
         return true
@@ -71,9 +73,9 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
         }
     }
 
-    fun requestAllOther(otherId: Int) {
+    fun requestAllOther(eventId: Int, tipoEvento:Int) {
         viewModelScope.launch {
-            val response = repositoryEvent.getAllOther(otherId)
+            val response = repositoryEvent.getAllOther(eventId, tipoEvento)
             if (response.sucess)
                 responseAllOther.postValue(response.data ?: listOf())
             else
@@ -174,7 +176,6 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
         } else {
 
             this.showLoaderView.value = true
-
             val eventRegisterModel = Event(
                 name = name,
                 user_id = userId,
@@ -363,6 +364,7 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
     }
 
     fun validateFormRegisterOther(activity:OtherEvent) {
+        println("validateFormRegisterOther")
         val validateForm: HashMap<String, String> = HashMap()
         var descriptionValidate = ""
 
@@ -370,38 +372,86 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
 
         if (filter != null) {
             if (filter.isEmpty())
-                validateForm[Constants.KEY_DAYS] = Constants.EMPTY_FIELD
+                validateForm[Constants.KEY_DAYSOTHER] = Constants.EMPTY_FIELD
         }
 
-        if (activity.horarios!![0].hour_start == "00:00")
+        if (activity.horarios[0].hour_start == "00:00")
             validateForm[Constants.KEY_HOUR_FIRST] = Constants.EMPTY_FIELD
 
-        if (activity.horarios!![0].hour_end == "00:00")
+        if (activity.horarios[0].hour_end == "00:00")
             validateForm[Constants.KEY_HOUR_END] = Constants.EMPTY_FIELD
 
-        if (activity.responsable=="")
-            validateForm[Constants.KEY_RESPONSABILITY] = Constants.EMPTY_FIELD
-
         if (activity.direccion=="")
-            validateForm[Constants.KEY_ADDRESS] = Constants.EMPTY_FIELD
+            validateForm[Constants.KEY_ADDRESSOTHER] = Constants.EMPTY_FIELD
 
-        //if (activity.descripcion=="")
-            //validateForm[Constants.KEY_ADDRESS] = Constants.EMPTY_FIELD
+        if (activity.descripcion=="")
+            validateForm[Constants.KEY_DESCOTHER] = Constants.EMPTY_FIELD
+
+        if (activity.nombre=="")
+            validateForm[Constants.KEY_NAMEOTHER] = Constants.EMPTY_FIELD
+        if (activity.tipoEvento == 0)
+            validateForm[Constants.KEY_TYPEOTHER] = Constants.EMPTY_FIELD
 
         validateForm.toString().log()
         if (validateForm.size > 0) {
             this.validateForm.value = validateForm
         } else {
-
+            println("todo ok ")
             this.showLoaderView.value = true
-
             GlobalScope.launch {
                 if (activity.eventoId == 0) {
-                    repositoryEvent.saveEventOther(activity)
+                    println("Se va a crear xx")
+                    repositoryEvent.saveEventOther(activity, activity.tipoEvento!!)
                 } else {
-                    activity.eventoId?.let { repositoryEvent.updateEventOther(it, activity) }
+                    println("Se va a actualizar:: ")
+                    print(activity.eventoId)
+                    activity.eventoId?.let { repositoryEvent.updateEventOther(it, activity.tipoEvento!!,activity) }
                 }
             }
+        }
+    }
+
+    fun postOthersActors(actor:OtherActor) {
+        val validateForm: HashMap<String, String> = HashMap()
+        var descriptionValidate = ""
+
+        if (actor.telefono=="")
+            validateForm[Constants.KEY_ADDRESSOTHER] = Constants.EMPTY_FIELD
+        if (actor.correo=="")
+            validateForm[Constants.KEY_ADDRESSOTHER] = Constants.EMPTY_FIELD
+        if (actor.comentarios=="")
+            validateForm[Constants.KEY_DESCOTHER] = Constants.EMPTY_FIELD
+        if (actor.nombre=="")
+            validateForm[Constants.KEY_NAMEOTHER] = Constants.EMPTY_FIELD
+        if (actor.tipo_actor == 0)
+            validateForm[Constants.KEY_TYPEOTHER] = Constants.EMPTY_FIELD
+
+        validateForm.toString().log()
+        if (validateForm.size > 0) {
+            this.validateForm.value = validateForm
+        } else {
+            this.showLoaderView.value = true
+            GlobalScope.launch {
+                if (actor.actor_id == 0) {
+                    println("ES POST")
+                    println(actor)
+                    repositoryEvent.postOthersActors(actor)
+                } else {
+                    println("ES PUT")
+                    println(actor.actor_id)
+                    repositoryEvent.updateOthersActor(actor)
+                }
+            }
+        }
+    }
+
+    fun requestAllActors() {
+        viewModelScope.launch {
+            val response = repositoryEvent.getOthersActors()
+            if (response.sucess)
+                responseAllActors.postValue(response.data ?: listOf())
+            else
+                repositoryEvent.errorResponse.postValue(response.exception?.message)
         }
     }
 
@@ -437,16 +487,6 @@ class ViewModelEvent(val repositoryEvent: RepositoryEvent) : ViewModel() {
         if (tipo_don.isEmpty())
             validateForm[Constants.KEY_TYPEDON] = Constants.EMPTY_FIELD
 
-        /*
-        if (email.isEmpty()) {
-            validateForm[Constants.KEY_EMAIL] = Constants.EMPTY_FIELD
-        } else {
-            if (!Constants.EMAIL_ADDRESS.matcher(email).matches())
-                validateForm[Constants.KEY_EMAIL] = Constants.INVALID_EMAIL
-        }
-
-
-         */
         if (telefono.isEmpty()) {
             validateForm[Constants.KEY_PHONE] = Constants.EMPTY_FIELD
 

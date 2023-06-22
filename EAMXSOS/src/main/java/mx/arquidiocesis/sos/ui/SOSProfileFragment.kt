@@ -38,8 +38,17 @@ class SOSProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val userIsAdmin = userAllowAccessAsAdmin(EAMXEnumUser.USER_PERMISSION_SOS.name)
-
+         //val userIsAdmin=userAllowAccessAsAdmin(EAMXEnumUser.USER_PERMISSION_SOS.name)
+        val userIsAdmin = when (eamxcu_preferences.getData(EAMXEnumUser.USER_PROFILE.name, EAMXTypeObject.STRING_OBJECT) as String) {
+            EAMXProfile.PriestAdmin.rol,//sacer admin
+            EAMXProfile.DeanPriest.rol,//sacer decano
+            EAMXProfile.DevotedAdmin.rol,//fiel admin
+            EAMXProfile.VicariaClero.rol,
+            EAMXProfile.VicariaPastoral.rol,
+            EAMXProfile.VicariaVidaPastoral.rol
+            -> true
+            else -> false
+        }
         val fromSOS = eamxcu_preferences.getData("FROMSOS", EAMXTypeObject.BOOLEAN_OBJECT) as Boolean
 
         callBack.showToolbar(true, if (fromSOS) AppMyConstants.sos else  AppMyConstants.notificaciones)
@@ -47,6 +56,7 @@ class SOSProfileFragment : Fragment() {
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frameSOSProfile,
             if (userIsAdmin) {//Sacerdote
+                println("SOS ::: ES AdmiNN:: SI")
                 activity?.let {
                     EAMXFirebaseManager(it).setLogEvent("screen_view", Bundle().apply {
                         putString("screen_class", "Home_SOSPriest")
@@ -54,6 +64,7 @@ class SOSProfileFragment : Fragment() {
                 }
                 PriestProfileFragment.newInstance()
             }else{//Fiel
+                println("SOS ::: ES AdmiNN:: NO")
                 activity?.let {
                     EAMXFirebaseManager(it).setLogEvent("screen_view", Bundle().apply {
                         putString("screen_class", "Home_SOSPrincipal")

@@ -11,7 +11,6 @@ import mx.arquidiocesis.misiglesias.databinding.ItemServiceScheduleBinding
 import mx.arquidiocesis.misiglesias.model.ServiceModel
 import mx.arquidiocesis.misiglesias.utils.PublicFunctions
 
-
 class ServiceAdapter(
     private val edit: Boolean = false,
     var services: MutableList<ServiceModel>,
@@ -57,16 +56,24 @@ class ServiceAdapter(
             adapter: ServiceAdapter
         ) {
             binding.tvServicio.text = service.type.name
+            binding.tvHorario.visibility=View.GONE
             if (!service.schedules.isNullOrEmpty()) {
-                val item = service.schedules.first()
-                binding.tvDia.text = PublicFunctions().obtenerDias(item.days)
-                if (!item.hour_start.isNullOrEmpty()) {
-                    binding.tvHorario.text = "${item.hour_start}"
+                for (item in service.schedules){
+                    val dia = PublicFunctions().obtenerDias(item.days)
+                    var horaIni = "00:00"
+                    var horaFin = "00:00"
+                    if (!item.hour_start.isNullOrEmpty()) {
+                        horaIni=item.hour_start
+                    }
                     if (!item.hour_end.isNullOrEmpty()) {
-                        binding.tvHorario.text = "${item.hour_start} a ${item.hour_end}"
+                        horaFin=item.hour_end
+                    }
+                    if (horaIni=="00:00" && horaFin=="00:00") {
+                        binding.tvDia.append("${dia}: Horario flexible.\n")
+                    }else{
+                        binding.tvDia.append("${dia}: ${item.hour_start} a ${item.hour_end}\n")
                     }
                 }
-
             }
             service.geared_toward.isNullOrEmpty().let {
                 if (!it) {
@@ -86,37 +93,6 @@ class ServiceAdapter(
             binding.ivRemove.setOnClickListener {
                 adapter.deleteReceiptsList(service)
             }
-            /* Glide.with(context)
-                 .load(Uri.parse(service.icon)).apply(RequestOptions().override(40, 50))
-                 .into(binding.ivIcon)
-              */   /**/
-
-            /*              binding.imClose.setOnClickListener {
-                              adapter.deleteReceiptsList(service)
-                          }
-
-                          binding.ivEditDays.setOnClickListener {
-                              val days =
-                                  mutableListOf(
-                                      "Lunes",
-                                      "Martes",
-                                      "Miercoles",
-                                      "Jueves",
-                                      "Viernes",
-                                      "Sabado",
-                                      "Domingo"
-                                  )
-                              PublicFunctions().selectDayRange(context, binding.tvDia, days, "")
-                          }
-
-                          binding.ivEditHours.setOnClickListener {
-                              PublicFunctions().selectFirstHour(context, binding.tvHorario, "")
-                          }
-          */
-
-
         }
-
-
     }
 }

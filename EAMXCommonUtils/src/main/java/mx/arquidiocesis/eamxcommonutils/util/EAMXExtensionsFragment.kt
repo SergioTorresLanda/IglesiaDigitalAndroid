@@ -135,7 +135,7 @@ private fun userCanAccessModule(module : String) : Boolean {
             }
         }
         EAMXEnumUser.USER_PERMISSION_SOS.name -> {
-            return profileUser != EAMXProfile.Devoted.rol
+            return true //profileUser != EAMXProfile.Devoted.rol
         }
         else -> false
     }

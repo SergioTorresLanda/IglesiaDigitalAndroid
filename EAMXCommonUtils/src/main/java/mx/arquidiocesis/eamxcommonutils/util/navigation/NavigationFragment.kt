@@ -67,6 +67,7 @@ class NavigationFragment private constructor(
     }
 
     fun back() {
+        println("CLICK BACK")
         val manager = activity.supportFragmentManager
         if (manager.backStackEntryCount > 0) {
             manager.popBackStack()

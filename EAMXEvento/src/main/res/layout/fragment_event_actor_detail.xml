@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".ui.EventDonorDetailFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp">
+
+            <LinearLayout
+                android:id="@+id/lNombreD"
+                style="@style/ll_row_secondary"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvNombreD"
+                    style="@style/tv_label_secondary"
+                    android:text="Nombre del donador" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilNombreD"
+                    style="@style/til_material_secondary">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etNombreDD"
+                        style="@style/tiet_material_secondary"
+                        android:digits="@string/digits_only_letters"
+                        android:imeOptions="actionNext"
+                        android:background="@color/grayLevelOne"
+                        android:inputType="textCapWords|textAutoCorrect|textPersonName"
+                        android:maxLength="1500"
+                        android:singleLine="true" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lComentarios"
+                style="@style/ll_row_secondary"
+                app:layout_constraintTop_toBottomOf="@+id/lNombreD"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/labelComentarios"
+                    style="@style/tv_label_secondary"
+                    android:text="¿Cómo quieres ayudar, donar o participar ?" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilComentarios"
+                    style="@style/til_material_secondary">
+
+                    <!--  android:background="@drawable/edittext_border" -->
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etComentarios"
+                        style="@style/tiet_material_secondary"
+                        android:layout_height="100dp"
+                        android:digits="@string/digits_only_letters_caracters"
+                        android:imeOptions="actionDone"
+                        android:inputType="textAutoCorrect"
+                        android:maxLength="250"
+                        android:singleLine="false" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tvComentariosConteo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:text="0/250"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="@dimen/size_16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lTipoDonacion"
+                style="@style/ll_row_secondary"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/lComentarios"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvTipoDonacion"
+                    style="@style/tv_label_secondary"
+                    android:text="Tipo de donación" />
+
+                <Spinner
+                    android:id="@+id/spTipoDonacion"
+                    style="@style/spinner"
+                    android:entries="@array/typedonations" />
+
+                <TextView
+                    android:id="@+id/lbTipoDonacion"
+                    style="@style/spinner_selection" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lEmailDonador"
+                style="@style/ll_row_secondary"
+                app:layout_constraintTop_toBottomOf="@+id/lTipoDonacion"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvEmailDonador"
+                    style="@style/tv_label_secondary"
+                    android:text="Correo"
+                    app:layout_constraintTop_toBottomOf="@+id/cwcDays" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilEmailDonador"
+                    style="@style/til_material_secondary">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etEmailDonador"
+                        style="@style/tiet_material_secondary"
+                        android:digits="@string/digits_only_email"
+                        android:imeOptions="actionNext"
+                        android:inputType="textCapWords|textAutoCorrect|textPersonName"
+                        android:maxLength="50"
+                        android:background="@color/grayLevelOne"
+                        android:singleLine="true" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lPhoneDonador"
+                style="@style/ll_row_secondary"
+                app:layout_constraintTop_toBottomOf="@+id/lEmailDonador"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/labelPhoneDonador"
+                    style="@style/tv_label_secondary"
+                    android:text="Teléfono" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilPhoneDonador"
+                    style="@style/til_material_secondary">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etPhoneDonador"
+                        style="@style/tiet_material_secondary"
+                        android:digits="@string/digits_only_number_phone"
+                        android:imeOptions="actionDone"
+                        android:inputType="phone"
+                        android:maxLength="10"
+                        android:background="@color/grayLevelOne"
+                        android:singleLine="true" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lbtnGuardar"
+                style="@style/ll_fill_btns"
+                android:layout_marginTop="@dimen/margin_24"
+                app:layout_constraintTop_toBottomOf="@+id/lPhoneDonador"
+                tools:ignore="MissingConstraints">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnGuardar"
+                    style="@style/btn_primary"
+                    android:layout_width="match_parent"
+                    android:text="Guardar" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

@@ -46,6 +46,7 @@ class ServicesMenuFragment : FragmentBase() {
             })
         }
         initView()
+        println("SERvIces MEnu:::")
     }
 
     private fun initView() {

@@ -49,18 +49,17 @@ class ServicesMainFragment : FragmentBase() {
     }
 
     private fun loadFragmentByUserRol(): Fragment {
-        return when (userAllowAccessAsAdmin(EAMXEnumUser.USER_PERMISSION_SERVICES.name)) {
-            false -> ServicesMenuFragment.newInstance(callBack)
-            true -> {
-                when (eamxcu_preferences.getData(
-                    EAMXEnumUser.USER_PROFILE.name,
-                    EAMXTypeObject.STRING_OBJECT
-                ) as String) {
-                    EAMXProfile.CommunityResponsible.rol
-                    -> ServicesMenuFragment.newInstance(callBack)
-                    else -> ServiceAdminMainFragment.newInstance(callBack)
-                }
-            }
+
+        return when (eamxcu_preferences.getData(EAMXEnumUser.USER_PROFILE.name, EAMXTypeObject.STRING_OBJECT) as String) {
+            EAMXProfile.PriestAdmin.rol,//sacer admin
+            EAMXProfile.DeanPriest.rol,//sacer decano
+            EAMXProfile.DevotedAdmin.rol,//fiel admin
+            EAMXProfile.VicariaClero.rol,
+            EAMXProfile.VicariaPastoral.rol,
+            EAMXProfile.VicariaVidaPastoral.rol
+            -> ServiceAdminMainFragment.newInstance(callBack)
+
+            else -> ServicesMenuFragment.newInstance(callBack)
         }
     }
 }

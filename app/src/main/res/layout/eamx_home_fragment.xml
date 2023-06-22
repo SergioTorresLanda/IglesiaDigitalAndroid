@@ -777,11 +777,10 @@
 
         <ImageButton
             android:id="@+id/btnApoyar"
-            style="@style/StyleBtnApoyar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/name"
-            android:src="@drawable/button_miofrneda"
+            style="@style/StyleBtnApoyar"
+            android:src="@drawable/boton_mi_ofrenda"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

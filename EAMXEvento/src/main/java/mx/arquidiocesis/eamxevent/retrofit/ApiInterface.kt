@@ -2,6 +2,7 @@ package mx.arquidiocesis.eamxevent.retrofit
 
 import kotlinx.coroutines.Deferred
 import mx.arquidiocesis.eamxevent.model.*
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -11,7 +12,10 @@ interface ApiInterface {
     fun postCreateEventAsync(@Body event: Event): Deferred<Response<Void>>
 
     @POST(WebConfig.EVENT_OTHER)
-    fun postCreateOtherAsync(@Body event: OtherEvent): Deferred<Response<Void>>
+    fun postCreateOtherAsync(
+        //@Query("evento") tipoEvento: Int,
+        @Body event: OtherEvent
+    ): Deferred<Response<Void>>
 
     @PUT(WebConfig.EVENT_DINER_PATH)
     fun putUpdateEventAsync(
@@ -19,9 +23,10 @@ interface ApiInterface {
         @Body event: Event,
     ): Deferred<Response<Void>>
 
-    @PUT(WebConfig.EVENT_OTHER_PATH)
+    @PUT(WebConfig.EVENT_OTHER_UPDATE)
     fun putUpdateOtherAsync(
-        @Path("otherId") otherId: Int,
+        @Path("eventId") eventId: Int,
+        @Query("evento") tipoEvento: Int,
         @Body event: OtherEvent,
     ): Deferred<Response<Void>>
 
@@ -47,13 +52,25 @@ interface ApiInterface {
     @GET(WebConfig.EVENT_PANTRY_PATH)
     fun getPantryEventAsync(@Path("pantryId") pantryId: Int): Deferred<Response<List<Pantry>>>
 
-    @GET(WebConfig.EVENT_OTHER)
+    @GET(WebConfig.EVENT_OTHER_GET)
     fun getOthersEventAsync(): Deferred<Response<List<OtherEvent>>>
 
-    @GET(WebConfig.EVENT_OTHER_PATH)
-    fun getOtherEventAsync(@Path("otherId") otherId: Int): Deferred<Response<List<OtherEvent>>>
+    @GET(WebConfig.EVENT_OTHER_ACTORS)
+    fun getOthersActorsAsync(): Deferred<Response<List<OtherActor>>>
 
-    //Event_Donor
+    @POST(WebConfig.EVENT_OTHER_ACTORS)
+    fun postOthersActorsAsync(@Body actor: OtherActor): Deferred<Response<Void>>
+
+    @PUT(WebConfig.UPDATE_OTHER_ACTORS)
+    fun putOthersActorsAsync(
+        @Path("actorId") actorId : Int,
+        @Body actor: OtherActor): Deferred<Response<Void>>
+
+    @GET(WebConfig.EVENT_OTHER_GETDET)
+    fun getOtherEventAsync(
+        @Path("eventId") eventId: Int,
+        @Query("evento") tipoEvento: Int
+    ): Deferred<Response<List<OtherEvent>>>
 
     @POST(WebConfig.EVENT_DONOR)
     fun postCreateDonorAsync(@Body donor: Donor): Deferred<Response<Void>>

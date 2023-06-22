@@ -243,10 +243,7 @@ class EAMXLoginActivity : EAMXBaseActivity() {
         hideLogin()
         btnRegistrar.setOnClickListener {
             startActivityForResult(
-                Intent(
-                    this@EAMXLoginActivity,
-                    EAMXRegisterActivity::class.java
-                ), EAMXEnums.CONFIRM_CODE.code
+                Intent(this@EAMXLoginActivity, EAMXRegisterActivity::class.java), EAMXEnums.CONFIRM_CODE.code
             )
         }
         btnLogin.setOnClickListener {

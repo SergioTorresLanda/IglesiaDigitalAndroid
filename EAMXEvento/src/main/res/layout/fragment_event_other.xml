@@ -41,7 +41,6 @@
                     style="@style/list_label_catalog"
                     android:drawableTop="@drawable/cesto_48"
                     android:layout_margin="10dp"
-                    android:background="@drawable/tab"
                     android:backgroundTint="@color/white"
                     android:text="Despensas" />
 
@@ -50,6 +49,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="4dp"
+                    android:background="@drawable/tab"
                     style="@style/list_label_catalog"
                     android:drawableTop="@drawable/hands48"
                     android:layout_margin="10dp"
@@ -108,33 +108,10 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/llParticipacion"
-                style="@style/ll_row_primary"
-                android:visibility="gone"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cwc_add_des">
-
-                <TextView
-                    android:id="@+id/tvParticipacionDes"
-                    style="@style/tv_label_primary"
-                    android:text="¿Cómo quieres participar?"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <Spinner
-                    android:id="@+id/spParticipacionDes"
-                    style="@style/spinner"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvZonaDetailDes" />
-
-            </LinearLayout>
-
-            <LinearLayout
                 android:id="@+id/lTipo"
                 style="@style/ll_row_primary"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/llParticipacionDes">
+                app:layout_constraintTop_toBottomOf="@+id/cwc_add_other">
 
                 <TextView
                     android:id="@+id/tvTipo"
@@ -146,7 +123,7 @@
                 <Spinner
                     android:id="@+id/spTipo"
                     style="@style/spinner"
-                    android:entries="@array/delegations"
+                    android:entries="@array/participations2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvZonaDetailDes" />
@@ -156,12 +133,12 @@
                 android:id="@+id/viewTop"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="@dimen/margin_20"
+                android:layout_marginTop="@dimen/margin_5"
                 android:background="#002166"
-                android:visibility="visible"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lZoneDes" />
+                app:layout_constraintTop_toBottomOf="@+id/lTipo" />
 
         </LinearLayout>
 

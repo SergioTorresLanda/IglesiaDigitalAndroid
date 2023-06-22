@@ -32,6 +32,7 @@ import mx.arquidiocesis.eamxevent.repository.RepositoryEvent
 const val EDITAR = "EDITAR"
 const val DONAR = "DONAR"
 const val PARTICIPAR = "PARTICIPAR"
+const val AYUDAR = "AYUDAR"
 
 class EventFragment : FragmentBase() {
 
@@ -48,16 +49,15 @@ class EventFragment : FragmentBase() {
 
     companion object {
         fun newInstance(callBack: EAMXHome): EventFragment {
-            var fragment = EventFragment()
+            val fragment = EventFragment()
             fragment.callBack = callBack
             return fragment
         }
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
+    ): View {
         // Inflate the layout for this fragment
         viewmodel = ViewModelEvent(RepositoryEvent(requireContext()))
         binding = FragmentEventBinding.inflate(inflater, container, false)
@@ -79,20 +79,26 @@ class EventFragment : FragmentBase() {
         ) as Int
         setupInit(msgGuest(isMsg = false))
         initObservers()
-        //getAllDiners() //Ya no se ejecuta por que se activa en el spinner: spZone
         initButtons()
+        //getAllDiners() //Ya no se ejecuta por que se activa en el spinner: spZone
+    }
 
+    private fun popToHome(){
+        val count = requireActivity().supportFragmentManager.backStackEntryCount
+        for (i in 0 until count) {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
     }
 
     private fun initObservers() {
         viewmodel.responseAllDin.observe(viewLifecycleOwner) { item ->
-            if (item.size > 0) {
+            if (item.isNotEmpty()) {
                 if (item[0].fCCOMEDORID != null) {
                     if (init) { //Segunda vez
                         item.forEach {
                             if (it.fIUSERID == userId.toString()) {
                                 diner_id = it.fCCOMEDORID.toString()
-                                tvNewEvent.setText(AppMyConstants.updateEvento)
+                                tvNewEvent.text = AppMyConstants.updateEvento
                                 return@forEach
                             }
                         }
@@ -100,24 +106,16 @@ class EventFragment : FragmentBase() {
                     init = false
                     val comedores = item.filter {
                         when (type) {
-                            1 -> {
-                                it.fCVOLUNTARIOS == "1" && it.fCSTATUS == "1"
-                            }
-                            else -> {
-                                it.fCSTATUS == "1"
-                            }
+                            1 -> it.fCVOLUNTARIOS == "1" && it.fCSTATUS == "1"
+                            else -> it.fCSTATUS == "1"
                         }
-                                &&
-                                when (zona) {
-                                    0 -> {
-                                        it.fCSTATUS == "1"
-                                    }
-                                    else -> {
-                                        it.fIZONA == zona.toString() && it.fCSTATUS == "1"
-                                    }
-                                }
+                        &&
+                        when (zona) {
+                            0 -> it.fCSTATUS == "1"
+                            else -> it.fIZONA == zona.toString()
+                        }
                     }
-                    if (comedores.size > 0) {
+                    if (comedores.isNotEmpty()) {
                         adapter.items.clear()
                         adapter.notifyDataSetChanged()
 
@@ -138,30 +136,13 @@ class EventFragment : FragmentBase() {
         }
 
         viewmodel.errorResponse.observe(viewLifecycleOwner) {
-            //showSkeleton(false)
-            UtilAlert
-                .Builder()
-                .setTitle("Aviso")
-                .setMessage(it)
-                .build()
-                .show(childFragmentManager, "")
+            UtilAlert.Builder().setTitle("Aviso").setMessage(it).build().show(childFragmentManager, "")
         }
     }
-    /*
-    fun selectRow(item: DinerResponse) {
-        if (item.fIZONA.isNotEmpty()) {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(item.content)))
-        } else {
-            changeFragment(EAMXDetailFragment(), Bundle().apply {
-                putParcelable(EAMXEnumUser.PUBLICATIONS.name, item)
-            })
-        }
-    }
-
-     */
 
     fun initButtons() {
         tvNewEvent.setOnClickListener {
+
             if (!init) {
                 NavigationFragment.Builder()
                     .setActivity(requireActivity())
@@ -179,6 +160,8 @@ class EventFragment : FragmentBase() {
                 .setView(requireView().parent as ViewGroup)
                 .setFragment(EventPantriesFragment.newInstance(callBack) as Fragment)
                 .build().nextWithReplace()
+            //NavigationFragment//.popBackStack(R.id.firstFragment, true)
+            //NavigationFragment.Builder().setAllowStack(false).setActivity(requireActivity()).setAllowStack(false)
         }
 
         btnOtrosEvento.setOnClickListener {
@@ -231,9 +214,8 @@ class EventFragment : FragmentBase() {
 
     fun getAllDiners() {
         showLoader()
-        adapter =
-            DinerAllAdapter(requireContext(), type)
-        adapter.items = arrayListOf()//arrayListOf(DinerResponse())
+        adapter = DinerAllAdapter(requireContext(), type)
+        adapter.items = arrayListOf()
         setupRecyclerView()
         click()
         viewmodel.requestAllDiner(0)

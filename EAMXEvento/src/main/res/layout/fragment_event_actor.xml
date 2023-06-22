@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.EventDonorFragment">
+
+    <LinearLayout
+        android:id="@+id/lTipo"
+        style="@style/ll_row_primary">
+
+        <TextView
+            android:id="@+id/tvTipo"
+            style="@style/tv_label_primary"
+            android:layout_marginTop="@dimen/margin_15"
+            android:text="Tipo de participación"
+         />
+
+        <Spinner
+            android:id="@+id/spTipoActor"
+            android:layout_marginHorizontal="@dimen/margin_20"
+            style="@style/spinner"
+            android:entries="@array/participations3"/>
+
+        <TextView
+            android:id="@+id/tvVacio"
+            style="@style/tv_row_vacio_item"
+            android:text="No se encontraron participantes con la selección actual."
+            android:visibility="gone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvEventActor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="8dp"
+        android:clickable="false"
+        android:visibility="visible"
+        tools:listitem="@layout/item_event_actors_detail" />
+    </LinearLayout>
+
+
+</FrameLayout>

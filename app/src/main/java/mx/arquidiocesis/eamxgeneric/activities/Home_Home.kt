@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.messaging.Constants
 import com.google.firebase.messaging.FirebaseMessaging
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
@@ -18,25 +19,24 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.eamx_toolbar.view.*
 import mx.arquidiocesis.eamxcommonutils.application.AppMyConstants
 import mx.arquidiocesis.eamxcommonutils.common.*
-import mx.arquidiocesis.eamxcommonutils.customui.alert.UtilAlert
 import mx.arquidiocesis.eamxcommonutils.util.*
 import mx.arquidiocesis.eamxcommonutils.util.contrasresult.TakePhoto
+import mx.arquidiocesis.eamxcommonutils.util.imagen.ImagenProfile
 import mx.arquidiocesis.eamxgeneric.R
 import mx.arquidiocesis.eamxgeneric.databinding.ActivityMainBinding
 import mx.arquidiocesis.eamxgeneric.fragments.home.EAMXHomeFragment
 import mx.arquidiocesis.eamxgeneric.model.TokenObj
+import mx.arquidiocesis.eamxgeneric.repository.MainRepository2
 import mx.arquidiocesis.eamxgeneric.viewmodel.TokenViewModel
 import mx.arquidiocesis.eamxprofilemodule.ui.EAMXContenedorPrincipalFragment
 import mx.arquidiocesis.eamxprofilemodule.ui.profile.EAMXProfilePrincipalFragment
 import mx.arquidiocesis.eamxredsocialmodule.databinding.EamxDialogClosePostBinding
 import mx.arquidiocesis.eamxredsocialmodule.news.create.EAMXCreateFragment
+import mx.arquidiocesis.eamxredsocialmodule.ui.EAMXRedSocialFragment
 import mx.arquidiocesis.sos.ui.FaithfulProfileFragment
 import mx.arquidiocesis.sos.ui.PriestProfileFragment
 import mx.arquidiocesis.sos.ui.SOSNotificationFaithfulFragment
 import mx.arquidiocesis.sos.ui.SOSProfileFragment
-import mx.arquidiocesis.eamxcommonutils.util.imagen.ImagenProfile
-import mx.arquidiocesis.eamxgeneric.repository.MainRepository2
-import mx.arquidiocesis.eamxredsocialmodule.ui.EAMXRedSocialFragment
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -291,6 +291,7 @@ class Home_Home : EAMXBaseActivity(),
                     AppMyConstants.comentarios -> toolbarBlue(titleFragment)
                     AppMyConstants.intentions -> toolbarBlue(titleFragment)
                     AppMyConstants.comunidad -> toolbarBlue(titleFragment)
+                    AppMyConstants.evento -> toolbarBlue(titleFragment)
                     AppMyConstants.comunidadAdd -> {
                         toolbarHome(isVisibleConfig = false)
                         bottomNavigation.visibility = View.GONE
@@ -363,17 +364,15 @@ class Home_Home : EAMXBaseActivity(),
 
             txtTitleFragmentWhite.text = titleFragment
             txtTitleFragmentWhite.setTextColor(
-                ContextCompat.getColor(
-                    root.context,
-                    R.color.gray_title
-                )
+                ContextCompat.getColor(root.context, R.color.gray_title)
             )
             btnBackSmall.setImageResource(R.drawable.ic_cancel)
             btnBackSmall.setOnClickListener {
                 tryGoBackListener() { goBack ->
                     if (goBack) {
                         btnBackSmall.setImageResource(R.drawable.ic_btn_back_two)
-                        super.onBackPressed()
+                        //super.onBackPressed()
+                        onBackPressedDispatcher.onBackPressed()
                     }
                 }
             }
@@ -470,13 +469,22 @@ class Home_Home : EAMXBaseActivity(),
             toolbarBlue.visibility = View.VISIBLE
             ivIconToobar.visibility = View.GONE
             txtTitleFragmentBlue.setTextColor(
-                ContextCompat.getColor(
-                    this@Home_Home,
-                    R.color.white
-                )
+                ContextCompat.getColor(this@Home_Home, R.color.white)
             )
             txtTitleFragmentBlue.text = titleFragment
-            btnBackBlue.setOnClickListener { onBackPressed() }
+            btnBackBlue.setOnClickListener {
+                if (titleFragment == AppMyConstants.evento){
+                    println("BACK:: ACTISSS")
+                    val count = this@Home_Home.supportFragmentManager.backStackEntryCount
+                    for (i in 0 until count) {
+                        println("UN backstackentryyy")
+                        this@Home_Home.supportFragmentManager.popBackStack()
+                    }
+                }else{
+                    println("BACK:: OTROO")
+                    onBackPressedDispatcher.onBackPressed()
+                }
+            }
         }
     }
 
@@ -492,13 +500,10 @@ class Home_Home : EAMXBaseActivity(),
             toolbarGeneral.visibility = View.VISIBLE
             ivIconToobar.visibility = View.GONE
             txtTitleFragmentGeneral.setTextColor(
-                ContextCompat.getColor(
-                    this@Home_Home,
-                    R.color.white
-                )
+                ContextCompat.getColor(this@Home_Home, R.color.white)
             )
             txtTitleFragmentGeneral.text = titleFragment
-            btnBackGeneral.setOnClickListener { onBackPressed() }
+            btnBackGeneral.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
         }
     }
 
@@ -514,13 +519,12 @@ class Home_Home : EAMXBaseActivity(),
             toolbarBlue.visibility = View.VISIBLE
             toolbarGeneral.visibility = View.GONE
             txtTitleFragmentBlue.setTextColor(
-                ContextCompat.getColor(
-                    this@Home_Home,
-                    R.color.white
-                )
+                ContextCompat.getColor(this@Home_Home, R.color.white)
             )
             txtTitleFragmentBlue.text = titleFragment
-            btnBackBlue.setOnClickListener { onBackPressed() }
+            btnBackBlue.setOnClickListener {
+                onBackPressedDispatcher.onBackPressed()
+            }
             ivIconToobar.visibility = View.VISIBLE
             ivIconToobar.setOnClickListener {
                 onActionClickListener()

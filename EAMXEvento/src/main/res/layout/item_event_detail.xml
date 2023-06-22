@@ -62,7 +62,7 @@
             <ImageView
                 android:id="@+id/ivPrecio"
                 style="@style/im_icon_item"
-                android:src="@drawable/icons_color_96" />
+                android:src="@drawable/pesosxx" />
 
             <TextView
                 android:id="@+id/labelPrecioF"
@@ -101,7 +101,7 @@
             <ImageView
                 android:id="@+id/ivHorario"
                 style="@style/im_icon_item"
-                android:src="@drawable/ic_reloj" />
+                android:src="@drawable/relojxxx" />
 
             <TextView
                 android:id="@+id/tvHorarioF"
@@ -119,7 +119,7 @@
             <ImageView
                 android:id="@+id/ivDias"
                 style="@style/im_icon_item"
-                android:src="@drawable/calendar" />
+                android:src="@drawable/calendarioxx" />
 
             <TextView
                 android:id="@+id/tvDiasF"
@@ -135,9 +135,9 @@
             app:layout_constraintTop_toBottomOf="@+id/lDiasF">
 
             <ImageView
-                android:id="@+id/ivAddress"
+                android:id="@+id/loc"
                 style="@style/im_icon_item"
-                android:src="@drawable/icono_igle" />
+                android:src="@drawable/locxx" />
 
             <TextView
                 android:id="@+id/tvDireccionF"
@@ -155,7 +155,7 @@
             <ImageView
                 android:id="@+id/ivResponsable"
                 style="@style/im_icon_item"
-                android:src="@drawable/icon_responsable" />
+                android:src="@drawable/userxxx" />
 
             <TextView
                 android:id="@+id/tvResponF"
@@ -173,7 +173,7 @@
             <ImageView
                 android:id="@+id/ivCorreo"
                 style="@style/im_icon_item"
-                android:src="@drawable/card_email" />
+                android:src="@drawable/correoxx" />
 
             <TextView
                 android:id="@+id/tvCorreoF"
@@ -192,7 +192,7 @@
                 android:id="@+id/ivTelefono"
                 style="@style/im_icon_item"
                 android:contentDescription="calendar"
-                android:src="@drawable/tel_fono_48" />
+                android:src="@drawable/telxx" />
 
             <TextView
                 android:id="@+id/tvTelF"
@@ -215,7 +215,7 @@
                 android:layout_height="28dp"
                 android:layout_marginTop="3dp"
                 android:layout_marginBottom="10dp"
-                android:src="@drawable/ic_icono_info" />
+                android:src="@drawable/infoxxx" />
 
             <TextView
                 android:id="@+id/tvRequisF"

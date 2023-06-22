@@ -93,7 +93,7 @@ class EventDonorDetailFragment : FragmentBase() {
         etEmailDonador.setText(email)
         etPhoneDonador.setText(phone.replace("+52", ""))
         requireArguments().let {
-            var id = it.getString("diner_id")
+            val id = it.getString("diner_id")
             id?.let { it1 ->
                 diner_id = it1.toInt()
                 getAllDonorbyDiner(diner_id, type)
@@ -105,7 +105,7 @@ class EventDonorDetailFragment : FragmentBase() {
         viewModelEvent.responseAllDon.observe(viewLifecycleOwner) { item ->
             println("entre")
             hideLoader()
-            if (item.size > 0) {
+            if (item.isNotEmpty()) {
                 if (init) {
                     item.forEach {
                         if (it.fIUSERID == userId.toString()) {
@@ -121,7 +121,7 @@ class EventDonorDetailFragment : FragmentBase() {
                             }
                             etEmailDonador.setText(it.fCCORREO)
                             etPhoneDonador.setText(it.fCTELEFONO!!.replace("+52", ""))
-                            btnGuardar.setText("Actualizar")
+                            btnGuardar.text = "Actualizar"
                             return@forEach
                         }
                     }

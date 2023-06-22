@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cwcEvent"
+        android:id="@+id/cwxEvent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_15"
@@ -22,7 +21,6 @@
             android:id="@+id/tvVacio"
             style="@style/tv_row_vacio_item"
             android:text="No se encontraron actividades en curso."
-            android:visibility="gone"
             app:layout_constraintBaseline_toBaselineOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/viewTop" />
@@ -37,7 +35,8 @@
             <TextView
                 android:id="@+id/tvTipoF"
                 style="@style/tv_title_item"
-                android:layout_weight=".9"
+                android:layout_weight="1"
+                android:textSize="18sp"
                 android:autoSizeTextType="uniform"
                 android:maxLines="1"
                 android:layout_marginEnd="@dimen/margin_10"
@@ -74,7 +73,7 @@
             <ImageView
                 android:id="@+id/ivAddress"
                 style="@style/im_icon_item"
-                android:src="@drawable/icono_igle" />
+                android:src="@drawable/locxx" />
 
             <TextView
                 android:id="@+id/tvDireccionF"
@@ -92,7 +91,7 @@
             <ImageView
                 android:id="@+id/ivPrecio"
                 style="@style/im_icon_item"
-                android:src="@drawable/icons_color_96" />
+                android:src="@drawable/pesosxx" />
 
             <TextView
                 android:id="@+id/labelPrecioF"
@@ -131,7 +130,7 @@
             <ImageView
                 android:id="@+id/ivHorario"
                 style="@style/im_icon_item"
-                android:src="@drawable/ic_reloj" />
+                android:src="@drawable/relojxxx" />
 
             <TextView
                 android:id="@+id/tvHorarioF"
@@ -149,7 +148,7 @@
             <ImageView
                 android:id="@+id/ivDias"
                 style="@style/im_icon_item"
-                android:src="@drawable/calendar" />
+                android:src="@drawable/calendarioxx" />
 
             <TextView
                 android:id="@+id/tvDiasF"
@@ -167,7 +166,7 @@
             <ImageView
                 android:id="@+id/ivResponsable"
                 style="@style/im_icon_item"
-                android:src="@drawable/icon_responsable" />
+                android:src="@drawable/userxxx" />
 
             <TextView
                 android:id="@+id/tvResponF"
@@ -185,7 +184,7 @@
             <ImageView
                 android:id="@+id/ivCorreo"
                 style="@style/im_icon_item"
-                android:src="@drawable/card_email" />
+                android:src="@drawable/correoxx" />
 
             <TextView
                 android:id="@+id/tvCorreoF"
@@ -204,7 +203,7 @@
                 android:id="@+id/ivTelefono"
                 style="@style/im_icon_item"
                 android:contentDescription="calendar"
-                android:src="@drawable/tel_fono_48" />
+                android:src="@drawable/telxx" />
 
             <TextView
                 android:id="@+id/tvTelF"
@@ -227,7 +226,7 @@
                 android:layout_height="28dp"
                 android:layout_marginTop="3dp"
                 android:layout_marginBottom="10dp"
-                android:src="@drawable/ic_icono_info" />
+                android:src="@drawable/infoxxx" />
 
             <TextView
                 android:id="@+id/tvRequisF"
@@ -252,7 +251,7 @@
                 android:layout_height="28dp"
                 android:layout_marginTop="3dp"
                 android:layout_marginBottom="10dp"
-                android:src="@drawable/ic_icono_info" />
+                android:src="@drawable/infoxxx" />
 
             <TextView
                 android:id="@+id/tvPublicF"
@@ -277,7 +276,7 @@
                 android:layout_height="28dp"
                 android:layout_marginTop="3dp"
                 android:layout_marginBottom="10dp"
-                android:src="@drawable/ic_icono_info" />
+                android:src="@drawable/infoxxx" />
 
             <TextView
                 android:id="@+id/tvDonsF"
@@ -302,7 +301,7 @@
                 android:layout_height="28dp"
                 android:layout_marginTop="3dp"
                 android:layout_marginBottom="10dp"
-                android:src="@drawable/ic_icono_info" />
+                android:src="@drawable/infoxxx" />
 
             <TextView
                 android:id="@+id/tvVolsF"

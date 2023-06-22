@@ -172,7 +172,8 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
                             etLastNameFather.setText(response.successData!!.fcappaterno)
                             rLasNameFather.visibility = View.VISIBLE
                             etLastNameFather.isEnabled = false
-                            etNumberPhone.setText(response.successData!!.fccelular)
+                            val phone = response.successData!!.fccelular.replace("+52", "")
+                            etNumberPhone.setText(phone)
                             rPhone.visibility = View.VISIBLE
                             etNumberPhone.isEnabled = false
                             etEmail.setText(response.successData!!.fccorreo)
@@ -279,10 +280,7 @@ class EAMXRegisterActivity : EAMXBaseActivity() {
             etNumberPhone.addTextChangedListener {
                 val validatePhone =  etNumberPhone.text.toString().validNumberPhoneContent()
                 btnEnviar.isEnabled = validatePhone
-                enableIconStart(
-                    tilNumberPhone,
-                    validatePhone
-                )
+                enableIconStart(tilNumberPhone, validatePhone)
                 if (etNumberPhone.text.toString().isEmpty()) {
                     enableIconStart(tilNumberPhone, null)
                     tilNumberPhone.isEmpty()

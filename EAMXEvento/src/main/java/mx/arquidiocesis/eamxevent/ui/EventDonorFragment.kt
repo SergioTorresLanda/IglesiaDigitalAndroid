@@ -107,14 +107,6 @@ class EventDonorFragment : FragmentBase() {
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param callBack Parameter 1.
-         * @return A new instance of fragment EventVolunteerFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(callBack: EAMXHome): EventDonorFragment {
             val fragment = EventDonorFragment()

@@ -82,7 +82,7 @@ class Repository(val context : Context) : ManagerCall() {
                     saveDataUser(responseDetail.data)
                     registerResponse.value = "Se actualizaron tus datos correctamente."
                 }else{
-                    errorResponse.value = "Verifica que cancilleria tenga tus datos. En caso de duda o aclaracion, enviar correo electronico a la siguiente dirección para autorizar tu registro: cancilleria@arquidiocesismexico.org"
+                    errorResponse.value = "Verifica que cancillería tenga tus datos. En caso de duda o aclaración, envía un correo electrónico a la siguiente dirección para autorizar tu registro: cancilleria@arquidiocesismexico.org"
                 }
             }
         }

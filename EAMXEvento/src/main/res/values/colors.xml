@@ -9,7 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="success">#2BAA22</color>
     <color name="error">#DE1733</color>
-
+    <color name="darkgray">#29292B</color>
     <color name="textview_title_color">#002166</color>
     <color name="btn_background_color">#192a73</color>
     <color name="text_button_color">#ffffff</color>

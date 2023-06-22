@@ -14,3 +14,10 @@ enum class EAMXProfile(val rol: String) {
     VicariaVidaPastoral("CONSECRATED_LIFE_VICARAGE"), //Vicaría de Vida Pastoral
     GestorContenidos("CONTENT_MANAGER"), //Gestor de Contenidos
 }
+/*
+Fiel administrador
+Sacerdote administrador
+Sacerdote decano
+Administrador comunidad
+Gestor de contenidos
+ */

@@ -14,7 +14,12 @@ object WebConfig {
     const val EVENT_PANTRY_PATH = "act-voluntariado/despensas/{pantryId}"
     //Event Other
     const val EVENT_OTHER = "act-voluntariado/genericos"
-    const val EVENT_OTHER_PATH = "act-voluntariado/genericos/{pantryId}"
+    const val EVENT_OTHER_UPDATE = "act-voluntariado/genericos/{eventId}"
+    const val EVENT_OTHER_GET = "act-voluntariado/genericos"
+    const val EVENT_OTHER_GETDET = "act-voluntariado/genericos/{eventId}"
+    const val EVENT_OTHER_ACTORS = "act-voluntariado/genericos/actores"
+    const val UPDATE_OTHER_ACTORS = "act-voluntariado/genericos/actores/{actorId}"
+
 
     //Donors
     const val EVENT_DONOR = "act-voluntariado/donadores"

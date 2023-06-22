@@ -80,7 +80,7 @@ object RepositoryArquidiocesisApi {
     private fun HttpException.toResponse(): EAMXResponse.Error {
         val error = response()?.errorBody()?.charStream()?.readText()
         var code = 500
-        var message = "Ocurrio un error intentelo mas tarde"
+        var message = "Ocurrio un error inténtelo más tarde."
         try {
             JsonParser().parse(error).asJsonObject.let {
                 message = it.get("message").asString

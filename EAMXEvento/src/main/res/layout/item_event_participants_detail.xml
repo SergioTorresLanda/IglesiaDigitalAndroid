@@ -89,7 +89,7 @@
                 <ImageView
                     android:id="@+id/ivCorreo"
                     style="@style/im_icon_item"
-                    android:src="@drawable/card_email" />
+                    android:src="@drawable/correoxx" />
 
                 <TextView
                     android:id="@+id/tvCorreo"
@@ -107,7 +107,7 @@
                 <ImageView
                     android:id="@+id/ivTelefono"
                     style="@style/im_icon_item"
-                    android:src="@drawable/tel_fono_48" />
+                    android:src="@drawable/telxx" />
 
                 <TextView
                     android:id="@+id/tvTelefono"
@@ -130,7 +130,7 @@
                     android:layout_height="28dp"
                     android:layout_marginTop="3dp"
                     android:layout_marginBottom="10dp"
-                    android:src="@drawable/ic_icono_info" />
+                    android:src="@drawable/infoxxx" />
 
                 <TextView
                     android:id="@+id/tvLabelInformacion"
@@ -148,7 +148,7 @@
                     style="@style/tv_paragraph_item"
                     android:layout_marginTop="3dp"
                     android:layout_marginBottom="10dp"
-                    android:text="Presentarse puntual para garantizar el servicio. No asistir en estado de ebriedad o bajo la influencia de estupefacientes. Seguir las indicaciones de los administradores en todo momento. Actitud de respeto y cordialidad con el resto de los participantes."
+                    android:text=""
                     app:layout_constraintTop_toBottomOf="@id/parent" />
             </LinearLayout>
         </LinearLayout>

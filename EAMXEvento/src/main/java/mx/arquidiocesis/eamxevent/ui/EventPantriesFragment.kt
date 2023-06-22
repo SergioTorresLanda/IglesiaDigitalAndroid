@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.fragment_event.btnOtrosEvento
 import kotlinx.android.synthetic.main.fragment_event_detail.*
 import kotlinx.android.synthetic.main.fragment_event_pantries.*
 import mx.arquidiocesis.eamxcommonutils.application.AppMyConstants
@@ -67,10 +68,7 @@ class EventPantriesFragment : FragmentBase() {
         }
         callBack.showToolbar(true, AppMyConstants.evento)
         init = true
-        userId = eamxcu_preferences.getData(
-            EAMXEnumUser.USER_ID.name,
-            EAMXTypeObject.INT_OBJECT
-        ) as Int
+        userId = eamxcu_preferences.getData(EAMXEnumUser.USER_ID.name, EAMXTypeObject.INT_OBJECT) as Int
         setupInit(msgGuest(isMsg = false))
         initObservers()
         initButtons()
@@ -148,6 +146,13 @@ class EventPantriesFragment : FragmentBase() {
                 .setActivity(requireActivity())
                 .setView(requireView().parent as ViewGroup)
                 .setFragment(EventFragment.newInstance(callBack) as Fragment)
+                .build().nextWithReplace()
+        }
+        btnOtrosEvento.setOnClickListener {
+            NavigationFragment.Builder()
+                .setActivity(requireActivity())
+                .setView(requireView().parent as ViewGroup)
+                .setFragment(EventOtherFragment.newInstance(callBack) as Fragment)
                 .build().nextWithReplace()
         }
         spZoneDes.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {

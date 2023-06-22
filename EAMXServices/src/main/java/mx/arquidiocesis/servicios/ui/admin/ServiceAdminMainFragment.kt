@@ -35,6 +35,7 @@ class ServiceAdminMainFragment : FragmentBase() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        println("SERvIces MEnu ADMiNN:::")
     }
 
     private fun initView() {

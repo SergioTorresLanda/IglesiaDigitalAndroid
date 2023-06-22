@@ -20,6 +20,7 @@
     <string name="enter_your_com">Ingresa los comentarios</string>
     <string name="enter_your_don">Ingresa el nombre del donador</string>
     <string name="min_phone_don">El número debe tener 13 caracteres</string>
+    <string name="enter_your_name2">Ingresa tu nombre</string>
 
     <string name="enter_your_namevol">Ingresa los comentarios</string>
     <string name="enter_your_vol">Ingresa el nombre del voluntario</string>
@@ -69,9 +70,37 @@
         <item>Voluntario</item>
         <item>Solicitante</item>
     </string-array>
+    <string-array name="participations2">
+        <item>-Seleccionar-</item>
+        <item>Donador</item>
+        <item>Voluntario</item>
+        <item>Participante</item>
+    </string-array>
+    <string-array name="participations3">
+        <item>Todos</item>
+        <item>Donadores</item>
+        <item>Voluntarios</item>
+        <item>Participantes</item>
+    </string-array>
+    <string-array name="activityType">
+        <item>--Seleccionar--</item>
+        <item>Educación</item>
+        <item>Misiones</item>
+        <item>Retiros</item>
+        <item>Cursos</item>
+        <item>Encuentros</item>
+        <item>Pláticas</item>
+        <item>Adoración Nocturna</item>
+    </string-array>
     <string-array name="typedonations">
         <item>En especie</item>
     </string-array>
+    <string name="txt_empty_nameother">El nombre de la actividad no puede quedar vacío.</string>
+    <string name="txt_empty_descother">La descripción de la actividad no puede quedar vacía.</string>
+    <string name="txt_empty_typeother">Selecciona el tipo de actividad que quieres dar de alta.</string>
+    <string name="txt_empty_locationother">Actualiza la ubicación en donde se llevará a cabo tu actividad.</string>
+    <string name="txt_empty_dayother">Selecciona por lo menos un día a la semana en el que preste sevicio tu actividad.</string>
+
     <string name="txt_empty_name">El nombre del comedor no puede quedar vacío.</string>
     <string name="txt_empty_location">Actualiza la ubicación de tu comedor.</string>
     <string name="txt_empty_day">Activa por lo menos un día a la semana en el que preste sevicio tu comedor.</string>

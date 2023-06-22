@@ -8,7 +8,7 @@ class ValidationCodes<T> : ValidationCode<Response<T>> {
 
     override fun executeValidation(response: Response<T>) {
         if(response.code() != 201 && response.code() != 200){
-            throw BackendException("Por el momento no es posible hacer esta operación, intentelo mas tarde.")
+            throw BackendException("Por el momento no es posible hacer esta operación, inténtelo más tarde.")
         }
     }
 }

@@ -60,7 +60,7 @@
             <ImageView
                 android:id="@+id/ivEmailPantry"
                 style="@style/im_icon_item"
-                android:src="@drawable/card_email" />
+                android:src="@drawable/correoxx" />
 
             <TextView
                 android:id="@+id/tvEmailPantry"
@@ -78,7 +78,7 @@
             <ImageView
                 android:id="@+id/ivPhonePantry"
                 style="@style/im_icon_item"
-                android:src="@drawable/tel_fono_48" />
+                android:src="@drawable/telxx" />
 
             <TextView
                 android:id="@+id/tvPhonePantry"
@@ -99,7 +99,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="3dp"
-                android:src="@drawable/icono_igle" />
+                android:src="@drawable/locxx" />
 
             <TextView
                 android:id="@+id/tvAddressPantry"
@@ -119,7 +119,7 @@
                 android:id="@+id/ivDescriptionPantry"
                 style="@style/im_icon_item"
                 android:layout_marginTop="3dp"
-                android:src="@drawable/ic_icono_info" />
+                android:src="@drawable/infoxxx" />
 
             <TextView
                 android:id="@+id/tvDescriptionPantry"
@@ -152,7 +152,7 @@
             <ImageView
                 android:id="@+id/ivReqDonorPantry"
                 style="@style/im_icon_item"
-                android:src="@drawable/icon_req" />
+                android:src="@drawable/infoxxx" />
 
             <TextView
                 android:id="@+id/tvReqDonorPantry"
@@ -187,7 +187,7 @@
                 style="@style/im_icon_item"
                 android:layout_marginTop="3dp"
                 android:layout_marginBottom="10dp"
-                android:src="@drawable/calendar" />
+                android:src="@drawable/calendarioxx" />
 
             <TextView
                 android:id="@+id/tvSchedulesReceived"
@@ -210,7 +210,7 @@
                 style="@style/im_icon_item"
                 android:layout_marginTop="3dp"
                 android:layout_marginBottom="10dp"
-                android:src="@drawable/ic_reloj" />
+                android:src="@drawable/relojxxx" />
 
             <TextView
                 android:id="@+id/tvScheduleReceived"
@@ -247,7 +247,7 @@
                 style="@style/im_icon_item"
                 android:layout_marginTop="3dp"
                 android:layout_marginBottom="10dp"
-                android:src="@drawable/calendar" />
+                android:src="@drawable/calendarioxx" />
 
             <TextView
                 android:id="@+id/tvSchedulesArmed"
@@ -270,7 +270,7 @@
                 style="@style/im_icon_item"
                 android:layout_marginTop="3dp"
                 android:layout_marginBottom="10dp"
-                android:src="@drawable/ic_reloj" />
+                android:src="@drawable/relojxxx" />
 
             <TextView
                 android:id="@+id/tvScheduleArmed"
@@ -307,7 +307,7 @@
                 style="@style/im_icon_item"
                 android:layout_marginTop="3dp"
                 android:layout_marginBottom="10dp"
-                android:src="@drawable/calendar" />
+                android:src="@drawable/calendarioxx" />
 
             <TextView
                 android:id="@+id/tvSchedulesDelivery"
@@ -330,7 +330,7 @@
                 style="@style/im_icon_item"
                 android:layout_marginTop="3dp"
                 android:layout_marginBottom="10dp"
-                android:src="@drawable/ic_reloj" />
+                android:src="@drawable/relojxxx" />
 
             <TextView
                 android:id="@+id/tvScheduleDelivery"
@@ -356,7 +356,7 @@
                 android:layout_height="28dp"
                 android:layout_marginTop="3dp"
                 android:layout_marginBottom="10dp"
-                android:src="@drawable/icono_igle" />
+                android:src="@drawable/locxx" />
 
             <TextView
                 android:id="@+id/tvAddressDelivery"

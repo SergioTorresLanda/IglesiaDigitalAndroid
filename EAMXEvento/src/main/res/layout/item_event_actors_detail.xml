@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cwcEvent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_15"
+        android:layout_marginEnd="@dimen/margin_15">
+
+        <View
+            android:id="@+id/viewTop"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="#002166"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/contenido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints">
+
+            <LinearLayout
+                android:id="@+id/lNombre"
+                style="@style/ll_title_item"
+                app:layout_constraintBaseline_toBaselineOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/viewTop">
+
+                <TextView
+                    android:id="@+id/tvNombre"
+                    style="@style/tv_title_item"
+                    android:layout_width="300dp"
+                    android:layout_weight=".9"
+                    android:autoSizeTextType="uniform"
+                    android:maxLines="1"
+                    android:layout_marginEnd="@dimen/margin_10"
+                    android:text="Nombre"
+                    app:layout_constraintTop_toBottomOf="@id/parent" />
+
+                <Switch
+                    android:id="@+id/switch_activo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/height_40"
+                    android:layout_gravity="center"
+                    android:layout_weight=".0001"
+                    android:gravity="center"
+                    android:switchPadding="@dimen/global_margin_extra"
+                    android:textColor="#192a73"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lCorreo"
+                style="@style/ll_row_item"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lNombre">
+
+                <ImageView
+                    android:id="@+id/ivCorreo"
+                    style="@style/im_icon_item"
+                    android:src="@drawable/correoxx" />
+
+                <TextView
+                    android:id="@+id/tvCorreo"
+                    style="@style/tv_paragraph_item"
+                    android:text="email@gmial.com"
+                    app:layout_constraintTop_toBottomOf="@id/parent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lTelefono"
+                style="@style/ll_row_item"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lCorreo">
+
+                <ImageView
+                    android:id="@+id/ivTelefono"
+                    style="@style/im_icon_item"
+                    android:src="@drawable/telxx" />
+
+                <TextView
+                    android:id="@+id/tvTelefono"
+                    style="@style/tv_paragraph_item"
+                    android:text="+527641015871"
+                    app:layout_constraintTop_toBottomOf="@id/parent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lInformacion"
+                style="@style/ll_row_item"
+                android:layout_marginBottom="7dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lTelefono">
+
+                <ImageView
+                    android:id="@+id/ivInformacion"
+                    style="@style/im_icon_item"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/infoxxx" />
+
+                <TextView
+                    android:id="@+id/tvLabelInformacion"
+                    style="@style/tv_paragraph_item"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Comentarios:"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:visibility="visible"
+                    app:layout_constraintTop_toBottomOf="@id/parent" />
+
+                <TextView
+                    android:id="@+id/tvInformacion"
+                    style="@style/tv_paragraph_item"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="10dp"
+                    android:text=""
+                    app:layout_constraintTop_toBottomOf="@id/parent" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/viewBottom"
+            style="@style/v_row_item"
+            android:layout_marginTop="17dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@id/contenido"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

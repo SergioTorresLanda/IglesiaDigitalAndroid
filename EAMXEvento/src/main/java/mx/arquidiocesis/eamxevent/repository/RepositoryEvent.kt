@@ -31,6 +31,7 @@ class RepositoryEvent(val context: Context) : ManagerCall() {
     val allOther = SingleLiveEvent<List<OtherEvent>>()
     val allDonor = SingleLiveEvent<List<DonorResponse>>()
     val allVolunteer = SingleLiveEvent<List<VolunteerResponse>>()
+    val allActors = SingleLiveEvent<List<OtherActor>>()
     val allGuest = SingleLiveEvent<List<GuestModel>>()
 
     private var retrofitInstance = RetrofitApp.Build<ApiInterface>()
@@ -73,11 +74,11 @@ class RepositoryEvent(val context: Context) : ManagerCall() {
         }
     }
 
-    suspend fun saveEventOther(event: OtherEvent) {
+    suspend fun saveEventOther(event: OtherEvent, tipoEvento:Int) {
+        //val tipoEventoS=tipoEvento.toString()
         managerCallApi(
             context = context, call = {
-                retrofitInstance.setHost(HOST).builder().instance().postCreateOtherAsync(event)
-                    .await()
+                retrofitInstance.setHost(HOST).builder().instance().postCreateOtherAsync(event).await()
             }, validation = Validation()
         ).let { response ->
             GlobalScope.launch(Dispatchers.Main) {
@@ -108,10 +109,10 @@ class RepositoryEvent(val context: Context) : ManagerCall() {
         }
     }
 
-    suspend fun updateEventOther(otherId: Int, event: OtherEvent) {
+    suspend fun updateEventOther(eventoId: Int, tipoEvento: Int, event: OtherEvent) {
         managerCallApi(
             context = context, call = {
-                retrofitInstance.setHost(HOST).builder().instance().putUpdateOtherAsync(otherId, event).await()
+                retrofitInstance.setHost(HOST).builder().instance().putUpdateOtherAsync(eventoId, tipoEvento, event).await()
             }, validation = Validation()
         ).let { response ->
             GlobalScope.launch(Dispatchers.Main) {
@@ -195,15 +196,15 @@ class RepositoryEvent(val context: Context) : ManagerCall() {
         )
     }
 
-    suspend fun getAllOther(otherId: Int): ResponseData<List<OtherEvent>?> {
+    suspend fun getAllOther(eventId: Int, tipoEvento: Int): ResponseData<List<OtherEvent>?> {
         return managerCallApi(
             context = context,
             call = {
                 retrofitInstances.run {
-                    if (otherId == 0)
+                    if (eventId == 0)
                         getOthersEventAsync().await()
                     else
-                        getOtherEventAsync(otherId).await()
+                        getOtherEventAsync(eventId, tipoEvento).await()
                 }
             },
             validation = Validation()
@@ -343,4 +344,59 @@ class RepositoryEvent(val context: Context) : ManagerCall() {
             validation = Validation()
         )
     }
+
+    suspend fun getOthersActors(): ResponseData<List<OtherActor>?> {
+        return managerCallApi(
+            context = context,
+            call = {
+                retrofitInstances.run {
+                    getOthersActorsAsync().await()
+                }
+            },
+            validation = Validation()
+        )
+    }
+
+    suspend fun postOthersActors(actor: OtherActor) {
+        managerCallApi(
+            context = context,
+            call = {
+                retrofitInstance.setHost(HOST).builder().instance().postOthersActorsAsync(actor).await()
+            },
+            validation = Validation()
+        ).let { response ->
+            GlobalScope.launch(Dispatchers.Main) {
+                if (response.sucess) {
+                    when (actor.tipo_actor){
+                        1 -> saveResponse.value = "Se ha dado de alta el donador correctamente."
+                        2 -> saveResponse.value = "Se ha dado de alta el voluntario correctamente."
+                        3 -> saveResponse.value = "Se ha dado de alta el participante correctamente."
+                    }
+                } else {
+                    errorResponse.value = response.exception?.message
+                        ?: "La creación del actor no se pudo realizar."
+                }
+            }
+        }
+    }
+
+    suspend fun updateOthersActor(actor: OtherActor) {
+        managerCallApi(
+            context = context,
+            call = {
+                retrofitInstance.setHost(HOST).builder().instance().putOthersActorsAsync(actor.actor_id!!,actor).await()
+            },
+            validation = Validation()
+        ).let { response ->
+            GlobalScope.launch(Dispatchers.Main) {
+                if (response.sucess) {
+                    saveResponse.value = "Se ha actualizado tu participación correctamente."
+                } else {
+                    errorResponse.value = response.exception?.message
+                        ?: "No se ha actualizado tu participación correctamente. Contacta directamente al responsable de la actividad."
+                }
+            }
+        }
+    }
+
 }

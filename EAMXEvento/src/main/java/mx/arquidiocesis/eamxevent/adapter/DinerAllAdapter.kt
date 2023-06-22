@@ -32,10 +32,7 @@ class DinerAllAdapter(
         "^((((https?|ftps?|gopher|telnet|nntp)://)|(mailto:|news:))" + "(%{2}|[-()_.!~*';/?:@&=+$, A-Za-z0-9])+)" + "([).!';/?:, ][[:blank:]])?$"
     var URL_PATTERN = Pattern.compile(URL_REGEX)
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int,
-    ): NewsViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemEventDetailBinding.inflate(inflater, parent, false)
         return NewsViewHolder(binding)
@@ -47,9 +44,7 @@ class DinerAllAdapter(
     }
 
     inner class NewsViewHolder(private val binding: ItemEventDetailBinding) :
-        RecyclerView.ViewHolder(
-            binding.root
-        ) {
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(item: DinerResponse) = with(binding) {
             val userId = eamxcu_preferences.getData(
                 EAMXEnumUser.USER_ID.name,
